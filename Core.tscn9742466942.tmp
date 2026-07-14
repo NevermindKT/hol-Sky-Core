@@ -20,15 +20,19 @@ script = ExtResource("1_vsfee")
 drag = 4.0
 brake = 20.0
 max_speed = 100.0
+acceleration = null
+max_offset = null
 strafe_speed = 6.0
 steering_curve = SubResource("Curve_58tws")
-spring = 40.0
-damping = 15.0
+min_strafe_speed = null
+spring = 20.0
+damping = null
+dodge_strength = null
 
 [node name="Visual" type="Node3D" parent="Car" unique_id=1840550049]
 script = ExtResource("2_58tws")
-y_tilt = 15.0
-z_tilt = 7.0
+y_tilt = 5.0
+z_tilt = 5.0
 
 [node name="CarMesh" type="MeshInstance3D" parent="Car/Visual" unique_id=705478967]
 transform = Transform3D(0.8964283, 0, 0, 0, 0.3809801, 0, 0, 0, 1.6460748, 0, 0, 0)

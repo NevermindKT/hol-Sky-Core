@@ -1,49 +1,83 @@
 extends CharacterBody3D
 class_name Car_Movement
 
-var input: float
 var speed := 0.0
-var steering := 0.0
-var speed_ratio := 0.0
 var lane_offset := 0.0
+var lateral_velocity := 0.0
+var last_lateral_velocity := 0.0
 
+var steering_input := 0.0
+
+
+@export_category("Movement")
 @export var drag := 15.0
 @export var brake := 50.0
 @export var max_speed := 80.0
 @export var acceleration := 30.0
 
+
+@export_category("Strafe")
 @export var max_offset := 4.0
 @export var strafe_speed := 8.0
-@export var strafe_latency := 8.0
+@export var steering_curve: Curve
 @export var min_strafe_speed := 2.0
 
-@export var dodge_strength := 8.0
 
-@onready var visual: Node3D = $Visual
+@export_category("Strafe Physics")
+@export var spring := 30.0
+@export var damping := 8.0
+
+
 @onready var visual_effects: Car_Visual_Effects = $Visual
 
+
 func _physics_process(delta: float) -> void:
+	get_input()
+	process_speed(delta)
+	process_strafe(delta)
+	process_visuals(delta)
+
+
+func get_input() -> void:
+	steering_input = Input.get_axis("left", "right")
+
+
+func process_speed(delta: float) -> void:
 	if Input.is_action_pressed("accelerate"):
 		speed += acceleration * delta
-		
+
 	if Input.is_action_pressed("brake"):
 		speed -= brake * delta
-	
-	input = Input.get_axis("left", "right")
-	
-	if speed >= min_strafe_speed:
-		steering = input
-		lane_offset += steering * strafe_speed * delta
-	
-	visual_effects.process_visual_tilt(delta, steering)
-	
-	lane_offset = clamp(lane_offset, -max_offset, max_offset)
-	
+
 	speed -= drag * delta
 	speed = clamp(speed, 0.0, max_speed)
-	steering = position.x - lane_offset
+
+
+func process_strafe(delta: float) -> void:
+	var speed_ratio: float = 0.0
 	
-	print("Speed: ", speed)
-	print("Lane position: ", lane_offset)
+	if max_speed > 0.0:
+		speed_ratio = clamp(speed / max_speed, 0.0, 1.0)
 	
-	position.x = move_toward(position.x, lane_offset, strafe_speed * delta)
+	var steering_mul := steering_curve.sample_baked(speed_ratio)
+
+	if speed >= min_strafe_speed:
+		lane_offset += steering_input * strafe_speed * steering_mul * delta
+
+	lane_offset = clamp(
+		lane_offset,
+		-max_offset,
+		max_offset
+	)
+
+	var error := lane_offset - position.x
+
+	lateral_velocity += error * spring * delta
+	lateral_velocity *= exp(-damping * delta)
+
+	position.x += lateral_velocity * delta
+
+
+func process_visuals(delta: float) -> void:
+	visual_effects.process_visual_tilt(delta, lateral_velocity)
+	pass
