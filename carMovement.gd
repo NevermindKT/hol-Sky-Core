@@ -6,6 +6,7 @@ var lane_offset := 0.0
 var lateral_velocity := 0.0
 var last_lateral_velocity := 0.0
 
+
 var steering_input := 0.0
 
 
@@ -14,6 +15,7 @@ var steering_input := 0.0
 @export var brake := 50.0
 @export var max_speed := 80.0
 @export var acceleration := 30.0
+@export var acceleration_curve: Curve
 
 
 @export_category("Strafe")
@@ -36,6 +38,10 @@ func _physics_process(delta: float) -> void:
 	process_speed(delta)
 	process_strafe(delta)
 	process_visuals(delta)
+	
+	print("Speed: ", speed)
+	print("Lane offset: ", lane_offset)
+	print("Lateral velosity: ", lateral_velocity)
 
 
 func get_input() -> void:
@@ -44,7 +50,8 @@ func get_input() -> void:
 
 func process_speed(delta: float) -> void:
 	if Input.is_action_pressed("accelerate"):
-		speed += acceleration * delta
+		var acceleration_mul = get_acceleration_multiplier()
+		speed += acceleration * acceleration_mul * delta
 
 	if Input.is_action_pressed("brake"):
 		speed -= brake * delta
@@ -54,15 +61,9 @@ func process_speed(delta: float) -> void:
 
 
 func process_strafe(delta: float) -> void:
-	var speed_ratio: float = 0.0
-	
-	if max_speed > 0.0:
-		speed_ratio = clamp(speed / max_speed, 0.0, 1.0)
-	
-	var steering_mul := steering_curve.sample_baked(speed_ratio)
-
 	if speed >= min_strafe_speed:
-		lane_offset += steering_input * strafe_speed * steering_mul * delta
+		var steering_mul = get_steering_multiplier()
+		lane_offset += -steering_input * strafe_speed * steering_mul * delta
 
 	lane_offset = clamp(
 		lane_offset,
@@ -80,4 +81,15 @@ func process_strafe(delta: float) -> void:
 
 func process_visuals(delta: float) -> void:
 	visual_effects.process_visual_tilt(delta, lateral_velocity)
-	pass
+	
+	
+func get_speed_ratio() -> float:
+	return clampf(speed / max_speed, 0.0, 1.0)
+
+
+func get_acceleration_multiplier() -> float:
+	return acceleration_curve.sample_baked(get_speed_ratio())
+
+
+func get_steering_multiplier() -> float:
+	return steering_curve.sample_baked(get_speed_ratio())

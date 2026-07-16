@@ -2,53 +2,57 @@
 
 [ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://carMovement.gd" id="1_vsfee"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://visual.gd" id="2_58tws"]
+[ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://cam.gd" id="3_10wf8"]
+[ext_resource type="PackedScene" uid="uid://ckkd53l5lsgj7" path="res://road_generator.tscn" id="4_au6on"]
+
+[sub_resource type="Curve" id="Curve_dwkn5"]
+_data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Curve" id="Curve_58tws"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.14814815, 0.50000006), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.29259259, 0.95000005), 0.0, 0.0, 0, 0, Vector2(0.64074075, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.92523366), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tn0y"]
+albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_10jsn"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
 
 [node name="Node3D" type="Node3D" unique_id=243152911]
 
-[node name="Car" type="CharacterBody3D" parent="." unique_id=2009887441]
+[node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.8, -2.45)
+script = ExtResource("3_10wf8")
+cam_latency = 14.0
+
+[node name="RoadGenerator" parent="." unique_id=824665246 node_paths=PackedStringArray("player") instance=ExtResource("4_au6on")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+player = NodePath("../Car")
+
+[node name="Car" type="CharacterBody3D" parent="." unique_id=2120112070]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_vsfee")
 drag = 4.0
-brake = 20.0
+brake = 35.0
 max_speed = 100.0
-strafe_speed = 6.0
+acceleration_curve = SubResource("Curve_dwkn5")
 steering_curve = SubResource("Curve_58tws")
-spring = 40.0
-damping = 15.0
+spring = 35.0
 
-[node name="Visual" type="Node3D" parent="Car" unique_id=1840550049]
+[node name="Visual" type="Node3D" parent="Car" unique_id=1252923315]
 script = ExtResource("2_58tws")
-y_tilt = 15.0
+y_tilt = 25.0
 z_tilt = 7.0
 
-[node name="CarMesh" type="MeshInstance3D" parent="Car/Visual" unique_id=705478967]
-transform = Transform3D(0.8964283, 0, 0, 0, 0.3809801, 0, 0, 0, 1.6460748, 0, 0, 0)
+[node name="CarMesh" type="MeshInstance3D" parent="Car/Visual" unique_id=974461930]
+transform = Transform3D(0.9, 0, 0, 0, 0.4, 0, 0, 0, 1.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_elpsl")
+surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car" unique_id=214165934]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car" unique_id=1370593985]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_10jsn")
 
-[node name="CamPivot" type="Node3D" parent="Car" unique_id=1430862168]
-
-[node name="Cam" type="Camera3D" parent="Car/CamPivot" unique_id=375104476]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8349086, 2.4354968)
-
-[node name="Node" type="Node" parent="." unique_id=1091980529]
-
-[node name="refCube1" type="MeshInstance3D" parent="Node" unique_id=1919943167]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8000498, 0, -4.0111704)
-mesh = SubResource("BoxMesh_10jsn")
-
-[node name="refCube2" type="MeshInstance3D" parent="Node" unique_id=133193278]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1519003, 0, -4.878049)
-mesh = SubResource("BoxMesh_10jsn")
+[node name="CamPivot" type="Node3D" parent="Car" unique_id=51966759]
