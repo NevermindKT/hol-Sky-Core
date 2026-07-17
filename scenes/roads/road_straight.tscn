@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5yyn8hbn5ba5"]
 
-[ext_resource type="Script" uid="uid://clwm05aooh338" path="res://road_straight.gd" id="1_vallh"]
+[ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road_segment.gd" id="1_vallh"]
 [ext_resource type="Texture2D" uid="uid://b4q0amljkd0fy" path="res://textures/roadTest.jpg" id="2_rtphd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gatdh"]
@@ -13,6 +13,7 @@ albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
 
 [node name="RoadStraight" type="Node3D" unique_id=2100877904]
 script = ExtResource("1_vallh")
+weight = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=576532607]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ckkd53l5lsgj7"]
+
+[ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road_generator.gd" id="1_dfpxw"]
+[ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road_maneger.gd" id="2_wqbf0"]
+[ext_resource type="PackedScene" uid="uid://5yyn8hbn5ba5" path="res://scenes/roads/road_straight.tscn" id="2_y78k7"]
+[ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/roads/road_turn_left.tscn" id="3_47jbc"]
+[ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/roads/road_turn_right.tscn" id="4_f72ll"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_10jsn"]
+
+[node name="RoadGenerator" type="Node3D" unique_id=824665246 node_paths=PackedStringArray("player")]
+script = ExtResource("1_dfpxw")
+player = NodePath("PlayerMoc")
+road_segments = Array[PackedScene]([ExtResource("2_y78k7"), ExtResource("3_47jbc"), ExtResource("4_f72ll")])
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1193088685]
+transform = Transform3D(-3.8527823e-08, -0.47234485, 0.8814138, -2.0646848e-08, 0.8814138, 0.47234485, -1, 1.7763568e-15, -4.371139e-08, 44.071716, 37.5364, 0)
+visible = false
+
+[node name="PlayerMoc" type="Marker3D" parent="." unique_id=2037814460]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerMoc" unique_id=951063439]
+mesh = SubResource("BoxMesh_10jsn")
+
+[node name="RoadManeger" type="Node" parent="." unique_id=2122026277]
+script = ExtResource("2_wqbf0")
+
+[node name="RoadRotator" type="Node3D" parent="." unique_id=1575811975]
+
+[node name="RoadContainer" type="Node3D" parent="RoadRotator" unique_id=1758142004]

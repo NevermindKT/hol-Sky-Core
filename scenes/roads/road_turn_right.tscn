@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dbnn0y1f8lq0"]
+
+[ext_resource type="Texture2D" uid="uid://b4q0amljkd0fy" path="res://textures/roadTest.jpg" id="1_acg5s"]
+[ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road_segment.gd" id="1_w5n4y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7r1bo"]
+albedo_texture = ExtResource("1_acg5s")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dyygq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqyrg"]
+albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
+
+[node name="RoadTurnRight" type="Node3D" unique_id=203116145]
+script = ExtResource("1_w5n4y")
+segment_type = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1320894938]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_7r1bo")
+mesh = SubResource("PlaneMesh_dyygq")
+surface_material_override/0 = SubResource("StandardMaterial3D_nqyrg")
+
+[node name="Anchor" type="Marker3D" parent="." unique_id=1238663358]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -5, 0, 10)
+
+[node name="Origin" type="Marker3D" parent="." unique_id=1109238659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
