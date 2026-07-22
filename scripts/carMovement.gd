@@ -39,9 +39,9 @@ func _physics_process(delta: float) -> void:
 	process_strafe(delta)
 	process_visuals(delta)
 	
-	print("Speed: ", speed)
-	print("Lane offset: ", lane_offset)
-	print("Lateral velosity: ", lateral_velocity)
+	#print("Speed: ", speed)
+	#print("Lane offset: ", lane_offset)
+	#print("Lateral velosity: ", lateral_velocity)
 
 
 func get_input() -> void:

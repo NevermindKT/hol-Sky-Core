@@ -1,29 +1,30 @@
 extends Node3D
 class_name Road_generator
 
-@export var player: Node3D
+
 @export var road_segments: Array[RoadSegmentData]
-
-
+@onready var road_manager: Road_manager = $RoadManager
 @onready var road_container: Node3D = $RoadRotator/RoadContainer
-
 
 var last_segment: Road_segment
 var segments: Array[Road_segment] = []
 
-const MAX_SEGMENTS = 46
-const GENERATE_DISTANCE = 280.0
+var target_anchor: Marker3D
 
+const MAX_SEGMENTS = 46
+const UNLOAD_DISTANCE = 40
+
+signal segment_spawned(segment: Road_segment)
 
 func _ready() -> void:
-	spawn_next()
+	spawn_start()
 
 
 func _process(delta):
-	if player.global_position.distance_to(last_segment.anchor.global_position) < GENERATE_DISTANCE:
+	if segments.size() < MAX_SEGMENTS:
 		spawn_next()
 	
-	if segments.size() > MAX_SEGMENTS:
+	if segments[0].global_position.z < -UNLOAD_DISTANCE:
 		segments[0].queue_free()
 		segments.pop_front()
 
@@ -35,7 +36,6 @@ func pick_random_segment() -> PackedScene:
 	for data in road_segments:
 		total_weight += data.weight
 
-
 	var random_weight := randf_range(0.0, total_weight)
 
 	var current_weight := 0.0
@@ -45,8 +45,7 @@ func pick_random_segment() -> PackedScene:
 
 		if random_weight <= current_weight:
 			return data.scene
-
-
+	
 	return road_segments[0].scene
 
 
@@ -57,9 +56,20 @@ func spawn(scene: PackedScene):
 	road_container.add_child(new_segment)
 	
 	if last_segment != null:
-		new_segment.global_transform = last_segment.anchor.global_transform * new_segment.origin.transform.affine_inverse()
+		new_segment.transform = last_segment.transform * last_segment.anchor.transform * new_segment.origin.transform.affine_inverse()
 	
 	last_segment = new_segment
+	segment_spawned.emit(new_segment)
+
+
+func _on_player_entered_segment(segment: Road_segment):
+	#_update_gizmos_()
+	road_manager.select_segment(segment)
+
+
+#func _update_gizmos_():
+	#for segment in segments:
+		#segment.set_debug_selected(false)
 
 
 func spawn_start():

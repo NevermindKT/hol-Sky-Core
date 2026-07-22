@@ -6,24 +6,46 @@
 [ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://scripts/carMovement.gd" id="3_v852s"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/visual.gd" id="4_3g18v"]
 [ext_resource type="PackedScene" uid="uid://5yyn8hbn5ba5" path="res://scenes/roads/road_straight.tscn" id="4_mowk8"]
-[ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/roads/road_turn_left.tscn" id="5_3g18v"]
-[ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/roads/road_turn_right.tscn" id="6_mowk8"]
+[ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/roads/road_turn_left.tscn" id="5_mowk8"]
+[ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/roads/road_turn_right.tscn" id="6_0uqmh"]
 
-[sub_resource type="Resource" id="Resource_y78k7"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mowk8"]
+sky_top_color = Color(0.04005715, 0.057814613, 0.08145905, 1)
+sky_horizon_color = Color(0.41738868, 0.6652745, 0.77074194, 1)
+ground_bottom_color = Color(0.17443413, 0.19640958, 0.19323736, 1)
+ground_horizon_color = Color(0.3278624, 0.56399703, 0.6436716, 1)
+energy_multiplier = 0.5
+
+[sub_resource type="Sky" id="Sky_0uqmh"]
+sky_material = SubResource("ProceduralSkyMaterial_mowk8")
+
+[sub_resource type="Environment" id="Environment_uhg8y"]
+background_mode = 2
+sky = SubResource("Sky_0uqmh")
+glow_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.681795, 0.78213626, 0.8641235, 1)
+fog_light_energy = 0.25
+fog_density = 1.0
+volumetric_fog_albedo = Color(0.40069774, 0.40069774, 0.40069768, 1)
+volumetric_fog_emission = Color(0.057221256, 0.07124353, 0.08033957, 1)
+volumetric_fog_emission_energy = 0.9
+
+[sub_resource type="Resource" id="Resource_v852s"]
 script = ExtResource("3_3g18v")
 scene = ExtResource("4_mowk8")
 weight = 10.0
 metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
-[sub_resource type="Resource" id="Resource_0uqmh"]
+[sub_resource type="Resource" id="Resource_uhg8y"]
 script = ExtResource("3_3g18v")
-scene = ExtResource("5_3g18v")
+scene = ExtResource("5_mowk8")
 type = 1
 metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
-[sub_resource type="Resource" id="Resource_mowk8"]
+[sub_resource type="Resource" id="Resource_3g18v"]
 script = ExtResource("3_3g18v")
-scene = ExtResource("6_mowk8")
+scene = ExtResource("6_0uqmh")
 type = 2
 metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
@@ -32,7 +54,7 @@ _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_58tws"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.29259259, 0.95000005), 0.0, 0.0, 0, 0, Vector2(0.64074075, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.92523366), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.18691587), 0.0, 0.0, 0, 0, Vector2(0.3148148, 0.92523366), 0.0, 0.0, 0, 0, Vector2(0.68148154, 0.8504673), 0.0, 0.0, 0, 0, Vector2(1, 0.1401869), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
@@ -44,21 +66,24 @@ albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
 [node name="Node3D" type="Node3D" unique_id=243152911]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=497828979]
+environment = SubResource("Environment_uhg8y")
+
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.8, -2.45)
+fov = 90.0
 script = ExtResource("1_i24gt")
 cam_latency = 14.0
 
-[node name="RoadGenerator" parent="." unique_id=824665246 node_paths=PackedStringArray("player") instance=ExtResource("2_hyqco")]
+[node name="RoadGenerator" parent="." unique_id=824665246 instance=ExtResource("2_hyqco")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-player = NodePath("../Car")
-road_segments = Array[ExtResource("3_3g18v")]([SubResource("Resource_y78k7"), SubResource("Resource_0uqmh"), SubResource("Resource_mowk8")])
+road_segments = Array[ExtResource("3_3g18v")]([SubResource("Resource_v852s"), SubResource("Resource_uhg8y"), SubResource("Resource_3g18v")])
 
 [node name="Car" type="CharacterBody3D" parent="." unique_id=2120112070]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("3_v852s")
 drag = 4.0
-brake = 35.0
+brake = 40.0
 max_speed = 100.0
 acceleration_curve = SubResource("Curve_dwkn5")
 steering_curve = SubResource("Curve_58tws")
@@ -74,8 +99,23 @@ transform = Transform3D(0.9, 0, 0, 0, 0.4, 0, 0, 0, 1.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_elpsl")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
+[node name="Lights" type="Node3D" parent="Car/Visual" unique_id=665480537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+
+[node name="Light1" type="SpotLight3D" parent="Car/Visual/Lights" unique_id=1843817715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
+light_volumetric_fog_energy = 0.2
+spot_range = 20.0
+spot_angle = 36.292797
+
+[node name="Light2" type="SpotLight3D" parent="Car/Visual/Lights" unique_id=63640696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0)
+light_volumetric_fog_energy = 0.2
+spot_range = 20.0
+spot_angle = 36.292797
+
+[node name="CamPivot" type="Node3D" parent="Car" unique_id=51966759]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car" unique_id=1370593985]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_10jsn")
-
-[node name="CamPivot" type="Node3D" parent="Car" unique_id=51966759]

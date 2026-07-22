@@ -2,10 +2,10 @@ extends Node3D
 class_name Car_Visual_Effects
 
 
-@export var y_tilt := 10.0
-@export var z_tilt := 10.0
-@export var max_lateral_speed := 10.0
+@export var y_tilt := 15.0
+@export var z_tilt := 15.0
 @export var delta_mul := 10.0
+@export var max_lateral_speed := 10.0
 
 @onready var visual: Car_Visual_Effects = $"."
 
