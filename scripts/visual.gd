@@ -18,12 +18,12 @@ func process_visual_tilt(delta: float, lateral_speed: float):
 
 	visual.rotation.y = lerp_angle(
 		visual.rotation.y,
-		tilt_strength * deg_to_rad(y_tilt),
+		-tilt_strength * deg_to_rad(y_tilt),
 		delta * delta_mul
 	)
 
 	visual.rotation.z = lerp_angle(
 		visual.rotation.z,
-		-tilt_strength * deg_to_rad(z_tilt),
+		tilt_strength * deg_to_rad(z_tilt),
 		delta * delta_mul
 	)

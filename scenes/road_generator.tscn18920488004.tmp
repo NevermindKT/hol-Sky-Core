@@ -5,10 +5,12 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_10jsn"]
 
-[sub_resource type="Curve3D" id="Curve3D_dfpxw"]
-
 [node name="RoadGenerator" type="Node3D" unique_id=824665246]
 script = ExtResource("1_dfpxw")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1193088685]
+transform = Transform3D(-3.8527823e-08, -0.47234485, 0.8814138, -2.0646848e-08, 0.8814138, 0.47234485, -1, 1.7763568e-15, -4.371139e-08, 44.071716, 37.5364, 0)
+visible = false
 
 [node name="PlayerMoc" type="Marker3D" parent="." unique_id=2037814460]
 visible = false
@@ -19,11 +21,8 @@ mesh = SubResource("BoxMesh_10jsn")
 [node name="RoadManager" type="Node" parent="." unique_id=2122026277]
 script = ExtResource("2_wqbf0")
 
-[node name="World" type="Node3D" parent="." unique_id=464971909]
+[node name="RoadRotate" type="Node3D" parent="." unique_id=1575811975]
 
-[node name="RoadContainer" type="Node3D" parent="World" unique_id=1758142004]
+[node name="RoadMove" type="Node3D" parent="RoadRotate" unique_id=323278916]
 
-[node name="WorldPath" type="Path3D" parent="." unique_id=1358562803]
-curve = SubResource("Curve3D_dfpxw")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="WorldPath" unique_id=1615870323]
+[node name="RoadContainer" type="Node3D" parent="RoadRotate/RoadMove" unique_id=1758142004]

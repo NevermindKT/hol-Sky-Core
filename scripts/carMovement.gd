@@ -63,7 +63,7 @@ func process_speed(delta: float) -> void:
 func process_strafe(delta: float) -> void:
 	if speed >= min_strafe_speed:
 		var steering_mul = get_steering_multiplier()
-		lane_offset += -steering_input * strafe_speed * steering_mul * delta
+		lane_offset += steering_input * strafe_speed * steering_mul * delta
 
 	lane_offset = clamp(
 		lane_offset,

@@ -1,10 +1,11 @@
 extends Node3D
 class_name Road_generator
 
+@onready var world_path: Path3D = $WorldPath
+@onready var road_manager: Road_manager = $RoadManager
+@onready var road_container: Node3D = $World/RoadContainer
 
 @export var road_segments: Array[RoadSegmentData]
-@onready var road_manager: Road_manager = $RoadManager
-@onready var road_container: Node3D = $RoadRotator/RoadContainer
 
 var last_segment: Road_segment
 var segments: Array[Road_segment] = []
@@ -24,11 +25,32 @@ func _process(delta):
 	if segments.size() < MAX_SEGMENTS:
 		spawn_next()
 	
-	if segments[0].global_position.z < -UNLOAD_DISTANCE:
+	if segments[0].global_position.z > UNLOAD_DISTANCE:
 		segments[0].queue_free()
 		segments.pop_front()
 
 
+func add_curve_points(seg: Road_segment) -> void:
+	var origin_xform: Transform3D = seg.transform * seg.origin.transform
+	var anchor_xform: Transform3D = seg.transform * seg.anchor.transform
+	var handle_len: float = seg.length / 3.0
+	
+	if world_path.curve.point_count == 0:
+		#world_path.curve.add_point(
+			#origin_xform.origin,
+			#origin_xform.basis.z * handle_len,
+			#-origin_xform.basis.z * handle_len
+		#)
+		world_path.curve.add_point(origin_xform.origin)
+	
+	#world_path.curve.add_point(
+		#anchor_xform.origin,
+		#anchor_xform.basis.z * handle_len,
+		#-anchor_xform.basis.z * handle_len
+	#)
+	
+	world_path.curve.add_point(anchor_xform.origin)
+	
 func pick_random_segment() -> PackedScene:
 
 	var total_weight := 0.0
@@ -58,19 +80,14 @@ func spawn(scene: PackedScene):
 	if last_segment != null:
 		new_segment.transform = last_segment.transform * last_segment.anchor.transform * new_segment.origin.transform.affine_inverse()
 	
+	add_curve_points(new_segment)
+	
 	last_segment = new_segment
 	segment_spawned.emit(new_segment)
 
 
 func _on_player_entered_segment(segment: Road_segment):
-	#_update_gizmos_()
 	road_manager.select_segment(segment)
-
-
-#func _update_gizmos_():
-	#for segment in segments:
-		#segment.set_debug_selected(false)
-
 
 func spawn_start():
 	spawn(road_segments[0].scene)
