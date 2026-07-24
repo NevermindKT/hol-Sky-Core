@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road_segment.gd" id="1_vallh"]
 [ext_resource type="Texture2D" uid="uid://b4q0amljkd0fy" path="res://textures/roadTest.jpg" id="2_rtphd"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gatdh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw7st"]
 albedo_texture = ExtResource("2_rtphd")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_10jsn"]
@@ -17,7 +17,7 @@ weight = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=576532607]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_gatdh")
+material_override = SubResource("StandardMaterial3D_pw7st")
 mesh = SubResource("PlaneMesh_10jsn")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 

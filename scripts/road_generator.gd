@@ -33,7 +33,7 @@ func _process(delta):
 func add_curve_points(seg: Road_segment) -> void:
 	var origin_xform: Transform3D = seg.transform * seg.origin.transform
 	var anchor_xform: Transform3D = seg.transform * seg.anchor.transform
-	var handle_len: float = seg.length / 4.0
+	var handle_len: float = seg.length / 3.0
 
 	var chord: Vector3 = (anchor_xform.origin - origin_xform.origin).normalized()
 
@@ -88,6 +88,7 @@ func spawn(scene: PackedScene):
 	if last_segment != null:
 		new_segment.transform = last_segment.transform * last_segment.anchor.transform * new_segment.origin.transform.affine_inverse()
 	
+	
 	add_curve_points(new_segment)
 	
 	last_segment = new_segment
@@ -96,6 +97,7 @@ func spawn(scene: PackedScene):
 
 func _on_player_entered_segment(segment: Road_segment):
 	road_manager.select_segment(segment)
+
 
 func spawn_start():
 	spawn(road_segments[0].scene)

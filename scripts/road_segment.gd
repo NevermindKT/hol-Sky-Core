@@ -7,6 +7,8 @@ class_name Road_segment
 @export var weight := 1.0
 @export var segment_type: RoadTypes.Type
 
+var polygon: CSGPolygon3D
+
 var length: float
 
 func _ready() -> void:

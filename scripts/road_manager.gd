@@ -1,13 +1,9 @@
 extends Node
 class_name Road_manager
 
-
 @onready var car_movement: Car_Movement = $"../../Car"
-@onready var road_container: Node3D = $"../World/RoadContainer"
 
 @onready var world: Node3D = $"../World"
-@onready var world_path: Path3D = $"../WorldPath"
-@onready var road_center: Marker3D = $"../../RoadCenter"
 @onready var path_follow_3d: PathFollow3D = $"../WorldPath/PathFollow3D"
 
 
