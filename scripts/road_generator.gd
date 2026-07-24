@@ -33,24 +33,32 @@ func _process(delta):
 func add_curve_points(seg: Road_segment) -> void:
 	var origin_xform: Transform3D = seg.transform * seg.origin.transform
 	var anchor_xform: Transform3D = seg.transform * seg.anchor.transform
-	var handle_len: float = seg.length / 3.0
-	
+	var handle_len: float = seg.length / 4.0
+
+	var chord: Vector3 = (anchor_xform.origin - origin_xform.origin).normalized()
+
+	var origin_dir: Vector3 = -origin_xform.basis.z
+	if origin_dir.dot(chord) < 0.0:
+		origin_dir = -origin_dir
+
+	var anchor_dir: Vector3 = -anchor_xform.basis.z
+	if anchor_dir.dot(chord) < 0.0:
+		anchor_dir = -anchor_dir
+
 	if world_path.curve.point_count == 0:
-		#world_path.curve.add_point(
-			#origin_xform.origin,
-			#origin_xform.basis.z * handle_len,
-			#-origin_xform.basis.z * handle_len
-		#)
-		world_path.curve.add_point(origin_xform.origin)
-	
-	#world_path.curve.add_point(
-		#anchor_xform.origin,
-		#anchor_xform.basis.z * handle_len,
-		#-anchor_xform.basis.z * handle_len
-	#)
-	
-	world_path.curve.add_point(anchor_xform.origin)
-	
+		world_path.curve.add_point(
+			origin_xform.origin,
+			-origin_dir * handle_len,
+			origin_dir * handle_len
+		)
+
+	world_path.curve.add_point(
+		anchor_xform.origin,
+		-anchor_dir * handle_len,
+		anchor_dir * handle_len
+	)
+
+
 func pick_random_segment() -> PackedScene:
 
 	var total_weight := 0.0

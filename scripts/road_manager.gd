@@ -7,8 +7,8 @@ class_name Road_manager
 
 @onready var world: Node3D = $"../World"
 @onready var world_path: Path3D = $"../WorldPath"
-@onready var path_follow_3d: PathFollow3D = $"../WorldPath/PathFollow3D"
 @onready var road_center: Marker3D = $"../../RoadCenter"
+@onready var path_follow_3d: PathFollow3D = $"../WorldPath/PathFollow3D"
 
 
 func _ready() -> void:

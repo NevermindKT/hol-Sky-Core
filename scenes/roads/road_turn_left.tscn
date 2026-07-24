@@ -11,15 +11,6 @@ albedo_texture = ExtResource("1_o67kr")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jctuc"]
 albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qsns"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 3.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_jctuc"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_a4orq"]
-
 [node name="RoadTurnLeft" type="Node3D" unique_id=589171158]
 script = ExtResource("1_a4orq")
 segment_type = 1
@@ -30,20 +21,8 @@ material_override = SubResource("StandardMaterial3D_a4orq")
 mesh = SubResource("PlaneMesh_8qsns")
 surface_material_override/0 = SubResource("StandardMaterial3D_jctuc")
 
-[node name="SelectIndicator" type="MeshInstance3D" parent="." unique_id=2125241960]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_8qsns")
-mesh = SubResource("SphereMesh_jctuc")
-
 [node name="Anchor" type="Marker3D" parent="." unique_id=1944294220]
 transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 5, 0, 10)
 
 [node name="Origin" type="Marker3D" parent="." unique_id=629996728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
-
-[node name="Area3D" type="Area3D" parent="." unique_id=1571986761]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=712954244]
-transform = Transform3D(10, 0, 0, 0, 2, 0, 0, 0, 15, 0, 1, 2.5)
-shape = SubResource("BoxShape3D_a4orq")
