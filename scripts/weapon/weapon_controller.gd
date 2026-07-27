@@ -1,11 +1,20 @@
 extends Node
 class_name Weapon_controller
 
+@export var world: Node3D
 @export var fire_point: Marker3D
 @export var current_weapon: WeaponData
 
+@export var input: InputController
+
 var ammo := 0
 var cooldown := 0.0
+
+func _process(_delta: float) -> void:
+	if input.fire:
+		fire()
+	
+	cooldown -= _delta
 
 func fire():
 	if cooldown > 0:

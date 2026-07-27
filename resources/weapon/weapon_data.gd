@@ -7,6 +7,7 @@ class_name WeaponData
 @export var fire_rate: float
 @export var reload_speed: float
 @export var projectile_speed: float
+@export var projectile_distance: float
 @export var magazine_capacity: float
 
 @export var fire_behavior: Fire_behavior

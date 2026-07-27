@@ -1,16 +1,21 @@
 extends Node3D
+class_name Projectile
 
-@export var damage: float
-@export var move_speed: float
-@export var travel_distance: float
+var damage: float
+var projectile_speed: float
+var projectile_distance: float
 
 var start_position: Vector3
 
-func _ready():
+func initialize(data: WeaponData):
 	start_position = global_position
+	
+	damage = data.damage
+	projectile_speed = data.projectile_speed
+	projectile_distance = data.projectile_distance
 
 func _physics_process(delta):
-	global_position += -global_basis.z * move_speed * delta
+	global_position += -global_basis.z * projectile_speed * delta
 
-	if global_position.distance_to(start_position) >= travel_distance:
+	if global_position.distance_to(start_position) >= projectile_distance:
 		queue_free()

@@ -1,14 +1,17 @@
 extends Node3D
 class_name Road_generator
 
-@onready var world_path: Path3D = $WorldPath
-@onready var road_manager: Road_manager = $RoadManager
-@onready var road_container: Node3D = $World/RoadContainer
+@onready var world_path: Path3D = $"../WorldPath"
+@onready var road_manager: Road_manager = $"../RoadManager"
+@onready var road_container: Node3D = $"../World/RoadContainer"
 
+@export var world: Node3D
 @export var road_segments: Array[RoadSegmentData]
 
 var last_segment: Road_segment
 var segments: Array[Road_segment] = []
+
+var is_spawning := false
 
 var target_anchor: Marker3D
 
@@ -87,7 +90,6 @@ func spawn(scene: PackedScene):
 	
 	if last_segment != null:
 		new_segment.transform = last_segment.transform * last_segment.anchor.transform * new_segment.origin.transform.affine_inverse()
-	
 	
 	add_curve_points(new_segment)
 	

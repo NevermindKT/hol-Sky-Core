@@ -14,8 +14,10 @@ point_count = 2
 albedo_texture = ExtResource("3_iog18")
 uv1_scale = Vector3(0.1, 8, 1)
 
-[node name="RoadTurnRight" type="Node3D" unique_id=203116145]
+[node name="RoadTurnRight" type="Node3D" unique_id=203116145 node_paths=PackedStringArray("anchor", "origin")]
 script = ExtResource("1_w5n4y")
+anchor = NodePath("Anchor")
+origin = NodePath("Origin")
 segment_type = 2
 
 [node name="Anchor" type="Marker3D" parent="." unique_id=1238663358]
