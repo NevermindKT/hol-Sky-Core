@@ -128,8 +128,9 @@ shape = SubResource("CapsuleShape3D_10jsn")
 
 [node name="InputController" parent="Car" unique_id=652659380 instance=ExtResource("9_0uqmh")]
 
-[node name="Weapon" type="Node" parent="Car" unique_id=1415429858 node_paths=PackedStringArray("fire_point", "input")]
+[node name="WeaponController" type="Node" parent="Car" unique_id=1415429858 node_paths=PackedStringArray("world", "fire_point", "input")]
 script = ExtResource("10_uhg8y")
+world = NodePath("../../Enivironment/World")
 fire_point = NodePath("../Visual/GunPoint")
 current_weapon = ExtResource("11_wqd6n")
 input = NodePath("../InputController")
@@ -138,8 +139,8 @@ input = NodePath("../InputController")
 
 [node name="World" parent="Enivironment" unique_id=1128285648 instance=ExtResource("8_mowk8")]
 
-[node name="RoadManager" parent="Enivironment" unique_id=1307815039 node_paths=PackedStringArray("core", "car_movement") instance=ExtResource("9_uhg8y")]
-core = NodePath("../World")
+[node name="RoadManager" parent="Enivironment" unique_id=1307815039 node_paths=PackedStringArray("world", "car_movement") instance=ExtResource("9_uhg8y")]
+world = NodePath("../World")
 car_movement = NodePath("../../Car")
 
 [node name="RoadGenerator" parent="Enivironment" unique_id=824665246 node_paths=PackedStringArray("world", "road_manager") instance=ExtResource("2_hyqco")]

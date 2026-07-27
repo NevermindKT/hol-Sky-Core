@@ -1,7 +1,7 @@
 extends Node
 class_name Weapon_controller
 
-@export var world: Node3D
+@export var world: World
 @export var fire_point: Marker3D
 @export var current_weapon: WeaponData
 
