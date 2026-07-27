@@ -1,11 +1,9 @@
 extends Node3D
 class_name Road_generator
 
-@onready var world_path: Path3D = $"../WorldPath"
-@onready var road_manager: Road_manager = $"../RoadManager"
-@onready var road_container: Node3D = $"../World/RoadContainer"
+@export var world: World
+@export var road_manager: Road_manager
 
-@export var world: Node3D
 @export var road_segments: Array[RoadSegmentData]
 
 var last_segment: Road_segment
@@ -48,14 +46,14 @@ func add_curve_points(seg: Road_segment) -> void:
 	if anchor_dir.dot(chord) < 0.0:
 		anchor_dir = -anchor_dir
 
-	if world_path.curve.point_count == 0:
-		world_path.curve.add_point(
+	if world.world_path.curve.point_count == 0:
+		world.world_path.curve.add_point(
 			origin_xform.origin,
 			-origin_dir * handle_len,
 			origin_dir * handle_len
 		)
 
-	world_path.curve.add_point(
+	world.world_path.curve.add_point(
 		anchor_xform.origin,
 		-anchor_dir * handle_len,
 		anchor_dir * handle_len
@@ -86,7 +84,7 @@ func spawn(scene: PackedScene):
 	var new_segment: Road_segment = scene.instantiate()
 	
 	segments.append(new_segment)
-	road_container.add_child(new_segment)
+	world.road_container.add_child(new_segment)
 	
 	if last_segment != null:
 		new_segment.transform = last_segment.transform * last_segment.anchor.transform * new_segment.origin.transform.affine_inverse()

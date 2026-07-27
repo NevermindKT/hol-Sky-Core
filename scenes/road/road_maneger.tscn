@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://kcbaii8x2rit"]
+
+[ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road/road_manager.gd" id="1_j5y1o"]
+
+[node name="RoadManager" type="Node" unique_id=1307815039]
+script = ExtResource("1_j5y1o")

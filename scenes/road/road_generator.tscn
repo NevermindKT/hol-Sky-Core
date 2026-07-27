@@ -1,51 +1,6 @@
 [gd_scene format=3 uid="uid://ckkd53l5lsgj7"]
 
 [ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="1_dfpxw"]
-[ext_resource type="Script" uid="uid://c4rjjeg0gg5c7" path="res://resources/road/road_data.gd" id="2_d0882"]
-[ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road/road_manager.gd" id="2_wqbf0"]
-[ext_resource type="PackedScene" uid="uid://5yyn8hbn5ba5" path="res://scenes/road_segments/road_straight.tscn" id="3_1qx3n"]
-[ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/road_segments/road_turn_left.tscn" id="4_i6ryr"]
-[ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/road_segments/road_turn_right.tscn" id="5_22d1g"]
 
-[sub_resource type="Resource" id="Resource_lni1u"]
-script = ExtResource("2_d0882")
-scene = ExtResource("3_1qx3n")
-weight = 10.0
-metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
-
-[sub_resource type="Resource" id="Resource_d0882"]
-script = ExtResource("2_d0882")
-scene = ExtResource("4_i6ryr")
-weight = 0.5
-type = 1
-metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
-
-[sub_resource type="Resource" id="Resource_1qx3n"]
-script = ExtResource("2_d0882")
-scene = ExtResource("5_22d1g")
-weight = 0.5
-type = 2
-metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
-
-[sub_resource type="Curve3D" id="Curve3D_lni1u"]
-
-[node name="Road" type="Node3D" unique_id=824665246]
-
-[node name="RoadGenerator" type="Node3D" parent="." unique_id=342859199 node_paths=PackedStringArray("world")]
+[node name="RoadGenerator" type="Node3D" unique_id=824665246]
 script = ExtResource("1_dfpxw")
-world = NodePath("../World")
-road_segments = Array[ExtResource("2_d0882")]([SubResource("Resource_lni1u"), SubResource("Resource_d0882"), SubResource("Resource_1qx3n")])
-
-[node name="World" type="Node3D" parent="." unique_id=205965237]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="RoadContainer" type="Node3D" parent="World" unique_id=737367217]
-
-[node name="WorldPath" type="Path3D" parent="." unique_id=2034416538]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-curve = SubResource("Curve3D_lni1u")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="WorldPath" unique_id=1864240774]
-
-[node name="RoadManager" type="Node" parent="." unique_id=61463727]
-script = ExtResource("2_wqbf0")

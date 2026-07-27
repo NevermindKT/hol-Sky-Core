@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cvss3kmdnwbp7"]
+
+[ext_resource type="Script" uid="uid://bdm1l4j4bhqw8" path="res://scripts/world.gd" id="1_nnsk1"]
+
+[sub_resource type="Curve3D" id="Curve3D_e5uuo"]
+
+[node name="World" type="Node" unique_id=1128285648]
+script = ExtResource("1_nnsk1")
+
+[node name="Road" type="Node3D" parent="." unique_id=445176677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="RoadContainer" type="Node3D" parent="Road" unique_id=1382847640]
+
+[node name="WorldPath" type="Path3D" parent="." unique_id=809615609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+curve = SubResource("Curve3D_e5uuo")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="WorldPath" unique_id=166170836]

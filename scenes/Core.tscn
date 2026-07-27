@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://5yyn8hbn5ba5" path="res://scenes/road_segments/road_straight.tscn" id="4_mowk8"]
 [ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/road_segments/road_turn_left.tscn" id="5_mowk8"]
 [ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/road_segments/road_turn_right.tscn" id="6_0uqmh"]
+[ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="8_mowk8"]
 [ext_resource type="PackedScene" uid="uid://dsilgojysve5m" path="res://resources/general/input_controller.tscn" id="9_0uqmh"]
+[ext_resource type="PackedScene" uid="uid://kcbaii8x2rit" path="res://scenes/road/road_maneger.tscn" id="9_uhg8y"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="10_uhg8y"]
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapon/weapons/pistol.tres" id="11_wqd6n"]
 
@@ -49,21 +51,23 @@ albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
 
-[sub_resource type="Resource" id="Resource_v852s"]
+[sub_resource type="Resource" id="Resource_0uqmh"]
 script = ExtResource("3_3g18v")
 scene = ExtResource("4_mowk8")
 weight = 10.0
 metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
-[sub_resource type="Resource" id="Resource_uhg8y"]
+[sub_resource type="Resource" id="Resource_wqd6n"]
 script = ExtResource("3_3g18v")
 scene = ExtResource("5_mowk8")
+weight = 0.5
 type = 1
 metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
-[sub_resource type="Resource" id="Resource_3g18v"]
+[sub_resource type="Resource" id="Resource_6gsqs"]
 script = ExtResource("3_3g18v")
 scene = ExtResource("6_0uqmh")
+weight = 0.5
 type = 2
 metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
@@ -130,8 +134,15 @@ fire_point = NodePath("../Visual/GunPoint")
 current_weapon = ExtResource("11_wqd6n")
 input = NodePath("../InputController")
 
-[node name="RoadCenter" type="Marker3D" parent="." unique_id=124314893]
+[node name="Enivironment" type="Node" parent="." unique_id=1285239064]
 
-[node name="RoadGenerator" parent="." unique_id=824665246 instance=ExtResource("2_hyqco")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-road_segments = Array[ExtResource("3_3g18v")]([SubResource("Resource_v852s"), SubResource("Resource_uhg8y"), SubResource("Resource_3g18v")])
+[node name="World" parent="Enivironment" unique_id=1128285648 instance=ExtResource("8_mowk8")]
+
+[node name="RoadManager" parent="Enivironment" unique_id=1307815039 node_paths=PackedStringArray("core", "car_movement") instance=ExtResource("9_uhg8y")]
+core = NodePath("../World")
+car_movement = NodePath("../../Car")
+
+[node name="RoadGenerator" parent="Enivironment" unique_id=824665246 node_paths=PackedStringArray("world", "road_manager") instance=ExtResource("2_hyqco")]
+world = NodePath("../World")
+road_manager = NodePath("../RoadManager")
+road_segments = Array[ExtResource("3_3g18v")]([SubResource("Resource_0uqmh"), SubResource("Resource_wqd6n"), SubResource("Resource_6gsqs")])
