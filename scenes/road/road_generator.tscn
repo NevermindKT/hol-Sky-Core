@@ -1,20 +1,12 @@
 [gd_scene format=3 uid="uid://ckkd53l5lsgj7"]
 
-[ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road_generator.gd" id="1_dfpxw"]
-[ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road_manager.gd" id="2_wqbf0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_10jsn"]
+[ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="1_dfpxw"]
+[ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road/road_manager.gd" id="2_wqbf0"]
 
 [sub_resource type="Curve3D" id="Curve3D_dfpxw"]
 
 [node name="RoadGenerator" type="Node3D" unique_id=824665246]
 script = ExtResource("1_dfpxw")
-
-[node name="PlayerMoc" type="Marker3D" parent="." unique_id=2037814460]
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerMoc" unique_id=951063439]
-mesh = SubResource("BoxMesh_10jsn")
 
 [node name="RoadManager" type="Node" parent="." unique_id=2122026277]
 script = ExtResource("2_wqbf0")

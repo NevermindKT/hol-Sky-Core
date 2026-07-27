@@ -1,20 +1,11 @@
 [gd_scene format=3 uid="uid://dbnn0y1f8lq0"]
 
-[ext_resource type="Texture2D" uid="uid://b4q0amljkd0fy" path="res://textures/roadTest.jpg" id="1_acg5s"]
-[ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road_segment.gd" id="1_w5n4y"]
+[ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road/road_segment.gd" id="1_w5n4y"]
 [ext_resource type="Texture2D" uid="uid://b1tv0l1ysegc0" path="res://textures/roadTestFliped.jpg" id="3_iog18"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7r1bo"]
-albedo_texture = ExtResource("1_acg5s")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_dyygq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqyrg"]
-albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_w5n4y"]
 _data = {
-"points": PackedVector3Array(6, 0, -10.591, -0.2, 0, 0, 0, 0, -10, 6, 0, -10.591, -0.2, 0, 0, -5, -0.016, 10),
+"points": PackedVector3Array(6, 0, -10.591, -0.14, 0, 0, 0, 0, -10, 6, 0, -5.38, -0.2, 0, 0, -5, 0, 10),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -27,13 +18,6 @@ uv1_scale = Vector3(0.1, 8, 1)
 script = ExtResource("1_w5n4y")
 segment_type = 2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1320894938]
-transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_7r1bo")
-mesh = SubResource("PlaneMesh_dyygq")
-surface_material_override/0 = SubResource("StandardMaterial3D_nqyrg")
-
 [node name="Anchor" type="Marker3D" parent="." unique_id=1238663358]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -5, 0, 10)
 
@@ -41,6 +25,7 @@ transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="RoadPath" type="Path3D" parent="." unique_id=2038444868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 curve = SubResource("Curve3D_w5n4y")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=1673735051]

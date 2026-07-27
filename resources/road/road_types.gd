@@ -1,7 +1,7 @@
 extends Node
-class_name RoadTypes
+class_name RoadType
 
-enum Type{
+enum Type {
 	STRAIGHT,
 	LEFT,
 	RIGHT

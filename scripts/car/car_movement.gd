@@ -29,7 +29,7 @@ var steering_input := 0.0
 @export var spring := 30.0
 @export var damping := 8.0
 
-
+@export var input: InputController
 @onready var visual_effects: Car_Visual_Effects = $Visual
 
 
@@ -45,15 +45,14 @@ func _physics_process(delta: float) -> void:
 
 
 func get_input() -> void:
-	steering_input = Input.get_axis("left", "right")
-
+	steering_input = input.steering
 
 func process_speed(delta: float) -> void:
-	if Input.is_action_pressed("accelerate"):
+	if input.accelerating:
 		var acceleration_mul = get_acceleration_multiplier()
 		speed += acceleration * acceleration_mul * delta
 
-	if Input.is_action_pressed("brake"):
+	if input.braking:
 		speed -= brake * delta
 
 	speed -= drag * delta

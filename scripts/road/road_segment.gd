@@ -5,7 +5,7 @@ class_name Road_segment
 @onready var origin: Marker3D = $Origin
 
 @export var weight := 1.0
-@export var segment_type: RoadTypes.Type
+@export var segment_type: RoadType.Type
 
 var polygon: CSGPolygon3D
 

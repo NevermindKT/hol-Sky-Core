@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5yyn8hbn5ba5"]
 
-[ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road_segment.gd" id="1_vallh"]
+[ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road/road_segment.gd" id="1_vallh"]
 [ext_resource type="Texture2D" uid="uid://b4q0amljkd0fy" path="res://textures/roadTest.jpg" id="2_rtphd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw7st"]
@@ -10,6 +10,10 @@ albedo_texture = ExtResource("2_rtphd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tn0y"]
 albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
+radius = 1.2446289
+height = 10.13562
 
 [node name="RoadStraight" type="Node3D" unique_id=2100877904]
 script = ExtResource("1_vallh")
@@ -26,3 +30,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="Origin" type="Marker3D" parent="." unique_id=1522548629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=30989261]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1491310579]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.032287598, 1.10689804e-07, -5.043)
+shape = SubResource("CapsuleShape3D_10jsn")
+debug_color = Color(0.84149754, 0, 0.29272887, 1)

@@ -21,7 +21,7 @@ func _ready() -> void:
 	spawn_start()
 
 
-func _process(delta):
+func _process(_delta):
 	if segments.size() < MAX_SEGMENTS:
 		spawn_next()
 	
