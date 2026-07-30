@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://kcbaii8x2rit" path="res://scenes/road/road_maneger.tscn" id="9_uhg8y"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="10_uhg8y"]
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapon/weapons/pistol.tres" id="11_wqd6n"]
+[ext_resource type="PackedScene" uid="uid://dv6yihs6ovfyc" path="res://scenes/spawners/ProjectileSpawner.tscn" id="14_cfyfp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mowk8"]
 sky_top_color = Color(0.04005715, 0.057814613, 0.08145905, 1)
@@ -41,7 +42,7 @@ _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_58tws"]
-_data = [Vector2(0, 0.18691587), 0.0, 0.0, 0, 0, Vector2(0.3148148, 0.92523366), 0.0, 0.0, 0, 0, Vector2(0.68148154, 0.8504673), 0.0, 0.0, 0, 0, Vector2(1, 0.38317752), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.16000009), 0.0, 0.0, 0, 0, Vector2(0.3296296, 1), 0.0, 0.0, 0, 0, Vector2(0.6888889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.76), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
@@ -88,8 +89,10 @@ drag = 4.0
 brake = 40.0
 max_speed = 100.0
 acceleration_curve = SubResource("Curve_dwkn5")
+strafe_speed = 5.0
 steering_curve = SubResource("Curve_58tws")
-spring = 35.0
+spring = 45.0
+damping = 6.0
 input = NodePath("InputController")
 
 [node name="Visual" type="Node3D" parent="Car" unique_id=1252923315]
@@ -118,7 +121,7 @@ spot_range = 20.0
 spot_angle = 36.292797
 
 [node name="GunPoint" type="Marker3D" parent="Car/Visual" unique_id=94625862]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -0.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
 
 [node name="CamPivot" type="Node3D" parent="Car" unique_id=51966759]
 
@@ -128,11 +131,11 @@ shape = SubResource("CapsuleShape3D_10jsn")
 
 [node name="InputController" parent="Car" unique_id=652659380 instance=ExtResource("9_0uqmh")]
 
-[node name="WeaponController" type="Node" parent="Car" unique_id=1415429858 node_paths=PackedStringArray("world", "fire_point", "input")]
+[node name="WeaponController" type="Node" parent="Car" unique_id=1415429858 node_paths=PackedStringArray("fire_point", "spawner", "input")]
 script = ExtResource("10_uhg8y")
-world = NodePath("../../Enivironment/World")
 fire_point = NodePath("../Visual/GunPoint")
 current_weapon = ExtResource("11_wqd6n")
+spawner = NodePath("../../Enivironment/ProjectileSpawner")
 input = NodePath("../InputController")
 
 [node name="Enivironment" type="Node" parent="." unique_id=1285239064]
@@ -147,3 +150,6 @@ car_movement = NodePath("../../Car")
 world = NodePath("../World")
 road_manager = NodePath("../RoadManager")
 road_segments = Array[ExtResource("3_3g18v")]([SubResource("Resource_0uqmh"), SubResource("Resource_wqd6n"), SubResource("Resource_6gsqs")])
+
+[node name="ProjectileSpawner" parent="Enivironment" unique_id=999093676 node_paths=PackedStringArray("world") instance=ExtResource("14_cfyfp")]
+world = NodePath("../World")
