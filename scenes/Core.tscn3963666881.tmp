@@ -8,12 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://5yyn8hbn5ba5" path="res://scenes/road_segments/road_straight.tscn" id="4_mowk8"]
 [ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/road_segments/road_turn_left.tscn" id="5_mowk8"]
 [ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/road_segments/road_turn_right.tscn" id="6_0uqmh"]
-[ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapon/weapons/shotgun.tres" id="6_hneuh"]
-[ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="7_hneuh"]
+[ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scenes/aim_controller.gd" id="7_hneuh"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="8_mowk8"]
 [ext_resource type="PackedScene" uid="uid://dsilgojysve5m" path="res://resources/general/input_controller.tscn" id="9_0uqmh"]
 [ext_resource type="PackedScene" uid="uid://kcbaii8x2rit" path="res://scenes/road/road_maneger.tscn" id="9_uhg8y"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="10_uhg8y"]
+[ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapon/weapons/pistol.tres" id="11_wqd6n"]
 [ext_resource type="PackedScene" uid="uid://dv6yihs6ovfyc" path="res://scenes/spawners/ProjectileSpawner.tscn" id="14_cfyfp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mowk8"]
@@ -138,7 +138,7 @@ shape = SubResource("CapsuleShape3D_10jsn")
 [node name="WeaponController" type="Node" parent="Car" unique_id=1415429858 node_paths=PackedStringArray("fire_point", "spawner", "input")]
 script = ExtResource("10_uhg8y")
 fire_point = NodePath("../Visual/WeaponPivot/GunPoint")
-current_weapon = ExtResource("6_hneuh")
+current_weapon = ExtResource("11_wqd6n")
 spawner = NodePath("../../Enivironment/ProjectileSpawner")
 input = NodePath("../InputController")
 

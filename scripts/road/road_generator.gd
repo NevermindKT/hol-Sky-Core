@@ -13,10 +13,15 @@ var is_spawning := false
 
 var target_anchor: Marker3D
 
+var road_dir := 0
+var distance_traveled := 0
+
+const MAX_ROAD_DIR_OFFSET = 2
 const MAX_SEGMENTS = 46
 const UNLOAD_DISTANCE = 40
 
 signal segment_spawned(segment: Road_segment)
+
 
 func _ready() -> void:
 	spawn_start()
@@ -61,38 +66,72 @@ func add_curve_points(seg: Road_segment) -> void:
 
 
 func pick_random_segment() -> PackedScene:
+	var allowed_segments: Array[RoadSegmentData] = []
+
+	for data in road_segments:
+		if is_segment_allowed(data):
+			allowed_segments.append(data)
+
+	if allowed_segments.is_empty():
+		return road_segments[0].scene
 
 	var total_weight := 0.0
 
-	for data in road_segments:
+	for data in allowed_segments:
 		total_weight += data.weight
 
 	var random_weight := randf_range(0.0, total_weight)
 
 	var current_weight := 0.0
 
-	for data in road_segments:
+	for data in allowed_segments:
 		current_weight += data.weight
 
 		if random_weight <= current_weight:
 			return data.scene
-	
-	return road_segments[0].scene
+
+	return allowed_segments[0].scene
 
 
 func spawn(scene: PackedScene):
 	var new_segment: Road_segment = scene.instantiate()
-	
+
 	segments.append(new_segment)
 	world.road_container.add_child(new_segment)
 	
+	print("Segments spawned: ", distance_traveled)
+	print("Road dir: ", road_dir)
+	distance_traveled += 1
+
 	if last_segment != null:
-		new_segment.transform = last_segment.transform * last_segment.anchor.transform * new_segment.origin.transform.affine_inverse()
-	
+		new_segment.transform = (
+			last_segment.transform
+			* last_segment.anchor.transform
+			* new_segment.origin.transform.affine_inverse()
+		)
+
 	add_curve_points(new_segment)
-	
 	last_segment = new_segment
 	segment_spawned.emit(new_segment)
+	
+	match new_segment.segment_type:
+		RoadType.Type.LEFT:
+			road_dir -= 1
+		RoadType.Type.RIGHT:
+			road_dir += 1
+
+
+func is_segment_allowed(data: RoadSegmentData) -> bool:
+	var new_dir := road_dir
+
+	match data.type:
+		RoadType.Type.LEFT:
+			new_dir -= 1
+
+		RoadType.Type.RIGHT:
+			new_dir += 1
+
+	return abs(new_dir) <= MAX_ROAD_DIR_OFFSET
 
 
 func _on_player_entered_segment(segment: Road_segment):

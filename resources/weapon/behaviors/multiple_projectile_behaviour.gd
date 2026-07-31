@@ -1,8 +1,8 @@
 extends Fire_behavior
-class_name Projectile_behavior
+class_name Multiple_projectile_behavior
 
 func fire(controller: Weapon_controller):
-	controller.spawner.spawn(
+	controller.spawner.spawn_multiple(
 		controller.current_weapon,
 		controller.fire_point.global_transform
 	)

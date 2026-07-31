@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://wwwnafdpldi1"]
+
+[ext_resource type="Script" uid="uid://cn4um41l4ikkr" path="res://resources/weapon/behaviors/multiple_projectile_behaviour.gd" id="1_33lcx"]
+[ext_resource type="PackedScene" uid="uid://bt3acygnr2ji2" path="res://scenes/projectiles/bullet.tscn" id="2_bd53d"]
+[ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://resources/weapon/weapon_data.gd" id="3_iijja"]
+
+[sub_resource type="Resource" id="Resource_hneuh"]
+script = ExtResource("1_33lcx")
+metadata/_custom_type_script = "uid://cn4um41l4ikkr"
+
+[resource]
+script = ExtResource("3_iijja")
+name = "Shotgun"
+damage = 4.0
+fire_rate = 2.0
+gravity_scale = 4.0
+projectile_speed = 240.0
+projectile_distance = 120.0
+spread_angle = 2.0
+projectile_count = 8.0
+fire_behavior = SubResource("Resource_hneuh")
+projectile_scene = ExtResource("2_bd53d")
+metadata/_custom_type_script = "uid://di37ui7h2d4v3"
