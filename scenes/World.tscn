@@ -8,15 +8,15 @@
 script = ExtResource("1_nnsk1")
 
 [node name="World" type="Node3D" parent="." unique_id=445176677]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.02)
 
 [node name="RoadContainer" type="Node3D" parent="World" unique_id=1382847640]
-
-[node name="Projectiles" type="Node3D" parent="World" unique_id=918236294]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="WorldPath" type="Path3D" parent="." unique_id=809615609]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 curve = SubResource("Curve3D_e5uuo")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="WorldPath" unique_id=166170836]
+
+[node name="Projectiles" type="Node3D" parent="." unique_id=918236294]

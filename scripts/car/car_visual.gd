@@ -2,8 +2,8 @@ extends Node3D
 class_name Car_Visual_Effects
 
 
-@export var y_tilt := 15.0
-@export var z_tilt := 15.0
+@export var y_tilt := 16.0
+@export var z_tilt := 16.0
 @export var delta_mul := 10.0
 @export var max_lateral_speed := 10.0
 @export var road_manager: Road_manager
@@ -29,7 +29,7 @@ func process_visual_tilt(delta: float, lateral_speed: float):
 		tilt_strength * deg_to_rad(z_tilt),
 		delta * delta_mul
 	)
-	#
+	
 	#var turn_strength = clamp(
 		#road_manager.angular_velocity.y / max_lateral_speed,
 		#-1.0,
@@ -37,7 +37,13 @@ func process_visual_tilt(delta: float, lateral_speed: float):
 	#)
 	#
 	#rotation.z = lerp_angle(
-		#rotation.z,
+		#-rotation.z,
+		#turn_strength * deg_to_rad(8),
+		#delta * delta_mul
+	#)
+	#
+	#rotation.y = lerp_angle(
+		#-rotation.y,
 		#turn_strength * deg_to_rad(8),
 		#delta * delta_mul
 	#)

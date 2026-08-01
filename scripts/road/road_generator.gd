@@ -99,9 +99,9 @@ func spawn(scene: PackedScene):
 	segments.append(new_segment)
 	world.road_container.add_child(new_segment)
 	
-	print("Segments spawned: ", distance_traveled)
-	print("Road dir: ", road_dir)
-	distance_traveled += 1
+	#print("Segments spawned: ", distance_traveled)
+	#print("Road dir: ", road_dir)
+	#distance_traveled += 1
 
 	if last_segment != null:
 		new_segment.transform = (
