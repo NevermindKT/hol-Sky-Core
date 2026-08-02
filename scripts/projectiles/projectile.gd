@@ -20,7 +20,7 @@ func initialize(data: WeaponData, direction: Vector3):
 	projectile_distance = data.projectile_distance
 	velocity = direction.normalized() * projectile_speed
 
-func _physics_process(delta):	
+func _physics_process(delta):
 	velocity += GRAVITY * gravity_scale * delta
 	global_position += velocity * delta
 
