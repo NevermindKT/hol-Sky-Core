@@ -15,6 +15,7 @@ damage = 5.0
 fire_rate = 15.0
 reload_speed = 4.0
 magazine_capacity = 40.0
+ammo_type = 1
 gravity_scale = 3.0
 projectile_speed = 240.0
 projectile_distance = 120.0

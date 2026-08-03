@@ -7,7 +7,7 @@ var steering: float = 0.0
 var accelerating := false
 
 signal dodge
-#signal reload
+signal reload
 #signal weapon_change
 
 func _process(_delta):
@@ -18,6 +18,10 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("dodge"):
 		dodge.emit()
+	
+	if Input.is_action_just_pressed("reload"):
+		print("Reload pressed")
+		reload.emit()
 	
 	#if Input.is_action_just_pressed(""):
 		#wepon_change.emit()

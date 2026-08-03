@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 class_name Road_generator
 
 @export var world: World

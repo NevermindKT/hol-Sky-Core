@@ -8,6 +8,7 @@ class_name WeaponData
 @export var fire_rate: float
 @export var reload_speed: float
 @export var magazine_capacity: float
+@export var ammo_type: Ammo_Type.Type
 
 @export_category("Projectile gravity")
 @export var gravity_scale: float

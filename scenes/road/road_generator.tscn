@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="1_dfpxw"]
 
-[node name="RoadGenerator" type="Node3D" unique_id=824665246]
+[node name="Node" type="Node" unique_id=195721455]
 script = ExtResource("1_dfpxw")

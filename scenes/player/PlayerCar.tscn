@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapon/weapons/asssault rifle.tres" id="5_nhckt"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="6_20y2w"]
-[ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scenes/inventory.gd" id="7_hgb2g"]
+[ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
 _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
@@ -70,19 +70,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_10jsn")
 
-[node name="InputController" parent="." unique_id=652659380 instance=ExtResource("3_lo1ro")]
-
-[node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("fire_point", "input")]
-script = ExtResource("4_ojawh")
-fire_point = NodePath("../Visual/WeaponPivot/GunPoint")
-current_weapon = ExtResource("5_nhckt")
-input = NodePath("../InputController")
+[node name="Inventory" type="Node" parent="." unique_id=1206716850]
+script = ExtResource("7_hgb2g")
+rifle_ammo = 60
+pistol_ammo = 100
+shotgun_ammo = 20
 
 [node name="AimController" type="Node" parent="." unique_id=1300923200 node_paths=PackedStringArray("weapon_pivot")]
 script = ExtResource("6_20y2w")
 weapon_pivot = NodePath("../Visual/WeaponPivot")
 
-[node name="Inventory" type="Node" parent="." unique_id=1206716850 node_paths=PackedStringArray("weapon_controller")]
-script = ExtResource("7_hgb2g")
-pistol_ammo = 100
-weapon_controller = NodePath("../WeaponController")
+[node name="InputController" parent="." unique_id=652659380 instance=ExtResource("3_lo1ro")]
+
+[node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("fire_point", "input")]
+script = ExtResource("4_ojawh")
+fire_point = NodePath("../Visual/WeaponPivot/GunPoint")
+input = NodePath("../InputController")
+current_weapon = ExtResource("5_nhckt")

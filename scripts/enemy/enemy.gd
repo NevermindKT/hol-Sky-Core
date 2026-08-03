@@ -11,4 +11,6 @@ func attak():
 	pass
 
 func death():
-	pass
+	
+	
+	self.queue_free()

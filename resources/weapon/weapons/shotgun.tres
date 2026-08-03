@@ -13,6 +13,7 @@ script = ExtResource("3_iijja")
 name = "Shotgun"
 damage = 4.0
 fire_rate = 3.0
+ammo_type = 2
 gravity_scale = 3.0
 projectile_speed = 240.0
 projectile_distance = 120.0
