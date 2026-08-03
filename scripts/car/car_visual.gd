@@ -6,7 +6,7 @@ class_name Car_Visual_Effects
 @export var z_tilt := 16.0
 @export var delta_mul := 10.0
 @export var max_lateral_speed := 10.0
-@export var road_manager: Road_manager
+#@export var road_manager: Road_manager
 
 @onready var visual: Car_Visual_Effects = $"."
 

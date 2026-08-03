@@ -29,9 +29,16 @@ var steering_input := 0.0
 @export var spring := 30.0
 @export var damping := 8.0
 
-@export var input: InputController
-@onready var visual_effects: Car_Visual_Effects = $Visual
 
+@export_category("Exports")
+@export var player_cam: Camera3D
+@export var projectile_spawner: Projectile_spawner
+
+@onready var cam_pivot: Node3D = $CamPivot
+@onready var aim_controller: Node = $AimController
+@onready var input: InputController = $InputController
+@onready var visual_effects: Car_Visual_Effects = $Visual
+@onready var weapon_controller: Weapon_controller = $WeaponController
 
 func _physics_process(delta: float) -> void:
 	get_input()

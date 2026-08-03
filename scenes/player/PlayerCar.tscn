@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://c0ugimnnmaxti"]
+
+[ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://scripts/car/car_movement.gd" id="1_y6j3g"]
+[ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
+[ext_resource type="PackedScene" uid="uid://dsilgojysve5m" path="res://resources/general/input_controller.tscn" id="3_lo1ro"]
+[ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
+[ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapon/weapons/asssault rifle.tres" id="5_nhckt"]
+[ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="6_20y2w"]
+[ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scenes/inventory.gd" id="7_hgb2g"]
+
+[sub_resource type="Curve" id="Curve_dwkn5"]
+_data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_58tws"]
+_data = [Vector2(0, 0.16000009), 0.0, 0.0, 0, 0, Vector2(0.3296296, 1), 0.0, 0.0, 0, 0, Vector2(0.6888889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.76), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tn0y"]
+albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
+
+[node name="Car" type="CharacterBody3D" unique_id=353319218]
+script = ExtResource("1_y6j3g")
+drag = 4.0
+brake = 40.0
+max_speed = 100.0
+acceleration_curve = SubResource("Curve_dwkn5")
+strafe_speed = 5.0
+steering_curve = SubResource("Curve_58tws")
+spring = 45.0
+damping = 6.0
+
+[node name="Visual" type="Node3D" parent="." unique_id=1626838081]
+script = ExtResource("2_iam02")
+y_tilt = 25.0
+z_tilt = 7.0
+
+[node name="CarMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]
+transform = Transform3D(0.9, 0, 0, 0, 0.4, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_elpsl")
+surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
+
+[node name="Lights" type="Node3D" parent="Visual" unique_id=1230302799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+
+[node name="Light1" type="SpotLight3D" parent="Visual/Lights" unique_id=396936147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
+light_volumetric_fog_energy = 0.2
+spot_range = 20.0
+spot_angle = 36.292797
+
+[node name="Light2" type="SpotLight3D" parent="Visual/Lights" unique_id=2014346216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0)
+light_volumetric_fog_energy = 0.2
+spot_range = 20.0
+spot_angle = 36.292797
+
+[node name="WeaponPivot" type="Node3D" parent="Visual" unique_id=879198079]
+
+[node name="GunPoint" type="Marker3D" parent="Visual/WeaponPivot" unique_id=77871199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
+
+[node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_10jsn")
+
+[node name="InputController" parent="." unique_id=652659380 instance=ExtResource("3_lo1ro")]
+
+[node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("fire_point", "input")]
+script = ExtResource("4_ojawh")
+fire_point = NodePath("../Visual/WeaponPivot/GunPoint")
+current_weapon = ExtResource("5_nhckt")
+input = NodePath("../InputController")
+
+[node name="AimController" type="Node" parent="." unique_id=1300923200 node_paths=PackedStringArray("weapon_pivot")]
+script = ExtResource("6_20y2w")
+weapon_pivot = NodePath("../Visual/WeaponPivot")
+
+[node name="Inventory" type="Node" parent="." unique_id=1206716850 node_paths=PackedStringArray("weapon_controller")]
+script = ExtResource("7_hgb2g")
+pistol_ammo = 100
+weapon_controller = NodePath("../WeaponController")
