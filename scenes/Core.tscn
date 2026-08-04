@@ -55,6 +55,8 @@ metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
 [node name="Core" type="Node3D" unique_id=243152911]
 
+[node name="GameManager" type="Node" parent="." unique_id=1651100256]
+
 [node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam", "projectile_spawner") instance=ExtResource("2_uhg8y")]
 player_cam = NodePath("../PlayerCam")
 projectile_spawner = NodePath("../Enivironment/ProjectileSpawner")

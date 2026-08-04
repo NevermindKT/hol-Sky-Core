@@ -23,3 +23,16 @@ func consume_ammo(ammo_type: Ammo_Type.Type, amount: int) -> int:
 			return taken
 
 	return 0
+
+func get_ammo(ammo_type: Ammo_Type.Type) -> int:
+	match ammo_type:
+		Ammo_Type.Type.PISTOL:
+			return pistol_ammo
+
+		Ammo_Type.Type.RIFLE:
+			return rifle_ammo
+
+		Ammo_Type.Type.SHOTGUN:
+			return shotgun_ammo
+
+	return 0

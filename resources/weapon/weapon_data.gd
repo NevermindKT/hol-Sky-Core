@@ -6,7 +6,7 @@ class_name WeaponData
 @export_category("General")
 @export var damage: float
 @export var fire_rate: float
-@export var reload_speed: float
+@export var reload_duration: float
 @export var magazine_capacity: float
 @export var ammo_type: Ammo_Type.Type
 
