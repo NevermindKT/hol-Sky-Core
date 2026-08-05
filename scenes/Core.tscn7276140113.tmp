@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/road_segments/road_turn_left.tscn" id="5_mowk8"]
 [ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/road_segments/road_turn_right.tscn" id="6_0uqmh"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="8_mowk8"]
+[ext_resource type="PackedScene" uid="uid://kcbaii8x2rit" path="res://scenes/road/road_maneger.tscn" id="9_uhg8y"]
 [ext_resource type="PackedScene" uid="uid://33j34s1svc7q" path="res://scenes/general/hud.tscn" id="11_wqd6n"]
+[ext_resource type="PackedScene" uid="uid://dv6yihs6ovfyc" path="res://scenes/spawners/ProjectileSpawner.tscn" id="14_cfyfp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mowk8"]
 sky_top_color = Color(0.04005715, 0.057814613, 0.08145905, 1)
@@ -58,8 +60,7 @@ metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
 [node name="GameManager" type="Node" parent="." unique_id=1651100256]
 
-[node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("2_uhg8y")]
-player_cam = NodePath("../PlayerCam")
+[node name="Car" parent="." unique_id=353319218 instance=ExtResource("2_uhg8y")]
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476 node_paths=PackedStringArray("car")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 2.45)
@@ -68,15 +69,20 @@ script = ExtResource("1_i24gt")
 car = NodePath("../Car")
 cam_latency = 14.0
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=497828979]
+environment = SubResource("Environment_uhg8y")
+
 [node name="Enivironment" type="Node" parent="." unique_id=1285239064]
 
 [node name="World" parent="Enivironment" unique_id=1128285648 instance=ExtResource("8_mowk8")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Enivironment" unique_id=497828979]
-environment = SubResource("Environment_uhg8y")
+[node name="RoadManager" parent="Enivironment" unique_id=1307815039 node_paths=PackedStringArray("world", "car_movement") instance=ExtResource("9_uhg8y")]
+world = NodePath("../World")
+car_movement = NodePath("../../Car")
 
-[node name="Services" type="Node" parent="." unique_id=83632219]
-
-[node name="RoadGenerator" parent="Services" unique_id=824665246 node_paths=PackedStringArray("world") instance=ExtResource("2_hyqco")]
-world = NodePath("../../Enivironment/World")
+[node name="RoadGenerator" parent="Enivironment" unique_id=824665246 node_paths=PackedStringArray("world", "road_manager") instance=ExtResource("2_hyqco")]
+world = NodePath("../World")
+road_manager = NodePath("../RoadManager")
 road_segments = Array[ExtResource("3_3g18v")]([SubResource("Resource_0uqmh"), SubResource("Resource_wqd6n"), SubResource("Resource_6gsqs")])
+
+[node name="ProjectileSpawner" parent="Enivironment" unique_id=999093676 instance=ExtResource("14_cfyfp")]

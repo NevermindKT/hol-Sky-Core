@@ -8,7 +8,11 @@ var accelerating := false
 
 signal dodge
 signal reload
-#signal weapon_change
+signal weapon_change_up
+signal weapon_change_down
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _process(_delta):
 	fire = Input.is_action_pressed("attack")
@@ -20,8 +24,10 @@ func _process(_delta):
 		dodge.emit()
 	
 	if Input.is_action_just_pressed("reload"):
-		print("Reload pressed")
 		reload.emit()
 	
-	#if Input.is_action_just_pressed(""):
-		#wepon_change.emit()
+	if Input.is_action_just_pressed("weapon_change_up"):
+		weapon_change_up.emit()
+	
+	if Input.is_action_just_pressed("weapon_change_down"):
+		weapon_change_down.emit()

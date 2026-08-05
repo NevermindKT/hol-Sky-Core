@@ -1,7 +1,7 @@
 extends Node
 class_name Projectile_spawner
 
-@export var world: World
+var world: World
 
 func spawn_single(
 	weapon: WeaponData,

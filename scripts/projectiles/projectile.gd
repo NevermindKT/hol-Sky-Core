@@ -2,7 +2,7 @@ extends Node3D
 class_name Projectile
 
 var damage: float
-var gravity_scale: float
+var gravity_scale := 1.0
 var projectile_speed: float
 var projectile_distance: float
 

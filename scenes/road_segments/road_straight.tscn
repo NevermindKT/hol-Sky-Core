@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5yyn8hbn5ba5"]
 
 [ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road/road_segment.gd" id="1_vallh"]
-[ext_resource type="Texture2D" uid="uid://b4q0amljkd0fy" path="res://textures/roadTest.jpg" id="2_rtphd"]
+[ext_resource type="Texture2D" uid="uid://b4q0amljkd0fy" path="res://textures/roads/roadTest.jpg" id="2_rtphd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw7st"]
 albedo_texture = ExtResource("2_rtphd")

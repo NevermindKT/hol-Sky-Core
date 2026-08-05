@@ -32,13 +32,16 @@ var steering_input := 0.0
 
 @export_category("Exports")
 @export var player_cam: Camera3D
-@export var projectile_spawner: Projectile_spawner
 
 @onready var cam_pivot: Node3D = $CamPivot
-@onready var aim_controller: Node = $AimController
 @onready var input: InputController = $InputController
+@onready var weapon_pivot: Node3D = $Visual/WeaponPivot
 @onready var visual_effects: Car_Visual_Effects = $Visual
 @onready var weapon_controller: Weapon_controller = $WeaponController
+
+
+func _ready() -> void:
+	RoadManager.car_movement = self
 
 func _physics_process(delta: float) -> void:
 	get_input()

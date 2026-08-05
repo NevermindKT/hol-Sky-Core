@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctjr5v0dqa1k5"]
 
 [ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road/road_segment.gd" id="1_a4orq"]
-[ext_resource type="Texture2D" uid="uid://b1tv0l1ysegc0" path="res://textures/roadTestFliped.jpg" id="3_8qsns"]
+[ext_resource type="Texture2D" uid="uid://b1tv0l1ysegc0" path="res://textures/roads/roadTestFliped.jpg" id="3_8qsns"]
 
 [sub_resource type="Curve3D" id="Curve3D_a4orq"]
 _data = {

@@ -72,12 +72,13 @@ shape = SubResource("CapsuleShape3D_10jsn")
 
 [node name="Inventory" type="Node" parent="." unique_id=1206716850]
 script = ExtResource("7_hgb2g")
-rifle_ammo = 60
-pistol_ammo = 100
-shotgun_ammo = 20
+rifle_ammo = 5000
+pistol_ammo = 5000
+shotgun_ammo = 5000
 
 [node name="AimController" type="Node" parent="." unique_id=1300923200 node_paths=PackedStringArray("weapon_pivot")]
 script = ExtResource("6_20y2w")
+aim_distance = 100.0
 weapon_pivot = NodePath("../Visual/WeaponPivot")
 
 [node name="InputController" parent="." unique_id=652659380 instance=ExtResource("3_lo1ro")]

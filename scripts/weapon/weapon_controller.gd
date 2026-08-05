@@ -4,7 +4,6 @@ class_name Weapon_controller
 @export var fire_point: Marker3D
 @export var input: InputController
 @export var current_weapon: WeaponData
-@onready var car: Car_Movement = $".."
 @onready var inventory: Inventory = $"../Inventory"
 
 
@@ -54,6 +53,7 @@ func reload() -> bool:
 		return false
 
 	is_reloading = true
+	Events.reload_started.emit(current_weapon.reload_duration)
 
 	await get_tree().create_timer(current_weapon.reload_duration).timeout
 
@@ -65,5 +65,6 @@ func reload() -> bool:
 	ammo += loaded
 
 	is_reloading = false
+	Events.reload_finished.emit()
 
 	return loaded > 0

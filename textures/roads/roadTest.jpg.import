@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1tv0l1ysegc0"
-path.s3tc="res://.godot/imported/roadTestFliped.jpg-34d1f4eb65bd7f2194f022e6589e562d.s3tc.ctex"
+uid="uid://b4q0amljkd0fy"
+path.s3tc="res://.godot/imported/roadTest.jpg-45b3e7aa09486e30d9e406e43ec202e1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/roadTestFliped.jpg"
-dest_files=["res://.godot/imported/roadTestFliped.jpg-34d1f4eb65bd7f2194f022e6589e562d.s3tc.ctex"]
+source_file="res://textures/roads/roadTest.jpg"
+dest_files=["res://.godot/imported/roadTest.jpg-45b3e7aa09486e30d9e406e43ec202e1.s3tc.ctex"]
 
 [params]
 

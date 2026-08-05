@@ -11,3 +11,15 @@ var last_world_basis: Basis
 
 func _ready():
 	last_world_basis = world.global_transform.basis
+	RoadManager.initialize()
+
+func _enter_tree():
+	RoadManager.world = self
+	ProjectileSpawner.world = self
+
+func _exit_tree():
+	if ProjectileSpawner.world == self:
+		ProjectileSpawner.world = null
+	
+	if RoadManager.world == self:
+		RoadManager.world = null

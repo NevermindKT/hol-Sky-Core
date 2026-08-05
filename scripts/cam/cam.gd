@@ -1,7 +1,6 @@
 extends Camera3D
 class_name Player_Camera
 
-
 @export var car: Car_Movement
 @export var cam_latency := 2.0
 

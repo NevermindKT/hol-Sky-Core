@@ -1,14 +1,14 @@
 extends Node
 class_name Road_manager
 
-@export var world: World
-@export var car_movement: Car_Movement
+var world: World
+var car_movement: Car_Movement
 
 var angular_velocity := Vector3.ZERO
 var last_rotation := Quaternion.IDENTITY
 
 
-func _ready() -> void:
+func initialize():
 	world.path_follow_3d.rotation_mode = PathFollow3D.ROTATION_XYZ
 	world.path_follow_3d.loop = false
 	world.path_follow_3d.progress = 0.0
