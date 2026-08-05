@@ -17,8 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-RoadManager="*uid://bhl1wod4cbmvb"
 Events="*uid://8jnql3fu3d2y"
+InputController="*uid://bxq0wqwdbfbo8"
+RoadManager="*uid://bhl1wod4cbmvb"
 ProjectileSpawner="*uid://bc2hhoujpefbr"
 
 [display]

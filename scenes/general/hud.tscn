@@ -70,6 +70,7 @@ size_flags_vertical = 4
 script = ExtResource("1_viwan")
 
 [node name="ReloadBar" type="ProgressBar" parent="CrossHairCon" unique_id=1102824652]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

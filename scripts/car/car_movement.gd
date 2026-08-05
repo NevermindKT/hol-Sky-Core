@@ -34,7 +34,6 @@ var steering_input := 0.0
 @export var player_cam: Camera3D
 
 @onready var cam_pivot: Node3D = $CamPivot
-@onready var input: InputController = $InputController
 @onready var weapon_pivot: Node3D = $Visual/WeaponPivot
 @onready var visual_effects: Car_Visual_Effects = $Visual
 @onready var weapon_controller: Weapon_controller = $WeaponController
@@ -55,14 +54,14 @@ func _physics_process(delta: float) -> void:
 
 
 func get_input() -> void:
-	steering_input = input.steering
+	steering_input = InputController.steering
 
 func process_speed(delta: float) -> void:
-	if input.accelerating:
+	if InputController.accelerating:
 		var acceleration_mul = get_acceleration_multiplier()
 		speed += acceleration * acceleration_mul * delta
 
-	if input.braking:
+	if InputController.braking:
 		speed -= brake * delta
 
 	speed -= drag * delta

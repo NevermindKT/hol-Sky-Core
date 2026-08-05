@@ -2,7 +2,6 @@ extends Node
 class_name Weapon_controller
 
 @export var fire_point: Marker3D
-@export var input: InputController
 @export var current_weapon: WeaponData
 @onready var inventory: Inventory = $"../Inventory"
 
@@ -13,12 +12,12 @@ var is_reloading := false
 
 
 func _ready() -> void:
-	input.reload.connect(reload)
+	InputController.reload.connect(reload)
 	reload()
 
 
 func _process(_delta: float) -> void:
-	if input.fire:
+	if InputController.fire:
 		fire()
 	
 	cooldown -= _delta

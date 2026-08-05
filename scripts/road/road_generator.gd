@@ -2,8 +2,6 @@ extends Node
 class_name Road_generator
 
 @export var world: World
-@export var road_manager: Road_manager
-
 @export var road_segments: Array[RoadSegmentData]
 
 var last_segment: Road_segment
@@ -135,7 +133,7 @@ func is_segment_allowed(data: RoadSegmentData) -> bool:
 
 
 func _on_player_entered_segment(segment: Road_segment):
-	road_manager.select_segment(segment)
+	RoadManager.select_segment(segment)
 
 
 func spawn_start():

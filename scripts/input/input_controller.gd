@@ -1,5 +1,5 @@
 extends Node
-class_name InputController
+class_name Input_Controller
 
 var fire := false
 var braking := false
@@ -10,6 +10,7 @@ signal dodge
 signal reload
 signal weapon_change_up
 signal weapon_change_down
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
