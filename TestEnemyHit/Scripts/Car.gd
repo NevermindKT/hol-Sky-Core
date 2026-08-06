@@ -8,7 +8,7 @@ func _physics_process(_delta: float) -> void:
 	move()
 
 func move() -> void:
-	var direction := Input.get_axis("move_left", "move_right")
+	var direction := Input.get_axis("left", "right")
 
 	velocity = Vector3(direction * move_speed, 0.0, 0.0)
 
