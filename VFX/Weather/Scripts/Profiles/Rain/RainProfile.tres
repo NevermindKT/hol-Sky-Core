@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RainProfile" format=3 uid="uid://cts2oj350omv2"]
+
+[ext_resource type="Script" uid="uid://cj3gix68sfnqx" path="res://VFX/Weather/Scripts/Rain/RainProfile.gd" id="1_yc813"]
+
+[resource]
+script = ExtResource("1_yc813")
+amount = 400
+drop_length = 2.0
+drop_width = 0.2
+rain_color = Color(0, 0.09803922, 0.18431373, 0.7529412)
+metadata/_custom_type_script = "uid://cj3gix68sfnqx"

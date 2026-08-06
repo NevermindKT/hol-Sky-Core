@@ -21,11 +21,10 @@ Events="*uid://8jnql3fu3d2y"
 InputController="*uid://bxq0wqwdbfbo8"
 RoadManager="*uid://bhl1wod4cbmvb"
 ProjectileSpawner="*uid://bc2hhoujpefbr"
+WeatherManager="*uid://5fu5kmhw80gh"
 
 [display]
 
-window/size/viewport_width=2460
-window/size/viewport_height=1040
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

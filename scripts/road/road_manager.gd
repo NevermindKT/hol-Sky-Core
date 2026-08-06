@@ -9,6 +9,10 @@ var last_rotation := Quaternion.IDENTITY
 
 
 func initialize():
+	if world == null:
+		push_warning("World не призначений. Ініціалізацію неможливо виконати.")
+		return
+	
 	world.path_follow_3d.rotation_mode = PathFollow3D.ROTATION_XYZ
 	world.path_follow_3d.loop = false
 	world.path_follow_3d.progress = 0.0
@@ -21,6 +25,9 @@ func initialize():
 
 
 func _process(delta):
+	if world == null:
+		return
+	
 	world.path_follow_3d.progress += car_movement.speed * delta
 	
 	var current = world.path_follow_3d.global_basis.get_rotation_quaternion()

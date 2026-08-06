@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BulletTrailProfile" format=3 uid="uid://cirkploy4fpj7"]
+
+[ext_resource type="Script" uid="uid://djyye2gi8olwk" path="res://VFX/Weapon/BulletTrail/BulletTrailProfile.gd" id="1_ok4w8"]
+
+[resource]
+script = ExtResource("1_ok4w8")
+length = 0.5
+color = Color(0.9913742, 1, 0.67919046, 1)
+metadata/_custom_type_script = "uid://djyye2gi8olwk"

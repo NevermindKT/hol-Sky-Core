@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://c0fx1aiilvf7u"]
+
+[ext_resource type="Script" uid="uid://c3fkha6xu3srj" path="res://VFX/Weather/Scripts/WeatherTest.gd" id="1_2fkke"]
+[ext_resource type="Resource" uid="uid://c3u4dm3j5lcb" path="res://VFX/Weather/Scripts/DefaultWeatherState.tres" id="2_xqc34"]
+[ext_resource type="PackedScene" uid="uid://tuvx1tisvmnu" path="res://VFX/Weather/Scenes/weather_system.tscn" id="5_aju6d"]
+[ext_resource type="Material" uid="uid://67ujeeqcjmgj" path="res://addons/Tree3D/Materials/trunk_mat.tres" id="5_up8y2"]
+[ext_resource type="Material" uid="uid://7hn25igvds42" path="res://addons/Tree3D/Materials/twig_mat.tres" id="6_hxdta"]
+[ext_resource type="PackedScene" uid="uid://ci5h063crfw3b" path="res://VFX/Weather/Scenes/lightning_spawn_area.tscn" id="7_xqc34"]
+[ext_resource type="PackedScene" uid="uid://ck5eo0ch0lb4t" path="res://VFX/Weather/Scenes/distance_fog.tscn" id="8_aju6d"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4kxuq"]
+size = Vector2(10, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mti6b"]
+albedo_color = Color(0.10910394, 0.112299375, 0.10910461, 1)
+emission_energy_multiplier = 3.37
+
+[sub_resource type="BoxMesh" id="BoxMesh_2e7p1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4kxuq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qx63p"]
+size = Vector3(2, 2, 2)
+
+[node name="WeatherTest" type="Node3D" unique_id=643209732]
+script = ExtResource("1_2fkke")
+weather_state = ExtResource("2_xqc34")
+
+[node name="Road" type="MeshInstance3D" parent="." unique_id=1964092116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.084114)
+mesh = SubResource("PlaneMesh_4kxuq")
+surface_material_override/0 = SubResource("StandardMaterial3D_mti6b")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Road" unique_id=63151503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+size = Vector3(8, 0.2, 100)
+
+[node name="SpotLights" type="Node3D" parent="." unique_id=1222050913]
+transform = Transform3D(0.9993808, -0.0052247075, 0.034793273, -0.0014079683, 0.9821814, 0.18793017, -0.035155185, -0.18786281, 0.9815659, 0, 0.7, 4.2205)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SpotLights" unique_id=1295753280]
+transform = Transform3D(1, -2.3283064e-10, 0, 2.3283064e-10, 1, -7.310597e-12, 1.7021307e-21, 7.310596e-12, 1.0000001, -0.5005634, 0.39303893, -0.9247961)
+light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
+light_energy = 10.0
+light_specular = 4.0
+shadow_enabled = true
+shadow_bias = 0.2
+distance_fade_begin = 0.0
+spot_range = 50.0
+spot_angle = 20.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="SpotLights" unique_id=300350988]
+transform = Transform3D(1, 0, 0, 0, 1, -4.553751e-12, 0, 4.553751e-12, 1, 0.49943662, 0.39303893, -0.92479634)
+light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
+light_energy = 10.0
+light_specular = 4.0
+shadow_enabled = true
+shadow_bias = 0.2
+distance_fade_begin = 0.0
+spot_range = 50.0
+spot_angle = 20.0
+
+[node name="Camera3D" type="Camera3D" parent="SpotLights" unique_id=1409583284]
+transform = Transform3D(0.99938095, 0.016204618, -0.031229435, -0.0052247057, 0.9461315, 0.32374036, 0.034793243, -0.32337677, 0.9456305, -0.26071072, 5.9449425, 8.38122)
+
+[node name="LightningSpawnArea" parent="." unique_id=1643506361 instance=ExtResource("7_xqc34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -71.189)
+
+[node name="DistanceFog" parent="." unique_id=1400367543 instance=ExtResource("8_aju6d")]
+
+[node name="Cubes" type="Node3D" parent="." unique_id=1834425357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.3214417)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cubes" unique_id=23699920]
+transform = Transform3D(0.9200077, 0, 0.39190033, 0, 1, 0, -0.39190033, 0, 0.9200077, -2.2864199, 0.5, -9.171524)
+mesh = SubResource("BoxMesh_2e7p1")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cubes" unique_id=2097858347]
+transform = Transform3D(-0.43121007, 0, -0.90225154, 0, 1, 0, 0.90225154, 0, -0.43121007, -1.2441597, 0.5, -15.451692)
+mesh = SubResource("BoxMesh_4kxuq")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cubes" unique_id=1676035332]
+transform = Transform3D(0.52143484, 0, -0.8532911, 0, 1, 0, 0.8532911, 0, 0.52143484, 2.707755, 1, -34.69317)
+mesh = SubResource("BoxMesh_qx63p")
+
+[node name="Trees" type="Node3D" parent="." unique_id=1247055964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.3214417)
+
+[node name="Tree3D" type="Tree3D" parent="Trees" unique_id=2123584410]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2356153, 0, -21.64864)
+
+[node name="Tree3D2" type="Tree3D" parent="Trees" unique_id=1546471637]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7758622, 0, -12.826276)
+
+[node name="Tree3D3" type="Tree3D" parent="Trees" unique_id=1896862158]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2772574, 0, -15.533332)
+
+[node name="Tree3D4" type="Tree3D" parent="Trees" unique_id=416382922]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4968586, 0, -10.5458555)
+
+[node name="Tree3D5" type="Tree3D" parent="Trees" unique_id=3349806]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8908157, 1.9073486e-06, -19.112541)
+
+[node name="Tree3D6" type="Tree3D" parent="Trees" unique_id=406437320]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.002722, 3.8146973e-06, -24.906336)
+
+[node name="Tree3D7" type="Tree3D" parent="Trees" unique_id=1472357754]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.95084, 3.8146973e-06, -30.38138)
+
+[node name="Tree3D8" type="Tree3D" parent="Trees" unique_id=360165844]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5019698, 1.9073486e-06, -26.548248)
+
+[node name="Tree3D9" type="Tree3D" parent="Trees" unique_id=199449667]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(-0.9986548, 0, 0.051851463, 0, 1, 0, -0.051851463, 0, -0.9986548, -4.9904156, 0, -32.39847)
+
+[node name="Tree3D10" type="Tree3D" parent="Trees" unique_id=2089939164]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(-0.9986548, 0, 0.051851463, 0, 1, 0, -0.051851463, 0, -0.9986548, 3.4677372, 0, -40.79356)
+
+[node name="Tree3D11" type="Tree3D" parent="Trees" unique_id=982844264]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(-0.9986548, 0, 0.051851463, 0, 1, 0, -0.051851463, 0, -0.9986548, -6.712224, 0, -38.611412)
+
+[node name="Tree3D12" type="Tree3D" parent="Trees" unique_id=568818242]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(-0.9986548, 0, 0.051851463, 0, 1, 0, -0.051851463, 0, -0.9986548, -3.6769571, 0, -43.448013)
+
+[node name="Tree3D13" type="Tree3D" parent="Trees" unique_id=1910372276]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(-0.9986548, 0, 0.051851463, 0, 1, 0, -0.051851463, 0, -0.9986548, 6.2525487, 1.9073486e-06, -34.354237)
+
+[node name="Tree3D14" type="Tree3D" parent="Trees" unique_id=709604396]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(-0.9986548, 0, 0.051851463, 0, 1, 0, -0.051851463, 0, -0.9986548, 4.0665784, 3.8146973e-06, -28.666138)
+
+[node name="Tree3D15" type="Tree3D" parent="Trees" unique_id=1477188399]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(-0.9986548, 0, 0.051851463, 0, 1, 0, -0.051851463, 0, -0.9986548, 5.7281866, 3.8146973e-06, -23.097446)
+
+[node name="Tree3D16" type="Tree3D" parent="Trees" unique_id=1640635138]
+material_trunk = ExtResource("5_up8y2")
+material_twig = ExtResource("6_hxdta")
+transform = Transform3D(-0.9986548, 0, 0.051851463, 0, 1, 0, -0.051851463, 0, -0.9986548, -3.513154, 1.9073486e-06, -27.415562)
+
+[node name="WeatherSystem" parent="." unique_id=1765140778 instance=ExtResource("5_aju6d")]
+
+[node name="RainController" parent="WeatherSystem/RainSystem" parent_id_path=PackedInt32Array(1765140778, 935528444) index="0" unique_id=1747059604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.807156)
+
+[editable path="WeatherSystem"]

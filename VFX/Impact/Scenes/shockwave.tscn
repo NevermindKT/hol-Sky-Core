@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://6vpkxdvp7a7i"]
+
+[ext_resource type="Script" uid="uid://bs8er62g5ise0" path="res://VFX/Impact/Scripts/ShockwaveEffect.gd" id="1_shock"]
+[ext_resource type="Shader" uid="uid://db1n2upwmtidr" path="res://VFX/Impact/Materials/shockwave.gdshader" id="2_shshdr"]
+[ext_resource type="Script" uid="uid://colv8ixif4vwm" path="res://VFX/Impact/Scripts/ShockwaveProfile.gd" id="3_shprof"]
+
+[sub_resource type="Resource" id="ShockwaveProfile_default"]
+script = ExtResource("3_shprof")
+duration = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shock"]
+render_priority = 0
+shader = ExtResource("2_shshdr")
+shader_parameter/distortion_strength = 0.06
+shader_parameter/fresnel_power = 2.5
+shader_parameter/dissolve = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_shock"]
+radius = 1.0
+height = 2.0
+
+[node name="ShockwaveEffect" type="Node3D" unique_id=2073012442 node_paths=PackedStringArray("mesh")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_shock")
+profile = SubResource("ShockwaveProfile_default")
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=696386913]
+material_override = SubResource("ShaderMaterial_shock")
+mesh = SubResource("SphereMesh_shock")

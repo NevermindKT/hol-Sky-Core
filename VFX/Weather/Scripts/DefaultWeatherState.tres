@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeatherState" format=3 uid="uid://c3u4dm3j5lcb"]
+
+[ext_resource type="Script" uid="uid://cq2ihxdir6h78" path="res://VFX/Weather/Scripts/WeatherState.gd" id="1_fbwh6"]
+[ext_resource type="Resource" uid="uid://4lviiw663mbm" path="res://VFX/Weather/Scripts/Profiles/Fog/DenseFog.tres" id="1_o6nbf"]
+[ext_resource type="Resource" uid="uid://hxykvkcsp7w4" path="res://VFX/Weather/Scripts/Profiles/Rain/HeavyRainProfile.tres" id="2_kb0d1"]
+
+[resource]
+script = ExtResource("1_fbwh6")
+fog = ExtResource("1_o6nbf")
+rain = ExtResource("2_kb0d1")
+metadata/_custom_type_script = "uid://cq2ihxdir6h78"

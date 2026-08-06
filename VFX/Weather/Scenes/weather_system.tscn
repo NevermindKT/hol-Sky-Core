@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://tuvx1tisvmnu"]
+
+[ext_resource type="PackedScene" uid="uid://cn5f0cey0llv2" path="res://VFX/Weather/Scenes/rain_controller.tscn" id="2_r4tej"]
+[ext_resource type="Script" uid="uid://dunfvkx4t8gji" path="res://VFX/Weather/Scripts/Fog/FogController.gd" id="2_skoxg"]
+[ext_resource type="Script" uid="uid://d4f74ck2cfk3k" path="res://VFX/Weather/Scripts/Rain/LightningController.gd" id="5_850p3"]
+[ext_resource type="PackedScene" uid="uid://bjahf7e1efelb" path="res://VFX/Weather/Scenes/LightningBolt.tscn" id="6_m4mv0"]
+
+[sub_resource type="Environment" id="Environment_hxdta"]
+background_mode = 1
+glow_enabled = true
+glow_intensity = 1.2
+glow_bloom = 0.05
+glow_hdr_threshold = 2.2
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.5
+fog_density = 0.006
+fog_sky_affect = 0.0
+fog_height = 1.0
+fog_height_density = 0.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0005
+volumetric_fog_length = 100.0
+
+[node name="WeatherSystem" type="Node" unique_id=1765140778]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1132270207]
+environment = SubResource("Environment_hxdta")
+
+[node name="FogSystem" type="Node3D" parent="." unique_id=1671967407]
+
+[node name="FogController" type="Node" parent="FogSystem" unique_id=1605430976 node_paths=PackedStringArray("world_environment")]
+script = ExtResource("2_skoxg")
+world_environment = NodePath("../../WorldEnvironment")
+
+[node name="RainSystem" type="Node3D" parent="." unique_id=935528444]
+
+[node name="RainController" parent="RainSystem" unique_id=1747059604 instance=ExtResource("2_r4tej")]
+
+[node name="LightningController" type="Node3D" parent="RainSystem" unique_id=932502189 node_paths=PackedStringArray("directional_light")]
+script = ExtResource("5_850p3")
+directional_light = NodePath("../../DirectionalLight3D")
+
+[node name="LightningBolt" parent="RainSystem/LightningController" unique_id=539544344 instance=ExtResource("6_m4mv0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.00918, 0, -68.108055)
+visible = false
+width = 0.5
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=89476310]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 15.509956, -10.5886755)
+light_color = Color(0.73871017, 0.90675664, 1, 1)
+light_energy = 0.02
+sky_mode = 1

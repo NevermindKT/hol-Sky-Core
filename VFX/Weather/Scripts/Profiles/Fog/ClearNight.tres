@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FogProfile" format=3 uid="uid://bfkjk34q3o5oc"]
+
+[ext_resource type="Script" uid="uid://dgn3pfxbskeg0" path="res://VFX/Weather/Scripts/Fog/FogProfile.gd" id="1_4akhs"]
+
+[resource]
+script = ExtResource("1_4akhs")
+density = 0.005
+metadata/_custom_type_script = "uid://dgn3pfxbskeg0"

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dj6f80eu3p4mq"]
+
+[ext_resource type="Script" uid="uid://q3f5ckhu701k" path="res://Enemy/Scripts/enemy_controller.gd" id="1_k5srr"]
+[ext_resource type="Script" uid="uid://d1hony2xlby4a" path="res://Enemy/Scripts/simple_knockback_controller.gd" id="2_knbck"]
+[ext_resource type="Script" uid="uid://cmi1f4qjv8mmd" path="res://Enemy/Scripts/knockback_profile.gd" id="3_knbpr"]
+[ext_resource type="Script" uid="uid://dvkxmb37dlkr5" path="res://Enemy/Scripts/health.gd" id="4_hlth"]
+[ext_resource type="Script" uid="uid://bllmk6vssny63" path="res://Enemy/Scripts/health_profile.gd" id="5_hlthpr"]
+[ext_resource type="PackedScene" uid="uid://ycruqbm88110" path="res://VFX/Blood/Components/blood_car_hit.tscn" id="6_bldch"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4kxuq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kxuq"]
+
+[sub_resource type="Resource" id="KnockbackProfile_enemy"]
+script = ExtResource("3_knbpr")
+horizontal_force = 12.0
+
+[sub_resource type="Resource" id="HealthProfile_enemy"]
+script = ExtResource("5_hlthpr")
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1790406157 node_paths=PackedStringArray("knockback_controller", "health") groups=["Enemy"]]
+script = ExtResource("1_k5srr")
+knockback_controller = NodePath("KnockbackController")
+health = NodePath("Health")
+hit_effect_scene = ExtResource("6_bldch")
+move_speed = 12.0
+corpse_lifetime = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=498826910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_4kxuq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1260046030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_4kxuq")
+
+[node name="KnockbackController" type="Node" parent="." unique_id=659438112]
+script = ExtResource("2_knbck")
+profile = SubResource("KnockbackProfile_enemy")
+
+[node name="Health" type="Node" parent="." unique_id=1022868438]
+script = ExtResource("4_hlth")
+profile = SubResource("HealthProfile_enemy")

@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://ck5eo0ch0lb4t"]
+
+[ext_resource type="Shader" uid="uid://c3cecg22eis0j" path="res://VFX/Weather/Materials/fog_mesh.gdshader" id="1_1cu5w"]
+[ext_resource type="Texture2D" uid="uid://dlsh7e2jwym1k" path="res://VFX/Weather/Materials/fog_noise.tres" id="2_yrcqr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62yky"]
+render_priority = 0
+shader = ExtResource("1_1cu5w")
+shader_parameter/fog_color = Color(0, 0, 0, 1)
+shader_parameter/opacity = 1.0
+shader_parameter/bottom_start = 0.0
+shader_parameter/bottom_end = 0.400000019
+shader_parameter/top_start = 0.50000002375
+shader_parameter/top_end = 1.0
+shader_parameter/noise_texture = ExtResource("2_yrcqr")
+shader_parameter/noise_strength = 0.0
+shader_parameter/noise_scale = 1.89
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mm1bc"]
+size = Vector2(100, 15)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xqc34"]
+render_priority = 0
+shader = ExtResource("1_1cu5w")
+shader_parameter/fog_color = Color(0.019607844, 0.023529412, 0.023529412, 1)
+shader_parameter/opacity = 0.70000003325
+shader_parameter/bottom_start = 0.0
+shader_parameter/bottom_end = 0.400000019
+shader_parameter/top_start = 0.50000002375
+shader_parameter/top_end = 1.0
+shader_parameter/noise_texture = ExtResource("2_yrcqr")
+shader_parameter/noise_strength = 1.0
+shader_parameter/noise_scale = 1.89
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aju6d"]
+render_priority = 0
+shader = ExtResource("1_1cu5w")
+shader_parameter/fog_color = Color(0.019607844, 0.023529412, 0.023529412, 1)
+shader_parameter/opacity = 0.400000019
+shader_parameter/bottom_start = 0.0
+shader_parameter/bottom_end = 0.400000019
+shader_parameter/top_start = 0.50000002375
+shader_parameter/top_end = 1.0
+shader_parameter/noise_texture = ExtResource("2_yrcqr")
+shader_parameter/noise_strength = 1.0
+shader_parameter/noise_scale = 1.89
+
+[node name="DistanceFog" type="Node3D" unique_id=1400367543]
+
+[node name="FogMesh" type="MeshInstance3D" parent="." unique_id=740100936]
+transform = Transform3D(1, 0, 0, 0, -0.556708, 0.8307082, 0, -0.8307082, -0.556708, 0, 6.009775, -82.62685)
+material_override = SubResource("ShaderMaterial_62yky")
+mesh = SubResource("PlaneMesh_mm1bc")
+
+[node name="FogMesh2" type="MeshInstance3D" parent="." unique_id=1914233901]
+transform = Transform3D(1, 0, 0, 0, -0.556708, 0.8307082, 0, -0.8307082, -0.556708, 0, 6.01, -77.62654)
+material_override = SubResource("ShaderMaterial_xqc34")
+mesh = SubResource("PlaneMesh_mm1bc")
+
+[node name="FogMesh3" type="MeshInstance3D" parent="." unique_id=1337848771]
+transform = Transform3D(1, 0, 0, 0, -0.556708, 0.8307082, 0, -0.8307082, -0.556708, 0, 6.01, -72.62654)
+material_override = SubResource("ShaderMaterial_aju6d")
+mesh = SubResource("PlaneMesh_mm1bc")
