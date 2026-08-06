@@ -12,11 +12,9 @@ var is_spawning := false
 
 var target_anchor: Marker3D
 
-const MAX_ROAD_DIR_OFFSET = 2
 const MAX_SEGMENTS = 46
 const UNLOAD_DISTANCE = 40
-
-signal segment_spawned(segment: Road_segment)
+const MAX_ROAD_DIR_OFFSET = 2
 
 
 func initialize(_road_set: Road_Set) -> void:
@@ -31,6 +29,7 @@ func _process(_delta):
 	if segments[0].global_position.z > UNLOAD_DISTANCE:
 		segments[0].queue_free()
 		segments.pop_front()
+		Events.segment_dispawned.emit()
 
 
 func add_curve_points(seg: Road_segment) -> void:
@@ -105,7 +104,7 @@ func spawn(scene: PackedScene):
 
 	add_curve_points(new_segment)
 	last_segment = new_segment
-	segment_spawned.emit(new_segment)
+	Events.segment_spawned.emit(new_segment)
 	
 	match new_segment.segment_type:
 		RoadType.Type.LEFT:

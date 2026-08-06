@@ -12,7 +12,7 @@ var is_reloading := false
 
 
 func _ready() -> void:
-	InputController.reload.connect(reload)
+	Events.reload.connect(reload)
 	reload()
 
 
