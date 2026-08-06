@@ -31,7 +31,6 @@ func _process(_delta):
 	if segments[0].global_position.z > UNLOAD_DISTANCE:
 		segments[0].queue_free()
 		segments.pop_front()
-		RoadManager.distance_traveled += 1
 
 
 func add_curve_points(seg: Road_segment) -> void:
@@ -126,10 +125,6 @@ func is_segment_allowed(data: RoadSegmentData) -> bool:
 			new_dir += 1
 
 	return abs(new_dir) <= MAX_ROAD_DIR_OFFSET
-
-
-func _on_player_entered_segment(segment: Road_segment):
-	RoadManager.select_segment(segment)
 
 
 func spawn_start():

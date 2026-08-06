@@ -4,16 +4,15 @@ class_name Road_manager
 var world: World
 var car_movement: Car_Movement
 
+
 var angular_velocity := Vector3.ZERO
 var last_rotation := Quaternion.IDENTITY
 
-var distance_traveled := 0
 
-
-func initialize():
+func initialize(start_distance: float):
 	world.path_follow_3d.rotation_mode = PathFollow3D.ROTATION_XYZ
 	world.path_follow_3d.loop = false
-	world.path_follow_3d.progress = 0.0
+	world.path_follow_3d.progress = start_distance
 	
 	print(world.path_follow_3d.progress)
 	print(world.path_follow_3d.global_position)

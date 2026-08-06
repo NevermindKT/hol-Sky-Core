@@ -19,8 +19,6 @@ config/icon="res://icon.svg"
 
 Events="*uid://8jnql3fu3d2y"
 InputController="*uid://bxq0wqwdbfbo8"
-RoadManager="*uid://bhl1wod4cbmvb"
-RoadGenerator="*uid://b1c7wir0n5ael"
 ProjectileSpawner="*uid://bc2hhoujpefbr"
 
 [display]

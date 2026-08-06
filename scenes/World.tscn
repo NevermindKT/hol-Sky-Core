@@ -13,8 +13,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="RoadContainer" type="Node3D" parent="World" unique_id=1382847640]
 
-[node name="Node3D" type="Node3D" parent="World" unique_id=1188622990]
-
 [node name="WorldPath" type="Path3D" parent="." unique_id=809615609]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 curve = SubResource("Curve3D_e5uuo")

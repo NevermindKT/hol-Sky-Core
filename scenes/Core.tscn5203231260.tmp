@@ -58,9 +58,9 @@ environment = SubResource("Environment_uhg8y")
 [node name="Bootstrap" type="Node" parent="Services" unique_id=523784772]
 script = ExtResource("6_v852s")
 
+[node name="RoadGenerator" type="Node" parent="Services" unique_id=119337621]
+script = ExtResource("7_mowk8")
+
 [node name="RoadManager" type="Node" parent="Services" unique_id=728849668]
 script = ExtResource("7_3g18v")
 metadata/_custom_type_script = "uid://bhl1wod4cbmvb"
-
-[node name="RoadGenerator" type="Node" parent="Services" unique_id=119337621]
-script = ExtResource("7_mowk8")

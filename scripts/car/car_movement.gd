@@ -38,10 +38,6 @@ var steering_input := 0.0
 @onready var visual_effects: Car_Visual_Effects = $Visual
 @onready var weapon_controller: Weapon_controller = $WeaponController
 
-
-func _ready() -> void:
-	RoadManager.car_movement = self
-
 func _physics_process(delta: float) -> void:
 	get_input()
 	process_speed(delta)

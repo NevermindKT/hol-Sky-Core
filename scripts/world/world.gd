@@ -11,20 +11,20 @@ class_name World
 
 var last_world_basis: Basis
 
-
 func _ready():
 	last_world_basis = world.global_transform.basis
-	RoadManager.initialize()
-	RoadGenerator.initialize(road_set)
 
-func _enter_tree():
-	RoadManager.world = self
-	RoadGenerator.world = self
-	ProjectileSpawner.world = self
-
-func _exit_tree():
-	if ProjectileSpawner.world == self:
-		ProjectileSpawner.world = null
-	
-	if RoadManager.world == self:
-		RoadManager.world = null
+#func _enter_tree():
+	#RoadManager.world = self
+	#RoadGenerator.world = self
+	#ProjectileSpawner.world = self
+#
+#func _exit_tree():
+	#if ProjectileSpawner.world == self:
+		#ProjectileSpawner.world = null
+	#
+	#if RoadManager.world == self:
+		#RoadManager.world = null
+	#
+	#if RoadGenerator.world == self:
+		#RoadGenerator.world = null
