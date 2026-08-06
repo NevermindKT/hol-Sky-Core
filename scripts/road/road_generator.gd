@@ -1,18 +1,16 @@
 extends Node
 class_name Road_generator
 
-@export var world: World
-@export var road_segments: Array[RoadSegmentData]
+var world: World
+var road_set: Road_Set
 
 var last_segment: Road_segment
 var segments: Array[Road_segment] = []
 
+var road_dir := 0
 var is_spawning := false
 
 var target_anchor: Marker3D
-
-var road_dir := 0
-var distance_traveled := 0
 
 const MAX_ROAD_DIR_OFFSET = 2
 const MAX_SEGMENTS = 46
@@ -21,7 +19,8 @@ const UNLOAD_DISTANCE = 40
 signal segment_spawned(segment: Road_segment)
 
 
-func _ready() -> void:
+func initialize(_road_set: Road_Set) -> void:
+	road_set = _road_set
 	spawn_start()
 
 
@@ -32,6 +31,7 @@ func _process(_delta):
 	if segments[0].global_position.z > UNLOAD_DISTANCE:
 		segments[0].queue_free()
 		segments.pop_front()
+		RoadManager.distance_traveled += 1
 
 
 func add_curve_points(seg: Road_segment) -> void:
@@ -66,12 +66,12 @@ func add_curve_points(seg: Road_segment) -> void:
 func pick_random_segment() -> PackedScene:
 	var allowed_segments: Array[RoadSegmentData] = []
 
-	for data in road_segments:
+	for data in road_set.segments:
 		if is_segment_allowed(data):
 			allowed_segments.append(data)
 
 	if allowed_segments.is_empty():
-		return road_segments[0].scene
+		return road_set.segments[0].scene
 
 	var total_weight := 0.0
 
@@ -96,10 +96,6 @@ func spawn(scene: PackedScene):
 
 	segments.append(new_segment)
 	world.road_container.add_child(new_segment)
-	
-	#print("Segments spawned: ", distance_traveled)
-	#print("Road dir: ", road_dir)
-	#distance_traveled += 1
 
 	if last_segment != null:
 		new_segment.transform = (
@@ -137,7 +133,7 @@ func _on_player_entered_segment(segment: Road_segment):
 
 
 func spawn_start():
-	spawn(road_segments[0].scene)
+	spawn(road_set.segments[0].scene)
 
 
 func spawn_next():

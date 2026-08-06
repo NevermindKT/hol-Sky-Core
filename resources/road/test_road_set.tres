@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Road_Set" format=3 uid="uid://5ay5tpwia72b"]
+
+[ext_resource type="Script" uid="uid://cg6q3pvllmt8u" path="res://scripts/data/road/road_set.gd" id="1_hi2ux"]
+[ext_resource type="Script" uid="uid://c4rjjeg0gg5c7" path="res://scripts/data/road/road_data.gd" id="2_x4e11"]
+[ext_resource type="PackedScene" uid="uid://5yyn8hbn5ba5" path="res://scenes/road_segments/road_straight.tscn" id="3_x4e11"]
+[ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/road_segments/road_turn_left.tscn" id="4_2c1j4"]
+[ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/road_segments/road_turn_right.tscn" id="5_ipe36"]
+
+[sub_resource type="Resource" id="Resource_2c1j4"]
+script = ExtResource("2_x4e11")
+scene = ExtResource("3_x4e11")
+weight = 10.0
+metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
+
+[sub_resource type="Resource" id="Resource_4k70l"]
+script = ExtResource("2_x4e11")
+scene = ExtResource("4_2c1j4")
+weight = 0.5
+type = 1
+metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
+
+[sub_resource type="Resource" id="Resource_ipe36"]
+script = ExtResource("2_x4e11")
+scene = ExtResource("5_ipe36")
+weight = 0.5
+type = 2
+metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
+
+[resource]
+script = ExtResource("1_hi2ux")
+segments = Array[ExtResource("2_x4e11")]([SubResource("Resource_2c1j4"), SubResource("Resource_4k70l"), SubResource("Resource_ipe36")])
+metadata/_custom_type_script = "uid://cg6q3pvllmt8u"

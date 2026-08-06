@@ -7,6 +7,8 @@ var car_movement: Car_Movement
 var angular_velocity := Vector3.ZERO
 var last_rotation := Quaternion.IDENTITY
 
+var distance_traveled := 0
+
 
 func initialize():
 	world.path_follow_3d.rotation_mode = PathFollow3D.ROTATION_XYZ

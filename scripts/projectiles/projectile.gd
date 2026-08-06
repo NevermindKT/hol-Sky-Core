@@ -11,6 +11,7 @@ const GRAVITY := Vector3.DOWN * 9.81
 var velocity: Vector3
 var start_position: Vector3
 
+
 func initialize(data: WeaponData, direction: Vector3):
 	start_position = global_position
 	
@@ -19,6 +20,7 @@ func initialize(data: WeaponData, direction: Vector3):
 	projectile_speed = data.projectile_speed
 	projectile_distance = data.projectile_distance
 	velocity = direction.normalized() * projectile_speed
+
 
 func _physics_process(delta):
 	velocity += GRAVITY * gravity_scale * delta

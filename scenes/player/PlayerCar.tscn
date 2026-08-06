@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://scripts/car/car_movement.gd" id="1_y6j3g"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
-[ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapon/weapons/asssault rifle.tres" id="5_nhckt"]
+[ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="6_7lmdr"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="6_20y2w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
 
@@ -83,4 +83,4 @@ weapon_pivot = NodePath("../Visual/WeaponPivot")
 [node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("fire_point")]
 script = ExtResource("4_ojawh")
 fire_point = NodePath("../Visual/WeaponPivot/GunPoint")
-current_weapon = ExtResource("5_nhckt")
+current_weapon = ExtResource("6_7lmdr")

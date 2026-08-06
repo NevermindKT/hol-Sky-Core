@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://wwwnafdpldi1"]
 
-[ext_resource type="Script" uid="uid://cn4um41l4ikkr" path="res://resources/weapon/behaviors/multiple_projectile_behaviour.gd" id="1_33lcx"]
+[ext_resource type="Script" uid="uid://cn4um41l4ikkr" path="res://scripts/data/weapon/behaviors/multiple_projectile_behaviour.gd" id="1_33lcx"]
 [ext_resource type="PackedScene" uid="uid://bt3acygnr2ji2" path="res://scenes/projectiles/bullet.tscn" id="2_bd53d"]
-[ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://resources/weapon/weapon_data.gd" id="3_iijja"]
+[ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://scripts/data/weapon/weapon_data.gd" id="3_iijja"]
 
 [sub_resource type="Resource" id="Resource_hneuh"]
 script = ExtResource("1_33lcx")
@@ -13,6 +13,8 @@ script = ExtResource("3_iijja")
 name = "Shotgun"
 damage = 4.0
 fire_rate = 3.0
+reload_duration = 1.0
+magazine_capacity = 6.0
 ammo_type = 2
 gravity_scale = 3.0
 projectile_speed = 240.0

@@ -7,14 +7,19 @@ class_name World
 @onready var road_container: Node3D = $World/RoadContainer
 @onready var path_follow_3d: PathFollow3D = $WorldPath/PathFollow3D
 
+@export var road_set: Road_Set
+
 var last_world_basis: Basis
+
 
 func _ready():
 	last_world_basis = world.global_transform.basis
 	RoadManager.initialize()
+	RoadGenerator.initialize(road_set)
 
 func _enter_tree():
 	RoadManager.world = self
+	RoadGenerator.world = self
 	ProjectileSpawner.world = self
 
 func _exit_tree():
