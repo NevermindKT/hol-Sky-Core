@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://mb4qq2apxbdx"]
+
+[ext_resource type="Shader" uid="uid://cdc5dgylo42y2" path="res://resources/shaders/vfx/bloodstain.gdshader" id="1_jxfd8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvvhs"]
+render_priority = 0
+shader = ExtResource("1_jxfd8")
+shader_parameter/normal_strength = 10.000000475
+shader_parameter/edge_color = Color(0.37076867, 0, 0.02350114, 1)
+shader_parameter/center_color = Color(1, 0.36378378, 0.33328116, 1)
+shader_parameter/dissolve_amount = 0.35
+
+[sub_resource type="Curve" id="Curve_ffdo6"]
+_data = [Vector2(0, 0), 0.0, 17.416662, 0, 0, Vector2(0.03952568, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gqr4j"]
+curve = SubResource("Curve_ffdo6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ffdo6"]
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 10.0
+scale_min = 0.5
+scale_max = 0.59999996
+alpha_curve = SubResource("CurveTexture_gqr4j")
+anim_offset_max = 1.0
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_mti6b"]
+size = Vector2(0.5, 1.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6vnta"]
+render_priority = 0
+shader = ExtResource("1_jxfd8")
+shader_parameter/normal_strength = 10.0
+shader_parameter/edge_color = Color(0.1, 0.01, 0.01, 1)
+shader_parameter/center_color = Color(0.6, 0.02, 0.02, 1)
+shader_parameter/dissolve_amount = 0.35
+
+[sub_resource type="Curve" id="Curve_gqr4j"]
+bake_resolution = 91
+_data = [Vector2(0, 0), 0.0, 17.678574, 0, 0, Vector2(0.043478258, 0.9999999), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.6756742, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ffdo6"]
+curve = SubResource("Curve_gqr4j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r8qnq"]
+particle_flag_rotate_y = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_ffdo6")
+anim_offset_max = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yvsax"]
+size = Vector2(1, 1)
+
+[node name="BloodSplash" type="Node3D" unique_id=804778418]
+
+[node name="Splash" type="GPUParticles3D" parent="." unique_id=605534574]
+material_override = SubResource("ShaderMaterial_nvvhs")
+emitting = false
+amount = 25
+sub_emitter = NodePath("../SplashSubEmitter")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ffdo6")
+draw_pass_1 = SubResource("QuadMesh_mti6b")
+
+[node name="SplashSubEmitter" type="GPUParticles3D" parent="." unique_id=709017774]
+material_override = SubResource("ShaderMaterial_6vnta")
+amount = 50
+lifetime = 5.0
+randomness = 0.78
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_r8qnq")
+draw_pass_1 = SubResource("PlaneMesh_yvsax")

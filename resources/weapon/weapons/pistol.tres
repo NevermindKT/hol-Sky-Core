@@ -14,7 +14,6 @@ script = ExtResource("2_l2xi2")
 name = "Pistol"
 damage = 5.0
 fire_rate = 4.5
-reload_speed = 1.6
 magazine_capacity = 17.0
 gravity_scale = 4.0
 projectile_speed = 240.0

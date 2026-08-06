@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bjahf7e1efelb"]
+
+[ext_resource type="Script" uid="uid://cb2lbttjqu4r8" path="res://scripts/weather/lightning_bolt.gd" id="1_ji71q"]
+[ext_resource type="Shader" uid="uid://bgoe2obvtguyd" path="res://resources/shaders/weather/LightningBolt.gdshader" id="2_oulkv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oulkv"]
+render_priority = 0
+shader = ExtResource("2_oulkv")
+shader_parameter/lightning_color = Color(0.437317, 0.7108988, 1, 1)
+shader_parameter/intensity = 8.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_oulkv"]
+
+[node name="LightningBolt" type="Node3D" unique_id=539544344]
+script = ExtResource("1_ji71q")
+horizontal_spread = 5.0
+width = 0.2
+branch_length = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=12798366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22356606, 0)
+material_override = SubResource("ShaderMaterial_oulkv")
+mesh = SubResource("ArrayMesh_oulkv")

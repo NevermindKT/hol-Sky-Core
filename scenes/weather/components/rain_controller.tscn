@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cn5f0cey0llv2"]
+
+[ext_resource type="Script" uid="uid://dj58a7sp2gem6" path="res://scripts/weather/rain_controller.gd" id="1_ui3db"]
+[ext_resource type="Shader" uid="uid://juupkub0gvq1" path="res://resources/shaders/weather/raindrop.gdshader" id="2_xmf5n"]
+[ext_resource type="Shader" uid="uid://ck4vqw1fuwufc" path="res://resources/shaders/weather/rain_ring.gdshader" id="3_xmf5n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oejr3"]
+render_priority = 0
+shader = ExtResource("2_xmf5n")
+shader_parameter/rain_color = Color(0.8499613, 0.89979166, 1, 0.17400001)
+shader_parameter/emission_strength = 0.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kxuq"]
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(15, 0.2, 20)
+direction = Vector3(-0.3, -1, 0)
+spread = 5.0
+initial_velocity_min = 30.0
+initial_velocity_max = 35.0
+gravity = Vector3(0, 0, 0)
+turbulence_noise_strength = 1.7
+turbulence_noise_scale = 0.888
+turbulence_noise_speed = Vector3(0, -1, 0)
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_62yky"]
+size = Vector2(0.3, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ui3db"]
+render_priority = 0
+shader = ExtResource("3_xmf5n")
+shader_parameter/ring_color = Color(0.89979166, 0.9499975, 1, 0.572)
+shader_parameter/radius = 0.30000001425
+shader_parameter/thickness = 0.02000000095
+shader_parameter/softness = 0.050000002375
+shader_parameter/emission_strength = 0.1
+
+[sub_resource type="Curve" id="Curve_xmf5n"]
+_data = [Vector2(0.38339916, 1), 0.0, -0.99397635, 0, 0, Vector2(1, 0), -0.3506709, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j3aom"]
+curve = SubResource("Curve_xmf5n")
+
+[sub_resource type="Curve" id="Curve_iywvk"]
+_data = [Vector2(0, 0), 0.0, 3.0249996, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_hc2fx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_os43m"]
+curve_x = SubResource("Curve_iywvk")
+curve_y = SubResource("Curve_hc2fx")
+curve_z = SubResource("Curve_iywvk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iywvk"]
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.29999998
+scale_curve = SubResource("CurveXYZTexture_os43m")
+alpha_curve = SubResource("CurveTexture_j3aom")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hc2fx"]
+size = Vector2(1, 1)
+
+[node name="RainController" type="Node3D" unique_id=1747059604 node_paths=PackedStringArray("rain_particles")]
+script = ExtResource("1_ui3db")
+rain_particles = NodePath("RainParticles")
+
+[node name="RainParticles" type="GPUParticles3D" parent="." unique_id=936890504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.322, 0)
+material_override = SubResource("ShaderMaterial_oejr3")
+cast_shadow = 0
+emitting = false
+amount = 1200
+sub_emitter = NodePath("../RainRings")
+visibility_aabb = AABB(-25, -25, -25, 50, 25, 50)
+process_material = SubResource("ParticleProcessMaterial_4kxuq")
+draw_pass_1 = SubResource("QuadMesh_62yky")
+
+[node name="RainRings" type="GPUParticles3D" parent="." unique_id=1563498518]
+material_override = SubResource("ShaderMaterial_ui3db")
+cast_shadow = 0
+amount = 3000
+lifetime = 0.3
+visibility_aabb = AABB(-15, 0, -15, 30, 30, 30)
+process_material = SubResource("ParticleProcessMaterial_iywvk")
+draw_pass_1 = SubResource("PlaneMesh_hc2fx")
