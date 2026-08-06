@@ -19,3 +19,7 @@ signal weapon_change_down
 signal segment_dispawned()
 signal level_progress_changed(current, max)
 signal segment_spawned(segment: Road_segment)
+
+#-------------- RUN
+signal run_started
+signal run_ended
