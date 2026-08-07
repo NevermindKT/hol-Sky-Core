@@ -17,7 +17,7 @@ shader_parameter/opacity = 1.0
 shader_parameter/vertical_gradient = SubResource("CurveTexture_owrot")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mm1bc"]
-size = Vector2(200, 30)
+size = Vector2(400, 30)
 subdivide_width = 50
 subdivide_depth = 50
 

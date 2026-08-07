@@ -8,9 +8,20 @@
 [ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/road_segments/road_turn_left.tscn" id="5_mowk8"]
 [ext_resource type="PackedScene" uid="uid://tuvx1tisvmnu" path="res://scenes/weather/weather_system.tscn" id="5_uhg8y"]
 [ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/road_segments/road_turn_right.tscn" id="6_0uqmh"]
+[ext_resource type="Script" uid="uid://c3fkha6xu3srj" path="res://scripts/tests/weather_test.gd" id="6_bggva"]
 [ext_resource type="PackedScene" uid="uid://ck5eo0ch0lb4t" path="res://scenes/weather/components/distance_fog.tscn" id="6_wqd6n"]
+[ext_resource type="PackedScene" uid="uid://ci5h063crfw3b" path="res://scenes/weather/components/lightning_spawn_area.tscn" id="7_6gsqs"]
+[ext_resource type="Resource" uid="uid://b2rqs0roqpye8" path="res://resources/weather/fog/LightFog.tres" id="7_bggva"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="8_mowk8"]
+[ext_resource type="Resource" uid="uid://hxykvkcsp7w4" path="res://resources/weather/rain/HeavyRainProfile.tres" id="8_xwqeg"]
+[ext_resource type="Script" uid="uid://cq2ihxdir6h78" path="res://resources/weather/weather_data.gd" id="9_cshfm"]
 [ext_resource type="PackedScene" uid="uid://33j34s1svc7q" path="res://scenes/general/hud.tscn" id="11_wqd6n"]
+
+[sub_resource type="Resource" id="Resource_alinv"]
+script = ExtResource("9_cshfm")
+fog = ExtResource("7_bggva")
+rain = ExtResource("8_xwqeg")
+metadata/_custom_type_script = "uid://cq2ihxdir6h78"
 
 [sub_resource type="Resource" id="Resource_0uqmh"]
 script = ExtResource("3_3g18v")
@@ -42,7 +53,7 @@ metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 player_cam = NodePath("../PlayerCam")
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476 node_paths=PackedStringArray("car")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 2.45)
+transform = Transform3D(1, 0, 0, 0, 0.96256113, 0.2710648, 0, -0.2710648, 0.96256113, 0, 1.6874444, 2.603443)
 fov = 90.0
 script = ExtResource("1_i24gt")
 car = NodePath("../Car")
@@ -53,14 +64,17 @@ cam_latency = 14.0
 [node name="World" parent="Enivironment" unique_id=1128285648 instance=ExtResource("8_mowk8")]
 
 [node name="WeatherSystem" parent="Enivironment" unique_id=1765140778 instance=ExtResource("5_uhg8y")]
+script = ExtResource("6_bggva")
+weather_data = SubResource("Resource_alinv")
 
 [node name="DistanceFog" parent="Enivironment" unique_id=1400367543 instance=ExtResource("6_wqd6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2080803, -109.03695)
+
+[node name="LightningSpawnArea" parent="Enivironment" unique_id=1643506361 instance=ExtResource("7_6gsqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.939575)
 
 [node name="Services" type="Node" parent="." unique_id=83632219]
 
 [node name="RoadGenerator" parent="Services" unique_id=824665246 node_paths=PackedStringArray("world") instance=ExtResource("2_hyqco")]
 world = NodePath("../../Enivironment/World")
 road_segments = Array[ExtResource("3_3g18v")]([SubResource("Resource_0uqmh"), SubResource("Resource_wqd6n"), SubResource("Resource_6gsqs")])
-
-[editable path="Enivironment/DistanceFog"]

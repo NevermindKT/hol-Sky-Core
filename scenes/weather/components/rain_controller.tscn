@@ -32,7 +32,7 @@ size = Vector2(0.3, 3)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ui3db"]
 render_priority = 0
 shader = ExtResource("3_xmf5n")
-shader_parameter/ring_color = Color(0.89979166, 0.9499975, 1, 0.572)
+shader_parameter/ring_color = Color(0.8980392, 0.9490196, 1, 0.57254905)
 shader_parameter/radius = 0.30000001425
 shader_parameter/thickness = 0.02000000095
 shader_parameter/softness = 0.050000002375
@@ -70,17 +70,19 @@ alpha_curve = SubResource("CurveTexture_j3aom")
 [sub_resource type="PlaneMesh" id="PlaneMesh_hc2fx"]
 size = Vector2(1, 1)
 
-[node name="RainController" type="Node3D" unique_id=1747059604 node_paths=PackedStringArray("rain_particles")]
+[node name="RainController" type="Node3D" unique_id=1747059604 node_paths=PackedStringArray("rain_particles", "rain_rings")]
 script = ExtResource("1_ui3db")
 rain_particles = NodePath("RainParticles")
+rain_rings = NodePath("RainRings")
 
 [node name="RainParticles" type="GPUParticles3D" parent="." unique_id=936890504]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.322, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4026117, 17.322, 0)
 material_override = SubResource("ShaderMaterial_oejr3")
 cast_shadow = 0
 emitting = false
 amount = 1200
 sub_emitter = NodePath("../RainRings")
+fixed_fps = 120
 visibility_aabb = AABB(-25, -25, -25, 50, 25, 50)
 process_material = SubResource("ParticleProcessMaterial_4kxuq")
 draw_pass_1 = SubResource("QuadMesh_62yky")
@@ -90,6 +92,8 @@ material_override = SubResource("ShaderMaterial_ui3db")
 cast_shadow = 0
 amount = 3000
 lifetime = 0.3
+fixed_fps = 60
 visibility_aabb = AABB(-15, 0, -15, 30, 30, 30)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_iywvk")
 draw_pass_1 = SubResource("PlaneMesh_hc2fx")
