@@ -16,13 +16,15 @@ _data = [Vector2(0, 0.16000009), 0.0, 0.0, 0, 0, Vector2(0.3296296, 1), 0.0, 0.0
 point_count = 4
 
 [sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
+size = Vector3(0.9, 0.3, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tn0y"]
 albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwqeg"]
+size = Vector3(0.9, 0.3, 1.5)
 
-[node name="Car" type="CharacterBody3D" unique_id=353319218]
+[node name="Car" type="CharacterBody3D" unique_id=353319218 groups=["Car"]]
 script = ExtResource("1_y6j3g")
 drag = 4.0
 brake = 40.0
@@ -39,7 +41,6 @@ y_tilt = 25.0
 z_tilt = 7.0
 
 [node name="CarMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]
-transform = Transform3D(0.9, 0, 0, 0, 0.4, 0, 0, 0, 1.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_elpsl")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
@@ -76,8 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_10jsn")
+shape = SubResource("BoxShape3D_xwqeg")
 
 [node name="Inventory" type="Node" parent="." unique_id=1206716850]
 script = ExtResource("7_hgb2g")

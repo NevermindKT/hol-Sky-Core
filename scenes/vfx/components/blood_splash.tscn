@@ -69,6 +69,7 @@ emitting = false
 amount = 25
 sub_emitter = NodePath("../SplashSubEmitter")
 one_shot = true
+speed_scale = 2.0
 explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ffdo6")

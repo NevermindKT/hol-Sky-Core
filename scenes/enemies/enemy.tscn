@@ -3,15 +3,19 @@
 [ext_resource type="Script" uid="uid://q3f5ckhu701k" path="res://scripts/enemy/enemy_controller.gd" id="1_k5srr"]
 [ext_resource type="Script" uid="uid://d1hony2xlby4a" path="res://scripts/enemy/simple_knockback_controller.gd" id="2_knbck"]
 [ext_resource type="Script" uid="uid://dvkxmb37dlkr5" path="res://scripts/enemy/health.gd" id="4_hlth"]
-[ext_resource type="Script" uid="uid://bllmk6vssny63" path="res://resources/enemy/health_data.gd" id="5_hlthpr"]
+[ext_resource type="Script" uid="uid://cmi1f4qjv8mmd" path="res://resources/enemy/hit/knockback_data.gd" id="4_lu5c6"]
 [ext_resource type="PackedScene" uid="uid://ycruqbm88110" path="res://scenes/vfx/effects/blood_car_hit.tscn" id="6_bldch"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4kxuq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4kxuq"]
 
-[sub_resource type="Resource" id="HealthProfile_enemy"]
-script = ExtResource("5_hlthpr")
+[sub_resource type="Resource" id="Resource_xwqeg"]
+script = ExtResource("4_lu5c6")
+horizontal_force = 30.0
+vertical_force = 2.0
+duration = 1.0
+metadata/_custom_type_script = "uid://cmi1f4qjv8mmd"
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1790406157 node_paths=PackedStringArray("knockback_controller", "health") groups=["Enemy"]]
 script = ExtResource("1_k5srr")
@@ -31,7 +35,7 @@ shape = SubResource("CapsuleShape3D_4kxuq")
 
 [node name="KnockbackController" type="Node" parent="." unique_id=659438112]
 script = ExtResource("2_knbck")
+data = SubResource("Resource_xwqeg")
 
 [node name="Health" type="Node" parent="." unique_id=1022868438]
 script = ExtResource("4_hlth")
-profile = SubResource("HealthProfile_enemy")

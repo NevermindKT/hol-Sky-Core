@@ -31,7 +31,13 @@ func apply_hit(hit_data: HitData) -> void:
 	away_from_car.y = 0.0
 	var direction := away_from_car.normalized() if away_from_car.length_squared() > 0.0001 else Vector3.FORWARD
 
-	_velocity = direction * data.horizontal_force + Vector3.UP * data.vertical_force
+	# Сила удару масштабується від швидкості машини в момент зіткнення:
+	# повільний наїзд штовхає слабко, швидкий — сильно.
+	var speed_scale := data.min_force_scale
+	if data.reference_speed > 0.0:
+		speed_scale = maxf(hit_data.car_velocity.length() / data.reference_speed, data.min_force_scale)
+
+	_velocity = direction * data.horizontal_force * speed_scale + Vector3.UP * data.vertical_force * speed_scale
 	_time_left = data.duration
 	_active = true
 

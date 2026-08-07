@@ -29,6 +29,9 @@ var steering_input := 0.0
 @export var spring := 30.0
 @export var damping := 8.0
 
+@export_category("Hit")
+@export var base_damage := 15
+
 
 @export_category("Exports")
 @export var player_cam: Camera3D
@@ -47,10 +50,24 @@ func _physics_process(delta: float) -> void:
 	process_speed(delta)
 	process_strafe(delta)
 	process_visuals(delta)
+	process_enemies_hits()
 	
 	#print("Speed: ", speed)
 	#print("Lane offset: ", lane_offset)
 	#print("Lateral velosity: ", lateral_velocity)
+
+func process_enemies_hits() -> void:
+	for i in range(get_slide_collision_count()):
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+
+		if collider.is_in_group("Enemy"):
+			var hit_data := create_hit_data(collision.get_position(), collision.get_normal())
+			collider.on_car_hit(hit_data)
+
+func create_hit_data(contact_point: Vector3, contact_normal: Vector3) -> HitData:
+	var car_velocity := -global_transform.basis.z * speed
+	return HitData.new(self, car_velocity, contact_point, contact_normal, base_damage)
 
 
 func get_input() -> void:
@@ -101,3 +118,4 @@ func get_acceleration_multiplier() -> float:
 
 func get_steering_multiplier() -> float:
 	return steering_curve.sample_baked(get_speed_ratio())
+	
