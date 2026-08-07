@@ -42,8 +42,12 @@ func _generate():
 		ribbons
 	)
 
+	var new_mesh := build_ribbon_mesh(ribbons)
+	if new_mesh == null:
+		return
+
 	var mesh_instance := get_node("MeshInstance3D")
-	mesh_instance.mesh = build_ribbon_mesh(ribbons)
+	mesh_instance.mesh = new_mesh
 	
 	
 func add_branches(
@@ -176,9 +180,7 @@ func build_ribbon(
 	var vertex_offset := vertices.size()
 
 	for i in range(points.size()):
-
 		var point := points[i]
-
 		var direction: Vector3
 
 		if i == 0:
@@ -240,6 +242,12 @@ func build_ribbon_mesh(ribbons: Array[PackedVector3Array]) -> ArrayMesh:
 			uvs,
 			indices
 		)
+
+	if vertices.is_empty():
+		push_warning(
+			"LightningBolt: mesh not generated — no active Camera3D found (get_viewport().get_camera_3d() returned null). Expected when editing the scene without a Camera3D in the tree; the bolt will build correctly once strike() runs with a camera present."
+		)
+		return null
 
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)

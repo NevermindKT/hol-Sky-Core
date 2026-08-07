@@ -1,30 +1,15 @@
 [gd_scene format=3 uid="uid://tuvx1tisvmnu"]
 
+[ext_resource type="Environment" uid="uid://cyvo28w2s7n64" path="res://resources/weather/first_environment.tres" id="1_8hyqn"]
 [ext_resource type="Script" uid="uid://dunfvkx4t8gji" path="res://scripts/weather/FogController.gd" id="1_sap5q"]
 [ext_resource type="PackedScene" uid="uid://cn5f0cey0llv2" path="res://scenes/weather/components/rain_controller.tscn" id="2_8hyqn"]
 [ext_resource type="Script" uid="uid://d4f74ck2cfk3k" path="res://scripts/weather/lightning_controller.gd" id="3_8ccrl"]
 [ext_resource type="PackedScene" uid="uid://bjahf7e1efelb" path="res://scenes/weather/components/LightningBolt.tscn" id="4_lclfr"]
 
-[sub_resource type="Environment" id="Environment_hxdta"]
-background_mode = 1
-glow_enabled = true
-glow_intensity = 1.2
-glow_bloom = 0.05
-glow_hdr_threshold = 2.2
-fog_light_color = Color(0, 0, 0, 1)
-fog_light_energy = 0.5
-fog_density = 0.006
-fog_sky_affect = 0.0
-fog_height = 1.0
-fog_height_density = 0.5
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0005
-volumetric_fog_length = 100.0
-
 [node name="WeatherSystem" type="Node" unique_id=1765140778]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1132270207]
-environment = SubResource("Environment_hxdta")
+environment = ExtResource("1_8hyqn")
 
 [node name="FogSystem" type="Node3D" parent="." unique_id=1671967407]
 
