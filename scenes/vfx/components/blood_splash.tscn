@@ -11,8 +11,8 @@ shader_parameter/center_color = Color(1, 0.36378378, 0.33328116, 1)
 shader_parameter/dissolve_amount = 0.35
 
 [sub_resource type="Curve" id="Curve_ffdo6"]
-_data = [Vector2(0, 0), 0.0, 17.416662, 0, 0, Vector2(0.03952568, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 17.416662, 0, 0, Vector2(0.03952568, 1), 0.0, 0.0, 0, 0, Vector2(0.7306122, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.634827, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_gqr4j"]
 curve = SubResource("Curve_ffdo6")
@@ -21,8 +21,8 @@ curve = SubResource("Curve_ffdo6")
 particle_flag_align_y = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
-initial_velocity_min = 8.0
-initial_velocity_max = 10.0
+initial_velocity_min = 14.0
+initial_velocity_max = 16.0
 scale_min = 0.5
 scale_max = 0.59999996
 alpha_curve = SubResource("CurveTexture_gqr4j")
@@ -53,7 +53,6 @@ curve = SubResource("Curve_gqr4j")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r8qnq"]
 particle_flag_rotate_y = true
 gravity = Vector3(0, 0, 0)
-scale_min = 0.5
 scale_max = 1.5
 alpha_curve = SubResource("CurveTexture_ffdo6")
 anim_offset_max = 1.0
@@ -71,7 +70,9 @@ sub_emitter = NodePath("../SplashSubEmitter")
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
-fixed_fps = 60
+fixed_fps = 90
+visibility_aabb = AABB(-50, -4, -50, 100, 8, 100)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ffdo6")
 draw_pass_1 = SubResource("QuadMesh_mti6b")
 
@@ -81,5 +82,7 @@ amount = 50
 lifetime = 5.0
 randomness = 0.78
 fixed_fps = 60
+visibility_aabb = AABB(-50, -4, -50, 100, 8, 100)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_r8qnq")
 draw_pass_1 = SubResource("PlaneMesh_yvsax")

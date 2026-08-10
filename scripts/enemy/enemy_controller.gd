@@ -22,6 +22,8 @@ var _car: Node3D
 ## сегмента) — логіці переслідування машини не потрібен.
 var road_generator: Road_generator
 
+var world: World
+
 func _ready() -> void:
 	if knockback_controller:
 		knockback_controller.setup(self)
@@ -107,7 +109,7 @@ func _spawn_hit_effect(hit_data: HitData) -> void:
 		push_warning("Enemy: hit_effect_scene не має скрипта BloodCarHit")
 		return
 
-	get_tree().current_scene.add_child(effect)
+	world.enemies.add_child(effect)
 
 	var direction := global_position - hit_data.car.global_position
 	effect.play(hit_data.contact_point, direction)

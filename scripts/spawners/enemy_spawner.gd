@@ -10,9 +10,9 @@ class_name Enemy_spawner
 @export_range(0.0, 1.0) var spawn_chance := 0.35
 @export var lateral_offset := 3.0
 
-# Скільки метрів дороги накопичилось з моменту останнього "кидка кубика"
+# Скільки метрів дороги накопичилось з моменту останнього спроби спавну
 var _distance_accum := 0.0
-# Наступний поріг (у метрах), при досягненні якого відбувається кидок
+# Наступний поріг (у метрах), при досягненні якого відбувається спроба спавну
 var _next_threshold := 0.0
 
 
@@ -58,6 +58,7 @@ func _spawn_on_segment(segment: Road_segment) -> void:
 		return
 
 	enemy.road_generator = road_generator
+	enemy.world = world
 	world.enemies.add_child(enemy)
 
 	if road_path and road_path.curve and road_path.curve.get_baked_length() > 0.0:

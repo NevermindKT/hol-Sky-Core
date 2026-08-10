@@ -18,6 +18,14 @@
 [ext_resource type="PackedScene" uid="uid://33j34s1svc7q" path="res://scenes/general/hud.tscn" id="11_wqd6n"]
 [ext_resource type="Script" uid="uid://csuu8mh30lvn7" path="res://scripts/spawners/enemy_spawner.gd" id="17_7exlu"]
 [ext_resource type="PackedScene" uid="uid://dj6f80eu3p4mq" path="res://scenes/enemies/enemy.tscn" id="18_xwqeg"]
+[ext_resource type="Script" uid="uid://dydg442leo0i4" path="res://scripts/weather/weather_generator.gd" id="19_l12i6"]
+[ext_resource type="PackedScene" uid="uid://c5q2obhvjx8lj" path="res://scenes/weather/components/weather_zone.tscn" id="20_6qpu5"]
+[ext_resource type="Script" uid="uid://cj3gix68sfnqx" path="res://resources/weather/rain_data.gd" id="21_dakql"]
+[ext_resource type="Resource" uid="uid://bkqcw5y1s4fd5" path="res://resources/weather/rain/NoRainProfile.tres" id="22_cyvft"]
+[ext_resource type="Resource" uid="uid://cts2oj350omv2" path="res://resources/weather/rain/RainProfile.tres" id="23_iqacv"]
+[ext_resource type="Script" uid="uid://dgn3pfxbskeg0" path="res://resources/weather/fog_data.gd" id="24_cyvft"]
+[ext_resource type="Resource" uid="uid://bfkjk34q3o5oc" path="res://resources/weather/fog/ClearNight.tres" id="25_iqacv"]
+[ext_resource type="Resource" uid="uid://4lviiw663mbm" path="res://resources/weather/fog/DenseFog.tres" id="26_tc8ix"]
 
 [sub_resource type="Resource" id="Resource_alinv"]
 script = ExtResource("9_cshfm")
@@ -86,5 +94,15 @@ script = ExtResource("17_7exlu")
 world = NodePath("../../Enivironment/World")
 road_generator = NodePath("../RoadGenerator")
 enemy_scene = ExtResource("18_xwqeg")
-spawn_chance = 0.7
+min_gap_m = 10.0
+max_gap_m = 20.0
+spawn_chance = 1.0
 lateral_offset = 1.5
+
+[node name="WeatherGenerator" type="Node" parent="Services" unique_id=1153766812 node_paths=PackedStringArray("road_generator")]
+script = ExtResource("19_l12i6")
+road_generator = NodePath("../RoadGenerator")
+weather_zone_scene = ExtResource("20_6qpu5")
+available_rain = Array[ExtResource("21_dakql")]([ExtResource("22_cyvft"), ExtResource("23_iqacv"), ExtResource("8_xwqeg")])
+available_fog = Array[ExtResource("24_cyvft")]([ExtResource("25_iqacv"), ExtResource("7_bggva"), ExtResource("26_tc8ix")])
+max_segments_per_weather = 10

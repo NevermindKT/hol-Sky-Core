@@ -2,7 +2,6 @@
 
 [ext_resource type="Environment" uid="uid://cyvo28w2s7n64" path="res://resources/weather/first_environment.tres" id="1_8hyqn"]
 [ext_resource type="Script" uid="uid://dunfvkx4t8gji" path="res://scripts/weather/FogController.gd" id="1_sap5q"]
-[ext_resource type="PackedScene" uid="uid://cn5f0cey0llv2" path="res://scenes/weather/components/rain_controller.tscn" id="2_8hyqn"]
 [ext_resource type="Script" uid="uid://d4f74ck2cfk3k" path="res://scripts/weather/lightning_controller.gd" id="3_8ccrl"]
 [ext_resource type="PackedScene" uid="uid://bjahf7e1efelb" path="res://scenes/weather/components/LightningBolt.tscn" id="4_lclfr"]
 
@@ -11,27 +10,21 @@
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1132270207]
 environment = ExtResource("1_8hyqn")
 
-[node name="FogSystem" type="Node3D" parent="." unique_id=1671967407]
-
-[node name="FogController" type="Node" parent="FogSystem" unique_id=1605430976 node_paths=PackedStringArray("world_environment")]
-script = ExtResource("1_sap5q")
-world_environment = NodePath("../../WorldEnvironment")
-
-[node name="RainSystem" type="Node3D" parent="." unique_id=935528444]
-
-[node name="RainController" parent="RainSystem" unique_id=1747059604 instance=ExtResource("2_8hyqn")]
-
-[node name="LightningController" type="Node3D" parent="RainSystem" unique_id=932502189 node_paths=PackedStringArray("directional_light")]
-script = ExtResource("3_8ccrl")
-directional_light = NodePath("../../DirectionalLight3D")
-
-[node name="LightningBolt" parent="RainSystem/LightningController" unique_id=539544344 instance=ExtResource("4_lclfr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.00918, 0, -68.108055)
-visible = false
-width = 0.5
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=89476310]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 15.509956, -10.5886755)
 light_color = Color(0.73871017, 0.90675664, 1, 1)
 light_energy = 0.02
 sky_mode = 1
+
+[node name="LightningController" type="Node" parent="." unique_id=317716121 node_paths=PackedStringArray("directional_light")]
+script = ExtResource("3_8ccrl")
+directional_light = NodePath("../DirectionalLight3D")
+
+[node name="LightningBolt" parent="LightningController" unique_id=539544344 instance=ExtResource("4_lclfr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.00918, 0, -68.108055)
+visible = false
+width = 0.5
+
+[node name="FogController" type="Node" parent="." unique_id=1605430976 node_paths=PackedStringArray("world_environment")]
+script = ExtResource("1_sap5q")
+world_environment = NodePath("../WorldEnvironment")
