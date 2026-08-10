@@ -1,6 +1,7 @@
 extends Node
 
 @onready var car: Car_Movement = $"../../Car"
+@onready var hud: CanvasLayer = $"../../HUD"
 @onready var world: World = $"../../Enivironment/World"
 
 @onready var run_manager: Run_manager = $"../RunManager"
@@ -13,6 +14,7 @@ const DISTANCE_TO_END := 200.0
 func _ready() -> void:
 	set_world()
 	set_player_car()
+	set_weapon_system()
 	
 	road_generator.initialize(world.road_set)
 	road_manager.initialize(START_DISTANCE)
@@ -29,3 +31,7 @@ func set_world():
 
 func set_player_car():
 	road_manager.car_movement = car
+
+
+func set_weapon_system() -> void:
+	car.weapon_controller.initialize()

@@ -9,14 +9,13 @@ var current_weapon: WeaponState
 
 var cooldown := 0.0
 
-func _ready() -> void:
-	print("weapons")
+func initialize() -> void:
 	InputController.reload.connect(reload)
 	InputController.next_weapon.connect(next_weapon)
 	InputController.previous_weapon.connect(previous_weapon)
 	
 	set_weapon(player_weapons[0])
-	fill_magazine()
+	fill_all_magazines()
 
 
 func _process(_delta: float) -> void:
@@ -82,9 +81,20 @@ func reload_stop():
 	Events.reload_finished.emit()
 
 
-func fill_magazine():
-	var need = current_weapon.data.magazine_capacity - current_weapon.ammo
-	current_weapon.ammo += inventory.consume_ammo(current_weapon.data.ammo_type, need)
+func fill_all_magazines():
+	for weapon in player_weapons:
+		var need := weapon.data.magazine_capacity - weapon.ammo
+		
+		if need <= 0:
+			continue
+		
+		var loaded := inventory.consume_ammo(
+			weapon.data.ammo_type,
+			need
+		)
+		
+		weapon.ammo += loaded
+	Events.magazine_count_changed.emit(current_weapon.ammo)
 
 
 func next_weapon():

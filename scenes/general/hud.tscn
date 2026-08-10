@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://33j34s1svc7q"]
 
+[ext_resource type="Script" uid="uid://ughski8v3jcf" path="res://scenes/general/hud.gd" id="1_p21ms"]
 [ext_resource type="Script" uid="uid://dx1n5tgy6bu7v" path="res://scripts/hud/cross_hair.gd" id="1_viwan"]
-[ext_resource type="Script" uid="uid://kkkj74q1qubm" path="res://scenes/general/ammo_counter.gd" id="2_dh6d1"]
+[ext_resource type="Script" uid="uid://kkkj74q1qubm" path="res://scripts/hud/ammo_counter.gd" id="2_dh6d1"]
 [ext_resource type="Texture2D" uid="uid://ni7cq1rojonb" path="res://textures/hud/rossHairTest.png" id="2_oj1j8"]
 [ext_resource type="Script" uid="uid://c84r4q2xjujvo" path="res://scripts/hud/level_progeress_bar.gd" id="4_dh6d1"]
 
 [node name="HUD" type="CanvasLayer" unique_id=299315244]
+script = ExtResource("1_p21ms")
 
 [node name="Top" type="VBoxContainer" parent="." unique_id=2108867572]
 anchors_preset = 10

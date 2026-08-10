@@ -1,11 +1,14 @@
 extends Node
 
 #-------------- PLAYER
-signal player_take_damage(damage: float)
 signal player_died
+signal player_heal(heal: float)
+signal player_take_damage(damage: float)
 
 #-------------- PLAYER MOVEMENT
 
+#-------------- UI
+signal hud_update_weapon(weapon: WeaponData)
 
 #-------------- WEAPONS
 signal weapon_set(weapon: WeaponData)
@@ -15,7 +18,7 @@ signal reload_started(duration: float)
 signal reload_finished
 
 #-------------- ROAD/LEVEL
-signal segment_dispawned()
+signal segment_dispawned
 signal level_progress_changed(current, max)
 signal segment_spawned(segment: Road_segment)
 

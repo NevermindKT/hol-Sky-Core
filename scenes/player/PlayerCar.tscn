@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="8_ojawh"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
+[ext_resource type="Script" uid="uid://ip4fb2moxr2s" path="res://scenes/player/player_status_controller.gd" id="10_ojawh"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
 _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
@@ -102,3 +103,7 @@ weapon_pivot = NodePath("../Visual/WeaponPivot")
 script = ExtResource("4_ojawh")
 fire_point = NodePath("../Visual/WeaponPivot/GunPoint")
 player_weapons = Array[ExtResource("6_7lmdr")]([SubResource("Resource_lo1ro"), SubResource("Resource_y6j3g"), SubResource("Resource_iam02")])
+
+[node name="PlayerStatusController" type="Node" parent="." unique_id=1732844712]
+script = ExtResource("10_ojawh")
+max_health = 100.0
