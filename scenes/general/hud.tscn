@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://33j34s1svc7q"]
 
 [ext_resource type="Script" uid="uid://dx1n5tgy6bu7v" path="res://scripts/hud/cross_hair.gd" id="1_viwan"]
+[ext_resource type="Script" uid="uid://kkkj74q1qubm" path="res://scenes/general/ammo_counter.gd" id="2_dh6d1"]
 [ext_resource type="Texture2D" uid="uid://ni7cq1rojonb" path="res://textures/hud/rossHairTest.png" id="2_oj1j8"]
 [ext_resource type="Script" uid="uid://c84r4q2xjujvo" path="res://scripts/hud/level_progeress_bar.gd" id="4_dh6d1"]
 
@@ -45,6 +46,14 @@ offset_bottom = -223.0
 grow_horizontal = 0
 grow_vertical = 0
 rotation = 0.034906585
+script = ExtResource("2_dh6d1")
+
+[node name="WeaponName" type="RichTextLabel" parent="Right" unique_id=974424412]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "WeaponName"
+fit_content = true
+horizontal_alignment = 1
 
 [node name="AmmoLabel" type="RichTextLabel" parent="Right" unique_id=1957982060]
 layout_mode = 2
@@ -71,6 +80,7 @@ size_flags_vertical = 4
 script = ExtResource("1_viwan")
 
 [node name="ReloadBar" type="ProgressBar" parent="CrossHairCon" unique_id=1102824652]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

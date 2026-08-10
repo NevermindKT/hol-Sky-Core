@@ -17,11 +17,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	global_position = get_viewport().get_mouse_position() - size * 0.5
-	
-	if is_reloading:
-		reload_time += _delta
-		
-		reload_bar.value = (reload_time / reload_duration) * 100.0
 
 
 func start_reload(duration: float):

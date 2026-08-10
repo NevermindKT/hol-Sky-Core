@@ -1,19 +1,22 @@
 extends Node
 class_name Weapon_controller
 
+var current_weapon: WeaponState
+
 @export var fire_point: Marker3D
-@export var current_weapon: WeaponData
+@export var player_weapons: Array[WeaponState]
 @onready var inventory: Inventory = $"../Inventory"
 
-
-var ammo := 0
 var cooldown := 0.0
-var is_reloading := false
-
 
 func _ready() -> void:
-	Events.reload.connect(reload)
-	reload()
+	print("weapons")
+	InputController.reload.connect(reload)
+	InputController.next_weapon.connect(next_weapon)
+	InputController.previous_weapon.connect(previous_weapon)
+	
+	set_weapon(player_weapons[0])
+	fill_magazine()
 
 
 func _process(_delta: float) -> void:
@@ -23,47 +26,95 @@ func _process(_delta: float) -> void:
 	cooldown -= _delta
 
 func fire():
-	if is_reloading:
+	if current_weapon.is_reloading:
 		return
 
 	if cooldown > 0:
 		return
 
-	if ammo <= 0:
+	if current_weapon.ammo <= 0:
 		reload()
 		return
 
-	ammo -= 1
+	current_weapon.ammo -= 1
+	Events.magazine_count_changed.emit(current_weapon.ammo)
 
-	cooldown = 1.0 / current_weapon.fire_rate
-	current_weapon.fire_behavior.fire(self)
+	cooldown = 1.0 / current_weapon.data.fire_rate
+	current_weapon.data.fire_behavior.fire(self)
 
 
 func reload() -> bool:
-	if is_reloading:
+	if current_weapon.is_reloading:
 		return false
 
-	if ammo >= current_weapon.magazine_capacity:
+	if current_weapon.ammo >= current_weapon.data.magazine_capacity:
 		return false
 
-	var need = current_weapon.magazine_capacity - ammo
+	var need = current_weapon.data.magazine_capacity - current_weapon.ammo
 
-	if inventory.get_ammo(current_weapon.ammo_type) <= 0:
+	if inventory.get_ammo(current_weapon.data.ammo_type) <= 0:
 		return false
 
-	is_reloading = true
-	Events.reload_started.emit(current_weapon.reload_duration)
+	current_weapon.is_reloading = true
+	Events.reload_started.emit(current_weapon.data.reload_duration)
 
-	await get_tree().create_timer(current_weapon.reload_duration).timeout
+	await get_tree().create_timer(current_weapon.data.reload_duration).timeout
+	
+	if !current_weapon.is_reloading:
+		reload_stop()
+		return false
 
 	var loaded = inventory.consume_ammo(
-		current_weapon.ammo_type,
+		current_weapon.data.ammo_type,
 		need
 	)
 
-	ammo += loaded
-
-	is_reloading = false
+	current_weapon.ammo += loaded
+	
+	Events.magazine_count_changed.emit(current_weapon.ammo)
+	
+	current_weapon.is_reloading = false
 	Events.reload_finished.emit()
 
 	return loaded > 0
+
+func reload_stop():
+	Events.reload_finished.emit()
+
+
+func fill_magazine():
+	var need = current_weapon.data.magazine_capacity - current_weapon.ammo
+	current_weapon.ammo += inventory.consume_ammo(current_weapon.data.ammo_type, need)
+
+
+func next_weapon():
+	var index := player_weapons.find(current_weapon)
+
+	index += 1
+
+	if index >= player_weapons.size():
+		index = 0
+
+	set_weapon(player_weapons[index])
+
+
+func previous_weapon():
+	var index := player_weapons.find(current_weapon)
+
+	index -= 1
+
+	if index < 0:
+		index = player_weapons.size() - 1
+
+	set_weapon(player_weapons[index])
+
+
+func set_weapon(weapon: WeaponState):
+	if !current_weapon == null:
+			if current_weapon.is_reloading:
+				current_weapon.is_reloading = false
+				Events.reload_finished.emit()
+
+	current_weapon = weapon
+	Events.weapon_set.emit(current_weapon.data)
+	Events.magazine_count_changed.emit(current_weapon.ammo)

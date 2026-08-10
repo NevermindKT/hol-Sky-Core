@@ -5,15 +5,14 @@ signal player_take_damage(damage: float)
 signal player_died
 
 #-------------- PLAYER MOVEMENT
-signal dodge
+
 
 #-------------- WEAPONS
+signal weapon_set(weapon: WeaponData)
+signal magazine_count_changed(ammo: float)
+
 signal reload_started(duration: float)
 signal reload_finished
-
-signal reload
-signal weapon_change_up
-signal weapon_change_down
 
 #-------------- ROAD/LEVEL
 signal segment_dispawned()

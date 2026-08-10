@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://scripts/car/car_movement.gd" id="1_y6j3g"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
-[ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="6_7lmdr"]
+[ext_resource type="Script" uid="uid://nt6h8xoqqc60" path="res://scripts/data/weapon/weapon_state.gd" id="6_7lmdr"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="6_20y2w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
+[ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="8_ojawh"]
+[ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
+[ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
 _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
@@ -21,6 +24,21 @@ point_count = 4
 albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
+
+[sub_resource type="Resource" id="Resource_lo1ro"]
+script = ExtResource("6_7lmdr")
+data = ExtResource("8_ojawh")
+metadata/_custom_type_script = "uid://nt6h8xoqqc60"
+
+[sub_resource type="Resource" id="Resource_y6j3g"]
+script = ExtResource("6_7lmdr")
+data = ExtResource("9_nhckt")
+metadata/_custom_type_script = "uid://nt6h8xoqqc60"
+
+[sub_resource type="Resource" id="Resource_iam02"]
+script = ExtResource("6_7lmdr")
+data = ExtResource("9_lo1ro")
+metadata/_custom_type_script = "uid://nt6h8xoqqc60"
 
 [node name="Car" type="CharacterBody3D" unique_id=353319218]
 script = ExtResource("1_y6j3g")
@@ -83,4 +101,4 @@ weapon_pivot = NodePath("../Visual/WeaponPivot")
 [node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("fire_point")]
 script = ExtResource("4_ojawh")
 fire_point = NodePath("../Visual/WeaponPivot/GunPoint")
-current_weapon = ExtResource("6_7lmdr")
+player_weapons = Array[ExtResource("6_7lmdr")]([SubResource("Resource_lo1ro"), SubResource("Resource_y6j3g"), SubResource("Resource_iam02")])

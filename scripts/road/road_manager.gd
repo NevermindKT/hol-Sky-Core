@@ -4,7 +4,6 @@ class_name Road_manager
 var world: World
 var car_movement: Car_Movement
 
-
 var angular_velocity := Vector3.ZERO
 var last_rotation := Quaternion.IDENTITY
 
