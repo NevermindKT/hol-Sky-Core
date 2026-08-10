@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://scripts/car/car_movement.gd" id="1_y6j3g"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
+[ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scenes/player/flashlight_controller.gd" id="3_y6j3g"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapon/weapons/asssault rifle.tres" id="5_nhckt"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="6_20y2w"]
@@ -73,6 +74,20 @@ spot_angle = 20.0
 
 [node name="GunPoint" type="Marker3D" parent="Visual/WeaponPivot" unique_id=77871199]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
+
+[node name="AimFlashlight" type="SpotLight3D" parent="Visual/WeaponPivot" unique_id=1688042910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70415616, 0)
+light_color = Color(0.8026307, 0.88531214, 0.8787168, 1)
+light_energy = 6.0
+light_specular = 4.0
+shadow_enabled = true
+shadow_bias = 0.2
+distance_fade_begin = 0.0
+spot_range = 25.0
+spot_attenuation = 1.5
+spot_angle = 15.0
+script = ExtResource("3_y6j3g")
+far_energy = 15.0
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 

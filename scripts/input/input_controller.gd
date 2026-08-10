@@ -10,6 +10,7 @@ signal dodge
 signal reload
 signal weapon_change_up
 signal weapon_change_down
+signal flashlight_toggle
 
 
 func _ready() -> void:
@@ -32,3 +33,6 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("weapon_change_down"):
 		weapon_change_down.emit()
+		
+	if Input.is_action_just_pressed("toggle_flashlight"):
+		flashlight_toggle.emit()

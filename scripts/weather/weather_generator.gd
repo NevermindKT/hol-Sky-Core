@@ -22,6 +22,7 @@ func _ready() -> void:
 
 	road_generator.segment_spawned.connect(_on_segment_spawned)
 	_pick_new_weather()
+	WeatherManager.set_weather(current_weather)
 
 
 func _on_segment_spawned(segment: Road_segment) -> void:
