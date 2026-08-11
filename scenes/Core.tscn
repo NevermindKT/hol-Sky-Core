@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="1_i24gt"]
 [ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="2_uhg8y"]
+[ext_resource type="PackedScene" uid="uid://gk4q6i0norp7" path="res://scenes/general/pause_menu.tscn" id="4_uhg8y"]
 [ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="5_hyqco"]
 [ext_resource type="Script" uid="uid://bdv0lpvwl3hpr" path="res://scripts/general/bootstrap.gd" id="6_v852s"]
 [ext_resource type="Script" uid="uid://ndqc52ws3chl" path="res://scripts/run_manager.gd" id="7_0uqmh"]
@@ -37,14 +38,19 @@ volumetric_fog_emission_energy = 0.9
 [node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("2_uhg8y")]
 player_cam = NodePath("../PlayerCam")
 
-[node name="HUD" parent="." unique_id=299315244 instance=ExtResource("11_wqd6n")]
-
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476 node_paths=PackedStringArray("car")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 2.45)
 fov = 90.0
 script = ExtResource("1_i24gt")
 car = NodePath("../Car")
 cam_latency = 14.0
+
+[node name="UI" type="Node" parent="." unique_id=290003646]
+
+[node name="HUD" parent="UI" unique_id=299315244 instance=ExtResource("11_wqd6n")]
+
+[node name="PauseMenu" parent="UI" unique_id=241197245 instance=ExtResource("4_uhg8y")]
+visible = false
 
 [node name="Enivironment" type="Node" parent="." unique_id=1285239064]
 

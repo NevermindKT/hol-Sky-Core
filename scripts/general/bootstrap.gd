@@ -1,7 +1,7 @@
 extends Node
 
 @onready var car: Car_Movement = $"../../Car"
-@onready var hud: CanvasLayer = $"../../HUD"
+@onready var hud: CanvasLayer = $"../../UI/HUD"
 @onready var world: World = $"../../Enivironment/World"
 
 @onready var run_manager: Run_manager = $"../RunManager"

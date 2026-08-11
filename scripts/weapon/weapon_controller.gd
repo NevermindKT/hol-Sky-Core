@@ -69,13 +69,13 @@ func reload() -> bool:
 	)
 
 	current_weapon.ammo += loaded
-	
 	Events.magazine_count_changed.emit(current_weapon.ammo)
 	
 	current_weapon.is_reloading = false
 	Events.reload_finished.emit()
 
 	return loaded > 0
+
 
 func reload_stop():
 	Events.reload_finished.emit()
