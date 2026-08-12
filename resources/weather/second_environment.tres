@@ -1,0 +1,17 @@
+[gd_resource type="Environment" format=3 uid="uid://6q25e0ih2bs6"]
+
+[resource]
+background_mode = 1
+glow_enabled = true
+glow_intensity = 1.2
+glow_bloom = 0.05
+glow_hdr_threshold = 2.2
+fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 0.5
+fog_density = 0.006
+fog_sky_affect = 0.0
+fog_height = 1.0
+fog_height_density = 0.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0005
+volumetric_fog_length = 100.0

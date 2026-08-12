@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road/road_manager.gd" id="7_3g18v"]
 [ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="7_mowk8"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="8_mowk8"]
+[ext_resource type="Resource" uid="uid://hxykvkcsp7w4" path="res://resources/weather/rain/HeavyRainProfile.tres" id="8_xwqeg"]
+[ext_resource type="Script" uid="uid://cq2ihxdir6h78" path="res://resources/weather/weather_data.gd" id="9_cshfm"]
 [ext_resource type="PackedScene" uid="uid://33j34s1svc7q" path="res://scenes/general/hud.tscn" id="11_wqd6n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mowk8"]
@@ -39,7 +41,7 @@ volumetric_fog_emission_energy = 0.9
 player_cam = NodePath("../PlayerCam")
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476 node_paths=PackedStringArray("car")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 2.45)
+transform = Transform3D(1, 0, 0, 0, 0.96256113, 0.2710648, 0, -0.2710648, 0.96256113, 0, 1.6874444, 2.603443)
 fov = 90.0
 script = ExtResource("1_i24gt")
 car = NodePath("../Car")
