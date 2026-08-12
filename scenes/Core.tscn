@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dh2trqedhmxrp"]
 
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="1_i24gt"]
-[ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="2_uhg8y"]
+[ext_resource type="PackedScene" uid="uid://bqi8e365qib7q" path="res://scenes/player/PlayerCar.tscn" id="2_uhg8y"]
 [ext_resource type="PackedScene" uid="uid://gk4q6i0norp7" path="res://scenes/general/pause_menu.tscn" id="4_uhg8y"]
 [ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="5_hyqco"]
 [ext_resource type="Script" uid="uid://bdv0lpvwl3hpr" path="res://scripts/general/bootstrap.gd" id="6_v852s"]
@@ -10,30 +10,21 @@
 [ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="7_mowk8"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="8_mowk8"]
 [ext_resource type="Resource" uid="uid://hxykvkcsp7w4" path="res://resources/weather/rain/HeavyRainProfile.tres" id="8_xwqeg"]
-[ext_resource type="Script" uid="uid://cq2ihxdir6h78" path="res://resources/weather/weather_data.gd" id="9_cshfm"]
+[ext_resource type="PackedScene" uid="uid://bfh8ek3nst8so" path="res://scenes/weather/weather_system.tscn" id="10_bggva"]
 [ext_resource type="PackedScene" uid="uid://33j34s1svc7q" path="res://scenes/general/hud.tscn" id="11_wqd6n"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mowk8"]
-sky_top_color = Color(0.04005715, 0.057814613, 0.08145905, 1)
-sky_horizon_color = Color(0.41738868, 0.6652745, 0.77074194, 1)
-ground_bottom_color = Color(0.17443413, 0.19640958, 0.19323736, 1)
-ground_horizon_color = Color(0.3278624, 0.56399703, 0.6436716, 1)
-energy_multiplier = 0.5
-
-[sub_resource type="Sky" id="Sky_0uqmh"]
-sky_material = SubResource("ProceduralSkyMaterial_mowk8")
-
-[sub_resource type="Environment" id="Environment_uhg8y"]
-background_mode = 2
-sky = SubResource("Sky_0uqmh")
-glow_enabled = true
-fog_mode = 1
-fog_light_color = Color(0.1820277, 0.20115688, 0.21591285, 1)
-fog_light_energy = 0.25
-fog_density = 1.0
-volumetric_fog_albedo = Color(0.40069774, 0.40069774, 0.40069768, 1)
-volumetric_fog_emission = Color(0.057221256, 0.07124353, 0.08033957, 1)
-volumetric_fog_emission_energy = 0.9
+[ext_resource type="Resource" uid="uid://b2rqs0roqpye8" path="res://resources/weather/fog/LightFog.tres" id="12_xwqeg"]
+[ext_resource type="Script" uid="uid://csuu8mh30lvn7" path="res://scripts/spawners/enemy_spawner.gd" id="14_dakql"]
+[ext_resource type="PackedScene" uid="uid://ck5eo0ch0lb4t" path="res://scenes/weather/components/distance_fog.tscn" id="15_cshfm"]
+[ext_resource type="PackedScene" uid="uid://dj6f80eu3p4mq" path="res://scenes/enemies/enemy.tscn" id="15_cyvft"]
+[ext_resource type="PackedScene" uid="uid://ci5h063crfw3b" path="res://scenes/weather/components/lightning_spawn_area.tscn" id="16_fjy51"]
+[ext_resource type="Script" uid="uid://dydg442leo0i4" path="res://scripts/weather/weather_generator.gd" id="16_iqacv"]
+[ext_resource type="PackedScene" uid="uid://c5q2obhvjx8lj" path="res://scenes/weather/components/weather_zone.tscn" id="17_tc8ix"]
+[ext_resource type="Script" uid="uid://cj3gix68sfnqx" path="res://resources/weather/rain_data.gd" id="18_asndc"]
+[ext_resource type="Resource" uid="uid://bkqcw5y1s4fd5" path="res://resources/weather/rain/NoRainProfile.tres" id="19_a06ay"]
+[ext_resource type="Resource" uid="uid://cts2oj350omv2" path="res://resources/weather/rain/RainProfile.tres" id="20_7hc18"]
+[ext_resource type="Script" uid="uid://dgn3pfxbskeg0" path="res://resources/weather/fog_data.gd" id="22_kusm0"]
+[ext_resource type="Resource" uid="uid://bfkjk34q3o5oc" path="res://resources/weather/fog/ClearNight.tres" id="23_i2q6t"]
+[ext_resource type="Resource" uid="uid://4lviiw663mbm" path="res://resources/weather/fog/DenseFog.tres" id="25_iqqgi"]
 
 [node name="Core" type="Node3D" unique_id=243152911]
 
@@ -59,8 +50,13 @@ visible = false
 [node name="World" parent="Enivironment" unique_id=1128285648 instance=ExtResource("8_mowk8")]
 road_set = ExtResource("5_hyqco")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Enivironment" unique_id=497828979]
-environment = SubResource("Environment_uhg8y")
+[node name="WeatherSystem" parent="Enivironment" unique_id=1765140778 instance=ExtResource("10_bggva")]
+
+[node name="DistanceFog" parent="Enivironment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2080803, -109.03695)
+
+[node name="LightningSpawnArea" parent="Enivironment" unique_id=1643506361 instance=ExtResource("16_fjy51")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.939575)
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
@@ -76,3 +72,21 @@ metadata/_custom_type_script = "uid://bhl1wod4cbmvb"
 
 [node name="RoadGenerator" type="Node" parent="Services" unique_id=119337621]
 script = ExtResource("7_mowk8")
+
+[node name="EnemySpawner" type="Node" parent="Services" unique_id=1015351304 node_paths=PackedStringArray("world", "road_generator")]
+script = ExtResource("14_dakql")
+world = NodePath("../../Enivironment/World")
+road_generator = NodePath("../RoadGenerator")
+enemy_scene = ExtResource("15_cyvft")
+min_gap_m = 10.0
+max_gap_m = 20.0
+spawn_chance = 1.0
+lateral_offset = 1.5
+
+[node name="WeatherGenerator" type="Node" parent="Services" unique_id=1698724359 node_paths=PackedStringArray("road_generator")]
+script = ExtResource("16_iqacv")
+road_generator = NodePath("../RoadGenerator")
+weather_zone_scene = ExtResource("17_tc8ix")
+available_rain = Array[ExtResource("18_asndc")]([ExtResource("19_a06ay"), ExtResource("20_7hc18"), ExtResource("8_xwqeg")])
+available_fog = Array[ExtResource("22_kusm0")]([ExtResource("23_i2q6t"), ExtResource("12_xwqeg"), ExtResource("25_iqqgi")])
+max_segments_per_weather = 10
