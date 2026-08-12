@@ -11,6 +11,11 @@ albedo_texture = ExtResource("2_rtphd")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tn0y"]
 albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4kxuq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4kxuq"]
+size = Vector3(2, 1, 2)
+
 [node name="RoadStraight" type="Node3D" unique_id=2100877904 node_paths=PackedStringArray("anchor", "origin")]
 script = ExtResource("1_vallh")
 anchor = NodePath("Anchor")
@@ -23,8 +28,19 @@ material_override = SubResource("StandardMaterial3D_pw7st")
 mesh = SubResource("PlaneMesh_10jsn")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="MeshInstance3D" unique_id=1376683630]
+physics_material_override = SubResource("PhysicsMaterial_4kxuq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/AnimatableBody3D" unique_id=1045597100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_4kxuq")
+
 [node name="Anchor" type="Marker3D" parent="." unique_id=1915806667]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="Origin" type="Marker3D" parent="." unique_id=1522548629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=1608775228]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.25, 0)
+size = Vector3(9, 0.5, 20)

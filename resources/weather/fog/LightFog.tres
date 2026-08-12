@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FogProfile" format=3 uid="uid://b2rqs0roqpye8"]
+
+[ext_resource type="Script" uid="uid://dgn3pfxbskeg0" path="res://resources/weather/fog_data.gd" id="1_eummh"]
+
+[resource]
+script = ExtResource("1_eummh")
+density = 0.025
+metadata/_custom_type_script = "uid://dgn3pfxbskeg0"

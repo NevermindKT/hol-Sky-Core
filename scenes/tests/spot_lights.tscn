@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ced1lpgt2vhmm"]
+
+[node name="SpotLights" type="Node3D" unique_id=1222050913]
+transform = Transform3D(0.9993808, -0.005224706, 0.034793273, -0.0014079683, 0.9821814, 0.18793017, -0.035155185, -0.18786281, 0.9815659, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1295753280]
+transform = Transform3D(0.99987686, -4.656613e-10, -0.015697688, 2.3283064e-10, 1, -1.4901161e-08, 0.015697682, 0, 0.9998769, -0.5005634, 0.39303893, -0.9247961)
+light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
+light_energy = 10.0
+light_specular = 4.0
+shadow_enabled = true
+shadow_bias = 0.2
+distance_fade_begin = 0.0
+spot_range = 50.0
+spot_angle = 20.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=300350988]
+transform = Transform3D(0.99995226, -4.656613e-10, -0.009779105, 0, 1, 0, 0.009779105, 0, 0.99995226, 0.49943662, 0.39303893, -0.92479634)
+light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
+light_energy = 10.0
+light_specular = 4.0
+shadow_enabled = true
+shadow_bias = 0.2
+distance_fade_begin = 0.0
+spot_range = 50.0
+spot_angle = 20.0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1409583284]
+transform = Transform3D(0.99938095, 0.014598019, -0.03201197, -0.005224703, 0.9613492, 0.27528232, 0.034793258, -0.2749446, 0.96083045, -0.10771799, 6.048882, 4.002353)

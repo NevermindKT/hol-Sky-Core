@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bvs3gvop5p7mp"]
+
+[ext_resource type="Script" uid="uid://diku15m10xtbd" path="res://scripts/vfx/bullet_trail.gd" id="1_4kbe1"]
+[ext_resource type="Shader" uid="uid://db1aba3kcmigw" path="res://resources/shaders/vfx/bullet_trail.gdshader" id="1_qe07p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hamn3"]
+render_priority = 0
+shader = ExtResource("1_qe07p")
+shader_parameter/trail_color = Color(1, 1, 1, 1)
+shader_parameter/tail_width = 0.2
+shader_parameter/core_size = 0.25
+shader_parameter/glow_size = 1.0
+shader_parameter/emission_strength = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_4kxuq"]
+size = Vector2(0.03, 1)
+
+[node name="BulletTrail" type="Node3D" unique_id=1614723032 node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_4kbe1")
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2102445516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6076652, 0.5, 0)
+material_override = SubResource("ShaderMaterial_hamn3")
+mesh = SubResource("QuadMesh_4kxuq")

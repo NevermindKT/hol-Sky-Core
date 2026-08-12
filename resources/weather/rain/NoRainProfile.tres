@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RainData" format=3 uid="uid://bkqcw5y1s4fd5"]
+
+[ext_resource type="Script" uid="uid://cj3gix68sfnqx" path="res://resources/weather/rain_data.gd" id="1_mjqex"]
+
+[resource]
+script = ExtResource("1_mjqex")
+enabled = false
+metadata/_custom_type_script = "uid://cj3gix68sfnqx"
