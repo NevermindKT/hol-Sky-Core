@@ -8,12 +8,11 @@ var accelerating := false
 
 signal dodge
 
-signal pause
-
 signal reload
 signal next_weapon
 signal previous_weapon
 
+signal pause_toggle
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -21,7 +20,7 @@ func _ready() -> void:
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Pause"):
-		pause.emit()
+		pause_toggle.emit()
 	
 	if get_tree().paused:
 		return
