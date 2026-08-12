@@ -8,14 +8,14 @@ var angular_velocity := Vector3.ZERO
 var last_rotation := Quaternion.IDENTITY
 
 
-func initialize():
+func initialize(start_distance: float):
 	if world == null:
 		push_warning("World не призначений. Ініціалізацію неможливо виконати.")
 		return
 	
 	world.path_follow_3d.rotation_mode = PathFollow3D.ROTATION_XYZ
 	world.path_follow_3d.loop = false
-	world.path_follow_3d.progress = 0.0
+	world.path_follow_3d.progress = start_distance
 	
 	print(world.path_follow_3d.progress)
 	print(world.path_follow_3d.global_position)

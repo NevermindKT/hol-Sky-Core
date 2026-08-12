@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://tu7n1sqj420"]
 
-[ext_resource type="Script" uid="uid://dbmg5c34sk5p8" path="res://resources/weapon/behaviors/single_pojectile_behavior.gd" id="1_j5bc3"]
+[ext_resource type="Script" uid="uid://dbmg5c34sk5p8" path="res://scripts/data/weapon/behaviors/single_pojectile_behavior.gd" id="1_j5bc3"]
 [ext_resource type="PackedScene" uid="uid://bt3acygnr2ji2" path="res://scenes/projectiles/bullet.tscn" id="2_5ldh7"]
-[ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://resources/weapon/weapon_data.gd" id="3_iut23"]
+[ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://scripts/data/weapon/weapon_data.gd" id="3_iut23"]
 
 [sub_resource type="Resource" id="Resource_qv38y"]
 script = ExtResource("1_j5bc3")

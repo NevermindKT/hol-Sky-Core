@@ -8,19 +8,9 @@ class_name World
 @onready var enemies: Node3D = $World/Enemies
 @onready var path_follow_3d: PathFollow3D = $WorldPath/PathFollow3D
 
+@export var road_set: Road_Set
+
 var last_world_basis: Basis
 
 func _ready():
 	last_world_basis = world.global_transform.basis
-	RoadManager.initialize()
-
-func _enter_tree():
-	RoadManager.world = self
-	ProjectileSpawner.world = self
-
-func _exit_tree():
-	if ProjectileSpawner.world == self:
-		ProjectileSpawner.world = null
-	
-	if RoadManager.world == self:
-		RoadManager.world = null

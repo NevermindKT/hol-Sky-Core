@@ -6,6 +6,7 @@ class_name Cross_Hair
 var reload_time := 0.0
 var reload_duration := 0.0
 
+var reload_tween: Tween
 var is_reloading := false
 
 
@@ -16,24 +17,32 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	global_position = get_viewport().get_mouse_position() - size * 0.5
-	
-	if is_reloading:
-		reload_time += _delta
-		
-		reload_bar.value = (reload_time / reload_duration) * 100.0
 
 
 func start_reload(duration: float):
-	reload_duration = duration
-	reload_time = 0.0
-	is_reloading = true
+	if reload_tween:
+		reload_tween.kill()
 	
 	reload_bar.value = 0
 	reload_bar.show()
+
+	reload_tween = create_tween()
+	reload_tween.tween_property(
+		reload_bar,
+		"value",
+		100,
+		duration
+	)
 
 
 func finish_reload():
 	is_reloading = false
 	reload_bar.value = 100
 	reload_bar.hide()
-	
+
+
+func cancel_reload():
+	if reload_tween:
+		reload_tween.kill()
+
+	reload_bar.hide()

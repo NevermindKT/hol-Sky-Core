@@ -5,6 +5,7 @@ class_name Inventory
 @export var pistol_ammo: int
 @export var shotgun_ammo: int
 
+
 func consume_ammo(ammo_type: Ammo_Type.Type, amount: int) -> int:
 	match ammo_type:
 		Ammo_Type.Type.PISTOL:
@@ -23,6 +24,7 @@ func consume_ammo(ammo_type: Ammo_Type.Type, amount: int) -> int:
 			return taken
 
 	return 0
+
 
 func get_ammo(ammo_type: Ammo_Type.Type) -> int:
 	match ammo_type:
