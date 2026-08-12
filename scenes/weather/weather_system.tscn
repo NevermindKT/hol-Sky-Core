@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://tuvx1tisvmnu"]
+[gd_scene format=3 uid="uid://bfh8ek3nst8so"]
 
 [ext_resource type="Environment" uid="uid://cyvo28w2s7n64" path="res://resources/weather/first_environment.tres" id="1_8hyqn"]
 [ext_resource type="Script" uid="uid://dunfvkx4t8gji" path="res://scripts/weather/FogController.gd" id="1_sap5q"]

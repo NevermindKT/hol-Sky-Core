@@ -20,7 +20,7 @@ func _ready() -> void:
 		push_warning("Weather_generator: road_generator не призначений.")
 		return
 
-	road_generator.segment_spawned.connect(_on_segment_spawned)
+	Events.segment_spawned.connect(_on_segment_spawned)
 	_pick_new_weather()
 	WeatherManager.set_weather(current_weather)
 
