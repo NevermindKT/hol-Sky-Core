@@ -6,6 +6,7 @@ class_name World
 @onready var projectiles: Node3D = $Projectiles
 @onready var road_container: Node3D = $World/RoadContainer
 @onready var enemies: Node3D = $World/Enemies
+@onready var ground_container: Node3D = $World/GroundContainer
 @onready var path_follow_3d: PathFollow3D = $WorldPath/PathFollow3D
 
 @export var road_set: Road_Set

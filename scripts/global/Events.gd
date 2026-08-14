@@ -21,6 +21,7 @@ signal reload_finished
 signal segment_dispawned
 signal level_progress_changed(current, max)
 signal segment_spawned(segment: Road_segment)
+signal weather_changed()
 
 #-------------- RUN
 signal run_started

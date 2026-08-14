@@ -24,7 +24,7 @@ func _ready():
 	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout)
 
-	WeatherManager.weather_changed.connect(_on_weather_changed)
+	Events.weather_changed.connect(_on_weather_changed)
 
 	_on_weather_changed()
 
