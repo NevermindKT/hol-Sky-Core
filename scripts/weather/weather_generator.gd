@@ -2,7 +2,9 @@ extends Node
 class_name Weather_generator
 
 
-@export var road_generator: Road_generator
+var road_generator: Road_generator
+var road_manager: Road_manager
+
 @export var weather_zone_scene: PackedScene
 
 @export var available_rain: Array[RainData] = []
@@ -35,6 +37,7 @@ func _on_segment_spawned(segment: Road_segment) -> void:
 		return
 
 	var zone := weather_zone_scene.instantiate() as WeatherZone
+	zone.road_manager = road_manager
 	segment.add_child(zone)
 	zone.apply_weather(current_weather)
 
