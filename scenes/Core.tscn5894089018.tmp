@@ -68,7 +68,6 @@ obstacle_set = SubResource("Resource_dakql")
 
 [node name="DistanceFog" parent="Enivironment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2080803, -109.03695)
-visible = false
 
 [node name="LightningSpawnArea" parent="Enivironment" unique_id=1643506361 instance=ExtResource("16_fjy51")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.939575)
@@ -88,8 +87,10 @@ metadata/_custom_type_script = "uid://bhl1wod4cbmvb"
 [node name="RoadGenerator" type="Node" parent="Services" unique_id=119337621]
 script = ExtResource("7_mowk8")
 
-[node name="EnemySpawner" type="Node" parent="Services" unique_id=1015351304]
+[node name="EnemySpawner" type="Node" parent="Services" unique_id=1015351304 node_paths=PackedStringArray("world", "road_generator")]
 script = ExtResource("14_dakql")
+world = NodePath("../../Enivironment/World")
+road_generator = NodePath("../RoadGenerator")
 enemy_scene = ExtResource("15_cyvft")
 min_gap_m = 10.0
 max_gap_m = 20.0

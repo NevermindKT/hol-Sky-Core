@@ -22,10 +22,11 @@ InputController="*uid://bxq0wqwdbfbo8"
 PauseManager="*uid://b0sb2cs28f50a"
 ProjectileSpawner="*uid://bc2hhoujpefbr"
 WeatherManager="*uid://5fu5kmhw80gh"
-RoadManager="*uid://bhl1wod4cbmvb"
 
 [display]
 
+window/size/viewport_width=2460
+window/size/viewport_height=1040
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

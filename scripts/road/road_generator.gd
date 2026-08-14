@@ -2,7 +2,9 @@ extends Node
 class_name Road_generator
 
 var world: World
+
 var road_set: Road_Set
+var obstacle_set: Obstacles_set
 
 var last_segment: Road_segment
 var segments: Array[Road_segment] = []
@@ -12,13 +14,16 @@ var is_spawning := false
 
 var target_anchor: Marker3D
 
+var obstacle_spawn_chance: float
+
 const MAX_SEGMENTS = 46
 const UNLOAD_DISTANCE = 40
 const MAX_ROAD_DIR_OFFSET = 2
 
 
-func initialize(_road_set: Road_Set) -> void:
+func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	road_set = _road_set
+	obstacle_set = _obstacle_set
 	spawn_start()
 
 
@@ -103,7 +108,10 @@ func spawn(scene: PackedScene):
 		)
 
 	add_curve_points(new_segment)
+	spawn_obstacle(new_segment)
+	
 	last_segment = new_segment
+	
 	Events.segment_spawned.emit(new_segment)
 	
 	match new_segment.segment_type:
@@ -111,6 +119,29 @@ func spawn(scene: PackedScene):
 			road_dir -= 1
 		RoadType.Type.RIGHT:
 			road_dir += 1
+
+
+func spawn_obstacle(segment: Road_segment) -> void:
+	if segment.obstacle_placement_array.is_empty():
+		return
+
+	if randf() > obstacle_spawn_chance:
+		return
+
+	var marker: Marker3D = segment.obstacle_placement_array.pick_random()
+	var data: ObstacleData = obstacle_set.obstacles[0]
+
+	var obstacle: Node3D = data.obstacle_scene.instantiate()
+	segment.add_child(obstacle)
+
+	obstacle.transform = marker.transform
+
+	print(
+		"Obstacle:",
+		obstacle.global_position,
+		" Marker:",
+		marker.global_position
+	)
 
 
 func is_segment_allowed(data: RoadSegmentData) -> bool:

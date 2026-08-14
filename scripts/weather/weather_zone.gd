@@ -1,7 +1,7 @@
 extends Node3D
 class_name WeatherZone
 
-
+var car: Car_Movement
 @export var rain_particles: GPUParticles3D
 
 const ENTER_RADIUS := 10.0
@@ -23,9 +23,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if _announced:
 		return
-	if RoadManager.car_movement == null:
+	if car == null:
 		return
-	if global_position.distance_to(RoadManager.car_movement.global_position) > ENTER_RADIUS:
+	if global_position.distance_to(car.global_position) > ENTER_RADIUS:
 		return
 
 	_announced = true
@@ -44,12 +44,13 @@ func _process(_delta: float) -> void:
 	WeatherManager.set_weather(_weather_data)
 
 
-func apply_weather(data: WeatherData) -> void:
+func apply_weather(data: WeatherData, _car: Car_Movement) -> void:
 	# Snapshot, not a reference — weather_generator.gd reuses and mutates
 	# the same WeatherData object on every future weather change. Without
 	# duplicating here, every already-spawned zone would retroactively
 	# "see" whatever the generator picks next, same shared-state trap as
 	# the QuadMesh/ShaderMaterial one earlier.
+	car = _car
 	_weather_data = data.duplicate() if data != null else WeatherData.new()
 	var rain := _weather_data.rain
 

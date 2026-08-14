@@ -8,11 +8,8 @@
 [ext_resource type="Script" uid="uid://ndqc52ws3chl" path="res://scripts/run_manager.gd" id="7_0uqmh"]
 [ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road/road_manager.gd" id="7_3g18v"]
 [ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="7_mowk8"]
-[ext_resource type="Script" uid="uid://bocwaebt17tfi" path="res://scripts/data/road/obstacle_data.gd" id="7_tc8ix"]
-[ext_resource type="PackedScene" uid="uid://lq8bh03qwq4o" path="res://scenes/obstacles/testObstacle.tscn" id="8_asndc"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="8_mowk8"]
 [ext_resource type="Resource" uid="uid://hxykvkcsp7w4" path="res://resources/weather/rain/HeavyRainProfile.tres" id="8_xwqeg"]
-[ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="9_a06ay"]
 [ext_resource type="PackedScene" uid="uid://bfh8ek3nst8so" path="res://scenes/weather/weather_system.tscn" id="10_bggva"]
 [ext_resource type="PackedScene" uid="uid://33j34s1svc7q" path="res://scenes/general/hud.tscn" id="11_wqd6n"]
 [ext_resource type="Resource" uid="uid://b2rqs0roqpye8" path="res://resources/weather/fog/LightFog.tres" id="12_xwqeg"]
@@ -28,16 +25,6 @@
 [ext_resource type="Script" uid="uid://dgn3pfxbskeg0" path="res://resources/weather/fog_data.gd" id="22_kusm0"]
 [ext_resource type="Resource" uid="uid://bfkjk34q3o5oc" path="res://resources/weather/fog/ClearNight.tres" id="23_i2q6t"]
 [ext_resource type="Resource" uid="uid://4lviiw663mbm" path="res://resources/weather/fog/DenseFog.tres" id="25_iqqgi"]
-
-[sub_resource type="Resource" id="Resource_cyvft"]
-script = ExtResource("7_tc8ix")
-obstacle_scene = ExtResource("8_asndc")
-metadata/_custom_type_script = "uid://bocwaebt17tfi"
-
-[sub_resource type="Resource" id="Resource_dakql"]
-script = ExtResource("9_a06ay")
-obstacles = Array[ExtResource("7_tc8ix")]([SubResource("Resource_cyvft")])
-metadata/_custom_type_script = "uid://nvhh14a8jfmw"
 
 [node name="Core" type="Node3D" unique_id=243152911]
 
@@ -62,13 +49,11 @@ visible = false
 
 [node name="World" parent="Enivironment" unique_id=1128285648 instance=ExtResource("8_mowk8")]
 road_set = ExtResource("5_hyqco")
-obstacle_set = SubResource("Resource_dakql")
 
 [node name="WeatherSystem" parent="Enivironment" unique_id=1765140778 instance=ExtResource("10_bggva")]
 
 [node name="DistanceFog" parent="Enivironment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2080803, -109.03695)
-visible = false
 
 [node name="LightningSpawnArea" parent="Enivironment" unique_id=1643506361 instance=ExtResource("16_fjy51")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.939575)
@@ -88,8 +73,10 @@ metadata/_custom_type_script = "uid://bhl1wod4cbmvb"
 [node name="RoadGenerator" type="Node" parent="Services" unique_id=119337621]
 script = ExtResource("7_mowk8")
 
-[node name="EnemySpawner" type="Node" parent="Services" unique_id=1015351304]
+[node name="EnemySpawner" type="Node" parent="Services" unique_id=1015351304 node_paths=PackedStringArray("world", "road_generator")]
 script = ExtResource("14_dakql")
+world = NodePath("../../Enivironment/World")
+road_generator = NodePath("../RoadGenerator")
 enemy_scene = ExtResource("15_cyvft")
 min_gap_m = 10.0
 max_gap_m = 20.0
@@ -101,4 +88,5 @@ script = ExtResource("16_iqacv")
 weather_zone_scene = ExtResource("17_tc8ix")
 available_rain = Array[ExtResource("18_asndc")]([ExtResource("19_a06ay"), ExtResource("20_7hc18"), ExtResource("8_xwqeg")])
 available_fog = Array[ExtResource("22_kusm0")]([ExtResource("23_i2q6t"), ExtResource("12_xwqeg"), ExtResource("25_iqqgi")])
+min_segments_per_weather = null
 max_segments_per_weather = 10
