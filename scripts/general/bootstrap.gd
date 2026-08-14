@@ -19,6 +19,8 @@ func _ready() -> void:
 	set_player_car()
 	set_weapon_system()
 	
+	car.player_status_controller.initialize()
+	
 	road_generator.obstacle_spawn_chance = OBSTACLE_SPAWN_CHANCE
 	road_generator.initialize(world.road_set, world.obstacle_set)
 	road_manager.initialize(START_DISTANCE)

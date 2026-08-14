@@ -68,7 +68,6 @@ obstacle_set = SubResource("Resource_dakql")
 
 [node name="DistanceFog" parent="Enivironment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2080803, -109.03695)
-visible = false
 
 [node name="LightningSpawnArea" parent="Enivironment" unique_id=1643506361 instance=ExtResource("16_fjy51")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.939575)
