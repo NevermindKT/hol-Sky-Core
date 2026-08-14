@@ -5,6 +5,7 @@
 
 [sub_resource type="GDScript" id="GDScript_oj1j8"]
 script/source = "extends Control
+#class_name Cross_Hair_Con
 
 @onready var reload_bar: ProgressBar = $ReloadBar
 
