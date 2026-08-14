@@ -1,8 +1,8 @@
 extends Node
 class_name Enemy_spawner
 
-@export var world: World
-@export var road_generator: Road_generator
+var world: World
+var road_generator: Road_generator
 @export var enemy_scene: PackedScene
 
 @export var min_gap_m := 100.0

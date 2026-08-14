@@ -9,6 +9,7 @@ class_name World
 @onready var path_follow_3d: PathFollow3D = $WorldPath/PathFollow3D
 
 @export var road_set: Road_Set
+@export var obstacle_set: Obstacles_set
 
 var last_world_basis: Basis
 

@@ -7,6 +7,10 @@ class_name Road_segment
 @export var weight := 1.0
 @export var segment_type: RoadType.Type
 
+var obstacle_placement_array: Array[Marker3D] = []
+
+@onready var obstacles: Node = $Obstacles
+
 var polygon: CSGPolygon3D
 
 var length: float
@@ -14,7 +18,12 @@ var length: float
 func _ready() -> void:
 	assert(origin != null, "Origin missing in " + name)
 	assert(anchor != null, "Anchor missing in " + name)
+	
 	length = origin.position.distance_to(anchor.position)
+	
+	for child in obstacles.get_children():
+		if child is Marker3D:
+			obstacle_placement_array.append(child)
 
 
 ## Transform3D полотна дороги в ЛОКАЛЬНИХ координатах цього сегмента у
