@@ -28,7 +28,7 @@ material_override = SubResource("StandardMaterial3D_pw7st")
 mesh = SubResource("PlaneMesh_10jsn")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="MeshInstance3D" unique_id=1376683630]
+[node name="AnimatableBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1149396445]
 collision_layer = 2
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_4kxuq")
