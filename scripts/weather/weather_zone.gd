@@ -32,12 +32,12 @@ func _process(_delta: float) -> void:
 
 	_announced = true
 
-	print(
-		"Zone announced at ", global_position,
-		" rain=", (_weather_data.rain.resource_path if _weather_data.rain else "null"),
-		" fog=", (_weather_data.fog.resource_path if _weather_data.fog else "null"),
-		" time=", Time.get_ticks_msec()
-	)
+	#print(
+		#"Zone announced at ", global_position,
+		#" rain=", (_weather_data.rain.resource_path if _weather_data.rain else "null"),
+		#" fog=", (_weather_data.fog.resource_path if _weather_data.fog else "null"),
+		#" time=", Time.get_ticks_msec()
+	#)
 
 	WeatherManager.set_weather(_weather_data)
 

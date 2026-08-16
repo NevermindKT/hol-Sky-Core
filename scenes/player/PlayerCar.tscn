@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://scripts/car/car_movement.gd" id="1_y6j3g"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
-[ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scenes/player/flashlight_controller.gd" id="3_y6j3g"]
+[ext_resource type="Script" uid="uid://42qmfye5c841" path="res://scripts/car/back_lights.gd" id="3_20y2w"]
+[ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scripts/car/flashlight_controller.gd" id="3_y6j3g"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
 [ext_resource type="Script" uid="uid://nt6h8xoqqc60" path="res://scripts/data/weapon/weapon_state.gd" id="6_7lmdr"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="6_20y2w"]
@@ -44,7 +45,7 @@ script = ExtResource("6_7lmdr")
 data = ExtResource("9_lo1ro")
 metadata/_custom_type_script = "uid://nt6h8xoqqc60"
 
-[node name="Car" type="CharacterBody3D" unique_id=353319218 groups=["Car"]]
+[node name="Car" type="CharacterBody3D" unique_id=353319218 node_paths=PackedStringArray("back_lights") groups=["Car"]]
 script = ExtResource("1_y6j3g")
 drag = 4.0
 brake = 40.0
@@ -54,6 +55,7 @@ strafe_speed = 5.0
 steering_curve = SubResource("Curve_58tws")
 spring = 45.0
 damping = 6.0
+back_lights = NodePath("Visual/BackLights")
 
 [node name="Visual" type="Node3D" parent="." unique_id=1626838081]
 script = ExtResource("2_iam02")
@@ -64,10 +66,10 @@ z_tilt = 7.0
 mesh = SubResource("BoxMesh_elpsl")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
-[node name="Lights" type="Node3D" parent="Visual" unique_id=1230302799]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+[node name="ForwardLights" type="Node3D" parent="Visual" unique_id=1230302799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04349184, -0.8)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Visual/Lights" unique_id=1295753280]
+[node name="SpotLight3D" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=1295753280]
 transform = Transform3D(0.9998039, -0.0052247066, 0.019101026, 0.0015422733, 0.9821814, 0.18792911, -0.019742547, -0.18786281, 0.98199683, -0.3, 0.2, -0.07129735)
 light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
 light_energy = 10.0
@@ -76,9 +78,10 @@ shadow_enabled = true
 shadow_bias = 0.2
 distance_fade_begin = 0.0
 spot_range = 50.0
-spot_angle = 20.0
+spot_attenuation = 2.0
+spot_angle = 25.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Visual/Lights" unique_id=300350988]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=300350988]
 transform = Transform3D(0.99967337, -0.0052247066, 0.025018562, 0.0004298877, 0.9821814, 0.18793496, -0.02555467, -0.18786281, 0.98186284, 0.3, 0.2, -0.07129735)
 light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
 light_energy = 10.0
@@ -87,7 +90,35 @@ shadow_enabled = true
 shadow_bias = 0.2
 distance_fade_begin = 0.0
 spot_range = 50.0
-spot_angle = 20.0
+spot_attenuation = 2.0
+spot_angle = 25.0
+
+[node name="BackLights" type="Node3D" parent="Visual" unique_id=2013480416 node_paths=PackedStringArray("back_lights")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.04349184, 0.7800961)
+script = ExtResource("3_20y2w")
+back_lights = [NodePath("SpotLight3D"), NodePath("SpotLight3D2")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Visual/BackLights" unique_id=772436070]
+transform = Transform3D(0.999804, -0.0052246484, 0.019101072, -0.013707198, 0.51355815, 0.8579454, -0.0142919775, -0.8580389, 0.513386, -0.3, 0.2, -0.07129735)
+light_color = Color(0.9862122, 0.22568253, 0.2938162, 1)
+light_energy = 0.05
+shadow_enabled = true
+shadow_bias = 0.2
+distance_fade_begin = 0.0
+spot_range = 3.0
+spot_attenuation = 2.0
+spot_angle = 70.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Visual/BackLights" unique_id=877620254]
+transform = Transform3D(0.9996733, -0.0052246493, 0.025018599, -0.01878516, 0.51355827, 0.85784924, -0.01733047, -0.85803884, 0.5132923, 0.3, 0.2, -0.07129735)
+light_color = Color(0.9862122, 0.22568253, 0.2938162, 1)
+light_energy = 0.05
+shadow_enabled = true
+shadow_bias = 0.2
+distance_fade_begin = 0.0
+spot_range = 3.0
+spot_attenuation = 2.0
+spot_angle = 70.0
 
 [node name="WeaponPivot" type="Node3D" parent="Visual" unique_id=879198079]
 
@@ -132,3 +163,9 @@ player_weapons = Array[ExtResource("6_7lmdr")]([SubResource("Resource_lo1ro"), S
 [node name="PlayerStatusController" type="Node" parent="." unique_id=1732844712]
 script = ExtResource("10_ojawh")
 max_health = 100.0
+
+[node name="SkidPointL" type="Marker3D" parent="." unique_id=1661106230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.25701258, 0.555)
+
+[node name="SkidPointR" type="Marker3D" parent="." unique_id=54355480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.25701258, 0.555)
