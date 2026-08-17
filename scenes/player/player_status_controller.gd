@@ -22,6 +22,7 @@ func heal(heal_value: float) -> void:
 
 
 func take_damage(damage_value: float) -> void:
+	print("Player taked damage!")
 	current_health -= damage_value
 	clamp_health()
 

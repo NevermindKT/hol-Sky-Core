@@ -136,13 +136,6 @@ func spawn_obstacle(segment: Road_segment) -> void:
 
 	obstacle.transform = marker.transform
 
-	print(
-		"Obstacle:",
-		obstacle.global_position,
-		" Marker:",
-		marker.global_position
-	)
-
 
 func is_segment_allowed(data: RoadSegmentData) -> bool:
 	var new_dir := road_dir
