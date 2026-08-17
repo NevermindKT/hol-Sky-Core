@@ -1,17 +1,22 @@
 extends Node
 class_name Tire_trail_manager
 
+enum Trigger_mode { TIRE_SKID, BLOOD }
+
 var world: World
 var car_movement: Car_Movement
 var road_manager: Road_manager
 
 @export var stroke_scene: PackedScene
+@export var trigger_mode: Trigger_mode = Trigger_mode.TIRE_SKID
 
-@export_category("Trigger")
+@export_category("Trigger — Tire Skid")
 @export var brake_speed_ratio := 0.6
 @export var turn_speed_ratio := 0.5
 @export var lateral_velocity_threshold := 3.0
 @export var angular_velocity_threshold := 0.3
+
+var _bleeding_timer := 0.0
 
 @export_category("Stroke")
 @export var max_points_per_stroke := 400
@@ -32,6 +37,9 @@ func initialize(_world: World, _car_movement: Car_Movement, _road_manager: Road_
 	car_movement = _car_movement
 	road_manager = _road_manager
 
+	if trigger_mode == Trigger_mode.BLOOD and not is_in_group("blood_trail_manager"):
+		add_to_group("blood_trail_manager")
+
 	skid_point_l = car_movement.get_node_or_null("SkidPointL")
 	skid_point_r = car_movement.get_node_or_null("SkidPointR")
 
@@ -40,9 +48,12 @@ func initialize(_world: World, _car_movement: Car_Movement, _road_manager: Road_
 	assert(skid_point_r != null, "TireTrailManager: не знайдено SkidPointR під Car.")
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if world == null or car_movement == null or stroke_scene == null:
 		return
+
+	if trigger_mode == Trigger_mode.BLOOD and _bleeding_timer > 0.0:
+		_bleeding_timer = maxf(_bleeding_timer - delta, 0.0)
 
 	if _should_leave_marks():
 		_active_l = _record_point(_active_l, skid_point_l)
@@ -66,9 +77,17 @@ func _resnap_strokes_height() -> void:
 		stroke.global_position = pos
 
 
+func start_bleeding(duration: float) -> void:
+	_bleeding_timer = maxf(_bleeding_timer, duration)
+
+
 func _should_leave_marks() -> bool:
-	var speed_ratio := car_movement.get_speed_ratio()
-	return _is_braking_hard(speed_ratio) or _is_turning_hard(speed_ratio)
+	match trigger_mode:
+		Trigger_mode.BLOOD:
+			return _bleeding_timer > 0.0
+		_:
+			var speed_ratio := car_movement.get_speed_ratio()
+			return _is_braking_hard(speed_ratio) or _is_turning_hard(speed_ratio)
 
 
 func _is_braking_hard(speed_ratio: float) -> bool:

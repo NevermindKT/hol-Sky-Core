@@ -92,6 +92,7 @@ toggle_flashlight={
 
 [layer_names]
 
+3d_render/layer_2="Blood Target"
 3d_physics/layer_2="Road"
 
 [physics]

@@ -31,6 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 curve = SubResource("Curve3D_a4orq")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=136630849]
+layers = 3
 material_override = SubResource("StandardMaterial3D_3itlt")
 use_collision = true
 collision_layer = 2

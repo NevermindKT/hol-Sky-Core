@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://c50p4e7wmeocp" path="res://scripts/data/vegetation/vegetation_category_data.gd" id="28_tc8ix"]
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="31_7hc18"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
+[ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_a06ay"]
 frequency = 0.02
@@ -124,7 +125,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.939575)
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
-[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager")]
+[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager")]
 script = ExtResource("6_v852s")
 car = NodePath("../../Car")
 hud = NodePath("../../UI/HUD")
@@ -136,6 +137,7 @@ ground_generator = NodePath("../GroundGenerator")
 vegetation_scatter = NodePath("../VegetationScatter")
 weather_generator = NodePath("../WeatherGenerator")
 tire_trail_manager = NodePath("../TireTrailManager")
+blood_trail_manager = NodePath("../BloodTrailManager")
 
 [node name="RunManager" type="Node" parent="Services" unique_id=239540275]
 script = ExtResource("7_0uqmh")
@@ -185,3 +187,14 @@ brake_speed_ratio = 0.1
 lateral_velocity_threshold = 4.0
 max_active_strokes = 10
 fade_duration = 5.0
+surface_offset = -0.9
+
+[node name="BloodTrailManager" type="Node" parent="Services" unique_id=2061811336]
+script = ExtResource("31_7hc18")
+stroke_scene = ExtResource("33_i2q6t")
+trigger_mode = 1
+brake_speed_ratio = 0.1
+lateral_velocity_threshold = 4.0
+max_active_strokes = 10
+fade_duration = 5.0
+surface_offset = -0.9

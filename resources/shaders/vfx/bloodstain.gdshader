@@ -10,10 +10,12 @@ varying float seed;
 
 uniform float dissolve_amount = 0.35;
 
+uniform float seed_offset : hint_range(0.0, 1000.0) = 0.0;
+
 
 void vertex()
 {
-    seed = INSTANCE_CUSTOM.z;
+    seed = INSTANCE_CUSTOM.z + seed_offset;
 }
 
 // Псевдогенератор рандомного числа

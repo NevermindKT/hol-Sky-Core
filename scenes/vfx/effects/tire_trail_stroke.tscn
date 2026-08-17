@@ -11,4 +11,3 @@ albedo_texture = ExtResource("1_2jo0k")
 [node name="TireTrailStroke" type="MeshInstance3D" unique_id=1048346432]
 material_override = SubResource("StandardMaterial3D_4kxuq")
 script = ExtResource("2_0mchr")
-min_point_spacing = 0.0
