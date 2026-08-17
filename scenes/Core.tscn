@@ -42,6 +42,8 @@ metadata/_custom_type_script = "uid://nvhh14a8jfmw"
 [node name="Core" type="Node3D" unique_id=243152911]
 
 [node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("2_uhg8y")]
+dodge_force = 18.0
+dodge_distance = 3.0
 player_cam = NodePath("../PlayerCam")
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476 node_paths=PackedStringArray("car")]
