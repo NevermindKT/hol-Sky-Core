@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bn00oltxw808l"]
+
+[ext_resource type="PackedScene" uid="uid://dxcon1p1pac4m" path="res://scenes/vfx/components/blood_decal.tscn" id="1_310b0"]
+[ext_resource type="Script" uid="uid://65dh6ax1ppvc" path="res://scripts/vfx/road_blood_splatter.gd" id="1_gwmfa"]
+[ext_resource type="PackedScene" uid="uid://cuurud8wsx84c" path="res://scenes/vfx/components/road_blood_trigger.tscn" id="3_f8mq1"]
+
+[node name="RoadBloodSplatter" type="Node3D" unique_id=945361306]
+script = ExtResource("1_gwmfa")
+
+[node name="BloodDecal" parent="." unique_id=1689320868 instance=ExtResource("1_310b0")]
+
+[node name="RoadBloodTrigger" parent="." unique_id=1483286865 instance=ExtResource("3_f8mq1")]
+bleed_duration = 0.5

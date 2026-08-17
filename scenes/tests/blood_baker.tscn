@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bnpcjs8n5qveo"]
+
+[ext_resource type="Script" uid="uid://behmqhxq5bhfi" path="res://scripts/tools/blood_baker.gd" id="1_fbgv5"]
+[ext_resource type="Shader" uid="uid://cxugwqvmwt54r" path="res://resources/shaders/vfx/bloodstain_bake.gdshader" id="1_m41hu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kxuq"]
+shader = ExtResource("1_m41hu")
+shader_parameter/edge_color = Color(0.1, 0.01, 0.01, 1)
+shader_parameter/center_color = Color(0.6, 0.02, 0.02, 1)
+shader_parameter/seed_offset = 0.0
+
+[node name="BloodBaker" type="Node" unique_id=1446706196]
+script = ExtResource("1_fbgv5")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=719824497]
+transparent_bg = true
+size = Vector2i(1024, 1024)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=423125895]
+material = SubResource("ShaderMaterial_4kxuq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

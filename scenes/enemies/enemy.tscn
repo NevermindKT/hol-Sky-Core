@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://q3f5ckhu701k" path="res://scripts/enemy/enemy_controller.gd" id="1_k5srr"]
 [ext_resource type="Script" uid="uid://d1hony2xlby4a" path="res://scripts/enemy/simple_knockback_controller.gd" id="2_knbck"]
+[ext_resource type="PackedScene" uid="uid://dxcon1p1pac4m" path="res://scenes/vfx/components/blood_decal.tscn" id="3_nb6gf"]
 [ext_resource type="Script" uid="uid://dvkxmb37dlkr5" path="res://scripts/enemy/health.gd" id="4_hlth"]
+[ext_resource type="PackedScene" uid="uid://bn00oltxw808l" path="res://scenes/vfx/effects/road_blood_splatter.tscn" id="4_jt03m"]
 [ext_resource type="Script" uid="uid://cmi1f4qjv8mmd" path="res://resources/enemy/hit/knockback_data.gd" id="4_lu5c6"]
 [ext_resource type="PackedScene" uid="uid://ycruqbm88110" path="res://scenes/vfx/effects/blood_car_hit.tscn" id="6_bldch"]
 
@@ -24,6 +26,12 @@ knockback_controller = NodePath("KnockbackController")
 health = NodePath("Health")
 hit_effect_scene = ExtResource("6_bldch")
 move_speed = 12.0
+blood_decal_scene = ExtResource("3_nb6gf")
+road_blood_splatter_scene = ExtResource("4_jt03m")
+blood_splatter_radius = 0.8
+road_blood_forward_offset = 3.0
+car_blood_scale_range = Vector2(0.9, 1)
+road_blood_scale_range = Vector2(1.4, 1.6)
 corpse_lifetime = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=498826910]

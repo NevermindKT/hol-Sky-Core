@@ -63,6 +63,7 @@ y_tilt = 25.0
 z_tilt = 7.0
 
 [node name="CarMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]
+layers = 3
 mesh = SubResource("BoxMesh_elpsl")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
@@ -165,7 +166,7 @@ script = ExtResource("10_ojawh")
 max_health = 100.0
 
 [node name="SkidPointL" type="Marker3D" parent="." unique_id=1661106230]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.25701258, 0.555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.69208086, 0.555)
 
 [node name="SkidPointR" type="Marker3D" parent="." unique_id=54355480]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.25701258, 0.555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.69208086, 0.555)

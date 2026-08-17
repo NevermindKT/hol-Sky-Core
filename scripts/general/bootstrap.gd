@@ -11,6 +11,7 @@ extends Node
 @export var vegetation_scatter: Vegetation_scatter
 @export var weather_generator: Weather_generator
 @export var tire_trail_manager: Tire_trail_manager
+@export var blood_trail_manager: Tire_trail_manager
 
 const START_DISTANCE := 5.0
 const DISTANCE_TO_END := 200.0
@@ -28,6 +29,7 @@ func _ready() -> void:
 	road_manager.initialize(START_DISTANCE)
 	run_manager.initialize(DISTANCE_TO_END)
 	tire_trail_manager.initialize(world, car, road_manager)
+	blood_trail_manager.initialize(world, car, road_manager)
 
 	queue_free()
 

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://db4udgn8rgnjx"]
+
+[ext_resource type="Shader" uid="uid://cdc5dgylo42y2" path="res://resources/shaders/vfx/bloodstain.gdshader" id="1_hks4g"]
+[ext_resource type="Texture2D" uid="uid://g3gwisl6lsom" path="res://textures/vfx/blood/blood_splat_01_normal.png" id="2_q0j7r"]
+[ext_resource type="Texture2D" uid="uid://xv5aqssu8srx" path="res://textures/vfx/blood/blood_splat_01.png" id="2_w5683"]
+[ext_resource type="Texture2D" uid="uid://cwfi45xil7e7u" path="res://textures/vfx/blood/blood_splat_01_orm.png" id="3_j1noq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4kxuq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mti6b"]
+render_priority = 0
+shader = ExtResource("1_hks4g")
+shader_parameter/normal_strength = 10.0
+shader_parameter/edge_color = Color(0.1, 0.01, 0.01, 1)
+shader_parameter/center_color = Color(0.6, 0.02, 0.02, 1)
+shader_parameter/dissolve_amount = 0.35
+shader_parameter/seed_offset = 0.0
+
+[node name="Node3D" type="Node3D" unique_id=257025076]
+
+[node name="Decal" type="Decal" parent="." unique_id=767460166]
+texture_albedo = ExtResource("2_w5683")
+texture_normal = ExtResource("2_q0j7r")
+texture_orm = ExtResource("3_j1noq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Decal" unique_id=21794938]
+mesh = SubResource("PlaneMesh_4kxuq")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1629860979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.007174, 0, 0)
+mesh = SubResource("PlaneMesh_4kxuq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2" unique_id=810716996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01649046, 0.009619236, 0)
+material_override = SubResource("ShaderMaterial_mti6b")
+mesh = SubResource("PlaneMesh_4kxuq")

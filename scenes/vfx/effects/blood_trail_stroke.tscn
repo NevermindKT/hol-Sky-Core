@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dcwmb3qbx7ae0"]
+
+[ext_resource type="Texture2D" uid="uid://bkcsdnvqrmeg6" path="res://textures/vfx/blood/blood_trail_mark.png" id="1_lfqm4"]
+[ext_resource type="Script" uid="uid://d2c4om0ytedt6" path="res://scripts/vfx/tire_trail_stroke.gd" id="2_1hvla"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kxuq"]
+transparency = 1
+albedo_texture = ExtResource("1_lfqm4")
+
+[node name="TireTrailStroke" type="MeshInstance3D" unique_id=1048346432]
+material_override = SubResource("StandardMaterial3D_4kxuq")
+script = ExtResource("2_1hvla")
