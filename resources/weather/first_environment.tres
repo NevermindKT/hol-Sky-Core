@@ -16,10 +16,14 @@ sky_material = SubResource("ProceduralSkyMaterial_mowk8")
 [resource]
 background_mode = 2
 sky = SubResource("Sky_0uqmh")
-glow_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.1820277, 0.20115688, 0.21591285, 1)
 fog_light_energy = 0.25
 fog_density = 1.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0005
+volumetric_fog_albedo = Color(0.8808251, 0.9063318, 1, 1)
+volumetric_fog_emission = Color(0.21877751, 0.25831974, 0.3414065, 1)
+volumetric_fog_emission_energy = 0.02
+volumetric_fog_length = 100.0
+volumetric_fog_ambient_inject = 1.0

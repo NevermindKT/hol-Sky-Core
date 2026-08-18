@@ -74,11 +74,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04349184, -0.8)
 transform = Transform3D(0.9998039, -0.0052247066, 0.019101026, 0.0015422733, 0.9821814, 0.18792911, -0.019742547, -0.18786281, 0.98199683, -0.3, 0.2, -0.07129735)
 light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
 light_energy = 10.0
+light_volumetric_fog_energy = 2.0
 light_specular = 4.0
 shadow_enabled = true
 shadow_bias = 0.2
 distance_fade_begin = 0.0
-spot_range = 50.0
+spot_range = 150.0
 spot_attenuation = 2.0
 spot_angle = 25.0
 
@@ -86,11 +87,12 @@ spot_angle = 25.0
 transform = Transform3D(0.99967337, -0.0052247066, 0.025018562, 0.0004298877, 0.9821814, 0.18793496, -0.02555467, -0.18786281, 0.98186284, 0.3, 0.2, -0.07129735)
 light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
 light_energy = 10.0
+light_volumetric_fog_energy = 2.0
 light_specular = 4.0
 shadow_enabled = true
 shadow_bias = 0.2
 distance_fade_begin = 0.0
-spot_range = 50.0
+spot_range = 150.0
 spot_attenuation = 2.0
 spot_angle = 25.0
 
