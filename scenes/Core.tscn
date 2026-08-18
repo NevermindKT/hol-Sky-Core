@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://csuu8mh30lvn7" path="res://scripts/spawners/enemy_spawner.gd" id="14_dakql"]
 [ext_resource type="PackedScene" uid="uid://ck5eo0ch0lb4t" path="res://scenes/weather/components/distance_fog.tscn" id="15_cshfm"]
 [ext_resource type="PackedScene" uid="uid://dj6f80eu3p4mq" path="res://scenes/enemies/enemy.tscn" id="15_cyvft"]
-[ext_resource type="PackedScene" uid="uid://ci5h063crfw3b" path="res://scenes/weather/components/lightning_spawn_area.tscn" id="16_fjy51"]
 [ext_resource type="Script" uid="uid://dydg442leo0i4" path="res://scripts/weather/weather_generator.gd" id="16_iqacv"]
 [ext_resource type="PackedScene" uid="uid://c5q2obhvjx8lj" path="res://scenes/weather/components/weather_zone.tscn" id="17_tc8ix"]
 [ext_resource type="Script" uid="uid://cj3gix68sfnqx" path="res://resources/weather/rain_data.gd" id="18_asndc"]
@@ -38,7 +37,7 @@
 frequency = 0.02
 
 [sub_resource type="Curve" id="Curve_7hc18"]
-_data = [Vector2(0.06397306, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.35294116), 1.0399157, 0.0, 0, 0]
+_data = [Vector2(0.06397306, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.952), 0.3860425, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_u46l2"]
@@ -46,21 +45,21 @@ _data = [Vector2(0.070707075, 0), 0.0, 0.0, 0, 0, Vector2(0.11111111, 1), 0.0, 0
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_asndc"]
-_data = [Vector2(0.23843417, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.33804506, 0, 0]
+_data = [Vector2(0.3961039, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.33804506, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_iqacv"]
 script = ExtResource("28_tc8ix")
 category_name = "Tree"
 folder_path = "res://models/kenney_nature-kit/tree"
-count = 5
+count = 30
 variants_per_tile = 5
 scale_range = Vector2(4, 6)
 density_curve = SubResource("Curve_asndc")
 metadata/_custom_type_script = "uid://c50p4e7wmeocp"
 
 [sub_resource type="Curve" id="Curve_tc8ix"]
-_data = [Vector2(0.028469749, 0), 0.0, 0.0, 0, 0, Vector2(0.074733086, 1), 0.0, -0.67554337, 0, 0, Vector2(0.658363, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.09090909, 0), 0.0, 0.0, 0, 0, Vector2(0.17207792, 1), 0.0, -0.67554337, 0, 0, Vector2(0.658363, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Resource" id="Resource_asndc"]
@@ -117,15 +116,15 @@ road_set = ExtResource("5_hyqco")
 
 [node name="WeatherSystem" parent="Environment" unique_id=1765140778 instance=ExtResource("10_bggva")]
 
+[node name="LightningController" parent="Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
+world = NodePath("../../World")
+
 [node name="DistanceFog" parent="Environment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2080803, -109.03695)
 
-[node name="LightningSpawnArea" parent="Environment" unique_id=1643506361 instance=ExtResource("16_fjy51")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.939575)
-
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
-[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager")]
+[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager", "lightning_controller")]
 script = ExtResource("6_v852s")
 car = NodePath("../../Car")
 hud = NodePath("../../UI/HUD")
@@ -138,6 +137,7 @@ vegetation_scatter = NodePath("../VegetationScatter")
 weather_generator = NodePath("../WeatherGenerator")
 tire_trail_manager = NodePath("../TireTrailManager")
 blood_trail_manager = NodePath("../BloodTrailManager")
+lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
 
 [node name="RunManager" type="Node" parent="Services" unique_id=239540275]
 script = ExtResource("7_0uqmh")
@@ -164,7 +164,8 @@ script = ExtResource("16_iqacv")
 weather_zone_scene = ExtResource("17_tc8ix")
 available_rain = Array[ExtResource("18_asndc")]([ExtResource("19_a06ay"), ExtResource("20_7hc18"), ExtResource("8_xwqeg")])
 available_fog = Array[ExtResource("22_kusm0")]([ExtResource("23_i2q6t"), ExtResource("12_xwqeg"), ExtResource("25_iqqgi")])
-max_segments_per_weather = 10
+min_segments_per_weather = 20
+max_segments_per_weather = 25
 
 [node name="GroundGenerator" type="Node" parent="Services" unique_id=951819073]
 script = ExtResource("26_cyvft")
@@ -198,3 +199,5 @@ lateral_velocity_threshold = 4.0
 max_active_strokes = 10
 fade_duration = 5.0
 surface_offset = -0.9
+
+[editable path="Environment/WeatherSystem"]

@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	print("Road_blood_trigger: body_entered -> ", body.name, " groups=", body.get_groups())
+	#print("Road_blood_trigger: body_entered -> ", body.name, " groups=", body.get_groups())
 
 	if not body.is_in_group("Car"):
 		return

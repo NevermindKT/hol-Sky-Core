@@ -12,6 +12,7 @@ extends Node
 @export var weather_generator: Weather_generator
 @export var tire_trail_manager: Tire_trail_manager
 @export var blood_trail_manager: Tire_trail_manager
+@export var lightning_controller: LightningController
 
 const START_DISTANCE := 5.0
 const DISTANCE_TO_END := 200.0
@@ -41,6 +42,7 @@ func set_world():
 	ground_generator.vegetation = vegetation_scatter
 	road_manager.world = world
 	ProjectileSpawner.world = world
+	lightning_controller.world = world
 
 func set_road_manager():
 	weather_generator.road_manager = road_manager
