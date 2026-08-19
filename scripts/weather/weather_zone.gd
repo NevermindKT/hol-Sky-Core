@@ -26,9 +26,6 @@ func _ready() -> void:
 	if shader:
 		rain_particles.material_override = shader.duplicate()
 
-	# Кожна WeatherZone має власний примірник FogMaterial — інакше всі зони
-	# на трасі ділили б один ресурс, і зміна тумана в одній зоні миттєво
-	# зʼявлялась би в усіх інших (той самий патерн, що вище для дощу).
 	if shoulder_fog_left and shoulder_fog_left.material:
 		_shoulder_material_left = (shoulder_fog_left.material as FogMaterial).duplicate()
 		shoulder_fog_left.material = _shoulder_material_left
@@ -76,14 +73,9 @@ func apply_weather(data: WeatherData) -> void:
 		if shader:
 			shader.set_shader_parameter("rain_color", rain.rain_color)
 
-	# fog і rain незалежні один від одного, тому рахуємо тут, а не всередині
-	# гілки rain вище (інакше зона без дощу лишалась би без тумана теж).
 	_apply_shoulder_fog(_weather_data.fog)
 
 
-## Виставляє density і бокове зміщення туманної смуги (ShoulderFogLeft/Right)
-## відповідно до поточного FogData-профілю. Викликається при кожній зміні
-## погоди в цій зоні — перемикання миттєве, без плавного переходу.
 func _apply_shoulder_fog(fog: FogData) -> void:
 	var density := 0.0
 	var offset := 20.0

@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="GroundBiomeData" format=3 uid="uid://ucjm55dej1jd"]
+
+[ext_resource type="Texture2D" uid="uid://cuwyhufgeehto" path="res://textures/ground/forrest_ground_01_4k/forrest_ground_01_diff_4k.jpg" id="1_kymgb"]
+[ext_resource type="Script" uid="uid://calolvgfn5j6j" path="res://scripts/data/ground/ground_biome_data.gd" id="1_wtp1g"]
+[ext_resource type="Script" uid="uid://c50p4e7wmeocp" path="res://scripts/data/vegetation/vegetation_category_data.gd" id="2_tblmu"]
+[ext_resource type="Texture2D" uid="uid://cfc72g7ci7atu" path="res://textures/ground/forest_ground_06_4k/forest_ground_06_diff_4k.jpg" id="3_meryl"]
+
+[sub_resource type="Curve" id="Curve_7dsm8"]
+_data = [Vector2(0.07716049, 0), 0.0, 0.0, 0, 0, Vector2(0.67592597, 1), 0.11269565, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_585gf"]
+
+[sub_resource type="Curve" id="Curve_kymgb"]
+_data = [Vector2(0.015432097, 0), 0.0, 0.0, 0, 0, Vector2(0.074074075, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_g5jdw"]
+_data = [Vector2(0.077922076, 0), 0.0, 0.0, 0, 0, Vector2(0.21428573, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_b0nky"]
+script = ExtResource("2_tblmu")
+category_name = "Trees"
+folder_path = "res://models/kenney_nature-kit/tree"
+count = 70
+scale_range = Vector2(4, 4.5)
+density_curve = SubResource("Curve_g5jdw")
+metadata/_custom_type_script = "uid://c50p4e7wmeocp"
+
+[sub_resource type="Curve" id="Curve_meryl"]
+_data = [Vector2(0.07142857, 0.025423765), 0.0, 0.0, 0, 0, Vector2(0.16883117, 1), 0.0, 0.0, 0, 0, Vector2(0.45779222, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_kymgb"]
+script = ExtResource("2_tblmu")
+category_name = "Flowers"
+folder_path = "res://models/kenney_nature-kit/flowers"
+count = 50
+scale_range = Vector2(1.7, 2)
+density_curve = SubResource("Curve_meryl")
+metadata/_custom_type_script = "uid://c50p4e7wmeocp"
+
+[sub_resource type="Resource" id="Resource_meryl"]
+script = ExtResource("2_tblmu")
+category_name = "Grass"
+folder_path = "res://models/kenney_nature-kit/grass"
+count = 80
+scale_range = Vector2(1.8, 2)
+density_curve = SubResource("Curve_meryl")
+metadata/_custom_type_script = "uid://c50p4e7wmeocp"
+
+[sub_resource type="Resource" id="Resource_585gf"]
+script = ExtResource("2_tblmu")
+category_name = "Stones"
+folder_path = "res://models/kenney_nature-kit/stone"
+count = 0
+scale_range = Vector2(2, 3)
+density_curve = SubResource("Curve_meryl")
+metadata/_custom_type_script = "uid://c50p4e7wmeocp"
+
+[resource]
+script = ExtResource("1_wtp1g")
+biome_name = "Forest"
+shoulder_texture = ExtResource("3_meryl")
+ground_texture = ExtResource("1_kymgb")
+shoulder_ground_blend_curve = SubResource("Curve_kymgb")
+height_noise = SubResource("FastNoiseLite_585gf")
+height_curve = SubResource("Curve_7dsm8")
+height_amplitude = 10.0
+vegetation_categories = Array[ExtResource("2_tblmu")]([SubResource("Resource_b0nky"), SubResource("Resource_kymgb"), SubResource("Resource_meryl"), SubResource("Resource_585gf")])
+metadata/_custom_type_script = "uid://calolvgfn5j6j"
