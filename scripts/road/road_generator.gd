@@ -20,7 +20,7 @@ var debug_path: ImmediateMesh
 var debug_mesh: MeshInstance3D
 
 const MAX_SEGMENTS = 46
-const UNLOAD_DISTANCE = 65
+const UNLOAD_DISTANCE = 75
 const MAX_ROAD_DIR_OFFSET = 2
 
 
@@ -29,7 +29,7 @@ func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	obstacle_set = _obstacle_set
 	spawn_start()
 	
-	create_debug_path()
+	#create_debug_path()
 
 
 func _process(_delta):
@@ -80,7 +80,7 @@ func update_debug_path() -> void:
 func add_curve_points(seg: Road_segment) -> void:
 	var origin_xform: Transform3D = seg.transform * seg.origin.transform
 	var anchor_xform: Transform3D = seg.transform * seg.anchor.transform
-	var handle_len: float = seg.length / 3.0
+	var handle_len: float = seg.length / 2.3
 
 	var chord: Vector3 = (anchor_xform.origin - origin_xform.origin).normalized()
 
@@ -105,7 +105,7 @@ func add_curve_points(seg: Road_segment) -> void:
 		anchor_dir * handle_len
 	)
 	
-	update_debug_path()
+	#update_debug_path()
 
 
 func pick_random_segment() -> PackedScene:

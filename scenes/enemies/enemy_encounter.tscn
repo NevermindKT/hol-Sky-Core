@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bgcey78txysbi"]
+
+[ext_resource type="Script" uid="uid://bcc07pjuuti4w" path="res://scripts/enemy/enemy_encounter.gd" id="1_l7kdd"]
+
+[node name="EnemyEncounter" type="Node3D" unique_id=1335453755]
+script = ExtResource("1_l7kdd")
+line_width = 15.0

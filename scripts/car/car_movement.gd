@@ -25,6 +25,10 @@ var steering_input := 0.0
 @export var min_strafe_speed := 2.0
 
 
+@export_category("Road Influence")
+@export var road_turn_force := 0.5
+
+
 @export_category("Dodge")
 @export var dodge_force := 12.0
 @export var dodge_distance := 2.0
@@ -48,6 +52,8 @@ var steering_input := 0.0
 @onready var visual_effects: Car_Visual_Effects = $Visual
 @onready var weapon_controller: Weapon_controller = $WeaponController
 @onready var player_status_controller: Player_Status_Controller = $PlayerStatusController
+
+@onready var road_manager: Road_manager = $"../Services/RoadManager"
 
 
 func _ready() -> void:
@@ -99,8 +105,12 @@ func process_speed(delta: float) -> void:
 
 func process_strafe(delta: float) -> void:
 	if speed >= min_strafe_speed:
-		var steering_mul = get_steering_multiplier()
+		var steering_mul := get_steering_multiplier()
+
 		lane_offset += steering_input * strafe_speed * steering_mul * delta
+
+		var road_offset := get_road_turn_offset()
+		lane_offset += road_offset * delta
 
 	lane_offset = clamp_offset()
 
@@ -112,8 +122,12 @@ func process_strafe(delta: float) -> void:
 	position.x += lateral_velocity * delta
 
 
+func get_road_turn_offset() -> float:
+	return -road_manager.smoothed_turn_velocity * road_turn_force
+
+
 func process_visuals(delta: float) -> void:
-	visual_effects.process_visual_tilt(delta, lateral_velocity)
+	visual_effects.process_visual_tilt(delta, lateral_velocity, road_manager.smoothed_turn_velocity)
 
 
 func get_speed_ratio() -> float:
