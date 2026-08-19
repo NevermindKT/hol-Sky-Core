@@ -49,14 +49,17 @@ drag = 4.0
 brake = 40.0
 max_speed = 100.0
 acceleration_curve = SubResource("Curve_dwkn5")
-strafe_speed = 5.0
+max_offset = 15.0
+strafe_speed = 12.0
 steering_curve = SubResource("Curve_58tws")
+dodge_force = 16.0
+dodge_distance = 15.0
 spring = 45.0
 damping = 6.0
 
 [node name="Visual" type="Node3D" parent="." unique_id=1626838081]
 script = ExtResource("2_iam02")
-y_tilt = 18.0
+y_tilt = 15.0
 z_tilt = 7.0
 
 [node name="CarMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]

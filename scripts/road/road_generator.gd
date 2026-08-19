@@ -9,15 +9,18 @@ var obstacle_set: Obstacles_set
 var last_segment: Road_segment
 var segments: Array[Road_segment] = []
 
-var road_dir := 0
+var road_dir := 0	
 var is_spawning := false
 
 var target_anchor: Marker3D
 
 var obstacle_spawn_chance: float
 
+var debug_path: ImmediateMesh
+var debug_mesh: MeshInstance3D
+
 const MAX_SEGMENTS = 46
-const UNLOAD_DISTANCE = 40
+const UNLOAD_DISTANCE = 65
 const MAX_ROAD_DIR_OFFSET = 2
 
 
@@ -25,6 +28,8 @@ func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	road_set = _road_set
 	obstacle_set = _obstacle_set
 	spawn_start()
+	
+	create_debug_path()
 
 
 func _process(_delta):
@@ -35,6 +40,41 @@ func _process(_delta):
 		segments[0].queue_free()
 		segments.pop_front()
 		Events.segment_dispawned.emit()
+
+
+func create_debug_path() -> void:
+	debug_path = ImmediateMesh.new()
+
+	debug_mesh = MeshInstance3D.new()
+	debug_mesh.mesh = debug_path
+
+	world.world.add_child(debug_mesh)
+
+
+func update_debug_path() -> void:
+	if debug_path == null:
+		return
+
+	var curve := world.world_path.curve
+
+	if curve == null or curve.get_baked_length() <= 0.0:
+		return
+
+	debug_path.clear_surfaces()
+
+	debug_path.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
+
+	var baked_length := curve.get_baked_length()
+	var step := 1.0
+
+	for distance in range(0, int(baked_length), int(step)):
+		var point := curve.sample_baked(distance)
+
+		debug_path.surface_set_normal(Vector3.UP)
+		debug_path.surface_set_uv(Vector2.ZERO)
+		debug_path.surface_add_vertex(point)
+
+	debug_path.surface_end()
 
 
 func add_curve_points(seg: Road_segment) -> void:
@@ -64,6 +104,8 @@ func add_curve_points(seg: Road_segment) -> void:
 		-anchor_dir * handle_len,
 		anchor_dir * handle_len
 	)
+	
+	update_debug_path()
 
 
 func pick_random_segment() -> PackedScene:
