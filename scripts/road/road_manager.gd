@@ -12,6 +12,9 @@ func initialize(start_distance: float):
 	if world == null:
 		push_warning("World не призначений. Ініціалізацію неможливо виконати.")
 		return
+	if car_movement == null:
+		push_warning("Car не призначений. Ініціалізацію неможливо виконати.")
+		return
 	
 	world.path_follow_3d.rotation_mode = PathFollow3D.ROTATION_XYZ
 	world.path_follow_3d.loop = false

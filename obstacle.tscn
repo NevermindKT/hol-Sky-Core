@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://5l3jx6le81bf"]
+
+[ext_resource type="Script" path="res://scripts/obstacles/obstacle.gd" id="1_sl1jc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
+height = 4.687561
+
+[sub_resource type="BoxMesh" id="BoxMesh_10jsn"]
+
+[node name="Obstacle" type="Area3D" unique_id=755817985]
+script = ExtResource("1_sl1jc")
+damage_dealt = 20.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1268127873]
+transform = Transform3D(-3.934025e-08, -0.9, 0, 0.9, -3.934025e-08, 0, 0, 0, 0.9, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_10jsn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=747052416]
+transform = Transform3D(4.5, 0, 0, 0, 0.6, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_10jsn")

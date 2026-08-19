@@ -5,23 +5,24 @@
 
 [sub_resource type="Curve3D" id="Curve3D_w5n4y"]
 _data = {
-"points": PackedVector3Array(6, 0, -10.591, -0.14, 0, 0, 0, 0, -10, 6, 0, -5.38, -0.2, 0, 0, -5, 0, 10),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 18.764624, 0, 0.05, -10, 13.268593, 0, -13.268593, 0, 0, 0, -12, 0.05, 45),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr5mc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w264i"]
 albedo_texture = ExtResource("3_iog18")
 uv1_scale = Vector3(0.1, 8, 1)
 
-[node name="RoadTurnRight" type="Node3D" unique_id=203116145 node_paths=PackedStringArray("anchor", "origin")]
+[node name="RoadTurnRight" type="Node3D" unique_id=203116145 node_paths=PackedStringArray("anchor", "origin", "road_path")]
 script = ExtResource("1_w5n4y")
 anchor = NodePath("Anchor")
 origin = NodePath("Origin")
+road_path = NodePath("RoadPath")
 segment_type = 2
 
 [node name="Anchor" type="Marker3D" parent="." unique_id=1238663358]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -5, 0, 10)
+transform = Transform3D(0.7071067, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.7071067, -12, 0, 45)
 
 [node name="Origin" type="Marker3D" parent="." unique_id=1109238659]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -30,10 +31,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 curve = SubResource("Curve3D_w5n4y")
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=1673735051]
-material_override = SubResource("StandardMaterial3D_pr5mc")
-autosmooth = true
-polygon = PackedVector2Array(-5, 0, -5, 0.05, 5, 0.05, 5, 0)
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=841236127]
+material_override = SubResource("StandardMaterial3D_w264i")
+polygon = PackedVector2Array(-16, 0, -16, 0.05, 16, 0.05, 16, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
