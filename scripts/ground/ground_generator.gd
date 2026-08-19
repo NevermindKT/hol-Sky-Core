@@ -12,52 +12,41 @@ const UNLOAD_DISTANCE := 40.0
 const ROAD_HALF_WIDTH := 5.0
 const GROUND_HALF_WIDTH := 40.0
 
-## Поділ клаптика по довжині — більше поділів точніше повторює вигин на
-## поворотах RoadPath.
 const LENGTH_STEPS := 12
-## Поділ по ширині — впливає і на форму рельєфу (більше поділів = плавніші
-## пагорби, менше — грубіші фасети), і на точність текстурного блендингу.
 const WIDTH_STEPS := 12
-
-## Шум для форми рельєфу (пагорби/ями). FastNoiseLite — вбудований ресурс
-## Godot, редагується прямо в Inspector (тип шуму, частота, seed).
-@export var height_noise: FastNoiseLite
-
-## Амплітуда рельєфу відносно дороги: X = 0 біля дороги, 1 на дальньому
-## краю; Y = 0 повністю рівно, 1 максимальна амплітуда (height_amplitude).
-## Лишіть лівий кінець кривої на Y=0, інакше узбіччя перестане бути рівним
-## стиком з дорогою.
-@export var height_curve: Curve
-
-## Максимальна висота нерівностей у метрах (на ділянці, де крива дає 1.0).
-@export_range(0.0, 10.0, 0.1) var height_amplitude := 1.5
-
-
-@export var shoulder_texture: Texture2D
-@export var ground_texture: Texture2D
-@export var shoulder_ground_blend_curve: Curve
-@export_range(0.01, 2.0, 0.01) var texture_tile_scale := 0.2
 
 const GROUND_SHADER_PATH := "res://resources/shaders/ground/ground_blend.gdshader"
 
+@export var available_biomes: Array[GroundBiomeData] = []
+
+@export var min_tiles_per_biome := 5
+@export var max_tiles_per_biome := 12
+
+@export_range(1, 10, 1) var transition_tiles := 3
+
+@export_range(0.01, 2.0, 0.01) var texture_tile_scale := 0.2
+@export_range(0.0, 1.0, 0.01) var roughness_value := 1.0
+
 var tiles: Array[MeshInstance3D] = []
 var _next_offset := 0.0
-var _shared_material: ShaderMaterial
+
+var _current_biome: GroundBiomeData
+var _next_biome: GroundBiomeData
+var _in_transition := false
+var _transition_progress := 0
+var _tiles_since_change := 0
+var _tiles_until_change := 0
 
 
 func initialize() -> void:
 	_next_offset = 0.0
-	_shared_material = _build_shared_material()
+	_current_biome = null
+	_next_biome = null
+	_in_transition = false
+	_transition_progress = 0
+	_tiles_since_change = 0
+	_tiles_until_change = 0
 	_try_spawn_next()
-
-
-func _build_shared_material() -> ShaderMaterial:
-	var shader_material := ShaderMaterial.new()
-	shader_material.shader = load(GROUND_SHADER_PATH)
-	shader_material.set_shader_parameter("shoulder_texture", shoulder_texture)
-	shader_material.set_shader_parameter("ground_texture", ground_texture)
-	shader_material.set_shader_parameter("uv_scale", texture_tile_scale)
-	return shader_material
 
 
 func _process(_delta: float) -> void:
@@ -78,23 +67,69 @@ func _try_spawn_next() -> void:
 	if _next_offset + TILE_LENGTH > baked_length:
 		return
 
-	var tile := _build_tile(curve, _next_offset)
+	var state := _advance_biome_state()
+	var biome_a: GroundBiomeData = state[0]
+	var biome_b: GroundBiomeData = state[1]
+	var blend: float = state[2]
+
+	var tile := _build_tile(curve, _next_offset, biome_a, biome_b, blend)
 	world.ground_container.add_child(tile)
 	tiles.append(tile)
 
 	_next_offset += TILE_LENGTH
 
 
-## Будує один MeshInstance3D-клаптик: дві смуги (ліва/права) уздовж
-## відрізка кривої [start_offset, start_offset + TILE_LENGTH]
-func _build_tile(curve: Curve3D, start_offset: float) -> MeshInstance3D:
+func _advance_biome_state() -> Array:
+	if available_biomes.is_empty():
+		return [null, null, 0.0]
+
+	if _current_biome == null:
+		_current_biome = _pick_random_biome(null)
+		_tiles_since_change = 0
+		_tiles_until_change = randi_range(min_tiles_per_biome, max_tiles_per_biome)
+		return [_current_biome, null, 0.0]
+
+	if _in_transition:
+		_transition_progress += 1
+		var blend := clampf(float(_transition_progress) / float(max(transition_tiles, 1)), 0.0, 1.0)
+
+		var biome_a := _current_biome
+		var biome_b := _next_biome
+
+		if _transition_progress >= transition_tiles:
+			_current_biome = _next_biome
+			_next_biome = null
+			_in_transition = false
+			_transition_progress = 0
+			_tiles_since_change = 0
+			_tiles_until_change = randi_range(min_tiles_per_biome, max_tiles_per_biome)
+
+		return [biome_a, biome_b, blend]
+
+	_tiles_since_change += 1
+	if _tiles_since_change >= _tiles_until_change and available_biomes.size() > 1:
+		_next_biome = _pick_random_biome(_current_biome)
+		_in_transition = true
+		_transition_progress = 0
+
+	return [_current_biome, null, 0.0]
+
+
+func _pick_random_biome(exclude: GroundBiomeData) -> GroundBiomeData:
+	var choices := available_biomes
+	if exclude != null and available_biomes.size() > 1:
+		choices = available_biomes.filter(func(b): return b != exclude)
+	return choices[randi() % choices.size()]
+
+
+func _build_tile(curve: Curve3D, start_offset: float, biome_a: GroundBiomeData, biome_b: GroundBiomeData, blend: float) -> MeshInstance3D:
 	var anchor: Vector3 = curve.sample_baked_with_rotation(start_offset).origin
 
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 
-	_build_side(st, curve, start_offset, 1.0, anchor)   # права сторона
-	_build_side(st, curve, start_offset, -1.0, anchor)  # ліва сторона
+	_build_side(st, curve, start_offset, 1.0, anchor, biome_a, biome_b, blend)
+	_build_side(st, curve, start_offset, -1.0, anchor, biome_a, biome_b, blend)
 
 	st.generate_normals()
 	st.generate_tangents()
@@ -102,26 +137,41 @@ func _build_tile(curve: Curve3D, start_offset: float) -> MeshInstance3D:
 	var mesh_instance := MeshInstance3D.new()
 	mesh_instance.mesh = st.commit()
 	mesh_instance.position = anchor
-	mesh_instance.material_override = _shared_material
+	mesh_instance.material_override = _build_tile_material(biome_a, biome_b)
 
 	if vegetation:
-		vegetation.populate_side(mesh_instance, curve, start_offset, TILE_LENGTH, anchor, 1.0, ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, self)
-		vegetation.populate_side(mesh_instance, curve, start_offset, TILE_LENGTH, anchor, -1.0, ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, self)
+		vegetation.populate_side(mesh_instance, curve, start_offset, TILE_LENGTH, anchor, 1.0, ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, self, biome_a, biome_b, blend)
+		vegetation.populate_side(mesh_instance, curve, start_offset, TILE_LENGTH, anchor, -1.0, ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, self, biome_a, biome_b, blend)
 
 	return mesh_instance
 
 
-## side_sign: 1.0 — права сторона дороги, -1.0 — ліва.
-## anchor віднімається від кожної вершини, щоб геометрія була локальною
-## відносно mesh_instance.position
-func _build_side(st: SurfaceTool, curve: Curve3D, start_offset: float, side_sign: float, anchor: Vector3) -> void:
+func _build_tile_material(biome_a: GroundBiomeData, biome_b: GroundBiomeData) -> ShaderMaterial:
+	var mat := ShaderMaterial.new()
+	mat.shader = load(GROUND_SHADER_PATH)
+
+	mat.set_shader_parameter("shoulder_texture_a", biome_a.shoulder_texture if biome_a else null)
+	mat.set_shader_parameter("ground_texture_a", biome_a.ground_texture if biome_a else null)
+
+	var texture_biome_b: GroundBiomeData = biome_b if biome_b else biome_a
+	mat.set_shader_parameter("shoulder_texture_b", texture_biome_b.shoulder_texture if texture_biome_b else null)
+	mat.set_shader_parameter("ground_texture_b", texture_biome_b.ground_texture if texture_biome_b else null)
+
+	mat.set_shader_parameter("uv_scale", texture_tile_scale)
+	mat.set_shader_parameter("roughness_value", roughness_value)
+
+	return mat
+
+
+func _build_side(st: SurfaceTool, curve: Curve3D, start_offset: float, side_sign: float, anchor: Vector3, biome_a: GroundBiomeData, biome_b: GroundBiomeData, blend: float) -> void:
 	var rows: Array = []
 
-
-	var blend_by_j: Array = []
+	var blend_a_by_j: Array = []
+	var blend_b_by_j: Array = []
 	for j in range(WIDTH_STEPS + 1):
 		var t: float = j / float(WIDTH_STEPS)
-		blend_by_j.append(_sample_blend(t))
+		blend_a_by_j.append(_sample_biome_shoulder_blend(biome_a, t))
+		blend_b_by_j.append(_sample_biome_shoulder_blend(biome_b if biome_b else biome_a, t))
 
 	for i in range(LENGTH_STEPS + 1):
 		var offset: float = start_offset + (TILE_LENGTH * i / float(LENGTH_STEPS))
@@ -133,7 +183,7 @@ func _build_side(st: SurfaceTool, curve: Curve3D, start_offset: float, side_sign
 			var lateral: float = lerp(ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, t) * side_sign
 			var point: Vector3 = sample.origin + sample.basis.x * lateral - anchor
 
-			point.y += sample_height(point.x + anchor.x, point.z + anchor.z, t)
+			point.y += sample_height(point.x + anchor.x, point.z + anchor.z, t, biome_a, biome_b, blend)
 
 			row.append(point)
 
@@ -151,8 +201,8 @@ func _build_side(st: SurfaceTool, curve: Curve3D, start_offset: float, side_sign
 			var v0 := start_offset + (TILE_LENGTH * i / float(LENGTH_STEPS))
 			var v1 := start_offset + (TILE_LENGTH * (i + 1) / float(LENGTH_STEPS))
 
-			var color0 := Color(blend_by_j[j], blend_by_j[j], blend_by_j[j])
-			var color1 := Color(blend_by_j[j + 1], blend_by_j[j + 1], blend_by_j[j + 1])
+			var color0 := Color(blend_a_by_j[j], blend, blend_b_by_j[j])
+			var color1 := Color(blend_a_by_j[j + 1], blend, blend_b_by_j[j + 1])
 
 			if side_sign > 0.0:
 				st.set_color(color0); st.set_uv(Vector2(u0, v0)); st.add_vertex(a)
@@ -172,27 +222,33 @@ func _build_side(st: SurfaceTool, curve: Curve3D, start_offset: float, side_sign
 				st.set_color(color0); st.set_uv(Vector2(u0, v1)); st.add_vertex(c)
 
 
-## X кривої: 0 біля дороги, 1 на дальньому краю. Якщо крива не призначена —
-## лінійний перехід за замовчуванням (той самий t, без спотворень).
-func _sample_blend(t: float) -> float:
-	if shoulder_ground_blend_curve == null:
+func _sample_biome_shoulder_blend(biome: GroundBiomeData, t: float) -> float:
+	if biome == null or biome.shoulder_ground_blend_curve == null:
 		return t
-	return clampf(shoulder_ground_blend_curve.sample(t), 0.0, 1.0)
+	return clampf(biome.shoulder_ground_blend_curve.sample(t), 0.0, 1.0)
 
 
-## Публічний — Vegetation_scatter викликає це саме, щоб дерева/камінці/трава
-## сідали на реальну висоту рельєфу
-func sample_height(world_x: float, world_z: float, t: float) -> float:
-	if height_noise == null:
+func sample_height(world_x: float, world_z: float, t: float, biome_a: GroundBiomeData, biome_b: GroundBiomeData, blend: float) -> float:
+	var height_a := _sample_biome_height(biome_a, world_x, world_z, t)
+
+	if biome_b == null or blend <= 0.0:
+		return height_a
+
+	var height_b := _sample_biome_height(biome_b, world_x, world_z, t)
+	return lerp(height_a, height_b, blend)
+
+
+func _sample_biome_height(biome: GroundBiomeData, world_x: float, world_z: float, t: float) -> float:
+	if biome == null or biome.height_noise == null:
 		return 0.0
 
-	var amplitude := height_amplitude
-	if height_curve:
-		amplitude *= clampf(height_curve.sample(t), 0.0, 1.0)
+	var amplitude := biome.height_amplitude
+	if biome.height_curve:
+		amplitude *= clampf(biome.height_curve.sample(t), 0.0, 1.0)
 	else:
 		amplitude *= t
 
-	var noise_value := height_noise.get_noise_2d(world_x, world_z)
+	var noise_value := biome.height_noise.get_noise_2d(world_x, world_z)
 	var upward_only := (noise_value + 1.0) * 0.5
 
 	return upward_only * amplitude

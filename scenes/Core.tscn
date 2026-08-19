@@ -24,71 +24,14 @@
 [ext_resource type="Script" uid="uid://dgn3pfxbskeg0" path="res://resources/weather/fog_data.gd" id="22_kusm0"]
 [ext_resource type="Resource" uid="uid://bfkjk34q3o5oc" path="res://resources/weather/fog/ClearNight.tres" id="23_i2q6t"]
 [ext_resource type="Resource" uid="uid://4lviiw663mbm" path="res://resources/weather/fog/DenseFog.tres" id="25_iqqgi"]
+[ext_resource type="Script" uid="uid://calolvgfn5j6j" path="res://scripts/data/ground/ground_biome_data.gd" id="26_a06ay"]
 [ext_resource type="Script" uid="uid://dq1h45bj2og1p" path="res://scripts/ground/ground_generator.gd" id="26_cyvft"]
-[ext_resource type="Texture2D" uid="uid://cfc72g7ci7atu" path="res://textures/ground/forest_ground_06_4k/forest_ground_06_diff_4k.jpg" id="27_a06ay"]
 [ext_resource type="Script" uid="uid://ckvbpffvi7k0i" path="res://scripts/ground/vegetation_scatter.gd" id="27_iqacv"]
-[ext_resource type="Texture2D" uid="uid://cuwyhufgeehto" path="res://textures/ground/forrest_ground_01_4k/forrest_ground_01_diff_4k.jpg" id="28_7hc18"]
-[ext_resource type="Script" uid="uid://c50p4e7wmeocp" path="res://scripts/data/vegetation/vegetation_category_data.gd" id="28_tc8ix"]
+[ext_resource type="Resource" uid="uid://ucjm55dej1jd" path="res://resources/biomes/forest.tres" id="27_kusm0"]
+[ext_resource type="Resource" uid="uid://dvcdakeu65st8" path="res://resources/biomes/field.tres" id="28_i2q6t"]
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="31_7hc18"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_a06ay"]
-frequency = 0.02
-
-[sub_resource type="Curve" id="Curve_7hc18"]
-_data = [Vector2(0.06397306, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.952), 0.3860425, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_u46l2"]
-_data = [Vector2(0.070707075, 0), 0.0, 0.0, 0, 0, Vector2(0.11111111, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_asndc"]
-_data = [Vector2(0.3961039, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.33804506, 0, 0]
-point_count = 2
-
-[sub_resource type="Resource" id="Resource_iqacv"]
-script = ExtResource("28_tc8ix")
-category_name = "Tree"
-folder_path = "res://models/kenney_nature-kit/tree"
-count = 30
-variants_per_tile = 5
-scale_range = Vector2(4, 6)
-density_curve = SubResource("Curve_asndc")
-metadata/_custom_type_script = "uid://c50p4e7wmeocp"
-
-[sub_resource type="Curve" id="Curve_tc8ix"]
-_data = [Vector2(0.09090909, 0), 0.0, 0.0, 0, 0, Vector2(0.17207792, 1), 0.0, -0.67554337, 0, 0, Vector2(0.658363, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Resource" id="Resource_asndc"]
-script = ExtResource("28_tc8ix")
-category_name = "Grass"
-folder_path = "res://models/kenney_nature-kit/grass"
-count = 200
-variants_per_tile = 10
-density_curve = SubResource("Curve_tc8ix")
-metadata/_custom_type_script = "uid://c50p4e7wmeocp"
-
-[sub_resource type="Resource" id="Resource_a06ay"]
-script = ExtResource("28_tc8ix")
-category_name = "Stone"
-folder_path = "res://models/kenney_nature-kit/stone"
-variants_per_tile = 5
-scale_range = Vector2(0.5, 1)
-density_curve = SubResource("Curve_tc8ix")
-metadata/_custom_type_script = "uid://c50p4e7wmeocp"
-
-[sub_resource type="Resource" id="Resource_7hc18"]
-script = ExtResource("28_tc8ix")
-category_name = "Flowers"
-folder_path = "res://models/kenney_nature-kit/flowers"
-count = 20
-variants_per_tile = 5
-scale_range = Vector2(1, 1.2)
-density_curve = SubResource("Curve_tc8ix")
-metadata/_custom_type_script = "uid://c50p4e7wmeocp"
 
 [node name="Core" type="Node3D" unique_id=243152911]
 
@@ -120,7 +63,7 @@ road_set = ExtResource("5_hyqco")
 world = NodePath("../../World")
 
 [node name="DistanceFog" parent="Environment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2080803, -109.03695)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.208, -150)
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
@@ -164,22 +107,18 @@ script = ExtResource("16_iqacv")
 weather_zone_scene = ExtResource("17_tc8ix")
 available_rain = Array[ExtResource("18_asndc")]([ExtResource("19_a06ay"), ExtResource("20_7hc18"), ExtResource("8_xwqeg")])
 available_fog = Array[ExtResource("22_kusm0")]([ExtResource("23_i2q6t"), ExtResource("12_xwqeg"), ExtResource("25_iqqgi")])
-min_segments_per_weather = 20
-max_segments_per_weather = 25
+max_segments_per_weather = 10
 
 [node name="GroundGenerator" type="Node" parent="Services" unique_id=951819073]
 script = ExtResource("26_cyvft")
-height_noise = SubResource("FastNoiseLite_a06ay")
-height_curve = SubResource("Curve_7hc18")
-height_amplitude = 10.0
-shoulder_texture = ExtResource("27_a06ay")
-ground_texture = ExtResource("28_7hc18")
-shoulder_ground_blend_curve = SubResource("Curve_u46l2")
+available_biomes = Array[ExtResource("26_a06ay")]([ExtResource("28_i2q6t"), ExtResource("27_kusm0")])
+min_tiles_per_biome = 10
+max_tiles_per_biome = 15
+transition_tiles = 5
 texture_tile_scale = 0.1
 
 [node name="VegetationScatter" type="Node" parent="Services" unique_id=1664795694]
 script = ExtResource("27_iqacv")
-categories = Array[ExtResource("28_tc8ix")]([SubResource("Resource_iqacv"), SubResource("Resource_asndc"), SubResource("Resource_a06ay"), SubResource("Resource_7hc18")])
 
 [node name="TireTrailManager" type="Node" parent="Services" unique_id=75355856]
 script = ExtResource("31_7hc18")

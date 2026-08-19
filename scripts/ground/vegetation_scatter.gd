@@ -1,31 +1,14 @@
 extends Node
 class_name Vegetation_scatter
 
-
-@export var categories: Array[VegetationCategoryData] = []
-
-## Дублікат меша моделі з уже притемненими матеріалами на КОЖНІЙ поверхні
-## окремо (стовбур і крона — різні поверхні з різними матеріалами, тому
-## притемнювати їх треба нарізно, а не одним material_override зверху).
 class MeshVariant:
 	var mesh: Mesh
 
-## _mesh_pools[i] — пул MeshVariant для categories[i] (той самий індекс).
-var _mesh_pools: Array[Array] = []
+var _mesh_pool_cache: Dictionary = {}
 
 
-## Викликається Bootstrap-ом ДО ground_generator.initialize() — інакше
-## перший клаптик землі спробує розкидати рослинність по ще порожніх масивах
-## (порядок _ready() між сусідніми вузлами Services покладатись не можна).
 func initialize() -> void:
-	_mesh_pools.clear()
-
-	for category in categories:
-		var pool := _load_meshes(category)
-		_mesh_pools.append(pool)
-
-		if pool.is_empty():
-			push_warning("Vegetation_scatter: категорія '%s' — не знайдено моделей у '%s'" % [category.category_name, category.folder_path])
+	_mesh_pool_cache.clear()
 
 
 func populate_side(
@@ -37,10 +20,18 @@ func populate_side(
 	side_sign: float,
 	road_half_width: float,
 	ground_half_width: float,
-	ground_generator: Ground_generator
+	ground_generator: Ground_generator,
+	biome_a: GroundBiomeData,
+	biome_b: GroundBiomeData,
+	blend: float
 ) -> void:
-	for i in range(categories.size()):
-		_scatter(tile, curve, start_offset, tile_length, anchor, side_sign, road_half_width, ground_half_width, categories[i], _mesh_pools[i], ground_generator)
+	if biome_a:
+		for category in biome_a.vegetation_categories:
+			_scatter(tile, curve, start_offset, tile_length, anchor, side_sign, road_half_width, ground_half_width, category, 1.0 - blend, ground_generator, biome_a, biome_b, blend)
+
+	if biome_b and blend > 0.0:
+		for category in biome_b.vegetation_categories:
+			_scatter(tile, curve, start_offset, tile_length, anchor, side_sign, road_half_width, ground_half_width, category, blend, ground_generator, biome_a, biome_b, blend)
 
 
 func _scatter(
@@ -53,10 +44,18 @@ func _scatter(
 	road_half_width: float,
 	ground_half_width: float,
 	category: VegetationCategoryData,
-	pool: Array,
-	ground_generator: Ground_generator
+	weight: float,
+	ground_generator: Ground_generator,
+	biome_a: GroundBiomeData,
+	biome_b: GroundBiomeData,
+	blend: float
 ) -> void:
+	var pool := _get_pool(category)
 	if pool.is_empty():
+		return
+
+	var effective_count := roundi(category.count * weight)
+	if effective_count <= 0:
 		return
 
 	var variants: Array = []
@@ -65,38 +64,51 @@ func _scatter(
 	for i in range(min(category.variants_per_tile, shuffled.size())):
 		variants.append(shuffled[i])
 
-	var per_variant := ceili(float(category.count) / variants.size())
+	var per_variant := ceili(float(effective_count) / variants.size())
 
 	for variant in variants:
 		var mm := MultiMesh.new()
 		mm.transform_format = MultiMesh.TRANSFORM_3D
 		mm.mesh = variant.mesh
-		mm.instance_count = per_variant
 
-		for i in range(per_variant):
+		var instance_xforms: Array[Transform3D] = []
+		var attempts := 0
+		var max_attempts := per_variant * 25
+
+		while instance_xforms.size() < per_variant and attempts < max_attempts:
+			attempts += 1
+
+			var t := _sample_lateral_t(category.density_curve)
+			if t < 0.0:
+				continue
+
 			var offset: float = start_offset + randf() * tile_length
 			var sample: Transform3D = curve.sample_baked_with_rotation(offset)
 
-			var t := _sample_lateral_t(category.density_curve)
 			var lateral: float = lerp(road_half_width, ground_half_width, t) * side_sign
 			var point: Vector3 = sample.origin + sample.basis.x * lateral - anchor
 
 			if ground_generator:
-				point.y += ground_generator.sample_height(point.x + anchor.x, point.z + anchor.z, t)
+				point.y += ground_generator.sample_height(point.x + anchor.x, point.z + anchor.z, t, biome_a, biome_b, blend)
 
 			var y_rotation := randf_range(0.0, TAU)
 			var scale_factor := randf_range(category.scale_range.x, category.scale_range.y)
 
-			var instance_xform := Transform3D(
+			instance_xforms.append(Transform3D(
 				Basis.IDENTITY.rotated(Vector3.UP, y_rotation).scaled(Vector3.ONE * scale_factor),
 				point
-			)
-			mm.set_instance_transform(i, instance_xform)
+			))
+
+		if instance_xforms.is_empty():
+			continue
+
+		mm.instance_count = instance_xforms.size()
+		for i in range(instance_xforms.size()):
+			mm.set_instance_transform(i, instance_xforms[i])
 
 		var mm_instance := MultiMeshInstance3D.new()
 		mm_instance.multimesh = mm
 		tile.add_child(mm_instance)
-
 
 
 func _sample_lateral_t(density_curve: Curve) -> float:
@@ -110,9 +122,20 @@ func _sample_lateral_t(density_curve: Curve) -> float:
 		if randf() <= weight:
 			return t
 
-	# Крива на всій ширині дає дуже низьку вагу (наприклад, майже пуста) —
-	# щоб не втратити інстанс зовсім, повертаємо рівномірний фолбек.
-	return randf()
+	return -1.0
+
+
+func _get_pool(category: VegetationCategoryData) -> Array:
+	if _mesh_pool_cache.has(category):
+		return _mesh_pool_cache[category]
+
+	var pool := _load_meshes(category)
+	_mesh_pool_cache[category] = pool
+
+	if pool.is_empty():
+		push_warning("Vegetation_scatter: категорія '%s' — не знайдено моделей у '%s'" % [category.category_name, category.folder_path])
+
+	return pool
 
 
 func _load_meshes(category: VegetationCategoryData) -> Array:

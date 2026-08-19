@@ -13,7 +13,7 @@ environment = ExtResource("1_8hyqn")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=89476310]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 15.509956, -10.5886755)
 light_color = Color(0.73871017, 0.90675664, 1, 1)
-light_energy = 0.01
+light_energy = 0.005
 sky_mode = 1
 
 [node name="LightningController" type="Node" parent="." unique_id=317716121 node_paths=PackedStringArray("directional_light")]

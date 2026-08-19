@@ -72,7 +72,7 @@ size = Vector2(1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cnbax"]
 frequency = 0.03
-fractal_gain = 0.7
+fractal_gain = 1.2
 fractal_weighted_strength = 1.0
 
 [sub_resource type="NoiseTexture3D" id="NoiseTexture3D_dic2c"]
@@ -80,6 +80,7 @@ noise = SubResource("FastNoiseLite_cnbax")
 
 [sub_resource type="FogMaterial" id="FogMaterial_cnbax"]
 density = 0.15
+emission = Color(0.138, 0.15763335, 0.2, 1)
 height_falloff = 0.4
 edge_fade = 0.4
 density_texture = SubResource("NoiseTexture3D_dic2c")
@@ -115,11 +116,11 @@ process_material = SubResource("ParticleProcessMaterial_iywvk")
 draw_pass_1 = SubResource("PlaneMesh_hc2fx")
 
 [node name="ShoulderFogLeft" type="FogVolume" parent="." unique_id=716893609]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 3.4329586, 0)
-size = Vector3(15, 10, 24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 6.2425175, 0)
+size = Vector3(15, 15, 24)
 material = SubResource("FogMaterial_cnbax")
 
 [node name="ShoulderFogRight" type="FogVolume" parent="." unique_id=348340868]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 3.4329586, 0)
-size = Vector3(15, 10, 24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 6.2425175, 0)
+size = Vector3(15, 15, 24)
 material = SubResource("FogMaterial_cnbax")
