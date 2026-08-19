@@ -59,8 +59,11 @@ damping = 6.0
 
 [node name="Visual" type="Node3D" parent="." unique_id=1626838081]
 script = ExtResource("2_iam02")
-y_tilt = 15.0
+y_tilt = 18.0
 z_tilt = 7.0
+road_y_tilt = 20.0
+road_z_tilt = 5.0
+delta_mul = 8.0
 
 [node name="CarMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]
 mesh = SubResource("BoxMesh_elpsl")

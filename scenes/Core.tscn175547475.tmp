@@ -43,7 +43,6 @@ metadata/_custom_type_script = "uid://nvhh14a8jfmw"
 
 [node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("2_uhg8y")]
 strafe_speed = 16.0
-road_turn_force = 0.8
 dodge_force = 18.0
 dodge_distance = 6.0
 player_cam = NodePath("../PlayerCam")
@@ -86,8 +85,6 @@ script = ExtResource("7_0uqmh")
 
 [node name="RoadManager" type="Node" parent="Services" unique_id=728849668]
 script = ExtResource("7_3g18v")
-turn_smoothing = 30.0
-sample_distance = 4.5
 metadata/_custom_type_script = "uid://bhl1wod4cbmvb"
 
 [node name="RoadGenerator" type="Node" parent="Services" unique_id=119337621]
