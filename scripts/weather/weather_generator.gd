@@ -2,7 +2,9 @@ extends Node
 class_name Weather_generator
 
 
-var car: Car_Movement
+var road_generator: Road_generator
+var road_manager: Road_manager
+
 @export var weather_zone_scene: PackedScene
 
 @export var available_rain: Array[RainData] = []
@@ -15,9 +17,11 @@ var segments_since_change := 0
 var segments_until_change := 0
 
 
-func initialize(_car: Car_Movement) -> void:
-	car = _car
-	
+func _ready() -> void:
+	if road_generator == null:
+		push_warning("Weather_generator: road_generator не призначений.")
+		return
+		
 	Events.segment_spawned.connect(_on_segment_spawned)
 	_pick_new_weather()
 	WeatherManager.set_weather(current_weather)
@@ -33,8 +37,9 @@ func _on_segment_spawned(segment: Road_segment) -> void:
 		return
 
 	var zone := weather_zone_scene.instantiate() as WeatherZone
+	zone.road_manager = road_manager
 	segment.add_child(zone)
-	zone.apply_weather(current_weather, car)
+	zone.apply_weather(current_weather)
 
 
 func _pick_new_weather() -> void:

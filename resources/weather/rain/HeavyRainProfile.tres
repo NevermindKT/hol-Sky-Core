@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RainProfile" format=3 uid="uid://hxykvkcsp7w4"]
+[gd_resource type="Resource" script_class="RainData" format=3 uid="uid://hxykvkcsp7w4"]
 
 [ext_resource type="Script" uid="uid://cj3gix68sfnqx" path="res://resources/weather/rain_data.gd" id="1_qo6at"]
 
@@ -8,6 +8,7 @@ drop_length = 3.0
 drop_width = 0.3
 rain_color = Color(0, 0.09803922, 0.18431373, 0.37254903)
 lightning_enabled = true
-lightning_max_interval = 10.0
+lightning_min_interval = 3.0
+lightning_max_interval = 7.0
 lightning_intensity = 3.0
 metadata/_custom_type_script = "uid://cj3gix68sfnqx"

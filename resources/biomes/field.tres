@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="GroundBiomeData" format=3 uid="uid://dvcdakeu65st8"]
+
+[ext_resource type="Texture2D" uid="uid://cuwyhufgeehto" path="res://textures/ground/forrest_ground_01_4k/forrest_ground_01_diff_4k.jpg" id="1_4xeex"]
+[ext_resource type="Script" uid="uid://calolvgfn5j6j" path="res://scripts/data/ground/ground_biome_data.gd" id="1_5j6ve"]
+[ext_resource type="Script" uid="uid://c50p4e7wmeocp" path="res://scripts/data/vegetation/vegetation_category_data.gd" id="2_k4ype"]
+[ext_resource type="Texture2D" uid="uid://cfc72g7ci7atu" path="res://textures/ground/forest_ground_06_4k/forest_ground_06_diff_4k.jpg" id="3_ybe5j"]
+
+[sub_resource type="Curve" id="Curve_4xeex"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.095999956), 0.11269565, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_585gf"]
+
+[sub_resource type="Curve" id="Curve_ybe5j"]
+_data = [Vector2(0.049382716, 0), 0.0, 0.0, 0, 0, Vector2(0.14506173, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_rxabi"]
+_data = [Vector2(0.07142857, 0), 0.0, 0.0, 0, 0, Vector2(0.16883117, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_o684g"]
+script = ExtResource("2_k4ype")
+category_name = "Flowers"
+folder_path = "res://models/kenney_nature-kit/flowers"
+count = 50
+scale_range = Vector2(1.7, 2)
+density_curve = SubResource("Curve_rxabi")
+metadata/_custom_type_script = "uid://c50p4e7wmeocp"
+
+[sub_resource type="Resource" id="Resource_frqan"]
+script = ExtResource("2_k4ype")
+category_name = "Grass"
+folder_path = "res://models/kenney_nature-kit/grass"
+count = 150
+scale_range = Vector2(1.5, 3)
+density_curve = SubResource("Curve_rxabi")
+metadata/_custom_type_script = "uid://c50p4e7wmeocp"
+
+[sub_resource type="Resource" id="Resource_4xeex"]
+script = ExtResource("2_k4ype")
+category_name = "Stones"
+folder_path = "res://models/kenney_nature-kit/stone"
+count = 20
+scale_range = Vector2(1.5, 2)
+density_curve = SubResource("Curve_rxabi")
+metadata/_custom_type_script = "uid://c50p4e7wmeocp"
+
+[resource]
+script = ExtResource("1_5j6ve")
+biome_name = "Field"
+shoulder_texture = ExtResource("3_ybe5j")
+ground_texture = ExtResource("1_4xeex")
+shoulder_ground_blend_curve = SubResource("Curve_ybe5j")
+height_noise = SubResource("FastNoiseLite_585gf")
+height_curve = SubResource("Curve_4xeex")
+height_amplitude = 2.0
+vegetation_categories = Array[ExtResource("2_k4ype")]([SubResource("Resource_o684g"), SubResource("Resource_frqan"), SubResource("Resource_4xeex")])
+metadata/_custom_type_script = "uid://calolvgfn5j6j"

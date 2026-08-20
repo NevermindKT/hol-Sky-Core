@@ -22,8 +22,12 @@ var roughness := 0.5
 func _ready():
 	_generate()
 	
-func strike(position: Vector3) -> void:
-	global_position = position
+## xform уже включає обертання поточного world.world.global_transform (див.
+## LightningController._random_strike_transform) — не тільки позицію, щоб
+## "верх" блискавки лишався узгодженим зі світом, навіть коли той повернутий
+## під час повороту дороги.
+func strike(xform: Transform3D) -> void:
+	global_transform = xform
 	_generate()
 	
 func show_bolt():

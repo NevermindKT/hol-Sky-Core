@@ -31,7 +31,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 curve = SubResource("Curve3D_a4orq")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=136630849]
+layers = 3
 material_override = SubResource("StandardMaterial3D_3itlt")
+use_collision = true
+collision_layer = 2
+collision_mask = 0
 polygon = PackedVector2Array(-5, 0, -5, 0.05, 5, 0.05, 5, 0)
 mode = 2
 path_node = NodePath("..")
@@ -44,6 +48,21 @@ path_local = true
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
+
+[node name="GPUParticlesCollisionBoxes" type="Node3D" parent="." unique_id=1536393046]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=406447437]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.25, -4.382873)
+size = Vector3(9, 0.5, 11.234253)
+
+[node name="GPUParticlesCollisionBox3D2" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=332243842]
+transform = Transform3D(0.7112096, 0, -0.70297974, 0, 1, 0, 0.70297974, 0, 0.7112096, -3.1349108, 0.25, 7.9681864)
+size = Vector3(9.747803, 0.5, 5.3236694)
+
+[node name="GPUParticlesCollisionBox3D3" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=380609563]
+transform = Transform3D(0.947291, 0, -0.3203736, 0, 1, 0, 0.3203736, 0, 0.947291, -0.9971124, 0.25, 3.7324996)
+size = Vector3(9.747803, 0.5, 8.496933)
 
 [node name="Obstacles" type="Node" parent="." unique_id=1009596093]
 

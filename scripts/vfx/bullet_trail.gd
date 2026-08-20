@@ -13,7 +13,6 @@ func _ready():
 	apply_data()
 	
 func apply_data():
-	print("Apply profile")
 	if data == null:
 		return
 
