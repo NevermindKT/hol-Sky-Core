@@ -12,5 +12,5 @@ class_name VegetationCategoryData
 
 @export var density_curve: Curve
 
-@export_range(0.0, 1.0, 0.01) var albedo_darken := 0.4
-@export_range(0.0, 1.0, 0.01) var roughness := 1.0
+var albedo_darken := 0.5
+var roughness := 1.0

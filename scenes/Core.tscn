@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dh2trqedhmxrp"]
 
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="1_i24gt"]
-[ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="2_uhg8y"]
+[ext_resource type="PackedScene" uid="uid://bqi8e365qib7q" path="res://scenes/player/PlayerCar.tscn" id="2_uhg8y"]
 [ext_resource type="PackedScene" uid="uid://gk4q6i0norp7" path="res://scenes/general/pause_menu.tscn" id="4_uhg8y"]
 [ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="5_hyqco"]
 [ext_resource type="Script" uid="uid://bdv0lpvwl3hpr" path="res://scripts/general/bootstrap.gd" id="6_v852s"]
@@ -27,6 +27,14 @@
 [ext_resource type="Script" uid="uid://dgn3pfxbskeg0" path="res://resources/weather/fog_data.gd" id="22_kusm0"]
 [ext_resource type="Resource" uid="uid://bfkjk34q3o5oc" path="res://resources/weather/fog/ClearNight.tres" id="23_i2q6t"]
 [ext_resource type="Resource" uid="uid://4lviiw663mbm" path="res://resources/weather/fog/DenseFog.tres" id="25_iqqgi"]
+[ext_resource type="Script" uid="uid://calolvgfn5j6j" path="res://scripts/data/ground/ground_biome_data.gd" id="26_a06ay"]
+[ext_resource type="Script" uid="uid://dq1h45bj2og1p" path="res://scripts/ground/ground_generator.gd" id="26_cyvft"]
+[ext_resource type="Script" uid="uid://ckvbpffvi7k0i" path="res://scripts/ground/vegetation_scatter.gd" id="27_iqacv"]
+[ext_resource type="Resource" uid="uid://ucjm55dej1jd" path="res://resources/biomes/forest.tres" id="27_kusm0"]
+[ext_resource type="Resource" uid="uid://dvcdakeu65st8" path="res://resources/biomes/field.tres" id="28_i2q6t"]
+[ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="31_7hc18"]
+[ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
+[ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("7_tc8ix")
@@ -37,14 +45,6 @@ metadata/_custom_type_script = "uid://bocwaebt17tfi"
 script = ExtResource("9_a06ay")
 obstacles = Array[ExtResource("7_tc8ix")]([SubResource("Resource_cyvft")])
 metadata/_custom_type_script = "uid://nvhh14a8jfmw"
-[ext_resource type="Script" uid="uid://calolvgfn5j6j" path="res://scripts/data/ground/ground_biome_data.gd" id="26_a06ay"]
-[ext_resource type="Script" uid="uid://dq1h45bj2og1p" path="res://scripts/ground/ground_generator.gd" id="26_cyvft"]
-[ext_resource type="Script" uid="uid://ckvbpffvi7k0i" path="res://scripts/ground/vegetation_scatter.gd" id="27_iqacv"]
-[ext_resource type="Resource" uid="uid://ucjm55dej1jd" path="res://resources/biomes/forest.tres" id="27_kusm0"]
-[ext_resource type="Resource" uid="uid://dvcdakeu65st8" path="res://resources/biomes/field.tres" id="28_i2q6t"]
-[ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="31_7hc18"]
-[ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
-[ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
 
 [node name="Core" type="Node3D" unique_id=243152911]
 
@@ -81,7 +81,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.208, -150)
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
-[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager", "lightning_controller")]
+[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "enemy_spawner")]
 script = ExtResource("6_v852s")
 car = NodePath("../../Car")
 hud = NodePath("../../UI/HUD")
@@ -95,6 +95,7 @@ weather_generator = NodePath("../WeatherGenerator")
 tire_trail_manager = NodePath("../TireTrailManager")
 blood_trail_manager = NodePath("../BloodTrailManager")
 lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
+enemy_spawner = NodePath("../EnemySpawner")
 
 [node name="RunManager" type="Node" parent="Services" unique_id=239540275]
 script = ExtResource("7_0uqmh")
@@ -108,8 +109,6 @@ script = ExtResource("7_mowk8")
 
 [node name="EnemySpawner" type="Node" parent="Services" unique_id=1015351304]
 script = ExtResource("14_dakql")
-world = NodePath("../../Environment/World")
-road_generator = NodePath("../RoadGenerator")
 enemy_scene = ExtResource("15_cyvft")
 min_gap_m = 10.0
 max_gap_m = 20.0
