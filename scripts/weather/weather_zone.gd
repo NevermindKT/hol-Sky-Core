@@ -1,7 +1,7 @@
 extends Node3D
 class_name WeatherZone
 
-
+var car: Car_Movement
 @export var rain_particles: GPUParticles3D
 @export var shoulder_fog_left: FogVolume
 @export var shoulder_fog_right: FogVolume

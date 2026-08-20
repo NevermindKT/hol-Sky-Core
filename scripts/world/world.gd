@@ -11,6 +11,7 @@ class_name World
 @onready var trail_container: Node3D = $World/TrailContainer
 
 @export var road_set: Road_Set
+@export var obstacle_set: Obstacles_set
 
 var last_world_basis: Basis
 

@@ -16,6 +16,7 @@ extends Node
 
 const START_DISTANCE := 5.0
 const DISTANCE_TO_END := 200.0
+const OBSTACLE_SPAWN_CHANCE = 0.05
 
 func _ready() -> void:
 	set_world()
@@ -24,10 +25,16 @@ func _ready() -> void:
 	set_road_manager()
 	set_road_generator()
 	
-	road_generator.initialize(world.road_set)
+	road_generator.obstacle_spawn_chance = OBSTACLE_SPAWN_CHANCE
+	road_generator.initialize(world.road_set, world.obstacle_set)
 	vegetation_scatter.initialize()
 	ground_generator.initialize()
 	road_manager.initialize(START_DISTANCE)
+	
+	set_road_generator()
+	
+	weather_generator.initialize(car)
+	
 	run_manager.initialize(DISTANCE_TO_END)
 	tire_trail_manager.initialize(world, car, road_manager)
 	blood_trail_manager.initialize(world, car, road_manager)
@@ -54,5 +61,8 @@ func set_player_car():
 	road_manager.car_movement = car
 
 
-func set_weapon_system() -> void:
+func set_weapon_system():
 	car.weapon_controller.initialize()
+
+func set_road_generator():
+	enemy_spawner.road_generator = road_generator
