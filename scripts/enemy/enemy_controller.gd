@@ -22,6 +22,8 @@ const ROAD_COLLISION_MASK := 2
 @export var detection_range: float = 40.0
 @export var road_lateral_limit: float = 4.0
 
+@export var despawn_behind_distance: float = 40.0
+
 #@export var world_scroll_speed: float = 0.0
 @export var corpse_lifetime: float = 5.0
 
@@ -38,6 +40,8 @@ func _ready() -> void:
 		knockback_controller.reaction_finished.connect(_on_reaction_finished)
 
 func _physics_process(_delta: float) -> void:
+	_check_despawn()
+
 	if _state == State.NORMAL:
 		move()
 
@@ -175,6 +179,11 @@ func _find_road_segment(node: Node) -> Road_segment:
 		current = current.get_parent()
 
 	return null
+
+
+func _check_despawn() -> void:
+	if global_position.z > despawn_behind_distance:
+		queue_free()
 
 
 func _get_car() -> Node3D:
