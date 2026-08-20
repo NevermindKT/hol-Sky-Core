@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dxcon1p1pac4m"]
+
+[ext_resource type="Script" uid="uid://df0nbywd1m17v" path="res://scripts/vfx/blood_decal.gd" id="1_bldc0"]
+[ext_resource type="Texture2D" uid="uid://xv5aqssu8srx" path="res://textures/vfx/blood/blood_splat_01.png" id="2_3imua"]
+[ext_resource type="Texture2D" uid="uid://7k8d8e4ev57b" path="res://textures/vfx/blood/blood_splat_03.png" id="3_kg5a5"]
+[ext_resource type="Texture2D" uid="uid://btyap1sx78yp2" path="res://textures/vfx/blood/blood_splat_02.png" id="4_b4ipu"]
+[ext_resource type="Texture2D" uid="uid://dlif8p6ue8hng" path="res://textures/vfx/blood/blood_splat_04.png" id="5_l73i6"]
+[ext_resource type="Texture2D" uid="uid://dj33npw6l43a4" path="res://textures/vfx/blood/blood_splat_05.png" id="6_2870k"]
+[ext_resource type="Texture2D" uid="uid://ci3k88hx1i2gj" path="res://textures/vfx/blood/blood_splat_06.png" id="7_apb7j"]
+[ext_resource type="Texture2D" uid="uid://g3gwisl6lsom" path="res://textures/vfx/blood/blood_splat_01_normal.png" id="8_7v8oc"]
+[ext_resource type="Texture2D" uid="uid://mxl3b7i80gbr" path="res://textures/vfx/blood/blood_splat_02_normal.png" id="9_35gec"]
+[ext_resource type="Texture2D" uid="uid://c0gmim3nwekd0" path="res://textures/vfx/blood/blood_splat_03_normal.png" id="10_188qp"]
+[ext_resource type="Texture2D" uid="uid://dvkcaa2r0pyc3" path="res://textures/vfx/blood/blood_splat_04_normal.png" id="11_40een"]
+[ext_resource type="Texture2D" uid="uid://cs7smwfkr3wsw" path="res://textures/vfx/blood/blood_splat_05_normal.png" id="12_evyt8"]
+[ext_resource type="Texture2D" uid="uid://bbb1ejpco5jh6" path="res://textures/vfx/blood/blood_splat_06_normal.png" id="13_635yb"]
+[ext_resource type="Texture2D" uid="uid://cwfi45xil7e7u" path="res://textures/vfx/blood/blood_splat_01_orm.png" id="14_qwrjf"]
+[ext_resource type="Texture2D" uid="uid://4qjb18plvngn" path="res://textures/vfx/blood/blood_splat_02_orm.png" id="15_xqeep"]
+[ext_resource type="Texture2D" uid="uid://bbo2pbu2mp13d" path="res://textures/vfx/blood/blood_splat_03_orm.png" id="16_4cymm"]
+[ext_resource type="Texture2D" uid="uid://cchxr4c87ofh0" path="res://textures/vfx/blood/blood_splat_04_orm.png" id="17_eodtx"]
+[ext_resource type="Texture2D" uid="uid://boxn4u8xkf6ba" path="res://textures/vfx/blood/blood_splat_05_orm.png" id="18_rgqt1"]
+[ext_resource type="Texture2D" uid="uid://cnwgnypu4lx2p" path="res://textures/vfx/blood/blood_splat_06_orm.png" id="19_qgu0n"]
+
+[node name="BloodDecal" type="Decal" unique_id=1689320868]
+size = Vector3(1.5, 1.5, 1.5)
+cull_mask = 2
+script = ExtResource("1_bldc0")
+texture_variants = Array[Texture2D]([ExtResource("2_3imua"), ExtResource("3_kg5a5"), ExtResource("4_b4ipu"), ExtResource("5_l73i6"), ExtResource("6_2870k"), ExtResource("7_apb7j")])
+normal_variants = Array[Texture2D]([ExtResource("8_7v8oc"), ExtResource("9_35gec"), ExtResource("10_188qp"), ExtResource("11_40een"), ExtResource("12_evyt8"), ExtResource("13_635yb")])
+orm_variants = Array[Texture2D]([ExtResource("14_qwrjf"), ExtResource("15_xqeep"), ExtResource("16_4cymm"), ExtResource("17_eodtx"), ExtResource("18_rgqt1"), ExtResource("19_qgu0n")])
+scale_range = Vector2(0.7, 1.5)

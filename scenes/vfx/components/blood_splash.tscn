@@ -6,9 +6,10 @@
 render_priority = 0
 shader = ExtResource("1_jxfd8")
 shader_parameter/normal_strength = 10.000000475
-shader_parameter/edge_color = Color(0.37076867, 0, 0.02350114, 1)
-shader_parameter/center_color = Color(1, 0.36378378, 0.33328116, 1)
+shader_parameter/edge_color = Color(0.101960786, 0.011764706, 0.011764706, 1)
+shader_parameter/center_color = Color(0.6, 0.019607844, 0.019607844, 1)
 shader_parameter/dissolve_amount = 0.35
+shader_parameter/seed_offset = 0.0
 
 [sub_resource type="Curve" id="Curve_ffdo6"]
 _data = [Vector2(0, 0), 0.0, 17.416662, 0, 0, Vector2(0.03952568, 1), 0.0, 0.0, 0, 0, Vector2(0.7306122, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.634827, 0.0, 0, 0]
@@ -32,7 +33,7 @@ sub_emitter_mode = 3
 sub_emitter_amount_at_collision = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_mti6b"]
-size = Vector2(0.5, 1.5)
+size = Vector2(1, 3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6vnta"]
 render_priority = 0
@@ -41,6 +42,7 @@ shader_parameter/normal_strength = 10.0
 shader_parameter/edge_color = Color(0.1, 0.01, 0.01, 1)
 shader_parameter/center_color = Color(0.6, 0.02, 0.02, 1)
 shader_parameter/dissolve_amount = 0.35
+shader_parameter/seed_offset = 0.0
 
 [sub_resource type="Curve" id="Curve_gqr4j"]
 bake_resolution = 91
@@ -65,12 +67,12 @@ size = Vector2(1, 1)
 [node name="Splash" type="GPUParticles3D" parent="." unique_id=605534574]
 material_override = SubResource("ShaderMaterial_nvvhs")
 emitting = false
-amount = 25
+amount = 50
 sub_emitter = NodePath("../SplashSubEmitter")
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
-fixed_fps = 90
+fixed_fps = 120
 visibility_aabb = AABB(-50, -4, -50, 100, 8, 100)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ffdo6")

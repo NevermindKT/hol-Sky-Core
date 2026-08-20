@@ -24,14 +24,17 @@ weight = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=576532607]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+layers = 3
 material_override = SubResource("StandardMaterial3D_pw7st")
 mesh = SubResource("PlaneMesh_10jsn")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="MeshInstance3D" unique_id=1376683630]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1149396445]
+collision_layer = 2
+collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_4kxuq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/AnimatableBody3D" unique_id=1045597100]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1045597100]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_4kxuq")
 
@@ -42,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=1608775228]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, -0.2, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.25, 0)
 size = Vector3(9, 0.5, 20)
 
 [node name="Obstacles" type="Node" parent="." unique_id=1283524179]

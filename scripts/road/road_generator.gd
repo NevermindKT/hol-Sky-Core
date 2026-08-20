@@ -97,15 +97,15 @@ func pick_random_segment() -> PackedScene:
 func spawn(scene: PackedScene):
 	var new_segment: Road_segment = scene.instantiate()
 
-	segments.append(new_segment)
-	world.road_container.add_child(new_segment)
-
 	if last_segment != null:
 		new_segment.transform = (
 			last_segment.transform
 			* last_segment.anchor.transform
 			* new_segment.origin.transform.affine_inverse()
 		)
+		
+	segments.append(new_segment)
+	world.road_container.add_child(new_segment)
 
 	add_curve_points(new_segment)
 	spawn_obstacle(new_segment)

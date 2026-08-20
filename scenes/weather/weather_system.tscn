@@ -19,6 +19,8 @@ sky_mode = 1
 [node name="LightningController" type="Node" parent="." unique_id=317716121 node_paths=PackedStringArray("directional_light")]
 script = ExtResource("3_8ccrl")
 directional_light = NodePath("../DirectionalLight3D")
+strike_ahead_min = 50.0
+strike_lateral_range = 50.0
 
 [node name="LightningBolt" parent="LightningController" unique_id=539544344 instance=ExtResource("4_lclfr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.00918, 0, -68.108055)

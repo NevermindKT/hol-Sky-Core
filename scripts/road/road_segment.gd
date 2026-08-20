@@ -25,14 +25,6 @@ func _ready() -> void:
 		if child is Marker3D:
 			obstacle_placement_array.append(child)
 
-
-## Transform3D полотна дороги в ЛОКАЛЬНИХ координатах цього сегмента у
-## точці t [0..1] вздовж нього (0 = Origin, 1 = Anchor). origin результату —
-## точка на дорозі, basis.x — вектор "вбік" (перпендикулярно напрямку руху).
-##
-## Для поворотів (road_turn_left/right) читає реальну криву RoadPath —
-## Origin/Anchor там лише точки стику з сусідами, а не сама траєкторія.
-## Для прямих сегментів (немає RoadPath) рахує лінійно по Origin -> Anchor.
 func road_transform_at(t: float) -> Transform3D:
 	t = clampf(t, 0.0, 1.0)
 
@@ -51,9 +43,6 @@ func road_transform_at(t: float) -> Transform3D:
 		basis = Basis.looking_at(dir.normalized(), Vector3.UP)
 	return Transform3D(basis, point)
 
-
-## Найближчий до заданої точки (в ЛОКАЛЬНИХ координатах цього сегмента)
-## параметр t [0..1] вздовж полотна дороги.
 func closest_t(local_point: Vector3) -> float:
 	var road_path := get_node_or_null("RoadPath") as Path3D
 	if road_path and road_path.curve and road_path.curve.get_baked_length() > 0.0:

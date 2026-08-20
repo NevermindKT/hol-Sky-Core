@@ -3,11 +3,18 @@ class_name WeatherZone
 
 var car: Car_Movement
 @export var rain_particles: GPUParticles3D
+@export var shoulder_fog_left: FogVolume
+@export var shoulder_fog_right: FogVolume
 
 const ENTER_RADIUS := 10.0
 
+var road_manager: Road_manager
+
 var _weather_data := WeatherData.new()
 var _announced := false
+
+var _shoulder_material_left: FogMaterial
+var _shoulder_material_right: FogMaterial
 
 
 func _ready() -> void:
@@ -19,52 +26,72 @@ func _ready() -> void:
 	if shader:
 		rain_particles.material_override = shader.duplicate()
 
+	if shoulder_fog_left and shoulder_fog_left.material:
+		_shoulder_material_left = (shoulder_fog_left.material as FogMaterial).duplicate()
+		shoulder_fog_left.material = _shoulder_material_left
+
+	if shoulder_fog_right and shoulder_fog_right.material:
+		_shoulder_material_right = (shoulder_fog_right.material as FogMaterial).duplicate()
+		shoulder_fog_right.material = _shoulder_material_right
+
 
 func _process(_delta: float) -> void:
 	if _announced:
 		return
-	if car == null:
+	if road_manager == null or road_manager.car_movement == null:
 		return
-	if global_position.distance_to(car.global_position) > ENTER_RADIUS:
+	if global_position.distance_to(road_manager.car_movement.global_position) > ENTER_RADIUS:
 		return
 
 	_announced = true
 
-	#if _weather_data.rain == null:
-		#print("Entered segment at ", global_position, " — rain profile: NONE (emitting=", rain_particles.emitting, ")")
-	#else:
-		#print(
-			#"Entered segment at ", global_position,
-			#" — rain profile: ", _weather_data.rain.resource_path,
-			#" enabled=", _weather_data.rain.enabled,
-			#" amount=", _weather_data.rain.amount,
-			#" emitting=", rain_particles.emitting
-		#)
+	#print(
+		#"Zone announced at ", global_position,
+		#" rain=", (_weather_data.rain.resource_path if _weather_data.rain else "null"),
+		#" fog=", (_weather_data.fog.resource_path if _weather_data.fog else "null"),
+		#" time=", Time.get_ticks_msec()
+	#)
 
 	WeatherManager.set_weather(_weather_data)
 
 
-func apply_weather(data: WeatherData, _car: Car_Movement) -> void:
-	# Snapshot, not a reference — weather_generator.gd reuses and mutates
-	# the same WeatherData object on every future weather change. Without
-	# duplicating here, every already-spawned zone would retroactively
-	# "see" whatever the generator picks next, same shared-state trap as
-	# the QuadMesh/ShaderMaterial one earlier.
-	car = _car
+func apply_weather(data: WeatherData) -> void:
 	_weather_data = data.duplicate() if data != null else WeatherData.new()
 	var rain := _weather_data.rain
 
 	if rain == null:
 		rain_particles.emitting = false
-		return
+	else:
+		rain_particles.emitting = rain.enabled
+		rain_particles.amount = rain.amount
 
-	rain_particles.emitting = rain.enabled
-	rain_particles.amount = rain.amount
+		var mesh := rain_particles.draw_pass_1 as QuadMesh
+		if mesh:
+			mesh.size = Vector2(rain.drop_width, rain.drop_length)
 
-	var mesh := rain_particles.draw_pass_1 as QuadMesh
-	if mesh:
-		mesh.size = Vector2(rain.drop_width, rain.drop_length)
+		var shader := rain_particles.material_override as ShaderMaterial
+		if shader:
+			shader.set_shader_parameter("rain_color", rain.rain_color)
 
-	var shader := rain_particles.material_override as ShaderMaterial
-	if shader:
-		shader.set_shader_parameter("rain_color", rain.rain_color)
+	_apply_shoulder_fog(_weather_data.fog)
+
+
+func _apply_shoulder_fog(fog: FogData) -> void:
+	var density := 0.0
+	var offset := 20.0
+
+	if fog != null:
+		density = fog.shoulder_density
+		offset = fog.shoulder_offset
+
+	if shoulder_fog_left:
+		shoulder_fog_left.visible = density > 0.0
+		shoulder_fog_left.position.x = -offset
+		if _shoulder_material_left:
+			_shoulder_material_left.density = density
+
+	if shoulder_fog_right:
+		shoulder_fog_right.visible = density > 0.0
+		shoulder_fog_right.position.x = offset
+		if _shoulder_material_right:
+			_shoulder_material_right.density = density
