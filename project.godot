@@ -25,6 +25,8 @@ WeatherManager="*uid://5fu5kmhw80gh"
 
 [display]
 
+window/size/viewport_width=2460
+window/size/viewport_height=1040
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
