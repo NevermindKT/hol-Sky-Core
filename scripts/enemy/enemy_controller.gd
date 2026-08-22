@@ -110,7 +110,7 @@ func _spawn_hit_effect(hit_data: HitData) -> void:
 	world.enemies.add_child(effect)
 
 	var direction := global_position - hit_data.car.global_position
-	effect.play(hit_data.contact_point, direction)
+	effect.play(hit_data.contact_point, direction, hit_data.car_velocity.length())
 
 
 func _spawn_blood_decals(hit_data: HitData) -> void:
