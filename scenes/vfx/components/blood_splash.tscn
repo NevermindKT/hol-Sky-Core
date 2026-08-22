@@ -22,10 +22,11 @@ curve = SubResource("Curve_ffdo6")
 particle_flag_align_y = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
-initial_velocity_min = 14.0
-initial_velocity_max = 16.0
-scale_min = 0.5
-scale_max = 0.59999996
+initial_velocity_min = 6.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -25, 0)
+scale_min = 0.19999999
+scale_max = 0.25
 alpha_curve = SubResource("CurveTexture_gqr4j")
 anim_offset_max = 1.0
 collision_mode = 2
@@ -67,10 +68,10 @@ size = Vector2(1, 1)
 [node name="Splash" type="GPUParticles3D" parent="." unique_id=605534574]
 material_override = SubResource("ShaderMaterial_nvvhs")
 emitting = false
-amount = 50
+amount = 20
 sub_emitter = NodePath("../SplashSubEmitter")
+lifetime = 0.8
 one_shot = true
-speed_scale = 2.0
 explosiveness = 1.0
 fixed_fps = 120
 visibility_aabb = AABB(-50, -4, -50, 100, 8, 100)
@@ -80,7 +81,7 @@ draw_pass_1 = SubResource("QuadMesh_mti6b")
 
 [node name="SplashSubEmitter" type="GPUParticles3D" parent="." unique_id=709017774]
 material_override = SubResource("ShaderMaterial_6vnta")
-amount = 50
+amount = 10
 lifetime = 5.0
 randomness = 0.78
 fixed_fps = 60
