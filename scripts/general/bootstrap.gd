@@ -10,6 +10,9 @@ extends Node
 @onready var road_generator: Road_generator = $"../RoadGenerator"
 @onready var weather_generator: Weather_generator = $"../WeatherGenerator"
 
+@onready var enemy_encounter: Enemy_Encounter = $"../../Enivironment/EnemyEncounter"
+
+
 const START_DISTANCE := 5.0
 const DISTANCE_TO_END := 200.0
 const OBSTACLE_SPAWN_CHANCE = 0.05
@@ -31,6 +34,9 @@ func _ready() -> void:
 	
 	run_manager.initialize(DISTANCE_TO_END)
 	
+	enemy_encounter.inialize()
+	enemy_encounter.start_encounter()
+	
 	queue_free()
 
 
@@ -39,6 +45,7 @@ func set_world():
 	road_manager.world = world
 	ProjectileSpawner.world = world
 	enemy_spawner.world = world
+
 
 func set_player_car():
 	road_manager.car_movement = car
