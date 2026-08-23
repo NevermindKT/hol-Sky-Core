@@ -1,10 +1,28 @@
 extends Node3D
-class_name Enemy_Encounter_Manager
+class_name Enemy_Encounter
 
-var is_now_battle: bool
-var current_enemys: Array[Encounter_Enemy]
 
-@export var line_width: float
+@export var player: Node3D
+@export var enemies: Array[Encounter_Enemy] = []
 
-func add_enenmy(enemy: Encounter_Enemy) -> void:
-	pass
+
+func inialize() -> void:
+	if !get_children():
+		print("There no initial enemys in enemy encounter!")
+		
+	for child in get_children():
+		if child is Encounter_Enemy:
+			enemies.append(child)
+			
+			child.initialize(player)
+
+
+func add_enemy(enemy: Encounter_Enemy) -> void:
+	self.add_child(enemy)
+	enemies.append(enemy)
+	enemy.initialize(player)
+
+
+func start_encounter() -> void:
+	for enemy in enemies:
+		enemy.activate()

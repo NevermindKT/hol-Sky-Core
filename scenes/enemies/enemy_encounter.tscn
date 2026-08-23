@@ -4,4 +4,3 @@
 
 [node name="EnemyEncounter" type="Node3D" unique_id=1335453755]
 script = ExtResource("1_l7kdd")
-line_width = 15.0
