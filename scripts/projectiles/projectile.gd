@@ -11,6 +11,12 @@ const GRAVITY := Vector3.DOWN * 9.81
 var velocity: Vector3
 var start_position: Vector3
 
+@onready var hit_box: Area3D = $HitBox
+
+
+func _ready() -> void:
+	hit_box.area_entered.connect(_on_hit_box_area_entered)
+
 
 func initialize(data: WeaponData, direction: Vector3):
 	start_position = global_position
@@ -27,4 +33,10 @@ func _physics_process(delta):
 	global_position += velocity * delta
 
 	if global_position.distance_to(start_position) >= projectile_distance:
+		queue_free()
+
+
+func _on_hit_box_area_entered(area: Area3D) -> void:
+	if area is HurtBox:
+		area.receive_damage(damage)
 		queue_free()
