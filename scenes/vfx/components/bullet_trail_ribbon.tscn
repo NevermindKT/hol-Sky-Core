@@ -439,6 +439,6 @@ lifetime = 3.0
 fixed_fps = 60
 transform_align = 3
 trail_enabled = true
-trail_lifetime = 0.05
+trail_lifetime = 0.04
 process_material = SubResource("ShaderMaterial_t818w")
 draw_pass_1 = SubResource("RibbonTrailMesh_t818w")
