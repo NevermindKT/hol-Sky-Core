@@ -33,7 +33,7 @@ var _next_offset := 0.0
 var _current_biome: GroundBiomeData
 var _next_biome: GroundBiomeData
 var _in_transition := false
-var _transition_progress := 0
+var _transition_start_offset := 0.0
 var _tiles_since_change := 0
 var _tiles_until_change := 0
 
@@ -43,7 +43,7 @@ func initialize() -> void:
 	_current_biome = null
 	_next_biome = null
 	_in_transition = false
-	_transition_progress = 0
+	_transition_start_offset = 0.0
 	_tiles_since_change = 0
 	_tiles_until_change = 0
 	_try_spawn_next()
@@ -70,9 +70,10 @@ func _try_spawn_next() -> void:
 	var state := _advance_biome_state()
 	var biome_a: GroundBiomeData = state[0]
 	var biome_b: GroundBiomeData = state[1]
-	var blend: float = state[2]
+	var transition_start: float = state[2]
+	var transition_length: float = state[3]
 
-	var tile := _build_tile(curve, _next_offset, biome_a, biome_b, blend)
+	var tile := _build_tile(curve, _next_offset, biome_a, biome_b, transition_start, transition_length)
 	world.ground_container.add_child(tile)
 	tiles.append(tile)
 
@@ -81,38 +82,38 @@ func _try_spawn_next() -> void:
 
 func _advance_biome_state() -> Array:
 	if available_biomes.is_empty():
-		return [null, null, 0.0]
+		return [null, null, 0.0, 0.0]
+
+	var transition_length := float(transition_tiles) * TILE_LENGTH
 
 	if _current_biome == null:
 		_current_biome = _pick_random_biome(null)
 		_tiles_since_change = 0
 		_tiles_until_change = randi_range(min_tiles_per_biome, max_tiles_per_biome)
-		return [_current_biome, null, 0.0]
+		return [_current_biome, null, 0.0, 0.0]
 
 	if _in_transition:
-		_transition_progress += 1
-		var blend := clampf(float(_transition_progress) / float(max(transition_tiles, 1)), 0.0, 1.0)
-
 		var biome_a := _current_biome
 		var biome_b := _next_biome
+		var start := _transition_start_offset
 
-		if _transition_progress >= transition_tiles:
+		if _next_offset - start >= transition_length:
 			_current_biome = _next_biome
 			_next_biome = null
 			_in_transition = false
-			_transition_progress = 0
 			_tiles_since_change = 0
 			_tiles_until_change = randi_range(min_tiles_per_biome, max_tiles_per_biome)
 
-		return [biome_a, biome_b, blend]
+		return [biome_a, biome_b, start, transition_length]
 
 	_tiles_since_change += 1
 	if _tiles_since_change >= _tiles_until_change and available_biomes.size() > 1:
 		_next_biome = _pick_random_biome(_current_biome)
 		_in_transition = true
-		_transition_progress = 0
+		_transition_start_offset = _next_offset
+		return [_current_biome, _next_biome, _next_offset, transition_length]
 
-	return [_current_biome, null, 0.0]
+	return [_current_biome, null, 0.0, 0.0]
 
 
 func _pick_random_biome(exclude: GroundBiomeData) -> GroundBiomeData:
@@ -122,14 +123,20 @@ func _pick_random_biome(exclude: GroundBiomeData) -> GroundBiomeData:
 	return choices[randi() % choices.size()]
 
 
-func _build_tile(curve: Curve3D, start_offset: float, biome_a: GroundBiomeData, biome_b: GroundBiomeData, blend: float) -> MeshInstance3D:
+func sample_transition_blend(offset: float, biome_b: GroundBiomeData, transition_start: float, transition_length: float) -> float:
+	if biome_b == null or transition_length <= 0.0:
+		return 0.0
+	return clampf((offset - transition_start) / transition_length, 0.0, 1.0)
+
+
+func _build_tile(curve: Curve3D, start_offset: float, biome_a: GroundBiomeData, biome_b: GroundBiomeData, transition_start: float, transition_length: float) -> MeshInstance3D:
 	var anchor: Vector3 = curve.sample_baked_with_rotation(start_offset).origin
 
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 
-	_build_side(st, curve, start_offset, 1.0, anchor, biome_a, biome_b, blend)
-	_build_side(st, curve, start_offset, -1.0, anchor, biome_a, biome_b, blend)
+	_build_side(st, curve, start_offset, 1.0, anchor, biome_a, biome_b, transition_start, transition_length)
+	_build_side(st, curve, start_offset, -1.0, anchor, biome_a, biome_b, transition_start, transition_length)
 
 	st.generate_normals()
 	st.generate_tangents()
@@ -140,8 +147,8 @@ func _build_tile(curve: Curve3D, start_offset: float, biome_a: GroundBiomeData, 
 	mesh_instance.material_override = _build_tile_material(biome_a, biome_b)
 
 	if vegetation:
-		vegetation.populate_side(mesh_instance, curve, start_offset, TILE_LENGTH, anchor, 1.0, ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, self, biome_a, biome_b, blend)
-		vegetation.populate_side(mesh_instance, curve, start_offset, TILE_LENGTH, anchor, -1.0, ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, self, biome_a, biome_b, blend)
+		vegetation.populate_side(mesh_instance, curve, start_offset, TILE_LENGTH, anchor, 1.0, ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, self, biome_a, biome_b, transition_start, transition_length)
+		vegetation.populate_side(mesh_instance, curve, start_offset, TILE_LENGTH, anchor, -1.0, ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, self, biome_a, biome_b, transition_start, transition_length)
 
 	return mesh_instance
 
@@ -163,8 +170,9 @@ func _build_tile_material(biome_a: GroundBiomeData, biome_b: GroundBiomeData) ->
 	return mat
 
 
-func _build_side(st: SurfaceTool, curve: Curve3D, start_offset: float, side_sign: float, anchor: Vector3, biome_a: GroundBiomeData, biome_b: GroundBiomeData, blend: float) -> void:
+func _build_side(st: SurfaceTool, curve: Curve3D, start_offset: float, side_sign: float, anchor: Vector3, biome_a: GroundBiomeData, biome_b: GroundBiomeData, transition_start: float, transition_length: float) -> void:
 	var rows: Array = []
+	var row_blends: Array = []
 
 	var blend_a_by_j: Array = []
 	var blend_b_by_j: Array = []
@@ -178,12 +186,15 @@ func _build_side(st: SurfaceTool, curve: Curve3D, start_offset: float, side_sign
 		var sample: Transform3D = curve.sample_baked_with_rotation(offset)
 		var row: Array = []
 
+		var row_blend := sample_transition_blend(offset, biome_b, transition_start, transition_length)
+		row_blends.append(row_blend)
+
 		for j in range(WIDTH_STEPS + 1):
 			var t: float = j / float(WIDTH_STEPS)
 			var lateral: float = lerp(ROAD_HALF_WIDTH, GROUND_HALF_WIDTH, t) * side_sign
 			var point: Vector3 = sample.origin + sample.basis.x * lateral - anchor
 
-			point.y += sample_height(point.x + anchor.x, point.z + anchor.z, t, biome_a, biome_b, blend)
+			point.y += sample_height(point.x + anchor.x, point.z + anchor.z, t, biome_a, biome_b, row_blend)
 
 			row.append(point)
 
@@ -201,25 +212,27 @@ func _build_side(st: SurfaceTool, curve: Curve3D, start_offset: float, side_sign
 			var v0 := start_offset + (TILE_LENGTH * i / float(LENGTH_STEPS))
 			var v1 := start_offset + (TILE_LENGTH * (i + 1) / float(LENGTH_STEPS))
 
-			var color0 := Color(blend_a_by_j[j], blend, blend_b_by_j[j])
-			var color1 := Color(blend_a_by_j[j + 1], blend, blend_b_by_j[j + 1])
+			var color_a := Color(blend_a_by_j[j], row_blends[i], blend_b_by_j[j])
+			var color_b := Color(blend_a_by_j[j + 1], row_blends[i], blend_b_by_j[j + 1])
+			var color_c := Color(blend_a_by_j[j], row_blends[i + 1], blend_b_by_j[j])
+			var color_d := Color(blend_a_by_j[j + 1], row_blends[i + 1], blend_b_by_j[j + 1])
 
 			if side_sign > 0.0:
-				st.set_color(color0); st.set_uv(Vector2(u0, v0)); st.add_vertex(a)
-				st.set_color(color0); st.set_uv(Vector2(u0, v1)); st.add_vertex(c)
-				st.set_color(color1); st.set_uv(Vector2(u1, v0)); st.add_vertex(b)
+				st.set_color(color_a); st.set_uv(Vector2(u0, v0)); st.add_vertex(a)
+				st.set_color(color_c); st.set_uv(Vector2(u0, v1)); st.add_vertex(c)
+				st.set_color(color_b); st.set_uv(Vector2(u1, v0)); st.add_vertex(b)
 
-				st.set_color(color1); st.set_uv(Vector2(u1, v0)); st.add_vertex(b)
-				st.set_color(color0); st.set_uv(Vector2(u0, v1)); st.add_vertex(c)
-				st.set_color(color1); st.set_uv(Vector2(u1, v1)); st.add_vertex(d)
+				st.set_color(color_b); st.set_uv(Vector2(u1, v0)); st.add_vertex(b)
+				st.set_color(color_c); st.set_uv(Vector2(u0, v1)); st.add_vertex(c)
+				st.set_color(color_d); st.set_uv(Vector2(u1, v1)); st.add_vertex(d)
 			else:
-				st.set_color(color0); st.set_uv(Vector2(u0, v0)); st.add_vertex(a)
-				st.set_color(color1); st.set_uv(Vector2(u1, v0)); st.add_vertex(b)
-				st.set_color(color0); st.set_uv(Vector2(u0, v1)); st.add_vertex(c)
+				st.set_color(color_a); st.set_uv(Vector2(u0, v0)); st.add_vertex(a)
+				st.set_color(color_b); st.set_uv(Vector2(u1, v0)); st.add_vertex(b)
+				st.set_color(color_c); st.set_uv(Vector2(u0, v1)); st.add_vertex(c)
 
-				st.set_color(color1); st.set_uv(Vector2(u1, v0)); st.add_vertex(b)
-				st.set_color(color1); st.set_uv(Vector2(u1, v1)); st.add_vertex(d)
-				st.set_color(color0); st.set_uv(Vector2(u0, v1)); st.add_vertex(c)
+				st.set_color(color_b); st.set_uv(Vector2(u1, v0)); st.add_vertex(b)
+				st.set_color(color_d); st.set_uv(Vector2(u1, v1)); st.add_vertex(d)
+				st.set_color(color_c); st.set_uv(Vector2(u0, v1)); st.add_vertex(c)
 
 
 func _sample_biome_shoulder_blend(biome: GroundBiomeData, t: float) -> float:
