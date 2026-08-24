@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
 [ext_resource type="Script" uid="uid://nt6h8xoqqc60" path="res://scripts/data/weapon/weapon_state.gd" id="6_7lmdr"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="6_20y2w"]
+[ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="6_t5h3w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="8_ojawh"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
@@ -144,6 +145,9 @@ spot_angle = 70.0
 [node name="GunPoint" type="Marker3D" parent="Visual/WeaponPivot" unique_id=77871199]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
 
+[node name="MuzzleFlash" parent="Visual/WeaponPivot/GunPoint" unique_id=1492550407 instance=ExtResource("6_t5h3w")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+
 [node name="AimFlashlight" type="SpotLight3D" parent="Visual/WeaponPivot" unique_id=1688042910]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70415616, 0)
 light_color = Color(0.8026307, 0.88531214, 0.8787168, 1)
@@ -179,9 +183,10 @@ script = ExtResource("6_20y2w")
 aim_distance = 100.0
 weapon_pivot = NodePath("../Visual/WeaponPivot")
 
-[node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("fire_point")]
+[node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("fire_point", "muzzle_flash")]
 script = ExtResource("4_ojawh")
 fire_point = NodePath("../Visual/WeaponPivot/GunPoint")
+muzzle_flash = NodePath("../Visual/WeaponPivot/GunPoint/MuzzleFlash")
 player_weapons = Array[ExtResource("6_7lmdr")]([SubResource("Resource_lo1ro"), SubResource("Resource_y6j3g"), SubResource("Resource_iam02")])
 
 [node name="PlayerStatusController" type="Node" parent="." unique_id=1732844712]

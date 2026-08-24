@@ -4,6 +4,7 @@ class_name Weapon_controller
 var current_weapon: WeaponState
 
 @export var fire_point: Marker3D
+@export var muzzle_flash: Muzzle_flash
 @export var player_weapons: Array[WeaponState]
 @onready var inventory: Inventory = $"../Inventory"
 
@@ -37,7 +38,7 @@ func fire():
 
 	current_weapon.ammo -= 1
 	Events.magazine_count_changed.emit(current_weapon.ammo)
-
+	muzzle_flash.play()
 	cooldown = 1.0 / current_weapon.data.fire_rate
 	current_weapon.data.fire_behavior.fire(self)
 
