@@ -16,7 +16,7 @@ var road_manager: Road_manager
 @export var lateral_velocity_threshold := 3.0
 @export var angular_velocity_threshold := 0.3
 
-var _bleeding_timer := 0.0
+var _bleeding_distance_left := 0.0
 
 @export_category("Stroke")
 @export var max_points_per_stroke := 400
@@ -52,8 +52,8 @@ func _process(delta: float) -> void:
 	if world == null or car_movement == null or stroke_scene == null:
 		return
 
-	if trigger_mode == Trigger_mode.BLOOD and _bleeding_timer > 0.0:
-		_bleeding_timer = maxf(_bleeding_timer - delta, 0.0)
+	if trigger_mode == Trigger_mode.BLOOD and _bleeding_distance_left > 0.0:
+		_bleeding_distance_left = maxf(_bleeding_distance_left - car_movement.speed * delta, 0.0)
 
 	if _should_leave_marks():
 		_active_l = _record_point(_active_l, skid_point_l)
@@ -77,14 +77,14 @@ func _resnap_strokes_height() -> void:
 		stroke.global_position = pos
 
 
-func start_bleeding(duration: float) -> void:
-	_bleeding_timer = maxf(_bleeding_timer, duration)
+func start_bleeding(distance: float) -> void:
+	_bleeding_distance_left = maxf(_bleeding_distance_left, distance)
 
 
 func _should_leave_marks() -> bool:
 	match trigger_mode:
 		Trigger_mode.BLOOD:
-			return _bleeding_timer > 0.0
+			return _bleeding_distance_left > 0.0
 		_:
 			var speed_ratio := car_movement.get_speed_ratio()
 			return _is_braking_hard(speed_ratio) or _is_turning_hard(speed_ratio)

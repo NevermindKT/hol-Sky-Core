@@ -2,7 +2,7 @@ extends Area3D
 class_name Road_blood_trigger
 
 
-@export var bleed_duration: float = 3.0
+@export var bleed_distance: float = 5.0
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -19,4 +19,4 @@ func _on_body_entered(body: Node3D) -> void:
 		push_warning("Road_blood_trigger: не знайдено вузол у групі 'blood_trail_manager'.")
 		return
 
-	manager.start_bleeding(bleed_duration)
+	manager.start_bleeding(bleed_distance)
