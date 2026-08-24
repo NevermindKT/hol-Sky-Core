@@ -7,6 +7,11 @@ enum State {
 	DASH
 }
 
+@export_category("Health")
+
+@export var max_health := 100.0
+
+var health: float
 
 @export_category("Movement")
 
@@ -16,6 +21,7 @@ enum State {
 
 @export_category("Attack")
 
+@export var attack_damage := 15.0
 @export var attack_delay := 2.0
 
 
@@ -24,35 +30,35 @@ enum State {
 @export var dash_speed := 30.0
 @export var dash_duration := 1.0
 
+var is_active := false
 
 var player: Node3D
+var encounter: Enemy_Encounter
 
-var state := State.FOLLOW
-
+var start_z: float
 var attack_timer := 0.0
+var state := State.FOLLOW
 
 var dash_timer := 0.0
 var dash_direction := Vector3.ZERO
 
-var is_active := false
-
-
-@onready var damage_hit_box: Area3D = $DamageHitBox
+@onready var damage_hit_box: HurtBox = $DamageHitBox
 
 
 func _ready() -> void:
-	damage_hit_box.body_entered.connect(
-		_on_attack_area_body_entered
-	)
+	health = max_health
+	damage_hit_box.body_entered.connect(_on_attack_area_body_entered)
+	damage_hit_box.damaged.connect(take_damage)
 
 
-func initialize(target_player: Node3D) -> void:
+func initialize(target_player: Node3D, target_encounter: Enemy_Encounter) -> void:
 	player = target_player
+	encounter = target_encounter
+	start_z = position.z
 
 
 func activate() -> void:
 	is_active = true
-
 	attack_timer = attack_delay
 
 
@@ -64,11 +70,9 @@ func _physics_process(delta: float) -> void:
 		return
 
 	match state:
-
 		State.FOLLOW:
 			update_movement(delta)
 			update_attack(delta)
-
 		State.DASH:
 			update_dash(delta)
 
@@ -94,17 +98,13 @@ func update_attack(delta: float) -> void:
 
 func start_dash() -> void:
 	state = State.DASH
-
 	dash_timer = dash_duration
 
-	dash_direction = (
-		player.global_position - global_position
-	).normalized()
+	dash_direction = (player.global_position - global_position).normalized()
 
 
 func update_dash(delta: float) -> void:
 	dash_timer -= delta
-
 	global_position += dash_direction * dash_speed * delta
 
 	if dash_timer <= 0.0:
@@ -112,9 +112,17 @@ func update_dash(delta: float) -> void:
 
 
 func end_dash() -> void:
+	reset_position()
+	
 	state = State.FOLLOW
-
 	attack_timer = attack_delay
+
+
+func reset_position() -> void:
+	var local_position := encounter.to_local(global_position)
+
+	local_position.z = start_z
+	global_position = encounter.to_global(local_position)
 
 
 func _on_attack_area_body_entered(body: Node3D) -> void:
@@ -129,5 +137,18 @@ func _on_attack_area_body_entered(body: Node3D) -> void:
 
 func hit_player() -> void:
 	print("PLAYER HIT")
-
+	Events.player_take_damage.emit(attack_damage)
 	end_dash()
+
+
+func take_damage(damage: float) -> void:
+	health -= damage
+	
+	print("Enemy health: ", health)
+	
+	if health <= 0.0:
+		die()
+
+
+func die() -> void:
+	queue_free()

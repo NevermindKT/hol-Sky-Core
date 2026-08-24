@@ -14,13 +14,13 @@ func inialize() -> void:
 		if child is Encounter_Enemy:
 			enemies.append(child)
 			
-			child.initialize(player)
+			child.initialize(player, self)
 
 
 func add_enemy(enemy: Encounter_Enemy) -> void:
 	self.add_child(enemy)
 	enemies.append(enemy)
-	enemy.initialize(player)
+	enemy.initialize(player, self)
 
 
 func start_encounter() -> void:

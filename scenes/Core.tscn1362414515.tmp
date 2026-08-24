@@ -86,8 +86,6 @@ enemies = [NodePath("Enemy1")]
 metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Enemy1" parent="Enivironment/EnemyEncounter" unique_id=1666728161 instance=ExtResource("14_a06ay")]
-move_speed = 15.0
-dash_speed = 50.0
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 

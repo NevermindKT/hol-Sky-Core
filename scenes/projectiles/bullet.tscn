@@ -4,9 +4,17 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_yvfy2"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_10jsn"]
+
 [node name="Bullet" type="Node3D" unique_id=624272342]
 script = ExtResource("1_yvfy2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=25708232]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("SphereMesh_yvfy2")
+
+[node name="HitBox" type="Area3D" parent="." unique_id=2043536779]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=619165886]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("SphereShape3D_10jsn")
