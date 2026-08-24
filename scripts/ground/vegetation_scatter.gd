@@ -23,15 +23,19 @@ func populate_side(
 	ground_generator: Ground_generator,
 	biome_a: GroundBiomeData,
 	biome_b: GroundBiomeData,
-	blend: float
+	transition_start: float,
+	transition_length: float
 ) -> void:
+	var mid_offset := start_offset + tile_length * 0.5
+	var weight_blend := ground_generator.sample_transition_blend(mid_offset, biome_b, transition_start, transition_length) if ground_generator else 0.0
+
 	if biome_a:
 		for category in biome_a.vegetation_categories:
-			_scatter(tile, curve, start_offset, tile_length, anchor, side_sign, road_half_width, ground_half_width, category, 1.0 - blend, ground_generator, biome_a, biome_b, blend)
+			_scatter(tile, curve, start_offset, tile_length, anchor, side_sign, road_half_width, ground_half_width, category, 1.0 - weight_blend, ground_generator, biome_a, biome_b, transition_start, transition_length)
 
-	if biome_b and blend > 0.0:
+	if biome_b and weight_blend > 0.0:
 		for category in biome_b.vegetation_categories:
-			_scatter(tile, curve, start_offset, tile_length, anchor, side_sign, road_half_width, ground_half_width, category, blend, ground_generator, biome_a, biome_b, blend)
+			_scatter(tile, curve, start_offset, tile_length, anchor, side_sign, road_half_width, ground_half_width, category, weight_blend, ground_generator, biome_a, biome_b, transition_start, transition_length)
 
 
 func _scatter(
@@ -48,7 +52,8 @@ func _scatter(
 	ground_generator: Ground_generator,
 	biome_a: GroundBiomeData,
 	biome_b: GroundBiomeData,
-	blend: float
+	transition_start: float,
+	transition_length: float
 ) -> void:
 	var pool := _get_pool(category)
 	if pool.is_empty():
@@ -89,7 +94,8 @@ func _scatter(
 			var point: Vector3 = sample.origin + sample.basis.x * lateral - anchor
 
 			if ground_generator:
-				point.y += ground_generator.sample_height(point.x + anchor.x, point.z + anchor.z, t, biome_a, biome_b, blend)
+				var instance_blend := ground_generator.sample_transition_blend(offset, biome_b, transition_start, transition_length)
+				point.y += ground_generator.sample_height(point.x + anchor.x, point.z + anchor.z, t, biome_a, biome_b, instance_blend)
 
 			var y_rotation := randf_range(0.0, TAU)
 			var scale_factor := randf_range(category.scale_range.x, category.scale_range.y)
