@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bowyp25n4kleh"]
+
+[ext_resource type="Texture2D" uid="uid://8ux0a7cm6ge4" path="res://textures/vfx/muzzle_flash/muzzle_flash_clean_04.png" id="1_5aavr"]
+[ext_resource type="Script" uid="uid://1mrqfghasua2" path="res://scripts/vfx/muzzle_flash.gd" id="1_6t36f"]
+[ext_resource type="ArrayMesh" uid="uid://hsr4h671jqvn" path="res://models/MuzzlePlanes01.obj" id="2_6t36f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kxuq"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_5aavr")
+
+[sub_resource type="Curve" id="Curve_3tqv5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.5808582, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ghtap"]
+curve = SubResource("Curve_3tqv5")
+
+[sub_resource type="Curve" id="Curve_iyj1g"]
+_data = [Vector2(0, 0), 2.7830906, 2.7830906, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mm1bc"]
+curve = SubResource("Curve_iyj1g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mti6b"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.14999999
+scale_curve = SubResource("CurveTexture_mm1bc")
+color = Color(1.353256, 1.0733846, 0.8593652, 1)
+alpha_curve = SubResource("CurveTexture_ghtap")
+
+[node name="MuzzleFlash" type="Node3D" unique_id=1492550407 node_paths=PackedStringArray("particles")]
+script = ExtResource("1_6t36f")
+particles = NodePath("MuzzlePlanes")
+
+[node name="MuzzlePlanes" type="GPUParticles3D" parent="." unique_id=832396969]
+material_override = SubResource("StandardMaterial3D_4kxuq")
+emitting = false
+amount = 1
+lifetime = 0.03
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_mti6b")
+draw_pass_1 = ExtResource("2_6t36f")

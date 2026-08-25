@@ -5,7 +5,7 @@ class_name FogController
 
 
 func _ready():
-	WeatherManager.weather_changed.connect(_on_weather_changed)
+	Events.weather_changed.connect(_on_weather_changed)
 	
 	if WeatherManager.weather_data && WeatherManager.weather_data.fog:
 		apply_data(WeatherManager.weather_data.fog)

@@ -8,8 +8,21 @@ enum State { NORMAL, REACTING, DEAD }
 @export var hit_effect_scene: PackedScene
 @export var move_speed: float = 5.0
 
+@export_category("Blood decals")
+@export var blood_decal_scene: PackedScene
+@export var road_blood_splatter_scene: PackedScene
+@export var blood_splatter_count: int = 3
+@export var blood_splatter_radius: float = 1.2
+@export var road_blood_forward_offset: float = 1.0
+@export var car_blood_scale_range: Vector2 = Vector2(0.5, 0.9)
+@export var road_blood_scale_range: Vector2 = Vector2(0.8, 1.6)
+
+const ROAD_COLLISION_MASK := 2
+
 @export var detection_range: float = 40.0
 @export var road_lateral_limit: float = 4.0
+
+@export var despawn_behind_distance: float = 40.0
 
 #@export var world_scroll_speed: float = 0.0
 @export var corpse_lifetime: float = 5.0
@@ -17,9 +30,6 @@ enum State { NORMAL, REACTING, DEAD }
 var _state: State = State.NORMAL
 var _car: Node3D
 
-## Призначається ззовні (Enemy_spawner-ом) одразу після інстанціації.
-## Потрібен лише для утримання ворога на полотні дороги (пошук найближчого
-## сегмента) — логіці переслідування машини не потрібен.
 var road_generator: Road_generator
 
 var world: World
@@ -30,6 +40,8 @@ func _ready() -> void:
 		knockback_controller.reaction_finished.connect(_on_reaction_finished)
 
 func _physics_process(_delta: float) -> void:
+	_check_despawn()
+
 	if _state == State.NORMAL:
 		move()
 
@@ -49,15 +61,9 @@ func move() -> void:
 	if direction != Vector3.ZERO:
 		_clamp_to_road()
 
-	# Капсула симетрична, тому обертання поки нічого візуально не змінює —
-	# але коли з'явиться модель з обличчям/анімацією бігу, вона вже буде
-	# дивитись у правильний бік без додаткових правок.
 	if direction.length_squared() > 0.0001:
 		look_at(global_position + direction, Vector3.UP)
 
-	# Машина повідомляє про удар лише коли САМА в'їжджає у ворога. Якщо
-	# машина стоїть, а ворог іде на неї сам — це зіткнення побачить тільки
-	# ворог власним move_and_slide()
 	for i in range(get_slide_collision_count()):
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
@@ -67,8 +73,6 @@ func move() -> void:
 			on_car_hit(hit_data)
 			break
 
-## Викликається машиною при зіткненні. Enemy розподіляє факти удару між
-## своєю системою здоров'я та KnockbackController-ом
 func on_car_hit(hit_data: HitData) -> void:
 	if _state != State.NORMAL:
 		return
@@ -81,13 +85,11 @@ func on_car_hit(hit_data: HitData) -> void:
 		health.take_damage(hit_data.damage)
 
 	_spawn_hit_effect(hit_data)
+	_spawn_blood_decals(hit_data)
 
 	_state = State.REACTING
 	knockback_controller.apply_hit(hit_data)
 
-## Викликається, коли KnockbackController завершив фізичну реакцію (відліт,
-## приземлення тощо). Тут, а не в момент удару, вирішується фінальний стан —
-## бо навіть смертельний удар має спершу дограти відкидання.
 func _on_reaction_finished() -> void:
 	if health and health.is_dead():
 		_state = State.DEAD
@@ -96,10 +98,6 @@ func _on_reaction_finished() -> void:
 	else:
 		_state = State.NORMAL
 
-## Візуальна реакція на удар — окремо від
-## KnockbackController-а, щоб будь-яка майбутня реалізація відкидання
-## (включно з ragdoll) отримувала цей ефект безкоштовно, без дублювання
-## виклику в кожній з них.
 func _spawn_hit_effect(hit_data: HitData) -> void:
 	if hit_effect_scene == null:
 		return
@@ -112,7 +110,80 @@ func _spawn_hit_effect(hit_data: HitData) -> void:
 	world.enemies.add_child(effect)
 
 	var direction := global_position - hit_data.car.global_position
-	effect.play(hit_data.contact_point, direction)
+	effect.play(hit_data.contact_point, direction, hit_data.car_velocity.length())
+
+
+func _spawn_blood_decals(hit_data: HitData) -> void:
+	if blood_decal_scene == null or road_blood_splatter_scene == null:
+		return
+
+	_spawn_car_blood(hit_data)
+	_spawn_road_blood(hit_data)
+
+
+func _spawn_car_blood(hit_data: HitData) -> void:
+	var decal := blood_decal_scene.instantiate() as Blood_decal
+	if decal == null:
+		push_warning("Enemy: blood_decal_scene не має скрипта Blood_decal")
+		return
+
+	var attach_to: Node3D = hit_data.car.get_node_or_null("Visual")
+	if attach_to == null:
+		attach_to = hit_data.car
+
+	attach_to.add_child(decal)
+	decal.place(hit_data.contact_point, hit_data.contact_normal)
+	decal.apply_random_scale(car_blood_scale_range)
+
+
+func _spawn_road_blood(hit_data: HitData) -> void:
+	var space_state := get_world_3d().direct_space_state
+
+	var forward := -hit_data.car.global_transform.basis.z
+	var splatter_center := hit_data.contact_point + forward * road_blood_forward_offset
+
+	for i in blood_splatter_count:
+		var offset := Vector3(
+			randf_range(-blood_splatter_radius, blood_splatter_radius),
+			0.0,
+			randf_range(-blood_splatter_radius, blood_splatter_radius)
+		)
+		var from := splatter_center + offset + Vector3.UP * 2.0
+		var to := splatter_center + offset - Vector3.UP * 2.0
+
+		var query := PhysicsRayQueryParameters3D.create(from, to, ROAD_COLLISION_MASK)
+		var result := space_state.intersect_ray(query)
+
+		if result.is_empty():
+			continue
+
+		var segment := _find_road_segment(result.collider)
+		if segment == null:
+			continue
+
+		var splatter := road_blood_splatter_scene.instantiate() as Road_blood_splatter
+		if splatter == null:
+			continue
+
+		segment.add_child(splatter)
+		splatter.place(result.position, result.normal)
+		splatter.apply_random_scale(road_blood_scale_range)
+
+
+func _find_road_segment(node: Node) -> Road_segment:
+	var current := node
+
+	while current != null:
+		if current is Road_segment:
+			return current
+		current = current.get_parent()
+
+	return null
+
+
+func _check_despawn() -> void:
+	if global_position.z > despawn_behind_distance:
+		queue_free()
 
 
 func _get_car() -> Node3D:
@@ -121,9 +192,6 @@ func _get_car() -> Node3D:
 	return _car
 
 
-## Підтягує позицію ворога назад у межі road_lateral_limit від центру
-## найближчого сегмента дороги. Не чіпає рух "вздовж" дороги — лише
-## бічне відхилення, тож ворог і далі вільно наближається до машини.
 func _clamp_to_road() -> void:
 	var segment := _resolve_segment()
 	if segment == null:
@@ -141,7 +209,6 @@ func _clamp_to_road() -> void:
 		global_position = segment.to_global(corrected_local)
 
 
-## Найближчий до поточної позиції ворога активний сегмент дороги.
 func _resolve_segment() -> Road_segment:
 	if road_generator == null:
 		return null
