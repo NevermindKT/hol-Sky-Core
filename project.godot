@@ -102,6 +102,10 @@ toggle_headlights={
 3d_render/layer_2="Blood Target"
 3d_physics/layer_2="Road"
 
+[layer_names]
+
+3d_physics/layer_2="Road"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

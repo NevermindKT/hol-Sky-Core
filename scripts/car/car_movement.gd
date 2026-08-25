@@ -25,9 +25,19 @@ var steering_input := 0.0
 @export var min_strafe_speed := 2.0
 
 
+@export_category("Road Influence")
+@export var road_turn_force := 0.5
+
+
+@export_category("Dodge")
+@export var dodge_force := 12.0
+@export var dodge_distance := 2.0
+
+
 @export_category("Strafe Physics")
 @export var spring := 30.0
 @export var damping := 8.0
+
 
 @export_category("Hit")
 @export var base_damage := 15
@@ -38,9 +48,18 @@ var steering_input := 0.0
 @export var back_lights: BackLights
 
 @onready var cam_pivot: Node3D = $CamPivot
+@onready var inventory: Inventory = $Inventory
 @onready var weapon_pivot: Node3D = $Visual/WeaponPivot
 @onready var visual_effects: Car_Visual_Effects = $Visual
 @onready var weapon_controller: Weapon_controller = $WeaponController
+@onready var player_status_controller: Player_Status_Controller = $PlayerStatusController
+
+@onready var road_manager: Road_manager = $"../Services/RoadManager"
+
+
+func _ready() -> void:
+	InputController.dodge.connect(dodge)
+
 
 func _physics_process(delta: float) -> void:
 	get_input()
@@ -53,6 +72,7 @@ func _physics_process(delta: float) -> void:
 	#print("Lane offset: ", lane_offset)
 	#print("Lateral velosity: ", lateral_velocity)
 
+
 func process_enemies_hits() -> void:
 	for i in range(get_slide_collision_count()):
 		var collision := get_slide_collision(i)
@@ -62,6 +82,7 @@ func process_enemies_hits() -> void:
 			var hit_data := create_hit_data(collision.get_position(), collision.get_normal())
 			collider.on_car_hit(hit_data)
 
+
 func create_hit_data(contact_point: Vector3, contact_normal: Vector3) -> HitData:
 	var car_velocity := -global_transform.basis.z * speed
 	return HitData.new(self, car_velocity, contact_point, contact_normal, base_damage)
@@ -69,6 +90,7 @@ func create_hit_data(contact_point: Vector3, contact_normal: Vector3) -> HitData
 
 func get_input() -> void:
 	steering_input = InputController.steering
+
 
 func process_speed(delta: float) -> void:
 	if InputController.accelerating:
@@ -87,14 +109,14 @@ func process_speed(delta: float) -> void:
 
 func process_strafe(delta: float) -> void:
 	if speed >= min_strafe_speed:
-		var steering_mul = get_steering_multiplier()
+		var steering_mul := get_steering_multiplier()
+
 		lane_offset += steering_input * strafe_speed * steering_mul * delta
 
-	lane_offset = clamp(
-		lane_offset,
-		-max_offset,
-		max_offset
-	)
+		var road_offset := get_road_turn_offset()
+		lane_offset += road_offset * delta
+
+	lane_offset = clamp_offset()
 
 	var error := lane_offset - position.x
 
@@ -104,10 +126,14 @@ func process_strafe(delta: float) -> void:
 	position.x += lateral_velocity * delta
 
 
+func get_road_turn_offset() -> float:
+	return -road_manager.smoothed_turn_velocity * road_turn_force
+
+
 func process_visuals(delta: float) -> void:
-	visual_effects.process_visual_tilt(delta, lateral_velocity)
-	
-	
+	visual_effects.process_visual_tilt(delta, lateral_velocity, road_manager.smoothed_turn_velocity)
+
+
 func get_speed_ratio() -> float:
 	return clampf(speed / max_speed, 0.0, 1.0)
 
@@ -118,4 +144,17 @@ func get_acceleration_multiplier() -> float:
 
 func get_steering_multiplier() -> float:
 	return steering_curve.sample_baked(get_speed_ratio())
+
+
+func dodge() -> void:
+	if steering_input == 0.0:
+		return
 	
+	var direction = sign(steering_input)
+	
+	lane_offset += direction * dodge_distance
+	lane_offset = clamp_offset()
+
+
+func clamp_offset() -> float:
+	return clamp(lane_offset, -max_offset, max_offset)

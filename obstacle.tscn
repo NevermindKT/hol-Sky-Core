@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://lq8bh03qwq4o"]
+[gd_scene format=3 uid="uid://5l3jx6le81bf"]
 
-[ext_resource type="Script" uid="uid://r85sossbxqx1" path="res://scripts/obstacles/obstacle.gd" id="1_bq845"]
+[ext_resource type="Script" path="res://scripts/obstacles/obstacle.gd" id="1_sl1jc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
 height = 4.687561
@@ -8,7 +8,7 @@ height = 4.687561
 [sub_resource type="BoxMesh" id="BoxMesh_10jsn"]
 
 [node name="Obstacle" type="Area3D" unique_id=755817985]
-script = ExtResource("1_bq845")
+script = ExtResource("1_sl1jc")
 damage_dealt = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1268127873]

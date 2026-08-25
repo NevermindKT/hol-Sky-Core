@@ -4,6 +4,7 @@ extends Node
 signal player_died
 signal player_heal(heal: float)
 signal player_take_damage(damage: float)
+signal player_health_changed(value: float)
 
 #-------------- PLAYER MOVEMENT
 

@@ -1,11 +1,15 @@
+@tool
 extends Node3D
 class_name Road_segment
 
 @export var anchor: Marker3D
 @export var origin: Marker3D
 
+@export var road_path: Path3D
+
 @export var weight := 1.0
 @export var segment_type: RoadType.Type
+
 
 var obstacle_placement_array: Array[Marker3D] = []
 
@@ -24,6 +28,76 @@ func _ready() -> void:
 	for child in obstacles.get_children():
 		if child is Marker3D:
 			obstacle_placement_array.append(child)
+
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		update_path()
+
+
+func update_path() -> void:
+	if road_path == null or origin == null or anchor == null:
+		return
+
+	var curve := road_path.curve
+
+	if curve == null:
+		curve = Curve3D.new()
+		road_path.curve = curve
+
+	curve.clear_points()
+
+	var origin_pos := road_path.to_local(origin.global_position)
+	var anchor_pos := road_path.to_local(anchor.global_position)
+
+	var handle_len := origin_pos.distance_to(anchor_pos) / 3.0
+
+	# Направление от Origin к Anchor
+	var chord := (
+		anchor.global_position - origin.global_position
+	).normalized()
+
+	var origin_dir := -origin.global_transform.basis.z
+	var anchor_dir := -anchor.global_transform.basis.z
+
+	# Origin должен смотреть в сторону Anchor
+	if origin_dir.dot(chord) < 0.0:
+		origin_dir = -origin_dir
+
+	# Anchor тоже сначала ориентируем в сторону движения
+	if anchor_dir.dot(chord) < 0.0:
+		anchor_dir = -anchor_dir
+
+	# Переводим направления из world space
+	# в local space Path3D
+	origin_dir = (
+		road_path.global_transform.basis.inverse() * origin_dir
+	).normalized()
+
+	anchor_dir = (
+		road_path.global_transform.basis.inverse() * anchor_dir
+	).normalized()
+
+	curve.add_point(
+		origin_pos,
+		Vector3.ZERO,
+		origin_dir * handle_len
+	)
+
+	curve.add_point(
+		anchor_pos,
+		-anchor_dir * handle_len,
+		Vector3.ZERO
+	)
+
+
+## Transform3D полотна дороги в ЛОКАЛЬНИХ координатах цього сегмента у
+## точці t [0..1] вздовж нього (0 = Origin, 1 = Anchor). origin результату —
+## точка на дорозі, basis.x — вектор "вбік" (перпендикулярно напрямку руху).
+##
+## Для поворотів (road_turn_left/right) читає реальну криву RoadPath —
+## Origin/Anchor там лише точки стику з сусідами, а не сама траєкторія.
+## Для прямих сегментів (немає RoadPath) рахує лінійно по Origin -> Anchor.
 
 func road_transform_at(t: float) -> Transform3D:
 	t = clampf(t, 0.0, 1.0)

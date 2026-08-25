@@ -21,7 +21,7 @@ func _ready() -> void:
 		return
 
 	_next_threshold = randf_range(min_gap_m, max_gap_m)
-	Events.segment_spawned.connect(_on_segment_spawned)
+	#Events.segment_spawned.connect(_on_segment_spawned)
 
 
 func _on_segment_spawned(segment: Road_segment) -> void:

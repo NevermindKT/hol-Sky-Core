@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://cn4um41l4ikkr"
 [resource]
 script = ExtResource("3_iijja")
 name = "Shotgun"
-damage = 4.0
+damage = 20.0
 fire_rate = 3.0
 reload_duration = 1.5
 magazine_capacity = 6.0

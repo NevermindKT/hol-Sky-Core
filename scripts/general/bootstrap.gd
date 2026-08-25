@@ -15,6 +15,9 @@ extends Node
 @export var lightning_controller: LightningController
 @export var enemy_spawner: Enemy_spawner
 
+@export var enemy_encounter: Enemy_Encounter
+
+
 const START_DISTANCE := 5.0
 const DISTANCE_TO_END := 200.0
 const OBSTACLE_SPAWN_CHANCE = 0.05
@@ -26,6 +29,8 @@ func _ready() -> void:
 	set_road_manager()
 	set_road_generator()
 	
+	car.player_status_controller.initialize()
+	
 	road_generator.obstacle_spawn_chance = OBSTACLE_SPAWN_CHANCE
 	road_generator.initialize(world.road_set, world.obstacle_set)
 	vegetation_scatter.initialize()
@@ -35,8 +40,12 @@ func _ready() -> void:
 	set_road_generator()
 	
 	run_manager.initialize(DISTANCE_TO_END)
+	
 	tire_trail_manager.initialize(world, car, road_manager)
 	blood_trail_manager.initialize(world, car, road_manager)
+
+	enemy_encounter.inialize()
+	enemy_encounter.start_encounter()
 
 	queue_free()
 
@@ -51,16 +60,19 @@ func set_world():
 	lightning_controller.world = world
 	enemy_spawner.world = world
 
+
 func set_road_manager():
 	weather_generator.road_manager = road_manager
-	
+
+
 func set_road_generator():
 	weather_generator.road_generator = road_generator
 	enemy_spawner.road_generator = road_generator
 
+
 func set_player_car():
 	road_manager.car_movement = car
 
+
 func set_weapon_system():
 	car.weapon_controller.initialize()
-	
