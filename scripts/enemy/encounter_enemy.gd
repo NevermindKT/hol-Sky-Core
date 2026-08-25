@@ -30,6 +30,8 @@ var health: float
 @export var dash_speed := 30.0
 @export var dash_duration := 1.0
 
+@export var hit_effect_scene: PackedScene
+
 var is_active := false
 
 var player: Node3D
@@ -48,7 +50,7 @@ var dash_direction := Vector3.ZERO
 func _ready() -> void:
 	health = max_health
 	damage_hit_box.body_entered.connect(_on_attack_area_body_entered)
-	damage_hit_box.damaged.connect(take_damage)
+	damage_hit_box.hit.connect(_on_hit)
 
 
 func initialize(target_player: Node3D, target_encounter: Enemy_Encounter) -> void:
@@ -128,7 +130,6 @@ func reset_position() -> void:
 func _on_attack_area_body_entered(body: Node3D) -> void:
 	if state != State.DASH:
 		return
-
 	if body != player:
 		return
 
@@ -148,6 +149,29 @@ func take_damage(damage: float) -> void:
 	
 	if health <= 0.0:
 		die()
+
+
+func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
+	take_damage(damage)
+
+	_spawn_hit_effect(
+		hit_position,
+		direction
+	)
+
+
+func _spawn_hit_effect(
+	hit_position: Vector3,
+	direction: Vector3
+) -> void:
+	var effect := hit_effect_scene.instantiate() as BloodCarHit
+
+	get_parent().add_child(effect)
+
+	effect.play(
+		hit_position,
+		direction
+	)
 
 
 func die() -> void:

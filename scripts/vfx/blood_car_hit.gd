@@ -25,7 +25,7 @@ func _ready() -> void:
 ## бризк одним пострілом.
 func play(hit_position: Vector3, hit_direction: Vector3) -> void:
 	global_position = hit_position
-	_orient_to(hit_direction)
+	_orient_to(-hit_direction)
 
 	splash.restart()
 

@@ -35,7 +35,7 @@ func _ready() -> void:
 	run_manager.initialize(DISTANCE_TO_END)
 	
 	enemy_encounter.inialize()
-	enemy_encounter.start_encounter()
+	#enemy_encounter.start_encounter()
 	
 	queue_free()
 

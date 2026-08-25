@@ -1,7 +1,7 @@
 extends Area3D
 class_name HurtBox
 
-signal damaged(damage: float)
+signal hit(hit_position: Vector3, direction: Vector3, damage: float)
 
-func receive_damage(damage: float) -> void:
-	damaged.emit(damage)
+func receive_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
+	hit.emit(hit_position, direction, damage)

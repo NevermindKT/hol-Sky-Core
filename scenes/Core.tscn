@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://bcc07pjuuti4w" path="res://scripts/enemy/enemy_encounter.gd" id="13_asndc"]
 [ext_resource type="PackedScene" uid="uid://chbrpi5p25krs" path="res://scenes/enemies/encounter_enemy.tscn" id="14_a06ay"]
 [ext_resource type="Script" uid="uid://csuu8mh30lvn7" path="res://scripts/spawners/enemy_spawner.gd" id="14_dakql"]
+[ext_resource type="PackedScene" uid="uid://ycruqbm88110" path="res://scenes/vfx/effects/blood_car_hit.tscn" id="15_7hc18"]
 [ext_resource type="PackedScene" uid="uid://ck5eo0ch0lb4t" path="res://scenes/weather/components/distance_fog.tscn" id="15_cshfm"]
 [ext_resource type="PackedScene" uid="uid://dj6f80eu3p4mq" path="res://scenes/enemies/enemy.tscn" id="15_cyvft"]
 [ext_resource type="PackedScene" uid="uid://ci5h063crfw3b" path="res://scenes/weather/components/lightning_spawn_area.tscn" id="16_fjy51"]
@@ -79,15 +80,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2080803, -109.03695)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64.939575)
 
 [node name="EnemyEncounter" type="Node3D" parent="Enivironment" unique_id=2038877150 node_paths=PackedStringArray("player", "enemies")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.3577776)
 script = ExtResource("13_asndc")
 player = NodePath("../../Car")
 enemies = [NodePath("Enemy1")]
 metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Enemy1" parent="Enivironment/EnemyEncounter" unique_id=1666728161 instance=ExtResource("14_a06ay")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+max_health = 200.0
 move_speed = 15.0
 dash_speed = 50.0
+hit_effect_scene = ExtResource("15_7hc18")
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
