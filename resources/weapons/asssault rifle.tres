@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://dbmg5c34sk5p8"
 [resource]
 script = ExtResource("3_iut23")
 name = "Assault rifle"
-damage = 5.0
+damage = 18.0
 fire_rate = 15.0
 reload_duration = 2.0
 magazine_capacity = 40.0

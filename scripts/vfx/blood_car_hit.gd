@@ -33,7 +33,7 @@ func _ready() -> void:
 
 func play(hit_position: Vector3, hit_direction: Vector3, car_speed: float = 0.0) -> void:
 	global_position = hit_position
-	_orient_to(hit_direction)
+	_orient_to(-hit_direction)
 
 	var speed_scale := 1.0
 	if reference_speed > 0.0:

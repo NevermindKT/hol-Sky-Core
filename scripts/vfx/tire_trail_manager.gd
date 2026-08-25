@@ -99,7 +99,7 @@ func _is_turning_hard(speed_ratio: float) -> bool:
 		return false
 
 	var lateral_hard := absf(car_movement.lateral_velocity) > lateral_velocity_threshold
-	var road_curve_hard := road_manager != null and absf(road_manager.angular_velocity.y) > angular_velocity_threshold
+	var road_curve_hard := road_manager != null and absf(road_manager.smoothed_turn_velocity) > angular_velocity_threshold
 
 	return lateral_hard or road_curve_hard
 

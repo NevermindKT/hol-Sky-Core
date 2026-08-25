@@ -1,10 +1,57 @@
 [gd_scene format=3 uid="uid://33j34s1svc7q"]
 
 [ext_resource type="Script" uid="uid://ughski8v3jcf" path="res://scripts/hud/hud.gd" id="1_p21ms"]
-[ext_resource type="Script" uid="uid://dx1n5tgy6bu7v" path="res://scripts/hud/cross_hair.gd" id="1_viwan"]
-[ext_resource type="Script" uid="uid://kkkj74q1qubm" path="res://scripts/hud/ammo_counter.gd" id="2_dh6d1"]
 [ext_resource type="Texture2D" uid="uid://ni7cq1rojonb" path="res://textures/hud/rossHairTest.png" id="2_oj1j8"]
-[ext_resource type="Script" uid="uid://c84r4q2xjujvo" path="res://scripts/hud/level_progeress_bar.gd" id="4_dh6d1"]
+
+[sub_resource type="GDScript" id="GDScript_oj1j8"]
+script/source = "extends Control
+
+@onready var reload_bar: ProgressBar = $ReloadBar
+
+var reload_time := 0.0
+var reload_duration := 0.0
+
+var reload_tween: Tween
+var is_reloading := false
+
+
+func _ready() -> void:
+	Events.reload_started.connect(start_reload)
+	Events.reload_finished.connect(finish_reload)
+
+
+func _process(_delta: float) -> void:
+	global_position = get_viewport().get_mouse_position() - size * 0.5
+
+
+func start_reload(duration: float):
+	if reload_tween:
+		reload_tween.kill()
+	
+	reload_bar.value = 0
+	reload_bar.show()
+
+	reload_tween = create_tween()
+	reload_tween.tween_property(
+		reload_bar,
+		\"value\",
+		100,
+		duration
+	)
+
+
+func finish_reload():
+	is_reloading = false
+	reload_bar.value = 100
+	reload_bar.hide()
+
+
+func cancel_reload():
+	if reload_tween:
+		reload_tween.kill()
+
+	reload_bar.hide()
+"
 
 [node name="HUD" type="CanvasLayer" unique_id=299315244]
 script = ExtResource("1_p21ms")
@@ -14,7 +61,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 27.0
 grow_horizontal = 2
-script = ExtResource("4_dh6d1")
 
 [node name="LevelProgressBar" type="ProgressBar" parent="Top" unique_id=167970145]
 layout_mode = 2
@@ -48,7 +94,6 @@ offset_bottom = -223.0
 grow_horizontal = 0
 grow_vertical = 0
 rotation = 0.034906585
-script = ExtResource("2_dh6d1")
 
 [node name="WeaponName" type="RichTextLabel" parent="Right" unique_id=974424412]
 layout_mode = 2
@@ -79,7 +124,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_viwan")
+script = SubResource("GDScript_oj1j8")
 
 [node name="ReloadBar" type="ProgressBar" parent="CrossHairCon" unique_id=1102824652]
 visible = false

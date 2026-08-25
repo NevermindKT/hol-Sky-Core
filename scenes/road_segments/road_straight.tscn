@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road/road_segment.gd" id="1_vallh"]
 [ext_resource type="Texture2D" uid="uid://b4q0amljkd0fy" path="res://textures/roads/roadTest.jpg" id="2_rtphd"]
+[ext_resource type="Texture2D" uid="uid://b1tv0l1ysegc0" path="res://textures/roads/roadTestFliped.jpg" id="3_jmxbe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw7st"]
 albedo_texture = ExtResource("2_rtphd")
@@ -16,14 +17,27 @@ albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kxuq"]
 size = Vector3(2, 1, 2)
 
-[node name="RoadStraight" type="Node3D" unique_id=2100877904 node_paths=PackedStringArray("anchor", "origin")]
+[sub_resource type="Curve3D" id="Curve3D_fladq"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 18.333334, 0, 0.05, -10, 0, 0, -18.333334, 0, 0, 0, 0, 0.05, 45),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmxbe"]
+albedo_texture = ExtResource("3_jmxbe")
+uv1_scale = Vector3(0.1, 8, 1)
+
+[node name="RoadStraight" type="Node3D" unique_id=2100877904 node_paths=PackedStringArray("anchor", "origin", "road_path")]
 script = ExtResource("1_vallh")
 anchor = NodePath("Anchor")
 origin = NodePath("Origin")
+road_path = NodePath("RoadPath")
 weight = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=576532607]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+visible = false
 layers = 3
 material_override = SubResource("StandardMaterial3D_pw7st")
 mesh = SubResource("PlaneMesh_10jsn")
@@ -39,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_4kxuq")
 
 [node name="Anchor" type="Marker3D" parent="." unique_id=1915806667]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45)
 
 [node name="Origin" type="Marker3D" parent="." unique_id=1522548629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -55,3 +69,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 1, 3)
 
 [node name="ObstaclePlacement2" type="Marker3D" parent="Obstacles" unique_id=1056441016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 1, 3)
+
+[node name="RoadPath" type="Path3D" parent="." unique_id=1904956768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+curve = SubResource("Curve3D_fladq")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=1358451266]
+material_override = SubResource("StandardMaterial3D_jmxbe")
+polygon = PackedVector2Array(-8, 0, -8, 0.05, 8, 0.05, 8, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false

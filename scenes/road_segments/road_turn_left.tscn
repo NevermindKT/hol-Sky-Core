@@ -5,23 +5,24 @@
 
 [sub_resource type="Curve3D" id="Curve3D_a4orq"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0.14, 0, 0, 0, 0, -10, -6, 0, -5.38, 6.2639766, -8.7898225e-06, 10.243182, 5, 0, 10),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 18.764624, 0, 0.05, -10, -13.268593, 0, -13.268593, 0, 0, 0, 12, 0.05, 45),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3itlt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vu5s"]
 albedo_texture = ExtResource("3_8qsns")
 uv1_scale = Vector3(0.1, 8, 1)
 
-[node name="RoadTurnLeft" type="Node3D" unique_id=589171158 node_paths=PackedStringArray("anchor", "origin")]
+[node name="RoadTurnLeft" type="Node3D" unique_id=589171158 node_paths=PackedStringArray("anchor", "origin", "road_path")]
 script = ExtResource("1_a4orq")
 anchor = NodePath("Anchor")
 origin = NodePath("Origin")
+road_path = NodePath("RoadPath")
 segment_type = 1
 
 [node name="Anchor" type="Marker3D" parent="." unique_id=1944294220]
-transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 5, 0, 10)
+transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 12, 0, 45)
 
 [node name="Origin" type="Marker3D" parent="." unique_id=629996728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -30,13 +31,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 curve = SubResource("Curve3D_a4orq")
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=136630849]
-layers = 3
-material_override = SubResource("StandardMaterial3D_3itlt")
-use_collision = true
-collision_layer = 2
-collision_mask = 0
-polygon = PackedVector2Array(-5, 0, -5, 0.05, 5, 0.05, 5, 0)
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=735203004]
+material_override = SubResource("StandardMaterial3D_6vu5s")
+polygon = PackedVector2Array(-8, 0, -8, 0.05, 8, 0.05, 8, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0

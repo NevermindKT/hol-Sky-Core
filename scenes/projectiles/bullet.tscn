@@ -5,6 +5,8 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_yvfy2"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_10jsn"]
+
 [node name="Bullet" type="Node3D" unique_id=624272342]
 script = ExtResource("1_yvfy2")
 
@@ -14,3 +16,9 @@ visible = false
 mesh = SubResource("SphereMesh_yvfy2")
 
 [node name="BulletTrailRibbon" parent="." unique_id=1614723032 instance=ExtResource("2_48g2p")]
+
+[node name="HitBox" type="Area3D" parent="." unique_id=2043536779]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=619165886]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("SphereShape3D_10jsn")
