@@ -1,14 +1,19 @@
 extends Node3D
 class_name BloodCarHit
 
-## Ефект удару машиною по ворогу: обгортка над blood_splash.tscn +
-## ShockwaveEffect, яка вміє розташуватись у точці удару й зіграти обидва
-## ефекти в напрямку відкидання.
 
 @export var splash: GPUParticles3D
-@export var shockwave: ShockwaveEffect
 @export_range(10.0, 180.0) var spread: float = 60.0
 @export var lifetime: float = 5.0
+
+@export_group("Speed influence")
+@export var reference_speed: float = 20.0
+@export var min_intensity_scale: float = 0.4
+@export var max_intensity_scale: float = 2.0
+
+var _base_amount: int
+var _base_velocity_min: float
+var _base_velocity_max: float
 
 func _ready() -> void:
 	splash.one_shot = true
@@ -21,16 +26,27 @@ func _ready() -> void:
 		mat.spread = spread
 		splash.process_material = mat
 
-## Розташовує ефект у точці удару, орієнтує вздовж hit_direction і запускає
-## бризк одним пострілом.
-func play(hit_position: Vector3, hit_direction: Vector3) -> void:
+		_base_velocity_min = mat.initial_velocity_min
+		_base_velocity_max = mat.initial_velocity_max
+
+	_base_amount = splash.amount
+
+func play(hit_position: Vector3, hit_direction: Vector3, car_speed: float = 0.0) -> void:
 	global_position = hit_position
 	_orient_to(-hit_direction)
 
+	var speed_scale := 1.0
+	if reference_speed > 0.0:
+		speed_scale = clampf(car_speed / reference_speed, min_intensity_scale, max_intensity_scale)
+
+	var mat := splash.process_material as ParticleProcessMaterial
+	if mat:
+		mat.initial_velocity_min = _base_velocity_min * speed_scale
+		mat.initial_velocity_max = _base_velocity_max * speed_scale
+
+	splash.amount = maxi(1, int(_base_amount * speed_scale))
 	splash.restart()
 
-	if shockwave:
-		shockwave.play()
 
 	get_tree().create_timer(lifetime).timeout.connect(queue_free)
 

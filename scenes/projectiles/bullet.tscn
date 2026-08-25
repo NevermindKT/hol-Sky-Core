@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bt3acygnr2ji2"]
 
 [ext_resource type="Script" uid="uid://dx2vefwu2mmj0" path="res://scripts/projectiles/projectile.gd" id="1_yvfy2"]
+[ext_resource type="PackedScene" uid="uid://bvs3gvop5p7mp" path="res://scenes/vfx/components/bullet_trail_ribbon.tscn" id="2_48g2p"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_yvfy2"]
 
@@ -11,6 +12,7 @@ script = ExtResource("1_yvfy2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=25708232]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_yvfy2")
 
 [node name="HitBox" type="Area3D" parent="." unique_id=2043536779]
@@ -18,3 +20,4 @@ mesh = SubResource("SphereMesh_yvfy2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=619165886]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 shape = SubResource("SphereShape3D_10jsn")
+[node name="BulletTrailRibbon" parent="." unique_id=1614723032 instance=ExtResource("2_48g2p")]

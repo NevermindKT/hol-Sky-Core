@@ -45,6 +45,7 @@ var steering_input := 0.0
 
 @export_category("Exports")
 @export var player_cam: Camera3D
+@export var back_lights: BackLights
 
 @onready var cam_pivot: Node3D = $CamPivot
 @onready var inventory: Inventory = $Inventory
@@ -98,6 +99,9 @@ func process_speed(delta: float) -> void:
 
 	if InputController.braking:
 		speed -= brake * delta
+		back_lights.turn_on()
+	else:
+		back_lights.turn_off()
 
 	speed -= drag * delta
 	speed = clamp(speed, 0.0, max_speed)

@@ -12,6 +12,7 @@ signal reload
 signal next_weapon
 signal previous_weapon
 signal flashlight_toggle
+signal headlights_toggle
 
 signal pause_toggle
 
@@ -45,3 +46,6 @@ func _process(_delta):
 		
 	if Input.is_action_just_pressed("toggle_flashlight"):
 		flashlight_toggle.emit()
+
+	if Input.is_action_just_pressed("toggle_headlights"):
+		headlights_toggle.emit()

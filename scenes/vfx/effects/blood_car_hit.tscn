@@ -2,15 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dq26rlxkoo0hf" path="res://scripts/vfx/blood_car_hit.gd" id="1_lyr8x"]
 [ext_resource type="PackedScene" uid="uid://mb4qq2apxbdx" path="res://scenes/vfx/components/blood_splash.tscn" id="2_xhqt7"]
-[ext_resource type="PackedScene" uid="uid://6vpkxdvp7a7i" path="res://scenes/vfx/components/shockwave.tscn" id="3_hvyph"]
 
-[node name="BloodCarHit" type="Node3D" unique_id=317885701 node_paths=PackedStringArray("splash", "shockwave")]
+[node name="BloodCarHit" type="Node3D" unique_id=317885701 node_paths=PackedStringArray("splash")]
 script = ExtResource("1_lyr8x")
 splash = NodePath("BloodSplash/Splash")
-shockwave = NodePath("Shockwave")
-spread = 20.0
+spread = 30.0
 lifetime = 10.0
+reference_speed = 7.0
+min_intensity_scale = 1.5
+max_intensity_scale = 4.0
 
 [node name="BloodSplash" parent="." unique_id=1026283783 instance=ExtResource("2_xhqt7")]
-
-[node name="Shockwave" parent="." unique_id=159269689 instance=ExtResource("3_hvyph")]

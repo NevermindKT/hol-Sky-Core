@@ -116,9 +116,6 @@ func road_transform_at(t: float) -> Transform3D:
 		basis = Basis.looking_at(dir.normalized(), Vector3.UP)
 	return Transform3D(basis, point)
 
-
-## Найближчий до заданої точки (в ЛОКАЛЬНИХ координатах цього сегмента)
-## параметр t [0..1] вздовж полотна дороги.
 func closest_t(local_point: Vector3) -> float:
 	var road_path := get_node_or_null("RoadPath") as Path3D
 	if road_path and road_path.curve and road_path.curve.get_baked_length() > 0.0:
