@@ -13,7 +13,7 @@ class_name Road_segment
 
 var obstacle_placement_array: Array[Marker3D] = []
 
-@onready var obstacles: Node = $Obstacles
+@export var obstacles: Node
 
 var polygon: CSGPolygon3D
 

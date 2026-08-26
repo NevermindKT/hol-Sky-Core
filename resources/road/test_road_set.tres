@@ -15,14 +15,14 @@ metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 [sub_resource type="Resource" id="Resource_4k70l"]
 script = ExtResource("2_x4e11")
 scene = ExtResource("4_2c1j4")
-weight = 2.0
+weight = 5.0
 type = 1
 metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
 [sub_resource type="Resource" id="Resource_ipe36"]
 script = ExtResource("2_x4e11")
 scene = ExtResource("5_ipe36")
-weight = 2.0
+weight = 5.0
 type = 2
 metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
