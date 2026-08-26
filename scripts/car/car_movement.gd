@@ -47,12 +47,12 @@ var steering_input := 0.0
 @export var player_cam: Camera3D
 @export var back_lights: BackLights
 
-@onready var cam_pivot: Node3D = $CamPivot
-@onready var inventory: Inventory = $Inventory
-@onready var weapon_pivot: Node3D = $Visual/WeaponPivot
-@onready var visual_effects: Car_Visual_Effects = $Visual
-@onready var weapon_controller: Weapon_controller = $WeaponController
-@onready var player_status_controller: Player_Status_Controller = $PlayerStatusController
+@export var cam_pivot: Node3D
+@export var inventory: Inventory
+@export var weapon_pivot: Node3D
+@export var visual_effects: Car_Visual_Effects
+@export var weapon_controller: Weapon_controller
+@export var player_status_controller: Player_Status_Controller
 
 @onready var road_manager: Road_manager = $"../Services/RoadManager"
 

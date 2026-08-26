@@ -50,7 +50,6 @@ func _ready() -> void:
 	queue_free()
 
 
-
 func set_world():
 	road_generator.world = world
 	ground_generator.world = world
@@ -59,6 +58,7 @@ func set_world():
 	ProjectileSpawner.world = world
 	lightning_controller.world = world
 	enemy_spawner.world = world
+
 
 func set_road_manager():
 	weather_generator.road_manager = road_manager
