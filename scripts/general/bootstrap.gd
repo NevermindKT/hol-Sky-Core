@@ -60,7 +60,6 @@ func set_world():
 	lightning_controller.world = world
 	enemy_spawner.world = world
 
-
 func set_road_manager():
 	weather_generator.road_manager = road_manager
 
