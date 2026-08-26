@@ -15,17 +15,10 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_yvfy2")
 
-<<<<<<< HEAD
 [node name="BulletTrailRibbon" parent="." unique_id=1614723032 instance=ExtResource("2_48g2p")]
 
-=======
->>>>>>> 5e88bfabff64dfafddb6b207e0c90797d8cdc82e
 [node name="HitBox" type="Area3D" parent="." unique_id=2043536779]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=619165886]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 shape = SubResource("SphereShape3D_10jsn")
-<<<<<<< HEAD
-=======
-[node name="BulletTrailRibbon" parent="." unique_id=1614723032 instance=ExtResource("2_48g2p")]
->>>>>>> 5e88bfabff64dfafddb6b207e0c90797d8cdc82e
