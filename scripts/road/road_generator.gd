@@ -29,7 +29,7 @@ func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	obstacle_set = _obstacle_set
 	spawn_start()
 	
-	#create_debug_path()
+	create_debug_path()
 
 
 func _process(_delta):
@@ -47,6 +47,15 @@ func create_debug_path() -> void:
 
 	debug_mesh = MeshInstance3D.new()
 	debug_mesh.mesh = debug_path
+
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.vertex_color_use_as_albedo = true
+	mat.albedo_color = Color(1, 0, 1)  # ярко-розовый, чтобы не сливался с дорогой
+	mat.no_depth_test = true            # рисуется поверх всего
+	mat.render_priority = 10
+
+	debug_mesh.material_override = mat
 
 	world.world.add_child(debug_mesh)
 
@@ -105,7 +114,7 @@ func add_curve_points(seg: Road_segment) -> void:
 		anchor_dir * handle_len
 	)
 	
-	#update_debug_path()
+	update_debug_path()
 
 
 func pick_random_segment() -> PackedScene:
