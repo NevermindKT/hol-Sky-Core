@@ -4,7 +4,7 @@ class_name Enemy_Encounter
 
 @export var player: Node3D
 @export var enemies: Array[Encounter_Enemy] = []
-
+@export var world: World
 
 func inialize() -> void:
 	if !get_children():

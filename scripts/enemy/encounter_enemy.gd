@@ -166,7 +166,7 @@ func _spawn_hit_effect(
 ) -> void:
 	var effect := hit_effect_scene.instantiate() as BloodCarHit
 
-	get_parent().add_child(effect)
+	get_parent().world.enemies.add_child(effect)
 
 	effect.play(
 		hit_position,

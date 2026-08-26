@@ -25,9 +25,10 @@ func _ready() -> void:
 	
 	length = origin.position.distance_to(anchor.position)
 	
-	for child in obstacles.get_children():
-		if child is Marker3D:
-			obstacle_placement_array.append(child)
+	if obstacles != null:
+		for child in obstacles.get_children():
+			if child is Marker3D:
+				obstacle_placement_array.append(child)
 
 
 func _process(_delta: float) -> void:
