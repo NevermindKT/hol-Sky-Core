@@ -52,6 +52,7 @@ metadata/_custom_type_script = "uid://nvhh14a8jfmw"
 [node name="Core" type="Node3D" unique_id=243152911]
 
 [node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("2_uhg8y")]
+max_offset = 10.0
 strafe_speed = 14.0
 road_turn_force = 0.8
 dodge_force = 18.0
@@ -84,13 +85,20 @@ obstacle_set = SubResource("Resource_dakql")
 world = NodePath("../../World")
 
 [node name="DistanceFog" parent="Environment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.208, -150)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -150)
 
-[node name="EnemyEncounter" type="Node3D" parent="." unique_id=2038877150 node_paths=PackedStringArray("player", "enemies")]
+[node name="DistanceFog2" parent="Environment" unique_id=750089918 instance=ExtResource("15_cshfm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -120, 1, -150)
+
+[node name="DistanceFog3" parent="Environment" unique_id=1031805874 instance=ExtResource("15_cshfm")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 120, 1, -150)
+
+[node name="EnemyEncounter" type="Node3D" parent="." unique_id=2038877150 node_paths=PackedStringArray("player", "enemies", "world")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 script = ExtResource("13_asndc")
 player = NodePath("../Car")
 enemies = [NodePath("Enemy1")]
+world = NodePath("../Environment/World")
 metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Enemy1" parent="EnemyEncounter" unique_id=1666728161 instance=ExtResource("14_a06ay")]
@@ -123,7 +131,7 @@ script = ExtResource("7_0uqmh")
 
 [node name="RoadManager" type="Node" parent="Services" unique_id=728849668]
 script = ExtResource("7_3g18v")
-turn_smoothing = 30.0
+turn_smoothing = 100.0
 sample_distance = 4.5
 metadata/_custom_type_script = "uid://bhl1wod4cbmvb"
 
