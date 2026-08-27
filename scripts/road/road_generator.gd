@@ -30,7 +30,7 @@ func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	road_set = _road_set
 	obstacle_set = _obstacle_set
 	spawn_start()
-	#create_debug_path()
+	create_debug_path()
 
 
 func _process(_delta):
@@ -40,8 +40,26 @@ func _process(_delta):
 	if segments[0].global_position.z > UNLOAD_DISTANCE:
 		segments[0].queue_free()
 		segments.pop_front()
-		#_trim_cosmetic_curve_front()
+		_trim_curve_front()
+		_trim_cosmetic_curve_front()
 		Events.segment_dispawned.emit()
+
+
+func _trim_curve_front() -> void:
+	if control_points.size() <= 4:
+		return
+
+	var curve := world.world_path.curve
+	var length_before := curve.get_baked_length()
+
+	control_points.remove_at(0)
+	curve.remove_point(0)
+
+	var length_after := curve.get_baked_length()
+	var removed_length := length_before - length_after
+
+	if removed_length > 0.0:
+		Events.world_curve_trimmed.emit(removed_length)
 
 
 func create_debug_path() -> void:
@@ -146,9 +164,16 @@ func add_cosmetic_curve_points(seg: Road_segment) -> void:
 
 
 func _trim_cosmetic_curve_front() -> void:
-	if world.ground_path.curve.point_count <= 4:
+	if world.ground_path.curve.point_count <= 2:
 		return
+
+	var length_before := world.ground_path.curve.get_baked_length()
 	world.ground_path.curve.remove_point(0)
+	var length_after := world.ground_path.curve.get_baked_length()
+
+	var removed_length := length_before - length_after
+	if removed_length > 0.0:
+		Events.cosmetic_curve_trimmed.emit(removed_length)
 
 
 func pick_random_segment() -> PackedScene:
