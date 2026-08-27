@@ -24,15 +24,13 @@ const UNLOAD_DISTANCE = 75
 const MAX_ROAD_DIR_OFFSET = 2
 
 var control_points: PackedVector3Array = []
-#const SAMPLES_PER_SEGMENT := 26
-#var tail_provisional_count := 0  # сколько последних точек curve — "временные", посчитанные с дублем последней точки
 
 
 func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	road_set = _road_set
 	obstacle_set = _obstacle_set
 	spawn_start()
-	create_debug_path()
+	#create_debug_path()
 
 
 func _process(_delta):
@@ -42,6 +40,7 @@ func _process(_delta):
 	if segments[0].global_position.z > UNLOAD_DISTANCE:
 		segments[0].queue_free()
 		segments.pop_front()
+		#_trim_cosmetic_curve_front()
 		Events.segment_dispawned.emit()
 
 
@@ -54,8 +53,8 @@ func create_debug_path() -> void:
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.vertex_color_use_as_albedo = true
-	mat.albedo_color = Color(1, 0, 1)  # ярко-розовый, чтобы не сливался с дорогой
-	mat.no_depth_test = true            # рисуется поверх всего
+	mat.albedo_color = Color(1, 0, 1)
+	mat.no_depth_test = true
 	mat.render_priority = 10
 
 	debug_mesh.material_override = mat
@@ -100,14 +99,12 @@ func add_curve_points(seg: Road_segment) -> void:
 
 	control_points.append(anchor_xform.origin)
 
-	var k := control_points.size() - 2  # индекс узла, который стал вычислимым только что
+	var k := control_points.size() - 2
 	_place_joint(curve, k)
 
 	update_debug_path()
 
 
-# Узлу k нужны только соседи k-1, k, k+1 - все три уже существуют сразу после
-# добавления P_{k+1}, поэтому финализируем его немедленно, без ожидания и без временных точек.
 func _place_joint(curve: Curve3D, k: int) -> void:
 	var p_prev := _cp(k - 1)
 	var p_here := _cp(k)
@@ -118,8 +115,6 @@ func _place_joint(curve: Curve3D, k: int) -> void:
 	var out_pos: Vector3 = (2.0 * p_here + p_next) / 3.0
 
 	if k == 0:
-		# первая точка кривой уже добавлена как control_points[0] (origin первого сегмента),
-		# ей нужен только исходящий хендл
 		curve.set_point_out(0, out_pos - curve.get_point_position(0))
 		return
 
@@ -128,6 +123,32 @@ func _place_joint(curve: Curve3D, k: int) -> void:
 
 func _cp(idx: int) -> Vector3:
 	return control_points[clampi(idx, 0, control_points.size() - 1)]
+
+
+func add_cosmetic_curve_points(seg: Road_segment) -> void:
+	var origin_xform: Transform3D = seg.transform * seg.origin.transform
+	var anchor_xform: Transform3D = seg.transform * seg.anchor.transform
+
+	var chord: Vector3 = (anchor_xform.origin - origin_xform.origin).normalized()
+	var chord_len: float = origin_xform.origin.distance_to(anchor_xform.origin)
+	var handle_len: float = chord_len / 3.0
+
+	if world.ground_path.curve.point_count == 0:
+		var origin_dir: Vector3 = -origin_xform.basis.z
+		if origin_dir.dot(chord) < 0.0:
+			origin_dir = -origin_dir
+		world.ground_path.curve.add_point(origin_xform.origin, -origin_dir * handle_len, origin_dir * handle_len)
+
+	var anchor_dir: Vector3 = -anchor_xform.basis.z
+	if anchor_dir.dot(chord) < 0.0:
+		anchor_dir = -anchor_dir
+	world.ground_path.curve.add_point(anchor_xform.origin, -anchor_dir * handle_len, anchor_dir * handle_len)
+
+
+func _trim_cosmetic_curve_front() -> void:
+	if world.ground_path.curve.point_count <= 4:
+		return
+	world.ground_path.curve.remove_point(0)
 
 
 func pick_random_segment() -> PackedScene:
@@ -172,6 +193,7 @@ func spawn(scene: PackedScene):
 	world.road_container.add_child(new_segment)
 
 	add_curve_points(new_segment)
+	add_cosmetic_curve_points(new_segment)
 	#spawn_obstacle(new_segment)
 	
 	last_segment = new_segment
