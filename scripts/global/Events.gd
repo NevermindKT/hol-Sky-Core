@@ -23,6 +23,8 @@ signal segment_dispawned
 signal level_progress_changed(current, max)
 signal segment_spawned(segment: Road_segment)
 signal weather_changed()
+signal world_curve_trimmed(removed_length: float)
+signal cosmetic_curve_trimmed(removed_length: float)
 
 #-------------- RUN
 signal run_started

@@ -24,6 +24,8 @@ func initialize(start_distance: float):
 
 	world.world.global_transform = world.path_follow_3d.global_transform.affine_inverse()
 
+	Events.world_curve_trimmed.connect(_on_world_curve_trimmed)
+
 
 func _process(delta: float):
 	if world == null:
@@ -35,6 +37,10 @@ func _process(delta: float):
 
 	world.world.global_transform = \
 		world.path_follow_3d.global_transform.affine_inverse()
+
+
+func _on_world_curve_trimmed(removed_length: float) -> void:
+	world.path_follow_3d.progress -= removed_length
 
 
 func update_turn_velocity(delta: float):

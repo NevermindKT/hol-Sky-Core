@@ -46,6 +46,7 @@ func initialize() -> void:
 	_transition_start_offset = 0.0
 	_tiles_since_change = 0
 	_tiles_until_change = 0
+	Events.cosmetic_curve_trimmed.connect(_on_cosmetic_curve_trimmed)
 	_try_spawn_next()
 
 
@@ -56,6 +57,11 @@ func _process(_delta: float) -> void:
 	if tiles.size() > 0 and tiles[0].global_position.z > UNLOAD_DISTANCE:
 		tiles[0].queue_free()
 		tiles.pop_front()
+
+
+func _on_cosmetic_curve_trimmed(removed_length: float) -> void:
+	_next_offset -= removed_length
+	_transition_start_offset -= removed_length
 
 
 func _try_spawn_next() -> void:
