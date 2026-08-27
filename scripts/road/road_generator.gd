@@ -19,16 +19,19 @@ var obstacle_spawn_chance: float
 var debug_path: ImmediateMesh
 var debug_mesh: MeshInstance3D
 
-const MAX_SEGMENTS = 46
+const MAX_SEGMENTS = 15
 const UNLOAD_DISTANCE = 75
 const MAX_ROAD_DIR_OFFSET = 2
+
+var control_points: PackedVector3Array = []
+#const SAMPLES_PER_SEGMENT := 26
+#var tail_provisional_count := 0  # сколько последних точек curve — "временные", посчитанные с дублем последней точки
 
 
 func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	road_set = _road_set
 	obstacle_set = _obstacle_set
 	spawn_start()
-	
 	create_debug_path()
 
 
@@ -89,32 +92,42 @@ func update_debug_path() -> void:
 func add_curve_points(seg: Road_segment) -> void:
 	var origin_xform: Transform3D = seg.transform * seg.origin.transform
 	var anchor_xform: Transform3D = seg.transform * seg.anchor.transform
-	var handle_len: float = seg.length / 2.3
+	var curve := world.world_path.curve
 
-	var chord: Vector3 = (anchor_xform.origin - origin_xform.origin).normalized()
+	if control_points.is_empty():
+		control_points.append(origin_xform.origin)
+		curve.add_point(control_points[0])
 
-	var origin_dir: Vector3 = -origin_xform.basis.z
-	if origin_dir.dot(chord) < 0.0:
-		origin_dir = -origin_dir
+	control_points.append(anchor_xform.origin)
 
-	var anchor_dir: Vector3 = -anchor_xform.basis.z
-	if anchor_dir.dot(chord) < 0.0:
-		anchor_dir = -anchor_dir
+	var k := control_points.size() - 2  # индекс узла, который стал вычислимым только что
+	_place_joint(curve, k)
 
-	if world.world_path.curve.point_count == 0:
-		world.world_path.curve.add_point(
-			origin_xform.origin,
-			-origin_dir * handle_len,
-			origin_dir * handle_len
-		)
-
-	world.world_path.curve.add_point(
-		anchor_xform.origin,
-		-anchor_dir * handle_len,
-		anchor_dir * handle_len
-	)
-	
 	update_debug_path()
+
+
+# Узлу k нужны только соседи k-1, k, k+1 - все три уже существуют сразу после
+# добавления P_{k+1}, поэтому финализируем его немедленно, без ожидания и без временных точек.
+func _place_joint(curve: Curve3D, k: int) -> void:
+	var p_prev := _cp(k - 1)
+	var p_here := _cp(k)
+	var p_next := _cp(k + 1)
+
+	var joint_pos: Vector3 = (p_prev + 4.0 * p_here + p_next) / 6.0
+	var in_pos: Vector3 = (p_prev + 2.0 * p_here) / 3.0
+	var out_pos: Vector3 = (2.0 * p_here + p_next) / 3.0
+
+	if k == 0:
+		# первая точка кривой уже добавлена как control_points[0] (origin первого сегмента),
+		# ей нужен только исходящий хендл
+		curve.set_point_out(0, out_pos - curve.get_point_position(0))
+		return
+
+	curve.add_point(joint_pos, in_pos - joint_pos, out_pos - joint_pos)
+
+
+func _cp(idx: int) -> Vector3:
+	return control_points[clampi(idx, 0, control_points.size() - 1)]
 
 
 func pick_random_segment() -> PackedScene:
@@ -159,7 +172,7 @@ func spawn(scene: PackedScene):
 	world.road_container.add_child(new_segment)
 
 	add_curve_points(new_segment)
-	spawn_obstacle(new_segment)
+	#spawn_obstacle(new_segment)
 	
 	last_segment = new_segment
 	
