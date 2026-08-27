@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 
 
 func _try_spawn_next() -> void:
-	var curve := world.world_path.curve
+	var curve := world.ground_path.curve
 	if curve == null:
 		return
 
