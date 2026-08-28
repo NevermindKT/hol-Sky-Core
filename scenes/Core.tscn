@@ -17,9 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://33j34s1svc7q" path="res://scenes/general/hud.tscn" id="11_wqd6n"]
 [ext_resource type="Resource" uid="uid://b2rqs0roqpye8" path="res://resources/weather/fog/LightFog.tres" id="12_xwqeg"]
 [ext_resource type="Script" uid="uid://bcc07pjuuti4w" path="res://scripts/enemy/enemy_encounter.gd" id="13_asndc"]
-[ext_resource type="PackedScene" uid="uid://chbrpi5p25krs" path="res://scenes/enemies/encounter_enemy.tscn" id="14_a06ay"]
+[ext_resource type="Resource" uid="uid://kbikc6eesw84" path="res://resources/enemy/testEnemy.tres" id="13_g88bg"]
 [ext_resource type="Script" uid="uid://csuu8mh30lvn7" path="res://scripts/spawners/enemy_spawner.gd" id="14_dakql"]
-[ext_resource type="PackedScene" uid="uid://ycruqbm88110" path="res://scenes/vfx/effects/blood_car_hit.tscn" id="15_7hc18"]
 [ext_resource type="PackedScene" uid="uid://ck5eo0ch0lb4t" path="res://scenes/weather/components/distance_fog.tscn" id="15_cshfm"]
 [ext_resource type="PackedScene" uid="uid://dj6f80eu3p4mq" path="res://scenes/enemies/enemy.tscn" id="15_cyvft"]
 [ext_resource type="Script" uid="uid://dydg442leo0i4" path="res://scripts/weather/weather_generator.gd" id="16_iqacv"]
@@ -93,20 +92,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -120
 [node name="DistanceFog3" parent="Environment" unique_id=1031805874 instance=ExtResource("15_cshfm")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 120, 1, -150)
 
-[node name="EnemyEncounter" type="Node3D" parent="." unique_id=2038877150 node_paths=PackedStringArray("player", "enemies", "world")]
+[node name="EnemyEncounter" type="Node3D" parent="." unique_id=2038877150 node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
-visible = false
 script = ExtResource("13_asndc")
 player = NodePath("../Car")
-enemies = [NodePath("Enemy1")]
-world = NodePath("../Environment/World")
+test_Enemy = ExtResource("13_g88bg")
 metadata/_custom_type_script = "uid://bcc07pjuuti4w"
-
-[node name="Enemy1" parent="EnemyEncounter" unique_id=1666728161 instance=ExtResource("14_a06ay")]
-max_health = 200.0
-move_speed = 15.0
-dash_speed = 50.0
-hit_effect_scene = ExtResource("15_7hc18")
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 

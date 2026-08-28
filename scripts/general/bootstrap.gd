@@ -44,7 +44,8 @@ func _ready() -> void:
 	tire_trail_manager.initialize(world, car, road_manager)
 	blood_trail_manager.initialize(world, car, road_manager)
 
-	enemy_encounter.inialize()
+	enemy_encounter.inialize(world)
+	#enemy_encounter.add_test_enemy()
 	#enemy_encounter.start_encounter()
 
 	queue_free()

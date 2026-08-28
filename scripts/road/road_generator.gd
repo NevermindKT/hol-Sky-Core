@@ -30,7 +30,7 @@ func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	road_set = _road_set
 	obstacle_set = _obstacle_set
 	spawn_start()
-	create_debug_path()
+	#create_debug_path()
 
 
 func _process(_delta):

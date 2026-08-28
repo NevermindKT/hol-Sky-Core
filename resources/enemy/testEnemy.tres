@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EncounterEnemyData" format=3 uid="uid://kbikc6eesw84"]
+
+[ext_resource type="PackedScene" uid="uid://chbrpi5p25krs" path="res://scenes/enemies/encounter_enemy.tscn" id="1_1ag7c"]
+[ext_resource type="PackedScene" uid="uid://ycruqbm88110" path="res://scenes/vfx/effects/blood_car_hit.tscn" id="1_ddetn"]
+[ext_resource type="Script" uid="uid://dugxq50h32qoa" path="res://resources/enemy/encounter_enemy_data.gd" id="2_1ag7c"]
+
+[resource]
+script = ExtResource("2_1ag7c")
+enemy_scene = ExtResource("1_1ag7c")
+hit_effect_scene = ExtResource("1_ddetn")
+metadata/_custom_type_script = "uid://dugxq50h32qoa"
