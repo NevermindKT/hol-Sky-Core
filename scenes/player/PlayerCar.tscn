@@ -21,7 +21,7 @@ _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_58tws"]
-_data = [Vector2(0, 0.16000009), 0.0, 0.0, 0, 0, Vector2(0.34074074, 0.49), 0.0, 0.0, 0, 0, Vector2(0.5037037, 1), 0.0, 0.0, 0, 0, Vector2(0.6888889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.76), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.16000009), 0.0, 0.0, 0, 0, Vector2(0.34074074, 0.49), 0.0, 0.0, 0, 0, Vector2(0.5037037, 1), 0.0, 0.0, 0, 0, Vector2(0.6888889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1500001), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
