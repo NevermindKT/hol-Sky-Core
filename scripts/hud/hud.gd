@@ -9,6 +9,8 @@ class_name HUD
 @onready var ammo_label: RichTextLabel = $Right/AmmoLabel
 @onready var weapon_name: RichTextLabel = $Right/WeaponName
 
+@onready var enemy_compass: Enemy_Compass = $EnemyCompass
+
 var magazine_size: float
 var magazine_current_ammo: float
 
@@ -32,6 +34,9 @@ func _on_pause_toggle():
 
 func update_progress(current: float, max_distance: float):
 	level_progress_bar.value = (current / max_distance) * 100.0
+
+#---------------- ENEMY COMPASS
+
 
 #---------------- HEALTH
 
