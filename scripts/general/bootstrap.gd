@@ -1,7 +1,7 @@
 extends Node
 
 @export var car: Car_Movement
-@export var hud: CanvasLayer
+@export var hud: HUD
 @export var world: World
 
 @export var run_manager: Run_manager
@@ -28,25 +28,27 @@ func _ready() -> void:
 	set_weapon_system()
 	set_road_manager()
 	set_road_generator()
-	
+
 	car.player_status_controller.initialize()
-	
+
 	road_generator.obstacle_spawn_chance = OBSTACLE_SPAWN_CHANCE
 	road_generator.initialize(world.road_set, world.obstacle_set)
 	vegetation_scatter.initialize()
 	ground_generator.initialize()
 	road_manager.initialize(START_DISTANCE)
-	
+
 	set_road_generator()
-	
+
 	run_manager.initialize(DISTANCE_TO_END)
 	
 	tire_trail_manager.initialize(world, car, road_manager)
 	blood_trail_manager.initialize(world, car, road_manager)
 
 	enemy_encounter.inialize(world)
-	#enemy_encounter.add_test_enemy()
-	#enemy_encounter.start_encounter()
+	enemy_encounter.add_test_enemy()
+	enemy_encounter.start_encounter()
+
+	set_encounter()
 
 	queue_free()
 
@@ -76,3 +78,6 @@ func set_player_car():
 
 func set_weapon_system():
 	car.weapon_controller.initialize()
+
+func set_encounter():
+	hud.enemy_compass.encounter = enemy_encounter

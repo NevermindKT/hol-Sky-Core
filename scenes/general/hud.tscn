@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ughski8v3jcf" path="res://scripts/hud/hud.gd" id="1_p21ms"]
 [ext_resource type="Texture2D" uid="uid://ni7cq1rojonb" path="res://textures/hud/rossHairTest.png" id="2_oj1j8"]
+[ext_resource type="Script" uid="uid://cgnsa8ouki5r2" path="res://scripts/hud/enemy_compass.gd" id="3_5oepb"]
+[ext_resource type="PackedScene" uid="uid://jm2wpcnrd3uv" path="res://scenes/general/enemy_compass_marker.tscn" id="4_dh6d1"]
 
 [sub_resource type="GDScript" id="GDScript_oj1j8"]
 script/source = "extends Control
@@ -64,6 +66,19 @@ grow_horizontal = 2
 
 [node name="LevelProgressBar" type="ProgressBar" parent="Top" unique_id=167970145]
 layout_mode = 2
+
+[node name="EnemyCompass" type="Control" parent="." unique_id=1923176297]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 80.0
+offset_right = 400.0
+offset_bottom = 120.0
+grow_horizontal = 2
+script = ExtResource("3_5oepb")
+marker_scene = ExtResource("4_dh6d1")
 
 [node name="Left" type="VBoxContainer" parent="." unique_id=1188987128]
 anchors_preset = 2

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://jm2wpcnrd3uv"]
+
+[ext_resource type="Texture2D" uid="uid://di7ycs3ooda83" path="res://textures/hud/dangerTriangle.png" id="1_fj27i"]
+[ext_resource type="Script" uid="uid://1lto0ve7x2t0" path="res://scripts/hud/compass_marker.gd" id="2_68130"]
+
+[node name="EnemyCompassMarker" type="TextureRect" unique_id=1283739888]
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("1_fj27i")
+expand_mode = 1
+script = ExtResource("2_68130")

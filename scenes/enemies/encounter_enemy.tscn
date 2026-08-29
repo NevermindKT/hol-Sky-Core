@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chbrpi5p25krs"]
 
 [ext_resource type="Script" uid="uid://dwokpbc2dcvql" path="res://scripts/enemy/encounter_enemy.gd" id="1_y00ui"]
-[ext_resource type="Script" uid="uid://g4df0lxn27jv" path="res://scenes/enemies/Hurt_Box.gd" id="2_klukj"]
+[ext_resource type="Script" uid="uid://g4df0lxn27jv" path="res://scripts/enemy/Hurt_Box.gd" id="2_klukj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_10jsn"]
 
