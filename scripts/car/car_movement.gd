@@ -54,8 +54,7 @@ var steering_input := 0.0
 @export var weapon_controller: Weapon_controller
 @export var player_status_controller: Player_Status_Controller
 
-@onready var road_manager: Road_manager = $"../Services/RoadManager"
-
+var road_manager: Road_manager
 
 func _ready() -> void:
 	InputController.dodge.connect(dodge)

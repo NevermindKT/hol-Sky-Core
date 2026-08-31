@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ni7cq1rojonb"
-path="res://.godot/imported/rossHairTest.png-f04e98ae128663271c61baf34e09eeec.ctex"
+uid="uid://bv7iugxmxuhxv"
+path="res://.godot/imported/rossHair.png-3800c87acee0a9e02ad56d4ad0b23877.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/hud/rossHairTest.png"
-dest_files=["res://.godot/imported/rossHairTest.png-f04e98ae128663271c61baf34e09eeec.ctex"]
+source_file="res://textures/hud/rossHair.png"
+dest_files=["res://.godot/imported/rossHair.png-3800c87acee0a9e02ad56d4ad0b23877.ctex"]
 
 [params]
 

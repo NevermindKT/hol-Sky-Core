@@ -1,7 +1,6 @@
 extends Node3D
 class_name Enemy_Encounter
 
-
 var world: World
 @export var player: Node3D
 @export var enemies: Array[Encounter_Enemy] = []

@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://33j34s1svc7q"]
 
 [ext_resource type="Script" uid="uid://ughski8v3jcf" path="res://scripts/hud/hud.gd" id="1_p21ms"]
-[ext_resource type="Texture2D" uid="uid://ni7cq1rojonb" path="res://textures/hud/rossHairTest.png" id="2_oj1j8"]
 [ext_resource type="Script" uid="uid://cgnsa8ouki5r2" path="res://scripts/hud/enemy_compass.gd" id="3_5oepb"]
 [ext_resource type="PackedScene" uid="uid://jm2wpcnrd3uv" path="res://scenes/general/enemy_compass_marker.tscn" id="4_dh6d1"]
+[ext_resource type="Texture2D" uid="uid://bv7iugxmxuhxv" path="res://textures/hud/rossHair.png" id="4_p21ms"]
+[ext_resource type="Script" uid="uid://c5e3ma0wjjxgl" path="res://scenes/general/second_rectile.gd" id="5_p21ms"]
+[ext_resource type="Texture2D" uid="uid://cit5xdetb5wsk" path="res://textures/hud/lockCrosshair.png" id="6_pfecb"]
 
 [sub_resource type="GDScript" id="GDScript_oj1j8"]
 script/source = "extends Control
@@ -58,14 +60,87 @@ func cancel_reload():
 [node name="HUD" type="CanvasLayer" unique_id=299315244]
 script = ExtResource("1_p21ms")
 
-[node name="Top" type="VBoxContainer" parent="." unique_id=2108867572]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 27.0
+[node name="CrossHairCon" type="Control" parent="." unique_id=1706066031]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = SubResource("GDScript_oj1j8")
 
-[node name="LevelProgressBar" type="ProgressBar" parent="Top" unique_id=167970145]
-layout_mode = 2
+[node name="ReloadBar" type="ProgressBar" parent="CrossHairCon" unique_id=1102824652]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 25.0
+offset_right = 50.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="CrossHairPic" type="TextureRect" parent="CrossHairCon" unique_id=235227802]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_p21ms")
+expand_mode = 1
+
+[node name="SecondRectile" type="Control" parent="." unique_id=868345586]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("5_p21ms")
+
+[node name="LockPic" type="TextureRect" parent="SecondRectile" unique_id=559949156]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -42.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_pfecb")
+expand_mode = 1
 
 [node name="EnemyCompass" type="Control" parent="." unique_id=1923176297]
 layout_mode = 3
@@ -79,6 +154,15 @@ offset_bottom = 120.0
 grow_horizontal = 2
 script = ExtResource("3_5oepb")
 marker_scene = ExtResource("4_dh6d1")
+
+[node name="Top" type="VBoxContainer" parent="." unique_id=2108867572]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+
+[node name="LevelProgressBar" type="ProgressBar" parent="Top" unique_id=167970145]
+layout_mode = 2
 
 [node name="Left" type="VBoxContainer" parent="." unique_id=1188987128]
 anchors_preset = 2
@@ -123,53 +207,3 @@ theme_override_font_sizes/normal_font_size = 30
 text = "Ammo/Ammo"
 fit_content = true
 horizontal_alignment = 1
-
-[node name="CrossHairCon" type="Control" parent="." unique_id=1706066031]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = SubResource("GDScript_oj1j8")
-
-[node name="ReloadBar" type="ProgressBar" parent="CrossHairCon" unique_id=1102824652]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = 25.0
-offset_right = 50.0
-offset_bottom = 52.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 1
-show_percentage = false
-
-[node name="CrossHairPic" type="TextureRect" parent="CrossHairCon" unique_id=235227802]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_oj1j8")
-expand_mode = 1

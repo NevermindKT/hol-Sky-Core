@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name HUD
 
 @onready var cross_hair_con: Control = $CrossHairCon
+@onready var second_rectile: SecondaryReticle = $SecondRectile
 
 @onready var health_bar: ProgressBar = $Left/HealthBar
 @onready var level_progress_bar: ProgressBar = $Top/LevelProgressBar
