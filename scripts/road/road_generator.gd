@@ -29,8 +29,12 @@ var control_points: PackedVector3Array = []
 func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	road_set = _road_set
 	obstacle_set = _obstacle_set
+
 	spawn_start()
-	#create_debug_path()
+	while segments.size() < MAX_SEGMENTS:
+		spawn_next()
+
+	create_debug_path()
 
 
 func _process(_delta):
