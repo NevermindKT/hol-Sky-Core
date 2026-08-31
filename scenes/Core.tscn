@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="31_7hc18"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
+[ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="38_dph2j"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("7_tc8ix")
@@ -101,7 +102,7 @@ metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
-[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "enemy_spawner", "enemy_encounter")]
+[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "enemy_spawner", "aim_controller", "enemy_encounter")]
 script = ExtResource("6_v852s")
 car = NodePath("../../Car")
 hud = NodePath("../../UI/HUD")
@@ -116,10 +117,16 @@ tire_trail_manager = NodePath("../TireTrailManager")
 blood_trail_manager = NodePath("../BloodTrailManager")
 lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
 enemy_spawner = NodePath("../EnemySpawner")
+aim_controller = NodePath("../AimController")
 enemy_encounter = NodePath("../../EnemyEncounter")
 
 [node name="RunManager" type="Node" parent="Services" unique_id=239540275]
 script = ExtResource("7_0uqmh")
+
+[node name="AimController" type="Node" parent="Services" unique_id=1169437483]
+script = ExtResource("38_dph2j")
+aim_distance = 50.0
+aim_assist_radius = 100.0
 
 [node name="RoadManager" type="Node" parent="Services" unique_id=728849668]
 script = ExtResource("7_3g18v")

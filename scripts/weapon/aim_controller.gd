@@ -1,11 +1,18 @@
 extends Node
 class_name Aim_Controller
 
-@export var aim_distance: float
-@export var weapon_pivot: Node3D
-@onready var car: Car_Movement = $".."
+var car: Car_Movement
+var weapon_pivot: Node3D
 
+@export var aim_distance: float
 @export var aim_assist_radius: float = 60.0
+
+var secondary_reticle_screen_pos: Vector2
+var is_locked_on: bool = false
+
+func _ready() -> void:
+	weapon_pivot = car.weapon_pivot
+
 
 func _process(_delta: float) -> void:
 	var mouse_pos := get_viewport().get_mouse_position()
@@ -28,16 +35,14 @@ func _process(_delta: float) -> void:
 			target = result.position
 			direct_hit = true
 
-	# Если прямого попадания нет — ищем ближайший HurtBox по экранной дистанции
 	if not direct_hit:
 		var best_hurtbox: HurtBox = null
 		var best_dist := aim_assist_radius
 
 		for hb in get_tree().get_nodes_in_group("hurtboxes"):
-			var screen_pos := car.player_cam.unproject_position(hb.global_position)
-			# Пропускаем цели за спиной камеры
 			if car.player_cam.is_position_behind(hb.global_position):
 				continue
+			var screen_pos := car.player_cam.unproject_position(hb.global_position)
 			var dist := mouse_pos.distance_to(screen_pos)
 			if dist < best_dist:
 				best_dist = dist
@@ -45,5 +50,9 @@ func _process(_delta: float) -> void:
 
 		if best_hurtbox:
 			target = best_hurtbox.global_position
+			direct_hit = true
+
+	is_locked_on = direct_hit
+	secondary_reticle_screen_pos = car.player_cam.unproject_position(target) if is_locked_on else mouse_pos
 
 	weapon_pivot.look_at(target)

@@ -15,8 +15,8 @@ extends Node
 @export var lightning_controller: LightningController
 @export var enemy_spawner: Enemy_spawner
 
+@export var aim_controller: Aim_Controller
 @export var enemy_encounter: Enemy_Encounter
-
 
 const START_DISTANCE := 5.0
 const DISTANCE_TO_END := 200.0
@@ -28,6 +28,7 @@ func _ready() -> void:
 	set_weapon_system()
 	set_road_manager()
 	set_road_generator()
+	set_aim_controller()
 
 	car.player_status_controller.initialize()
 
@@ -64,6 +65,7 @@ func set_world():
 
 
 func set_road_manager():
+	car.road_manager = road_manager
 	weather_generator.road_manager = road_manager
 
 
@@ -74,6 +76,7 @@ func set_road_generator():
 
 func set_player_car():
 	road_manager.car_movement = car
+	aim_controller.car = car
 
 
 func set_weapon_system():
@@ -81,3 +84,6 @@ func set_weapon_system():
 
 func set_encounter():
 	hud.enemy_compass.encounter = enemy_encounter
+
+func set_aim_controller():
+	hud.second_rectile.aim_controller = aim_controller
