@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://ck5eo0ch0lb4t" path="res://scenes/weather/components/distance_fog.tscn" id="15_cshfm"]
 [ext_resource type="PackedScene" uid="uid://dj6f80eu3p4mq" path="res://scenes/enemies/enemy.tscn" id="15_cyvft"]
 [ext_resource type="Script" uid="uid://dydg442leo0i4" path="res://scripts/weather/weather_generator.gd" id="16_iqacv"]
-[ext_resource type="PackedScene" uid="uid://c5q2obhvjx8lj" path="res://scenes/weather/components/weather_zone.tscn" id="17_tc8ix"]
+[ext_resource type="PackedScene" uid="uid://c5q2obhvjx8lj" path="res://scenes/weather/weather_zone.tscn" id="17_tc8ix"]
 [ext_resource type="Script" uid="uid://cj3gix68sfnqx" path="res://resources/weather/rain_data.gd" id="18_asndc"]
 [ext_resource type="Resource" uid="uid://bkqcw5y1s4fd5" path="res://resources/weather/rain/NoRainProfile.tres" id="19_a06ay"]
 [ext_resource type="Resource" uid="uid://cts2oj350omv2" path="res://resources/weather/rain/RainProfile.tres" id="20_7hc18"]
@@ -80,6 +80,9 @@ road_set = ExtResource("5_hyqco")
 obstacle_set = SubResource("Resource_dakql")
 
 [node name="WeatherSystem" parent="Environment" unique_id=1765140778 instance=ExtResource("10_bggva")]
+
+[node name="DirectionalLight3D" parent="Environment/WeatherSystem" index="1" unique_id=89476310]
+light_energy = 0.02
 
 [node name="LightningController" parent="Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
 world = NodePath("../../World")
