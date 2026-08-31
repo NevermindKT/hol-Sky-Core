@@ -82,6 +82,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
 [node name="ForwardLights" type="Node3D" parent="Visual" unique_id=1230302799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04349184, -0.8)
+visible = false
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=1295753280]
 transform = Transform3D(0.9998039, -0.005224706, 0.019101024, 0.0038136744, 0.9973118, 0.07317592, -0.019432003, -0.07308874, 0.9971361, -0.3, 0.2, -0.07129735)
@@ -191,8 +192,9 @@ shotgun_ammo = 5000
 
 [node name="AimController" type="Node" parent="." unique_id=1300923200 node_paths=PackedStringArray("weapon_pivot")]
 script = ExtResource("6_20y2w")
-aim_distance = 100.0
+aim_distance = 50.0
 weapon_pivot = NodePath("../Visual/WeaponPivot")
+aim_assist_radius = 100.0
 
 [node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("fire_point", "muzzle_flash")]
 script = ExtResource("4_ojawh")
