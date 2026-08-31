@@ -40,6 +40,7 @@ func _on_segment_spawned(segment: Road_segment) -> void:
 	zone.road_manager = road_manager
 	segment.add_child(zone)
 	zone.apply_weather(current_weather)
+	zone.apply_road(segment)
 
 
 func _pick_new_weather() -> void:

@@ -9,6 +9,8 @@ render_priority = 0
 shader = ExtResource("2_eja5b")
 shader_parameter/rain_color = Color(0.8499613, 0.89979166, 1, 0.17400001)
 shader_parameter/emission_strength = 0.0
+shader_parameter/specular_amount = 0.85
+shader_parameter/roughness_amount = 0.05
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kxuq"]
 particle_flag_align_y = true
@@ -71,23 +73,25 @@ alpha_curve = SubResource("CurveTexture_j3aom")
 size = Vector2(1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cnbax"]
+seed = 1
 frequency = 0.03
-fractal_gain = 1.2
-fractal_weighted_strength = 1.0
+fractal_gain = 0.89
+fractal_weighted_strength = 0.7
 
 [sub_resource type="NoiseTexture3D" id="NoiseTexture3D_dic2c"]
 noise = SubResource("FastNoiseLite_cnbax")
 
 [sub_resource type="FogMaterial" id="FogMaterial_cnbax"]
 density = 0.15
-emission = Color(0.138, 0.15763335, 0.2, 1)
-height_falloff = 0.4
+emission = Color(0.115200005, 0.12565334, 0.16, 1)
+height_falloff = 0.1
 edge_fade = 0.4
 density_texture = SubResource("NoiseTexture3D_dic2c")
 
-[node name="WeatherZone" type="Node3D" unique_id=1747059604 node_paths=PackedStringArray("rain_particles", "shoulder_fog_left", "shoulder_fog_right")]
+[node name="WeatherZone" type="Node3D" unique_id=1747059604 node_paths=PackedStringArray("rain_particles", "rain_rings", "shoulder_fog_left", "shoulder_fog_right")]
 script = ExtResource("1_cnbax")
 rain_particles = NodePath("RainParticles")
+rain_rings = NodePath("RainRings")
 shoulder_fog_left = NodePath("ShoulderFogLeft")
 shoulder_fog_right = NodePath("ShoulderFogRight")
 
@@ -116,11 +120,11 @@ process_material = SubResource("ParticleProcessMaterial_iywvk")
 draw_pass_1 = SubResource("PlaneMesh_hc2fx")
 
 [node name="ShoulderFogLeft" type="FogVolume" parent="." unique_id=716893609]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 6.2425175, 0)
-size = Vector3(15, 15, 24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.309105, 8.485785, 21.977697)
+size = Vector3(40, 20, 50)
 material = SubResource("FogMaterial_cnbax")
 
 [node name="ShoulderFogRight" type="FogVolume" parent="." unique_id=348340868]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 6.2425175, 0)
-size = Vector3(15, 15, 24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.885315, 8.485785, 21.977697)
+size = Vector3(40, 20, 50)
 material = SubResource("FogMaterial_cnbax")

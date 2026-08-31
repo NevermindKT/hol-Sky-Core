@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cfc72g7ci7atu" path="res://textures/ground/forest_ground_06_4k/forest_ground_06_diff_4k.jpg" id="3_meryl"]
 
 [sub_resource type="Curve" id="Curve_7dsm8"]
-_data = [Vector2(0.07716049, 0), 0.0, 0.0, 0, 0, Vector2(0.67592597, 1), 0.11269565, 0.0, 0, 0]
+_data = [Vector2(0.06593407, 0), 0.0, 0.0, 0, 0, Vector2(0.33333334, 1), 0.11269565, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_585gf"]
@@ -16,7 +16,7 @@ _data = [Vector2(0.015432097, 0), 0.0, 0.0, 0, 0, Vector2(0.074074075, 1), 0.0, 
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_g5jdw"]
-_data = [Vector2(0.077922076, 0), 0.0, 0.0, 0, 0, Vector2(0.21428573, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.055335976, 0), 0.0, 0.0, 0, 0, Vector2(0.15019765, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_b0nky"]
