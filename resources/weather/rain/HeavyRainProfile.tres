@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource("1_qo6at")
+amount = 2300
 drop_length = 3.0
-drop_width = 0.3
-rain_color = Color(0, 0.09803922, 0.18431373, 0.37254903)
+drop_width = 0.2
+rain_color = Color(0.0817, 0.112385, 0.19, 0.5882353)
 lightning_enabled = true
 lightning_min_interval = 3.0
 lightning_max_interval = 7.0
-lightning_intensity = 3.0
 metadata/_custom_type_script = "uid://cj3gix68sfnqx"

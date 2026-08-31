@@ -4,8 +4,7 @@
 
 [resource]
 script = ExtResource("1_yc813")
-amount = 300
-drop_length = 2.0
-drop_width = 0.2
-rain_color = Color(0, 0.09803922, 0.18431373, 0.7529412)
+drop_length = 1.5
+drop_width = 0.1
+rain_color = Color(0.08088668, 0.11235331, 0.19194536, 1)
 metadata/_custom_type_script = "uid://cj3gix68sfnqx"
