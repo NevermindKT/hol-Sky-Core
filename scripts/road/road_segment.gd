@@ -30,6 +30,12 @@ func _ready() -> void:
 			if child is Marker3D:
 				obstacle_placement_array.append(child)
 
+	if road_path:
+		polygon = road_path.get_node_or_null("CSGPolygon3D") as CSGPolygon3D
+
+	if polygon and polygon.material_override and not Engine.is_editor_hint():
+		polygon.material_override = polygon.material_override.duplicate()
+
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():

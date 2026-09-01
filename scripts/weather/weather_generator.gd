@@ -16,6 +16,8 @@ var current_weather := WeatherData.new()
 var segments_since_change := 0
 var segments_until_change := 0
 
+var _previous_state := 0.0
+
 
 func _ready() -> void:
 	if road_generator == null:
@@ -40,7 +42,10 @@ func _on_segment_spawned(segment: Road_segment) -> void:
 	zone.road_manager = road_manager
 	segment.add_child(zone)
 	zone.apply_weather(current_weather)
-	zone.apply_road(segment)
+	zone.apply_road(segment, _previous_state)
+
+	var rain := current_weather.rain
+	_previous_state = rain.road_state() if rain != null else 0.0
 
 
 func _pick_new_weather() -> void:

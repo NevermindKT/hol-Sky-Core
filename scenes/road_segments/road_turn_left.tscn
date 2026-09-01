@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctjr5v0dqa1k5"]
 
 [ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road/road_segment.gd" id="1_a4orq"]
-[ext_resource type="Texture2D" uid="uid://b1tv0l1ysegc0" path="res://textures/roads/roadTestFliped.jpg" id="3_8qsns"]
+[ext_resource type="Material" uid="uid://da2ii174l228d" path="res://resources/road/road_asphalt_material.tres" id="5_asphalt"]
 
 [sub_resource type="Curve3D" id="Curve3D_a4orq"]
 _data = {
@@ -9,10 +9,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vu5s"]
-albedo_texture = ExtResource("3_8qsns")
-uv1_scale = Vector3(0.1, 8, 1)
 
 [node name="RoadTurnLeft" type="Node3D" unique_id=589171158 node_paths=PackedStringArray("anchor", "origin", "road_path")]
 script = ExtResource("1_a4orq")
@@ -32,7 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 curve = SubResource("Curve3D_a4orq")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=735203004]
-material_override = SubResource("StandardMaterial3D_6vu5s")
+material_override = ExtResource("5_asphalt")
 polygon = PackedVector2Array(-8, 0, -8, 0.05, 8, 0.05, 8, 0)
 mode = 2
 path_node = NodePath("..")
@@ -47,7 +43,7 @@ path_u_distance = 1.0
 path_joined = false
 
 [node name="GPUParticlesCollisionBoxes" type="Node3D" parent="." unique_id=1536393046]
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=337399322]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 17.5)

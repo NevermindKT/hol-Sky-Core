@@ -154,7 +154,8 @@ script = ExtResource("16_iqacv")
 weather_zone_scene = ExtResource("17_tc8ix")
 available_rain = Array[ExtResource("18_asndc")]([ExtResource("19_a06ay"), ExtResource("20_7hc18"), ExtResource("8_xwqeg")])
 available_fog = Array[ExtResource("22_kusm0")]([ExtResource("23_i2q6t"), ExtResource("12_xwqeg"), ExtResource("25_iqqgi")])
-max_segments_per_weather = 10
+min_segments_per_weather = 3
+max_segments_per_weather = 5
 
 [node name="GroundGenerator" type="Node" parent="Services" unique_id=951819073]
 script = ExtResource("26_cyvft")

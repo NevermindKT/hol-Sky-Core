@@ -154,7 +154,7 @@ transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0
 
 [node name="AimFlashlight" type="SpotLight3D" parent="Visual/WeaponPivot" unique_id=1688042910]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70415616, 0)
-light_color = Color(0.8352941, 0.7882353, 0.68235296, 1)
+light_color = Color(0.7160397, 0.807846, 0.86599535, 1)
 light_energy = 6.0
 light_specular = 4.0
 shadow_enabled = true
@@ -164,12 +164,12 @@ spot_range = 25.0
 spot_attenuation = 2.0
 spot_angle = 15.0
 script = ExtResource("3_y6j3g")
-close_range = 40.0
-close_angle = 30.0
-close_energy = 20.0
+close_range = 30.0
+close_angle = 35.0
+close_energy = 15.0
 far_range = 80.0
-far_angle = 10.0
-far_energy = 80.0
+far_angle = 8.0
+far_energy = 75.0
 far_volumetric_fog_energy = 2.0
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]

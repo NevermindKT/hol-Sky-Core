@@ -10,6 +10,9 @@ uniform float softness : hint_range(0.001, 0.2) = 0.03;
 
 uniform float emission_strength : hint_range(0.0, 1.0) = 0.1;
 
+uniform float specular_amount : hint_range(0.0, 1.0) = 0.9;
+uniform float roughness_amount : hint_range(0.0, 1.0) = 0.15;
+
 void fragment()
 {
     vec2 p = UV - vec2(0.5);
@@ -23,5 +26,8 @@ void fragment()
 
     ALBEDO = ring_color.rgb;
     EMISSION = ring_color.rgb * emission_strength * alpha;
+    SPECULAR = specular_amount;
+    ROUGHNESS = roughness_amount;
+    METALLIC = 0.0;
     ALPHA = alpha * ring_color.a * COLOR.a;
 }

@@ -29,7 +29,7 @@ density_curve = SubResource("Curve_g5jdw")
 metadata/_custom_type_script = "uid://c50p4e7wmeocp"
 
 [sub_resource type="Curve" id="Curve_meryl"]
-_data = [Vector2(0.07142857, 0.025423765), 0.0, 0.0, 0, 0, Vector2(0.16883117, 1), 0.0, 0.0, 0, 0, Vector2(0.45779222, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.06374502, 0), 0.0, 0.0, 0, 0, Vector2(0.16883117, 1), 0.0, 0.0, 0, 0, Vector2(0.45779222, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Resource" id="Resource_kymgb"]
