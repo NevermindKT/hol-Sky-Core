@@ -63,5 +63,5 @@ func update_turn_velocity(delta: float):
 	smoothed_turn_velocity = lerpf(
 		smoothed_turn_velocity,
 		turn_velocity,
-		delta * turn_smoothing
+		1.0 - exp(-turn_smoothing * delta)
 	)

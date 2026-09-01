@@ -108,11 +108,11 @@ func _record_point(stroke: Tire_trail_stroke, point: Marker3D) -> Tire_trail_str
 	if stroke == null:
 		stroke = stroke_scene.instantiate()
 		world.trail_container.add_child(stroke)
-		stroke.global_transform = point.global_transform
+		stroke.global_transform = point.get_global_transform_interpolated()
 		_active_strokes.append(stroke)
 		_enforce_strokes_limit()
 
-	var local_point: Vector3 = stroke.global_transform.affine_inverse() * point.global_position
+	var local_point: Vector3 = stroke.global_transform.affine_inverse() * point.get_global_transform_interpolated().origin
 	local_point.y = 0.0
 	stroke.add_point(local_point)
 
