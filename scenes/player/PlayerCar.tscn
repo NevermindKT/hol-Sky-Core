@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="6_20y2w"]
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="6_t5h3w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
+[ext_resource type="PackedScene" uid="uid://cgx8vcbpf1r2n" path="res://scenes/vfx/effects/engine_smoke.tscn" id="8_f6f1y"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
 [ext_resource type="Script" uid="uid://ip4fb2moxr2s" path="res://scenes/player/player_status_controller.gd" id="10_ojawh"]
@@ -171,6 +172,13 @@ far_range = 80.0
 far_angle = 8.0
 far_energy = 75.0
 far_volumetric_fog_energy = 2.0
+
+[node name="EngineSmoke" parent="Visual" unique_id=1428749223 node_paths=PackedStringArray("status_controller", "car") instance=ExtResource("8_f6f1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19988698, -0.45846927)
+status_controller = NodePath("../../PlayerStatusController")
+car = NodePath("../..")
+upward_lift = 2.0
+max_wind_speed = 6.0
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 
