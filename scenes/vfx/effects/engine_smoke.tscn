@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cgx8vcbpf1r2n"]
+
+[ext_resource type="Script" uid="uid://b3tuxk5njiify" path="res://scripts/vfx/engine_smoke.gd" id="1_hgcec"]
+[ext_resource type="PackedScene" uid="uid://cu1wroxv3wppo" path="res://scenes/vfx/components/smoke.tscn" id="1_uk3hu"]
+
+[node name="EngineSmoke" type="Node3D" unique_id=1428749223 node_paths=PackedStringArray("particles")]
+script = ExtResource("1_hgcec")
+particles = NodePath("Smoke")
+
+[node name="Smoke" parent="." unique_id=1944449571 instance=ExtResource("1_uk3hu")]
+amount = 100
