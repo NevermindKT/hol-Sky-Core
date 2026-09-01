@@ -1,0 +1,59 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://da2ii174l228d"]
+
+[ext_resource type="Shader" uid="uid://bch57eqql6ov2" path="res://resources/shaders/road/road_wet.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://b1tv0l1ysegc0" path="res://textures/roads/roadTestFliped.jpg" id="2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8hyqn"]
+noise_type = 0
+seed = 13
+frequency = 0.008
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sap5q"]
+noise = SubResource("FastNoiseLite_8hyqn")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_road_wet"]
+noise_type = 0
+seed = 7
+frequency = 0.005
+fractal_octaves = 7
+fractal_lacunarity = 1.295
+fractal_gain = 1.105
+fractal_weighted_strength = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_road_wet"]
+noise = SubResource("FastNoiseLite_road_wet")
+seamless = true
+
+[resource]
+resource_name = "RoadAsphalt"
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/albedo_texture = ExtResource("2")
+shader_parameter/uv_scale = Vector2(0.1, 8)
+shader_parameter/dry_roughness = 1.0
+shader_parameter/dry_specular = 0.5
+shader_parameter/dry_albedo_tint = Color(1, 1, 1, 1)
+shader_parameter/wet_roughness = 0.400000019
+shader_parameter/wet_specular = 0.50000002375
+shader_parameter/wet_albedo_tint = Color(0.93, 0.93, 0.95, 1)
+shader_parameter/previous_state = 0.0
+shader_parameter/target_state = 0.0
+shader_parameter/fade_start = 0.0
+shader_parameter/fade_end = 5.0
+shader_parameter/use_uv_y_for_gradient = false
+shader_parameter/wet_noise_texture = SubResource("NoiseTexture2D_road_wet")
+shader_parameter/wet_noise_uv_scale = Vector2(0.12, 18)
+shader_parameter/patch_coverage = 0.150000007125
+shader_parameter/patch_edge_softness = 0.5
+shader_parameter/puddle_noise_texture = SubResource("NoiseTexture2D_sap5q")
+shader_parameter/puddle_noise_uv_scale = Vector2(0.05, 8)
+shader_parameter/puddle_coverage = 0.2000000095
+shader_parameter/puddle_edge_softness = 0.15000000642648
+shader_parameter/puddle_sharpness = 3.000000095
+shader_parameter/puddle_roughness = 0.02
+shader_parameter/puddle_specular = 1.0
+shader_parameter/puddle_albedo_tint = Color(0.75, 0.75, 0.8, 1)
+shader_parameter/puddle_clearcoat = 1.0
+shader_parameter/puddle_clearcoat_roughness = 0.01

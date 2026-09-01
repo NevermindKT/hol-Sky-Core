@@ -38,7 +38,9 @@ shader_parameter/ring_color = Color(0.8980392, 0.9490196, 1, 0.57254905)
 shader_parameter/radius = 0.30000001425
 shader_parameter/thickness = 0.02000000095
 shader_parameter/softness = 0.050000002375
-shader_parameter/emission_strength = 0.1
+shader_parameter/emission_strength = 0.0
+shader_parameter/specular_amount = 0.9
+shader_parameter/roughness_amount = 0.15
 
 [sub_resource type="Curve" id="Curve_xmf5n"]
 _data = [Vector2(0.38339916, 1), 0.0, -0.99397635, 0, 0, Vector2(1, 0), -0.3506709, 0.0, 0, 0]
@@ -111,7 +113,7 @@ draw_pass_1 = SubResource("QuadMesh_62yky")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.322, 0)
 material_override = SubResource("ShaderMaterial_ui3db")
 cast_shadow = 0
-amount = 500
+amount = 2000
 lifetime = 0.3
 fixed_fps = 60
 visibility_aabb = AABB(-10, -20, -30, 20, 20, 60)
@@ -121,10 +123,10 @@ draw_pass_1 = SubResource("PlaneMesh_hc2fx")
 
 [node name="ShoulderFogLeft" type="FogVolume" parent="." unique_id=716893609]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.309105, 8.485785, 21.977697)
-size = Vector3(40, 20, 50)
+size = Vector3(60, 20, 50)
 material = SubResource("FogMaterial_cnbax")
 
 [node name="ShoulderFogRight" type="FogVolume" parent="." unique_id=348340868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.885315, 8.485785, 21.977697)
-size = Vector3(40, 20, 50)
+size = Vector3(60, 20, 50)
 material = SubResource("FogMaterial_cnbax")

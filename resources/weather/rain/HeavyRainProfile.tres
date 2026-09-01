@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_qo6at")
+heavy = true
 amount = 2300
 drop_length = 3.0
 drop_width = 0.2

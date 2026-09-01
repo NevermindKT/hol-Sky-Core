@@ -3,6 +3,8 @@ class_name RainData
 
 @export var enabled := true
 
+@export var heavy := false
+
 @export var amount := 1200
 
 @export var drop_length := 0.6
@@ -16,3 +18,8 @@ class_name RainData
 @export var lightning_max_interval := 20.0
 
 @export var lightning_intensity := 1.0
+
+func road_state() -> float:
+	if not enabled:
+		return 0.0
+	return 2.0 if heavy else 1.0

@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_eummh")
 density = 0.01
-shoulder_density = 0.4
-shoulder_offset = 32.0
+shoulder_density = 0.3
+shoulder_offset = 50.0
 metadata/_custom_type_script = "uid://dgn3pfxbskeg0"

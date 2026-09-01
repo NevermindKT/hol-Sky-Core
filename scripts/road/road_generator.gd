@@ -19,7 +19,7 @@ var obstacle_spawn_chance: float
 var debug_path: ImmediateMesh
 var debug_mesh: MeshInstance3D
 
-const MAX_SEGMENTS = 46
+const MAX_SEGMENTS = 10
 const UNLOAD_DISTANCE = 75
 const MAX_ROAD_DIR_OFFSET = 2
 

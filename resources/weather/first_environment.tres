@@ -16,6 +16,7 @@ sky_material = SubResource("ProceduralSkyMaterial_mowk8")
 [resource]
 background_mode = 2
 sky = SubResource("Sky_0uqmh")
+ssr_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.1820277, 0.20115688, 0.21591285, 1)
 fog_light_energy = 0.25

@@ -9,6 +9,8 @@ var car: Car_Movement
 @export var shoulder_fog_segments: int = 5
 @export var shoulder_fog_overlap: float = 1.15
 
+@export var wet_fade_distance: float = 15.0
+
 const ENTER_RADIUS := 10.0
 
 var road_manager: Road_manager
@@ -57,6 +59,15 @@ func _process(_delta: float) -> void:
 	_announced = true
 
 	WeatherManager.set_weather(_weather_data)
+	
+	
+	#move_fog(_shoulder_material_left, _delta)
+	#move_fog(_shoulder_material_right, _delta)
+
+#func move_fog(shoulder_fog_mat: FogMaterial, _delta: float) -> void:
+	#var noise_texture = shoulder_fog_mat.density_texture as NoiseTexture3D
+	#var noise = noise_texture.noise as FastNoiseLite
+	#noise.offset.x + _delta * 0.1
 
 
 func _wrap_in_container(template: FogVolume) -> Node3D:
@@ -73,10 +84,11 @@ func _wrap_in_container(template: FogVolume) -> Node3D:
 	return container
 
 
-func apply_road(segment: Road_segment) -> void:
+func apply_road(segment: Road_segment, previous_state: float) -> void:
 	_apply_rain_length(segment.length)
 	_build_shoulder_chain(shoulder_fog_left, _shoulder_container_left, segment, -1.0)
 	_build_shoulder_chain(shoulder_fog_right, _shoulder_container_right, segment, 1.0)
+	_apply_road_wetness(segment, previous_state)
 
 
 func _apply_rain_length(length: float) -> void:
@@ -85,6 +97,25 @@ func _apply_rain_length(length: float) -> void:
 
 	var rings_material := rain_rings.process_material as ParticleProcessMaterial
 	rings_material.emission_box_extents.z = length
+
+
+func _apply_road_wetness(segment: Road_segment, previous_state: float) -> void:
+	if segment.polygon == null:
+		return
+
+	var material := segment.polygon.material_override as ShaderMaterial
+	if material == null:
+		return
+
+	var rain := _weather_data.rain
+	var target_state := rain.road_state() if rain != null else 0.0
+
+	var fade_end := clampf(wet_fade_distance, 0.01, maxf(segment.length, 0.01))
+
+	material.set_shader_parameter("previous_state", previous_state)
+	material.set_shader_parameter("target_state", target_state)
+	material.set_shader_parameter("fade_start", 0.0)
+	material.set_shader_parameter("fade_end", fade_end)
 
 
 func _build_shoulder_chain(template: FogVolume, container: Node3D, segment: Road_segment, side: float) -> void:
