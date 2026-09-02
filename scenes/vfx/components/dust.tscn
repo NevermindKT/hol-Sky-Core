@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cyjgkd0a6j2l7"]
+
+[ext_resource type="Texture2D" uid="uid://4qwtyjq2wkou" path="res://textures/dust.png" id="1_ik30c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kulko"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ik30c")
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_ccyld"]
+_data = [Vector2(0.22222221, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.1153805, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kgr2b"]
+curve = SubResource("Curve_ccyld")
+
+[sub_resource type="Curve" id="Curve_ik30c"]
+_data = [Vector2(0, 0.5128205), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qndje"]
+curve = SubResource("Curve_ik30c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ggm7h"]
+particle_flag_rotate_y = true
+emission_shape_scale = Vector3(0.1, 0.05, 0.05)
+emission_shape = 3
+emission_box_extents = Vector3(1, 0.1, 0.1)
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, -1)
+spread = 5.0
+flatness = 1.0
+initial_velocity_min = 2.5
+initial_velocity_max = 3.0
+angular_velocity_min = -50.000015
+angular_velocity_max = 49.99998
+scale_min = 0.29999998
+scale_max = 0.59999996
+scale_curve = SubResource("CurveTexture_qndje")
+alpha_curve = SubResource("CurveTexture_kgr2b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1kpnl"]
+
+[node name="dust" type="GPUParticles3D" unique_id=1279401666]
+material_override = SubResource("StandardMaterial3D_kulko")
+amount = 80
+lifetime = 0.2
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ggm7h")
+draw_pass_1 = SubResource("QuadMesh_1kpnl")

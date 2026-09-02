@@ -172,6 +172,7 @@ script = ExtResource("27_iqacv")
 script = ExtResource("31_7hc18")
 stroke_scene = ExtResource("32_kusm0")
 brake_speed_ratio = 0.1
+turn_speed_ratio = 0.6
 lateral_velocity_threshold = 4.0
 max_active_strokes = 10
 fade_duration = 5.0

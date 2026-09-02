@@ -8,4 +8,3 @@ script = ExtResource("1_hgcec")
 particles = NodePath("Smoke")
 
 [node name="Smoke" parent="." unique_id=1944449571 instance=ExtResource("1_uk3hu")]
-amount = 100
