@@ -11,6 +11,7 @@ class_name EncounterEnemyData
 @export_category("Attack")
 @export var attack_damage := 15.0
 @export var attack_delay := 2.0
+@export var attack_warning_time := 0.5
 
 @export_category("Dash")
 @export var dash_speed := 30.0

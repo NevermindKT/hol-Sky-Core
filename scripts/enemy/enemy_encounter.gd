@@ -80,3 +80,4 @@ func is_there_enemies() -> bool:
 
 func add_test_enemy() -> void:
 	add_enemy(test_Enemy)
+	start_encounter()

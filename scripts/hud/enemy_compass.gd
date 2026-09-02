@@ -26,7 +26,7 @@ func update_markers() -> void:
 			
 			add_child(marker)
 			
-			marker.enemy = enemy
+			marker.set_enemy(enemy)
 			markers[enemy] = marker
 	
 	for enemy in markers.keys():
