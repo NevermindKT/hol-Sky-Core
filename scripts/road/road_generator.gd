@@ -34,7 +34,7 @@ func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	while segments.size() < MAX_SEGMENTS:
 		spawn_next()
 
-	create_debug_path()
+	#create_debug_path()
 
 
 func _process(_delta):
