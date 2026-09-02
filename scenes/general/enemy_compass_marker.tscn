@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://di7ycs3ooda83" path="res://textures/hud/dangerTriangle.png" id="1_fj27i"]
 [ext_resource type="Script" uid="uid://1lto0ve7x2t0" path="res://scripts/hud/compass_marker.gd" id="2_68130"]
+[ext_resource type="Texture2D" uid="uid://bgkyfm7wktsbh" path="res://textures/hud/dangerTriangleWarninigAlt.png" id="3_68130"]
 
 [node name="EnemyCompassMarker" type="TextureRect" unique_id=1283739888]
 offset_right = 25.0
@@ -9,3 +10,12 @@ offset_bottom = 25.0
 texture = ExtResource("1_fj27i")
 expand_mode = 1
 script = ExtResource("2_68130")
+blink_interval = 0.1
+
+[node name="MarkerWarning" type="TextureRect" parent="." unique_id=589617155]
+visible = false
+layout_mode = 0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("3_68130")
+expand_mode = 1

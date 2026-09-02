@@ -32,6 +32,7 @@ var steering_input := 0.0
 @export_category("Dodge")
 @export var dodge_force := 12.0
 @export var dodge_distance := 2.0
+@export var dodge_min_speed := 40.0
 
 
 @export_category("Strafe Physics")
@@ -146,7 +147,7 @@ func get_steering_multiplier() -> float:
 
 
 func dodge() -> void:
-	if steering_input == 0.0:
+	if steering_input == 0.0 or speed < dodge_min_speed:
 		return
 	
 	var direction = sign(steering_input)
