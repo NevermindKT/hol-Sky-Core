@@ -10,13 +10,17 @@ class_name EngineSmoke
 @export_range(0.0, 1.0) var min_alpha: float = 0.15
 @export_range(0.0, 1.0) var max_alpha: float = 1.0
 
-@export_group("World Drift")
+@export_group("Backward Wind")
 @export var upward_lift: float = 0.5
 @export var max_wind_speed: float = 12.0
 @export_range(0.0, 1.0) var velocity_spread: float = 0.1
 
+@export_group("Speed Density")
+@export_range(0.0, 1.0) var min_density_multiplier: float = 0.3
+
 var _material: StandardMaterial3D
 var _process_material: ParticleProcessMaterial
+var _health_intensity: float = 0.0
 
 func _ready() -> void:
 	if particles.material_override:
@@ -51,16 +55,19 @@ func _process(_delta: float) -> void:
 	_process_material.initial_velocity_min = wind_speed * (1.0 - velocity_spread * 0.2)
 	_process_material.initial_velocity_max = wind_speed * (1.0 + velocity_spread * 0.2)
 
+	var speed_ratio := wind_magnitude / max_wind_speed if max_wind_speed > 0.0 else 0.0
+	var density_multiplier := lerpf(min_density_multiplier, 1.0, speed_ratio)
+
+	particles.amount_ratio = clampf(_health_intensity * density_multiplier, 0.0, 1.0)
+	particles.emitting = particles.amount_ratio > 0.0
+
 
 func _on_player_health_changed(current_health: float) -> void:
 	var health_ratio := current_health / status_controller.max_health
-	var intensity := 0.0
+	_health_intensity = 0.0
 
 	if health_ratio < smoke_start_health_ratio:
-		intensity = 1.0 - health_ratio / smoke_start_health_ratio
-
-	particles.emitting = intensity > 0.0
-	particles.amount_ratio = intensity
+		_health_intensity = 1.0 - health_ratio / smoke_start_health_ratio
 
 	if _material:
-		_material.albedo_color.a = lerpf(min_alpha, max_alpha, intensity)
+		_material.albedo_color.a = lerpf(min_alpha, max_alpha, _health_intensity)

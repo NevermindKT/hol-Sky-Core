@@ -26,9 +26,13 @@ var _bleeding_distance_left := 0.0
 
 var skid_point_l: Marker3D
 var skid_point_r: Marker3D
+var skid_point_l2: Marker3D
+var skid_point_r2: Marker3D
 
 var _active_l: Tire_trail_stroke
 var _active_r: Tire_trail_stroke
+var _active_l2: Tire_trail_stroke
+var _active_r2: Tire_trail_stroke
 var _active_strokes: Array[Tire_trail_stroke] = []
 
 
@@ -42,11 +46,14 @@ func initialize(_world: World, _car_movement: Car_Movement, _road_manager: Road_
 
 	skid_point_l = car_movement.get_node_or_null("SkidPointL")
 	skid_point_r = car_movement.get_node_or_null("SkidPointR")
+	skid_point_l2 = car_movement.get_node_or_null("SkidPointL2")
+	skid_point_r2 = car_movement.get_node_or_null("SkidPointR2")
 
 	assert(stroke_scene != null, "TireTrailManager: не призначено Stroke Scene в Inspector.")
 	assert(skid_point_l != null, "TireTrailManager: не знайдено SkidPointL під Car.")
 	assert(skid_point_r != null, "TireTrailManager: не знайдено SkidPointR під Car.")
-
+	assert(skid_point_l2 != null, "TireTrailManager: не знайдено SkidPointL2 під Car.")
+	assert(skid_point_r2 != null, "TireTrailManager: не знайдено SkidPointR2 під Car.")
 
 func _process(delta: float) -> void:
 	if world == null or car_movement == null or stroke_scene == null:
@@ -58,11 +65,17 @@ func _process(delta: float) -> void:
 	if _should_leave_marks():
 		_active_l = _record_point(_active_l, skid_point_l)
 		_active_r = _record_point(_active_r, skid_point_r)
+		_active_l2 = _record_point(_active_l2, skid_point_l2)
+		_active_r2 = _record_point(_active_r2, skid_point_r2)
 	else:
 		_finalize_stroke(_active_l)
 		_finalize_stroke(_active_r)
+		_finalize_stroke(_active_l2)
+		_finalize_stroke(_active_r2)
 		_active_l = null
 		_active_r = null
+		_active_l2 = null
+		_active_r2 = null
 
 	_resnap_strokes_height()
 
@@ -137,6 +150,10 @@ func _enforce_strokes_limit() -> void:
 			_active_l = null
 		if oldest == _active_r:
 			_active_r = null
+		if oldest == _active_l2:
+			_active_l2 = null
+		if oldest == _active_r2:
+			_active_r2 = null
 		_fade_and_free(oldest)
 
 

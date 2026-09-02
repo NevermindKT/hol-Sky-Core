@@ -22,7 +22,7 @@ curve = SubResource("Curve_k60vj")
 
 [sub_resource type="Curve" id="Curve_u6ktt"]
 _limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 0.7692306), 0.0, 0.0, 0, 0, Vector2(0.5040983, 0.88888884), 0.0, 0.0, 0, 0, Vector2(1, 1.6068375), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.47619057), 0.0, 0.0, 0, 0, Vector2(0.5020576, 0.99145293), 1.4349654, 1.4349654, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_g8cib"]
@@ -41,6 +41,8 @@ initial_velocity_max = 1.5
 angular_velocity_min = -50.000015
 angular_velocity_max = 49.99998
 gravity = Vector3(0, 0, 0)
+linear_accel_min = -0.5000022
+linear_accel_max = -0.5000022
 scale_min = 0.5
 scale_max = 0.79999995
 scale_curve = SubResource("CurveTexture_g8cib")
@@ -50,8 +52,10 @@ alpha_curve = SubResource("CurveTexture_s7cvf")
 
 [node name="Smoke" type="GPUParticles3D" unique_id=1279401666]
 material_override = SubResource("StandardMaterial3D_kulko")
-amount = 70
+amount = 150
+amount_ratio = 0.2
 lifetime = 1.5
+speed_scale = 0.5
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ggm7h")
 draw_pass_1 = SubResource("QuadMesh_1kpnl")
