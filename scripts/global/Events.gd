@@ -18,6 +18,8 @@ signal magazine_count_changed(ammo: float)
 signal reload_started(duration: float)
 signal reload_finished
 
+signal spread_changed(ratio: float)
+
 #-------------- ROAD/LEVEL
 signal segment_dispawned
 signal level_progress_changed(current, max)
