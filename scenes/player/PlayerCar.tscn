@@ -47,6 +47,7 @@ data = ExtResource("9_lo1ro")
 metadata/_custom_type_script = "uid://nt6h8xoqqc60"
 
 [node name="Car" type="CharacterBody3D" unique_id=353319218 node_paths=PackedStringArray("back_lights", "cam_pivot", "inventory", "weapon_pivot", "visual_effects", "weapon_controller", "player_status_controller") groups=["Car"]]
+collision_layer = 3
 script = ExtResource("1_y6j3g")
 drag = 4.0
 brake = 40.0

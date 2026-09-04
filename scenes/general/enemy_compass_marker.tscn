@@ -10,7 +10,7 @@ offset_bottom = 25.0
 texture = ExtResource("1_fj27i")
 expand_mode = 1
 script = ExtResource("2_68130")
-blink_interval = 0.1
+blink_interval = 0.08
 
 [node name="MarkerWarning" type="TextureRect" parent="." unique_id=589617155]
 visible = false

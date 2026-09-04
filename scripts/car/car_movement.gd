@@ -33,6 +33,15 @@ var steering_input := 0.0
 @export var dodge_force := 12.0
 @export var dodge_distance := 2.0
 @export var dodge_min_speed := 40.0
+@export var dodge_window := 0.35
+@export var dodge_hit_radius := 1.2
+@export var dodge_damage := 20.0
+@export var dodge_knockback_force := 15.0
+@export var enemy_detection_mask: int = 1
+
+var dodge_timer := 0.0
+var dodge_direction := 0.0
+var dodge_already_hit: Array[Node] = []
 
 
 @export_category("Strafe Physics")
@@ -57,6 +66,11 @@ var steering_input := 0.0
 
 var road_manager: Road_manager
 
+
+func initialize(initial_speed: float):
+	speed = initial_speed
+
+
 func _ready() -> void:
 	InputController.dodge.connect(dodge)
 
@@ -67,6 +81,7 @@ func _physics_process(delta: float) -> void:
 	process_strafe(delta)
 	process_visuals(delta)
 	process_enemies_hits()
+	process_dodge_hit_check(delta)
 	
 	#print("Speed: ", speed)
 	#print("Lane offset: ", lane_offset)
@@ -146,6 +161,10 @@ func get_steering_multiplier() -> float:
 	return steering_curve.sample_baked(get_speed_ratio())
 
 
+func clamp_offset() -> float:
+	return clamp(lane_offset, -max_offset, max_offset)
+
+
 func dodge() -> void:
 	if steering_input == 0.0 or speed < dodge_min_speed:
 		return
@@ -154,7 +173,54 @@ func dodge() -> void:
 	
 	lane_offset += direction * dodge_distance
 	lane_offset = clamp_offset()
+	
+	lateral_velocity += direction * dodge_force
+	
+	dodge_direction = direction
+	dodge_timer = dodge_window
+	dodge_already_hit.clear()
 
 
-func clamp_offset() -> float:
-	return clamp(lane_offset, -max_offset, max_offset)
+func process_dodge_hit_check(delta: float) -> void:
+	if dodge_timer <= 0.0:
+		return
+	
+	dodge_timer -= delta
+	_check_dodge_hit(dodge_direction)
+
+
+func _check_dodge_hit(direction: float) -> void:
+	var space_state := get_world_3d().direct_space_state
+	
+	var shape := BoxShape3D.new()
+	shape.size = Vector3(dodge_hit_radius * 2.0, 2.0, dodge_hit_radius * 2.0)
+	
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = shape
+	query.transform = Transform3D(Basis(), global_position)
+	query.collision_mask = enemy_detection_mask
+	query.collide_with_bodies = true
+	query.collide_with_areas = true
+	query.exclude = [get_rid()]
+	
+	var results := space_state.intersect_shape(query)
+	
+	for result in results:
+		var enemy := _resolve_enemy(result.collider)
+		if enemy == null:
+			continue
+		if enemy in dodge_already_hit:
+			continue
+		
+		var knockback := Vector3(direction * dodge_knockback_force, 0.0, 0.0)
+		enemy.on_dodge_hit(dodge_damage, knockback)
+		dodge_already_hit.append(enemy)
+
+
+func _resolve_enemy(node: Node) -> Encounter_Enemy:
+	var current := node
+	while current:
+		if current is Encounter_Enemy:
+			return current
+		current = current.get_parent()
+	return null

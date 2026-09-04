@@ -8,6 +8,10 @@ class_name EncounterEnemyData
 @export var move_speed := 5.0
 @export var desired_offset := 0.0
 
+@export_category("Stun")
+@export var stun_meter := 0.0
+@export var stun_duration := 5.0
+
 @export_category("Attack")
 @export var attack_damage := 15.0
 @export var attack_delay := 2.0
