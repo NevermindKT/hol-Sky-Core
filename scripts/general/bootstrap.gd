@@ -18,6 +18,7 @@ extends Node
 @export var aim_controller: Aim_Controller
 @export var enemy_encounter: Enemy_Encounter
 
+const START_SPEED = 40.0
 const START_DISTANCE := 5.0
 const DISTANCE_TO_END := 200.0
 const OBSTACLE_SPAWN_CHANCE = 0.05
@@ -31,6 +32,7 @@ func _ready() -> void:
 	set_aim_controller()
 
 	car.player_status_controller.initialize()
+	car.initialize(START_SPEED)
 
 	road_generator.obstacle_spawn_chance = OBSTACLE_SPAWN_CHANCE
 	road_generator.initialize(world.road_set, world.obstacle_set)
@@ -47,7 +49,7 @@ func _ready() -> void:
 
 	enemy_encounter.inialize(world)
 	enemy_encounter.add_test_enemy()
-	enemy_encounter.start_encounter()
+	#enemy_encounter.start_encounter()
 
 	set_encounter()
 

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_1ag7c")
 max_health = 200.0
-desired_offset = 3.0
+desired_offset = -3.0
 dash_speed = 40.0
 dash_duration = 0.5
 enemy_scene = ExtResource("1_1ag7c")
