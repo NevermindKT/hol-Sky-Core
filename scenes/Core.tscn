@@ -54,7 +54,7 @@ metadata/_custom_type_script = "uid://nvhh14a8jfmw"
 [node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("2_uhg8y")]
 acceleration = 20.0
 max_offset = 10.0
-strafe_speed = 14.0
+strafe_speed = 17.0
 road_turn_force = 1.2
 dodge_force = 10.0
 dodge_distance = 5.0

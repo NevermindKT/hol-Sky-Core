@@ -4,7 +4,8 @@ class_name Encounter_Enemy
 enum State {
 	FOLLOW,
 	DASH,
-	KNOCKBACK
+	KNOCKBACK,
+	STUNNED
 }
 
 signal attack_state_changed(is_warning: bool)
@@ -13,6 +14,9 @@ signal attack_state_changed(is_warning: bool)
 
 var health: float
 var is_active := false
+
+var stun_meter := 0.0
+var stun_timer := 0.0
 
 var player: Node3D
 var encounter: Enemy_Encounter
@@ -63,6 +67,8 @@ func _physics_process(delta: float) -> void:
 			update_dash(delta)
 		State.KNOCKBACK:
 			update_knockback(delta)
+		State.STUNNED:
+			update_stun(delta)
 
 
 func update_movement(delta: float) -> void:
@@ -99,6 +105,39 @@ func update_dash(delta: float) -> void:
 	global_position += dash_direction * enemy_data.dash_speed * delta
 	if dash_timer <= 0.0:
 		end_dash()
+
+
+func update_stun(delta: float) -> void:
+	stun_timer -= delta
+	
+	global_position.z = player.global_position.z
+	
+	if stun_timer <= 0.0:
+		end_stun()
+
+
+func add_stun(amount: float) -> void:
+	if state == State.STUNNED:
+		return
+	
+	stun_meter += amount
+	
+	if stun_meter >= enemy_data.stun_treshold:
+		start_stun()
+
+
+func start_stun() -> void:
+	_set_warning(false)
+	state = State.STUNNED
+	stun_timer = enemy_data.stun_duration
+	stun_meter = 0.0
+	knockback_velocity = Vector3.ZERO
+
+
+func end_stun() -> void:
+	state = State.FOLLOW
+	attack_timer = enemy_data.attack_delay
+	reset_position()
 
 
 func start_dash() -> void:
@@ -143,6 +182,8 @@ func on_dodge_hit(damage: float, knockback: Vector3) -> void:
 	_set_warning(false)
 	state = State.KNOCKBACK
 	knockback_velocity = knockback
+	stun_meter = 0.0
+	end_stun()
 
 
 func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
@@ -159,8 +200,13 @@ func hit_player() -> void:
 func take_damage(damage: float) -> void:
 	health -= damage
 	print("Enemy health: ", health)
+	print("Enemy stun: ", stun_meter)
+	
 	if health <= 0.0:
 		die()
+		return
+	
+	add_stun(damage)
 
 
 func _spawn_hit_effect(hit_position: Vector3, direction: Vector3) -> void:

@@ -24,6 +24,7 @@ func _process(_delta: float) -> void:
 		origin,
 		origin + direction * aim_distance
 	)
+	
 	query.collide_with_areas = true
 	var space_state := car.get_world_3d().direct_space_state
 	var result := space_state.intersect_ray(query)
