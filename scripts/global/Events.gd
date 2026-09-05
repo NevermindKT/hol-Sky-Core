@@ -24,6 +24,9 @@ signal level_progress_changed(current, max)
 signal segment_spawned(segment: Road_segment)
 signal weather_changed()
 
+#-------------- UPGRADES
+signal upgrade_purchased(upgrade: UpgradeData)
+
 #-------------- RUN
 signal run_started
 signal run_ended

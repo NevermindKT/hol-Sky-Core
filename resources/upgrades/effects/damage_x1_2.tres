@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DamageMultiplierEffect" format=3 uid="uid://bp4jjf2q1iy8v"]
+
+[ext_resource type="Script" uid="uid://btjm2ql8vgrq7" path="res://scripts/data/upgrade/upgrade_effects/damage_multiplier_effect.gd" id="1_mcjac"]
+
+[resource]
+script = ExtResource("1_mcjac")
+multiplier = 1.2

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UpgradeBranch" format=3 uid="uid://i8hopcggudai"]
+
+[ext_resource type="Script" uid="uid://ca1sdc4x6tath" path="res://scripts/data/upgrade/upgrade_branch.gd" id="1_sa6n1"]
+
+[resource]
+script = ExtResource("1_sa6n1")
+display_name = "Accuracy"
+metadata/_custom_type_script = "uid://ca1sdc4x6tath"

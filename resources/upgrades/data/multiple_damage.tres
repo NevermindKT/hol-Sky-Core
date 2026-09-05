@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://b5d1dsolfj6ev"]
+
+[ext_resource type="Resource" uid="uid://b0hc3h2qjskei" path="res://resources/upgrades/branches/damage_branch.tres" id="1_ty4v0"]
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="2_s1w0b"]
+[ext_resource type="Resource" uid="uid://bp4jjf2q1iy8v" path="res://resources/upgrades/effects/damage_x1_2.tres" id="3_b44x2"]
+[ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="4_70del"]
+
+[resource]
+script = ExtResource("4_70del")
+id = "MD01"
+display_name = "Multiple damage"
+description = "Multiple damage"
+cost = 20
+branch = ExtResource("1_ty4v0")
+effects = Array[ExtResource("2_s1w0b")]([ExtResource("3_b44x2")])
+metadata/_custom_type_script = "uid://c8kc8gepimq0l"

@@ -16,7 +16,7 @@ var start_position: Vector3
 func initialize(data: WeaponData, direction: Vector3) -> void:
 	start_position = global_position
 
-	damage = data.damage
+	damage = UpgradeManager.get_modified(&"weapon_damage", data.damage)
 	gravity_scale = data.gravity_scale
 	projectile_speed = data.projectile_speed
 	projectile_distance = data.projectile_distance
