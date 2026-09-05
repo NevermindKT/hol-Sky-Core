@@ -93,9 +93,12 @@ func get_input() -> void:
 
 
 func process_speed(delta: float) -> void:
+	var current_acceleration := UpgradeManager.get_modified(&"acceleration", acceleration)
+	var current_max_speed := UpgradeManager.get_modified(&"max_speed", max_speed)
+
 	if InputController.accelerating:
 		var acceleration_mul = get_acceleration_multiplier()
-		speed += acceleration * acceleration_mul * delta
+		speed += current_acceleration * acceleration_mul * delta
 
 	if InputController.braking:
 		speed -= brake * delta
@@ -104,7 +107,7 @@ func process_speed(delta: float) -> void:
 		back_lights.turn_off()
 
 	speed -= drag * delta
-	speed = clamp(speed, 0.0, max_speed)
+	speed = clamp(speed, 0.0, current_max_speed)
 
 
 func process_strafe(delta: float) -> void:
