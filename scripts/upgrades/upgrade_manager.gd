@@ -14,15 +14,15 @@ func has_upgrade(id: StringName) -> bool:
 func get_modified(stat_id: StringName, base_value: float) -> float:
 	var value := base_value
 
-	for upgrade in purchased.values():
-		for effect in upgrade.effects:
+	for source in purchased.values() + BoostManager.active:
+		for effect in source.effects:
 			value = effect.modify_stat(stat_id, value)
 
 	return value
 
 func trigger(event_id: StringName, context: Dictionary = {}) -> void:
-	for upgrade in purchased.values():
-		for effect in upgrade.effects:
+	for source in purchased.values() + BoostManager.active:
+		for effect in source.effects:
 			effect.on_event(event_id, context)
 
 func can_purchase(upgrade: UpgradeData, currency: int) -> bool:

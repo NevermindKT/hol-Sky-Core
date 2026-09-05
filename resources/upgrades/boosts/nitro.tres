@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BoostData" format=3 uid="uid://b7nsn0mgwebjr"]
+
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_mb14m"]
+[ext_resource type="Script" uid="uid://bt04e05usq4qe" path="res://scripts/data/upgrade/boost_data.gd" id="2_5qb6k"]
+[ext_resource type="Resource" uid="uid://cxfytp5l8x1da" path="res://resources/upgrades/effects/max_speed.tres" id="2_iyerb"]
+[ext_resource type="Resource" uid="uid://cforb78pb7rfb" path="res://resources/upgrades/effects/acceleration.tres" id="3_lpsls"]
+
+[resource]
+script = ExtResource("2_5qb6k")
+id = "NIT001"
+display_name = "Nitro"
+description = "Nitro"
+cost = 10
+duration = 5.0
+effects = Array[ExtResource("1_mb14m")]([ExtResource("2_iyerb"), ExtResource("3_lpsls")])
+metadata/_custom_type_script = "uid://bt04e05usq4qe"

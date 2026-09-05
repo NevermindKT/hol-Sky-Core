@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatMultiplierEffect" format=3 uid="uid://cxfytp5l8x1da"]
+
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="1_l2icf"]
+
+[resource]
+script = ExtResource("1_l2icf")
+stat_id = &"max_speed"
+multiplier = 2.0
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
