@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UpgradeBranch" format=3 uid="uid://s0gpyox15kbl"]
+
+[ext_resource type="Script" uid="uid://ca1sdc4x6tath" path="res://scripts/data/upgrade/upgrade_branch.gd" id="1_bhmpp"]
+
+[resource]
+script = ExtResource("1_bhmpp")
+display_name = "Fire Power"
+metadata/_custom_type_script = "uid://ca1sdc4x6tath"

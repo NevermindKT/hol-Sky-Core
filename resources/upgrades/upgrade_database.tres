@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UpgradeDatabase" format=3 uid="uid://bmrnifevau2hf"]
+
+[ext_resource type="Script" uid="uid://c2yncga4darip" path="res://scripts/data/upgrade/upgrade_database.gd" id="1_j3kh7"]
+[ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_1g5p6"]
+[ext_resource type="Resource" uid="uid://b5d1dsolfj6ev" path="res://resources/upgrades/data/multiple_damage.tres" id="3_1g5p6"]
+
+[resource]
+script = ExtResource("1_j3kh7")
+upgrades = Array[ExtResource("2_1g5p6")]([ExtResource("3_1g5p6")])

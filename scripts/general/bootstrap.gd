@@ -46,6 +46,8 @@ func _ready() -> void:
 
 	enemy_encounter.inialize()
 	enemy_encounter.start_encounter()
+	
+	UpgradeManager.purchase(UpgradeManager.database.upgrades[0])
 
 	queue_free()
 
@@ -76,3 +78,4 @@ func set_player_car():
 
 func set_weapon_system():
 	car.weapon_controller.initialize()
+	

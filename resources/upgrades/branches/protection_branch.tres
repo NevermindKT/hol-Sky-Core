@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UpgradeBranch" format=3 uid="uid://dsovp12fx0o46"]
+
+[ext_resource type="Script" uid="uid://ca1sdc4x6tath" path="res://scripts/data/upgrade/upgrade_branch.gd" id="1_n7sl0"]
+
+[resource]
+script = ExtResource("1_n7sl0")
+display_name = "Protection"
+metadata/_custom_type_script = "uid://ca1sdc4x6tath"
