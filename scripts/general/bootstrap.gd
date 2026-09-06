@@ -47,10 +47,10 @@ func _ready() -> void:
 	enemy_encounter.inialize()
 	enemy_encounter.start_encounter()
 	
-	UpgradeManager.purchase(UpgradeManager.database.upgrades[0])
-
-	BoostManager.add_owned(load("res://resources/upgrades/boosts/nitro.tres"))
-	BoostManager.activate(load("res://resources/upgrades/boosts/nitro.tres"))
+	#UpgradeManager.purchase(UpgradeManager.database.upgrades[0])
+#
+	#BoostManager.add_owned(load("res://resources/upgrades/boosts/nitro.tres"))
+	#BoostManager.activate(load("res://resources/upgrades/boosts/nitro.tres"))
 	queue_free()
 
 

@@ -13,8 +13,10 @@ var road_manager: Road_manager
 @export_category("Trigger — Tire Skid")
 @export var brake_speed_ratio := 0.6
 @export var turn_speed_ratio := 0.5
-@export var lateral_velocity_threshold := 3.0
 @export var angular_velocity_threshold := 0.3
+@export var dodge_trail_duration := 0.2
+
+var _dodge_trail_timer := 0.0
 
 var _bleeding_distance_left := 0.0
 
@@ -44,10 +46,12 @@ func initialize(_world: World, _car_movement: Car_Movement, _road_manager: Road_
 	if trigger_mode == Trigger_mode.BLOOD and not is_in_group("blood_trail_manager"):
 		add_to_group("blood_trail_manager")
 
-	skid_point_l = car_movement.get_node_or_null("SkidPointL")
-	skid_point_r = car_movement.get_node_or_null("SkidPointR")
-	skid_point_l2 = car_movement.get_node_or_null("SkidPointL2")
-	skid_point_r2 = car_movement.get_node_or_null("SkidPointR2")
+	car_movement.dodge_performed.connect(_on_dodge_performed)
+
+	skid_point_l = car_movement.get_node_or_null("SkidPointContainer/SkidPointL")
+	skid_point_r = car_movement.get_node_or_null("SkidPointContainer/SkidPointR")
+	skid_point_l2 = car_movement.get_node_or_null("SkidPointContainer/SkidPointL2")
+	skid_point_r2 = car_movement.get_node_or_null("SkidPointContainer/SkidPointR2")
 
 	assert(stroke_scene != null, "TireTrailManager: не призначено Stroke Scene в Inspector.")
 	assert(skid_point_l != null, "TireTrailManager: не знайдено SkidPointL під Car.")
@@ -61,6 +65,8 @@ func _process(delta: float) -> void:
 
 	if trigger_mode == Trigger_mode.BLOOD and _bleeding_distance_left > 0.0:
 		_bleeding_distance_left = maxf(_bleeding_distance_left - car_movement.speed * delta, 0.0)
+
+	_dodge_trail_timer = maxf(_dodge_trail_timer - delta, 0.0)
 
 	if _should_leave_marks():
 		_active_l = _record_point(_active_l, skid_point_l)
@@ -100,7 +106,7 @@ func _should_leave_marks() -> bool:
 			return _bleeding_distance_left > 0.0
 		_:
 			var speed_ratio := car_movement.get_speed_ratio()
-			return _is_braking_hard(speed_ratio) or _is_turning_hard(speed_ratio)
+			return _is_braking_hard(speed_ratio) or _is_turning_hard(speed_ratio) or _is_dodging()
 
 
 func _is_braking_hard(speed_ratio: float) -> bool:
@@ -111,10 +117,15 @@ func _is_turning_hard(speed_ratio: float) -> bool:
 	if speed_ratio < turn_speed_ratio:
 		return false
 
-	var lateral_hard := absf(car_movement.lateral_velocity) > lateral_velocity_threshold
-	var road_curve_hard := road_manager != null and absf(road_manager.smoothed_turn_velocity) > angular_velocity_threshold
+	return road_manager != null and absf(road_manager.smoothed_turn_velocity) > angular_velocity_threshold
 
-	return lateral_hard or road_curve_hard
+
+func _is_dodging() -> bool:
+	return _dodge_trail_timer > 0.0
+
+
+func _on_dodge_performed() -> void:
+	_dodge_trail_timer = dodge_trail_duration
 
 
 func _record_point(stroke: Tire_trail_stroke, point: Marker3D) -> Tire_trail_stroke:

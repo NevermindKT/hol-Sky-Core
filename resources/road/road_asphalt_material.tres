@@ -16,6 +16,7 @@ seamless = true
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_road_wet"]
 noise_type = 0
 seed = 7
+frequency = 0.02
 fractal_octaves = 7
 fractal_lacunarity = 1.295
 fractal_gain = 1.105

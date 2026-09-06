@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Car_Movement
 
+signal dodge_performed
+
 var speed := 0.0
 var lane_offset := 0.0
 var lateral_velocity := 0.0
@@ -39,6 +41,14 @@ var steering_input := 0.0
 @export var damping := 8.0
 
 
+@export_category("Wet Road Grip")
+@export var grip_wet := 0.75
+@export var grip_flooded := 0.5
+@export var grip_transition_speed := 2.0
+
+var _current_grip := 1.0
+
+
 @export_category("Hit")
 @export var base_damage := 15
 
@@ -63,6 +73,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	get_input()
+	update_grip(delta)
 	process_speed(delta)
 	process_strafe(delta)
 	process_visuals(delta)
@@ -92,6 +103,25 @@ func get_input() -> void:
 	steering_input = InputController.steering
 
 
+func update_grip(delta: float) -> void:
+	var target_grip := get_target_grip()
+	_current_grip = lerpf(_current_grip, target_grip, clampf(delta * grip_transition_speed, 0.0, 1.0))
+
+
+func get_target_grip() -> float:
+	var rain := WeatherManager.weather_data.rain if WeatherManager.weather_data != null else null
+	if rain == null:
+		return 1.0
+
+	match rain.road_state():
+		2.0:
+			return grip_flooded
+		1.0:
+			return grip_wet
+		_:
+			return 1.0
+
+
 func process_speed(delta: float) -> void:
 	var current_acceleration := UpgradeManager.get_modified(&"acceleration", acceleration)
 	var current_max_speed := UpgradeManager.get_modified(&"max_speed", max_speed)
@@ -101,12 +131,12 @@ func process_speed(delta: float) -> void:
 		speed += current_acceleration * acceleration_mul * delta
 
 	if InputController.braking:
-		speed -= brake * delta
+		speed -= brake * _current_grip * delta
 		back_lights.turn_on()
 	else:
 		back_lights.turn_off()
 
-	speed -= drag * delta
+	speed -= drag * _current_grip * delta
 	speed = clamp(speed, 0.0, current_max_speed)
 
 
@@ -123,8 +153,8 @@ func process_strafe(delta: float) -> void:
 
 	var error := lane_offset - position.x
 
-	lateral_velocity += error * spring * delta
-	lateral_velocity *= exp(-damping * delta)
+	lateral_velocity += error * spring * _current_grip * delta
+	lateral_velocity *= exp(-damping * _current_grip * delta)
 
 	position.x += lateral_velocity * delta
 
@@ -157,6 +187,8 @@ func dodge() -> void:
 	
 	lane_offset += direction * dodge_distance
 	lane_offset = clamp_offset()
+
+	dodge_performed.emit()
 
 
 func clamp_offset() -> float:

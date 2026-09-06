@@ -48,7 +48,9 @@ func _ready() -> void:
 	_shoulder_container_right = _wrap_in_container(shoulder_fog_right)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	_update_fog_drift(delta)
+
 	if _announced:
 		return
 	if road_manager == null or road_manager.car_movement == null:
@@ -57,17 +59,42 @@ func _process(_delta: float) -> void:
 		return
 
 	_announced = true
-
 	WeatherManager.set_weather(_weather_data)
-	
-	
-	#move_fog(_shoulder_material_left, _delta)
-	#move_fog(_shoulder_material_right, _delta)
 
-#func move_fog(shoulder_fog_mat: FogMaterial, _delta: float) -> void:
-	#var noise_texture = shoulder_fog_mat.density_texture as NoiseTexture3D
-	#var noise = noise_texture.noise as FastNoiseLite
-	#noise.offset.x + _delta * 0.1
+
+const FOG_DRIFT_SPEED := 0.2
+const FOG_DRIFT_UPDATE_INTERVAL := 0.1
+
+var _fog_drift_timer := 0.0
+
+
+func _update_fog_drift(delta: float) -> void:
+	_fog_drift_timer += delta
+	if _fog_drift_timer < FOG_DRIFT_UPDATE_INTERVAL:
+		return
+
+	var step := _fog_drift_timer
+	_fog_drift_timer = 0.0
+
+	if _shoulder_container_left and _shoulder_container_left.visible:
+		_drift_material(_shoulder_material_left, step)
+	if _shoulder_container_right and _shoulder_container_right.visible:
+		_drift_material(_shoulder_material_right, step)
+
+
+func _drift_material(material: FogMaterial, step: float) -> void:
+	if material == null:
+		return
+
+	var noise_texture := material.density_texture as NoiseTexture3D
+	if noise_texture == null:
+		return
+
+	var noise := noise_texture.noise as FastNoiseLite
+	if noise == null:
+		return
+
+	noise.offset.x += step * FOG_DRIFT_SPEED
 
 
 func _wrap_in_container(template: FogVolume) -> Node3D:

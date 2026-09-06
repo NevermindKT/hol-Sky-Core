@@ -11,9 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="6_t5h3w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
 [ext_resource type="PackedScene" uid="uid://cgx8vcbpf1r2n" path="res://scenes/vfx/effects/engine_smoke.tscn" id="8_f6f1y"]
-[ext_resource type="PackedScene" uid="uid://cyjgkd0a6j2l7" path="res://scenes/vfx/components/dust.tscn" id="9_k2ppk"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
+[ext_resource type="PackedScene" uid="uid://b18ge6bq72hf8" path="res://scenes/vfx/effects/wheel_particles_effect.tscn" id="10_lvrf2"]
 [ext_resource type="Script" uid="uid://ip4fb2moxr2s" path="res://scenes/player/player_status_controller.gd" id="10_ojawh"]
 [ext_resource type="Script" uid="uid://b0ny64s5vute3" path="res://scripts/car/headlight_mode.gd" id="11_hlmode"]
 [ext_resource type="Texture2D" uid="uid://b5ylygv8dtf2n" path="res://textures/lights/headlight_cookie.png" id="12_hlcookie"]
@@ -63,6 +63,8 @@ dodge_force = 16.0
 dodge_distance = 15.0
 spring = 45.0
 damping = 6.0
+grip_wet = 0.6
+grip_flooded = 0.35
 back_lights = NodePath("Visual/vfx/BackLights")
 
 [node name="Visual" type="Node3D" parent="." unique_id=1626838081]
@@ -115,17 +117,6 @@ smoke_start_health_ratio = 0.7
 upward_lift = 1.5
 max_wind_speed = 30.0
 
-[node name="wheel_dust" type="Node3D" parent="Visual/vfx" unique_id=1604834555 node_paths=PackedStringArray("particles", "car")]
-script = ExtResource("6_lvrf2")
-particles = [NodePath("dust"), NodePath("dust2")]
-car = NodePath("../../..")
-
-[node name="dust" parent="Visual/vfx/wheel_dust" unique_id=1279401666 instance=ExtResource("9_k2ppk")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.2601764, -0.56182796, 0.819365)
-
-[node name="dust2" parent="Visual/vfx/wheel_dust" unique_id=1863172650 instance=ExtResource("9_k2ppk")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.26992372, -0.56182796, 0.819365)
-
 [node name="ForwardLights" type="Node3D" parent="Visual/vfx" unique_id=1230302799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04349184, -0.8)
 
@@ -172,7 +163,7 @@ far_volumetric_fog_energy = 0.1
 [node name="BackLights" type="Node3D" parent="Visual/vfx" unique_id=2013480416 node_paths=PackedStringArray("back_lights")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.04349184, 0.7800961)
 script = ExtResource("3_20y2w")
-on_energy = 0.6
+on_energy = 1.0
 off_energy = 0.3
 back_lights = [NodePath("SpotLight3D"), NodePath("SpotLight3D2")]
 
@@ -197,6 +188,20 @@ distance_fade_begin = 0.0
 spot_range = 3.0
 spot_attenuation = 2.0
 spot_angle = 70.0
+
+[node name="wheel_dust" type="Node3D" parent="Visual/vfx" unique_id=1604834555 node_paths=PackedStringArray("particles", "car")]
+script = ExtResource("6_lvrf2")
+particles = [NodePath("WheelParticlesEffect"), NodePath("WheelParticlesEffect2")]
+car = NodePath("../../..")
+max_wind_speed = 30.0
+velocity_spread = 0.5
+min_speed_for_dust = 0.5
+
+[node name="WheelParticlesEffect" parent="Visual/vfx/wheel_dust" unique_id=644535193 instance=ExtResource("10_lvrf2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.25, -0.6, 0.8)
+
+[node name="WheelParticlesEffect2" parent="Visual/vfx/wheel_dust" unique_id=1417955025 instance=ExtResource("10_lvrf2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.25, -0.6, 0.8)
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 
@@ -225,14 +230,16 @@ player_weapons = Array[ExtResource("6_7lmdr")]([SubResource("Resource_lo1ro"), S
 script = ExtResource("10_ojawh")
 max_health = 100.0
 
-[node name="SkidPointL" type="Marker3D" parent="." unique_id=1661106230]
+[node name="SkidPointContainer" type="Node3D" parent="." unique_id=1427972973]
+
+[node name="SkidPointL" type="Marker3D" parent="SkidPointContainer" unique_id=1661106230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.69208086, 0.555)
 
-[node name="SkidPointR" type="Marker3D" parent="." unique_id=54355480]
+[node name="SkidPointR" type="Marker3D" parent="SkidPointContainer" unique_id=54355480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.69208086, 0.555)
 
-[node name="SkidPointL2" type="Marker3D" parent="." unique_id=583807731]
+[node name="SkidPointL2" type="Marker3D" parent="SkidPointContainer" unique_id=583807731]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.69208086, -0.59804904)
 
-[node name="SkidPointR2" type="Marker3D" parent="." unique_id=783719750]
+[node name="SkidPointR2" type="Marker3D" parent="SkidPointContainer" unique_id=783719750]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.69208086, -0.6458687)

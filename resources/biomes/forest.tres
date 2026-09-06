@@ -16,14 +16,14 @@ _data = [Vector2(0.015432097, 0), 0.0, 0.0, 0, 0, Vector2(0.074074075, 1), 0.0, 
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_g5jdw"]
-_data = [Vector2(0.055335976, 0), 0.0, 0.0, 0, 0, Vector2(0.15019765, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0.055335976, 0), 0.0, 0.0, 0, 0, Vector2(0.14335665, 0.5957446), 0.0, 0.0, 0, 0, Vector2(0.8111888, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Resource" id="Resource_b0nky"]
 script = ExtResource("2_tblmu")
 category_name = "Trees"
 folder_path = "res://models/kenney_nature-kit/tree"
-count = 70
+count = 100
 scale_range = Vector2(4, 4.5)
 density_curve = SubResource("Curve_g5jdw")
 metadata/_custom_type_script = "uid://c50p4e7wmeocp"
