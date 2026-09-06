@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b18ge6bq72hf8"]
+
+[ext_resource type="Script" uid="uid://ds552n7qxedvq" path="res://scripts/vfx/wheel_particles_effect.gd" id="1_5nvy5"]
+[ext_resource type="PackedScene" uid="uid://cyjgkd0a6j2l7" path="res://scenes/vfx/components/dust.tscn" id="2_kldu1"]
+[ext_resource type="PackedScene" uid="uid://dbt7mvtg0c6ff" path="res://scenes/vfx/components/water_drops.tscn" id="3_h62jl"]
+
+[node name="WheelParticlesEffect" type="Node3D" unique_id=644535193 node_paths=PackedStringArray("dust", "water_drops")]
+script = ExtResource("1_5nvy5")
+dust = NodePath("dust")
+water_drops = NodePath("WaterDrops")
+
+[node name="dust" parent="." unique_id=1279401666 instance=ExtResource("2_kldu1")]
+
+[node name="WaterDrops" parent="." unique_id=1875115043 instance=ExtResource("3_h62jl")]

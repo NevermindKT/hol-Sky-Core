@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4qwtyjq2wkou"
-path.s3tc="res://.godot/imported/dust.png-da375377365d39266dac1c0440583e02.s3tc.ctex"
+uid="uid://cbq327lfvpucb"
+path.s3tc="res://.godot/imported/water-drops.png-ee4f51c3349c9939022134e6cddd16f7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/dust.png"
-dest_files=["res://.godot/imported/dust.png-da375377365d39266dac1c0440583e02.s3tc.ctex"]
+source_file="res://textures/vfx/water-drops.png"
+dest_files=["res://.godot/imported/water-drops.png-ee4f51c3349c9939022134e6cddd16f7.s3tc.ctex"]
 
 [params]
 

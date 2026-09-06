@@ -88,13 +88,19 @@ light_energy = 0.02
 world = NodePath("../../World")
 
 [node name="DistanceFog" parent="Environment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -150)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -200)
+
+[node name="FogMesh" parent="Environment/DistanceFog" index="0" unique_id=740100936]
+transform = Transform3D(1, 0, 0, 0, -0.556708, 0.8307082, 0, -0.8307082, -0.556708, 0, 0, -20)
+
+[node name="FogMesh3" parent="Environment/DistanceFog" index="2" unique_id=1585086666]
+transform = Transform3D(1, 0, 0, 0, -0.556708, 0.8307082, 0, -0.8307082, -0.556708, 0, 0, 60)
 
 [node name="DistanceFog2" parent="Environment" unique_id=750089918 instance=ExtResource("15_cshfm")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -120, 1, -150)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -150, 1, -150)
 
 [node name="DistanceFog3" parent="Environment" unique_id=1031805874 instance=ExtResource("15_cshfm")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 120, 1, -150)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 150, 1, -150)
 
 [node name="EnemyEncounter" type="Node3D" parent="." unique_id=2038877150 node_paths=PackedStringArray("player", "enemies", "world")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -172,8 +178,6 @@ script = ExtResource("27_iqacv")
 script = ExtResource("31_7hc18")
 stroke_scene = ExtResource("32_kusm0")
 brake_speed_ratio = 0.1
-turn_speed_ratio = 0.6
-lateral_velocity_threshold = 4.0
 max_active_strokes = 10
 fade_duration = 5.0
 surface_offset = -0.9
@@ -183,9 +187,9 @@ script = ExtResource("31_7hc18")
 stroke_scene = ExtResource("33_i2q6t")
 trigger_mode = 1
 brake_speed_ratio = 0.1
-lateral_velocity_threshold = 4.0
 max_active_strokes = 10
 fade_duration = 5.0
 surface_offset = -0.9
 
 [editable path="Environment/WeatherSystem"]
+[editable path="Environment/DistanceFog"]
