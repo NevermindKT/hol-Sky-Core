@@ -15,14 +15,16 @@ var steering_input := 0.0
 @export var brake := 50.0
 @export var max_speed := 80.0
 @export var acceleration := 30.0
+
 @export var acceleration_curve: Curve
 
 
 @export_category("Strafe")
 @export var max_offset := 4.0
 @export var strafe_speed := 8.0
-@export var steering_curve: Curve
 @export var min_strafe_speed := 2.0
+
+@export var steering_curve: Curve
 
 
 @export_category("Road Influence")

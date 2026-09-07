@@ -4,10 +4,12 @@ class_name Enemy_Marker
 @export var blink_interval: float = 0.15
 
 var enemy: Encounter_Enemy
+
+@onready var heath_bar: ProgressBar = $HeathBar
 @onready var marker_warning: TextureRect = $MarkerWarning
 
-var is_warning_active := false
 var blink_timer := 0.0
+var is_warning_active := false
 
 
 func set_enemy(target_enemy: Encounter_Enemy) -> void:
