@@ -12,7 +12,9 @@ curve = SubResource("Curve_ilv55")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_62yky"]
 render_priority = 0
 shader = ExtResource("1_1cu5w")
-shader_parameter/fog_color = Color(0.03137255, 0.05882353, 0.07058824, 1)
+shader_parameter/blur_amount = 7.0000003325
+shader_parameter/haze_tint = Color(1, 1, 1, 1)
+shader_parameter/tint_strength = 0.0
 shader_parameter/opacity = 1.0
 shader_parameter/vertical_gradient = SubResource("CurveTexture_owrot")
 
@@ -24,14 +26,18 @@ subdivide_depth = 50
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_owrot"]
 render_priority = 0
 shader = ExtResource("1_1cu5w")
-shader_parameter/fog_color = Color(0.03137255, 0.05882353, 0.07058824, 1)
+shader_parameter/blur_amount = 5.0
+shader_parameter/haze_tint = Color(1, 1, 1, 1)
+shader_parameter/tint_strength = 0.0
 shader_parameter/opacity = 0.6000000285
 shader_parameter/vertical_gradient = SubResource("CurveTexture_owrot")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ilv55"]
 render_priority = 0
 shader = ExtResource("1_1cu5w")
-shader_parameter/fog_color = Color(0.03137255, 0.05882353, 0.07058824, 1)
+shader_parameter/blur_amount = 3.0000001425
+shader_parameter/haze_tint = Color(1, 1, 1, 1)
+shader_parameter/tint_strength = 0.0
 shader_parameter/opacity = 0.2000000095
 shader_parameter/vertical_gradient = SubResource("CurveTexture_owrot")
 

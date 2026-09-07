@@ -81,14 +81,18 @@ obstacle_set = SubResource("Resource_dakql")
 
 [node name="WeatherSystem" parent="Environment" unique_id=1765140778 instance=ExtResource("10_bggva")]
 
-[node name="DirectionalLight3D" parent="Environment/WeatherSystem" index="1" unique_id=89476310]
-light_energy = 0.02
-
 [node name="LightningController" parent="Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
 world = NodePath("../../World")
 
+[node name="SkyController" parent="Environment/WeatherSystem" index="4" unique_id=995668462]
+dusk_duration = 60.0
+dusk_start_sun_elevation_deg = 0.0
+dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
+sun_angle_max_deg = 13.0
+sun_curve = 1.0
+
 [node name="DistanceFog" parent="Environment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -250)
 
 [node name="FogMesh" parent="Environment/DistanceFog" index="0" unique_id=740100936]
 transform = Transform3D(1, 0, 0, 0, -0.556708, 0.8307082, 0, -0.8307082, -0.556708, 0, 0, -20)
@@ -118,7 +122,7 @@ hit_effect_scene = ExtResource("15_7hc18")
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
-[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "enemy_spawner", "enemy_encounter")]
+[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "enemy_spawner", "sky_controller", "enemy_encounter")]
 script = ExtResource("6_v852s")
 car = NodePath("../../Car")
 hud = NodePath("../../UI/HUD")
@@ -133,6 +137,7 @@ tire_trail_manager = NodePath("../TireTrailManager")
 blood_trail_manager = NodePath("../BloodTrailManager")
 lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
 enemy_spawner = NodePath("../EnemySpawner")
+sky_controller = NodePath("../../Environment/WeatherSystem/SkyController")
 enemy_encounter = NodePath("../../EnemyEncounter")
 
 [node name="RunManager" type="Node" parent="Services" unique_id=239540275]
