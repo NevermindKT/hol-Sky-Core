@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ughski8v3jcf" path="res://scripts/hud/hud.gd" id="1_p21ms"]
 [ext_resource type="Script" uid="uid://cgnsa8ouki5r2" path="res://scripts/hud/enemy_compass.gd" id="3_5oepb"]
+[ext_resource type="Shader" uid="uid://sxln1r7nn5tk" path="res://resources/shaders/UI/reload_bar_arc.gdshader" id="3_5vyhu"]
 [ext_resource type="PackedScene" uid="uid://jm2wpcnrd3uv" path="res://scenes/general/enemy_compass_marker.tscn" id="4_dh6d1"]
 [ext_resource type="Texture2D" uid="uid://bv7iugxmxuhxv" path="res://textures/hud/rossHair.png" id="4_p21ms"]
 [ext_resource type="Script" uid="uid://c5e3ma0wjjxgl" path="res://scenes/general/second_rectile.gd" id="5_p21ms"]
@@ -10,7 +11,7 @@
 [sub_resource type="GDScript" id="GDScript_oj1j8"]
 script/source = "extends Control
 
-@onready var reload_bar: ProgressBar = $ReloadBar
+@onready var reload_bar: ProgressBar = $SubViewportContainer/SubViewport/ReloadBar
 
 var reload_time := 0.0
 var reload_duration := 0.0
@@ -57,6 +58,17 @@ func cancel_reload():
 	reload_bar.hide()
 "
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vyhu"]
+shader = ExtResource("3_5vyhu")
+shader_parameter/arc_strength = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vyhu"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.078431375)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l38w"]
+bg_color = Color(0.8156863, 0.7529412, 0.2627451, 0.8901961)
+
 [node name="HUD" type="CanvasLayer" unique_id=299315244]
 script = ExtResource("1_p21ms")
 
@@ -77,23 +89,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = SubResource("GDScript_oj1j8")
 
-[node name="ReloadBar" type="ProgressBar" parent="CrossHairCon" unique_id=1102824652]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = 25.0
-offset_right = 50.0
-offset_bottom = 52.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 1
-show_percentage = false
-
 [node name="CrossHairPic" type="TextureRect" parent="CrossHairCon" unique_id=235227802]
 layout_mode = 1
 anchors_preset = 8
@@ -109,6 +104,44 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_p21ms")
 expand_mode = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CrossHairCon" unique_id=1262323772]
+material = SubResource("ShaderMaterial_5vyhu")
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = 20.0
+offset_right = 25.0
+offset_bottom = 34.945
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CrossHairCon/SubViewportContainer" unique_id=828537609]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(50, 14)
+render_target_update_mode = 4
+
+[node name="ReloadBar" type="ProgressBar" parent="CrossHairCon/SubViewportContainer/SubViewport" unique_id=1102824652]
+custom_minimum_size = Vector2(-1, 5)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_5vyhu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4l38w")
+show_percentage = false
 
 [node name="SecondRectile" type="Control" parent="." unique_id=868345586]
 layout_mode = 3
