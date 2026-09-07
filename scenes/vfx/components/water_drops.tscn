@@ -53,7 +53,7 @@ alpha_curve = SubResource("CurveTexture_kgr2b")
 
 [node name="WaterDrops" type="GPUParticles3D" unique_id=1279401666]
 material_override = SubResource("StandardMaterial3D_kulko")
-amount = 100
+amount = 70
 lifetime = 0.5
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ggm7h")

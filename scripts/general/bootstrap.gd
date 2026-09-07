@@ -14,6 +14,7 @@ extends Node
 @export var blood_trail_manager: Tire_trail_manager
 @export var lightning_controller: LightningController
 @export var enemy_spawner: Enemy_spawner
+@export var sky_controller: SkyController
 
 @export var enemy_encounter: Enemy_Encounter
 
@@ -51,6 +52,8 @@ func _ready() -> void:
 #
 	#BoostManager.add_owned(load("res://resources/upgrades/boosts/nitro.tres"))
 	#BoostManager.activate(load("res://resources/upgrades/boosts/nitro.tres"))
+	
+	Events.run_started.emit()
 	queue_free()
 
 
@@ -63,6 +66,7 @@ func set_world():
 	ProjectileSpawner.world = world
 	lightning_controller.world = world
 	enemy_spawner.world = world
+	sky_controller.world = world
 
 
 func set_road_manager():

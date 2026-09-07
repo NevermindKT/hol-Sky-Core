@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dunfvkx4t8gji" path="res://scripts/weather/FogController.gd" id="1_sap5q"]
 [ext_resource type="Script" uid="uid://d4f74ck2cfk3k" path="res://scripts/weather/lightning_controller.gd" id="3_8ccrl"]
 [ext_resource type="PackedScene" uid="uid://bjahf7e1efelb" path="res://scenes/weather/components/LightningBolt.tscn" id="4_lclfr"]
+[ext_resource type="Script" uid="uid://b37l0v75i2gjh" path="res://scripts/weather/sky_controller.gd" id="5_8hyqn"]
 
 [node name="WeatherSystem" type="Node" unique_id=1765140778]
 
@@ -11,9 +12,9 @@
 environment = ExtResource("1_8hyqn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=89476310]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 15.509956, -10.5886755)
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 15, 0)
 light_color = Color(0.73871017, 0.90675664, 1, 1)
-light_energy = 0.008
+light_energy = 0.02
 sky_mode = 1
 
 [node name="LightningController" type="Node" parent="." unique_id=317716121 node_paths=PackedStringArray("directional_light")]
@@ -30,3 +31,10 @@ width = 0.5
 [node name="FogController" type="Node" parent="." unique_id=1605430976 node_paths=PackedStringArray("world_environment")]
 script = ExtResource("1_sap5q")
 world_environment = NodePath("../WorldEnvironment")
+
+[node name="SkyController" type="Node" parent="." unique_id=995668462 node_paths=PackedStringArray("world_environment", "directional_light")]
+script = ExtResource("5_8hyqn")
+world_environment = NodePath("../WorldEnvironment")
+directional_light = NodePath("../DirectionalLight3D")
+dusk_duration = 40.0
+dawn_light_color = Color(1, 0.7019608, 0.4509804, 1)
