@@ -52,6 +52,7 @@ metadata/_custom_type_script = "uid://nvhh14a8jfmw"
 [node name="Core" type="Node3D" unique_id=243152911]
 
 [node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("2_uhg8y")]
+max_speed = 120.0
 acceleration = 20.0
 max_offset = 10.0
 strafe_speed = 17.0

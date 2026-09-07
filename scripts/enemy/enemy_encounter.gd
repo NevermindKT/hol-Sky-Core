@@ -55,7 +55,6 @@ func add_enemy(enemy_data: EncounterEnemyData) -> Encounter_Enemy:
 
 func remove_enemy(enemy: Encounter_Enemy) -> void:
 	enemies.erase(enemy)
-	print("Encounter is eraising enemy")
 	print(is_battle)
 	check_battle()
 
@@ -71,7 +70,6 @@ func check_battle() -> void:
 
 	if not is_battle:
 		add_test_enemy()
-		print("Trying to return enemy")
 
 
 func is_there_enemies() -> bool:

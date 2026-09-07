@@ -7,10 +7,13 @@ class_name EncounterEnemyData
 @export_category("Movement")
 @export var move_speed := 5.0
 @export var desired_offset := 0.0
+@export var z_return_speed := 6.0
+@export var z_align_speed := 10.0 
 
 @export_category("Stun")
 @export var stun_duration := 5.0
 @export var stun_treshold := 100.0
+@export var stun_decay_rate := 20.0
 
 @export_category("Attack")
 @export var attack_damage := 15.0
