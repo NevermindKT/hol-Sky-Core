@@ -1,6 +1,9 @@
 extends Resource
 class_name EncounterEnemyData
 
+@export_category("General")
+@export var encounter_weight := 20.0
+
 @export_category("Health")
 @export var max_health := 100.0
 

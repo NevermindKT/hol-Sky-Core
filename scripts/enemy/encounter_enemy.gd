@@ -178,7 +178,7 @@ func _move_toward_start_z(delta: float) -> void:
 	var target_local := encounter.to_local(global_position)
 	target_local.z = start_z
 	var target_global_z := encounter.to_global(target_local).z
-	
+
 	global_position.z = move_toward(
 		global_position.z,
 		target_global_z,
@@ -225,10 +225,10 @@ func on_dodge_hit(damage: float, knockback: Vector3) -> void:
 	take_damage(damage)
 	if health <= 0.0:
 		return
-	
+
 	_set_warning(false)
 	_set_stunned(false)
-	
+
 	state = State.KNOCKBACK
 	knockback_velocity = knockback
 	stun_meter = 0.0
@@ -244,11 +244,11 @@ func take_damage(damage: float) -> void:
 	health -= damage
 	print("Enemy health: ", health)
 	print("Enemy stun: ", stun_meter)
-	
+
 	if health <= 0.0:
 		die()
 		return
-	
+
 	add_stun(damage)
 
 
