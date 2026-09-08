@@ -77,6 +77,23 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktvve"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adyy0"]
+bg_color = Color(0.28402486, 2.256129e-07, 0.060133174, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2r3oe"]
+bg_color = Color(0.42228577, 0.5529321, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="HUD" type="CanvasLayer" unique_id=299315244]
 script = ExtResource("1_p21ms")
 
@@ -215,16 +232,43 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 200.0
-offset_top = -240.0
+offset_top = -258.99982
 offset_right = 600.0
-offset_bottom = -212.99982
+offset_bottom = -214.99982
 grow_vertical = 0
 rotation = -0.034906585
 
 [node name="HealthBar" type="ProgressBar" parent="Left" unique_id=2077857558]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_ktvve")
+theme_override_styles/fill = SubResource("StyleBoxFlat_adyy0")
 value = 100.0
+show_percentage = false
+
+[node name="Control" type="Control" parent="Left" unique_id=752057224]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="StaminaBar" type="ProgressBar" parent="Left/Control" unique_id=1687962986]
+custom_maximum_size = Vector2(-1, 10)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -7.5
+offset_right = 200.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_2r3oe")
+value = 100.0
+show_percentage = false
 
 [node name="Right" type="VBoxContainer" parent="." unique_id=1703934431]
 anchors_preset = 3

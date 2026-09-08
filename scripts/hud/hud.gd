@@ -5,6 +5,7 @@ class_name HUD
 @onready var second_rectile: SecondaryReticle = $SecondRectile
 
 @onready var health_bar: ProgressBar = $Left/HealthBar
+@onready var stamina_bar: ProgressBar = $Left/Control/StaminaBar
 @onready var level_progress_bar: ProgressBar = $Top/LevelProgressBar
 
 @onready var ammo_label: RichTextLabel = $Right/AmmoLabel
@@ -23,6 +24,7 @@ func _ready() -> void:
 	Events.magazine_count_changed.connect(change_ammo)
 	
 	Events.player_health_changed.connect(update_health)
+	Events.player_stamina_changed.connect(update_stamina)
 	Events.level_progress_changed.connect(update_progress)
 
 
@@ -43,6 +45,10 @@ func update_progress(current: float, max_distance: float):
 
 func update_health(value: float):
 	health_bar.value = value
+
+#---------------- STAMINA
+func update_stamina(value: float):
+	stamina_bar.value = value
 
 #---------------- WEAPON
 

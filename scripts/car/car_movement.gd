@@ -45,6 +45,18 @@ var dodge_timer := 0.0
 var dodge_direction := 0.0
 var dodge_already_hit: Array[Node] = []
 
+@export_category("Stamina")
+@export var max_stamina := 100.0
+@export var dodge_stamina_drain := 30.0
+@export var stamina_regeneration_rate := 40.0
+@export var stamina_regeneration_delay := 2.0
+@export var overheat_delay := 3.0
+@export var overheat_recovery_ratio := 0.8
+
+var stamina: float
+var stamina_regen_timer := 0.0
+var is_overheated := false
+var overheat_timer := 0.0
 
 @export_category("Strafe Physics")
 @export var spring := 30.0
@@ -75,12 +87,14 @@ func initialize(initial_speed: float):
 
 func _ready() -> void:
 	InputController.dodge.connect(dodge)
+	stamina = max_stamina
 
 
 func _physics_process(delta: float) -> void:
 	get_input()
 	process_speed(delta)
 	process_strafe(delta)
+	process_stamina(delta)
 	process_visuals(delta)
 	process_enemies_hits()
 	process_dodge_hit_check(delta)
@@ -90,24 +104,10 @@ func _physics_process(delta: float) -> void:
 	#print("Lateral velosity: ", lateral_velocity)
 
 
-func process_enemies_hits() -> void:
-	for i in range(get_slide_collision_count()):
-		var collision := get_slide_collision(i)
-		var collider := collision.get_collider()
-
-		if collider.is_in_group("Enemy"):
-			var hit_data := create_hit_data(collision.get_position(), collision.get_normal())
-			collider.on_car_hit(hit_data)
-
-
-func create_hit_data(contact_point: Vector3, contact_normal: Vector3) -> HitData:
-	var car_velocity := -global_transform.basis.z * speed
-	return HitData.new(self, car_velocity, contact_point, contact_normal, base_damage)
-
-
 func get_input() -> void:
 	steering_input = InputController.steering
 
+# ============================ BASIC MOVEMENT ==================================
 
 func process_speed(delta: float) -> void:
 	if InputController.accelerating:
@@ -142,13 +142,50 @@ func process_strafe(delta: float) -> void:
 
 	position.x += lateral_velocity * delta
 
+# ============================ STAMINA =========================================
 
-func get_road_turn_offset() -> float:
-	return -road_manager.smoothed_turn_velocity * road_turn_force
+func process_stamina(delta: float) -> void:
+	if is_overheated:
+		overheat_timer -= delta
+		if overheat_timer <= 0.0:
+			_recover_from_overheat()
+	else:
+		if stamina_regen_timer > 0.0:
+			stamina_regen_timer -= delta
+		else:
+			stamina = min(max_stamina, stamina + stamina_regeneration_rate * delta)
+	
+	Events.player_stamina_changed.emit(stamina)
 
+
+func _drain_stamina(amount: float) -> void:
+	stamina = max(0.0, stamina - amount)
+	stamina_regen_timer = stamina_regeneration_delay
+	
+	if stamina <= 0.0 and not is_overheated:
+		_start_overheat()
+
+
+func _start_overheat() -> void:
+	is_overheated = true
+	overheat_timer = overheat_delay
+
+
+func _recover_from_overheat() -> void:
+	is_overheated = false
+	stamina = max_stamina * overheat_recovery_ratio
+	stamina_regen_timer = 0.0
+
+
+# ============================ VISUAL ==========================================
 
 func process_visuals(delta: float) -> void:
 	visual_effects.process_visual_tilt(delta, lateral_velocity, road_manager.smoothed_turn_velocity)
+
+# ============================ GETTERS =========================================
+
+func get_road_turn_offset() -> float:
+	return -road_manager.smoothed_turn_velocity * road_turn_force
 
 
 func get_speed_ratio() -> float:
@@ -170,6 +207,8 @@ func clamp_offset() -> float:
 func dodge() -> void:
 	if steering_input == 0.0 or speed < dodge_min_speed:
 		return
+	if is_overheated or stamina <= 0.0:
+		return
 	
 	var direction = sign(steering_input)
 	
@@ -178,10 +217,12 @@ func dodge() -> void:
 	
 	lateral_velocity += direction * dodge_force
 	
+	_drain_stamina(dodge_stamina_drain)
 	dodge_direction = direction
 	dodge_timer = dodge_window
 	dodge_already_hit.clear()
 
+# ============================ ENEMYS & HITS ===================================
 
 func process_dodge_hit_check(delta: float) -> void:
 	if dodge_timer <= 0.0:
@@ -217,6 +258,21 @@ func _check_dodge_hit(direction: float) -> void:
 		var knockback := Vector3(direction * dodge_knockback_force, 0.0, 0.0)
 		enemy.on_dodge_hit(dodge_damage, knockback)
 		dodge_already_hit.append(enemy)
+
+
+func process_enemies_hits() -> void:
+	for i in range(get_slide_collision_count()):
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+
+		if collider.is_in_group("Enemy"):
+			var hit_data := create_hit_data(collision.get_position(), collision.get_normal())
+			collider.on_car_hit(hit_data)
+
+
+func create_hit_data(contact_point: Vector3, contact_normal: Vector3) -> HitData:
+	var car_velocity := -global_transform.basis.z * speed
+	return HitData.new(self, car_velocity, contact_point, contact_normal, base_damage)
 
 
 func _resolve_enemy(node: Node) -> Encounter_Enemy:
