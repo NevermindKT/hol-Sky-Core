@@ -1,7 +1,7 @@
 extends Node
 class_name LightningController
 
-@export var directional_light: DirectionalLight3D
+@export var sky_controller: SkyController
 
 ## Потрібен, щоб рахувати позицію удару в тих самих координатах дорожньої
 ## кривої, що й ground_generator/road_generator, а не у статичних
@@ -21,16 +21,12 @@ class_name LightningController
 
 var timer: Timer
 
-var default_light_energy: float
-
 var flashing := false
 
 func _ready():
 	if world == null:
 		push_warning("LightningController: world не призначений — блискавка не зможе порахувати позицію удару.")
 
-	default_light_energy = directional_light.light_energy
-	
 	timer = Timer.new()
 	add_child(timer)
 
@@ -85,12 +81,12 @@ func _on_timer_timeout():
 
 func _flash_step(intensity: float, duration: float) -> void:
 	lightning.show_bolt()
-	directional_light.light_energy = default_light_energy + intensity
+	sky_controller.light_energy_boost = intensity
 	await get_tree().create_timer(duration).timeout
 	lightning.hide_bolt()
 	
 func _pause(duration: float) -> void:
-	directional_light.light_energy = default_light_energy
+	sky_controller.light_energy_boost = 0.0
 	await get_tree().create_timer(duration).timeout
 
 func flash() -> void:
@@ -117,7 +113,7 @@ func flash() -> void:
 		if i < flashes - 1:
 			await _pause(randf_range(0.015, 0.04))
 
-	directional_light.light_energy = default_light_energy
+	sky_controller.light_energy_boost = 0.0
 
 	flashing = false
 

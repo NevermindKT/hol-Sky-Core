@@ -15,7 +15,7 @@ shader_parameter/seed_offset = 0.0
 _data = [Vector2(0, 0), 0.0, 17.416662, 0, 0, Vector2(0.03952568, 1), 0.0, 0.0, 0, 0, Vector2(0.7306122, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.634827, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_gqr4j"]
+[sub_resource type="CurveTexture" id="CurveTexture_2lydc"]
 curve = SubResource("Curve_ffdo6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ffdo6"]
@@ -27,7 +27,7 @@ initial_velocity_max = 8.0
 gravity = Vector3(0, -25, 0)
 scale_min = 0.19999999
 scale_max = 0.25
-alpha_curve = SubResource("CurveTexture_gqr4j")
+alpha_curve = SubResource("CurveTexture_2lydc")
 anim_offset_max = 1.0
 collision_mode = 2
 sub_emitter_mode = 3
@@ -76,6 +76,8 @@ explosiveness = 1.0
 fixed_fps = 120
 visibility_aabb = AABB(-50, -4, -50, 100, 8, 100)
 local_coords = true
+transform_align = 4
+transform_align_axis = 1
 process_material = SubResource("ParticleProcessMaterial_ffdo6")
 draw_pass_1 = SubResource("QuadMesh_mti6b")
 

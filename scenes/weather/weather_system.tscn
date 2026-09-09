@@ -17,9 +17,9 @@ light_color = Color(0.73871017, 0.90675664, 1, 1)
 light_energy = 0.02
 sky_mode = 1
 
-[node name="LightningController" type="Node" parent="." unique_id=317716121 node_paths=PackedStringArray("directional_light")]
+[node name="LightningController" type="Node" parent="." unique_id=317716121 node_paths=PackedStringArray("sky_controller")]
 script = ExtResource("3_8ccrl")
-directional_light = NodePath("../DirectionalLight3D")
+sky_controller = NodePath("../SkyController")
 strike_ahead_min = 50.0
 strike_lateral_range = 50.0
 
