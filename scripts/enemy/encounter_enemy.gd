@@ -164,7 +164,7 @@ func _spawn_hit_effect(
 	hit_position: Vector3,
 	direction: Vector3
 ) -> void:
-	var effect := hit_effect_scene.instantiate() as BloodCarHit
+	var effect := hit_effect_scene.instantiate() as BloodBulletHit
 
 	get_parent().world.enemies.add_child(effect)
 

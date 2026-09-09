@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://chbrpi5p25krs"]
 
 [ext_resource type="Script" uid="uid://dwokpbc2dcvql" path="res://scripts/enemy/encounter_enemy.gd" id="1_y00ui"]
+[ext_resource type="PackedScene" uid="uid://dwnla46gj1sri" path="res://scenes/vfx/effects/blood_bullet_hit.tscn" id="2_b2qpe"]
 [ext_resource type="Script" uid="uid://g4df0lxn27jv" path="res://scenes/enemies/Hurt_Box.gd" id="2_klukj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_10jsn"]
@@ -9,6 +10,7 @@
 
 [node name="Enemy" type="Node3D" unique_id=2054683080]
 script = ExtResource("1_y00ui")
+hit_effect_scene = ExtResource("2_b2qpe")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2025795212]
 mesh = SubResource("CapsuleMesh_10jsn")
