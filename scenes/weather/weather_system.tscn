@@ -37,4 +37,5 @@ script = ExtResource("5_8hyqn")
 world_environment = NodePath("../WorldEnvironment")
 directional_light = NodePath("../DirectionalLight3D")
 dusk_duration = 40.0
+dusk_start_sun_elevation_deg = -2.0
 dawn_light_color = Color(1, 0.7019608, 0.4509804, 1)
