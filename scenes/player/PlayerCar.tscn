@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://nt6h8xoqqc60" path="res://scripts/data/weapon/weapon_state.gd" id="6_7lmdr"]
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="6_t5h3w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
+[ext_resource type="PackedScene" uid="uid://xi8xd3w5xbe4" path="res://models/car/Car.glb" id="8_t5h3w"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
 [ext_resource type="Script" uid="uid://ip4fb2moxr2s" path="res://scenes/player/player_status_controller.gd" id="10_ojawh"]
@@ -30,6 +31,8 @@ size = Vector3(0.9, 0.3, 1.5)
 albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bq845"]
+radius = 0.57421875
+height = 3.6735306
 
 [sub_resource type="Resource" id="Resource_lo1ro"]
 script = ExtResource("6_7lmdr")
@@ -76,12 +79,13 @@ road_z_tilt = 5.0
 delta_mul = 5.0
 
 [node name="CarMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]
+visible = false
 layers = 3
 mesh = SubResource("BoxMesh_elpsl")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
 [node name="ForwardLights" type="Node3D" parent="Visual" unique_id=1230302799]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04349184, -0.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -2)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=1295753280]
 transform = Transform3D(0.9998039, -0.005224706, 0.019101024, 0.0038136744, 0.9973118, 0.07317592, -0.019432003, -0.07308874, 0.9971361, -0.3, 0.2, -0.07129735)
@@ -124,7 +128,7 @@ far_attenuation = 0.6
 far_volumetric_fog_energy = 0.1
 
 [node name="BackLights" type="Node3D" parent="Visual" unique_id=2013480416 node_paths=PackedStringArray("back_lights")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.04349184, 0.7800961)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.1, 1.75)
 script = ExtResource("3_20y2w")
 back_lights = [NodePath("SpotLight3D"), NodePath("SpotLight3D2")]
 
@@ -159,7 +163,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
 
 [node name="AimFlashlight" type="SpotLight3D" parent="Visual/WeaponPivot" unique_id=1688042910]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70415616, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 light_color = Color(0.8026307, 0.88531214, 0.8787168, 1)
 light_energy = 6.0
 light_specular = 4.0
@@ -177,10 +181,13 @@ far_angle = 10.0
 far_energy = 30.0
 far_volumetric_fog_energy = 2.0
 
+[node name="CarModel" parent="Visual" unique_id=1047449486 instance=ExtResource("8_t5h3w")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.085, 0.1, 0)
+
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
 shape = SubResource("CapsuleShape3D_bq845")
 
 [node name="Inventory" type="Node" parent="." unique_id=1206716850]
@@ -200,7 +207,7 @@ script = ExtResource("10_ojawh")
 max_health = 100.0
 
 [node name="SkidPointL" type="Marker3D" parent="." unique_id=1661106230]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.69208086, 0.555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.7, 1)
 
 [node name="SkidPointR" type="Marker3D" parent="." unique_id=54355480]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.69208086, 0.555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.7, 1)
