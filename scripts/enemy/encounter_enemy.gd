@@ -12,6 +12,7 @@ enum State {
 
 var health: float
 var is_active := false
+var formation_offset: float = 0.0
 
 signal attack_state_changed(is_warning: bool)
 signal stun_state_changed(is_stunned: bool)
@@ -48,6 +49,7 @@ func initialize(target_player: Node3D, target_encounter: Enemy_Encounter, data: 
 	encounter = target_encounter
 	health = enemy_data.max_health
 	start_z = position.z
+	formation_offset = enemy_data.desired_offset
 
 
 func activate() -> void:
@@ -79,7 +81,7 @@ func _physics_process(delta: float) -> void:
 # ============================ STATE UPDATES ===================================
 
 func update_movement(delta: float) -> void:
-	var target_x := player.global_position.x + enemy_data.desired_offset
+	var target_x := player.global_position.x + formation_offset
 	global_position.x = move_toward(
 		global_position.x,
 		target_x,
@@ -91,13 +93,15 @@ func update_movement(delta: float) -> void:
 
 func update_attack(delta: float) -> void:
 	attack_timer -= delta
-	
+
 	if not is_warning and attack_timer <= enemy_data.attack_warning_time:
 		_set_warning(true)
-	
+
 	if attack_timer > 0.0:
 		return
-	start_dash()
+
+	if encounter.try_start_attack(self):
+		start_dash()
 
 
 func update_knockback(delta: float) -> void:
@@ -142,6 +146,7 @@ func add_stun(amount: float) -> void:
 
 func start_stun() -> void:
 	_set_warning(false)
+	encounter.end_attak(self)
 	state = State.STUNNED
 	stun_timer = enemy_data.stun_duration
 	stun_meter = 0.0
@@ -171,6 +176,11 @@ func start_dash() -> void:
 func end_dash() -> void:
 	state = State.FOLLOW
 	attack_timer = enemy_data.attack_delay
+	encounter.end_attak(self)
+
+
+func set_formation_offset(offset: float) -> void:
+	formation_offset = offset
 
 # ============================ MOVEMENT ========================================
 
@@ -228,6 +238,7 @@ func on_dodge_hit(damage: float, knockback: Vector3) -> void:
 
 	_set_warning(false)
 	_set_stunned(false)
+	encounter.end_attak(self)
 
 	state = State.KNOCKBACK
 	knockback_velocity = knockback
@@ -255,6 +266,7 @@ func take_damage(damage: float) -> void:
 func die() -> void:
 	_set_warning(false)
 	_set_stunned(false)
+	encounter.end_attak(self)
 	encounter.remove_enemy(self)
 	queue_free()
 
