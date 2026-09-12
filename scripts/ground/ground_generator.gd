@@ -9,7 +9,7 @@ const TILE_LENGTH := 20.0
 const MAX_TILES := 15
 const UNLOAD_DISTANCE := 40.0
 
-const ROAD_HALF_WIDTH := 6.4
+const ROAD_HALF_WIDTH := 7.5
 const GROUND_HALF_WIDTH := 80.0
 
 const LENGTH_STEPS := 12
@@ -46,6 +46,7 @@ func initialize() -> void:
 	_transition_start_offset = 0.0
 	_tiles_since_change = 0
 	_tiles_until_change = 0
+	Events.cosmetic_curve_trimmed.connect(_on_cosmetic_curve_trimmed)
 	_try_spawn_next()
 
 
@@ -58,8 +59,13 @@ func _process(_delta: float) -> void:
 		tiles.pop_front()
 
 
+func _on_cosmetic_curve_trimmed(removed_length: float) -> void:
+	_next_offset -= removed_length
+	_transition_start_offset -= removed_length
+
+
 func _try_spawn_next() -> void:
-	var curve := world.world_path.curve
+	var curve := world.ground_path.curve
 	if curve == null:
 		return
 

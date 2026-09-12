@@ -9,6 +9,8 @@ var current_weapon: WeaponState
 @onready var inventory: Inventory = $"../Inventory"
 
 var cooldown := 0.0
+var current_spread: float = 0.0
+
 
 func initialize() -> void:
 	InputController.reload.connect(reload)
@@ -24,6 +26,14 @@ func _process(_delta: float) -> void:
 		fire()
 	
 	cooldown -= _delta
+	
+	if current_weapon:
+		current_spread = max(
+			current_weapon.data.base_spread,
+			current_spread - current_weapon.data.bloom_recovery_rate * _delta
+		)
+		Events.spread_changed.emit(get_spread_ratio())
+
 
 func fire():
 	if current_weapon.is_reloading:
@@ -41,6 +51,18 @@ func fire():
 	muzzle_flash.play()
 	cooldown = 1.0 / current_weapon.data.fire_rate
 	current_weapon.data.fire_behavior.fire(self)
+	
+	current_spread = min(
+		current_weapon.data.max_spread,
+		current_spread + current_weapon.data.bloom_per_shot
+	)
+	Events.spread_changed.emit(get_spread_ratio())
+
+
+func get_spread_ratio() -> float:
+	if current_weapon == null or current_weapon.data.max_spread <= 0.0:
+		return 0.0
+	return clamp(current_spread / current_weapon.data.max_spread, 0.0, 1.0)
 
 
 func reload() -> bool:

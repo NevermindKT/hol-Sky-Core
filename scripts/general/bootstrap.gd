@@ -1,7 +1,7 @@
 extends Node
 
 @export var car: Car_Movement
-@export var hud: CanvasLayer
+@export var hud: HUD
 @export var world: World
 
 @export var run_manager: Run_manager
@@ -16,9 +16,10 @@ extends Node
 @export var enemy_spawner: Enemy_spawner
 @export var sky_controller: SkyController
 
+@export var aim_controller: Aim_Controller
 @export var enemy_encounter: Enemy_Encounter
 
-
+const START_SPEED = 40.0
 const START_DISTANCE := 5.0
 const DISTANCE_TO_END := 200.0
 const OBSTACLE_SPAWN_CHANCE = 0.05
@@ -29,33 +30,38 @@ func _ready() -> void:
 	set_weapon_system()
 	set_road_manager()
 	set_road_generator()
-	
+	set_aim_controller()
+
 	car.player_status_controller.initialize()
-	
+	car.initialize(START_SPEED)
+
 	road_generator.obstacle_spawn_chance = OBSTACLE_SPAWN_CHANCE
 	road_generator.initialize(world.road_set, world.obstacle_set)
 	vegetation_scatter.initialize()
 	ground_generator.initialize()
 	road_manager.initialize(START_DISTANCE)
-	
+
 	set_road_generator()
-	
+
 	run_manager.initialize(DISTANCE_TO_END)
 	
 	tire_trail_manager.initialize(world, car, road_manager)
 	blood_trail_manager.initialize(world, car, road_manager)
-
-	enemy_encounter.inialize()
-	enemy_encounter.start_encounter()
 	
 	#UpgradeManager.purchase(UpgradeManager.database.upgrades[0])
+
+	enemy_encounter.inialize(world)
+	enemy_encounter.spawn_random_group()
+	#enemy_encounter.add_test_enemy()
+	#enemy_encounter.start_encounter()
+
+	set_encounter()
 
 	#BoostManager.add_owned(load("res://resources/upgrades/boosts/nitro.tres"))
 	#BoostManager.activate(load("res://resources/upgrades/boosts/nitro.tres"))
 	
 	Events.run_started.emit()
 	queue_free()
-
 
 
 func set_world():
@@ -70,6 +76,7 @@ func set_world():
 
 
 func set_road_manager():
+	car.road_manager = road_manager
 	weather_generator.road_manager = road_manager
 
 
@@ -80,8 +87,15 @@ func set_road_generator():
 
 func set_player_car():
 	road_manager.car_movement = car
+	aim_controller.car = car
 
 
 func set_weapon_system():
 	car.weapon_controller.initialize()
-	
+
+
+func set_encounter():
+	hud.enemy_compass.encounter = enemy_encounter
+
+func set_aim_controller():
+	hud.second_rectile.aim_controller = aim_controller

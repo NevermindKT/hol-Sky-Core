@@ -2,12 +2,16 @@ extends CanvasLayer
 class_name HUD
 
 @onready var cross_hair_con: Control = $CrossHairCon
+@onready var second_rectile: SecondaryReticle = $SecondRectile
 
 @onready var health_bar: ProgressBar = $Left/HealthBar
+@onready var stamina_bar: ProgressBar = $Left/Control/StaminaBar
 @onready var level_progress_bar: ProgressBar = $Top/LevelProgressBar
 
 @onready var ammo_label: RichTextLabel = $Right/AmmoLabel
 @onready var weapon_name: RichTextLabel = $Right/WeaponName
+
+@onready var enemy_compass: Enemy_Compass = $EnemyCompass
 
 var magazine_size: float
 var magazine_current_ammo: float
@@ -20,6 +24,7 @@ func _ready() -> void:
 	Events.magazine_count_changed.connect(change_ammo)
 	
 	Events.player_health_changed.connect(update_health)
+	Events.player_stamina_changed.connect(update_stamina)
 	Events.level_progress_changed.connect(update_progress)
 
 
@@ -33,10 +38,17 @@ func _on_pause_toggle():
 func update_progress(current: float, max_distance: float):
 	level_progress_bar.value = (current / max_distance) * 100.0
 
+#---------------- ENEMY COMPASS
+
+
 #---------------- HEALTH
 
 func update_health(value: float):
 	health_bar.value = value
+
+#---------------- STAMINA
+func update_stamina(value: float):
+	stamina_bar.value = value
 
 #---------------- WEAPON
 

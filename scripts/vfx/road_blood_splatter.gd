@@ -13,8 +13,8 @@ func place(surface_position: Vector3, surface_normal: Vector3) -> void:
 		trigger.global_transform = decal.global_transform
 
 
-func apply_random_scale(range: Vector2) -> void:
-	decal.apply_random_scale(range)
+func apply_random_scale(_range: Vector2) -> void:
+	decal.apply_random_scale(_range)
 
 	if trigger:
 		trigger.scale = decal.scale
