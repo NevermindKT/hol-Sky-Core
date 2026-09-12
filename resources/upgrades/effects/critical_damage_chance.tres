@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatMultiplierEffect" format=3 uid="uid://brqowomr5gdc0"]
+
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="1_xtpin"]
+
+[resource]
+script = ExtResource("1_xtpin")
+stat_id = &"critical_damage_chance"
+multiplier = 0.05
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"

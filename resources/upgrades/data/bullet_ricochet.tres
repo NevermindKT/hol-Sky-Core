@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dq7wai6yc5ywt"]
+
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_i17bc"]
+[ext_resource type="Resource" uid="uid://b0hc3h2qjskei" path="res://resources/upgrades/branches/damage_branch.tres" id="1_um0nx"]
+[ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_ixgg1"]
+[ext_resource type="Resource" uid="uid://cho2qhrmwuwhl" path="res://resources/upgrades/effects/bullet_ricochet.tres" id="3_u7he6"]
+[ext_resource type="Resource" uid="uid://cnnh1uw8uk831" path="res://resources/upgrades/data/enemy_stunning.tres" id="5_k18wa"]
+
+[resource]
+script = ExtResource("2_ixgg1")
+id = "BR01"
+display_name = "Bullet ricochet"
+description = "Bullet ricochet"
+cost = 10
+branch = ExtResource("1_um0nx")
+prerequisites = Array[ExtResource("2_ixgg1")]([ExtResource("5_k18wa")])
+effects = Array[ExtResource("1_i17bc")]([ExtResource("3_u7he6")])
+metadata/_custom_type_script = "uid://c8kc8gepimq0l"

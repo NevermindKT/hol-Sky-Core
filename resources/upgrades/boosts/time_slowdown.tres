@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BoostData" format=3 uid="uid://1rrvne6455a6"]
+
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_854vp"]
+[ext_resource type="Script" uid="uid://bt04e05usq4qe" path="res://scripts/data/upgrade/boost_data.gd" id="2_2gnll"]
+[ext_resource type="Resource" uid="uid://os51xsm8inew" path="res://resources/upgrades/effects/time_slowdown_strength.tres" id="2_cnewx"]
+
+[resource]
+script = ExtResource("2_2gnll")
+id = "TS01"
+display_name = "Time slowdown"
+description = "Time slowdown"
+duration = 6.0
+effects = Array[ExtResource("1_854vp")]([ExtResource("2_cnewx")])
+metadata/_custom_type_script = "uid://bt04e05usq4qe"

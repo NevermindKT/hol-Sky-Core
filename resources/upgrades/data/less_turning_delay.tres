@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://ehf26lt3mmae"]
+
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_8sosl"]
+[ext_resource type="Resource" uid="uid://i8hopcggudai" path="res://resources/upgrades/branches/accuracy_branch.tres" id="1_myvyy"]
+[ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_wvnwq"]
+[ext_resource type="Resource" uid="uid://cl0ke2opld8rc" path="res://resources/upgrades/effects/less_turning_delay.tres" id="3_orki4"]
+[ext_resource type="Resource" uid="uid://dajl615dqpj11" path="res://resources/upgrades/data/less_recoil.tres" id="5_ap4pn"]
+
+[resource]
+script = ExtResource("2_wvnwq")
+id = "LD01"
+display_name = "Less turning delay"
+description = "Less turning delay"
+branch = ExtResource("1_myvyy")
+prerequisites = Array[ExtResource("2_wvnwq")]([ExtResource("5_ap4pn")])
+effects = Array[ExtResource("1_8sosl")]([ExtResource("3_orki4")])
+metadata/_custom_type_script = "uid://c8kc8gepimq0l"

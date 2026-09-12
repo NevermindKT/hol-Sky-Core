@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BoostData" format=3 uid="uid://dc73106d7o86h"]
+
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_qhxoo"]
+[ext_resource type="Script" uid="uid://bt04e05usq4qe" path="res://scripts/data/upgrade/boost_data.gd" id="2_6ad05"]
+
+[resource]
+script = ExtResource("2_6ad05")
+id = "ST01"
+display_name = "Spare tire"
+description = "Spare tire"
+metadata/_custom_type_script = "uid://bt04e05usq4qe"

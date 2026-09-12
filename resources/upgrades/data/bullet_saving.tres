@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cu2c5dfyavtqo"]
+
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_lg0n1"]
+[ext_resource type="Resource" uid="uid://s0gpyox15kbl" path="res://resources/upgrades/branches/fire_power_branch.tres" id="1_ub6qn"]
+[ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_nermi"]
+[ext_resource type="Resource" uid="uid://8i0ordkn680l" path="res://resources/upgrades/effects/bullet_saving.tres" id="3_tuu4e"]
+[ext_resource type="Resource" uid="uid://dg7y5ectrcuo7" path="res://resources/upgrades/data/rate_of_fire.tres" id="5_wmfgd"]
+
+[resource]
+script = ExtResource("2_nermi")
+id = "BS01"
+display_name = "Bullet saving"
+description = "Bullet saving"
+branch = ExtResource("1_ub6qn")
+prerequisites = Array[ExtResource("2_nermi")]([ExtResource("5_wmfgd")])
+effects = Array[ExtResource("1_lg0n1")]([ExtResource("3_tuu4e")])
+metadata/_custom_type_script = "uid://c8kc8gepimq0l"
