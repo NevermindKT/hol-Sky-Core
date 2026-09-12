@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://d4jk5x63ortvs"]
+
+[ext_resource type="Resource" uid="uid://s0gpyox15kbl" path="res://resources/upgrades/branches/fire_power_branch.tres" id="1_fo3yc"]
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_t8vnb"]
+[ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_8jrnc"]
+[ext_resource type="Resource" uid="uid://c54d1d2jgkcvb" path="res://resources/upgrades/effects/expanded_magazine.tres" id="3_lip2k"]
+[ext_resource type="Resource" uid="uid://dg7y5ectrcuo7" path="res://resources/upgrades/data/rate_of_fire.tres" id="5_u7gyk"]
+
+[resource]
+script = ExtResource("2_8jrnc")
+id = "EM01"
+display_name = "Expanded magazine"
+description = "Expanded magazine"
+branch = ExtResource("1_fo3yc")
+prerequisites = Array[ExtResource("2_8jrnc")]([ExtResource("5_u7gyk")])
+effects = Array[ExtResource("1_t8vnb")]([ExtResource("3_lip2k")])
+metadata/_custom_type_script = "uid://c8kc8gepimq0l"

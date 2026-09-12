@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatMultiplierEffect" format=3 uid="uid://ciwtpgfejloo6"]
+
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="1_h3c2b"]
+
+[resource]
+script = ExtResource("1_h3c2b")
+stat_id = &"poison_duration"
+multiplier = 3.0
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"

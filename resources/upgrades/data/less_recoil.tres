@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dajl615dqpj11"]
+
+[ext_resource type="Resource" uid="uid://i8hopcggudai" path="res://resources/upgrades/branches/accuracy_branch.tres" id="1_1m1sn"]
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_dtuyo"]
+[ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_q0lsb"]
+[ext_resource type="Resource" uid="uid://kgqhpm6pyac8" path="res://resources/upgrades/effects/less_recoil.tres" id="3_v7d1w"]
+
+[resource]
+script = ExtResource("2_q0lsb")
+id = "LR01"
+display_name = "Less recoil"
+description = "Less recoil"
+branch = ExtResource("1_1m1sn")
+effects = Array[ExtResource("1_dtuyo")]([ExtResource("3_v7d1w")])
+metadata/_custom_type_script = "uid://c8kc8gepimq0l"

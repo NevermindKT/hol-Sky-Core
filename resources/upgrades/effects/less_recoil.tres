@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatMultiplierEffect" format=3 uid="uid://kgqhpm6pyac8"]
+
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="1_w4vnk"]
+
+[resource]
+script = ExtResource("1_w4vnk")
+stat_id = &"less_recoil"
+multiplier = 0.5
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"

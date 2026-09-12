@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dls2ryjrvjcmq"]
+
+[ext_resource type="Resource" uid="uid://i8hopcggudai" path="res://resources/upgrades/branches/accuracy_branch.tres" id="1_afqt4"]
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_eumh1"]
+[ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_0acpp"]
+[ext_resource type="Resource" uid="uid://cff6x68vffb75" path="res://resources/upgrades/effects/less_spread.tres" id="3_l6qb2"]
+[ext_resource type="Resource" uid="uid://dajl615dqpj11" path="res://resources/upgrades/data/less_recoil.tres" id="5_4wa7o"]
+
+[resource]
+script = ExtResource("2_0acpp")
+id = "LS01"
+display_name = "Less spread"
+description = "Less spread"
+branch = ExtResource("1_afqt4")
+prerequisites = Array[ExtResource("2_0acpp")]([ExtResource("5_4wa7o")])
+effects = Array[ExtResource("1_eumh1")]([ExtResource("3_l6qb2")])
+metadata/_custom_type_script = "uid://c8kc8gepimq0l"

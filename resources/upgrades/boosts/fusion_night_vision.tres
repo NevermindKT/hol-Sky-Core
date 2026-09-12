@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BoostData" format=3 uid="uid://cnxa1qflhd6rl"]
+
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_03qdb"]
+[ext_resource type="Script" uid="uid://bt04e05usq4qe" path="res://scripts/data/upgrade/boost_data.gd" id="2_iem5s"]
+
+[resource]
+script = ExtResource("2_iem5s")
+id = "FV01"
+display_name = "Fusion night vision"
+description = "Fusion night vision"
+duration = 4.0
+metadata/_custom_type_script = "uid://bt04e05usq4qe"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatMultiplierEffect" format=3 uid="uid://os51xsm8inew"]
+
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="1_y8oae"]
+
+[resource]
+script = ExtResource("1_y8oae")
+stat_id = &"time_slowdown_strength"
+multiplier = 0.6
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"

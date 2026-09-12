@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatMultiplierEffect" format=3 uid="uid://8i0ordkn680l"]
+
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="1_gbbg6"]
+
+[resource]
+script = ExtResource("1_gbbg6")
+stat_id = &"bullet_saving"
+multiplier = 0.2
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"

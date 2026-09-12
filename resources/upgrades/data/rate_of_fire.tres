@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dg7y5ectrcuo7"]
+
+[ext_resource type="Resource" uid="uid://s0gpyox15kbl" path="res://resources/upgrades/branches/fire_power_branch.tres" id="1_qnqok"]
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_spd4v"]
+[ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_ee4fc"]
+[ext_resource type="Resource" uid="uid://bg1oxlbdxk7gf" path="res://resources/upgrades/effects/rate_of_fire.tres" id="3_xnoev"]
+
+[resource]
+script = ExtResource("2_ee4fc")
+id = "RF01"
+display_name = "Rate of fire"
+description = "Rate of fire"
+branch = ExtResource("1_qnqok")
+effects = Array[ExtResource("1_spd4v")]([ExtResource("3_xnoev")])
+metadata/_custom_type_script = "uid://c8kc8gepimq0l"
