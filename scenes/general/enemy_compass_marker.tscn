@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://jm2wpcnrd3uv"]
+
+[ext_resource type="Texture2D" uid="uid://di7ycs3ooda83" path="res://textures/hud/dangerTriangle.png" id="1_fj27i"]
+[ext_resource type="Script" uid="uid://1lto0ve7x2t0" path="res://scripts/hud/compass_marker.gd" id="2_68130"]
+[ext_resource type="Texture2D" uid="uid://bgkyfm7wktsbh" path="res://textures/hud/dangerTriangleWarninigAlt.png" id="3_68130"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68130"]
+bg_color = Color(0.7829805, 0.3167816, 0.022834769, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="EnemyCompassMarker" type="TextureRect" unique_id=1283739888]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fj27i")
+expand_mode = 1
+script = ExtResource("2_68130")
+blink_interval = 0.08
+
+[node name="MarkerWarning" type="TextureRect" parent="." unique_id=589617155]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_68130")
+expand_mode = 1
+
+[node name="HeathBar" type="ProgressBar" parent="." unique_id=163288198]
+visible = false
+custom_maximum_size = Vector2(-1, 2)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+show_percentage = false
+
+[node name="StunBar" type="ProgressBar" parent="." unique_id=1953308704]
+visible = false
+custom_maximum_size = Vector2(-1, 2)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_68130")
+show_percentage = false

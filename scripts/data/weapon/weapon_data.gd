@@ -19,6 +19,12 @@ class_name WeaponData
 @export var spread_angle: float
 @export var projectile_count: float
 
+@export_category("Bloom spread")
+@export var base_spread: float
+@export var max_spread: float
+@export var bloom_per_shot: float
+@export var bloom_recovery_rate: float
+
 @export_category("Exports")
 @export var fire_behavior: Fire_behavior
 @export var projectile_scene: PackedScene

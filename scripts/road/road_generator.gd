@@ -23,12 +23,17 @@ const MAX_SEGMENTS = 25
 const UNLOAD_DISTANCE = 75
 const MAX_ROAD_DIR_OFFSET = 2
 
+var control_points: PackedVector3Array = []
+
 
 func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	road_set = _road_set
 	obstacle_set = _obstacle_set
+
 	spawn_start()
-	
+	while segments.size() < MAX_SEGMENTS:
+		spawn_next()
+
 	#create_debug_path()
 
 
@@ -39,7 +44,26 @@ func _process(_delta):
 	if segments[0].global_position.z > UNLOAD_DISTANCE:
 		segments[0].queue_free()
 		segments.pop_front()
+		_trim_curve_front()
+		_trim_cosmetic_curve_front()
 		Events.segment_dispawned.emit()
+
+
+func _trim_curve_front() -> void:
+	if control_points.size() <= 4:
+		return
+
+	var curve := world.world_path.curve
+	var length_before := curve.get_baked_length()
+
+	control_points.remove_at(0)
+	curve.remove_point(0)
+
+	var length_after := curve.get_baked_length()
+	var removed_length := length_before - length_after
+
+	if removed_length > 0.0:
+		Events.world_curve_trimmed.emit(removed_length)
 
 
 func create_debug_path() -> void:
@@ -47,6 +71,15 @@ func create_debug_path() -> void:
 
 	debug_mesh = MeshInstance3D.new()
 	debug_mesh.mesh = debug_path
+
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.vertex_color_use_as_albedo = true
+	mat.albedo_color = Color(1, 0, 1)
+	mat.no_depth_test = true
+	mat.render_priority = 10
+
+	debug_mesh.material_override = mat
 
 	world.world.add_child(debug_mesh)
 
@@ -80,32 +113,71 @@ func update_debug_path() -> void:
 func add_curve_points(seg: Road_segment) -> void:
 	var origin_xform: Transform3D = seg.transform * seg.origin.transform
 	var anchor_xform: Transform3D = seg.transform * seg.anchor.transform
-	var handle_len: float = seg.length / 2.3
+	var curve := world.world_path.curve
+
+	if control_points.is_empty():
+		control_points.append(origin_xform.origin)
+		curve.add_point(control_points[0])
+
+	control_points.append(anchor_xform.origin)
+
+	var k := control_points.size() - 2
+	_place_joint(curve, k)
+
+	update_debug_path()
+
+
+func _place_joint(curve: Curve3D, k: int) -> void:
+	var p_prev := _cp(k - 1)
+	var p_here := _cp(k)
+	var p_next := _cp(k + 1)
+
+	var joint_pos: Vector3 = (p_prev + 4.0 * p_here + p_next) / 6.0
+	var in_pos: Vector3 = (p_prev + 2.0 * p_here) / 3.0
+	var out_pos: Vector3 = (2.0 * p_here + p_next) / 3.0
+
+	if k == 0:
+		curve.set_point_out(0, out_pos - curve.get_point_position(0))
+		return
+
+	curve.add_point(joint_pos, in_pos - joint_pos, out_pos - joint_pos)
+
+
+func _cp(idx: int) -> Vector3:
+	return control_points[clampi(idx, 0, control_points.size() - 1)]
+
+
+func add_cosmetic_curve_points(seg: Road_segment) -> void:
+	var origin_xform: Transform3D = seg.transform * seg.origin.transform
+	var anchor_xform: Transform3D = seg.transform * seg.anchor.transform
 
 	var chord: Vector3 = (anchor_xform.origin - origin_xform.origin).normalized()
+	var chord_len: float = origin_xform.origin.distance_to(anchor_xform.origin)
+	var handle_len: float = chord_len / 3.0
 
-	var origin_dir: Vector3 = -origin_xform.basis.z
-	if origin_dir.dot(chord) < 0.0:
-		origin_dir = -origin_dir
+	if world.ground_path.curve.point_count == 0:
+		var origin_dir: Vector3 = -origin_xform.basis.z
+		if origin_dir.dot(chord) < 0.0:
+			origin_dir = -origin_dir
+		world.ground_path.curve.add_point(origin_xform.origin, -origin_dir * handle_len, origin_dir * handle_len)
 
 	var anchor_dir: Vector3 = -anchor_xform.basis.z
 	if anchor_dir.dot(chord) < 0.0:
 		anchor_dir = -anchor_dir
+	world.ground_path.curve.add_point(anchor_xform.origin, -anchor_dir * handle_len, anchor_dir * handle_len)
 
-	if world.world_path.curve.point_count == 0:
-		world.world_path.curve.add_point(
-			origin_xform.origin,
-			-origin_dir * handle_len,
-			origin_dir * handle_len
-		)
 
-	world.world_path.curve.add_point(
-		anchor_xform.origin,
-		-anchor_dir * handle_len,
-		anchor_dir * handle_len
-	)
-	
-	#update_debug_path()
+func _trim_cosmetic_curve_front() -> void:
+	if world.ground_path.curve.point_count <= 2:
+		return
+
+	var length_before := world.ground_path.curve.get_baked_length()
+	world.ground_path.curve.remove_point(0)
+	var length_after := world.ground_path.curve.get_baked_length()
+
+	var removed_length := length_before - length_after
+	if removed_length > 0.0:
+		Events.cosmetic_curve_trimmed.emit(removed_length)
 
 
 func pick_random_segment() -> PackedScene:
@@ -150,7 +222,8 @@ func spawn(scene: PackedScene):
 	world.road_container.add_child(new_segment)
 
 	add_curve_points(new_segment)
-	spawn_obstacle(new_segment)
+	add_cosmetic_curve_points(new_segment)
+	#spawn_obstacle(new_segment)
 	
 	last_segment = new_segment
 	

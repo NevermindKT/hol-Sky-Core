@@ -29,8 +29,8 @@ func _ready() -> void:
 	apply_random_scale(scale_range)
 
 
-func apply_random_scale(range: Vector2) -> void:
-	scale = Vector3.ONE * randf_range(range.x, range.y)
+func apply_random_scale(_range: Vector2) -> void:
+	scale = Vector3.ONE * randf_range(_range.x, _range.y)
 
 
 func place(surface_position: Vector3, surface_normal: Vector3) -> void:
