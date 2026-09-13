@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="6_t5h3w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
 [ext_resource type="PackedScene" uid="uid://cgx8vcbpf1r2n" path="res://scenes/vfx/effects/engine_smoke.tscn" id="8_f6f1y"]
-[ext_resource type="PackedScene" uid="uid://xi8xd3w5xbe4" path="res://models/car/Car.glb" id="8_t5h3w"]
+[ext_resource type="PackedScene" uid="uid://bhuqoyse3ljm6" path="res://models/car/Ostov.glb" id="8_t5h3w"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
 [ext_resource type="PackedScene" uid="uid://b18ge6bq72hf8" path="res://scenes/vfx/effects/wheel_particles_effect.tscn" id="10_lvrf2"]
@@ -214,8 +214,8 @@ far_angle = 22.0
 far_attenuation = 0.6
 far_volumetric_fog_energy = 0.1
 
-[node name="CarModel" parent="Visual" unique_id=1047449486 instance=ExtResource("8_t5h3w")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.085, 0, 0)
+[node name="Ostov" parent="Visual" unique_id=239094084 instance=ExtResource("8_t5h3w")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 
@@ -242,13 +242,13 @@ max_health = 100.0
 [node name="SkidPointContainer" type="Node3D" parent="." unique_id=1427972973]
 
 [node name="SkidPointL" type="Marker3D" parent="SkidPointContainer" unique_id=1661106230]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.7, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.7, 1.15)
 
 [node name="SkidPointR" type="Marker3D" parent="SkidPointContainer" unique_id=54355480]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.7, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.7, 1.15)
 
 [node name="SkidPointL2" type="Marker3D" parent="SkidPointContainer" unique_id=583807731]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.7, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.7, -1.3)
 
 [node name="SkidPointR2" type="Marker3D" parent="SkidPointContainer" unique_id=783719750]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.7, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.7, -1.3)
