@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt3je2u6btjkc"
-path.s3tc="res://.godot/imported/Car_all in one srink.jpg-29cd468e63be93d5af0c3867e6dd1bdb.s3tc.ctex"
+uid="uid://bokwbu701mup3"
+path.s3tc="res://.godot/imported/Ostov_all in one srink.jpg-d5911c122615e7d278c6a671baa2c52e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://models/car/Car_all in one srink.jpg"
-dest_files=["res://.godot/imported/Car_all in one srink.jpg-29cd468e63be93d5af0c3867e6dd1bdb.s3tc.ctex"]
+source_file="res://models/car/Ostov_all in one srink.jpg"
+dest_files=["res://.godot/imported/Ostov_all in one srink.jpg-d5911c122615e7d278c6a671baa2c52e.s3tc.ctex"]
 
 [params]
 
