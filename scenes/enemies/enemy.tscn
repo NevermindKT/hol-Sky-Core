@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://q3f5ckhu701k" path="res://scripts/enemy/enemy_controller.gd" id="1_k5srr"]
 [ext_resource type="Script" uid="uid://d1hony2xlby4a" path="res://scripts/enemy/simple_knockback_controller.gd" id="2_knbck"]
-[ext_resource type="PackedScene" uid="uid://dxcon1p1pac4m" path="res://scenes/vfx/components/blood_decal.tscn" id="3_nb6gf"]
 [ext_resource type="Script" uid="uid://dvkxmb37dlkr5" path="res://scripts/enemy/health.gd" id="4_hlth"]
-[ext_resource type="PackedScene" uid="uid://bn00oltxw808l" path="res://scenes/vfx/effects/road_blood_splatter.tscn" id="4_jt03m"]
 [ext_resource type="Script" uid="uid://cmi1f4qjv8mmd" path="res://resources/enemy/hit/knockback_data.gd" id="4_lu5c6"]
 [ext_resource type="PackedScene" uid="uid://ycruqbm88110" path="res://scenes/vfx/effects/blood_car_hit.tscn" id="6_bldch"]
 

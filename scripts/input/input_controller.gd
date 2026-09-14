@@ -16,6 +16,8 @@ signal headlights_toggle
 
 signal pause_toggle
 
+signal test_boost
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
@@ -49,3 +51,6 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("toggle_headlights"):
 		headlights_toggle.emit()
+
+	if Input.is_action_just_pressed("test_boost"):
+		test_boost.emit()

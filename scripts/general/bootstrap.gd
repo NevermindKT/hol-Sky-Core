@@ -57,9 +57,8 @@ func _ready() -> void:
 
 	set_encounter()
 
-	#BoostManager.add_owned(load("res://resources/upgrades/boosts/nitro.tres"))
-	#BoostManager.activate(load("res://resources/upgrades/boosts/nitro.tres"))
-	
+	InputController.test_boost.connect(BoostManager.activate_test_boost)
+
 	Events.run_started.emit()
 	queue_free()
 

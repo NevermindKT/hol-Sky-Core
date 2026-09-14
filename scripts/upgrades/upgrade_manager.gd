@@ -8,6 +8,9 @@ var purchased: Dictionary = {}
 func _ready() -> void:
 	database = load(DATABASE_PATH)
 
+func _process(_delta: float) -> void:
+	Engine.time_scale = get_modified(&"time_slowdown_strength", 1.0)
+
 func has_upgrade(id: StringName) -> bool:
 	return purchased.has(id)
 

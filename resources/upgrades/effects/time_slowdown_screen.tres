@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ScreenEffectToggleEffect" format=3 uid="uid://bdix47n52p32c"]
+
+[ext_resource type="Script" uid="uid://i3chknwurtvy" path="res://scripts/data/upgrade/upgrade_effects/screen_effect_toggle_effect.gd" id="1_hls2o"]
+
+[resource]
+script = ExtResource("1_hls2o")
+effect_id = &"time_slowdown"
+metadata/_custom_type_script = "uid://i3chknwurtvy"

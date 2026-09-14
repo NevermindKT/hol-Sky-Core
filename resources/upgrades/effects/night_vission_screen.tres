@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ScreenEffectToggleEffect" format=3 uid="uid://btag3jhlnxl38"]
+
+[ext_resource type="Script" uid="uid://i3chknwurtvy" path="res://scripts/data/upgrade/upgrade_effects/screen_effect_toggle_effect.gd" id="1_02f0j"]
+
+[resource]
+script = ExtResource("1_02f0j")
+effect_id = &"night_vision"
+metadata/_custom_type_script = "uid://i3chknwurtvy"
