@@ -32,6 +32,10 @@ signal cosmetic_curve_trimmed(removed_length: float)
 #-------------- UPGRADES
 signal upgrade_purchased(upgrade: UpgradeData)
 
+#-------------- VISION
+signal thermal_vision_changed(active: bool)
+var thermal_vision_active := false
+
 #-------------- RUN
 signal run_started
 signal run_ended

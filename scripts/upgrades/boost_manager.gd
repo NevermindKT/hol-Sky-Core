@@ -1,5 +1,7 @@
 extends Node
 
+const TEST_BOOST_PATH := "res://resources/upgrades/boosts/night_vission.tres"
+
 var owned: Dictionary = {}
 var active: Array[BoostData] = []
 var _time_left: Dictionary = {}
@@ -29,9 +31,16 @@ func activate(boost: BoostData) -> void:
 	for effect in boost.effects:
 		effect.on_event(&"boost_activated", {"boost": boost})
 
+func activate_test_boost() -> void:
+	var boost := load(TEST_BOOST_PATH) as BoostData
+	add_owned(boost)
+	activate(boost)
+
 func _process(delta: float) -> void:
+	var real_delta := delta / Engine.time_scale if Engine.time_scale > 0.0 else delta
+
 	for boost in active.duplicate():
-		_time_left[boost] -= delta
+		_time_left[boost] -= real_delta
 
 		if _time_left[boost] <= 0.0:
 			active.erase(boost)

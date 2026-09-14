@@ -9,6 +9,7 @@ enum State {
 }
 
 @export var enemy_data: EncounterEnemyData
+@export var thermal_material: StandardMaterial3D
 
 var health: float
 var is_active := false
@@ -36,11 +37,19 @@ var knockback_drag := 8.0
 var knockback_velocity := Vector3.ZERO
 
 @onready var damage_hit_box: HurtBox = $DamageHitBox
+@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 
 
 func _ready() -> void:
 	damage_hit_box.body_entered.connect(_on_attack_area_body_entered)
 	damage_hit_box.hit.connect(_on_hit)
+
+	Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
+	_on_thermal_vision_changed(Events.thermal_vision_active)
+
+
+func _on_thermal_vision_changed(active: bool) -> void:
+	mesh_instance.material_override = thermal_material if active else null
 
 
 func initialize(target_player: Node3D, target_encounter: Enemy_Encounter, data: EncounterEnemyData) -> void:
