@@ -230,10 +230,10 @@ func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
 	take_damage(damage)
 	add_stun(damage)
 
-	_spawn_hit_effect(hit_position, direction)
+	_spawn_bullet_hit_effect(hit_position, direction)
 
 
-func on_dodge_hit(damage: float, knockback: Vector3) -> void:
+func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, direction: Vector3, car: Car_Movement) -> void:
 	take_damage(damage)
 	if health <= 0.0:
 		return
@@ -241,6 +241,7 @@ func on_dodge_hit(damage: float, knockback: Vector3) -> void:
 	_set_warning(false)
 	_set_stunned(false)
 	encounter.end_attak(self)
+	_spawn_dodge_hit_effect(hit_position, direction, car)
 
 	state = State.KNOCKBACK
 	knockback_velocity = knockback
@@ -272,12 +273,12 @@ func die() -> void:
 
 # ============================ EFFECTS =========================================
 
-func _spawn_hit_effect(hit_position: Vector3, direction: Vector3) -> void:
-	var effect := enemy_data.hit_effect_scene.instantiate() as BloodBulletHit
-	get_parent().world.enemies.add_child(effect)
+func _spawn_bullet_hit_effect(hit_position: Vector3, direction: Vector3) -> void:
+	var effect := enemy_data.bullet_hit_effect_scene.instantiate() as BloodBulletHit
+	add_child(effect)
 	effect.play(hit_position, direction)
 
-#func _spawn_hit_effect(hit_position: Vector3, direction: Vector3) -> void:
-	#var effect := enemy_data.hit_effect_scene.instantiate() as BloodCarHit
-	#get_parent().world.enemies.add_child(effect)
-	#effect.play(hit_position, direction)
+func _spawn_dodge_hit_effect(hit_position: Vector3, direction: Vector3, car: Car_Movement) -> void:
+	var effect := enemy_data.dodge_hit_effect_scene.instantiate() as BloodCarHit
+	get_parent().world.enemies.add_child(effect)
+	effect.play(hit_position, direction, car.speed, car)

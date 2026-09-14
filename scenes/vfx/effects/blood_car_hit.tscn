@@ -2,14 +2,22 @@
 
 [ext_resource type="Script" uid="uid://dq26rlxkoo0hf" path="res://scripts/vfx/blood_car_hit.gd" id="1_lyr8x"]
 [ext_resource type="PackedScene" uid="uid://mb4qq2apxbdx" path="res://scenes/vfx/components/blood_splash.tscn" id="2_xhqt7"]
+[ext_resource type="PackedScene" path="res://scenes/vfx/components/car_blood_decal.tscn" id="3_bldcl"]
+[ext_resource type="PackedScene" uid="uid://bn00oltxw808l" path="res://scenes/vfx/effects/road_blood_splatter.tscn" id="4_rdbld"]
 
 [node name="BloodCarHit" type="Node3D" unique_id=317885701 node_paths=PackedStringArray("splash")]
 script = ExtResource("1_lyr8x")
 splash = NodePath("BloodSplash/Splash")
 spread = 30.0
 lifetime = 10.0
-reference_speed = 7.0
-min_intensity_scale = 1.5
-max_intensity_scale = 4.0
+reference_speed = 2.0
+min_intensity_scale = 3.0
+max_intensity_scale = 10.0
+blood_decal_scene = ExtResource("3_bldcl")
+road_blood_splatter_scene = ExtResource("4_rdbld")
+blood_splatter_radius = 1.0
+road_blood_forward_offset = 3.0
+car_blood_scale_range = Vector2(1.8, 2)
+road_blood_scale_range = Vector2(2.8, 3.2)
 
 [node name="BloodSplash" parent="." unique_id=1026283783 instance=ExtResource("2_xhqt7")]

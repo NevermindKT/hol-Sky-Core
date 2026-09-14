@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://chbrpi5p25krs" path="res://scenes/enemies/encounter_enemy.tscn" id="1_1ag7c"]
 [ext_resource type="Script" uid="uid://dugxq50h32qoa" path="res://resources/enemy/encounter_enemy_data.gd" id="2_1ag7c"]
 [ext_resource type="PackedScene" uid="uid://dwnla46gj1sri" path="res://scenes/vfx/effects/blood_bullet_hit.tscn" id="2_h4n8p"]
+[ext_resource type="PackedScene" uid="uid://ycruqbm88110" path="res://scenes/vfx/effects/blood_car_hit.tscn" id="2_vtw7q"]
 
 [resource]
 script = ExtResource("2_1ag7c")
@@ -15,5 +16,6 @@ attack_warning_time = 0.8
 dash_speed = 60.0
 dash_duration = 0.5
 enemy_scene = ExtResource("1_1ag7c")
-hit_effect_scene = ExtResource("2_h4n8p")
+dodge_hit_effect_scene = ExtResource("2_vtw7q")
+bullet_hit_effect_scene = ExtResource("2_h4n8p")
 metadata/_custom_type_script = "uid://dugxq50h32qoa"
