@@ -46,10 +46,13 @@ func fire():
 		reload()
 		return
 
-	current_weapon.ammo -= 1
+	var bullet_save_chance := UpgradeManager.get_modified(&"bullet_saving", 0.0)
+	if randf() >= bullet_save_chance:
+		current_weapon.ammo -= 1
 	Events.magazine_count_changed.emit(current_weapon.ammo)
 	muzzle_flash.play()
-	cooldown = 1.0 / current_weapon.data.fire_rate
+	var fire_rate := UpgradeManager.get_modified(&"rate_of_fire", current_weapon.data.fire_rate)
+	cooldown = 1.0 / fire_rate
 	current_weapon.data.fire_behavior.fire(self)
 	
 	current_spread = min(
@@ -69,10 +72,12 @@ func reload() -> bool:
 	if current_weapon.is_reloading:
 		return false
 
-	if current_weapon.ammo >= current_weapon.data.magazine_capacity:
+	var magazine_capacity := UpgradeManager.get_modified(&"expanded_magazine", current_weapon.data.magazine_capacity)
+
+	if current_weapon.ammo >= magazine_capacity:
 		return false
 
-	var need = current_weapon.data.magazine_capacity - current_weapon.ammo
+	var need = magazine_capacity - current_weapon.ammo
 
 	if inventory.get_ammo(current_weapon.data.ammo_type) <= 0:
 		return false
@@ -106,7 +111,8 @@ func reload_stop():
 
 func fill_all_magazines():
 	for weapon in player_weapons:
-		var need := weapon.data.magazine_capacity - weapon.ammo
+		var magazine_capacity := UpgradeManager.get_modified(&"expanded_magazine", weapon.data.magazine_capacity)
+		var need := magazine_capacity - weapon.ammo
 		
 		if need <= 0:
 			continue
