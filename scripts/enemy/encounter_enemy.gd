@@ -22,6 +22,9 @@ var stun_meter: float = 0.0
 var stun_timer := 0.0
 var is_stunned := false
 
+const HIT_SLOW_DURATION := 2.0
+var slow_timer := 0.0
+
 var player: Node3D
 var encounter: Enemy_Encounter
 
@@ -75,7 +78,10 @@ func _physics_process(delta: float) -> void:
 	
 	if state != State.STUNNED:
 		decay_stun(delta)
-	
+
+	if slow_timer > 0.0:
+		slow_timer = max(0.0, slow_timer - delta)
+
 	match state:
 		State.FOLLOW:
 			update_movement(delta)
@@ -90,14 +96,16 @@ func _physics_process(delta: float) -> void:
 # ============================ STATE UPDATES ===================================
 
 func update_movement(delta: float) -> void:
+	var speed_multiplier := _current_speed_multiplier()
+
 	var target_x := player.global_position.x + formation_offset
 	global_position.x = move_toward(
 		global_position.x,
 		target_x,
-		enemy_data.move_speed * delta
+		enemy_data.move_speed * speed_multiplier * delta
 	)
-	
-	_move_toward_start_z(delta)
+
+	_move_toward_start_z(delta, speed_multiplier)
 
 
 func update_attack(delta: float) -> void:
@@ -175,6 +183,16 @@ func decay_stun(delta: float) -> void:
 	stun_meter = max(0.0, stun_meter - enemy_data.stun_decay_rate * delta)
 
 
+func apply_hit_slow() -> void:
+	slow_timer = HIT_SLOW_DURATION
+
+
+func _current_speed_multiplier() -> float:
+	if slow_timer <= 0.0:
+		return 1.0
+	return UpgradeManager.get_modified(&"enemy_slowdown", 1.0)
+
+
 func start_dash() -> void:
 	_set_warning(false)
 	state = State.DASH
@@ -193,7 +211,7 @@ func set_formation_offset(offset: float) -> void:
 
 # ============================ MOVEMENT ========================================
 
-func _move_toward_start_z(delta: float) -> void:
+func _move_toward_start_z(delta: float, speed_multiplier: float = 1.0) -> void:
 	var target_local := encounter.to_local(global_position)
 	target_local.z = start_z
 	var target_global_z := encounter.to_global(target_local).z
@@ -201,7 +219,7 @@ func _move_toward_start_z(delta: float) -> void:
 	global_position.z = move_toward(
 		global_position.z,
 		target_global_z,
-		enemy_data.z_return_speed * delta
+		enemy_data.z_return_speed * speed_multiplier * delta
 	)
 
 
@@ -237,7 +255,8 @@ func _on_attack_area_body_entered(body: Node3D) -> void:
 
 func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
 	take_damage(damage)
-	add_stun(damage)
+	add_stun(UpgradeManager.get_modified(&"enemy_stunning", damage))
+	apply_hit_slow()
 
 	_spawn_bullet_hit_effect(hit_position, direction)
 

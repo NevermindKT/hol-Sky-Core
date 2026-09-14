@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_prbv6")
 stat_id = &"bullet_ricochet"
+operation = 1
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"

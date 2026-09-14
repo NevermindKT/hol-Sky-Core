@@ -30,6 +30,7 @@ func spawn_projectile(
 	world.projectiles.add_child(projectile)
 
 	projectile.global_position = position
+	projectile.look_at(position + direction, Vector3.UP)
 	projectile.initialize(
 		weapon,
 		direction

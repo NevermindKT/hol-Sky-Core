@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://c2yncga4darip" path="res://scripts/data/upgrade/upgrade_database.gd" id="1_j3kh7"]
 [ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_1g5p6"]
 [ext_resource type="Resource" uid="uid://b5d1dsolfj6ev" path="res://resources/upgrades/data/multiple_damage.tres" id="3_1g5p6"]
+[ext_resource type="Resource" uid="uid://bhxot516pku0x" path="res://resources/upgrades/data/enemy_slowdown.tres" id="4_q6enb"]
+[ext_resource type="Resource" uid="uid://dq7wai6yc5ywt" path="res://resources/upgrades/data/bullet_ricochet.tres" id="5_hxt87"]
+[ext_resource type="Resource" uid="uid://cnnh1uw8uk831" path="res://resources/upgrades/data/enemy_stunning.tres" id="6_n46do"]
 
 [resource]
 script = ExtResource("1_j3kh7")
-upgrades = Array[ExtResource("2_1g5p6")]([ExtResource("3_1g5p6")])
+upgrades = Array[ExtResource("2_1g5p6")]([ExtResource("3_1g5p6"), ExtResource("4_q6enb"), ExtResource("5_hxt87"), ExtResource("6_n46do")])

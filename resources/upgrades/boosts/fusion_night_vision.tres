@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_03qdb"]
 [ext_resource type="Script" uid="uid://bt04e05usq4qe" path="res://scripts/data/upgrade/boost_data.gd" id="2_iem5s"]
 [ext_resource type="Resource" uid="uid://dadk7s34pn83d" path="res://resources/upgrades/effects/thermal_vision.tres" id="2_xj7jm"]
-[ext_resource type="Resource" uid="uid://btag3jhlnxl38" path="res://resources/upgrades/effects/night_vision_screen.tres" id="3_xj7jm"]
+[ext_resource type="Resource" uid="uid://btag3jhlnxl38" path="res://resources/upgrades/effects/night_vision_screen.tres" id="3_k4342"]
 
 [resource]
 script = ExtResource("2_iem5s")
@@ -11,5 +11,5 @@ id = "FV01"
 display_name = "Fusion night vision"
 description = "Fusion night vision"
 duration = 4.0
-effects = Array[ExtResource("1_03qdb")]([ExtResource("2_xj7jm"), ExtResource("3_xj7jm")])
+effects = Array[ExtResource("1_03qdb")]([ExtResource("2_xj7jm"), ExtResource("3_k4342")])
 metadata/_custom_type_script = "uid://bt04e05usq4qe"
