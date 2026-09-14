@@ -1,7 +1,10 @@
 extends Node
 
 const DATABASE_PATH := "res://resources/upgrades/upgrade_database.tres"
-const DEBUG_UPGRADE_IDS := ["MD01", "ES01", "ES02", "BR01"]
+
+#const DEBUG_UPGRADE_IDS := ["MD01", "ES01", "ES02", "BR01"]
+const DEBUG_UPGRADE_IDS := ["RF01", "BS01", "EM01", "BP01"]
+
 
 var database: UpgradeDatabase
 var purchased: Dictionary = {}

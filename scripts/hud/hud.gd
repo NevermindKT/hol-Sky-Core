@@ -13,8 +13,8 @@ class_name HUD
 
 @onready var enemy_compass: Enemy_Compass = $EnemyCompass
 
-var magazine_size: float
 var magazine_current_ammo: float
+var current_weapon_data: WeaponData
 
 
 func _ready() -> void:
@@ -53,7 +53,7 @@ func update_stamina(value: float):
 #---------------- WEAPON
 
 func set_weapon(weapon: WeaponData):
-	magazine_size = weapon.magazine_capacity
+	current_weapon_data = weapon
 	weapon_name.text = weapon.name
 	update_ammo()
 
@@ -64,4 +64,8 @@ func change_ammo(count: float):
 
 
 func update_ammo():
+	if current_weapon_data == null:
+		return
+
+	var magazine_size := UpgradeManager.get_modified(&"expanded_magazine", current_weapon_data.magazine_capacity)
 	ammo_label.text = "%s / %s" % [int(magazine_current_ammo), int(magazine_size)]

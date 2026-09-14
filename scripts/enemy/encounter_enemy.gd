@@ -25,6 +25,9 @@ var is_stunned := false
 const HIT_SLOW_DURATION := 2.0
 var slow_timer := 0.0
 
+var poison_timer := 0.0
+var poison_dps := 0.0
+
 var player: Node3D
 var encounter: Enemy_Encounter
 
@@ -81,6 +84,9 @@ func _physics_process(delta: float) -> void:
 
 	if slow_timer > 0.0:
 		slow_timer = max(0.0, slow_timer - delta)
+
+	if poison_timer > 0.0:
+		update_poison(delta)
 
 	match state:
 		State.FOLLOW:
@@ -193,6 +199,22 @@ func _current_speed_multiplier() -> float:
 	return UpgradeManager.get_modified(&"enemy_slowdown", 1.0)
 
 
+func apply_poison() -> void:
+	var dps := UpgradeManager.get_modified(&"poison_damage", 0.0)
+	var duration := UpgradeManager.get_modified(&"poison_duration", 0.0)
+
+	if dps <= 0.0 or duration <= 0.0:
+		return
+
+	poison_dps = dps
+	poison_timer = duration
+
+
+func update_poison(delta: float) -> void:
+	poison_timer = max(0.0, poison_timer - delta)
+	take_damage(poison_dps * delta)
+
+
 func start_dash() -> void:
 	_set_warning(false)
 	state = State.DASH
@@ -257,6 +279,7 @@ func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
 	take_damage(damage)
 	add_stun(UpgradeManager.get_modified(&"enemy_stunning", damage))
 	apply_hit_slow()
+	apply_poison()
 
 	_spawn_bullet_hit_effect(hit_position, direction)
 
