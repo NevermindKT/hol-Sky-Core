@@ -41,6 +41,7 @@ var steering_input := 0.0
 @export var dodge_hit_radius := 1.2
 @export var dodge_damage := 20.0
 @export var dodge_knockback_force := 15.0
+@export var dodge_hit_spray_lateral := 0.5
 @export var enemy_detection_mask: int = 1
 
 var dodge_timer := 0.0
@@ -292,7 +293,10 @@ func _check_dodge_hit(direction: float) -> void:
 			continue
 		
 		var knockback := Vector3(direction * dodge_knockback_force, 0.0, 0.0)
-		enemy.on_dodge_hit(dodge_damage, knockback)
+		var forward := -global_transform.basis.z
+		var lateral := global_transform.basis.x * direction
+		var hit_direction := (forward + lateral * dodge_hit_spray_lateral).normalized()
+		enemy.on_dodge_hit(dodge_damage, knockback, enemy.global_position, hit_direction, self)
 		dodge_already_hit.append(enemy)
 
 

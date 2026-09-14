@@ -27,8 +27,6 @@ BoostManager="*uid://dmerpx1y7qvs0"
 
 [display]
 
-window/size/viewport_width=2460
-window/size/viewport_height=1040
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -101,7 +99,8 @@ toggle_headlights={
 
 [layer_names]
 
-3d_render/layer_2="Blood Target"
+3d_render/layer_2="Road Blood Target"
+3d_render/layer_3="Car Blood Target"
 3d_physics/layer_2="Road"
 
 [physics]

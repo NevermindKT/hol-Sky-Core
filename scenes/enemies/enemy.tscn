@@ -26,12 +26,6 @@ knockback_controller = NodePath("KnockbackController")
 health = NodePath("Health")
 hit_effect_scene = ExtResource("6_bldch")
 move_speed = 12.0
-blood_decal_scene = ExtResource("3_nb6gf")
-road_blood_splatter_scene = ExtResource("4_jt03m")
-blood_splatter_radius = 0.8
-road_blood_forward_offset = 3.0
-car_blood_scale_range = Vector2(0.9, 1)
-road_blood_scale_range = Vector2(1.4, 1.6)
 corpse_lifetime = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=498826910]
