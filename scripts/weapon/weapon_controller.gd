@@ -28,11 +28,13 @@ func _process(_delta: float) -> void:
 	cooldown -= _delta
 	
 	if current_weapon:
-		current_spread = max(
+		var max_spread := UpgradeManager.get_modified(&"less_spread", current_weapon.data.max_spread)
+		current_spread = clamp(
+			current_spread - current_weapon.data.bloom_recovery_rate * _delta,
 			current_weapon.data.base_spread,
-			current_spread - current_weapon.data.bloom_recovery_rate * _delta
+			max_spread
 		)
-		Events.spread_changed.emit(get_spread_ratio())
+		Events.spread_changed.emit(current_spread)
 
 
 func fire():
@@ -54,18 +56,26 @@ func fire():
 	var fire_rate := UpgradeManager.get_modified(&"rate_of_fire", current_weapon.data.fire_rate)
 	cooldown = 1.0 / fire_rate
 	current_weapon.data.fire_behavior.fire(self)
-	
+
+	var bloom_per_shot := UpgradeManager.get_modified(&"less_recoil", current_weapon.data.bloom_per_shot)
+	var max_spread := UpgradeManager.get_modified(&"less_spread", current_weapon.data.max_spread)
 	current_spread = min(
-		current_weapon.data.max_spread,
-		current_spread + current_weapon.data.bloom_per_shot
+		max_spread,
+		current_spread + bloom_per_shot
 	)
-	Events.spread_changed.emit(get_spread_ratio())
+	Events.spread_changed.emit(current_spread)
 
 
 func get_spread_ratio() -> float:
-	if current_weapon == null or current_weapon.data.max_spread <= 0.0:
+	if current_weapon == null:
 		return 0.0
-	return clamp(current_spread / current_weapon.data.max_spread, 0.0, 1.0)
+
+	var max_spread := UpgradeManager.get_modified(&"less_spread", current_weapon.data.max_spread)
+
+	if max_spread <= 0.0:
+		return 0.0
+
+	return clamp(current_spread / max_spread, 0.0, 1.0)
 
 
 func reload() -> bool:

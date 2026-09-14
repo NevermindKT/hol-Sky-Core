@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_w4vnk")
 stat_id = &"less_recoil"
-multiplier = 0.5
+multiplier = 0.9
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"

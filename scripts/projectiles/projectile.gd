@@ -8,6 +8,7 @@ var projectile_speed: float
 var projectile_distance: float
 
 const GRAVITY := Vector3.DOWN * 9.81
+const CRIT_DAMAGE_MULTIPLIER := 2.0
 
 var velocity: Vector3
 var start_position: Vector3
@@ -20,6 +21,11 @@ func initialize(data: WeaponData, direction: Vector3) -> void:
 	start_position = global_position
 
 	damage = UpgradeManager.get_modified(&"weapon_damage", data.damage)
+
+	var crit_chance := UpgradeManager.get_modified(&"critical_damage_chance", 0.0)
+	if crit_chance > 0.0 and randf() < crit_chance:
+		damage *= CRIT_DAMAGE_MULTIPLIER
+
 	gravity_scale = data.gravity_scale
 	projectile_speed = data.projectile_speed
 	projectile_distance = data.projectile_distance
