@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatMultiplierEffect" format=3 uid="uid://x1hkrjqs3aex"]
+
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="1_217to"]
+
+[resource]
+script = ExtResource("1_217to")
+stat_id = &"camera_fov"
+multiplier = 0.8
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
