@@ -71,7 +71,7 @@ overheat_recovery_ratio = 0.85
 player_cam = NodePath("../PlayerCam")
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476 node_paths=PackedStringArray("car")]
-transform = Transform3D(1, 0, 0, 0, 0.868181, 0.49624777, 0, -0.4962478, 0.868181, 0, 4.111311, 6.63513)
+transform = Transform3D(1, 0, 0, 0, 0.868181, 0.49624777, 0, -0.4962478, 0.868181, 0, 5.483519, 7.1356735)
 fov = 90.0
 script = ExtResource("1_i24gt")
 car = NodePath("../Car")

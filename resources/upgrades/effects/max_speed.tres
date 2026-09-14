@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_l2icf")
 stat_id = &"max_speed"
-multiplier = 2.0
+multiplier = 1.5
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
