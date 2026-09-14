@@ -426,7 +426,7 @@ shader_parameter/emission_strength = 1.0
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_t818w"]
 material = SubResource("ShaderMaterial_5pvpu")
 shape = 0
-size = 0.1
+size = 0.4
 sections = 10
 section_length = 0.1
 section_segments = 4
