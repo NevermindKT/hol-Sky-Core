@@ -10,7 +10,11 @@
 [ext_resource type="Resource" uid="uid://dg7y5ectrcuo7" path="res://resources/upgrades/data/rate_of_fire.tres" id="8_frrkw"]
 [ext_resource type="Resource" uid="uid://cu2c5dfyavtqo" path="res://resources/upgrades/data/bullet_saving.tres" id="9_ett83"]
 [ext_resource type="Resource" uid="uid://cwx1f6dljoovy" path="res://resources/upgrades/data/bullet_poison.tres" id="10_4l3y7"]
+[ext_resource type="Resource" uid="uid://dls2ryjrvjcmq" path="res://resources/upgrades/data/less_spread.tres" id="11_fiilp"]
+[ext_resource type="Resource" uid="uid://dajl615dqpj11" path="res://resources/upgrades/data/less_recoil.tres" id="12_nnlce"]
+[ext_resource type="Resource" uid="uid://ehf26lt3mmae" path="res://resources/upgrades/data/less_turning_delay.tres" id="13_41ug5"]
+[ext_resource type="Resource" uid="uid://by23ga0omgikq" path="res://resources/upgrades/data/critical_damage_chance.tres" id="14_pj84g"]
 
 [resource]
 script = ExtResource("1_j3kh7")
-upgrades = Array[ExtResource("2_1g5p6")]([ExtResource("3_1g5p6"), ExtResource("4_q6enb"), ExtResource("5_hxt87"), ExtResource("6_n46do"), ExtResource("7_sxrtt"), ExtResource("8_frrkw"), ExtResource("9_ett83"), ExtResource("10_4l3y7")])
+upgrades = Array[ExtResource("2_1g5p6")]([ExtResource("3_1g5p6"), ExtResource("4_q6enb"), ExtResource("5_hxt87"), ExtResource("6_n46do"), ExtResource("7_sxrtt"), ExtResource("8_frrkw"), ExtResource("9_ett83"), ExtResource("10_4l3y7"), ExtResource("11_fiilp"), ExtResource("12_nnlce"), ExtResource("13_41ug5"), ExtResource("14_pj84g")])
