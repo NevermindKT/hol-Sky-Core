@@ -16,15 +16,17 @@
 [ext_resource type="PackedScene" uid="uid://b18ge6bq72hf8" path="res://scenes/vfx/effects/wheel_particles_effect.tscn" id="10_lvrf2"]
 [ext_resource type="Script" uid="uid://ip4fb2moxr2s" path="res://scenes/player/player_status_controller.gd" id="10_ojawh"]
 [ext_resource type="Script" uid="uid://b0ny64s5vute3" path="res://scripts/car/headlight_mode.gd" id="11_hlmode"]
+[ext_resource type="Script" uid="uid://cbrdggeh21loe" path="res://scenes/player/car_wheels.gd" id="12_bssh6"]
 [ext_resource type="Texture2D" uid="uid://b5ylygv8dtf2n" path="res://textures/lights/headlight_cookie.png" id="12_hlcookie"]
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="12_t5h3w"]
+[ext_resource type="PackedScene" uid="uid://c6vfw663kn4ia" path="res://scenes/car/wheel.tscn" id="19_f0rj0"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
 _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_58tws"]
-_data = [Vector2(0, 0.16000009), 0.0, 0.0, 0, 0, Vector2(0.34074074, 0.49), 0.0, 0.0, 0, 0, Vector2(0.5037037, 1), 0.0, 0.0, 0, 0, Vector2(0.6888889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1500001), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.16000009), 0.0, 0.0, 0, 0, Vector2(0.34074074, 0.49), 0.0, 0.0, 0, 0, Vector2(0.5037037, 1), 0.0, 0.0, 0, 0, Vector2(0.6888889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.46258503), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
@@ -52,7 +54,7 @@ script = ExtResource("6_7lmdr")
 data = ExtResource("9_lo1ro")
 metadata/_custom_type_script = "uid://nt6h8xoqqc60"
 
-[node name="Car" type="CharacterBody3D" unique_id=353319218 node_paths=PackedStringArray("back_lights", "cam_pivot", "inventory", "weapon_pivot", "visual_effects", "weapon_controller", "player_status_controller") groups=["Car"]]
+[node name="Car" type="CharacterBody3D" unique_id=353319218 node_paths=PackedStringArray("back_lights", "cam_pivot", "wheels", "inventory", "weapon_pivot", "visual_effects", "weapon_controller", "player_status_controller") groups=["Car"]]
 collision_layer = 3
 script = ExtResource("1_y6j3g")
 drag = 4.0
@@ -70,6 +72,7 @@ grip_wet = 0.6
 grip_flooded = 0.35
 back_lights = NodePath("Visual/vfx/BackLights")
 cam_pivot = NodePath("CamPivot")
+wheels = NodePath("Visual/WheelContainer")
 inventory = NodePath("Inventory")
 weapon_pivot = NodePath("Visual/WeaponPivot")
 visual_effects = NodePath("Visual")
@@ -77,12 +80,17 @@ weapon_controller = NodePath("WeaponController")
 player_status_controller = NodePath("PlayerStatusController")
 
 [node name="Visual" type="Node3D" parent="." unique_id=1626838081]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.275, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245, 0)
 script = ExtResource("2_iam02")
+y_tilt = 14.0
 z_tilt = 7.0
-road_y_tilt = 30.0
+road_y_tilt = 40.0
 road_z_tilt = 5.0
-delta_mul = 5.0
+max_turn_velocity = 10.0
+tilt_damping = 20.0
+max_tilt_velocity = 20.0
+dodge_yaw_impulse = -8.0
+dodge_roll_impulse = 4.0
 
 [node name="CarMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]
 visible = false
@@ -216,6 +224,42 @@ far_volumetric_fog_energy = 0.1
 
 [node name="Ostov" parent="Visual" unique_id=239094084 instance=ExtResource("8_t5h3w")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="WheelContainer" type="Node3D" parent="Visual" unique_id=826983752 node_paths=PackedStringArray("front_left", "front_right", "rear_left", "rear_right", "front_left_mesh", "front_right_mesh", "rear_left_mesh", "rear_right_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
+script = ExtResource("12_bssh6")
+front_left = NodePath("Wheel_FL")
+front_right = NodePath("Wheel_FR")
+rear_left = NodePath("Wheel_RL")
+rear_right = NodePath("Wheel_RR")
+front_left_mesh = NodePath("Wheel_FL/Wheel")
+front_right_mesh = NodePath("Wheel_FR/Wheel")
+rear_left_mesh = NodePath("Wheel_RL/Wheel")
+rear_right_mesh = NodePath("Wheel_RR/Wheel")
+
+[node name="Wheel_FL" type="Node3D" parent="Visual/WheelContainer" unique_id=1790304050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, -0.7, -1.35)
+
+[node name="Wheel" parent="Visual/WheelContainer/Wheel_FL" unique_id=1305455613 instance=ExtResource("19_f0rj0")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
+
+[node name="Wheel_RL" type="Node3D" parent="Visual/WheelContainer" unique_id=145978901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, -0.7, 1.1)
+
+[node name="Wheel" parent="Visual/WheelContainer/Wheel_RL" unique_id=728633974 instance=ExtResource("19_f0rj0")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
+
+[node name="Wheel_FR" type="Node3D" parent="Visual/WheelContainer" unique_id=860982722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.7, -1.35)
+
+[node name="Wheel" parent="Visual/WheelContainer/Wheel_FR" unique_id=1082543250 instance=ExtResource("19_f0rj0")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
+
+[node name="Wheel_RR" type="Node3D" parent="Visual/WheelContainer" unique_id=1126329672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.7, 1.1)
+
+[node name="Wheel" parent="Visual/WheelContainer/Wheel_RR" unique_id=530509797 instance=ExtResource("19_f0rj0")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 
