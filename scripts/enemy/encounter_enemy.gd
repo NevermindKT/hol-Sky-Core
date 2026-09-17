@@ -35,12 +35,14 @@ var start_z: float
 var attack_timer := 0.0
 var state := State.FOLLOW
 
-var dash_timer := 0.0
+var dash_distance_left := 0.0
 var is_warning := false
 var dash_direction := Vector3.ZERO
 
 var knockback_drag := 8.0
 var knockback_velocity := Vector3.ZERO
+
+var _speed_multiplier := 1.0
 
 @onready var damage_hit_box: HurtBox = $DamageHitBox
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
@@ -74,6 +76,8 @@ func activate() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	_speed_multiplier = _current_speed_multiplier()
+	
 	if not is_active:
 		return
 	if player == null:
@@ -102,16 +106,15 @@ func _physics_process(delta: float) -> void:
 # ============================ STATE UPDATES ===================================
 
 func update_movement(delta: float) -> void:
-	var speed_multiplier := _current_speed_multiplier()
 
 	var target_x := player.global_position.x + formation_offset
 	global_position.x = move_toward(
 		global_position.x,
 		target_x,
-		enemy_data.move_speed * speed_multiplier * delta
+		enemy_data.move_speed * _speed_multiplier * delta
 	)
 
-	_move_toward_start_z(delta, speed_multiplier)
+	_move_toward_start_z(delta, _speed_multiplier)
 
 
 func update_attack(delta: float) -> void:
@@ -137,9 +140,10 @@ func update_knockback(delta: float) -> void:
 
 
 func update_dash(delta: float) -> void:
-	dash_timer -= delta
-	global_position += dash_direction * enemy_data.dash_speed * delta
-	if dash_timer <= 0.0:
+	var step := enemy_data.dash_speed * _speed_multiplier * delta
+	global_position += dash_direction * step
+	dash_distance_left -= step
+	if dash_distance_left <= 0.0:
 		end_dash()
 
 
@@ -218,7 +222,7 @@ func update_poison(delta: float) -> void:
 func start_dash() -> void:
 	_set_warning(false)
 	state = State.DASH
-	dash_timer = enemy_data.dash_duration
+	dash_distance_left = enemy_data.dash_speed * enemy_data.dash_duration
 	dash_direction = (player.global_position - global_position).normalized()
 
 

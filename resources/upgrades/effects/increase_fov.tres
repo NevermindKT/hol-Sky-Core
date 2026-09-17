@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_5lll3")
 stat_id = &"camera_fov"
-multiplier = 1.15
+multiplier = 1.05
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
