@@ -7,6 +7,7 @@ signal detonated
 @export var gravity_accel := 9.8
 @export var fuse_time := 1.2
 @export var spin_speed := 6.0
+@export var flash_effect: Muzzle_flash
 
 var velocity: Vector3
 var angular_velocity: Vector3
@@ -32,4 +33,6 @@ func _physics_process(delta: float) -> void:
 
 func detonate() -> void:
 	detonated.emit()
+	flash_effect.reparent(get_parent())
+	flash_effect.play(true)
 	queue_free()
