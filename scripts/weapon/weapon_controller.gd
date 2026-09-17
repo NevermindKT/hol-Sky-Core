@@ -5,7 +5,9 @@ var current_weapon: WeaponState
 
 @export var fire_point: Marker3D
 @export var muzzle_flash: Muzzle_flash
+@export var shell_ejector: Shell_Ejector
 @export var player_weapons: Array[WeaponState]
+
 @onready var inventory: Inventory = $"../Inventory"
 
 var cooldown := 0.0
@@ -45,6 +47,9 @@ func fire():
 	if current_weapon.ammo <= 0:
 		reload()
 		return
+
+	if shell_ejector:
+		shell_ejector.eject(current_weapon.data.shell_type)
 
 	current_weapon.ammo -= 1
 	Events.magazine_count_changed.emit(current_weapon.ammo)

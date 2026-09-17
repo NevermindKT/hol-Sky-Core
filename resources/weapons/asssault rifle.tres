@@ -22,6 +22,7 @@ projectile_distance = 120.0
 max_spread = 0.15
 bloom_per_shot = 0.03
 bloom_recovery_rate = 0.35
+shell_type = 1
 fire_behavior = SubResource("Resource_qv38y")
 projectile_scene = ExtResource("2_5ldh7")
 metadata/_custom_type_script = "uid://di37ui7h2d4v3"

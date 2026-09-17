@@ -45,10 +45,6 @@ path_joined = false
 [node name="GPUParticlesCollisionBoxes" type="Node3D" parent="." unique_id=1740581234]
 transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0.3, 0)
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=1996822362]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 17.5)
-size = Vector3(16.053467, 0.5, 54.964966)
-
-[node name="GPUParticlesCollisionBox3D2" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=769417222]
-transform = Transform3D(0.9063076, 0, 0.42261818, 0, 1, 0, -0.42261818, 0, 0.9063076, 6, 0, 35.5)
-size = Vector3(16.053467, 0.5, 27.389542)
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=635750749]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.768723)
+size = Vector3(16.053467, 0.5, 67.50241)
