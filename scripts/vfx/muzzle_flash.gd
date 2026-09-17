@@ -2,13 +2,17 @@ extends Node3D
 class_name Muzzle_flash
 
 @export var particles: Array[GPUParticles3D]
-@export var spot_light: SpotLight3D
+@export var spot_light: Light3D
 
-func play() -> void:
+func play(queue_free: bool = false) -> void:
 	for particle in particles:
 		particle.restart()
 	
 	spot_light.show()
 	await get_tree().create_timer(particles[0].lifetime).timeout
-	spot_light.hide()
+	
+	if not queue_free:
+		spot_light.hide()
+	else:
+		queue_free()
 	

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cmp0fix8vf3w2"]
+
+[ext_resource type="Script" uid="uid://1mrqfghasua2" path="res://scripts/vfx/muzzle_flash.gd" id="1_w50ir"]
+[ext_resource type="Texture2D" uid="uid://d056f2vb8x13n" path="res://textures/vfx/muzzle_flash/muzzle_flash_circle_splatter.png" id="4_omwwf"]
+[ext_resource type="ArrayMesh" uid="uid://b4fegs15gd1yn" path="res://models/muzzle_cone_001.obj" id="5_6fika"]
+[ext_resource type="Texture2D" uid="uid://b7of1fmx30ly4" path="res://textures/vfx/muzzle_flash/beam_flash001.png" id="6_mlcja"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dle7"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("4_omwwf")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_3tqv5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.5808582, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ghtap"]
+curve = SubResource("Curve_3tqv5")
+
+[sub_resource type="Curve" id="Curve_iyj1g"]
+_data = [Vector2(0, 0), 2.7830906, 2.7830906, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mm1bc"]
+curve = SubResource("Curve_iyj1g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mti6b"]
+angle_min = -179.99998
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.1499999
+scale_curve = SubResource("CurveTexture_mm1bc")
+color = Color(1.8247963, 1.4209222, 1.1120775, 1)
+alpha_curve = SubResource("CurveTexture_ghtap")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vj5im"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("6_mlcja")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_3tqv5"]
+
+[node name="FlashbangFlash" type="Node3D" unique_id=1492550407 node_paths=PackedStringArray("particles", "spot_light")]
+script = ExtResource("1_w50ir")
+particles = [NodePath("MuzzleCone"), NodePath("BeamFlash")]
+spot_light = NodePath("OmniLight3D")
+
+[node name="MuzzleCone" type="GPUParticles3D" parent="." unique_id=1048968788]
+material_override = SubResource("StandardMaterial3D_5dle7")
+emitting = false
+amount = 1
+lifetime = 0.09999999999999999
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_mti6b")
+draw_pass_1 = ExtResource("5_6fika")
+
+[node name="BeamFlash" type="GPUParticles3D" parent="." unique_id=327878787]
+material_override = SubResource("StandardMaterial3D_vj5im")
+emitting = false
+amount = 1
+lifetime = 0.09999999999999999
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_mti6b")
+draw_pass_1 = SubResource("QuadMesh_3tqv5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=765002994]
+visible = false
+light_color = Color(1, 0.99607843, 0.7019608, 1)
+light_energy = 30.0
+light_volumetric_fog_energy = 3.0
+light_specular = 2.0
+omni_range = 50.0

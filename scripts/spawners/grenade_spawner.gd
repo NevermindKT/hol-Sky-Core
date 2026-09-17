@@ -2,10 +2,11 @@ extends Node
 class_name Grenade_spawner
 
 const FLASHBANG_SCENE := preload("res://scenes/projectiles/flashbang_grenade.tscn")
-const ARC_VERTICAL_SPEED := 6.0
-const THROW_SPREAD_DEGREES := 12.0
+const ARC_VERTICAL_SPEED := 8.0
+const THROW_SPREAD_DEGREES := 8.0
 
 var car: Car_Movement
+var enemy_encounter: Enemy_Encounter
 
 func spawn_flashbang() -> void:
 	var launch_point := car.visual_effects.get_node("GrenadeLaunchPoint") as Node3D
@@ -17,6 +18,13 @@ func spawn_flashbang() -> void:
 
 	var direction := get_spread_direction(grenade.transform)
 	grenade.velocity = direction * grenade.throw_speed + Vector3.UP * ARC_VERTICAL_SPEED
+
+	grenade.detonated.connect(_stun_all_enemies)
+
+
+func _stun_all_enemies() -> void:
+	for enemy in enemy_encounter.enemies:
+		enemy.add_stun(enemy.enemy_data.stun_treshold)
 
 
 func get_spread_direction(from_transform: Transform3D) -> Vector3:
