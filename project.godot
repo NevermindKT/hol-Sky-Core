@@ -25,6 +25,7 @@ WeatherManager="*uid://5fu5kmhw80gh"
 UpgradeManager="*uid://bei4jn5wfufhy"
 BoostManager="*uid://dmerpx1y7qvs0"
 ScreenEffects="*uid://dxdcrfeffhhhk"
+GrenadeSpawner="*uid://dsvmq0gu3juhd"
 
 [display]
 

@@ -26,6 +26,7 @@ const OBSTACLE_SPAWN_CHANCE = 0.05
 
 func _ready() -> void:
 	set_world()
+	GrenadeSpawner.car = car
 	set_player_car()
 	set_weapon_system()
 	set_road_manager()

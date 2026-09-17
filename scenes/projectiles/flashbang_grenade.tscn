@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dxm101m7414bx"]
+
+[ext_resource type="Script" uid="uid://jl1kmqy0gbc4" path="res://scripts/projectiles/flashbang_grenade.gd" id="1_flgd1"]
+[ext_resource type="PackedScene" uid="uid://d2skgxdf5kldm" path="res://models/weapon/low_poly_flash_bang.glb" id="2_flgd1"]
+
+[node name="FlashbangGrenade" type="Node3D" unique_id=1258770350]
+script = ExtResource("1_flgd1")
+
+[node name="Model" parent="." unique_id=456895872 instance=ExtResource("2_flgd1")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -0.014800429, -0.2697563, 0.117000945)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_kwnp0"]
 [ext_resource type="Script" uid="uid://bt04e05usq4qe" path="res://scripts/data/upgrade/boost_data.gd" id="2_cc2mt"]
+[ext_resource type="Resource" uid="uid://c7c66jnm02lu5" path="res://resources/upgrades/effects/flashbang_spawn.tres" id="3_flsef"]
 
 [resource]
 script = ExtResource("2_cc2mt")
@@ -9,4 +10,5 @@ id = "FB01"
 display_name = "Flashbang"
 description = "Flashbang"
 duration = 4.0
+effects = Array[ExtResource("1_kwnp0")]([ExtResource("3_flsef")])
 metadata/_custom_type_script = "uid://bt04e05usq4qe"
