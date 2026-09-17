@@ -89,6 +89,9 @@ layers = 3
 mesh = SubResource("BoxMesh_elpsl")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
+[node name="GrenadeLaunchPoint" type="Marker3D" parent="Visual" unique_id=1017824461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7073189, 0.4, -0.57019806)
+
 [node name="WeaponPivot" type="Node3D" parent="Visual" unique_id=879198079]
 
 [node name="GunPoint" type="Marker3D" parent="Visual/WeaponPivot" unique_id=77871199]
