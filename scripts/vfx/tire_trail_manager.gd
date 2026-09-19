@@ -133,6 +133,7 @@ func _record_point(stroke: Tire_trail_stroke, point: Marker3D) -> Tire_trail_str
 		stroke = stroke_scene.instantiate()
 		world.trail_container.add_child(stroke)
 		stroke.global_transform = point.get_global_transform_interpolated()
+
 		_active_strokes.append(stroke)
 		_enforce_strokes_limit()
 
@@ -178,6 +179,8 @@ func _fade_and_free(stroke: Tire_trail_stroke) -> void:
 
 	var tween := stroke.create_tween()
 	tween.tween_property(stroke.material_override, "albedo_color:a", 0.0, fade_duration)
+	if trigger_mode == Trigger_mode.BLOOD:
+		tween.parallel().tween_property(stroke.material_override, "emission_energy_multiplier", 0.0, fade_duration)
 	tween.tween_callback(_on_stroke_faded.bind(stroke))
 
 
