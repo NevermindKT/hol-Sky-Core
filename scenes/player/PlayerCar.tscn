@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0ugimnnmaxti"]
 
 [ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://scripts/car/car_movement.gd" id="1_y6j3g"]
+[ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="2_f0rj0"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
 [ext_resource type="Script" uid="uid://42qmfye5c841" path="res://scripts/car/back_lights.gd" id="3_20y2w"]
 [ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scripts/car/flashlight_controller.gd" id="3_y6j3g"]
@@ -34,8 +35,8 @@ size = Vector3(0.9, 0.3, 1.5)
 albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bq845"]
-radius = 0.57421875
-height = 3.6735306
+radius = 0.6279297
+height = 3.7076979
 
 [sub_resource type="Resource" id="Resource_lo1ro"]
 script = ExtResource("6_7lmdr")
@@ -67,6 +68,7 @@ spring = 45.0
 damping = 6.0
 grip_wet = 0.6
 grip_flooded = 0.35
+car_hit_effect = ExtResource("2_f0rj0")
 back_lights = NodePath("Visual/vfx/BackLights")
 cam_pivot = NodePath("CamPivot")
 inventory = NodePath("Inventory")
@@ -231,7 +233,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.37429312, -0.11708379)
 shape = SubResource("CapsuleShape3D_bq845")
 
 [node name="Inventory" type="Node" parent="." unique_id=1206716850]

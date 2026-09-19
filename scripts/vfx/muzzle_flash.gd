@@ -8,11 +8,13 @@ func play(queue_free: bool = false) -> void:
 	for particle in particles:
 		particle.restart()
 	
-	spot_light.show()
+	if spot_light:
+		spot_light.show()
 	await get_tree().create_timer(particles[0].lifetime).timeout
 	
 	if not queue_free:
-		spot_light.hide()
+		if spot_light:
+			spot_light.hide()
 	else:
 		queue_free()
 	

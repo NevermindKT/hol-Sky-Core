@@ -76,6 +76,7 @@ var _current_grip := 1.0
 
 @export_category("Hit")
 @export var base_damage := 15
+@export var car_hit_effect: PackedScene
 
 
 @export_category("Exports")
@@ -322,3 +323,14 @@ func _resolve_enemy(node: Node) -> Encounter_Enemy:
 			return current
 		current = current.get_parent()
 	return null
+	
+	
+func spawn_hit_effect(hit_position: Vector3) -> void:
+	var car_hit := car_hit_effect.instantiate() as Muzzle_flash
+	if car_hit == null:
+		push_warning("Car: car_hit_effect не має скрипта Muzzle_flash")
+		return
+
+	visual_effects.get_node("CarModel").add_child(car_hit)
+	car_hit.global_position = hit_position
+	car_hit.play(true)
