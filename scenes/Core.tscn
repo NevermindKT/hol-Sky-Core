@@ -75,7 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 0.868181, 0.49624777, 0, -0.4962478, 0.86818
 fov = 90.0
 script = ExtResource("1_i24gt")
 car = NodePath("../Car")
-cam_latency = 14.0
+cam_latency = 8.0
 
 [node name="UI" type="Node" parent="." unique_id=290003646]
 
@@ -203,7 +203,6 @@ stroke_scene = ExtResource("32_kusm0")
 brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
-surface_offset = -0.9
 
 [node name="BloodTrailManager" type="Node" parent="Services" unique_id=2061811336]
 script = ExtResource("31_7hc18")
@@ -212,7 +211,6 @@ trigger_mode = 1
 brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
-surface_offset = -0.9
 
 [editable path="Environment/WeatherSystem"]
 [editable path="Environment/DistanceFog"]
