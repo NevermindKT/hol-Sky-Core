@@ -13,9 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bhuqoyse3ljm6" path="res://models/car/Ostov.glb" id="8_t5h3w"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
-[ext_resource type="Texture2D" uid="uid://srlj3qwwbroa" path="res://textures/shells/rifle.jpg" id="10_2jmj4"]
 [ext_resource type="PackedScene" uid="uid://b18ge6bq72hf8" path="res://scenes/vfx/effects/wheel_particles_effect.tscn" id="10_lvrf2"]
 [ext_resource type="Script" uid="uid://ip4fb2moxr2s" path="res://scenes/player/player_status_controller.gd" id="10_ojawh"]
+[ext_resource type="Texture2D" uid="uid://srlj3qwwbroa" path="res://textures/shells/rifle.jpg" id="11_2jmj4"]
 [ext_resource type="Script" uid="uid://b0ny64s5vute3" path="res://scripts/car/headlight_mode.gd" id="11_hlmode"]
 [ext_resource type="Texture2D" uid="uid://bdkm0x87b37or" path="res://textures/shells/buck.jpg" id="11_hy8se"]
 [ext_resource type="Script" uid="uid://cbrdggeh21loe" path="res://scenes/player/car_wheels.gd" id="12_bssh6"]
@@ -39,6 +39,9 @@ size = Vector3(0.9, 0.3, 1.5)
 albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hy8se"]
+use_rotation_3d = true
+rotation_3d_min = Vector3(0, 0, 0)
+rotation_3d_max = Vector3(0, 0, 0)
 direction = Vector3(5, 2, -5)
 spread = 20.0
 initial_velocity_min = 6.0
@@ -48,8 +51,8 @@ angular_velocity_max = 899.99994
 orbit_velocity_min = 20.000002
 orbit_velocity_max = 20.000002
 use_rotation_velocity_3d = true
-rotation_velocity_3d_min = Vector3(0, 20, 500)
-rotation_velocity_3d_max = Vector3(0, 50, 1000)
+rotation_velocity_3d_min = Vector3(0, 500, 500)
+rotation_velocity_3d_max = Vector3(0, 1000, 1000)
 damping_min = 5.0
 damping_max = 5.0
 scale_min = 0.55
@@ -61,7 +64,7 @@ collision_bounce = 0.85
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpcli"]
 resource_name = "Material.001"
 cull_mode = 1
-albedo_texture = ExtResource("10_2jmj4")
+albedo_texture = ExtResource("11_2jmj4")
 metallic = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_hua1q"]
@@ -96,7 +99,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hua1q")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xq70i"]
-direction = Vector3(5, 2, -5)
+direction = Vector3(8, 2, -5)
 spread = 20.0
 initial_velocity_min = 6.0
 initial_velocity_max = 10.0
@@ -105,8 +108,8 @@ angular_velocity_max = 899.99994
 orbit_velocity_min = 20.000002
 orbit_velocity_max = 20.000002
 use_rotation_velocity_3d = true
-rotation_velocity_3d_min = Vector3(0, 20, 500)
-rotation_velocity_3d_max = Vector3(0, 50, 1000)
+rotation_velocity_3d_min = Vector3(0, 500, 500)
+rotation_velocity_3d_max = Vector3(0, 1000, 1000)
 damping_min = 5.0
 damping_max = 5.0
 scale_min = 0.55
@@ -115,10 +118,10 @@ collision_mode = 1
 collision_friction = 0.3
 collision_bounce = 0.85
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hy8se"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7bd6b"]
 resource_name = "Material.002"
 cull_mode = 1
-albedo_texture = ExtResource("10_2jmj4")
+albedo_texture = ExtResource("11_2jmj4")
 metallic = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ghc3t"]
@@ -144,7 +147,7 @@ _surfaces = [{
 "index_count": 276,
 "index_data": PackedByteArray("OAAiADkAOQAiAAoAIwA6AAkACQA6AAsAOwA8AAIAAgA8AD0APgA/AEAAQAA/AEEAQgAtAEMAQwAtAAEALABEAAAAAABEAEUARgBHAEgASABHAEkASgAFAEsASwAFADAABABMAC4ALgBMAE0ATgANAE8ATwANACUADABQACQAJABQAFEAUgBTAFQAVABTAFUAVgAZAFcAVwAZACoAFwBYACYAJgBYAFkAWgAxAFsAWwAxAFwAXQBeAF8AXwBeAGAAYQASAGIAYgASADMAEwBjADIAMgBjAGQAZQBmACcAJwBmACkAZwBoADUANQBoAAcAaQBqABQAFABqADQAawBsAG0AbQBsABgAbgBvAA8ADwBvAHAAcQByAHMAcwByAHQAKwB1ABsAGwB1ABAAdgAoABEAEQAoABoANwA2ABUAFQA2ABYAdwB4AHkAeQB4AHoAewB8AH0AfQB8AAgAfgB/AAYABgB/AIAAHAAdAB4AHgAdAB8AHwAdACAAIAAdACEAgQCCAIMAgwCCAIQAhACCAIUAhQCCAIYAhwCIAAMAAwCIAIkAigCLAIwAjACLAI0AjgCPAJAAkACPAJEAkgCTAJQAlACTAJUAlgCXAJgAmACXAA4AmQCaAJsAmwCaAJwAnQCeAJ8AnwCeAKAAoQCiAKMAowCiAKQApQCmAC8ALwCmAKcAqACpAKoAqgCpAKsArACtAK4ArgCtAK8AsACxALIAsgCxALMA"),
 "lods": [0.09519858, PackedByteArray("DQAiAAoACwAiAA0AIwAiAAsACQAjAAsACwAMAAkADAAOACQADgANACQAJAANACUAFwAkACYAJgAkACcAJAAlACcAJgAnAA8ADwAoABEAEQAoABoAJwApABoAJwAlACkAJQAZACkAKQAZACoAGgApABsAKQAqABgAKwAYABsAGwAYABAALAAtAAIAAgAtAAEAAAAsAAIAAwAEAAAABAADAC4ABQADAAEALgADABMAAwAFAC8AEwADAC8ALwAFADAALwAwABIAEwAxADIAMQASADMAMgAxADMAMgAzADQAFAAyADQAFAA0AAYABgA0ABUANAAzADUANQAzAAcANQAHABYAFgAHAAgAFQA2ABYANwA2ABUAHAAdAB4AHgAdAB8AHwAdACAAIAAdACEA"), 0.14279787, PackedByteArray("AAABAAIABQADAAEAAwAEAAAAAwAFABIABAADABMAEwADABIAEwASABQAFAASAAcAFAAHABUAFAAVAAYAFQAHABYAFgAHAAgACQAKAAsACwAMAAkACwAKAA0ADgANAAwADAANAA8AFwAMAA8ADwANABgADQAZABgADwAYABoAEQAPABoAGgAYABsAGwAYABAAHAAdAB4AHgAdAB8AHwAdACAAIAAdACEA"), 0.2141968, PackedByteArray("AAABAAIAAwAEAAAABQADAAEABAADAAUABAAFAAYABgAFAAcABgAHAAgACQAKAAsACwAMAAkACwAKAA0ADgANAAwADAANAA8ADwANABAADwAQABEA")],
-"material": SubResource("StandardMaterial3D_hy8se"),
+"material": SubResource("StandardMaterial3D_7bd6b"),
 "name": "Material",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -193,6 +196,29 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lw406")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1l60x"]
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.8
+
+[sub_resource type="Curve" id="Curve_hy8se"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmvu8"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.48235294, 0.48235294, 0.48235294, 0.6901961)
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_7bd6b"]
+material = SubResource("StandardMaterial3D_pmvu8")
+shape = 0
+size = 0.05
+curve = SubResource("Curve_hy8se")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bq845"]
 radius = 0.57421875
 height = 3.6735306
@@ -212,7 +238,7 @@ script = ExtResource("6_7lmdr")
 data = ExtResource("9_lo1ro")
 metadata/_custom_type_script = "uid://nt6h8xoqqc60"
 
-[node name="Car" type="CharacterBody3D" unique_id=353319218 node_paths=PackedStringArray("back_lights", "cam_pivot", "wheels", "inventory", "weapon_pivot", "visual_effects", "weapon_controller", "player_status_controller", "shell_ejector") groups=["Car"]]
+[node name="Car" type="CharacterBody3D" unique_id=353319218 node_paths=PackedStringArray("back_lights", "cam_pivot", "wheels", "inventory", "weapon_pivot", "visual_effects", "weapon_controller", "player_status_controller", "shell_ejector", "vfx") groups=["Car"]]
 collision_layer = 3
 script = ExtResource("1_y6j3g")
 drag = 4.0
@@ -237,6 +263,7 @@ visual_effects = NodePath("Visual")
 weapon_controller = NodePath("WeaponController")
 player_status_controller = NodePath("PlayerStatusController")
 shell_ejector = NodePath("Visual/vfx/ShellEjector")
+vfx = NodePath("Visual/vfx")
 
 [node name="Visual" type="Node3D" parent="." unique_id=1626838081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245, 0)
@@ -338,24 +365,30 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.2
 [node name="WheelParticlesEffect2" parent="Visual/vfx/wheel_dust" unique_id=1417955025 instance=ExtResource("10_lvrf2")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.25, -0.6, 0.8)
 
-[node name="ShellEjector" type="Node3D" parent="Visual/vfx" unique_id=1221224008 node_paths=PackedStringArray("car", "emitter_9mm", "emitter_rifle", "emitter_buckshot")]
+[node name="ShellEjector" type="Node3D" parent="Visual/vfx" unique_id=1221224008 node_paths=PackedStringArray("car", "emitter_9mm", "emitter_rifle", "emitter_buckshot", "trail_ejector")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.7, -0.7)
 script = ExtResource("21_els85")
 car = NodePath("../../..")
 emitter_9mm = NodePath("9mm_Ejector")
 emitter_rifle = NodePath("Rifle_Ejector")
 emitter_buckshot = NodePath("Buck_Ejector")
+trail_ejector = NodePath("Trail_Ejector")
 eject_direction = Vector3(1, 0.6, 0.3)
 eject_speed = 10.0
 direction_spread = 0.6
 inherit_car_speed = 0.2
 
 [node name="9mm_Ejector" type="GPUParticles3D" parent="Visual/vfx/ShellEjector" unique_id=1817123473]
+emitting = false
 amount = 32
 lifetime = 2.5
+transform_align = 1
+transform_align_channel_filter = 1
 trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_hy8se")
+draw_passes = 2
 draw_pass_1 = SubResource("ArrayMesh_7bd6b")
+draw_pass_2 = null
 
 [node name="Rifle_Ejector" type="GPUParticles3D" parent="Visual/vfx/ShellEjector" unique_id=768190855]
 emitting = false
@@ -371,6 +404,14 @@ amount = 32
 lifetime = 2.5
 process_material = SubResource("ParticleProcessMaterial_xq70i")
 draw_pass_1 = SubResource("ArrayMesh_wpcli")
+
+[node name="Trail_Ejector" type="GPUParticles3D" parent="Visual/vfx/ShellEjector" unique_id=440265686]
+emitting = false
+amount = 32
+lifetime = 2.5
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_1l60x")
+draw_pass_1 = SubResource("RibbonTrailMesh_7bd6b")
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Visual/vfx/ShellEjector" unique_id=692104172]
 transform = Transform3D(8.3858595, 0, 0, 0, 0.63731766, 0, 0, 0, 9.64512, 0, -1.8400469, 0)

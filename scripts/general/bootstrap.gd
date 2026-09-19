@@ -51,9 +51,6 @@ func _ready() -> void:
 	#UpgradeManager.purchase(UpgradeManager.database.upgrades[0])
 
 	enemy_encounter.inialize(world)
-	#enemy_encounter.spawn_random_group()
-	#enemy_encounter.add_test_enemy()
-	#enemy_encounter.start_encounter()
 
 	set_encounter()
 
