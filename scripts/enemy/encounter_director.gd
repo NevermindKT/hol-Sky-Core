@@ -2,8 +2,8 @@ extends Node
 class_name Encounter_Director
 
 @export var enabled: bool = true
-@export var encounter: Enemy_Encounter
-@export var run_manager: Run_manager
+var encounter: Enemy_Encounter
+var run_manager: Run_manager
 
 @export_category("Pacing")
 @export var initial_delay_segments := 4
@@ -21,6 +21,11 @@ var segments_until_next_encounter := 0
 func _ready() -> void:
 	Events.segment_dispawned.connect(_on_segment_despawned)
 	segments_until_next_encounter = initial_delay_segments
+
+
+func initialize(_encounter: Enemy_Encounter, _run_manager: Run_manager) -> void:
+	encounter = _encounter
+	run_manager = _run_manager
 
 
 func _on_segment_despawned() -> void:
