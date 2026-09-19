@@ -128,7 +128,8 @@ debug_upgrade_4={
 
 3d_render/layer_2="Road Blood Target"
 3d_render/layer_3="Car Blood Target"
-3d_physics/layer_2="Road"
+3d_physics/layer_2="Car (Enemy Hitbox)"
+3d_physics/layer_3="Road Blood Target"
 
 [physics]
 

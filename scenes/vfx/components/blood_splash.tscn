@@ -10,6 +10,8 @@ shader_parameter/edge_color = Color(0.101960786, 0.011764706, 0.011764706, 1)
 shader_parameter/center_color = Color(0.6, 0.019607844, 0.019607844, 1)
 shader_parameter/dissolve_amount = 0.35
 shader_parameter/seed_offset = 0.0
+shader_parameter/emission_energy = 1.0000000475
+shader_parameter/billboard_enabled = true
 
 [sub_resource type="Curve" id="Curve_ffdo6"]
 _data = [Vector2(0, 0), 0.0, 17.416662, 0, 0, Vector2(0.03952568, 1), 0.0, 0.0, 0, 0, Vector2(0.7306122, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.634827, 0.0, 0, 0]
@@ -24,10 +26,10 @@ direction = Vector3(0, 0, 0)
 spread = 180.0
 flatness = 0.8
 initial_velocity_min = 6.0
-initial_velocity_max = 8.0
+initial_velocity_max = 12.0
 gravity = Vector3(0, -25, 0)
 scale_min = 0.19999999
-scale_max = 0.25
+scale_max = 0.7
 alpha_curve = SubResource("CurveTexture_2lydc")
 anim_offset_max = 1.0
 collision_mode = 2
@@ -35,7 +37,7 @@ sub_emitter_mode = 3
 sub_emitter_amount_at_collision = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_mti6b"]
-size = Vector2(2, 7)
+size = Vector2(1, 7)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6vnta"]
 render_priority = 0
@@ -45,6 +47,8 @@ shader_parameter/edge_color = Color(0.1, 0.01, 0.01, 1)
 shader_parameter/center_color = Color(0.6, 0.02, 0.02, 1)
 shader_parameter/dissolve_amount = 0.35
 shader_parameter/seed_offset = 0.0
+shader_parameter/emission_energy = 1.0000000475
+shader_parameter/billboard_enabled = false
 
 [sub_resource type="Curve" id="Curve_gqr4j"]
 bake_resolution = 91
@@ -57,8 +61,8 @@ curve = SubResource("Curve_gqr4j")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r8qnq"]
 particle_flag_rotate_y = true
 gravity = Vector3(0, 0, 0)
-scale_min = 1.1999999
-scale_max = 1.5
+scale_min = 1.5
+scale_max = 2.5
 alpha_curve = SubResource("CurveTexture_ffdo6")
 anim_offset_max = 1.0
 
@@ -72,20 +76,18 @@ material_override = SubResource("ShaderMaterial_nvvhs")
 emitting = false
 amount = 30
 sub_emitter = NodePath("../SplashSubEmitter")
-lifetime = 2.0
+lifetime = 5.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 120
 visibility_aabb = AABB(-50, -4, -50, 100, 8, 100)
 local_coords = true
-transform_align = 4
-transform_align_axis = 1
 process_material = SubResource("ParticleProcessMaterial_ffdo6")
 draw_pass_1 = SubResource("QuadMesh_mti6b")
 
 [node name="SplashSubEmitter" type="GPUParticles3D" parent="." unique_id=709017774]
 material_override = SubResource("ShaderMaterial_6vnta")
-amount = 30
+amount = 15
 lifetime = 5.0
 randomness = 0.78
 fixed_fps = 60

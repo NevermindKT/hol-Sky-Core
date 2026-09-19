@@ -11,6 +11,10 @@ class_name Blood_decal
 
 @export var color_boost: Color = Color(1.0, 1.0, 1.0, 1.0)
 
+@export var emission_energy_start: float = 6.0
+@export var emission_energy_floor: float = 0.6
+@export var emission_fade_duration: float = 3.0
+
 func _ready() -> void:
 	if texture_variants.is_empty():
 		push_warning("Blood_decal: texture_variants порожній — призначте PNG-варіанти в Inspector.")
@@ -24,9 +28,15 @@ func _ready() -> void:
 	if index < orm_variants.size():
 		texture_orm = orm_variants[index]
 
+	texture_emission = texture_variants[index]
+	emission_energy = emission_energy_start
+
 	modulate = color_boost
 
 	apply_random_scale(scale_range)
+
+	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "emission_energy", emission_energy_floor, emission_fade_duration)
 
 
 func apply_random_scale(_range: Vector2) -> void:

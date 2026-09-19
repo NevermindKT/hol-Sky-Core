@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://do5tm7vvcj0wl"]
 
-[ext_resource type="PackedScene" path="res://scenes/vfx/components/blood_decal.tscn" id="1_base"]
+[ext_resource type="PackedScene" uid="uid://dxcon1p1pac4m" path="res://scenes/vfx/components/blood_decal.tscn" id="1_base"]
 
-[node name="CarBloodDecal" instance=ExtResource("1_base")]
+[node name="CarBloodDecal" unique_id=803152864 instance=ExtResource("1_base")]
 cull_mask = 4
+emission_energy_start = 0.1

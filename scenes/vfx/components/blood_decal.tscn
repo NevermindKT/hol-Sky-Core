@@ -28,3 +28,4 @@ texture_variants = Array[Texture2D]([ExtResource("2_3imua"), ExtResource("3_kg5a
 normal_variants = Array[Texture2D]([ExtResource("8_7v8oc"), ExtResource("9_35gec"), ExtResource("10_188qp"), ExtResource("11_40een"), ExtResource("12_evyt8"), ExtResource("13_635yb")])
 orm_variants = Array[Texture2D]([ExtResource("14_qwrjf"), ExtResource("15_xqeep"), ExtResource("16_4cymm"), ExtResource("17_eodtx"), ExtResource("18_rgqt1"), ExtResource("19_qgu0n")])
 scale_range = Vector2(0.7, 1.5)
+emission_energy_start = 1.0

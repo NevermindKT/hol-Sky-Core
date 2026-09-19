@@ -20,11 +20,12 @@ class_name BloodCarHit
 @export var car_blood_scale_range: Vector2 = Vector2(0.5, 0.9)
 @export var road_blood_scale_range: Vector2 = Vector2(0.8, 1.6)
 
-const ROAD_COLLISION_MASK := 2
+const ROAD_COLLISION_MASK := 4
 
 var _base_amount: int
 var _base_velocity_min: float
 var _base_velocity_max: float
+var _process_mat: ParticleProcessMaterial
 
 func _ready() -> void:
 	splash.one_shot = true
@@ -36,6 +37,7 @@ func _ready() -> void:
 		mat.direction = Vector3.FORWARD
 		mat.spread = spread
 		splash.process_material = mat
+		_process_mat = mat
 
 		_base_velocity_min = mat.initial_velocity_min
 		_base_velocity_max = mat.initial_velocity_max
@@ -51,10 +53,9 @@ func play(hit_position: Vector3, hit_direction: Vector3, car_speed: float = 0.0,
 		speed_scale = clampf(car_speed / reference_speed, min_intensity_scale, max_intensity_scale)
 	print(speed_scale)
 	print(car_speed / reference_speed)
-	var mat := splash.process_material as ParticleProcessMaterial
-	if mat:
-		mat.initial_velocity_min = _base_velocity_min * speed_scale
-		mat.initial_velocity_max = _base_velocity_max * speed_scale
+	if _process_mat:
+		_process_mat.initial_velocity_min = _base_velocity_min * speed_scale
+		_process_mat.initial_velocity_max = _base_velocity_max * speed_scale
 
 	#splash.amount = maxi(1, int(_base_amount * speed_scale))
 	splash.restart()
