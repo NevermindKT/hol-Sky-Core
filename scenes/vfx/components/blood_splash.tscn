@@ -25,10 +25,10 @@ particle_flag_align_y = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
 flatness = 0.8
-initial_velocity_min = 6.0
-initial_velocity_max = 12.0
+initial_velocity_min = 8.0
+initial_velocity_max = 16.0
 gravity = Vector3(0, -25, 0)
-scale_min = 0.19999999
+scale_min = 0.39999998
 scale_max = 0.7
 alpha_curve = SubResource("CurveTexture_2lydc")
 anim_offset_max = 1.0
@@ -37,7 +37,7 @@ sub_emitter_mode = 3
 sub_emitter_amount_at_collision = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_mti6b"]
-size = Vector2(1, 7)
+size = Vector2(1, 10)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6vnta"]
 render_priority = 0
@@ -74,7 +74,7 @@ size = Vector2(1.5, 1.5)
 [node name="Splash" type="GPUParticles3D" parent="." unique_id=605534574]
 material_override = SubResource("ShaderMaterial_nvvhs")
 emitting = false
-amount = 30
+amount = 15
 sub_emitter = NodePath("../SplashSubEmitter")
 lifetime = 5.0
 one_shot = true

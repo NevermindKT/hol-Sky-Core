@@ -3,6 +3,8 @@ class_name Tire_trail_manager
 
 enum Trigger_mode { TIRE_SKID, BLOOD }
 
+const ROAD_COLLISION_MASK := 4
+
 var world: World
 var car_movement: Car_Movement
 var road_manager: Road_manager
@@ -87,12 +89,22 @@ func _process(delta: float) -> void:
 
 
 func _resnap_strokes_height() -> void:
+	var space_state := get_viewport().world_3d.direct_space_state
+
 	for stroke in _active_strokes:
 		if not is_instance_valid(stroke):
 			continue
 
 		var pos := stroke.global_position
-		pos.y = surface_offset
+		var from := pos + Vector3.UP * 3.0
+		var to := pos + Vector3.DOWN * 3.0
+
+		var query := PhysicsRayQueryParameters3D.create(from, to, ROAD_COLLISION_MASK)
+		var result := space_state.intersect_ray(query)
+
+		if not result.is_empty():
+			pos.y = result.position.y + surface_offset
+
 		stroke.global_position = pos
 
 
