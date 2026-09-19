@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://5yyn8hbn5ba5" path="res://scenes/road_segments/road_straight.tscn" id="3_x4e11"]
 [ext_resource type="PackedScene" uid="uid://ctjr5v0dqa1k5" path="res://scenes/road_segments/road_turn_left.tscn" id="4_2c1j4"]
 [ext_resource type="PackedScene" uid="uid://dbnn0y1f8lq0" path="res://scenes/road_segments/road_turn_right.tscn" id="5_ipe36"]
+[ext_resource type="PackedScene" uid="uid://ci6wcxwphpttn" path="res://scenes/road_segments/road_uphill.tscn" id="6_4k70l"]
+[ext_resource type="PackedScene" uid="uid://bjrdx1iatvjhs" path="res://scenes/road_segments/road_downhill.tscn" id="7_7w6lm"]
 
 [sub_resource type="Resource" id="Resource_2c1j4"]
 script = ExtResource("2_x4e11")
@@ -26,7 +28,19 @@ weight = 2.0
 type = 2
 metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
 
+[sub_resource type="Resource" id="Resource_4xeex"]
+script = ExtResource("2_x4e11")
+scene = ExtResource("6_4k70l")
+type = 3
+metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
+
+[sub_resource type="Resource" id="Resource_armwj"]
+script = ExtResource("2_x4e11")
+scene = ExtResource("7_7w6lm")
+type = 3
+metadata/_custom_type_script = "uid://c4rjjeg0gg5c7"
+
 [resource]
 script = ExtResource("1_hi2ux")
-segments = Array[ExtResource("2_x4e11")]([SubResource("Resource_2c1j4"), SubResource("Resource_4k70l"), SubResource("Resource_ipe36")])
+segments = Array[ExtResource("2_x4e11")]([SubResource("Resource_2c1j4"), SubResource("Resource_4k70l"), SubResource("Resource_ipe36"), SubResource("Resource_4xeex"), SubResource("Resource_armwj")])
 metadata/_custom_type_script = "uid://cg6q3pvllmt8u"

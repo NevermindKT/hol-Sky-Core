@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="38_dph2j"]
+[ext_resource type="Script" uid="uid://bia1b2g3noalc" path="res://scripts/enemy/encounter_director.gd" id="40_g88bg"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("7_tc8ix")
@@ -123,6 +124,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 150,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 script = ExtResource("13_asndc")
 enemy_pool = Array[ExtResource("14_o0wgs")]([ExtResource("13_g88bg")])
+offscreen_spawn_distance = 30.0
 player = NodePath("../Car")
 test_Enemy = ExtResource("13_g88bg")
 metadata/_custom_type_script = "uid://bcc07pjuuti4w"
@@ -164,6 +166,7 @@ metadata/_custom_type_script = "uid://bhl1wod4cbmvb"
 
 [node name="RoadGenerator" type="Node" parent="Services" unique_id=119337621]
 script = ExtResource("7_mowk8")
+debug = false
 
 [node name="EnemySpawner" type="Node" parent="Services" unique_id=1015351304]
 script = ExtResource("14_dakql")
@@ -208,6 +211,12 @@ brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
 surface_offset = -0.9
+
+[node name="EncounterDirector" type="Node" parent="Services" unique_id=1870512182 node_paths=PackedStringArray("encounter", "run_manager")]
+script = ExtResource("40_g88bg")
+encounter = NodePath("../../EnemyEncounter")
+run_manager = NodePath("../RunManager")
+initial_delay_segments = 6
 
 [editable path="Environment/WeatherSystem"]
 [editable path="Environment/DistanceFog"]

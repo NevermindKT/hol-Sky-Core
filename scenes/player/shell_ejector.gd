@@ -9,7 +9,7 @@ enum ShellType { PISTOL_9MM, RIFLE, BUCKSHOT }
 @export var emitter_9mm: GPUParticles3D
 @export var emitter_rifle: GPUParticles3D
 @export var emitter_buckshot: GPUParticles3D
-
+@export var trail_ejector: GPUParticles3D
 
 @export_category("Ejection")
 @export var eject_direction := Vector3(1.0, 0.6, -0.3)

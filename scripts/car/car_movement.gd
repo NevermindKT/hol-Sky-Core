@@ -89,6 +89,7 @@ var _current_grip := 1.0
 @export var weapon_controller: Weapon_controller
 @export var player_status_controller: Player_Status_Controller
 @export var shell_ejector: Shell_Ejector
+@export var vfx: Node3D
 
 
 var road_manager: Road_manager
@@ -113,6 +114,7 @@ func _physics_process(delta: float) -> void:
 	process_enemies_hits()
 	process_dodge_hit_check(delta)
 	
+	set_meta("car_speed", speed)
 	#print("Speed: ", speed)
 	#print("Lane offset: ", lane_offset)
 	#print("Lateral velosity: ", lateral_velocity)

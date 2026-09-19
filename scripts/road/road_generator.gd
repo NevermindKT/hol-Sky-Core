@@ -3,6 +3,8 @@ class_name Road_generator
 
 var world: World
 
+@export var debug: bool = true
+
 var road_set: Road_Set
 var obstacle_set: Obstacles_set
 
@@ -33,8 +35,9 @@ func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	spawn_start()
 	while segments.size() < MAX_SEGMENTS:
 		spawn_next()
-
-	#create_debug_path()
+	
+	if debug:
+		create_debug_path()
 
 
 func _process(_delta):
@@ -132,9 +135,30 @@ func _place_joint(curve: Curve3D, k: int) -> void:
 	var p_here := _cp(k)
 	var p_next := _cp(k + 1)
 
-	var joint_pos: Vector3 = (p_prev + 4.0 * p_here + p_next) / 6.0
-	var in_pos: Vector3 = (p_prev + 2.0 * p_here) / 3.0
-	var out_pos: Vector3 = (2.0 * p_here + p_next) / 3.0
+	# Горизонталь (X, Z) — без изменений, та же аппроксимирующая B-сплайн формула
+	var joint_xz: Vector3 = (p_prev + 4.0 * p_here + p_next) / 6.0
+	var in_xz: Vector3 = (p_prev + 2.0 * p_here) / 3.0
+	var out_xz: Vector3 = (2.0 * p_here + p_next) / 3.0
+
+	# Вертикаль (Y) — взвешенный тангенс по горизонтальному расстоянию между
+	# точками, а не по количеству точек. Короткое плечо (например, короткий
+	# сегмент подъёма) влияет на наклон сильнее длинного (прямая), что убирает
+	# "занырнул/подлетел" перед и после склона — та же логика, что мы уже
+	# применяли для горизонтальных заломов на поворотах.
+	var d0: float = Vector2(p_here.x, p_here.z).distance_to(Vector2(p_prev.x, p_prev.z))
+	var d1: float = Vector2(p_next.x, p_next.z).distance_to(Vector2(p_here.x, p_here.z))
+
+	var slope_in: float = (p_here.y - p_prev.y) / max(d0, 0.001)
+	var slope_out: float = (p_next.y - p_here.y) / max(d1, 0.001)
+	var slope_avg: float = (slope_in * d1 + slope_out * d0) / max(d0 + d1, 0.001)
+
+	var handle_len_y: float = min(d0, d1) / 3.0
+	var in_y: float = p_here.y - slope_avg * handle_len_y
+	var out_y: float = p_here.y + slope_avg * handle_len_y
+
+	var joint_pos := Vector3(joint_xz.x, p_here.y, joint_xz.z)
+	var in_pos := Vector3(in_xz.x, in_y, in_xz.z)
+	var out_pos := Vector3(out_xz.x, out_y, out_xz.z)
 
 	if k == 0:
 		curve.set_point_out(0, out_pos - curve.get_point_position(0))
@@ -261,6 +285,9 @@ func is_segment_allowed(data: RoadSegmentData) -> bool:
 
 		RoadType.Type.RIGHT:
 			new_dir += 1
+		
+		RoadType.Type.DISABLED:
+			return false
 
 	return abs(new_dir) <= MAX_ROAD_DIR_OFFSET
 
