@@ -276,7 +276,7 @@ func _on_attack_area_body_entered(body: Node3D) -> void:
 		return
 	if body != player:
 		return
-	hit_player()
+	hit_player(body)
 
 
 func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
@@ -303,9 +303,14 @@ func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, dire
 	stun_meter = 0.0
 
 
-func hit_player() -> void:
+func hit_player(body: Node3D) -> void:
 	print("PLAYER HIT")
 	Events.player_take_damage.emit(enemy_data.attack_damage)
+
+	var car := body as Car_Movement
+	if car:
+		car.spawn_hit_effect(global_position)
+
 	end_dash()
 
 

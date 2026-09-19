@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://hejbemvjk53u"]
+
+[ext_resource type="Texture2D" uid="uid://b7of1fmx30ly4" path="res://textures/vfx/muzzle_flash/beam_flash001.png" id="1_u8a2s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vj5im"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_u8a2s")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_3tqv5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.5808582, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ghtap"]
+curve = SubResource("Curve_3tqv5")
+
+[sub_resource type="Curve" id="Curve_iyj1g"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mm1bc"]
+curve = SubResource("Curve_iyj1g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mti6b"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.14999999
+scale_curve = SubResource("CurveTexture_mm1bc")
+color = Color(1.8247963, 1.4209222, 1.1120775, 1)
+alpha_curve = SubResource("CurveTexture_ghtap")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3tqv5"]
+
+[node name="BeamFlash" type="GPUParticles3D" unique_id=1947679070]
+material_override = SubResource("StandardMaterial3D_vj5im")
+emitting = false
+amount = 1
+lifetime = 0.03
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_mti6b")
+draw_pass_1 = SubResource("QuadMesh_3tqv5")
