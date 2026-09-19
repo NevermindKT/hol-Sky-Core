@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cgqh5h0usixb6"]
 
 [ext_resource type="PackedScene" uid="uid://b3qxr15r6jikf" path="res://models/road stuff/stolb.glb" id="1_cdodt"]
+[ext_resource type="Texture2D" uid="uid://dx5itciu45gqp" path="res://textures/road stuff/light.png" id="2_2ux5j"]
 
 [node name="Lamp" type="Node3D" unique_id=408193673]
 
@@ -8,9 +9,15 @@
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1615579161]
-transform = Transform3D(1, 0, 0, 0, -0.14971144, 0.9887298, 0, -0.9887298, -0.14971144, 4.7683716e-07, 7.2287045, 4.9059916)
+transform = Transform3D(1, 0, 0, 0, -0.4955123, 0.8686009, 0, -0.8686009, -0.4955123, 0, 8.089563, 1.26478)
 light_energy = 25.0
 light_indirect_energy = 15.0
+light_volumetric_fog_energy = 5.0
 light_bake_mode = 1
-spot_range = 16.718649
-spot_angle = 46.94311
+spot_range = 25.335526
+spot_angle = 34.990273
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=632256642]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 8.158982, 1.2478769)
+billboard = 1
+texture = ExtResource("2_2ux5j")

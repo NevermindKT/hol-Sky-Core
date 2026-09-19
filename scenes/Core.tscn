@@ -131,24 +131,25 @@ metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
-[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "enemy_spawner", "sky_controller", "aim_controller", "enemy_encounter")]
+[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
 script = ExtResource("6_v852s")
 car = NodePath("../../Car")
 hud = NodePath("../../UI/HUD")
 world = NodePath("../../Environment/World")
 run_manager = NodePath("../RunManager")
 road_manager = NodePath("../RoadManager")
+enemy_spawner = NodePath("../EnemySpawner")
+sky_controller = NodePath("../../Environment/WeatherSystem/SkyController")
 road_generator = NodePath("../RoadGenerator")
 ground_generator = NodePath("../GroundGenerator")
-vegetation_scatter = NodePath("../VegetationScatter")
 weather_generator = NodePath("../WeatherGenerator")
+vegetation_scatter = NodePath("../VegetationScatter")
 tire_trail_manager = NodePath("../TireTrailManager")
 blood_trail_manager = NodePath("../BloodTrailManager")
 lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
-enemy_spawner = NodePath("../EnemySpawner")
-sky_controller = NodePath("../../Environment/WeatherSystem/SkyController")
 aim_controller = NodePath("../AimController")
 enemy_encounter = NodePath("../../EnemyEncounter")
+encounter_director = NodePath("../EncounterDirector")
 
 [node name="RunManager" type="Node" parent="Services" unique_id=239540275]
 script = ExtResource("7_0uqmh")
@@ -175,6 +176,10 @@ min_gap_m = 10.0
 max_gap_m = 20.0
 spawn_chance = 1.0
 lateral_offset = 1.5
+
+[node name="EncounterDirector" type="Node" parent="Services" unique_id=1870512182]
+script = ExtResource("40_g88bg")
+initial_delay_segments = 6
 
 [node name="WeatherGenerator" type="Node" parent="Services" unique_id=1698724359]
 script = ExtResource("16_iqacv")
@@ -211,12 +216,6 @@ brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
 surface_offset = -0.9
-
-[node name="EncounterDirector" type="Node" parent="Services" unique_id=1870512182 node_paths=PackedStringArray("encounter", "run_manager")]
-script = ExtResource("40_g88bg")
-encounter = NodePath("../../EnemyEncounter")
-run_manager = NodePath("../RunManager")
-initial_delay_segments = 6
 
 [editable path="Environment/WeatherSystem"]
 [editable path="Environment/DistanceFog"]
