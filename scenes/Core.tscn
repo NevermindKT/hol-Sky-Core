@@ -40,6 +40,8 @@
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="38_dph2j"]
 [ext_resource type="Script" uid="uid://bia1b2g3noalc" path="res://scripts/enemy/encounter_director.gd" id="40_g88bg"]
+[ext_resource type="Script" uid="uid://b0tktnn2gsd5w" path="res://scripts/vfx/speed_trail_manager.gd" id="41_armwj"]
+[ext_resource type="PackedScene" uid="uid://bgu3roakp723e" path="res://scenes/vfx/effects/speed_trail_stroke.tscn" id="42_27c6g"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("7_tc8ix")
@@ -72,7 +74,7 @@ player_cam = NodePath("../PlayerCam")
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476 node_paths=PackedStringArray("car")]
 transform = Transform3D(1, 0, 0, 0, 0.86818093, 0.49624777, 0, -0.49624777, 0.86818093, 0, 3.037241, 4.5792413)
-fov = 90.0
+fov = 100.0
 script = ExtResource("1_i24gt")
 car = NodePath("../Car")
 cam_latency = 14.0
@@ -131,7 +133,7 @@ metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
-[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
+[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "speed_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
 script = ExtResource("6_v852s")
 car = NodePath("../../Car")
 hud = NodePath("../../UI/HUD")
@@ -146,6 +148,7 @@ weather_generator = NodePath("../WeatherGenerator")
 vegetation_scatter = NodePath("../VegetationScatter")
 tire_trail_manager = NodePath("../TireTrailManager")
 blood_trail_manager = NodePath("../BloodTrailManager")
+speed_trail_manager = NodePath("../SpeedTrailManager")
 lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
 aim_controller = NodePath("../AimController")
 enemy_encounter = NodePath("../../EnemyEncounter")
@@ -176,6 +179,14 @@ min_gap_m = 10.0
 max_gap_m = 20.0
 spawn_chance = 1.0
 lateral_offset = 1.5
+
+[node name="SpeedTrailManager" type="Node" parent="Services" unique_id=1146307751]
+script = ExtResource("41_armwj")
+stroke_scene = ExtResource("42_27c6g")
+min_speed_ratio = 0.65
+turn_angle_threshold_deg = 5.5
+max_points_per_stroke = 200
+fade_duration = 0.001
 
 [node name="EncounterDirector" type="Node" parent="Services" unique_id=1870512182]
 script = ExtResource("40_g88bg")

@@ -14,15 +14,15 @@
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
 [ext_resource type="PackedScene" uid="uid://b18ge6bq72hf8" path="res://scenes/vfx/effects/wheel_particles_effect.tscn" id="10_lvrf2"]
-[ext_resource type="Script" uid="uid://ip4fb2moxr2s" path="res://scenes/player/player_status_controller.gd" id="10_ojawh"]
+[ext_resource type="Script" uid="uid://ip4fb2moxr2s" path="res://scripts/car/player_status_controller.gd" id="10_ojawh"]
 [ext_resource type="Texture2D" uid="uid://srlj3qwwbroa" path="res://textures/shells/rifle.jpg" id="11_2jmj4"]
 [ext_resource type="Script" uid="uid://b0ny64s5vute3" path="res://scripts/car/headlight_mode.gd" id="11_hlmode"]
 [ext_resource type="Texture2D" uid="uid://bdkm0x87b37or" path="res://textures/shells/buck.jpg" id="11_hy8se"]
-[ext_resource type="Script" uid="uid://cbrdggeh21loe" path="res://scenes/player/car_wheels.gd" id="12_bssh6"]
+[ext_resource type="Script" uid="uid://cbrdggeh21loe" path="res://scripts/car/car_wheels.gd" id="12_bssh6"]
 [ext_resource type="Texture2D" uid="uid://b5ylygv8dtf2n" path="res://textures/lights/headlight_cookie.png" id="12_hlcookie"]
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="12_t5h3w"]
 [ext_resource type="PackedScene" uid="uid://c6vfw663kn4ia" path="res://scenes/car/wheel.tscn" id="19_f0rj0"]
-[ext_resource type="Script" uid="uid://d1pyaiw7iams5" path="res://scenes/player/shell_ejector.gd" id="21_els85"]
+[ext_resource type="Script" uid="uid://d1pyaiw7iams5" path="res://scripts/car/shell_ejector.gd" id="21_els85"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
 _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
@@ -196,32 +196,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lw406")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1l60x"]
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.8
-
-[sub_resource type="Curve" id="Curve_hy8se"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmvu8"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.48235294, 0.48235294, 0.48235294, 0.6901961)
-use_particle_trails = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_7bd6b"]
-material = SubResource("StandardMaterial3D_pmvu8")
-shape = 0
-size = 0.05
-curve = SubResource("Curve_hy8se")
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bq845"]
 radius = 0.57421875
-height = 3.6735306
+height = 3.1828241
 
 [sub_resource type="Resource" id="Resource_lo1ro"]
 script = ExtResource("6_7lmdr")
@@ -365,14 +342,13 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.2
 [node name="WheelParticlesEffect2" parent="Visual/vfx/wheel_dust" unique_id=1417955025 instance=ExtResource("10_lvrf2")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.25, -0.6, 0.8)
 
-[node name="ShellEjector" type="Node3D" parent="Visual/vfx" unique_id=1221224008 node_paths=PackedStringArray("car", "emitter_9mm", "emitter_rifle", "emitter_buckshot", "trail_ejector")]
+[node name="ShellEjector" type="Node3D" parent="Visual/vfx" unique_id=1221224008 node_paths=PackedStringArray("car", "emitter_9mm", "emitter_rifle", "emitter_buckshot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.7, -0.7)
 script = ExtResource("21_els85")
 car = NodePath("../../..")
 emitter_9mm = NodePath("9mm_Ejector")
 emitter_rifle = NodePath("Rifle_Ejector")
 emitter_buckshot = NodePath("Buck_Ejector")
-trail_ejector = NodePath("Trail_Ejector")
 eject_direction = Vector3(1, 0.6, 0.3)
 eject_speed = 10.0
 direction_spread = 0.6
@@ -405,16 +381,9 @@ lifetime = 2.5
 process_material = SubResource("ParticleProcessMaterial_xq70i")
 draw_pass_1 = SubResource("ArrayMesh_wpcli")
 
-[node name="Trail_Ejector" type="GPUParticles3D" parent="Visual/vfx/ShellEjector" unique_id=440265686]
-emitting = false
-amount = 32
-lifetime = 2.5
-trail_enabled = true
-process_material = SubResource("ParticleProcessMaterial_1l60x")
-draw_pass_1 = SubResource("RibbonTrailMesh_7bd6b")
-
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Visual/vfx/ShellEjector" unique_id=692104172]
 transform = Transform3D(8.3858595, 0, 0, 0, 0.63731766, 0, 0, 0, 9.64512, 0, -1.8400469, 0)
+visible = false
 
 [node name="ForwardLights" type="Node3D" parent="Visual" unique_id=1230302799]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -2.15)
@@ -498,10 +467,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.7, 1.1)
 [node name="Wheel" parent="Visual/WheelContainer/Wheel_RR" unique_id=530509797 instance=ExtResource("19_f0rj0")]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
 
+[node name="SpeedTrailPointContainer" type="Node3D" parent="Visual" unique_id=1145005436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.245, 0)
+
+[node name="SpeedTrailPointL" type="Marker3D" parent="Visual/SpeedTrailPointContainer" unique_id=647454470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.09086355, 0.65638626)
+
+[node name="SpeedTrailPointR" type="Marker3D" parent="Visual/SpeedTrailPointContainer" unique_id=1377149483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.09086355, 0.65638626)
+
+[node name="SpeedTrailPointL2" type="Marker3D" parent="Visual/SpeedTrailPointContainer" unique_id=366586177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.1, -1.7)
+
+[node name="SpeedTrailPointR2" type="Marker3D" parent="Visual/SpeedTrailPointContainer" unique_id=1949899320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, -0.1, -1.7)
+
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -7.7095095e-09, 0.076373)
 shape = SubResource("CapsuleShape3D_bq845")
 
 [node name="Inventory" type="Node" parent="." unique_id=1206716850]
