@@ -10,6 +10,7 @@ func _ready():
 	
 	PauseManager.pause_state_changed.connect(_on_pause_state_changed)
 	continue_btn.pressed.connect(_on_continue_pressed)
+	exit_btn.pressed.connect(_on_quit_pressed)
 
 
 func _on_pause_state_changed():
@@ -19,6 +20,10 @@ func _on_pause_state_changed():
 func _on_continue_pressed():
 	PauseManager.set_paused(false)
 	check_visible()
+
+
+func _on_quit_pressed():
+	get_tree().quit(0)
 
 
 func check_visible():
