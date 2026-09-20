@@ -15,6 +15,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	var real_transform := car.player_cam.global_transform
+	car.player_cam.global_transform = car.player_cam.get_aim_transform()
+
 	var mouse_pos := get_viewport().get_mouse_position()
 	var origin := car.player_cam.project_ray_origin(mouse_pos)
 	var direction := car.player_cam.project_ray_normal(mouse_pos)
@@ -57,3 +60,5 @@ func _process(_delta: float) -> void:
 	secondary_reticle_screen_pos = car.player_cam.unproject_position(target) if is_locked_on else mouse_pos
 
 	weapon_pivot.look_at(target)
+
+	car.player_cam.global_transform = real_transform

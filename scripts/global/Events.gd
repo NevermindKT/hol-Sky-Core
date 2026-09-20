@@ -3,7 +3,7 @@ extends Node
 #-------------- PLAYER
 signal player_died
 signal player_heal(heal: float)
-signal player_take_damage(damage: float)
+signal player_take_damage(damage: float, source_position: Vector3)
 signal player_health_changed(value: float)
 signal player_stamina_changed(value: float)
 

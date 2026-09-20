@@ -80,7 +80,7 @@ var _current_grip := 1.0
 
 
 @export_category("Exports")
-@export var player_cam: Camera3D
+@export var player_cam: Player_Camera
 @export var back_lights: BackLights
 
 @export var cam_pivot: Node3D
@@ -298,6 +298,7 @@ func _check_dodge_hit(direction: float) -> void:
 		var lateral := global_transform.basis.x * direction
 		var hit_direction := (forward + lateral * dodge_hit_spray_lateral).normalized()
 		enemy.on_dodge_hit(dodge_damage, knockback, enemy.global_position, hit_direction, self)
+		player_cam.apply_outgoing_hit(enemy.global_position, dodge_damage)
 		dodge_already_hit.append(enemy)
 
 
@@ -309,6 +310,7 @@ func process_enemies_hits() -> void:
 		if collider.is_in_group("Enemy"):
 			var hit_data := create_hit_data(collision.get_position(), collision.get_normal())
 			collider.on_car_hit(hit_data)
+			player_cam.apply_outgoing_hit(collision.get_position(), base_damage)
 
 
 func create_hit_data(contact_point: Vector3, contact_normal: Vector3) -> HitData:

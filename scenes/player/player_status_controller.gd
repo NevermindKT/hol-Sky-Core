@@ -20,7 +20,7 @@ func heal(heal_value: float) -> void:
 	Events.player_health_changed.emit(current_health)
 
 
-func take_damage(damage_value: float) -> void:
+func take_damage(damage_value: float, _source_position: Vector3 = Vector3.ZERO) -> void:
 	print("Player taked damage!")
 
 	if current_health > max_health * 0.1:
