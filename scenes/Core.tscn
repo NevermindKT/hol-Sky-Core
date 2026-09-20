@@ -80,13 +80,19 @@ lateral_damping = 20.0
 yaw_gain_deg = 1.7
 yaw_max_deg = 8.0
 yaw_smoothing = 4.0
-distance_max = 8.0
-height_min = 5.0
-height_max = 6.0
-aim_lean_horizontal = 3.0
+fov_min = 80.0
+distance_max = 6.0
+height_max = 8.0
+accel_distance_push = 0.8
+accel_fov_push = 3.0
+brake_distance_push = 0.2
+aim_lean_horizontal = 1.0
 aim_lean_vertical = 0.6
-aim_lean_yaw_deg = 5.0
-aim_lean_pitch_deg = 14.0
+aim_lean_yaw_deg = 4.0
+aim_lean_pitch_deg = 6.0
+headlights_far_height_offset = -2.0
+headlights_far_distance_offset = 1.0
+flashlight_far_lean_multiplier = 2.5
 
 [node name="UI" type="Node" parent="." unique_id=290003646]
 
