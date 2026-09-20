@@ -305,7 +305,7 @@ func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, dire
 
 func hit_player(body: Node3D) -> void:
 	print("PLAYER HIT")
-	Events.player_take_damage.emit(enemy_data.attack_damage)
+	Events.player_take_damage.emit(enemy_data.attack_damage, global_position)
 
 	var car := body as Car_Movement
 	if car:

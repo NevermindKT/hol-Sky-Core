@@ -228,9 +228,10 @@ far_attenuation = 0.4
 far_volumetric_fog_energy = 0.1
 
 [node name="CarModel" parent="Visual" unique_id=572652591 instance=ExtResource("11_lvrf2")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.10080814, 0, 0)
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3334162)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.37429312, -0.11708379)
