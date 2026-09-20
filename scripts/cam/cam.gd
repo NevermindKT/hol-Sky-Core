@@ -55,6 +55,15 @@ class_name Player_Camera
 @export var aim_lean_yaw_deg := 3.0
 @export var aim_lean_pitch_deg := 2.0
 
+@export_group("Headlight-Linked Presets")
+@export var headlights_preset_smoothing := 2.5
+@export var headlights_far_height_offset := -1.5
+@export var headlights_far_distance_offset := 0.0
+
+@export_group("Flashlight-Linked Aim Lean")
+@export var flashlight_preset_smoothing := 2.5
+@export var flashlight_far_lean_multiplier := 1.8
+
 # Layer 1: lateral spring follow + yaw/roll
 var _cam_x := 0.0
 var _lateral_vel := 0.0
@@ -87,10 +96,26 @@ var _aim_transform := Transform3D()
 # Cosmetic render-only lean towards where the reticle points on screen
 var _aim_lean := Vector2.ZERO
 
+# Headlight/flashlight near-far mode state + smoothed 0..1 blends (0 = near, 1 = far)
+var _headlights_far_mode := false
+var _flashlight_far_mode := false
+var _headlights_blend := 0.0
+var _flashlight_blend := 0.0
+
 
 func _ready() -> void:
 	_cam_x = global_position.x
 	Events.player_take_damage.connect(_on_player_take_damage)
+	InputController.headlights_toggle.connect(_on_headlights_toggle)
+	InputController.flashlight_toggle.connect(_on_flashlight_toggle)
+
+
+func _on_headlights_toggle() -> void:
+	_headlights_far_mode = !_headlights_far_mode
+
+
+func _on_flashlight_toggle() -> void:
+	_flashlight_far_mode = !_flashlight_far_mode
 
 
 func _physics_process(delta: float) -> void:
@@ -99,6 +124,7 @@ func _physics_process(delta: float) -> void:
 	_process_input_push(delta)
 	_process_impact(delta)
 	_process_aim_lean(delta)
+	_process_light_mode_blends(delta)
 
 	var forward := -car.global_transform.basis.z
 	var stable_transform := _build_base_transform(forward, _distance_base, _height_base)
@@ -110,13 +136,14 @@ func _physics_process(delta: float) -> void:
 
 	_aim_transform = stable_transform.interpolate_with(full_transform, aim_shake_influence)
 
+	var lean_multiplier: float = lerp(1.0, flashlight_far_lean_multiplier, _flashlight_blend)
 	var render_transform := full_transform
 	render_transform.origin += (
-		full_transform.basis.x * (_aim_lean.x * aim_lean_horizontal)
-		+ full_transform.basis.y * (-_aim_lean.y * aim_lean_vertical)
+		full_transform.basis.x * (_aim_lean.x * aim_lean_horizontal * lean_multiplier)
+		+ full_transform.basis.y * (-_aim_lean.y * aim_lean_vertical * lean_multiplier)
 	)
-	render_transform = render_transform.rotated_local(Vector3.UP, -_aim_lean.x * deg_to_rad(aim_lean_yaw_deg))
-	render_transform = render_transform.rotated_local(Vector3.RIGHT, -_aim_lean.y * deg_to_rad(aim_lean_pitch_deg))
+	render_transform = render_transform.rotated_local(Vector3.UP, -_aim_lean.x * deg_to_rad(aim_lean_yaw_deg) * lean_multiplier)
+	render_transform = render_transform.rotated_local(Vector3.RIGHT, -_aim_lean.y * deg_to_rad(aim_lean_pitch_deg) * lean_multiplier)
 	global_transform = render_transform
 
 	var mod_fov_min := UpgradeManager.get_modified(&"camera_fov", fov_min)
@@ -143,8 +170,13 @@ func _process_lateral_follow(delta: float) -> void:
 
 func _process_speed_feel(delta: float) -> void:
 	_speed_feel = lerp(_speed_feel, car.get_speed_ratio(), 1.0 - exp(-speed_feel_smoothing * delta))
-	_distance_base = lerp(distance_min, distance_max, _speed_feel)
-	_height_base = lerp(height_min, height_max, _speed_feel)
+	_distance_base = lerp(distance_min, distance_max, _speed_feel) + headlights_far_distance_offset * _headlights_blend
+	_height_base = lerp(height_min, height_max, _speed_feel) + headlights_far_height_offset * _headlights_blend
+
+
+func _process_light_mode_blends(delta: float) -> void:
+	_headlights_blend = lerp(_headlights_blend, 1.0 if _headlights_far_mode else 0.0, 1.0 - exp(-headlights_preset_smoothing * delta))
+	_flashlight_blend = lerp(_flashlight_blend, 1.0 if _flashlight_far_mode else 0.0, 1.0 - exp(-flashlight_preset_smoothing * delta))
 
 
 func _build_base_transform(forward: Vector3, distance: float, height: float) -> Transform3D:
@@ -152,9 +184,6 @@ func _build_base_transform(forward: Vector3, distance: float, height: float) -> 
 	var pos := pivot - forward * distance + Vector3.UP * height
 	pos.x = _cam_x
 
-	# Дивимось на точку з X камери (а не реального pivot), щоб відставання по X
-	# саме по собі не створювало прихований, непідконтрольний Inspector-параметрам
-	# розворот — єдине джерело yaw має бути явне, нижче.
 	var look_target := Vector3(pos.x, pivot.y, pivot.z)
 	var t := Transform3D(Basis(), pos).looking_at(look_target, Vector3.UP)
 	t = t.rotated_local(Vector3.UP, _yaw)
