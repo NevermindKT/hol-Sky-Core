@@ -6,9 +6,17 @@ var damage: float
 var gravity_scale := 1.0
 var projectile_speed: float
 var projectile_distance: float
+var impact_effect_scene: PackedScene
+var shooter_rid: RID
 
 const GRAVITY := Vector3.DOWN * 9.81
 const CRIT_DAMAGE_MULTIPLIER := 2.0
+const IMPACT_EFFECT_SIZE := 0.15
+
+const COLLISION_MASK_OBSTACLE := 1
+const COLLISION_MASK_HURT_BOX := 2
+const COLLISION_MASK_ROAD := 4
+const COLLISION_MASK := COLLISION_MASK_OBSTACLE | COLLISION_MASK_HURT_BOX | COLLISION_MASK_ROAD
 
 var velocity: Vector3
 var start_position: Vector3
@@ -17,7 +25,7 @@ var bounces_left := 0
 var hit_enemies: Array[Encounter_Enemy] = []
 
 
-func initialize(data: WeaponData, direction: Vector3) -> void:
+func initialize(data: WeaponData, direction: Vector3, shooter: CollisionObject3D = null) -> void:
 	start_position = global_position
 
 	damage = UpgradeManager.get_modified(&"weapon_damage", data.damage)
@@ -29,7 +37,11 @@ func initialize(data: WeaponData, direction: Vector3) -> void:
 	gravity_scale = data.gravity_scale
 	projectile_speed = data.projectile_speed
 	projectile_distance = data.projectile_distance
+	impact_effect_scene = data.impact_effect_scene
 	bounces_left = int(UpgradeManager.get_modified(&"bullet_ricochet", 0.0))
+
+	if shooter:
+		shooter_rid = shooter.get_rid()
 
 	velocity = direction.normalized() * projectile_speed
 
@@ -73,10 +85,12 @@ func check_collision(
 		to
 	)
 
-	#query.exclude = [get_rid()]
+	if shooter_rid.is_valid():
+		query.exclude = [shooter_rid]
 
 	query.collide_with_areas = true
-	query.collide_with_bodies = false
+	query.collide_with_bodies = true
+	query.collision_mask = COLLISION_MASK
 
 	return get_world_3d().direct_space_state.intersect_ray(query)
 
@@ -100,6 +114,11 @@ func handle_hit(hit: Dictionary) -> void:
 
 			if bounces_left > 0 and _try_ricochet(enemy):
 				return
+	elif impact_effect_scene and collider.collision_layer & COLLISION_MASK_ROAD != 0:
+		var effect := impact_effect_scene.instantiate() as Muzzle_flash
+		ProjectileSpawner.world.world.add_child(effect)
+		effect.global_position = hit.position
+		effect.play(true, IMPACT_EFFECT_SIZE)
 
 	queue_free()
 
