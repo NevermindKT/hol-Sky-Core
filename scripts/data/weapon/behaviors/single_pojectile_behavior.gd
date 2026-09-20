@@ -7,7 +7,8 @@ func fire(controller: Weapon_controller):
 	
 	ProjectileSpawner.spawn_single(
 		controller.current_weapon.data,
-		spawn_transform
+		spawn_transform,
+		controller.get_parent()
 	)
 
 func _apply_spread(basis: Basis, spread_radians: float) -> Basis:

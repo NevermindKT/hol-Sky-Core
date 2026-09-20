@@ -28,3 +28,4 @@ class_name WeaponData
 @export_category("Exports")
 @export var fire_behavior: Fire_behavior
 @export var projectile_scene: PackedScene
+@export var impact_effect_scene: PackedScene
