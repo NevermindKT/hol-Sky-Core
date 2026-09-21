@@ -46,6 +46,7 @@ var _speed_multiplier := 1.0
 
 @onready var damage_hit_box: HurtBox = $DamageHitBox
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+@onready var star_stun_effect: Star_Stun_Effect = $StunEffectPoint/StarStunEffect
 
 
 func _ready() -> void:
@@ -179,12 +180,14 @@ func start_stun() -> void:
 	stun_meter = 0.0
 	knockback_velocity = Vector3.ZERO
 	_set_stunned(true)
+	star_stun_effect.play()
 
 
 func end_stun() -> void:
 	state = State.FOLLOW
 	attack_timer = enemy_data.attack_delay
 	_set_stunned(false)
+	star_stun_effect.stop()
 
 
 func decay_stun(delta: float) -> void:
@@ -295,6 +298,7 @@ func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, dire
 
 	_set_warning(false)
 	_set_stunned(false)
+	star_stun_effect.stop()
 	encounter.end_attak(self)
 	_spawn_dodge_hit_effect(hit_position, direction, car)
 

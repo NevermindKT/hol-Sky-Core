@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dwokpbc2dcvql" path="res://scripts/enemy/encounter_enemy.gd" id="1_y00ui"]
 [ext_resource type="Script" uid="uid://g4df0lxn27jv" path="res://scripts/enemy/Hurt_Box.gd" id="2_klukj"]
+[ext_resource type="PackedScene" uid="uid://dokwn375ku70y" path="res://scenes/vfx/components/star_stun_effect.tscn" id="3_star_stun"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23cp2"]
 shading_mode = 0
@@ -26,3 +27,8 @@ script = ExtResource("2_klukj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageHitBox" unique_id=2006601052]
 shape = SubResource("CapsuleShape3D_elpsl")
+
+[node name="StunEffectPoint" type="Marker3D" parent="." unique_id=812962811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2330573, 0)
+
+[node name="StarStunEffect" parent="StunEffectPoint" instance=ExtResource("3_star_stun")]
