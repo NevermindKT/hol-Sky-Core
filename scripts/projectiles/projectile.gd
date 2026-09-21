@@ -11,7 +11,8 @@ var shooter_rid: RID
 
 const GRAVITY := Vector3.DOWN * 9.81
 const CRIT_DAMAGE_MULTIPLIER := 2.0
-const IMPACT_EFFECT_SIZE := 0.15
+const ROAD_IMPACT_EFFECT_SIZE := 0.15
+const RICOCHET_IMPACT_EFFECT_SIZE := 0.5
 
 const COLLISION_MASK_OBSTACLE := 1
 const COLLISION_MASK_HURT_BOX := 2
@@ -118,7 +119,7 @@ func handle_hit(hit: Dictionary) -> void:
 		var effect := impact_effect_scene.instantiate() as Muzzle_flash
 		ProjectileSpawner.world.world.add_child(effect)
 		effect.global_position = hit.position
-		effect.play(true, IMPACT_EFFECT_SIZE)
+		effect.play(true, ROAD_IMPACT_EFFECT_SIZE)
 
 	queue_free()
 
@@ -130,6 +131,12 @@ func _try_ricochet(enemy: Encounter_Enemy) -> bool:
 		return false
 
 	var target: Encounter_Enemy = candidates[randi() % candidates.size()]
+
+	if impact_effect_scene:
+		var effect := impact_effect_scene.instantiate() as Muzzle_flash
+		enemy.add_child(effect)
+		effect.global_position = global_position
+		effect.play(true, RICOCHET_IMPACT_EFFECT_SIZE)
 
 	bounces_left -= 1
 	start_position = global_position
