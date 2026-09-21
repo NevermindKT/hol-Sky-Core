@@ -184,9 +184,9 @@ lateral_offset = 1.5
 script = ExtResource("41_armwj")
 stroke_scene = ExtResource("42_27c6g")
 min_speed_ratio = 0.65
-turn_angle_threshold_deg = 5.5
+turn_angle_threshold_deg = 6.2
 max_points_per_stroke = 200
-fade_duration = 0.001
+fade_duration = 1.0
 
 [node name="EncounterDirector" type="Node" parent="Services" unique_id=1870512182]
 script = ExtResource("40_g88bg")
