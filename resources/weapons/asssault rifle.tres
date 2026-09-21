@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bt3acygnr2ji2" path="res://scenes/projectiles/bullet.tscn" id="2_5ldh7"]
 [ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://scripts/data/weapon/weapon_data.gd" id="3_iut23"]
 [ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="4_impef"]
+[ext_resource type="Resource" path="res://resources/vfx/bullet_trails/assault_rifle_trail.tres" id="5_trail"]
 
 [sub_resource type="Resource" id="Resource_qv38y"]
 script = ExtResource("1_j5bc3")
@@ -26,4 +27,5 @@ bloom_recovery_rate = 0.35
 fire_behavior = SubResource("Resource_qv38y")
 projectile_scene = ExtResource("2_5ldh7")
 impact_effect_scene = ExtResource("4_impef")
+trail_data = ExtResource("5_trail")
 metadata/_custom_type_script = "uid://di37ui7h2d4v3"

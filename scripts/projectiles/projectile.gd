@@ -25,6 +25,8 @@ var start_position: Vector3
 var bounces_left := 0
 var hit_enemies: Array[Encounter_Enemy] = []
 
+@onready var trail: BulletTrail = $BulletTrail
+
 
 func initialize(data: WeaponData, direction: Vector3, shooter: CollisionObject3D = null) -> void:
 	start_position = global_position
@@ -45,6 +47,11 @@ func initialize(data: WeaponData, direction: Vector3, shooter: CollisionObject3D
 		shooter_rid = shooter.get_rid()
 
 	velocity = direction.normalized() * projectile_speed
+
+	if data.trail_data:
+		trail.data = data.trail_data
+
+	trail.sync_to_projectile(self)
 
 
 func _physics_process(delta: float) -> void:

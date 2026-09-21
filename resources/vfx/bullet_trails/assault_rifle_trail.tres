@@ -1,12 +1,11 @@
-[gd_resource type="Resource" script_class="BulletTrailData" format=3 uid="uid://cirkploy4fpj7"]
+[gd_resource type="Resource" script_class="BulletTrailData" format=3 uid="uid://cfo06j11eq34t"]
 
 [ext_resource type="Script" uid="uid://b0cvm8gyffx4j" path="res://resources/vfx/bullet_trail_data.gd" id="1_ok4w8"]
 
 [resource]
 script = ExtResource("1_ok4w8")
-width = 0.02
 length = 2.0
 color = Color(0.7111955, 0.5542223, 0, 1)
-tail_width = 0.5
-core_size = 0.5
-emission_strength = 4.0
+core_size = 1.0
+emission_strength = 5.0
+metadata/_custom_type_script = "uid://b0cvm8gyffx4j"

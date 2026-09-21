@@ -1,6 +1,6 @@
 shader_type spatial;
 
-render_mode unshaded, blend_add, cull_disabled, depth_draw_never, particle_trails;
+render_mode unshaded, blend_add, cull_disabled, depth_draw_never;
 
 uniform vec4 trail_color : source_color = vec4(1.0);
 
@@ -12,18 +12,15 @@ uniform float emission_strength : hint_range(0.0, 5.0) = 1.0;
 void fragment()
 {
 	float alpha_length = UV.y;
-
 	float width_scale = mix(tail_width, 1.0, UV.y);
-	float dist = abs(UV.x - 0.5) * 2.0 / width_scale;
 
+	float dist = 1.0 - abs(dot(normalize(NORMAL), normalize(VIEW)));
 	float glow = 1.0 - smoothstep(0.0, glow_size, dist);
 	float core = 1.0 - smoothstep(0.0, core_size, dist);
 
-	float alpha = alpha_length * glow;
-
-	vec3 color = trail_color.rgb * (glow + core) * emission_strength;
+	vec3 color = trail_color.rgb * (0.4 + glow + core) * emission_strength;
 
 	ALBEDO = color;
 	EMISSION = color;
-	ALPHA = alpha * trail_color.a;
+	ALPHA = alpha_length * width_scale * trail_color.a;
 }

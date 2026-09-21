@@ -29,3 +29,4 @@ class_name WeaponData
 @export var fire_behavior: Fire_behavior
 @export var projectile_scene: PackedScene
 @export var impact_effect_scene: PackedScene
+@export var trail_data: BulletTrailData
