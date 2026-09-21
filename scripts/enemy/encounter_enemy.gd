@@ -8,6 +8,8 @@ enum State {
 	STUNNED
 }
 
+signal health_changed(current: float, maximum: float)
+
 @export var enemy_data: EncounterEnemyData
 
 var health: float
@@ -201,11 +203,12 @@ func reset_position() -> void:
 	local_position.z = start_z
 	global_position = encounter.to_global(local_position)
 
-# ============================ SETTERS =========================================
+# ============================ SETTERS & GETTERS================================
 
 func _set_warning(value: bool) -> void:
 	if is_warning == value:
 		return
+
 	is_warning = value
 	attack_state_changed.emit(is_warning)
 
@@ -213,8 +216,20 @@ func _set_warning(value: bool) -> void:
 func _set_stunned(value: bool) -> void:
 	if is_stunned == value:
 		return
+
 	is_stunned = value
 	stun_state_changed.emit(is_stunned)
+
+
+func get_stun_ratio() -> float:
+	if state == State.STUNNED:
+		return stun_timer / enemy_data.stun_duration
+	return stun_meter / enemy_data.stun_treshold
+
+# ============================ EMITTERS ========================================
+
+func _emit_health() -> void:
+	health_changed.emit(health, enemy_data.max_health)
 
 # ============================ COLLISION & DAMAGE ==============================
 
@@ -261,6 +276,8 @@ func take_damage(damage: float) -> void:
 	if health <= 0.0:
 		die()
 		return
+
+	_emit_health()
 
 
 func die() -> void:
