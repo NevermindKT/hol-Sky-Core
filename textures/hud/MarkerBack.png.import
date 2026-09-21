@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgkyfm7wktsbh"
-path="res://.godot/imported/dangerTriangleWarninigAlt.png-677d06f7074f72a82d539816ba2b7f77.ctex"
+uid="uid://buaf4f6de0ry3"
+path="res://.godot/imported/MarkerBack.png-bd2e2f0a9f8bdbf0315358919f569ed8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/hud/dangerTriangleWarninigAlt.png"
-dest_files=["res://.godot/imported/dangerTriangleWarninigAlt.png-677d06f7074f72a82d539816ba2b7f77.ctex"]
+source_file="res://textures/hud/MarkerBack.png"
+dest_files=["res://.godot/imported/MarkerBack.png-bd2e2f0a9f8bdbf0315358919f569ed8.ctex"]
 
 [params]
 
