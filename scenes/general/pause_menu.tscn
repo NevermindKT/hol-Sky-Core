@@ -21,14 +21,14 @@ theme_override_font_sizes/normal_font_size = 30
 text = "PAUSE"
 fit_content = true
 
-[node name="ContinueBtn" type="Button" parent="Menu" unique_id=421396324]
+[node name="ContinueBtn" type="Button" parent="Menu" unique_id=421396324 groups=["ui_buttons"]]
 layout_mode = 2
 text = "CONTINUE"
 
-[node name="OptionsBtn" type="Button" parent="Menu" unique_id=244343030]
+[node name="OptionsBtn" type="Button" parent="Menu" unique_id=244343030 groups=["ui_buttons"]]
 layout_mode = 2
 text = "OPTIONS"
 
-[node name="ExitBtn" type="Button" parent="Menu" unique_id=1041608353]
+[node name="ExitBtn" type="Button" parent="Menu" unique_id=1041608353 groups=["ui_buttons"]]
 layout_mode = 2
 text = "QUIT"

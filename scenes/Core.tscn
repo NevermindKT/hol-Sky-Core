@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road/road_manager.gd" id="7_3g18v"]
 [ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="7_mowk8"]
 [ext_resource type="Script" uid="uid://bocwaebt17tfi" path="res://scripts/data/road/obstacle_data.gd" id="7_tc8ix"]
-[ext_resource type="PackedScene" uid="uid://lq8bh03qwq4o" path="res://scenes/obstacles/testObstacle.tscn" id="8_asndc"]
+[ext_resource type="PackedScene" uid="uid://5l3jx6le81bf" path="res://scenes/obstacles/obstacle.tscn" id="8_27c6g"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="8_mowk8"]
 [ext_resource type="Resource" uid="uid://hxykvkcsp7w4" path="res://resources/weather/rain/HeavyRainProfile.tres" id="8_xwqeg"]
 [ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="9_a06ay"]
@@ -45,7 +45,8 @@
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("7_tc8ix")
-obstacle_scene = ExtResource("8_asndc")
+obstacle_scene = ExtResource("8_27c6g")
+weight = 10.0
 metadata/_custom_type_script = "uid://bocwaebt17tfi"
 
 [sub_resource type="Resource" id="Resource_dakql"]

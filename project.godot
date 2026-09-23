@@ -15,6 +15,10 @@ run/main_scene="uid://dh2trqedhmxrp"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
+
 [autoload]
 
 Events="*uid://8jnql3fu3d2y"
@@ -24,18 +28,22 @@ ProjectileSpawner="*uid://bc2hhoujpefbr"
 WeatherManager="*uid://5fu5kmhw80gh"
 UpgradeManager="*uid://bei4jn5wfufhy"
 BoostManager="*uid://dmerpx1y7qvs0"
+SoundManager="*uid://b6nq611vylrnp"
 
 [display]
 
 window/size/viewport_width=2460
 window/size/viewport_height=1040
-window/size/mode=4
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [filesystem]
 
 import/blender/enabled=false
+
+[global_group]
+
+ui_buttons="buttons_lol"
 
 [input]
 

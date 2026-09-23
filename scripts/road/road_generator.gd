@@ -11,7 +11,7 @@ var obstacle_set: Obstacles_set
 var last_segment: Road_segment
 var segments: Array[Road_segment] = []
 
-var road_dir := 0	
+var road_dir := 0
 var is_spawning := false
 
 var target_anchor: Marker3D
@@ -135,16 +135,10 @@ func _place_joint(curve: Curve3D, k: int) -> void:
 	var p_here := _cp(k)
 	var p_next := _cp(k + 1)
 
-	# Горизонталь (X, Z) — без изменений, та же аппроксимирующая B-сплайн формула
 	var joint_xz: Vector3 = (p_prev + 4.0 * p_here + p_next) / 6.0
 	var in_xz: Vector3 = (p_prev + 2.0 * p_here) / 3.0
 	var out_xz: Vector3 = (2.0 * p_here + p_next) / 3.0
 
-	# Вертикаль (Y) — взвешенный тангенс по горизонтальному расстоянию между
-	# точками, а не по количеству точек. Короткое плечо (например, короткий
-	# сегмент подъёма) влияет на наклон сильнее длинного (прямая), что убирает
-	# "занырнул/подлетел" перед и после склона — та же логика, что мы уже
-	# применяли для горизонтальных заломов на поворотах.
 	var d0: float = Vector2(p_here.x, p_here.z).distance_to(Vector2(p_prev.x, p_prev.z))
 	var d1: float = Vector2(p_next.x, p_next.z).distance_to(Vector2(p_here.x, p_here.z))
 
@@ -247,7 +241,7 @@ func spawn(scene: PackedScene):
 
 	add_curve_points(new_segment)
 	add_cosmetic_curve_points(new_segment)
-	#spawn_obstacle(new_segment)
+	spawn_obstacle(new_segment)
 	
 	last_segment = new_segment
 	
@@ -263,10 +257,9 @@ func spawn(scene: PackedScene):
 func spawn_obstacle(segment: Road_segment) -> void:
 	if segment.obstacle_placement_array.is_empty():
 		return
-
 	if randf() > obstacle_spawn_chance:
 		return
-
+	
 	var marker: Marker3D = segment.obstacle_placement_array.pick_random()
 	var data: ObstacleData = obstacle_set.obstacles[0]
 

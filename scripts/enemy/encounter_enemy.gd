@@ -270,8 +270,6 @@ func hit_player() -> void:
 
 func take_damage(damage: float) -> void:
 	health -= damage
-	print("Enemy health: ", health)
-	print("Enemy stun: ", stun_meter)
 
 	if health <= 0.0:
 		die()
