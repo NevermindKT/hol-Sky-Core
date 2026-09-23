@@ -55,15 +55,13 @@ func spawn_multiple(
 		)
 
 
-func get_spread_direction(
-	transform: Transform3D,
-	angle: float
-) -> Vector3:
+func get_spread_direction(transform: Transform3D, angle: float) -> Vector3:
+	var clean_basis := transform.basis.orthonormalized()
+	
+	var direction = -clean_basis.z
 
-	var direction = -transform.basis.z
-
-	var right = transform.basis.x
-	var up = transform.basis.y
+	var right = clean_basis.x
+	var up = clean_basis.y
 
 	var yaw = deg_to_rad(randf_range(-angle, angle))
 	var pitch = deg_to_rad(randf_range(-angle, angle))

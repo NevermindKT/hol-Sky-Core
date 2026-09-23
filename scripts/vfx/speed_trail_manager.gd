@@ -47,36 +47,36 @@ func initialize(_world: World, _car_movement: Car_Movement) -> void:
 	assert(trail_point_r2 != null, "Speed_trail_manager: не найден SpeedTrailPointR2 под Car/Visual.")
 
 
-func _process(_delta: float) -> void:
-	if world == null or car_movement == null or stroke_scene == null:
-		return
-
-	var l_active := _should_leave_mark(true)
-	var r_active := _should_leave_mark(false)
-
-	if l_active:
-		_active_l = _record_point(_active_l, trail_point_l)
-	else:
-		_finalize_stroke(_active_l)
-		_active_l = null
-
-	if r_active:
-		_active_r = _record_point(_active_r, trail_point_r)
-	else:
-		_finalize_stroke(_active_r)
-		_active_r = null
-
-	if r_active:
-		_active_r2 = _record_point(_active_r2, trail_point_r2)
-	else:
-		_finalize_stroke(_active_r2)
-		_active_r2 = null
-
-	if l_active:
-		_active_l2 = _record_point(_active_l2, trail_point_l2)
-	else:
-		_finalize_stroke(_active_l2)
-		_active_l2 = null
+#func _process(_delta: float) -> void:
+	#if world == null or car_movement == null or stroke_scene == null:
+		#return
+#
+	#var l_active := _should_leave_mark(true)
+	#var r_active := _should_leave_mark(false)
+#
+	#if l_active:
+		#_active_l = _record_point(_active_l, trail_point_l)
+	#else:
+		#_finalize_stroke(_active_l)
+		#_active_l = null
+#
+	#if r_active:
+		#_active_r = _record_point(_active_r, trail_point_r)
+	#else:
+		#_finalize_stroke(_active_r)
+		#_active_r = null
+#
+	#if r_active:
+		#_active_r2 = _record_point(_active_r2, trail_point_r2)
+	#else:
+		#_finalize_stroke(_active_r2)
+		#_active_r2 = null
+#
+	#if l_active:
+		#_active_l2 = _record_point(_active_l2, trail_point_l2)
+	#else:
+		#_finalize_stroke(_active_l2)
+		#_active_l2 = null
 
 
 func _should_leave_mark(is_left: bool) -> bool:
