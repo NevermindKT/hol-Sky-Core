@@ -28,7 +28,7 @@ var hit_enemies: Array[Encounter_Enemy] = []
 @onready var trail: BulletTrail = $BulletTrail
 
 
-func initialize(data: WeaponData, direction: Vector3, shooter: CollisionObject3D = null) -> void:
+func initialize(data: WeaponData, direction: Vector3, shooter: CollisionObject3D = null, saved: bool = false) -> void:
 	start_position = global_position
 
 	damage = UpgradeManager.get_modified(&"weapon_damage", data.damage)
@@ -50,6 +50,9 @@ func initialize(data: WeaponData, direction: Vector3, shooter: CollisionObject3D
 
 	if data.trail_data:
 		trail.data = data.trail_data
+
+	if saved:
+		trail.mark_saved()
 
 	trail.sync_to_projectile(self)
 

@@ -1,6 +1,6 @@
 extends Node
 
-const TEST_BOOST_PATH := "res://resources/upgrades/boosts/flashbang.tres"
+const TEST_BOOST_PATH := "res://resources/upgrades/boosts/time_slowdown.tres"
 
 var owned: Dictionary = {}
 var active: Array[BoostData] = []
