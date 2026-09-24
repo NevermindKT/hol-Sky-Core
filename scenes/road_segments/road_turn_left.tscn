@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ctjr5v0dqa1k5"]
 
 [ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road/road_segment.gd" id="1_a4orq"]
+[ext_resource type="PackedScene" uid="uid://cgqh5h0usixb6" path="res://scenes/road stuff/lamp.tscn" id="3_3t3sd"]
 [ext_resource type="Material" uid="uid://da2ii174l228d" path="res://resources/road/road_asphalt_material.tres" id="5_asphalt"]
 
 [sub_resource type="Curve3D" id="Curve3D_a4orq"]
@@ -54,5 +55,9 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 17.5)
 size = Vector3(16.053467, 0.2, 54.964966)
 
 [node name="GPUParticlesCollisionBox3D2" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=495446964]
-transform = Transform3D(0.9063075, 0, -0.42261818, 0, 1, 0, 0.42261818, 0, 0.9063075, -6, 0, 35.5)
-size = Vector3(16.053467, 0.2, 27.389542)
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.768723)
+size = Vector3(16.053467, 0.5, 67.50241)
+
+[node name="Lamp" parent="." unique_id=408193673 instance=ExtResource("3_3t3sd")]
+transform = Transform3D(-0.4226184, 0, 0.9063079, 0, 1, 0, -0.9063079, 0, -0.4226184, -4, 0, 39)
+

@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt3je2u6btjkc"
-path.s3tc="res://.godot/imported/Car_all in one srink.jpg-29cd468e63be93d5af0c3867e6dd1bdb.s3tc.ctex"
+uid="uid://bfyfl2bljgfpq"
+path.s3tc="res://.godot/imported/windTrail.png-b6351c7798d8c60355212834d06be1eb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "80a2e7e4270cb08fffd811051aca6369"
-}
 
 [deps]
 
-source_file="res://models/car/Car_all in one srink.jpg"
-dest_files=["res://.godot/imported/Car_all in one srink.jpg-29cd468e63be93d5af0c3867e6dd1bdb.s3tc.ctex"]
+source_file="res://textures/vfx/windTrail.png"
+dest_files=["res://.godot/imported/windTrail.png-b6351c7798d8c60355212834d06be1eb.s3tc.ctex"]
 
 [params]
 

@@ -2,6 +2,7 @@
 extends Node3D
 class_name Road_segment
 
+@export_category("General")
 @export var anchor: Marker3D
 @export var origin: Marker3D
 
@@ -13,6 +14,7 @@ class_name Road_segment
 
 var obstacle_placement_array: Array[Marker3D] = []
 
+@export_category("Obstacles")
 @export var obstacles: Node
 
 var polygon: CSGPolygon3D

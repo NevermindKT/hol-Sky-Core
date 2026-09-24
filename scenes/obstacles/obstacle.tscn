@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://5l3jx6le81bf"]
 
 [ext_resource type="Script" uid="uid://r85sossbxqx1" path="res://scripts/obstacles/obstacle.gd" id="1_hof70"]
+[ext_resource type="PackedScene" uid="uid://cb2ks3jnsixkx" path="res://models/obstacles/obstacle-full.glb" id="2_fmab6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
 height = 4.687561
@@ -15,6 +16,10 @@ damage_dealt = 20.0
 transform = Transform3D(-3.934025e-08, -0.9, 0, 0.9, -3.934025e-08, 0, 0, 0, 0.9, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_10jsn")
 
+[node name="obstacle-full" parent="." unique_id=1596723705 instance=ExtResource("2_fmab6")]
+transform = Transform3D(-2.928663e-08, 0, 0.67, 0, 0.67, 0, -0.67, 0, -2.928663e-08, 0, -0.2, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=747052416]
 transform = Transform3D(4.5, 0, 0, 0, 0.6, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_10jsn")

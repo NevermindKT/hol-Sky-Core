@@ -5,7 +5,7 @@ class_name Multiple_projectile_behavior
 func fire(controller: Weapon_controller, saved: bool = false):
 	ProjectileSpawner.spawn_multiple(
 		controller.current_weapon.data,
-		controller.fire_point.global_transform,
+		controller.gun.gun_point.global_transform,
 		controller.get_parent(),
 		saved
 	)

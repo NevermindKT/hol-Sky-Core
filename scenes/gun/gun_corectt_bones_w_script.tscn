@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c8tku17coynfk"]
+
+[ext_resource type="PackedScene" uid="uid://bsmxhfayjli36" path="res://models/gun/gun_corectt_bones.glb" id="1_83di4"]
+[ext_resource type="Script" uid="uid://bk3hmvv5f73dm" path="res://turret_move.gd" id="2_qxpl3"]
+[ext_resource type="PackedScene" uid="uid://dkfytgkhgo0oy" path="res://scenes/gun/gun_con.tscn" id="3_qxpl3"]
+
+[node name="gun_corectt_bones" unique_id=592126233 node_paths=PackedStringArray("gun", "bolt") instance=ExtResource("1_83di4")]
+script = ExtResource("2_qxpl3")
+gun = NodePath("GunArmature/Skeleton3D/GunBone")
+bolt = NodePath("GunArmature/Skeleton3D/BoltBone")
+
+[node name="GunCon" parent="GunArmature" parent_id_path=PackedInt32Array(313522688) index="1" unique_id=567497408 instance=ExtResource("3_qxpl3")]
+transform = Transform3D(1, 0, 0, 0, -4.3711395e-08, -1, 0, 1, -4.3711395e-08, 0, 3.85, -0.2)

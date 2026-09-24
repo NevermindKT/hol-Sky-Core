@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bjrdx1iatvjhs"]
+
+[ext_resource type="Script" uid="uid://clwm05aooh338" path="res://scripts/road/road_segment.gd" id="1_3pfom"]
+[ext_resource type="Texture2D" uid="uid://b4q0amljkd0fy" path="res://textures/roads/roadTest.jpg" id="1_5hnqc"]
+[ext_resource type="Material" uid="uid://da2ii174l228d" path="res://resources/road/road_asphalt_material.tres" id="2_3pfom"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw7st"]
+albedo_texture = ExtResource("1_5hnqc")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_10jsn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tn0y"]
+albedo_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4kxuq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4kxuq"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="Curve3D" id="Curve3D_fladq"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 18.370417, 0, 0.05, -10, 0, 0, -18.370417, 0, 0, 0, 0, -3.45, 45),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="RoadDownhill" type="Node3D" unique_id=2100877904 node_paths=PackedStringArray("anchor", "origin", "road_path")]
+script = ExtResource("1_3pfom")
+anchor = NodePath("Anchor")
+origin = NodePath("Origin")
+road_path = NodePath("RoadPath")
+weight = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=576532607]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+layers = 3
+material_override = SubResource("StandardMaterial3D_pw7st")
+mesh = SubResource("PlaneMesh_10jsn")
+surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1149396445]
+collision_layer = 2
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_4kxuq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1045597100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_4kxuq")
+
+[node name="Anchor" type="Marker3D" parent="." unique_id=1915806667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 45)
+
+[node name="Origin" type="Marker3D" parent="." unique_id=1522548629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=1608775228]
+transform = Transform3D(3, 0, 0, 0, 1.096, 0, 0, 0, 1.096, 0, 0.3, 17.5)
+size = Vector3(16.053467, 0.5, 54.964966)
+
+[node name="Obstacles" type="Node" parent="." unique_id=1283524179]
+
+[node name="ObstaclePlacement1" type="Marker3D" parent="Obstacles" unique_id=1663887939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 1, 3)
+
+[node name="ObstaclePlacement2" type="Marker3D" parent="Obstacles" unique_id=1056441016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 1, 3)
+
+[node name="RoadPath" type="Path3D" parent="." unique_id=1904956768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+curve = SubResource("Curve3D_fladq")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=1358451266]
+material_override = ExtResource("2_3pfom")
+polygon = PackedVector2Array(-8, 0, -8, 0.05, 8, 0.05, 8, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false

@@ -9,6 +9,8 @@ class_name Enemy_Encounter
 @export_category("Formation")
 @export var formation_spacing := 3.0
 
+@export_category("Spawn")
+@export var offscreen_spawn_distance := 12.0
 
 @export_category("Attack Queue")
 @export var attack_cooldown := 1.0
@@ -90,21 +92,26 @@ func add_enemy(enemy_data: EncounterEnemyData) -> Encounter_Enemy:
 			"Enemy_Encounter: enemy_scene does not have Encounter_Enemy script!"
 		)
 		return null
-
+	
 	add_child(enemy)
 	enemies.append(enemy)
 	current_weight += enemy_data.weight
-
-	enemy.initialize(
-		player,
-		self,
-		enemy_data
-	)
-
-	is_battle = true
+	
+	enemy.initialize(player, self, enemy_data)
 	_reflow_formation()
-
+	_spawn_offscreen(enemy)
+	
+	is_battle = true
+	
 	return enemy
+
+
+func _spawn_offscreen(enemy: Encounter_Enemy) -> void:
+	var side = sign(enemy.formation_offset)
+	if side == 0.0:
+		side = 1.0 if randf() < 0.5 else -1.0
+
+	enemy.global_position.x = player.global_position.x + side * offscreen_spawn_distance
 
 
 func remove_enemy(enemy: Encounter_Enemy) -> void:
