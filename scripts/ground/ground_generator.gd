@@ -6,11 +6,11 @@ var world: World
 var vegetation: Vegetation_scatter
 
 const TILE_LENGTH := 20.0
-const MAX_TILES := 15
+const MAX_TILES := 25
 const UNLOAD_DISTANCE := 40.0
 
 const ROAD_HALF_WIDTH := 7.5
-const GROUND_HALF_WIDTH := 80.0
+const GROUND_HALF_WIDTH := 300.0
 
 const LENGTH_STEPS := 12
 const WIDTH_STEPS := 12

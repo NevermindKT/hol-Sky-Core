@@ -8,7 +8,6 @@
 [ext_resource type="Material" uid="uid://67ujeeqcjmgj" path="res://addons/Tree3D/Materials/trunk_mat.tres" id="5_up8y2"]
 [ext_resource type="Material" uid="uid://7hn25igvds42" path="res://addons/Tree3D/Materials/twig_mat.tres" id="6_hxdta"]
 [ext_resource type="PackedScene" uid="uid://ci5h063crfw3b" path="res://scenes/weather/components/lightning_spawn_area.tscn" id="7_xqc34"]
-[ext_resource type="PackedScene" uid="uid://ck5eo0ch0lb4t" path="res://scenes/weather/components/distance_fog.tscn" id="8_aju6d"]
 
 [sub_resource type="Resource" id="Resource_mw6jw"]
 script = ExtResource("4_287a4")
@@ -73,8 +72,6 @@ transform = Transform3D(0.99938095, 0.016204618, -0.031229435, -0.0052247057, 0.
 
 [node name="LightningSpawnArea" parent="." unique_id=1643506361 instance=ExtResource("7_xqc34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -71.189)
-
-[node name="DistanceFog" parent="." unique_id=1400367543 instance=ExtResource("8_aju6d")]
 
 [node name="Cubes" type="Node3D" parent="." unique_id=1834425357]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.3214417)
