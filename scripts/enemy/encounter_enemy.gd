@@ -9,6 +9,8 @@ enum State {
 }
 
 @export var enemy_data: EncounterEnemyData
+@export var thermal_material: StandardMaterial3D
+@export var poison_effect: GPUParticles3D
 
 var health: float
 var is_active := false
@@ -21,6 +23,12 @@ var stun_meter: float = 0.0
 var stun_timer := 0.0
 var is_stunned := false
 
+const HIT_SLOW_DURATION := 2.0
+var slow_timer := 0.0
+
+var poison_timer := 0.0
+var poison_dps := 0.0
+
 var player: Node3D
 var encounter: Enemy_Encounter
 
@@ -28,19 +36,30 @@ var start_z: float
 var attack_timer := 0.0
 var state := State.FOLLOW
 
-var dash_timer := 0.0
+var dash_distance_left := 0.0
 var is_warning := false
 var dash_direction := Vector3.ZERO
 
 var knockback_drag := 8.0
 var knockback_velocity := Vector3.ZERO
 
+var _speed_multiplier := 1.0
+
 @onready var damage_hit_box: HurtBox = $DamageHitBox
+@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+@onready var star_stun_effect: Star_Stun_Effect = $StunEffectPoint/StarStunEffect
 
 
 func _ready() -> void:
 	damage_hit_box.body_entered.connect(_on_attack_area_body_entered)
 	damage_hit_box.hit.connect(_on_hit)
+
+	Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
+	_on_thermal_vision_changed(Events.thermal_vision_active)
+
+
+func _on_thermal_vision_changed(active: bool) -> void:
+	mesh_instance.material_override = thermal_material if active else null
 
 
 func initialize(target_player: Node3D, target_encounter: Enemy_Encounter, data: EncounterEnemyData) -> void:
@@ -59,6 +78,8 @@ func activate() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	_speed_multiplier = _current_speed_multiplier()
+	
 	if not is_active:
 		return
 	if player == null:
@@ -66,7 +87,13 @@ func _physics_process(delta: float) -> void:
 	
 	if state != State.STUNNED:
 		decay_stun(delta)
-	
+
+	if slow_timer > 0.0:
+		slow_timer = max(0.0, slow_timer - delta)
+
+	if poison_timer > 0.0:
+		update_poison(delta)
+
 	match state:
 		State.FOLLOW:
 			update_movement(delta)
@@ -81,14 +108,15 @@ func _physics_process(delta: float) -> void:
 # ============================ STATE UPDATES ===================================
 
 func update_movement(delta: float) -> void:
+
 	var target_x := player.global_position.x + formation_offset
 	global_position.x = move_toward(
 		global_position.x,
 		target_x,
-		enemy_data.move_speed * delta
+		enemy_data.move_speed * _speed_multiplier * delta
 	)
-	
-	_move_toward_start_z(delta)
+
+	_move_toward_start_z(delta, _speed_multiplier)
 
 
 func update_attack(delta: float) -> void:
@@ -114,9 +142,10 @@ func update_knockback(delta: float) -> void:
 
 
 func update_dash(delta: float) -> void:
-	dash_timer -= delta
-	global_position += dash_direction * enemy_data.dash_speed * delta
-	if dash_timer <= 0.0:
+	var step := enemy_data.dash_speed * _speed_multiplier * delta
+	global_position += dash_direction * step
+	dash_distance_left -= step
+	if dash_distance_left <= 0.0:
 		end_dash()
 
 
@@ -152,12 +181,14 @@ func start_stun() -> void:
 	stun_meter = 0.0
 	knockback_velocity = Vector3.ZERO
 	_set_stunned(true)
+	star_stun_effect.play()
 
 
 func end_stun() -> void:
 	state = State.FOLLOW
 	attack_timer = enemy_data.attack_delay
 	_set_stunned(false)
+	star_stun_effect.stop()
 
 
 func decay_stun(delta: float) -> void:
@@ -166,10 +197,38 @@ func decay_stun(delta: float) -> void:
 	stun_meter = max(0.0, stun_meter - enemy_data.stun_decay_rate * delta)
 
 
+func apply_hit_slow() -> void:
+	slow_timer = HIT_SLOW_DURATION
+
+
+func _current_speed_multiplier() -> float:
+	if slow_timer <= 0.0:
+		return 1.0
+	return UpgradeManager.get_modified(&"enemy_slowdown", 1.0)
+
+
+func apply_poison() -> void:
+	var dps := UpgradeManager.get_modified(&"poison_damage", 0.0)
+	var duration := UpgradeManager.get_modified(&"poison_duration", 0.0)
+
+	if dps <= 0.0 or duration <= 0.0:
+		poison_effect.emitting = false
+		return
+
+	poison_dps = dps
+	poison_timer = duration
+	poison_effect.emitting = true
+
+func update_poison(delta: float) -> void:
+	poison_timer = max(0.0, poison_timer - delta)
+	poison_effect.emitting = poison_timer > 0.0
+	take_damage(poison_dps * delta)
+
+
 func start_dash() -> void:
 	_set_warning(false)
 	state = State.DASH
-	dash_timer = enemy_data.dash_duration
+	dash_distance_left = enemy_data.dash_speed * enemy_data.dash_duration
 	dash_direction = (player.global_position - global_position).normalized()
 
 
@@ -184,7 +243,7 @@ func set_formation_offset(offset: float) -> void:
 
 # ============================ MOVEMENT ========================================
 
-func _move_toward_start_z(delta: float) -> void:
+func _move_toward_start_z(delta: float, speed_multiplier: float = 1.0) -> void:
 	var target_local := encounter.to_local(global_position)
 	target_local.z = start_z
 	var target_global_z := encounter.to_global(target_local).z
@@ -192,7 +251,7 @@ func _move_toward_start_z(delta: float) -> void:
 	global_position.z = move_toward(
 		global_position.z,
 		target_global_z,
-		enemy_data.z_return_speed * delta
+		enemy_data.z_return_speed * speed_multiplier * delta
 	)
 
 
@@ -223,33 +282,42 @@ func _on_attack_area_body_entered(body: Node3D) -> void:
 		return
 	if body != player:
 		return
-	hit_player()
+	hit_player(body)
 
 
 func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
 	take_damage(damage)
-	add_stun(damage)
+	add_stun(UpgradeManager.get_modified(&"enemy_stunning", damage))
+	apply_hit_slow()
+	apply_poison()
 
-	_spawn_hit_effect(hit_position, direction)
+	_spawn_bullet_hit_effect(hit_position, direction)
 
 
-func on_dodge_hit(damage: float, knockback: Vector3) -> void:
+func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, direction: Vector3, car: Car_Movement) -> void:
 	take_damage(damage)
 	if health <= 0.0:
 		return
 
 	_set_warning(false)
 	_set_stunned(false)
+	star_stun_effect.stop()
 	encounter.end_attak(self)
+	_spawn_dodge_hit_effect(hit_position, direction, car)
 
 	state = State.KNOCKBACK
 	knockback_velocity = knockback
 	stun_meter = 0.0
 
 
-func hit_player() -> void:
+func hit_player(body: Node3D) -> void:
 	print("PLAYER HIT")
-	Events.player_take_damage.emit(enemy_data.attack_damage)
+	Events.player_take_damage.emit(enemy_data.attack_damage, global_position)
+
+	var car := body as Car_Movement
+	if car:
+		car.spawn_hit_effect(global_position)
+
 	end_dash()
 
 
@@ -272,12 +340,12 @@ func die() -> void:
 
 # ============================ EFFECTS =========================================
 
-func _spawn_hit_effect(hit_position: Vector3, direction: Vector3) -> void:
-	var effect := enemy_data.hit_effect_scene.instantiate() as BloodBulletHit
-	get_parent().world.enemies.add_child(effect)
+func _spawn_bullet_hit_effect(hit_position: Vector3, direction: Vector3) -> void:
+	var effect := enemy_data.bullet_hit_effect_scene.instantiate() as BloodBulletHit
+	add_child(effect)
 	effect.play(hit_position, direction)
 
-#func _spawn_hit_effect(hit_position: Vector3, direction: Vector3) -> void:
-	#var effect := enemy_data.hit_effect_scene.instantiate() as BloodCarHit
-	#get_parent().world.enemies.add_child(effect)
-	#effect.play(hit_position, direction)
+func _spawn_dodge_hit_effect(hit_position: Vector3, direction: Vector3, car: Car_Movement) -> void:
+	var effect := enemy_data.dodge_hit_effect_scene.instantiate() as BloodCarHit
+	get_parent().world.enemies.add_child(effect)
+	effect.play(hit_position, direction, car.speed, car)

@@ -33,6 +33,12 @@ class_name SkyController
 @export var sun_angle_max_deg := 60.0
 @export var sun_curve := 0.3
 
+@export_group("Thermal Vision")
+@export var thermal_transition_duration := 0.5
+@export var thermal_adjustment_brightness := 3.0
+@export var thermal_fog_density := 0.0
+@export var thermal_volumetric_fog_density := 0.0
+
 var sky_material: ProceduralSkyMaterial
 
 var night_sky_top_color: Color
@@ -46,6 +52,11 @@ var current_sun_elevation_deg: float
 var current_light_energy: float
 var light_energy_boost := 0.0
 var active_tween: Tween
+
+var _baseline_adjustment_brightness: float
+var _baseline_fog_density: float
+var _baseline_volumetric_fog_density: float
+var _thermal_tween: Tween
 
 
 func _ready() -> void:
@@ -61,7 +72,13 @@ func _ready() -> void:
 	current_sun_elevation_deg = night_sun_elevation_deg
 	current_light_energy = night_light_energy
 
+	var environment := world_environment.environment
+	_baseline_adjustment_brightness = environment.adjustment_brightness
+	_baseline_fog_density = environment.fog_density
+	_baseline_volumetric_fog_density = environment.volumetric_fog_density
+
 	Events.run_started.connect(play_dusk_intro)
+	Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
 
 
 func _process(_delta: float) -> void:
@@ -134,6 +151,25 @@ func play_deadly_dawn() -> void:
 	active_tween.tween_property(self, "current_light_energy", dawn_light_energy, dawn_duration)
 	active_tween.tween_property(environment, "adjustment_brightness", dawn_adjustment_brightness, dawn_duration)
 	active_tween.tween_property(environment, "glow_intensity", dawn_glow_intensity, dawn_duration)
+
+
+func _on_thermal_vision_changed(active: bool) -> void:
+	var environment := world_environment.environment
+	environment.adjustment_enabled = true
+
+	if _thermal_tween and _thermal_tween.is_valid():
+		_thermal_tween.kill()
+
+	_thermal_tween = create_tween()
+	_thermal_tween.set_parallel(true)
+
+	var target_brightness := thermal_adjustment_brightness if active else _baseline_adjustment_brightness
+	var target_fog_density := thermal_fog_density if active else _baseline_fog_density
+	var target_volumetric_fog_density := thermal_volumetric_fog_density if active else _baseline_volumetric_fog_density
+
+	_thermal_tween.tween_property(environment, "adjustment_brightness", target_brightness, thermal_transition_duration)
+	_thermal_tween.tween_property(environment, "fog_density", target_fog_density, thermal_transition_duration)
+	_thermal_tween.tween_property(environment, "volumetric_fog_density", target_volumetric_fog_density, thermal_transition_duration)
 
 
 func _kill_active_tween() -> void:

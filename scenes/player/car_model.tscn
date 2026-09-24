@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://2748oj183rqg"]
+
+[ext_resource type="PackedScene" uid="uid://xi8xd3w5xbe4" path="res://models/car/Car.glb" id="1_q7y3r"]
+
+[node name="CarModel" unique_id=572652591 instance=ExtResource("1_q7y3r")]
+
+[node name="Car" parent="." index="0" unique_id=833579464]
+layers = 5

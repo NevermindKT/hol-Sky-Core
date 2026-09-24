@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_y8oae")
 stat_id = &"time_slowdown_strength"
-multiplier = 0.6
+multiplier = 0.3
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"

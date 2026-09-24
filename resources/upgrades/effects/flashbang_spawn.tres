@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="FlashbangEffect" format=3 uid="uid://c7c66jnm02lu5"]
+
+[ext_resource type="Script" uid="uid://lg2l12rqm8jj" path="res://scripts/data/upgrade/upgrade_effects/flashbang_effect.gd" id="1_flsef"]
+
+[resource]
+script = ExtResource("1_flsef")

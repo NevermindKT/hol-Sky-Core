@@ -28,11 +28,13 @@ func _process(_delta: float) -> void:
 	cooldown -= _delta
 	
 	if current_weapon:
-		current_spread = max(
+		var max_spread := UpgradeManager.get_modified(&"less_spread", current_weapon.data.max_spread)
+		current_spread = clamp(
+			current_spread - current_weapon.data.bloom_recovery_rate * _delta,
 			current_weapon.data.base_spread,
-			current_spread - current_weapon.data.bloom_recovery_rate * _delta
+			max_spread
 		)
-		Events.spread_changed.emit(get_spread_ratio())
+		Events.spread_changed.emit(current_spread)
 
 
 func fire():
@@ -46,33 +48,47 @@ func fire():
 		reload()
 		return
 
-	current_weapon.ammo -= 1
+	var bullet_save_chance := UpgradeManager.get_modified(&"bullet_saving", 0.0)
+	var bullet_saved := randf() < bullet_save_chance
+	if not bullet_saved:
+		current_weapon.ammo -= 1
 	Events.magazine_count_changed.emit(current_weapon.ammo)
-	muzzle_flash.play()
-	cooldown = 1.0 / current_weapon.data.fire_rate
-	current_weapon.data.fire_behavior.fire(self)
-	
+	muzzle_flash.play(false, 1.0, bullet_saved)
+	var fire_rate := UpgradeManager.get_modified(&"rate_of_fire", current_weapon.data.fire_rate)
+	cooldown = 1.0 / fire_rate
+	current_weapon.data.fire_behavior.fire(self, bullet_saved)
+
+	var bloom_per_shot := UpgradeManager.get_modified(&"less_recoil", current_weapon.data.bloom_per_shot)
+	var max_spread := UpgradeManager.get_modified(&"less_spread", current_weapon.data.max_spread)
 	current_spread = min(
-		current_weapon.data.max_spread,
-		current_spread + current_weapon.data.bloom_per_shot
+		max_spread,
+		current_spread + bloom_per_shot
 	)
-	Events.spread_changed.emit(get_spread_ratio())
+	Events.spread_changed.emit(current_spread)
 
 
 func get_spread_ratio() -> float:
-	if current_weapon == null or current_weapon.data.max_spread <= 0.0:
+	if current_weapon == null:
 		return 0.0
-	return clamp(current_spread / current_weapon.data.max_spread, 0.0, 1.0)
+
+	var max_spread := UpgradeManager.get_modified(&"less_spread", current_weapon.data.max_spread)
+
+	if max_spread <= 0.0:
+		return 0.0
+
+	return clamp(current_spread / max_spread, 0.0, 1.0)
 
 
 func reload() -> bool:
 	if current_weapon.is_reloading:
 		return false
 
-	if current_weapon.ammo >= current_weapon.data.magazine_capacity:
+	var magazine_capacity := UpgradeManager.get_modified(&"expanded_magazine", current_weapon.data.magazine_capacity)
+
+	if current_weapon.ammo >= magazine_capacity:
 		return false
 
-	var need = current_weapon.data.magazine_capacity - current_weapon.ammo
+	var need = magazine_capacity - current_weapon.ammo
 
 	if inventory.get_ammo(current_weapon.data.ammo_type) <= 0:
 		return false
@@ -106,7 +122,8 @@ func reload_stop():
 
 func fill_all_magazines():
 	for weapon in player_weapons:
-		var need := weapon.data.magazine_capacity - weapon.ammo
+		var magazine_capacity := UpgradeManager.get_modified(&"expanded_magazine", weapon.data.magazine_capacity)
+		var need := magazine_capacity - weapon.ammo
 		
 		if need <= 0:
 			continue
