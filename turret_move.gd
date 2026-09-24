@@ -4,9 +4,9 @@ class_name GunMove
 @export var gun: BoneAttachment3D
 @export var bolt: BoneAttachment3D
 
-@export var pitch_speed: float = 3.0
-@export var min_pitch_deg: float = -20.0
-@export var max_pitch_deg: float = 60.0
+@export var pitch_speed: float = 2.0
+@export var min_pitch_deg: float = -22.0
+@export var max_pitch_deg: float = 18.0
 
 @export var gun_point: Marker3D
 @export var muzzle_flash: Muzzle_flash
