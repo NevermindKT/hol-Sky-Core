@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0ugimnnmaxti"]
 
 [ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://scripts/car/car_movement.gd" id="1_y6j3g"]
+[ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="2_f0rj0"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
 [ext_resource type="Script" uid="uid://42qmfye5c841" path="res://scripts/car/back_lights.gd" id="3_20y2w"]
 [ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scripts/car/flashlight_controller.gd" id="3_y6j3g"]
@@ -10,12 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="6_t5h3w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
 [ext_resource type="PackedScene" uid="uid://cgx8vcbpf1r2n" path="res://scenes/vfx/effects/engine_smoke.tscn" id="8_f6f1y"]
-[ext_resource type="PackedScene" uid="uid://xi8xd3w5xbe4" path="res://models/car/Car.glb" id="8_t5h3w"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
 [ext_resource type="PackedScene" uid="uid://b18ge6bq72hf8" path="res://scenes/vfx/effects/wheel_particles_effect.tscn" id="10_lvrf2"]
 [ext_resource type="Script" uid="uid://ip4fb2moxr2s" path="res://scenes/player/player_status_controller.gd" id="10_ojawh"]
 [ext_resource type="Script" uid="uid://b0ny64s5vute3" path="res://scripts/car/headlight_mode.gd" id="11_hlmode"]
+[ext_resource type="PackedScene" uid="uid://2748oj183rqg" path="res://scenes/player/car_model.tscn" id="11_lvrf2"]
 [ext_resource type="Texture2D" uid="uid://b5ylygv8dtf2n" path="res://textures/lights/headlight_cookie.png" id="12_hlcookie"]
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="12_t5h3w"]
 
@@ -34,8 +35,8 @@ size = Vector3(0.9, 0.3, 1.5)
 albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bq845"]
-radius = 0.57421875
-height = 3.6735306
+radius = 0.6279297
+height = 3.7076979
 
 [sub_resource type="Resource" id="Resource_lo1ro"]
 script = ExtResource("6_7lmdr")
@@ -57,7 +58,6 @@ collision_layer = 3
 script = ExtResource("1_y6j3g")
 drag = 4.0
 brake = 40.0
-max_speed = 100.0
 acceleration_curve = SubResource("Curve_dwkn5")
 max_offset = 15.0
 strafe_speed = 12.0
@@ -68,6 +68,7 @@ spring = 45.0
 damping = 6.0
 grip_wet = 0.6
 grip_flooded = 0.35
+car_hit_effect = ExtResource("2_f0rj0")
 back_lights = NodePath("Visual/vfx/BackLights")
 cam_pivot = NodePath("CamPivot")
 inventory = NodePath("Inventory")
@@ -90,6 +91,9 @@ layers = 3
 mesh = SubResource("BoxMesh_elpsl")
 surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
 
+[node name="GrenadeLaunchPoint" type="Marker3D" parent="Visual" unique_id=1017824461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7073189, 0.4, -0.57019806)
+
 [node name="WeaponPivot" type="Node3D" parent="Visual" unique_id=879198079]
 
 [node name="GunPoint" type="Marker3D" parent="Visual/WeaponPivot" unique_id=77871199]
@@ -107,21 +111,21 @@ shadow_enabled = true
 shadow_bias = 0.2
 distance_fade_begin = 0.0
 spot_range = 25.0
-spot_attenuation = 2.0
+spot_attenuation = 1.5
 spot_angle = 15.0
 script = ExtResource("3_y6j3g")
 close_range = 30.0
-close_angle = 35.0
+close_angle = 40.0
 close_energy = 15.0
 far_range = 80.0
-far_angle = 8.0
-far_energy = 75.0
+far_angle = 15.0
+far_energy = 30.0
 far_volumetric_fog_energy = 2.0
 
 [node name="vfx" type="Node3D" parent="Visual" unique_id=964234194]
 
 [node name="EngineSmoke" parent="Visual/vfx" unique_id=1428749223 node_paths=PackedStringArray("status_controller", "car") instance=ExtResource("8_f6f1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19988698, -0.45846927)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19988698, -1.5542494)
 status_controller = NodePath("../../../PlayerStatusController")
 car = NodePath("../../..")
 smoke_start_health_ratio = 0.7
@@ -158,6 +162,7 @@ spot_attenuation = 2.0
 spot_angle = 70.0
 
 [node name="wheel_dust" type="Node3D" parent="Visual/vfx" unique_id=1604834555 node_paths=PackedStringArray("particles", "car")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10329306, 0.6347275)
 script = ExtResource("6_lvrf2")
 particles = [NodePath("WheelParticlesEffect"), NodePath("WheelParticlesEffect2")]
 car = NodePath("../../..")
@@ -187,11 +192,15 @@ spot_range = 45.0
 spot_attenuation = 0.3
 spot_angle = 22.0
 script = ExtResource("11_hlmode")
-close_angle = 50.0
-close_attenuation = 1.0
+close_range = 70.0
+close_angle = 75.0
+close_energy = 12.0
+close_attenuation = 0.8
 close_volumetric_fog_energy = 0.2
-far_angle = 22.0
-far_attenuation = 0.6
+far_range = 150.0
+far_angle = 30.0
+far_energy = 18.0
+far_attenuation = 0.4
 far_volumetric_fog_energy = 0.1
 
 [node name="Visual_vfx_ForwardLights#SpotLight3D2" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=300350988]
@@ -207,20 +216,25 @@ spot_range = 45.0
 spot_attenuation = 0.3
 spot_angle = 22.0
 script = ExtResource("11_hlmode")
-close_angle = 50.0
-close_attenuation = 1.0
+close_range = 70.0
+close_angle = 75.0
+close_energy = 12.0
+close_attenuation = 0.8
 close_volumetric_fog_energy = 0.2
-far_angle = 22.0
-far_attenuation = 0.6
+far_range = 150.0
+far_angle = 30.0
+far_energy = 18.0
+far_attenuation = 0.4
 far_volumetric_fog_energy = 0.1
 
-[node name="CarModel" parent="Visual" unique_id=1047449486 instance=ExtResource("8_t5h3w")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.085, 0, 0)
+[node name="CarModel" parent="Visual" unique_id=572652591 instance=ExtResource("11_lvrf2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.10080814, 0, 0)
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.8710039)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.37429312, -0.11708379)
 shape = SubResource("CapsuleShape3D_bq845")
 
 [node name="Inventory" type="Node" parent="." unique_id=1206716850]

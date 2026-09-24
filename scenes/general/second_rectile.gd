@@ -7,14 +7,25 @@ var aim_controller: Aim_Controller
 @export var min_scale: float = 1.0
 @export var max_scale: float = 2.5
 
+var reference_max_spread: float = 0.0
+
 
 func _ready() -> void:
 	Events.spread_changed.connect(_on_spread_changed)
+	Events.weapon_set.connect(_on_weapon_set)
 
 
-func _on_spread_changed(ratio: float) -> void:
+func _on_weapon_set(weapon: WeaponData) -> void:
+	reference_max_spread = weapon.max_spread
+
+
+func _on_spread_changed(spread: float) -> void:
+	var ratio := 0.0
+	if reference_max_spread > 0.0:
+		ratio = clamp(spread / reference_max_spread, 0.0, 1.0)
+
 	var s = lerp(min_scale, max_scale, ratio)
-	scale = Vector2(s, s) 
+	scale = Vector2(s, s)
 
 
 func _process(delta: float) -> void:

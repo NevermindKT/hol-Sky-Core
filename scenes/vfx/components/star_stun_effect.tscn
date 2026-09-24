@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dokwn375ku70y"]
+
+[ext_resource type="Script" uid="uid://cii0ktrugwyqo" path="res://scripts/vfx/star_stun_effect.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://dew054hd1rirg" path="res://scenes/vfx/components/star_stun_star.tscn" id="2_star"]
+
+[node name="StarStunEffect" type="Node3D" unique_id=1243010631]
+script = ExtResource("1_script")
+star_scene = ExtResource("2_star")
+orbit_speed = 2.0

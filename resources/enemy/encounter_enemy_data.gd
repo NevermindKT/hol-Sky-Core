@@ -29,4 +29,5 @@ class_name EncounterEnemyData
 
 @export_category("Scenes")
 @export var enemy_scene: PackedScene
-@export var hit_effect_scene: PackedScene
+@export var dodge_hit_effect_scene: PackedScene
+@export var bullet_hit_effect_scene: PackedScene

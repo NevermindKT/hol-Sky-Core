@@ -3,6 +3,8 @@ class_name Tire_trail_manager
 
 enum Trigger_mode { TIRE_SKID, BLOOD }
 
+const ROAD_COLLISION_MASK := 4
+
 var world: World
 var car_movement: Car_Movement
 var road_manager: Road_manager
@@ -87,12 +89,22 @@ func _process(delta: float) -> void:
 
 
 func _resnap_strokes_height() -> void:
+	var space_state := get_viewport().world_3d.direct_space_state
+
 	for stroke in _active_strokes:
 		if not is_instance_valid(stroke):
 			continue
 
 		var pos := stroke.global_position
-		pos.y = surface_offset
+		var from := pos + Vector3.UP * 3.0
+		var to := pos + Vector3.DOWN * 3.0
+
+		var query := PhysicsRayQueryParameters3D.create(from, to, ROAD_COLLISION_MASK)
+		var result := space_state.intersect_ray(query)
+
+		if not result.is_empty():
+			pos.y = result.position.y + surface_offset
+
 		stroke.global_position = pos
 
 
@@ -133,6 +145,7 @@ func _record_point(stroke: Tire_trail_stroke, point: Marker3D) -> Tire_trail_str
 		stroke = stroke_scene.instantiate()
 		world.trail_container.add_child(stroke)
 		stroke.global_transform = point.get_global_transform_interpolated()
+
 		_active_strokes.append(stroke)
 		_enforce_strokes_limit()
 
@@ -178,6 +191,8 @@ func _fade_and_free(stroke: Tire_trail_stroke) -> void:
 
 	var tween := stroke.create_tween()
 	tween.tween_property(stroke.material_override, "albedo_color:a", 0.0, fade_duration)
+	if trigger_mode == Trigger_mode.BLOOD:
+		tween.parallel().tween_property(stroke.material_override, "emission_energy_multiplier", 0.0, fade_duration)
 	tween.tween_callback(_on_stroke_faded.bind(stroke))
 
 

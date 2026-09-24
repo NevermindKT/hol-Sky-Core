@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_smqgu")
 stat_id = &"poison_damage"
+operation = 1
 multiplier = 2.0
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"

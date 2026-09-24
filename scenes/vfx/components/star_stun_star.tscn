@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dew054hd1rirg"]
+
+[ext_resource type="Texture2D" uid="uid://d3b2nt0kudiwa" path="res://textures/yellow--star-png-18.png" id="1_ga4sp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_star"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_ga4sp")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_star"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trail"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.5)
+albedo_texture = ExtResource("1_ga4sp")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_trail_alpha"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_trail_alpha"]
+curve = SubResource("Curve_trail_alpha")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_trail"]
+lifetime_randomness = 0.3
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+alpha_curve = SubResource("CurveTexture_trail_alpha")
+
+[sub_resource type="QuadMesh" id="QuadMesh_trail"]
+size = Vector2(0.04, 0.04)
+
+[node name="Star" type="Node3D" unique_id=352192552]
+
+[node name="Sprite" type="MeshInstance3D" parent="." unique_id=1847471255]
+material_override = SubResource("StandardMaterial3D_star")
+mesh = SubResource("QuadMesh_star")
+
+[node name="Trail" type="GPUParticles3D" parent="." unique_id=1606204615]
+material_override = SubResource("StandardMaterial3D_trail")
+emitting = false
+amount = 20
+lifetime = 0.4
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_trail")
+draw_pass_1 = SubResource("QuadMesh_trail")

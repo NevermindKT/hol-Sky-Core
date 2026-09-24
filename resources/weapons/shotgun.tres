@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cn4um41l4ikkr" path="res://scripts/data/weapon/behaviors/multiple_projectile_behaviour.gd" id="1_33lcx"]
 [ext_resource type="PackedScene" uid="uid://bt3acygnr2ji2" path="res://scenes/projectiles/bullet.tscn" id="2_bd53d"]
 [ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://scripts/data/weapon/weapon_data.gd" id="3_iijja"]
+[ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="4_impef"]
+[ext_resource type="Resource" uid="uid://bsr534lgycnea" path="res://resources/vfx/bullet_trails/shotgun_trail.tres" id="5_trail"]
 
 [sub_resource type="Resource" id="Resource_hneuh"]
 script = ExtResource("1_33lcx")
@@ -19,11 +21,13 @@ ammo_type = 2
 gravity_scale = 3.0
 projectile_speed = 240.0
 projectile_distance = 120.0
-spread_angle = 2.0
+spread_angle = 8.0
 projectile_count = 8.0
 max_spread = 0.3
 bloom_per_shot = 0.4
 bloom_recovery_rate = 0.3
 fire_behavior = SubResource("Resource_hneuh")
 projectile_scene = ExtResource("2_bd53d")
+impact_effect_scene = ExtResource("4_impef")
+trail_data = ExtResource("5_trail")
 metadata/_custom_type_script = "uid://di37ui7h2d4v3"

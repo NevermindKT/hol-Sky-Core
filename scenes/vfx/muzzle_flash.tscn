@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bgi8tvjss7dtd" path="res://textures/vfx/muzzle_flash/muzzle_flash.png" id="2_iyj1g"]
 [ext_resource type="Texture2D" uid="uid://d056f2vb8x13n" path="res://textures/vfx/muzzle_flash/muzzle_flash_circle_splatter.png" id="4_3tqv5"]
 [ext_resource type="ArrayMesh" uid="uid://b4fegs15gd1yn" path="res://models/muzzle_cone_001.obj" id="4_ghtap"]
-[ext_resource type="Texture2D" uid="uid://b7of1fmx30ly4" path="res://textures/vfx/muzzle_flash/beam_flash001.png" id="6_uofy7"]
+[ext_resource type="PackedScene" uid="uid://hejbemvjk53u" path="res://scenes/vfx/components/beam_flash.tscn" id="6_3tqv5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kxuq"]
 transparency = 1
@@ -47,22 +47,6 @@ vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
 albedo_texture = ExtResource("4_3tqv5")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vj5im"]
-transparency = 1
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
-albedo_texture = ExtResource("6_uofy7")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_3tqv5"]
-
 [node name="MuzzleFlash" type="Node3D" unique_id=1492550407 node_paths=PackedStringArray("particles", "spot_light")]
 script = ExtResource("1_6t36f")
 particles = [NodePath("MuzzlePlanes"), NodePath("MuzzleCone"), NodePath("BeamFlash")]
@@ -88,15 +72,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_mti6b")
 draw_pass_1 = ExtResource("4_ghtap")
 
-[node name="BeamFlash" type="GPUParticles3D" parent="." unique_id=327878787]
-material_override = SubResource("StandardMaterial3D_vj5im")
-emitting = false
-amount = 1
-lifetime = 0.03
-one_shot = true
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_mti6b")
-draw_pass_1 = SubResource("QuadMesh_3tqv5")
+[node name="BeamFlash" parent="." unique_id=1947679070 instance=ExtResource("6_3tqv5")]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1774240920]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

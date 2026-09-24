@@ -13,7 +13,7 @@ func _on_body_entered(body: Node3D) -> void:
 
 	hit_targets.append(body)
 
-	Events.player_take_damage.emit(damage_dealt)
+	Events.player_take_damage.emit(damage_dealt, global_position)
 	print("Player taked damage from obstacle!")
 
 

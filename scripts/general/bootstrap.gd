@@ -26,6 +26,8 @@ const OBSTACLE_SPAWN_CHANCE = 0.05
 
 func _ready() -> void:
 	set_world()
+	GrenadeSpawner.car = car
+	GrenadeSpawner.enemy_encounter = enemy_encounter
 	set_player_car()
 	set_weapon_system()
 	set_road_manager()
@@ -57,9 +59,8 @@ func _ready() -> void:
 
 	set_encounter()
 
-	#BoostManager.add_owned(load("res://resources/upgrades/boosts/nitro.tres"))
-	#BoostManager.activate(load("res://resources/upgrades/boosts/nitro.tres"))
-	
+	InputController.test_boost.connect(BoostManager.activate_test_boost)
+
 	Events.run_started.emit()
 	queue_free()
 

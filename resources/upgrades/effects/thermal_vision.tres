@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="ThermalVisionEffect" format=3 uid="uid://dadk7s34pn83d"]
+
+[ext_resource type="Script" uid="uid://10aopulwv2sb" path="res://scripts/data/upgrade/upgrade_effects/thermal_vision_effect.gd" id="1_akwly"]
+
+[resource]
+script = ExtResource("1_akwly")

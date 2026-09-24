@@ -9,6 +9,7 @@ radius = 0.25
 [node name="RoadBloodTrigger" type="Area3D" unique_id=1483286865]
 collision_layer = 0
 script = ExtResource("1_parkg")
+bleed_distance = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=592510336]
 shape = SubResource("CylinderShape3D_gl1xv")

@@ -1,17 +1,23 @@
 [gd_scene format=3 uid="uid://chbrpi5p25krs"]
 
 [ext_resource type="Script" uid="uid://dwokpbc2dcvql" path="res://scripts/enemy/encounter_enemy.gd" id="1_y00ui"]
+[ext_resource type="Script" uid="uid://g4df0lxn27jv" path="res://scripts/enemy/Hurt_Box.gd" id="2_klukj"]
+[ext_resource type="PackedScene" uid="uid://dokwn375ku70y" path="res://scenes/vfx/components/star_stun_effect.tscn" id="3_star_stun"]
+[ext_resource type="PackedScene" uid="uid://bheecmpf72wb3" path="res://scenes/vfx/effects/poison_smoke.tscn" id="4_tq627"]
 
-[ext_resource type="PackedScene" uid="uid://dwnla46gj1sri" path="res://scenes/vfx/effects/blood_bullet_hit.tscn" id="2_b2qpe"]
-[ext_resource type="Script" uid="uid://g4df0lxn27jv" path="res://scenes/enemies/Hurt_Box.gd" id="2_klukj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23cp2"]
+shading_mode = 0
+albedo_color = Color(1.353256, 0.68583614, 0, 1)
+grow_amount = -0.611
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_10jsn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_elpsl"]
 
-[node name="Enemy" type="Node3D" unique_id=2054683080]
+[node name="Enemy" type="Node3D" unique_id=2054683080 node_paths=PackedStringArray("poison_effect")]
 script = ExtResource("1_y00ui")
-hit_effect_scene = ExtResource("2_b2qpe")
+thermal_material = SubResource("StandardMaterial3D_23cp2")
+poison_effect = NodePath("PoisonSmoke/Smoke")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2025795212]
 mesh = SubResource("CapsuleMesh_10jsn")
@@ -23,3 +29,13 @@ script = ExtResource("2_klukj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageHitBox" unique_id=2006601052]
 shape = SubResource("CapsuleShape3D_elpsl")
+
+[node name="StunEffectPoint" type="Marker3D" parent="." unique_id=812962811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2330573, 0)
+
+[node name="StarStunEffect" parent="StunEffectPoint" unique_id=450103639 instance=ExtResource("3_star_stun")]
+
+[node name="PoisonSmoke" parent="." unique_id=153349639 instance=ExtResource("4_tq627")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11808646, 0)
+
+[editable path="PoisonSmoke"]

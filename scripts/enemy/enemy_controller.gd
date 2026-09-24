@@ -8,17 +8,6 @@ enum State { NORMAL, REACTING, DEAD }
 @export var hit_effect_scene: PackedScene
 @export var move_speed: float = 5.0
 
-@export_category("Blood decals")
-@export var blood_decal_scene: PackedScene
-@export var road_blood_splatter_scene: PackedScene
-@export var blood_splatter_count: int = 3
-@export var blood_splatter_radius: float = 1.2
-@export var road_blood_forward_offset: float = 1.0
-@export var car_blood_scale_range: Vector2 = Vector2(0.5, 0.9)
-@export var road_blood_scale_range: Vector2 = Vector2(0.8, 1.6)
-
-const ROAD_COLLISION_MASK := 2
-
 @export var detection_range: float = 40.0
 @export var road_lateral_limit: float = 4.0
 
@@ -85,7 +74,6 @@ func on_car_hit(hit_data: HitData) -> void:
 		health.take_damage(hit_data.damage)
 
 	_spawn_hit_effect(hit_data)
-	_spawn_blood_decals(hit_data)
 
 	_state = State.REACTING
 	knockback_controller.apply_hit(hit_data)
@@ -110,75 +98,7 @@ func _spawn_hit_effect(hit_data: HitData) -> void:
 	world.enemies.add_child(effect)
 
 	var direction := global_position - hit_data.car.global_position
-	effect.play(hit_data.contact_point, direction, hit_data.car_velocity.length())
-
-
-func _spawn_blood_decals(hit_data: HitData) -> void:
-	if blood_decal_scene == null or road_blood_splatter_scene == null:
-		return
-
-	_spawn_car_blood(hit_data)
-	_spawn_road_blood(hit_data)
-
-
-func _spawn_car_blood(hit_data: HitData) -> void:
-	var decal := blood_decal_scene.instantiate() as Blood_decal
-	if decal == null:
-		push_warning("Enemy: blood_decal_scene не має скрипта Blood_decal")
-		return
-
-	var attach_to: Node3D = hit_data.car.get_node_or_null("Visual")
-	if attach_to == null:
-		attach_to = hit_data.car
-
-	attach_to.add_child(decal)
-	decal.place(hit_data.contact_point, hit_data.contact_normal)
-	decal.apply_random_scale(car_blood_scale_range)
-
-
-func _spawn_road_blood(hit_data: HitData) -> void:
-	var space_state := get_world_3d().direct_space_state
-
-	var forward := -hit_data.car.global_transform.basis.z
-	var splatter_center := hit_data.contact_point + forward * road_blood_forward_offset
-
-	for i in blood_splatter_count:
-		var offset := Vector3(
-			randf_range(-blood_splatter_radius, blood_splatter_radius),
-			0.0,
-			randf_range(-blood_splatter_radius, blood_splatter_radius)
-		)
-		var from := splatter_center + offset + Vector3.UP * 2.0
-		var to := splatter_center + offset - Vector3.UP * 2.0
-
-		var query := PhysicsRayQueryParameters3D.create(from, to, ROAD_COLLISION_MASK)
-		var result := space_state.intersect_ray(query)
-
-		if result.is_empty():
-			continue
-
-		var segment := _find_road_segment(result.collider)
-		if segment == null:
-			continue
-
-		var splatter := road_blood_splatter_scene.instantiate() as Road_blood_splatter
-		if splatter == null:
-			continue
-
-		segment.add_child(splatter)
-		splatter.place(result.position, result.normal)
-		splatter.apply_random_scale(road_blood_scale_range)
-
-
-func _find_road_segment(node: Node) -> Road_segment:
-	var current := node
-
-	while current != null:
-		if current is Road_segment:
-			return current
-		current = current.get_parent()
-
-	return null
+	effect.play(hit_data.contact_point, direction, hit_data.car_velocity.length(), hit_data.car, hit_data.contact_normal)
 
 
 func _check_despawn() -> void:

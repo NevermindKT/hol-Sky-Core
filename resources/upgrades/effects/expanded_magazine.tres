@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_nox7x")
 stat_id = &"expanded_magazine"
-multiplier = 2.0
+multiplier = 1.5
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"

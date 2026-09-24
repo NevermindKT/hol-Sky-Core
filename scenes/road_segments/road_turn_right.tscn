@@ -28,6 +28,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 curve = SubResource("Curve3D_w5n4y")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=1792051332]
+layers = 3
+use_collision = true
+collision_layer = 4
+collision_mask = 0
 material_override = ExtResource("5_asphalt")
 polygon = PackedVector2Array(-8, 0, -8, 0.05, 8, 0.05, 8, 0)
 mode = 2
@@ -43,12 +47,12 @@ path_u_distance = 1.0
 path_joined = false
 
 [node name="GPUParticlesCollisionBoxes" type="Node3D" parent="." unique_id=1740581234]
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0.3, 0)
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=1996822362]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 17.5)
-size = Vector3(16.053467, 0.5, 54.964966)
+size = Vector3(16.053467, 0.2, 54.964966)
 
 [node name="GPUParticlesCollisionBox3D2" type="GPUParticlesCollisionBox3D" parent="GPUParticlesCollisionBoxes" unique_id=769417222]
 transform = Transform3D(0.9063076, 0, 0.42261818, 0, 1, 0, -0.42261818, 0, 0.9063076, 6, 0, 35.5)
-size = Vector3(16.053467, 0.5, 27.389542)
+size = Vector3(16.053467, 0.2, 27.389542)

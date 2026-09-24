@@ -12,10 +12,45 @@ uniform float dissolve_amount = 0.35;
 
 uniform float seed_offset : hint_range(0.0, 1000.0) = 0.0;
 
+uniform float emission_energy : hint_range(0.0, 20.0) = 1.0;
+
+uniform bool billboard_enabled = false;
+
 
 void vertex()
 {
     seed = INSTANCE_CUSTOM.z + seed_offset;
+
+    if (billboard_enabled)
+    {
+        float scale_x = length(MODEL_MATRIX[0].xyz);
+        float scale_y = length(MODEL_MATRIX[1].xyz);
+
+        vec3 local_up = MODEL_MATRIX[1].xyz / max(scale_y, 0.0001);
+
+        vec3 cross_up_back = cross(local_up, INV_VIEW_MATRIX[2].xyz);
+        vec3 right;
+        if (length(cross_up_back) < 0.0001)
+        {
+            right = normalize(cross(local_up, INV_VIEW_MATRIX[0].xyz));
+        }
+        else
+        {
+            right = normalize(cross_up_back);
+        }
+
+        vec3 forward = cross(right, local_up);
+
+        mat4 billboard_transform = mat4(
+            vec4(right * scale_x, 0.0),
+            vec4(local_up * scale_y, 0.0),
+            vec4(forward, 0.0),
+            MODEL_MATRIX[3]
+        );
+
+        MODELVIEW_MATRIX = VIEW_MATRIX * billboard_transform;
+        MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+    }
 }
 
 // Псевдогенератор рандомного числа
@@ -148,6 +183,7 @@ void fragment()
 	rough = clamp(rough, 0.16, 0.36);
 
     ALBEDO = blood_color;
+	EMISSION = blood_color * emission_energy * ALPHA;
 	ROUGHNESS = rough;
 	SPECULAR = 0.10;
 	NORMAL_MAP = normal * 0.5 + 0.5;

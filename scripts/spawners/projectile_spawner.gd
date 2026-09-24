@@ -5,7 +5,9 @@ var world: World
 
 func spawn_single(
 	weapon: WeaponData,
-	spawn_transform: Transform3D
+	spawn_transform: Transform3D,
+	shooter: CollisionObject3D = null,
+	saved: bool = false
 ):
 	var projectile = weapon.projectile_scene.instantiate()
 
@@ -15,14 +17,18 @@ func spawn_single(
 
 	projectile.initialize(
 		weapon,
-		-spawn_transform.basis.z
+		-spawn_transform.basis.z,
+		shooter,
+		saved
 	)
 
 
 func spawn_projectile(
 	weapon: WeaponData,
 	position: Vector3,
-	direction: Vector3
+	direction: Vector3,
+	shooter: CollisionObject3D = null,
+	saved: bool = false
 ):
 
 	var projectile = weapon.projectile_scene.instantiate() as Projectile
@@ -30,15 +36,20 @@ func spawn_projectile(
 	world.projectiles.add_child(projectile)
 
 	projectile.global_position = position
+	projectile.look_at(position + direction, Vector3.UP)
 	projectile.initialize(
 		weapon,
-		direction
+		direction,
+		shooter,
+		saved
 	)
 
 
 func spawn_multiple(
 	weapon: WeaponData,
-	spawn_transform: Transform3D
+	spawn_transform: Transform3D,
+	shooter: CollisionObject3D = null,
+	saved: bool = false
 ):
 
 	for i in weapon.projectile_count:
@@ -51,7 +62,9 @@ func spawn_multiple(
 		spawn_projectile(
 			weapon,
 			spawn_transform.origin,
-			direction
+			direction,
+			shooter,
+			saved
 		)
 
 

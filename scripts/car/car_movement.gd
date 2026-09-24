@@ -41,6 +41,7 @@ var steering_input := 0.0
 @export var dodge_hit_radius := 1.2
 @export var dodge_damage := 20.0
 @export var dodge_knockback_force := 15.0
+@export var dodge_hit_spray_lateral := 0.5
 @export var enemy_detection_mask: int = 1
 
 var dodge_timer := 0.0
@@ -75,10 +76,11 @@ var _current_grip := 1.0
 
 @export_category("Hit")
 @export var base_damage := 15
+@export var car_hit_effect: PackedScene
 
 
 @export_category("Exports")
-@export var player_cam: Camera3D
+@export var player_cam: Player_Camera
 @export var back_lights: BackLights
 
 @export var cam_pivot: Node3D
@@ -292,7 +294,11 @@ func _check_dodge_hit(direction: float) -> void:
 			continue
 		
 		var knockback := Vector3(direction * dodge_knockback_force, 0.0, 0.0)
-		enemy.on_dodge_hit(dodge_damage, knockback)
+		var forward := -global_transform.basis.z
+		var lateral := global_transform.basis.x * direction
+		var hit_direction := (forward + lateral * dodge_hit_spray_lateral).normalized()
+		enemy.on_dodge_hit(dodge_damage, knockback, enemy.global_position, hit_direction, self)
+		player_cam.apply_outgoing_hit(enemy.global_position, dodge_damage)
 		dodge_already_hit.append(enemy)
 
 
@@ -304,6 +310,7 @@ func process_enemies_hits() -> void:
 		if collider.is_in_group("Enemy"):
 			var hit_data := create_hit_data(collision.get_position(), collision.get_normal())
 			collider.on_car_hit(hit_data)
+			player_cam.apply_outgoing_hit(collision.get_position(), base_damage)
 
 
 func create_hit_data(contact_point: Vector3, contact_normal: Vector3) -> HitData:
@@ -318,3 +325,14 @@ func _resolve_enemy(node: Node) -> Encounter_Enemy:
 			return current
 		current = current.get_parent()
 	return null
+	
+	
+func spawn_hit_effect(hit_position: Vector3) -> void:
+	var car_hit := car_hit_effect.instantiate() as Muzzle_flash
+	if car_hit == null:
+		push_warning("Car: car_hit_effect не має скрипта Muzzle_flash")
+		return
+
+	visual_effects.get_node("CarModel").add_child(car_hit)
+	car_hit.global_position = hit_position
+	car_hit.play(true)
