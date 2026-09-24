@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bt3acygnr2ji2"]
 
 [ext_resource type="Script" uid="uid://dx2vefwu2mmj0" path="res://scripts/projectiles/projectile.gd" id="1_yvfy2"]
-[ext_resource type="PackedScene" path="res://scenes/vfx/components/bullet_trail_cylinder.tscn" id="2_48g2p"]
+[ext_resource type="PackedScene" uid="uid://jxgwvni70ljt" path="res://scenes/vfx/components/bullet_trail_cylinder.tscn" id="2_48g2p"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_yvfy2"]
 

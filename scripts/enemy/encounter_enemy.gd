@@ -10,6 +10,7 @@ enum State {
 
 @export var enemy_data: EncounterEnemyData
 @export var thermal_material: StandardMaterial3D
+@export var poison_effect: GPUParticles3D
 
 var health: float
 var is_active := false
@@ -211,14 +212,16 @@ func apply_poison() -> void:
 	var duration := UpgradeManager.get_modified(&"poison_duration", 0.0)
 
 	if dps <= 0.0 or duration <= 0.0:
+		poison_effect.emitting = false
 		return
 
 	poison_dps = dps
 	poison_timer = duration
-
+	poison_effect.emitting = true
 
 func update_poison(delta: float) -> void:
 	poison_timer = max(0.0, poison_timer - delta)
+	poison_effect.emitting = poison_timer > 0.0
 	take_damage(poison_dps * delta)
 
 
