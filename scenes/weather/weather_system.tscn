@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bfh8ek3nst8so"]
 
 [ext_resource type="Environment" uid="uid://cyvo28w2s7n64" path="res://resources/weather/first_environment.tres" id="1_8hyqn"]
+[ext_resource type="Resource" path="res://resources/weather/horizon_fog_compositor.tres" id="1_hzfog"]
 [ext_resource type="Script" uid="uid://dunfvkx4t8gji" path="res://scripts/weather/FogController.gd" id="1_sap5q"]
 [ext_resource type="Script" uid="uid://d4f74ck2cfk3k" path="res://scripts/weather/lightning_controller.gd" id="3_8ccrl"]
 [ext_resource type="PackedScene" uid="uid://bjahf7e1efelb" path="res://scenes/weather/components/LightningBolt.tscn" id="4_lclfr"]
@@ -10,6 +11,7 @@
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1132270207]
 environment = ExtResource("1_8hyqn")
+compositor = ExtResource("1_hzfog")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=89476310]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 15, 0)
