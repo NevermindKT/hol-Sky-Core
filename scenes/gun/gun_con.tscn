@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dkfytgkhgo0oy"]
+
+[ext_resource type="Script" uid="uid://b1tl2sd6dtdmq" path="res://scenes/gun/gun_con.gd" id="1_m24rg"]
+[ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="1_mhu85"]
+
+[node name="GunCon" type="Node3D" unique_id=567497408 node_paths=PackedStringArray("gun_point", "muzzle_flash")]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 0, 0)
+script = ExtResource("1_m24rg")
+gun_point = NodePath("GunPoint")
+muzzle_flash = NodePath("MuzzleFlash")
+
+[node name="GunPoint" type="Marker3D" parent="." unique_id=876834796]
+
+[node name="MuzzleFlash" parent="." unique_id=1492550407 instance=ExtResource("1_mhu85")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
