@@ -42,15 +42,26 @@ func sync_to_projectile(projectile: Projectile) -> void:
 
 
 func align_to_velocity(velocity: Vector3) -> void:
+	if not velocity.is_finite():
+		return
 	if velocity.length_squared() < 0.0001:
 		return
 
 	var backward := -velocity.normalized()
-	var reference := Vector3.UP if abs(backward.dot(Vector3.UP)) < 0.99 else Vector3.RIGHT
+
+	var reference := (
+		Vector3.UP
+		if abs(backward.dot(Vector3.UP)) < 0.99
+		else Vector3.RIGHT
+	)
+
 	var side := reference.cross(backward).normalized()
 	var up := side.cross(backward)
 
-	global_transform = Transform3D(Basis(side, backward, up), global_position)
+	global_transform = Transform3D(
+		Basis(side, backward, up),
+		global_position
+	)
 
 
 func mark_saved() -> void:
