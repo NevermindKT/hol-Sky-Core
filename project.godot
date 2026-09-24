@@ -34,6 +34,7 @@ SoundManager="*uid://b6nq611vylrnp"
 
 window/size/viewport_width=2460
 window/size/viewport_height=1040
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
