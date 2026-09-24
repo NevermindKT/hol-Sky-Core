@@ -12,12 +12,17 @@ class_name BulletTrail
 
 const CONTINUITY_MARGIN := 1.5
 const SAVED_TRAIL_COLOR := Color(0.25, 0.55, 1.0, 1)
+const GROWTH_DURATION := 0.12
+
+var _age := 0.0
 
 func _ready():
 	apply_data()
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	_age += delta
+
 	var projectile := get_parent() as Projectile
 	if projectile:
 		sync_to_projectile(projectile)
@@ -28,8 +33,9 @@ func sync_to_projectile(projectile: Projectile) -> void:
 
 	var continuity_length := projectile.velocity.length() * get_physics_process_delta_time() * CONTINUITY_MARGIN
 	var distance_traveled := projectile.global_position.distance_to(projectile.start_position)
+	var growth_cap: float = max(data.length, continuity_length) * clamp(_age / GROWTH_DURATION, 0.0, 1.0) if data else 0.0
 
-	_update_length(distance_traveled, continuity_length)
+	_update_length(distance_traveled, continuity_length, growth_cap)
 
 
 func align_to_velocity(velocity: Vector3) -> void:
@@ -71,7 +77,7 @@ func _apply_mesh():
 	mesh.position.y = data.length * 0.5
 
 
-func _update_length(distance_traveled: float, continuity_length: float) -> void:
+func _update_length(distance_traveled: float, continuity_length: float, growth_cap: float) -> void:
 	if data == null:
 		return
 
@@ -80,7 +86,7 @@ func _update_length(distance_traveled: float, continuity_length: float) -> void:
 		return
 
 	var target_length: float = max(data.length, continuity_length)
-	var visible_length: float = min(target_length, distance_traveled)
+	var visible_length: float = min(min(target_length, growth_cap), distance_traveled)
 
 	cylinder.height = visible_length
 	mesh.position.y = visible_length * 0.5
