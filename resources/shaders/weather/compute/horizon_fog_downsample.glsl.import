@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://dn4axmqjqf2n3"
+path="res://.godot/imported/horizon_fog_downsample.glsl-82e029f03f694c6dbb57b2c69729631a.res"
+
+[deps]
+
+source_file="res://resources/shaders/weather/compute/horizon_fog_downsample.glsl"
+dest_files=["res://.godot/imported/horizon_fog_downsample.glsl-82e029f03f694c6dbb57b2c69729631a.res"]
+
+[params]
+
