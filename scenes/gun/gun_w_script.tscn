@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cbsmxwla2jvg6" path="res://models/gun/gun.glb" id="1_yucqx"]
 [ext_resource type="Script" uid="uid://bk3hmvv5f73dm" path="res://turret_move.gd" id="2_eo2c1"]
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="3_5gme6"]
-[ext_resource type="PackedScene" uid="uid://j7pn05ajemma" path="res://scenes/shell_ejector/shell_ejector.tscn" id="4_c6023"]
 
 [node name="gun" unique_id=797723952 node_paths=PackedStringArray("gun", "bolt", "gun_point", "muzzle_flash") instance=ExtResource("1_yucqx")]
 script = ExtResource("2_eo2c1")
@@ -22,6 +21,3 @@ transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0,
 
 [node name="MuzzleFlash" parent="GunBone/Skeleton3D/Bone/GunCon" index="1" unique_id=1492550407 instance=ExtResource("3_5gme6")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
-
-[node name="ShellEjector" parent="." index="3" unique_id=379242240 instance=ExtResource("4_c6023")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12146723, 0.39261237, -0.38753554)

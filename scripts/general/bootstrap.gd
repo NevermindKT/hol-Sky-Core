@@ -14,7 +14,7 @@ extends Node
 @export var vegetation_scatter: Vegetation_scatter
 @export var tire_trail_manager: Tire_trail_manager
 @export var blood_trail_manager: Tire_trail_manager
-@export var speed_trail_manager: Speed_trail_manager
+#@export var speed_trail_manager: Speed_trail_manager
 @export var lightning_controller: LightningController
 
 @export var aim_controller: Aim_Controller
@@ -49,7 +49,7 @@ func _ready() -> void:
 	
 	tire_trail_manager.initialize(world, car, road_manager)
 	blood_trail_manager.initialize(world, car, road_manager)
-	speed_trail_manager.initialize(world, car)
+	#speed_trail_manager.initialize(world, car)
 	
 	#UpgradeManager.purchase(UpgradeManager.database.upgrades[0])
 

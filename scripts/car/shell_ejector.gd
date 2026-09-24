@@ -5,7 +5,7 @@ enum ShellType { PISTOL_9MM, RIFLE, BUCKSHOT }
 
 
 @export_category("Emitters")
-#@export var car: Car_Movement
+@export var car: Car_Movement
 @export var emitter_9mm: GPUParticles3D
 @export var emitter_rifle: GPUParticles3D
 @export var emitter_buckshot: GPUParticles3D
@@ -19,20 +19,19 @@ enum ShellType { PISTOL_9MM, RIFLE, BUCKSHOT }
 
 
 const EMIT_FLAGS := (
-	GPUParticles3D.EMIT_FLAG_POSITION
-	| GPUParticles3D.EMIT_FLAG_ROTATION_SCALE
-	| GPUParticles3D.EMIT_FLAG_VELOCITY
+GPUParticles3D.EMIT_FLAG_ROTATION_SCALE
+| GPUParticles3D.EMIT_FLAG_VELOCITY
 )
 
 
-func eject(shell_type: ShellType, car_speed: float) -> void:
+func eject(shell_type: ShellType) -> void:
 	var emitter := _get_emitter(shell_type)
 	if emitter == null:
 		return
 
 	emitter.emit_particle(
-		global_transform,
-		_build_velocity(car_speed),
+		Transform3D.IDENTITY,
+		_build_velocity(car.speed),
 		Color.WHITE,
 		Color.WHITE,
 		EMIT_FLAGS
