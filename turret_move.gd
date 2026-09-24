@@ -10,7 +10,6 @@ class_name GunMove
 
 @export var gun_point: Marker3D
 @export var muzzle_flash: Muzzle_flash
-@export var shell_ejector: Shell_Ejector
 
 
 func _ready() -> void:
@@ -28,5 +27,5 @@ func aim_pitch(local_target: Vector3, delta: float) -> void:
 
 func play_bolt_recoil(travel: float = 0.05, out_time: float = 0.04, in_time: float = 0.12) -> void:
 	var tween := create_tween()
-	tween.tween_property(bolt, "position:z", -travel, out_time)
-	tween.tween_property(bolt, "position:z", 0.0, in_time)
+	tween.tween_property(bolt, "position:y", -travel, out_time)
+	tween.tween_property(bolt, "position:y", 0.0, in_time)

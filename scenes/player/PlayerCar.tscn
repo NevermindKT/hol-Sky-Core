@@ -3,13 +3,16 @@
 [ext_resource type="Script" uid="uid://dto53mmrpu76e" path="res://scripts/car/car_movement.gd" id="1_y6j3g"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
 [ext_resource type="Script" uid="uid://42qmfye5c841" path="res://scripts/car/back_lights.gd" id="3_20y2w"]
+[ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scripts/car/flashlight_controller.gd" id="3_y6j3g"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
 [ext_resource type="Script" uid="uid://nt6h8xoqqc60" path="res://scripts/data/weapon/weapon_state.gd" id="6_7lmdr"]
 [ext_resource type="Script" uid="uid://cjwmiawwp4nua" path="res://scripts/vfx/wheel_dust.gd" id="6_lvrf2"]
+[ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="6_t5h3w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
 [ext_resource type="PackedScene" uid="uid://d3gah4j0ljcw7" path="res://scenes/gun/gun_w_script.tscn" id="8_2jmj4"]
 [ext_resource type="PackedScene" uid="uid://cgx8vcbpf1r2n" path="res://scenes/vfx/effects/engine_smoke.tscn" id="8_f6f1y"]
 [ext_resource type="PackedScene" uid="uid://bhuqoyse3ljm6" path="res://models/car/Ostov.glb" id="8_t5h3w"]
+[ext_resource type="PackedScene" uid="uid://ms88ls3yfth4" path="res://scenes/player/shell_ejector_right.tscn" id="9_els85"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
 [ext_resource type="PackedScene" uid="uid://b18ge6bq72hf8" path="res://scenes/vfx/effects/wheel_particles_effect.tscn" id="10_lvrf2"]
@@ -36,7 +39,7 @@ albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bq845"]
 radius = 0.57421875
-height = 3.1828241
+height = 3.6735306
 
 [sub_resource type="Resource" id="Resource_lo1ro"]
 script = ExtResource("6_7lmdr")
@@ -80,7 +83,11 @@ weapon_controller = NodePath("WeaponController")
 player_status_controller = NodePath("PlayerStatusController")
 
 [node name="gun" parent="." unique_id=797723952 instance=ExtResource("8_2jmj4")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.55534565, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.5, 0)
+
+[node name="ShellEjector" parent="gun" unique_id=1881231443 node_paths=PackedStringArray("car") instance=ExtResource("9_els85")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.11711423, 0.39796138, -0.36482424)
+car = NodePath("../..")
 
 [node name="Visual" type="Node3D" parent="." unique_id=1626838081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245, 0)
@@ -95,6 +102,40 @@ max_tilt_velocity = 20.0
 dodge_yaw_impulse = -8.0
 dodge_roll_impulse = 4.0
 
+[node name="CarMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]
+visible = false
+layers = 3
+mesh = SubResource("BoxMesh_elpsl")
+surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
+
+[node name="WeaponPivot" type="Node3D" parent="Visual" unique_id=879198079]
+
+[node name="GunPoint" type="Marker3D" parent="Visual/WeaponPivot" unique_id=77871199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
+
+[node name="MuzzleFlash" parent="Visual/WeaponPivot/GunPoint" unique_id=1492550407 instance=ExtResource("6_t5h3w")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+
+[node name="AimFlashlight" type="SpotLight3D" parent="Visual/WeaponPivot" unique_id=1688042910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.7)
+light_color = Color(0.7160397, 0.807846, 0.86599535, 1)
+light_energy = 6.0
+light_specular = 4.0
+shadow_enabled = true
+shadow_bias = 0.2
+distance_fade_begin = 0.0
+spot_range = 25.0
+spot_attenuation = 2.0
+spot_angle = 15.0
+script = ExtResource("3_y6j3g")
+close_range = 30.0
+close_angle = 35.0
+close_energy = 15.0
+far_range = 80.0
+far_angle = 8.0
+far_energy = 75.0
+far_volumetric_fog_energy = 2.0
+
 [node name="vfx" type="Node3D" parent="Visual" unique_id=964234194]
 
 [node name="EngineSmoke" parent="Visual/vfx" unique_id=1428749223 node_paths=PackedStringArray("status_controller", "car") instance=ExtResource("8_f6f1y")]
@@ -104,20 +145,6 @@ car = NodePath("../../..")
 smoke_start_health_ratio = 0.7
 upward_lift = 1.5
 max_wind_speed = 30.0
-
-[node name="wheel_dust" type="Node3D" parent="Visual/vfx" unique_id=1604834555 node_paths=PackedStringArray("particles", "car")]
-script = ExtResource("6_lvrf2")
-particles = [NodePath("WheelParticlesEffect"), NodePath("WheelParticlesEffect2")]
-car = NodePath("../../..")
-max_wind_speed = 30.0
-velocity_spread = 0.5
-min_speed_for_dust = 0.5
-
-[node name="WheelParticlesEffect" parent="Visual/vfx/wheel_dust" unique_id=644535193 instance=ExtResource("10_lvrf2")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.25, -0.6, 0.8)
-
-[node name="WheelParticlesEffect2" parent="Visual/vfx/wheel_dust" unique_id=1417955025 instance=ExtResource("10_lvrf2")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.25, -0.6, 0.8)
 
 [node name="BackLights" type="Node3D" parent="Visual/vfx" unique_id=2013480416 node_paths=PackedStringArray("back_lights")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.1, 1.75)
@@ -148,10 +175,24 @@ spot_range = 3.0
 spot_attenuation = 2.0
 spot_angle = 70.0
 
-[node name="ForwardLights" type="Node3D" parent="Visual/vfx" unique_id=1230302799]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999994, -2.15)
+[node name="wheel_dust" type="Node3D" parent="Visual/vfx" unique_id=1604834555 node_paths=PackedStringArray("particles", "car")]
+script = ExtResource("6_lvrf2")
+particles = [NodePath("WheelParticlesEffect"), NodePath("WheelParticlesEffect2")]
+car = NodePath("../../..")
+max_wind_speed = 30.0
+velocity_spread = 0.5
+min_speed_for_dust = 0.5
 
-[node name="Visual_vfx_ForwardLights#SpotLight3D" type="SpotLight3D" parent="Visual/vfx/ForwardLights" unique_id=1295753280]
+[node name="WheelParticlesEffect" parent="Visual/vfx/wheel_dust" unique_id=644535193 instance=ExtResource("10_lvrf2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.25, -0.6, 0.8)
+
+[node name="WheelParticlesEffect2" parent="Visual/vfx/wheel_dust" unique_id=1417955025 instance=ExtResource("10_lvrf2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.25, -0.6, 0.8)
+
+[node name="ForwardLights" type="Node3D" parent="Visual" unique_id=1230302799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -2.15)
+
+[node name="Visual_vfx_ForwardLights#SpotLight3D" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=1295753280]
 transform = Transform3D(0.9998039, -0.0052247075, 0.01910103, 0.0038136744, 0.9973118, 0.07317594, -0.019432003, -0.07308874, 0.9971361, -0.48, 0, 0)
 light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
 light_energy = 10.0
@@ -171,7 +212,7 @@ far_angle = 22.0
 far_attenuation = 0.6
 far_volumetric_fog_energy = 0.1
 
-[node name="Visual_vfx_ForwardLights#SpotLight3D2" type="SpotLight3D" parent="Visual/vfx/ForwardLights" unique_id=300350988]
+[node name="Visual_vfx_ForwardLights#SpotLight3D2" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=300350988]
 transform = Transform3D(0.9996733, -0.0052247066, 0.025018563, 0.0033804758, 0.9973118, 0.07319724, -0.02533374, -0.07308875, 0.9970037, 0.48, 0, 0)
 light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
 light_energy = 10.0
@@ -230,31 +271,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.7, 1.1)
 [node name="Wheel" parent="Visual/WheelContainer/Wheel_RR" unique_id=530509797 instance=ExtResource("19_f0rj0")]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
 
-[node name="SpeedTrailPointContainer" type="Node3D" parent="Visual" unique_id=1145005436]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.245, 0)
-
-[node name="SpeedTrailPointL" type="Marker3D" parent="Visual/SpeedTrailPointContainer" unique_id=647454470]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.09086355, 0.65638626)
-
-[node name="SpeedTrailPointR" type="Marker3D" parent="Visual/SpeedTrailPointContainer" unique_id=1377149483]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.09086355, 0.65638626)
-
-[node name="SpeedTrailPointL2" type="Marker3D" parent="Visual/SpeedTrailPointContainer" unique_id=366586177]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.1, -1.7)
-
-[node name="SpeedTrailPointR2" type="Marker3D" parent="Visual/SpeedTrailPointContainer" unique_id=1949899320]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, -0.1, -1.7)
-
-[node name="CarTestMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]
-visible = false
-layers = 3
-mesh = SubResource("BoxMesh_elpsl")
-surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
-
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -7.7095095e-09, 0.076373)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.1)
 shape = SubResource("CapsuleShape3D_bq845")
 
 [node name="SkidPointContainer" type="Node3D" parent="." unique_id=1427972973]
@@ -277,10 +297,11 @@ rifle_ammo = 5000
 pistol_ammo = 5000
 shotgun_ammo = 5000
 
-[node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("gun", "car", "inventory")]
+[node name="WeaponController" type="Node" parent="." unique_id=725303377 node_paths=PackedStringArray("gun", "car", "shell_ejector", "inventory")]
 script = ExtResource("4_ojawh")
 gun = NodePath("../gun")
 car = NodePath("..")
+shell_ejector = NodePath("../gun/ShellEjector")
 player_weapons = Array[ExtResource("6_7lmdr")]([SubResource("Resource_lo1ro"), SubResource("Resource_y6j3g"), SubResource("Resource_iam02")])
 inventory = NodePath("../Inventory")
 

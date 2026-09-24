@@ -5,6 +5,7 @@ var current_weapon: WeaponState
 
 @export var gun: GunMove
 @export var car: Car_Movement
+@export var shell_ejector: Shell_Ejector
 @export var player_weapons: Array[WeaponState]
 
 @export var inventory: Inventory
@@ -47,13 +48,13 @@ func fire():
 		reload()
 		return
 
-	if gun.shell_ejector:
-		gun.shell_ejector.eject(current_weapon.data.shell_type, car.speed)
+	if shell_ejector:
+		shell_ejector.eject(current_weapon.data.shell_type)
 
 	current_weapon.ammo -= 1
 	Events.magazine_count_changed.emit(current_weapon.ammo)
 	gun.muzzle_flash.play()
-	gun.play_bolt_recoil()
+	gun.play_bolt_recoil(0.8, 0.04, 0.12)
 	cooldown = 1.0 / current_weapon.data.fire_rate
 	current_weapon.data.fire_behavior.fire(self)
 	
