@@ -1,8 +1,9 @@
-[gd_scene format=4 uid="uid://djfjcpj3hx4na"]
+[gd_scene format=4 uid="uid://ms88ls3yfth4"]
 
-[ext_resource type="Script" path="res://scripts/car/shell_ejector.gd" id="1_kmyjv"]
-[ext_resource type="Texture2D" path="res://textures/shells/rifle.jpg" id="2_8ffnj"]
-[ext_resource type="Texture2D" path="res://textures/shells/buck.jpg" id="3_jx0nu"]
+[ext_resource type="Script" uid="uid://d1pyaiw7iams5" path="res://scripts/car/shell_ejector.gd" id="1_kmyjv"]
+[ext_resource type="Texture2D" uid="uid://srlj3qwwbroa" path="res://textures/shells/rifle.jpg" id="2_8ffnj"]
+[ext_resource type="Texture2D" uid="uid://bdkm0x87b37or" path="res://textures/shells/buck.jpg" id="3_jx0nu"]
+
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hy8se"]
 direction = Vector3(5, 2, -5)

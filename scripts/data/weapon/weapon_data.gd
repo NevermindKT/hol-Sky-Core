@@ -25,6 +25,9 @@ class_name WeaponData
 @export var bloom_per_shot: float
 @export var bloom_recovery_rate: float
 
+@export_category("Shell")
+@export var shell_type: Shell_Ejector.ShellType
+
 @export_category("Exports")
 @export var fire_behavior: Fire_behavior
 @export var projectile_scene: PackedScene

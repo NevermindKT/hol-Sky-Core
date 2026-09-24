@@ -18,7 +18,7 @@ func initialize(start_distance: float):
 		push_warning("Car не призначений. Ініціалізацію неможливо виконати.")
 		return
 
-	world.path_follow_3d.rotation_mode = PathFollow3D.ROTATION_XYZ
+	world.path_follow_3d.rotation_mode = PathFollow3D.ROTATION_ORIENTED
 	world.path_follow_3d.progress = start_distance
 	world.path_follow_3d.loop = false
 

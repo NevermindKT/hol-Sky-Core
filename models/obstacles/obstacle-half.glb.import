@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://xi8xd3w5xbe4"
-path="res://.godot/imported/Car.glb-d91f582059ca6aa0f34ed0af0e36fa1b.scn"
+uid="uid://dhg514n04sxo7"
+path="res://.godot/imported/obstacle-half.glb-1cf646edc0b4495b78219a2d3ca3e62c.scn"
 
 [deps]
 
-source_file="res://models/car/Car.glb"
-dest_files=["res://.godot/imported/Car.glb-d91f582059ca6aa0f34ed0af0e36fa1b.scn"]
+source_file="res://models/obstacles/obstacle-half.glb"
+dest_files=["res://.godot/imported/obstacle-half.glb-1cf646edc0b4495b78219a2d3ca3e62c.scn"]
 
 [params]
 

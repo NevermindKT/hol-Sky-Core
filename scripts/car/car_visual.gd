@@ -11,15 +11,23 @@ class_name Car_Visual_Effects
 @export var max_lateral_speed := 10.0
 @export var max_turn_velocity := 5.0
 
-@export var delta_mul := 10.0
 
-@onready var visual: Car_Visual_Effects = $"."
+@export_category("Spring")
+@export var tilt_spring := 120.0
+@export var tilt_damping := 14.0
+@export var max_tilt_velocity := 25.0
 
-func process_visual_tilt(
-	delta: float,
-	lateral_speed: float,
-	turn_velocity: float
-):
+
+@export_category("Dodge Impulse")
+@export var dodge_yaw_impulse := 9.0
+@export var dodge_roll_impulse := 7.0
+
+
+var tilt_velocity_y := 0.0
+var tilt_velocity_z := 0.0
+
+
+func process_visual_tilt(delta: float, lateral_speed: float, turn_velocity: float):
 	var tilt_strength := clampf(
 		lateral_speed / max_lateral_speed,
 		-1.0,
@@ -42,14 +50,24 @@ func process_visual_tilt(
 		+ turn_strength * deg_to_rad(road_z_tilt)
 	)
 
-	visual.rotation.y = lerp_angle(
-		visual.rotation.y,
-		target_y,
-		delta * delta_mul
-	)
+	rotation.y = _spring_angle(rotation.y, target_y, "tilt_velocity_y", delta)
+	rotation.z = _spring_angle(rotation.z, target_z, "tilt_velocity_z", delta)
 
-	visual.rotation.z = lerp_angle(
-		visual.rotation.z,
-		target_z,
-		delta * delta_mul
-	)
+
+func _spring_angle(current: float, target: float, velocity_property: StringName, delta: float) -> float:
+	var velocity: float = get(velocity_property)
+
+	var error := angle_difference(current, target)
+
+	velocity += error * tilt_spring * delta
+	velocity *= clampf(1.0 - tilt_damping * delta, 0.0, 1.0)
+	velocity = clampf(velocity, -max_tilt_velocity, max_tilt_velocity)
+
+	set(velocity_property, velocity)
+
+	return current + velocity * delta
+
+
+func apply_dodge_impulse(direction: float) -> void:
+	tilt_velocity_y -= direction * dodge_yaw_impulse
+	tilt_velocity_z += direction * dodge_roll_impulse

@@ -83,12 +83,18 @@ var _current_grip := 1.0
 @export var player_cam: Player_Camera
 @export var back_lights: BackLights
 
-@export var cam_pivot: Node3D
-@export var inventory: Inventory
-@export var weapon_pivot: Node3D
+@export var vfx: Node3D
 @export var visual_effects: Car_Visual_Effects
+
+@export var gun: GunMove
+@export var cam_pivot: Node3D
+
+@export var wheels: Car_Wheels
+
+@export var inventory: Inventory
 @export var weapon_controller: Weapon_controller
 @export var player_status_controller: Player_Status_Controller
+
 
 
 var road_manager: Road_manager
@@ -113,6 +119,7 @@ func _physics_process(delta: float) -> void:
 	process_enemies_hits()
 	process_dodge_hit_check(delta)
 	
+	set_meta("car_speed", speed)
 	#print("Speed: ", speed)
 	#print("Lane offset: ", lane_offset)
 	#print("Lateral velosity: ", lateral_velocity)
@@ -217,6 +224,9 @@ func _recover_from_overheat() -> void:
 
 func process_visuals(delta: float) -> void:
 	visual_effects.process_visual_tilt(delta, lateral_velocity, road_manager.smoothed_turn_velocity)
+	
+	if wheels:
+		wheels.process_wheels(delta, -speed, -steering_input)
 
 # ============================ GETTERS =========================================
 
@@ -247,6 +257,8 @@ func dodge() -> void:
 		return
 	
 	var direction = sign(steering_input)
+	
+	visual_effects.apply_dodge_impulse(direction)
 	
 	lane_offset += direction * dodge_distance
 	lane_offset = clamp_offset()
@@ -333,6 +345,6 @@ func spawn_hit_effect(hit_position: Vector3) -> void:
 		push_warning("Car: car_hit_effect не має скрипта Muzzle_flash")
 		return
 
-	visual_effects.get_node("CarModel").add_child(car_hit)
+	visual_effects.get_node("Ostov").add_child(car_hit)
 	car_hit.global_position = hit_position
 	car_hit.play(true)

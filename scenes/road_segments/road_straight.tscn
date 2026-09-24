@@ -19,12 +19,13 @@ _data = {
 }
 point_count = 2
 
-[node name="RoadStraight" type="Node3D" unique_id=2100877904 node_paths=PackedStringArray("anchor", "origin", "road_path")]
+[node name="RoadStraight" type="Node3D" unique_id=2100877904 node_paths=PackedStringArray("anchor", "origin", "road_path", "obstacles")]
 script = ExtResource("1_vallh")
 anchor = NodePath("Anchor")
 origin = NodePath("Origin")
 road_path = NodePath("RoadPath")
 weight = 10.0
+obstacles = NodePath("Obstacles")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=576532607]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
@@ -41,8 +42,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=1608775228]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.1, 17.5)
-size = Vector3(16.05, 0.2, 54.96)
+transform = Transform3D(3, 0, 0, 0, 1.096, 0, 0, 0, 1.096, 0, 0.3, 17.5)
+size = Vector3(16.053467, 0.5, 54.964966)
+
 
 [node name="Obstacles" type="Node" parent="." unique_id=1283524179]
 

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c6vfw663kn4ia"]
+
+[ext_resource type="PackedScene" uid="uid://ehsk55h60eh" path="res://models/car/Wheel.glb" id="1_ypdop"]
+
+[node name="Wheel" unique_id=1305455613 instance=ExtResource("1_ypdop")]
+
+[node name="Cylinder_001" parent="." index="0" unique_id=1110242306]
+transform = Transform3D(0, 0.19481257, 0, -0.57513577, 0, 0, 0, 0, 0.57513577, 0, 0, 0)

@@ -3,10 +3,12 @@ class_name Weapon_controller
 
 var current_weapon: WeaponState
 
-@export var fire_point: Marker3D
-@export var muzzle_flash: Muzzle_flash
+@export var gun: GunMove
+@export var car: Car_Movement
+@export var shell_ejector: Shell_Ejector
 @export var player_weapons: Array[WeaponState]
-@onready var inventory: Inventory = $"../Inventory"
+
+@export var inventory: Inventory
 
 var cooldown := 0.0
 var current_spread: float = 0.0
@@ -53,13 +55,23 @@ func fire():
 	if not bullet_saved:
 		current_weapon.ammo -= 1
 	Events.magazine_count_changed.emit(current_weapon.ammo)
-	muzzle_flash.play(false, 1.0, bullet_saved)
 	var fire_rate := UpgradeManager.get_modified(&"rate_of_fire", current_weapon.data.fire_rate)
 	cooldown = 1.0 / fire_rate
 	current_weapon.data.fire_behavior.fire(self, bullet_saved)
 
 	var bloom_per_shot := UpgradeManager.get_modified(&"less_recoil", current_weapon.data.bloom_per_shot)
 	var max_spread := UpgradeManager.get_modified(&"less_spread", current_weapon.data.max_spread)
+
+	if shell_ejector:
+		shell_ejector.eject(current_weapon.data.shell_type)
+
+	current_weapon.ammo -= 1
+	Events.magazine_count_changed.emit(current_weapon.ammo)
+	gun.muzzle_flash.play(false, 1.0, bullet_saved)
+	gun.play_bolt_recoil(0.8, 0.04, 0.12)
+	cooldown = 1.0 / current_weapon.data.fire_rate
+	current_weapon.data.fire_behavior.fire(self)
+
 	current_spread = min(
 		max_spread,
 		current_spread + bloom_per_shot

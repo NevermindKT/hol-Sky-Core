@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road/road_manager.gd" id="7_3g18v"]
 [ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="7_mowk8"]
 [ext_resource type="Script" uid="uid://bocwaebt17tfi" path="res://scripts/data/road/obstacle_data.gd" id="7_tc8ix"]
-[ext_resource type="PackedScene" uid="uid://lq8bh03qwq4o" path="res://scenes/obstacles/testObstacle.tscn" id="8_asndc"]
+[ext_resource type="PackedScene" uid="uid://5l3jx6le81bf" path="res://scenes/obstacles/obstacle.tscn" id="8_27c6g"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="8_mowk8"]
 [ext_resource type="Resource" uid="uid://hxykvkcsp7w4" path="res://resources/weather/rain/HeavyRainProfile.tres" id="8_xwqeg"]
 [ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="9_a06ay"]
@@ -39,10 +39,12 @@
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="38_dph2j"]
+[ext_resource type="Script" uid="uid://bia1b2g3noalc" path="res://scripts/enemy/encounter_director.gd" id="40_g88bg"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("7_tc8ix")
-obstacle_scene = ExtResource("8_asndc")
+obstacle_scene = ExtResource("8_27c6g")
+weight = 10.0
 metadata/_custom_type_script = "uid://bocwaebt17tfi"
 
 [sub_resource type="Resource" id="Resource_dakql"]
@@ -63,7 +65,6 @@ dodge_distance = 5.0
 dodge_damage = 80.0
 dodge_knockback_force = 110.0
 enemy_detection_mask = 2
-dodge_stamina_drain = 38.0
 stamina_regeneration_rate = 75.0
 stamina_regeneration_delay = 0.75
 overheat_delay = 1.85
@@ -143,31 +144,32 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 150,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.92378)
 script = ExtResource("13_asndc")
 enemy_pool = Array[ExtResource("14_o0wgs")]([ExtResource("13_g88bg")])
-attack_cooldown = 0.5
+offscreen_spawn_distance = 30.0
 player = NodePath("../Car")
 test_Enemy = ExtResource("13_g88bg")
 metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
-[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "road_generator", "ground_generator", "vegetation_scatter", "weather_generator", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "enemy_spawner", "sky_controller", "aim_controller", "enemy_encounter")]
+[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
 script = ExtResource("6_v852s")
 car = NodePath("../../Car")
 hud = NodePath("../../UI/HUD")
 world = NodePath("../../Environment/World")
 run_manager = NodePath("../RunManager")
 road_manager = NodePath("../RoadManager")
+enemy_spawner = NodePath("../EnemySpawner")
+sky_controller = NodePath("../../Environment/WeatherSystem/SkyController")
 road_generator = NodePath("../RoadGenerator")
 ground_generator = NodePath("../GroundGenerator")
-vegetation_scatter = NodePath("../VegetationScatter")
 weather_generator = NodePath("../WeatherGenerator")
+vegetation_scatter = NodePath("../VegetationScatter")
 tire_trail_manager = NodePath("../TireTrailManager")
 blood_trail_manager = NodePath("../BloodTrailManager")
 lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
-enemy_spawner = NodePath("../EnemySpawner")
-sky_controller = NodePath("../../Environment/WeatherSystem/SkyController")
 aim_controller = NodePath("../AimController")
 enemy_encounter = NodePath("../../EnemyEncounter")
+encounter_director = NodePath("../EncounterDirector")
 
 [node name="RunManager" type="Node" parent="Services" unique_id=239540275]
 script = ExtResource("7_0uqmh")
@@ -185,6 +187,7 @@ metadata/_custom_type_script = "uid://bhl1wod4cbmvb"
 
 [node name="RoadGenerator" type="Node" parent="Services" unique_id=119337621]
 script = ExtResource("7_mowk8")
+debug = false
 
 [node name="EnemySpawner" type="Node" parent="Services" unique_id=1015351304]
 script = ExtResource("14_dakql")
@@ -193,6 +196,10 @@ min_gap_m = 10.0
 max_gap_m = 20.0
 spawn_chance = 1.0
 lateral_offset = 1.5
+
+[node name="EncounterDirector" type="Node" parent="Services" unique_id=1870512182]
+script = ExtResource("40_g88bg")
+initial_delay_segments = 6
 
 [node name="WeatherGenerator" type="Node" parent="Services" unique_id=1698724359]
 script = ExtResource("16_iqacv")

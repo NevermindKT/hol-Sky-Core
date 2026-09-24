@@ -5,11 +5,33 @@ class_name Pause_Menu
 @onready var options_btn: Button = $Menu/OptionsBtn
 @onready var exit_btn: Button = $Menu/ExitBtn
 
+@export var hover_sound: AudioStream = preload("res://audio/ui/UI_Button_Hover.wav")
+@export var click_sound: AudioStream = preload("res://audio/ui/UI_Button_Click_1.wav")
+
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	PauseManager.pause_state_changed.connect(_on_pause_state_changed)
 	continue_btn.pressed.connect(_on_continue_pressed)
+	exit_btn.pressed.connect(_on_quit_pressed)
+	
+	_connect_button_sounds()
+
+
+func _connect_button_sounds():
+	var buttons: Array[Button] = [continue_btn, options_btn, exit_btn]
+	for btn in buttons:
+		btn.mouse_entered.connect(_on_button_hover)
+		btn.pressed.connect(_on_button_click)
+
+
+func _on_button_hover():
+	SoundManager.play_sfx(hover_sound)
+
+
+func _on_button_click():
+	SoundManager.play_sfx(click_sound)
+	print("Play sound click")
 
 
 func _on_pause_state_changed():
@@ -19,6 +41,10 @@ func _on_pause_state_changed():
 func _on_continue_pressed():
 	PauseManager.set_paused(false)
 	check_visible()
+
+
+func _on_quit_pressed():
+	get_tree().quit(0)
 
 
 func check_visible():

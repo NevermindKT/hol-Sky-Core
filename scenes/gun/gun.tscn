@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dtt3trymeli7j"]
 
-[ext_resource type="Script" path="res://turret_move.gd" id="1_fjnj2"]
+[ext_resource type="PackedScene" uid="uid://cbsmxwla2jvg6" path="res://models/gun/gun.glb" id="1_eo2c1"]
+[ext_resource type="Script" uid="uid://bk3hmvv5f73dm" path="res://turret_move.gd" id="1_fjnj2"]
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="2_eo2c1"]
 
-[node name="gun" unique_id=797723952 node_paths=PackedStringArray("gun", "bolt", "gun_point", "muzzle_flash")]
+[node name="gun" unique_id=797723952 node_paths=PackedStringArray("gun", "bolt", "gun_point", "muzzle_flash") instance=ExtResource("1_eo2c1")]
 script = ExtResource("1_fjnj2")
 gun = NodePath("GunBone/Skeleton3D/Bone")
 bolt = NodePath("BoltBone/Skeleton3D/Bone")

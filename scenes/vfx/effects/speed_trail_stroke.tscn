@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bgu3roakp723e"]
+
+[ext_resource type="Texture2D" uid="uid://bfyfl2bljgfpq" path="res://textures/vfx/windTrail.png" id="1_j6iex"]
+[ext_resource type="Script" uid="uid://d2c4om0ytedt6" path="res://scripts/vfx/tire_trail_stroke.gd" id="1_pgs0t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j82lt"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.019607844)
+albedo_texture = ExtResource("1_j6iex")
+
+[node name="SpeedTrailStroke" type="MeshInstance3D" unique_id=644350217]
+material_override = SubResource("StandardMaterial3D_j82lt")
+script = ExtResource("1_pgs0t")
+width = 0.1
