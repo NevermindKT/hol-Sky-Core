@@ -21,6 +21,7 @@ const COLLISION_MASK := COLLISION_MASK_OBSTACLE | COLLISION_MASK_HURT_BOX | COLL
 
 var velocity: Vector3
 var start_position: Vector3
+var distance_traveled := 0.0
 
 var bounces_left := 0
 var hit_enemies: Array[Encounter_Enemy] = []
@@ -63,8 +64,7 @@ func _physics_process(delta: float) -> void:
 	var from := global_position
 	var movement := velocity * delta
 
-	var distance_from_start := from.distance_to(start_position)
-	var remaining_distance := projectile_distance - distance_from_start
+	var remaining_distance := projectile_distance - distance_traveled
 
 	if remaining_distance <= 0.0:
 		queue_free()
@@ -82,8 +82,9 @@ func _physics_process(delta: float) -> void:
 		return
 
 	global_position = to
+	distance_traveled += movement.length()
 
-	if global_position.distance_to(start_position) >= projectile_distance:
+	if distance_traveled >= projectile_distance:
 		queue_free()
 
 
@@ -150,6 +151,7 @@ func _try_ricochet(enemy: Encounter_Enemy) -> bool:
 
 	bounces_left -= 1
 	start_position = global_position
+	distance_traveled = 0.0
 	velocity = (target.global_position - global_position).normalized() * projectile_speed
 
 	look_at(target.global_position, Vector3.UP)
