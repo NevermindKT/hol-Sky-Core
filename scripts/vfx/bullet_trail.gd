@@ -21,6 +21,9 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+
 	_age += delta
 
 	var projectile := get_parent() as Projectile
