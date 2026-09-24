@@ -1,14 +1,15 @@
 extends Fire_behavior
 class_name Single_projectile_behavior
 
-func fire(controller: Weapon_controller):
+func fire(controller: Weapon_controller, saved: bool = false):
 	var spawn_transform := controller.fire_point.global_transform
 	spawn_transform.basis = _apply_spread(spawn_transform.basis, controller.current_spread)
-	
+
 	ProjectileSpawner.spawn_single(
 		controller.current_weapon.data,
 		spawn_transform,
-		controller.get_parent()
+		controller.get_parent(),
+		saved
 	)
 
 func _apply_spread(basis: Basis, spread_radians: float) -> Basis:

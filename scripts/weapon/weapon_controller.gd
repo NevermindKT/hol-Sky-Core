@@ -49,13 +49,14 @@ func fire():
 		return
 
 	var bullet_save_chance := UpgradeManager.get_modified(&"bullet_saving", 0.0)
-	if randf() >= bullet_save_chance:
+	var bullet_saved := randf() < bullet_save_chance
+	if not bullet_saved:
 		current_weapon.ammo -= 1
 	Events.magazine_count_changed.emit(current_weapon.ammo)
-	muzzle_flash.play()
+	muzzle_flash.play(false, 1.0, bullet_saved)
 	var fire_rate := UpgradeManager.get_modified(&"rate_of_fire", current_weapon.data.fire_rate)
 	cooldown = 1.0 / fire_rate
-	current_weapon.data.fire_behavior.fire(self)
+	current_weapon.data.fire_behavior.fire(self, bullet_saved)
 
 	var bloom_per_shot := UpgradeManager.get_modified(&"less_recoil", current_weapon.data.bloom_per_shot)
 	var max_spread := UpgradeManager.get_modified(&"less_spread", current_weapon.data.max_spread)

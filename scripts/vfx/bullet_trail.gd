@@ -11,6 +11,7 @@ class_name BulletTrail
 @export var mesh: MeshInstance3D
 
 const CONTINUITY_MARGIN := 1.5
+const SAVED_TRAIL_COLOR := Color(0.25, 0.55, 1.0, 1)
 
 func _ready():
 	apply_data()
@@ -41,6 +42,14 @@ func align_to_velocity(velocity: Vector3) -> void:
 	var up := side.cross(backward)
 
 	global_transform = Transform3D(Basis(side, backward, up), global_position)
+
+
+func mark_saved() -> void:
+	var material := mesh.material_override as ShaderMaterial
+	if material == null:
+		return
+
+	material.set_shader_parameter("trail_color", SAVED_TRAIL_COLOR)
 
 
 func apply_data():

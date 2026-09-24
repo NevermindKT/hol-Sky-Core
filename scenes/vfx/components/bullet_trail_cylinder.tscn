@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://conpfe51h3wrt" path="res://resources/shaders/vfx/bullet_trail.gdshader" id="2_shader"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_shader")
 shader_parameter/trail_color = Color(1, 0.7666667, 0, 1)
@@ -13,6 +14,7 @@ shader_parameter/glow_size = 1.0
 shader_parameter/emission_strength = 4.27200020292
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1"]
+resource_local_to_scene = true
 top_radius = 0.03
 bottom_radius = 0.03
 height = 1.0
