@@ -20,7 +20,6 @@
 [ext_resource type="Resource" uid="uid://kbikc6eesw84" path="res://resources/enemy/testEnemy.tres" id="13_g88bg"]
 [ext_resource type="Script" uid="uid://csuu8mh30lvn7" path="res://scripts/spawners/enemy_spawner.gd" id="14_dakql"]
 [ext_resource type="Script" uid="uid://dugxq50h32qoa" path="res://resources/enemy/encounter_enemy_data.gd" id="14_o0wgs"]
-[ext_resource type="PackedScene" uid="uid://ck5eo0ch0lb4t" path="res://scenes/weather/components/distance_fog.tscn" id="15_cshfm"]
 [ext_resource type="PackedScene" uid="uid://dj6f80eu3p4mq" path="res://scenes/enemies/enemy.tscn" id="15_cyvft"]
 [ext_resource type="Script" uid="uid://dydg442leo0i4" path="res://scripts/weather/weather_generator.gd" id="16_iqacv"]
 [ext_resource type="PackedScene" uid="uid://c5q2obhvjx8lj" path="res://scenes/weather/weather_zone.tscn" id="17_tc8ix"]
@@ -124,21 +123,6 @@ dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
 sun_angle_max_deg = 13.0
 sun_curve = 1.0
 
-[node name="DistanceFog" parent="Environment" unique_id=1400367543 instance=ExtResource("15_cshfm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -250)
-
-[node name="FogMesh" parent="Environment/DistanceFog" index="0" unique_id=740100936]
-transform = Transform3D(1, 0, 0, 0, -0.556708, 0.8307082, 0, -0.8307082, -0.556708, 0, 0, -20)
-
-[node name="FogMesh3" parent="Environment/DistanceFog" index="2" unique_id=1585086666]
-transform = Transform3D(1, 0, 0, 0, -0.556708, 0.8307082, 0, -0.8307082, -0.556708, 0, 0, 60)
-
-[node name="DistanceFog2" parent="Environment" unique_id=750089918 instance=ExtResource("15_cshfm")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -150, 1, -150)
-
-[node name="DistanceFog3" parent="Environment" unique_id=1031805874 instance=ExtResource("15_cshfm")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 150, 1, -150)
-
 [node name="EnemyEncounter" type="Node3D" parent="." unique_id=2038877150 node_paths=PackedStringArray("player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.92378)
 script = ExtResource("13_asndc")
@@ -229,4 +213,3 @@ max_active_strokes = 10
 fade_duration = 5.0
 
 [editable path="Environment/WeatherSystem"]
-[editable path="Environment/DistanceFog"]
