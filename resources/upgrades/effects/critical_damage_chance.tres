@@ -6,5 +6,5 @@
 script = ExtResource("1_xtpin")
 stat_id = &"critical_damage_chance"
 operation = 1
-multiplier = 0.05
+multiplier = 0.5
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
