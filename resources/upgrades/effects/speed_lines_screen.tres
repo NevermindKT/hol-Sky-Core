@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ScreenEffectToggleEffect" format=3]
+
+[ext_resource type="Script" uid="uid://i3chknwurtvy" path="res://scripts/data/upgrade/upgrade_effects/screen_effect_toggle_effect.gd" id="1_rs034"]
+
+[resource]
+script = ExtResource("1_rs034")
+effect_id = &"speed_lines"
+metadata/_custom_type_script = "uid://i3chknwurtvy"
