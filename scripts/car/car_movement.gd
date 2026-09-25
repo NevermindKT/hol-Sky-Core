@@ -330,6 +330,10 @@ func create_hit_data(contact_point: Vector3, contact_normal: Vector3) -> HitData
 	return HitData.new(self, car_velocity, contact_point, contact_normal, base_damage)
 
 
+func apply_impact_speed_loss(amount: float) -> void:
+	speed = maxf(0.0, speed - amount)
+
+
 func _resolve_enemy(node: Node) -> Encounter_Enemy:
 	var current := node
 	while current:
@@ -339,7 +343,7 @@ func _resolve_enemy(node: Node) -> Encounter_Enemy:
 	return null
 	
 	
-func spawn_hit_effect(hit_position: Vector3) -> void:
+func spawn_hit_effect(hit_position: Vector3, scale: float = 1.0) -> void:
 	var car_hit := car_hit_effect.instantiate() as Muzzle_flash
 	if car_hit == null:
 		push_warning("Car: car_hit_effect не має скрипта Muzzle_flash")
@@ -347,4 +351,4 @@ func spawn_hit_effect(hit_position: Vector3) -> void:
 
 	visual_effects.get_node("Ostov").add_child(car_hit)
 	car_hit.global_position = hit_position
-	car_hit.play(true)
+	car_hit.play(true, scale)

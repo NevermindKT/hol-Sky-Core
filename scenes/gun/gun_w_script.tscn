@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbsmxwla2jvg6" path="res://models/gun/gun.glb" id="1_yucqx"]
 [ext_resource type="Script" uid="uid://bk3hmvv5f73dm" path="res://turret_move.gd" id="2_eo2c1"]
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="3_5gme6"]
+[ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scripts/car/flashlight_controller.gd" id="4_c6023"]
 
 [node name="gun" unique_id=797723952 node_paths=PackedStringArray("gun", "bolt", "gun_point", "muzzle_flash") instance=ExtResource("1_yucqx")]
 script = ExtResource("2_eo2c1")
@@ -11,10 +12,30 @@ bolt = NodePath("BoltBone/Skeleton3D/Bone")
 gun_point = NodePath("GunBone/Skeleton3D/Bone/GunCon/GunPoint")
 muzzle_flash = NodePath("GunBone/Skeleton3D/Bone/GunCon/MuzzleFlash")
 
-[node name="GunCon" type="Node3D" parent="GunBone/Skeleton3D/Bone" parent_id_path=PackedInt32Array(2057264416) index="1" unique_id=20592343]
+[node name="GunCon" type="Node3D" parent="GunBone/Skeleton3D/Bone" parent_id_path=PackedInt32Array(747827912) index="1" unique_id=20592343]
 transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 3.835001, -0.18499994)
 
 [node name="GunPoint" type="Marker3D" parent="GunBone/Skeleton3D/Bone/GunCon" index="0" unique_id=640207500]
 
 [node name="MuzzleFlash" parent="GunBone/Skeleton3D/Bone/GunCon" index="1" unique_id=1492550407 instance=ExtResource("3_5gme6")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="AimFlashlight" type="SpotLight3D" parent="GunBone/Skeleton3D/Bone/GunCon" index="2" unique_id=568094924]
+transform = Transform3D(2.5229735, 0, 0, 0, 2.5229735, -2.1316282e-14, 0, 2.1316282e-14, 2.5229735, 0, 0.33322912, 1.7789999)
+light_color = Color(0.7160397, 0.807846, 0.86599535, 1)
+light_energy = 6.0
+light_specular = 4.0
+shadow_enabled = true
+shadow_bias = 0.2
+distance_fade_begin = 0.0
+spot_range = 25.0
+spot_attenuation = 1.5
+spot_angle = 15.0
+script = ExtResource("4_c6023")
+close_range = 30.0
+close_angle = 40.0
+close_energy = 15.0
+far_range = 100.0
+far_angle = 15.0
+far_energy = 40.0
+far_volumetric_fog_energy = 2.0

@@ -8,6 +8,7 @@ var projectile_speed: float
 var projectile_distance: float
 var impact_effect_scene: PackedScene
 var shooter_rid: RID
+var is_crit := false
 
 const GRAVITY := Vector3.DOWN * 9.81
 const CRIT_DAMAGE_MULTIPLIER := 2.0
@@ -35,7 +36,8 @@ func initialize(data: WeaponData, direction: Vector3, shooter: CollisionObject3D
 	damage = UpgradeManager.get_modified(&"weapon_damage", data.damage)
 
 	var crit_chance := UpgradeManager.get_modified(&"critical_damage_chance", 0.0)
-	if crit_chance > 0.0 and randf() < crit_chance:
+	is_crit = crit_chance > 0.0 and randf() < crit_chance
+	if is_crit:
 		damage *= CRIT_DAMAGE_MULTIPLIER
 
 	gravity_scale = data.gravity_scale
@@ -118,6 +120,9 @@ func handle_hit(hit: Dictionary) -> void:
 			velocity.normalized(),
 			damage
 		)
+
+		if is_crit:
+			Events.critical_hit.emit(hit.position)
 
 		var enemy := collider.get_parent() as Encounter_Enemy
 

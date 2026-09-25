@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bv7iugxmxuhxv" path="res://textures/hud/rossHair.png" id="4_p21ms"]
 [ext_resource type="Script" uid="uid://c5e3ma0wjjxgl" path="res://scenes/general/second_rectile.gd" id="5_p21ms"]
 [ext_resource type="Texture2D" uid="uid://cit5xdetb5wsk" path="res://textures/hud/lockCrosshair.png" id="6_pfecb"]
+[ext_resource type="Script" uid="uid://d0gf238wyu787" path="res://scripts/hud/crit_hit_marker.gd" id="7_crit"]
 [ext_resource type="Texture2D" uid="uid://dfop2ragb2xn8" path="res://textures/hud/turretMarker.png" id="8_4l38w"]
 
 [sub_resource type="GDScript" id="GDScript_oj1j8"]
@@ -189,6 +190,17 @@ size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_5vyhu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4l38w")
 show_percentage = false
+
+[node name="CritHitMarker" type="Control" parent="CrossHairCon" unique_id=610620833 node_paths=PackedStringArray("crosshair")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_crit")
+crosshair = NodePath("../CrossHairPic")
 
 [node name="SecondRectile" type="Control" parent="." unique_id=868345586]
 z_index = 2

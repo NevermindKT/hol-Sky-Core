@@ -14,7 +14,6 @@ var is_locked_on: bool = false
 
 func _ready() -> void:	
 	gun = car.gun
-	#flashlight = weapon_pivot.get_node("AimFlashlight")
 
 
 func _process(delta: float) -> void:
