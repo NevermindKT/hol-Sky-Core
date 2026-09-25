@@ -332,6 +332,7 @@ func hit_player(body: Node3D) -> void:
 	var car := body as Car_Movement
 	if car:
 		car.spawn_hit_effect(global_position)
+		car.apply_impact_speed_loss(enemy_data.attack_speed_loss)
 
 	end_dash()
 

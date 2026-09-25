@@ -11,6 +11,7 @@ height = 4.687561
 [node name="Obstacle" type="Area3D" unique_id=755817985]
 script = ExtResource("1_hof70")
 damage_dealt = 20.0
+speed_loss = 45.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1268127873]
 transform = Transform3D(-3.934025e-08, -0.9, 0, 0.9, -3.934025e-08, 0, 0, 0, 0.9, 0, 0, 0)
