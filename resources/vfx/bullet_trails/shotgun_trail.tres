@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_ok4w8")
 width = 0.01
+length = 1.5
 color = Color(0.7111955, 0.5542223, 0, 1)
 tail_width = 1.0
 core_size = 1.0

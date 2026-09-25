@@ -14,7 +14,6 @@ var is_locked_on: bool = false
 
 func _ready() -> void:	
 	gun = car.gun
-	#flashlight = weapon_pivot.get_node("AimFlashlight")
 
 
 func _process(delta: float) -> void:
@@ -60,9 +59,6 @@ func _process(delta: float) -> void:
 	secondary_reticle_screen_pos = car.player_cam.unproject_position(target) if is_locked_on else mouse_pos
 
 	_aim_turret(target, delta)
-
-	#var flashlight_desired_basis := Transform3D(Basis(), flashlight.global_position).looking_at(target, Vector3.UP).basis
-	#var flashlight_smoothing := 1.0 - exp(-flashlight_aim_smoothing * delta)
 
 
 func _aim_turret(target: Vector3, delta: float) -> void:

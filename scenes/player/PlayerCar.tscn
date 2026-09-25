@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="2_f0rj0"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
 [ext_resource type="Script" uid="uid://42qmfye5c841" path="res://scripts/car/back_lights.gd" id="3_20y2w"]
-[ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scripts/car/flashlight_controller.gd" id="3_y6j3g"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
 [ext_resource type="Script" uid="uid://nt6h8xoqqc60" path="res://scripts/data/weapon/weapon_state.gd" id="6_7lmdr"]
 [ext_resource type="Script" uid="uid://cjwmiawwp4nua" path="res://scripts/vfx/wheel_dust.gd" id="6_lvrf2"]
@@ -119,26 +118,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
 
 [node name="MuzzleFlash" parent="Visual/WeaponPivot/GunPoint" unique_id=1492550407 instance=ExtResource("6_t5h3w")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
-
-[node name="AimFlashlight" type="SpotLight3D" parent="Visual/WeaponPivot" unique_id=1688042910]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.7)
-light_color = Color(0.7160397, 0.807846, 0.86599535, 1)
-light_energy = 6.0
-light_specular = 4.0
-shadow_enabled = true
-shadow_bias = 0.2
-distance_fade_begin = 0.0
-spot_range = 25.0
-spot_attenuation = 1.5
-spot_angle = 15.0
-script = ExtResource("3_y6j3g")
-close_range = 30.0
-close_angle = 40.0
-close_energy = 15.0
-far_range = 80.0
-far_angle = 15.0
-far_energy = 30.0
-far_volumetric_fog_energy = 2.0
 
 [node name="vfx" type="Node3D" parent="Visual" unique_id=964234194]
 
@@ -285,7 +264,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.7, 1.1)
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
 
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.8710039)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.743782)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.37429312, -0.11708379)
