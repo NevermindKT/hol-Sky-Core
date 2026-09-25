@@ -4,4 +4,5 @@
 
 [node name="CarBloodDecal" unique_id=803152864 instance=ExtResource("1_base")]
 cull_mask = 4
+scale_range = Vector2(1, 2)
 emission_energy_start = 0.1

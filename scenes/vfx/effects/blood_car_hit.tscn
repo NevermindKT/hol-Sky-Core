@@ -17,7 +17,7 @@ blood_decal_scene = ExtResource("3_bldcl")
 road_blood_splatter_scene = ExtResource("4_rdbld")
 blood_splatter_radius = 1.0
 road_blood_forward_offset = 5.0
-car_blood_scale_range = Vector2(1.8, 2)
+car_blood_scale_range = Vector2(2.5, 2.5)
 road_blood_scale_range = Vector2(2.8, 3.6)
 
 [node name="BloodSplash" parent="." unique_id=1026283783 instance=ExtResource("2_xhqt7")]
