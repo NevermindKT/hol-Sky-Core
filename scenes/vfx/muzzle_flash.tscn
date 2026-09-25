@@ -31,9 +31,14 @@ point_count = 2
 curve = SubResource("Curve_iyj1g")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mti6b"]
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+use_rotation_3d = true
+rotation_3d_min = Vector3(0, 0, -180)
+rotation_3d_max = Vector3(0, 0, 180)
 gravity = Vector3(0, 0, 0)
-scale_min = 0.099999994
-scale_max = 0.14999999
+scale_min = 0.19999999
+scale_max = 0.39999998
 scale_curve = SubResource("CurveTexture_mm1bc")
 color = Color(1.8247963, 1.4209222, 1.1120775, 1)
 alpha_curve = SubResource("CurveTexture_ghtap")
@@ -73,12 +78,13 @@ process_material = SubResource("ParticleProcessMaterial_mti6b")
 draw_pass_1 = ExtResource("4_ghtap")
 
 [node name="BeamFlash" parent="." unique_id=1947679070 instance=ExtResource("6_3tqv5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.022649527)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1774240920]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 light_color = Color(1, 0.99607843, 0.7019608, 1)
-light_energy = 3.0
-spot_range = 5.6497827
+light_energy = 10.0
+spot_range = 6.0
 spot_attenuation = 2.0
 spot_angle = 70.0
