@@ -3,12 +3,17 @@
 [ext_resource type="Script" uid="uid://d4aaqg013s5aq" path="res://scripts/screen_effects/screen_effects_controller.gd" id="1_h5uiq"]
 [ext_resource type="Shader" uid="uid://cwnd54fppoacu" path="res://resources/shaders/screen_effects/night_vision.gdshader" id="2_f7dr0"]
 [ext_resource type="Shader" uid="uid://c5efaegnqa4of" path="res://resources/shaders/screen_effects/time_slowdown.gdshader" id="3_ude72"]
+[ext_resource type="Shader" uid="uid://c4ycyrl1r3r0s" path="res://resources/shaders/screen_effects/speed_lines.gdshader" id="4_spdln"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ggm7h"]
 shader = ExtResource("2_f7dr0")
 shader_parameter/tint_color = Color(0.4, 1, 0.5, 1)
 shader_parameter/grain_strength = 0.15
 shader_parameter/noise_speed = 8.0
+shader_parameter/saturation_threshold = 0.35
+shader_parameter/hot_color_boost = 1.3
+shader_parameter/hot_hue_center = 58.0
+shader_parameter/hot_hue_width = 25.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1kpnl"]
 shader = ExtResource("3_ude72")
@@ -16,11 +21,25 @@ shader_parameter/desaturation = 0.5
 shader_parameter/tint_color = Color(0.6, 0.75, 1, 1)
 shader_parameter/vignette_strength = 0.10000000475
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spdln"]
+shader = ExtResource("4_spdln")
+shader_parameter/intensity = 0.0
+shader_parameter/line_color = Color(0.27, 0.27, 0.27, 0.39215687)
+shader_parameter/line_count = 110.0
+shader_parameter/line_thickness = 0.45
+shader_parameter/line_density = 0.45
+shader_parameter/inner_radius = 0.450000021375
+shader_parameter/reach_variation = 0.50000002375
+shader_parameter/taper_softness = 0.25
+shader_parameter/flicker_speed = 14.0
+shader_parameter/edge_darkening = 0.15
+
 [node name="ScreenEffects" type="CanvasLayer" unique_id=242438930 node_paths=PackedStringArray("effect_rects")]
 layer = -1
 script = ExtResource("1_h5uiq")
 effect_rects = {
 &"night_vision": NodePath("NightVisionRect"),
+&"speed_lines": NodePath("SpeedLinesRect"),
 &"time_slowdown": NodePath("TimeSlowdownRect")
 }
 
@@ -37,6 +56,16 @@ mouse_filter = 2
 [node name="TimeSlowdownRect" type="ColorRect" parent="." unique_id=1577015687]
 visible = false
 material = SubResource("ShaderMaterial_1kpnl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SpeedLinesRect" type="ColorRect" parent="." unique_id=1336463975]
+visible = false
+material = SubResource("ShaderMaterial_spdln")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

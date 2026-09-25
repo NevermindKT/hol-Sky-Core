@@ -2,6 +2,7 @@ extends Area3D
 class_name Obstacle
 
 @export var damage_dealt: float
+@export var speed_loss: float = 25.0
 var hit_targets: Array[Node] = []
 
 func _ready() -> void:
@@ -16,6 +17,8 @@ func _on_body_entered(body: Node3D) -> void:
 	hit_targets.append(body)
 
 	Events.player_take_damage.emit(damage_dealt, global_position)
+	body.spawn_hit_effect(global_position, 2.0)
+	body.apply_impact_speed_loss(speed_loss)
 	print("Player taked damage from obstacle!")
 
 

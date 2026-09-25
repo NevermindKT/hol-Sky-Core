@@ -20,6 +20,7 @@ signal reload_started(duration: float)
 signal reload_finished
 
 signal spread_changed(ratio: float)
+signal critical_hit(position: Vector3)
 
 signal turret_rotation_changed(angle: float)
 

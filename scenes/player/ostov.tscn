@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ded5tqaoryrpc"]
+
+[ext_resource type="PackedScene" uid="uid://bhuqoyse3ljm6" path="res://models/car/Ostov.glb" id="1_u5sya"]
+
+[node name="Ostov" unique_id=669655594 instance=ExtResource("1_u5sya")]
+
+[node name="Car" parent="." index="0" unique_id=1766158426]
+layers = 5

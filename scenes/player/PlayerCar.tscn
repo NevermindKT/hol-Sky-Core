@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="2_f0rj0"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
 [ext_resource type="Script" uid="uid://42qmfye5c841" path="res://scripts/car/back_lights.gd" id="3_20y2w"]
-[ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scripts/car/flashlight_controller.gd" id="3_y6j3g"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
 [ext_resource type="Script" uid="uid://nt6h8xoqqc60" path="res://scripts/data/weapon/weapon_state.gd" id="6_7lmdr"]
 [ext_resource type="Script" uid="uid://cjwmiawwp4nua" path="res://scripts/vfx/wheel_dust.gd" id="6_lvrf2"]
@@ -12,7 +11,6 @@
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
 [ext_resource type="PackedScene" uid="uid://d3gah4j0ljcw7" path="res://scenes/gun/gun_w_script.tscn" id="8_2jmj4"]
 [ext_resource type="PackedScene" uid="uid://cgx8vcbpf1r2n" path="res://scenes/vfx/effects/engine_smoke.tscn" id="8_f6f1y"]
-[ext_resource type="PackedScene" uid="uid://bhuqoyse3ljm6" path="res://models/car/Ostov.glb" id="8_t5h3w"]
 [ext_resource type="PackedScene" uid="uid://ms88ls3yfth4" path="res://scenes/player/shell_ejector_right.tscn" id="9_els85"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
 [ext_resource type="Resource" uid="uid://tu7n1sqj420" path="res://resources/weapons/asssault rifle.tres" id="9_nhckt"]
@@ -22,6 +20,7 @@
 [ext_resource type="Script" uid="uid://cbrdggeh21loe" path="res://scripts/car/car_wheels.gd" id="12_bssh6"]
 [ext_resource type="Texture2D" uid="uid://b5ylygv8dtf2n" path="res://textures/lights/headlight_cookie.png" id="12_hlcookie"]
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="12_t5h3w"]
+[ext_resource type="PackedScene" uid="uid://ded5tqaoryrpc" path="res://scenes/player/ostov.tscn" id="15_xq70i"]
 [ext_resource type="PackedScene" uid="uid://c6vfw663kn4ia" path="res://scenes/car/wheel.tscn" id="19_f0rj0"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
@@ -31,12 +30,6 @@ point_count = 5
 [sub_resource type="Curve" id="Curve_58tws"]
 _data = [Vector2(0, 0.16000009), 0.0, 0.0, 0, 0, Vector2(0.34074074, 0.49), 0.0, 0.0, 0, 0, Vector2(0.5037037, 1), 0.0, 0.0, 0, 0, Vector2(0.6888889, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.46258503), 0.0, 0.0, 0, 0]
 point_count = 5
-
-[sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
-size = Vector3(0.9, 0.3, 1.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tn0y"]
-albedo_color = Color(8.663535e-07, 0.7229409, 0.16744852, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bq845"]
 radius = 0.6279297
@@ -104,12 +97,6 @@ max_tilt_velocity = 20.0
 dodge_yaw_impulse = -8.0
 dodge_roll_impulse = 4.0
 
-[node name="CarMesh" type="MeshInstance3D" parent="Visual" unique_id=1453660772]
-visible = false
-layers = 3
-mesh = SubResource("BoxMesh_elpsl")
-surface_material_override/0 = SubResource("StandardMaterial3D_5tn0y")
-
 [node name="GrenadeLaunchPoint" type="Marker3D" parent="Visual" unique_id=1017824461]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7073189, 0.4, -0.57019806)
 
@@ -120,26 +107,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.2, -1.4)
 
 [node name="MuzzleFlash" parent="Visual/WeaponPivot/GunPoint" unique_id=1492550407 instance=ExtResource("6_t5h3w")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
-
-[node name="AimFlashlight" type="SpotLight3D" parent="Visual/WeaponPivot" unique_id=1688042910]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.7)
-light_color = Color(0.7160397, 0.807846, 0.86599535, 1)
-light_energy = 6.0
-light_specular = 4.0
-shadow_enabled = true
-shadow_bias = 0.2
-distance_fade_begin = 0.0
-spot_range = 25.0
-spot_attenuation = 1.5
-spot_angle = 15.0
-script = ExtResource("3_y6j3g")
-close_range = 30.0
-close_angle = 40.0
-close_energy = 15.0
-far_range = 80.0
-far_angle = 15.0
-far_energy = 30.0
-far_volumetric_fog_energy = 2.0
 
 [node name="vfx" type="Node3D" parent="Visual" unique_id=964234194]
 
@@ -212,14 +179,14 @@ spot_attenuation = 0.3
 spot_angle = 22.0
 script = ExtResource("11_hlmode")
 close_range = 70.0
-close_angle = 75.0
-close_energy = 12.0
-close_attenuation = 0.8
+close_angle = 80.0
+close_energy = 15.0
+close_attenuation = 0.6
 close_volumetric_fog_energy = 0.2
 far_range = 150.0
-far_angle = 30.0
-far_energy = 18.0
-far_attenuation = 0.4
+far_angle = 35.0
+far_energy = 20.0
+far_attenuation = 0.3
 far_volumetric_fog_energy = 0.1
 
 [node name="Visual_vfx_ForwardLights#SpotLight3D2" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=300350988]
@@ -236,18 +203,15 @@ spot_attenuation = 0.3
 spot_angle = 22.0
 script = ExtResource("11_hlmode")
 close_range = 70.0
-close_angle = 75.0
-close_energy = 12.0
-close_attenuation = 0.8
+close_angle = 80.0
+close_energy = 15.0
+close_attenuation = 0.6
 close_volumetric_fog_energy = 0.2
 far_range = 150.0
-far_angle = 30.0
-far_energy = 18.0
-far_attenuation = 0.4
+far_angle = 35.0
+far_energy = 20.0
+far_attenuation = 0.3
 far_volumetric_fog_energy = 0.1
-
-[node name="Ostov" parent="Visual" unique_id=239094084 instance=ExtResource("8_t5h3w")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="WheelContainer" type="Node3D" parent="Visual" unique_id=826983752 node_paths=PackedStringArray("front_left", "front_right", "rear_left", "rear_right", "front_left_mesh", "front_right_mesh", "rear_left_mesh", "rear_right_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
@@ -285,8 +249,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.7, 1.1)
 [node name="Wheel" parent="Visual/WheelContainer/Wheel_RR" unique_id=530509797 instance=ExtResource("19_f0rj0")]
 transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
 
+[node name="Ostov" parent="Visual" unique_id=669655594 instance=ExtResource("15_xq70i")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
 [node name="CamPivot" type="Node3D" parent="." unique_id=1896546450]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.8710039)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.743782)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1349171707]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.37429312, -0.11708379)

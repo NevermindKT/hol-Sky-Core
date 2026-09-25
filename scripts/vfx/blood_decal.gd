@@ -15,6 +15,15 @@ class_name Blood_decal
 @export var emission_energy_floor: float = 0.6
 @export var emission_fade_duration: float = 3.0
 
+@export_group("Rain wash")
+@export var wash_duration_light: float = 20.0
+@export var wash_duration_heavy: float = 8.0
+@export var wash_curve_power: float = 1.5
+
+var _wash := 1.0
+var _wash_speed := 0.0
+var _emission_base := 0.0
+
 func _ready() -> void:
 	if texture_variants.is_empty():
 		push_warning("Blood_decal: texture_variants порожній — призначте PNG-варіанти в Inspector.")
@@ -29,14 +38,54 @@ func _ready() -> void:
 		texture_orm = orm_variants[index]
 
 	texture_emission = texture_variants[index]
-	emission_energy = emission_energy_start
-
-	modulate = color_boost
+	_emission_base = emission_energy_start
 
 	apply_random_scale(scale_range)
+	_apply_wash()
 
 	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "emission_energy", emission_energy_floor, emission_fade_duration)
+	tween.tween_method(_set_emission_base, emission_energy_start, emission_energy_floor, emission_fade_duration)
+
+	Events.weather_changed.connect(_on_weather_changed)
+	_on_weather_changed()
+
+
+func _process(delta: float) -> void:
+	if _wash_speed <= 0.0:
+		return
+
+	_wash = maxf(_wash - _wash_speed * delta, 0.0)
+	_apply_wash()
+
+	if _wash <= 0.0:
+		queue_free()
+
+
+func _on_weather_changed() -> void:
+	var rain := WeatherManager.weather_data.rain if WeatherManager.weather_data != null else null
+
+	if rain == null or not rain.enabled:
+		_wash_speed = 0.0
+	else:
+		var duration := wash_duration_heavy if rain.heavy else wash_duration_light
+		_wash_speed = 1.0 / maxf(duration, 0.01)
+
+	set_process(_wash_speed > 0.0)
+
+
+func _set_emission_base(value: float) -> void:
+	_emission_base = value
+	_apply_wash()
+
+
+func _apply_wash() -> void:
+	var visibility := pow(_wash, wash_curve_power)
+
+	var color := color_boost
+	color.a *= visibility
+	modulate = color
+
+	emission_energy = _emission_base * visibility
 
 
 func apply_random_scale(_range: Vector2) -> void:
