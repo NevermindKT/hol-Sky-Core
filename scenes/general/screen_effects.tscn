@@ -24,12 +24,12 @@ shader_parameter/vignette_strength = 0.10000000475
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_spdln"]
 shader = ExtResource("4_spdln")
 shader_parameter/intensity = 0.0
-shader_parameter/line_color = Color(0.27, 0.27, 0.27, 0.5882353)
+shader_parameter/line_color = Color(0.27, 0.27, 0.27, 0.39215687)
 shader_parameter/line_count = 110.0
 shader_parameter/line_thickness = 0.45
 shader_parameter/line_density = 0.45
-shader_parameter/inner_radius = 0.6
-shader_parameter/reach_variation = 0.35
+shader_parameter/inner_radius = 0.450000021375
+shader_parameter/reach_variation = 0.50000002375
 shader_parameter/taper_softness = 0.25
 shader_parameter/flicker_speed = 14.0
 shader_parameter/edge_darkening = 0.15
