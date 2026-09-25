@@ -15,7 +15,7 @@ func _ready() -> void:
 	Events.weapon_set.connect(_on_weapon_set)
 
 
-func _on_weapon_set(weapon: WeaponData) -> void:
+func _on_weapon_set(weapon: WeaponData, _direction: int) -> void:
 	reference_max_spread = weapon.max_spread
 
 

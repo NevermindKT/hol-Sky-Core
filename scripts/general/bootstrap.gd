@@ -23,12 +23,11 @@ extends Node
 
 const START_SPEED = 40.0
 const START_DISTANCE := 5.0
-const DISTANCE_TO_END := 200.0
+const DISTANCE_TO_END := 400.0
 const OBSTACLE_SPAWN_CHANCE = 0.05
 
 func _ready() -> void:
 	set_world()
-	GrenadeSpawner.car = car
 	GrenadeSpawner.enemy_encounter = enemy_encounter
 	set_player_car()
 	set_weapon_system()
@@ -90,6 +89,8 @@ func set_road_generator():
 func set_player_car():
 	aim_controller.car = car
 	road_manager.car_movement = car
+	hud.car = car
+	GrenadeSpawner.car = car
 
 
 func set_weapon_system():

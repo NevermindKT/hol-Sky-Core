@@ -34,6 +34,8 @@ GrenadeSpawner="*uid://dsvmq0gu3juhd"
 
 [display]
 
+window/size/mode=3
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

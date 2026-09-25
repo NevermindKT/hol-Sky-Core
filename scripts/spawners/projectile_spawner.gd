@@ -30,7 +30,9 @@ func spawn_projectile(
 	shooter: CollisionObject3D = null,
 	saved: bool = false
 ):
-
+	
+	print("spawned")
+	
 	var projectile = weapon.projectile_scene.instantiate() as Projectile
 
 	world.projectiles.add_child(projectile)

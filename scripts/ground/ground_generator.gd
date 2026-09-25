@@ -10,7 +10,7 @@ const MAX_TILES := 25
 const UNLOAD_DISTANCE := 40.0
 
 const ROAD_HALF_WIDTH := 7.5
-const GROUND_HALF_WIDTH := 300.0
+const GROUND_HALF_WIDTH := 200.0
 
 
 const LENGTH_STEPS := 12
