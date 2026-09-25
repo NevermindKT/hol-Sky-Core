@@ -10,4 +10,4 @@ script = ExtResource("1_gwmfa")
 [node name="BloodDecal" parent="." unique_id=1689320868 instance=ExtResource("1_310b0")]
 
 [node name="RoadBloodTrigger" parent="." unique_id=1483286865 instance=ExtResource("3_f8mq1")]
-bleed_duration = 0.5
+bleed_distance = 30.0
