@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://cn4um41l4ikkr"
 [resource]
 script = ExtResource("3_iijja")
 name = "Shotgun"
-damage = 8.0
+damage = 10.0
 fire_rate = 2.2
 reload_duration = 1.5
 magazine_capacity = 6.0
@@ -21,7 +21,7 @@ ammo_type = 2
 gravity_scale = 3.0
 projectile_speed = 240.0
 projectile_distance = 120.0
-spread_angle = 8.0
+spread_angle = 2.5
 projectile_count = 8.0
 max_spread = 0.3
 bloom_per_shot = 0.4

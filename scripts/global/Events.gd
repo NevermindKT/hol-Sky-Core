@@ -13,13 +13,15 @@ signal player_stamina_changed(value: float)
 signal hud_update_weapon(weapon: WeaponData)
 
 #-------------- WEAPONS
-signal weapon_set(weapon: WeaponData)
+signal weapon_set(weapon: WeaponData, direction: int)
 signal magazine_count_changed(ammo: float)
 
 signal reload_started(duration: float)
 signal reload_finished
 
 signal spread_changed(ratio: float)
+
+signal turret_rotation_changed(angle: float)
 
 #-------------- ROAD/LEVEL
 signal segment_dispawned

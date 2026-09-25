@@ -7,10 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://1pqc2jgvg4yp" path="res://textures/hud/stunMeteerTriangle.png" id="4_7gbkv"]
 
 [node name="EnemyCompassMarker" type="TextureProgressBar" unique_id=1922447050]
-custom_maximum_size = Vector2(254, 254)
-offset_right = 254.0
-offset_bottom = 254.0
-scale = Vector2(0.1, 0.1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -127.0
+offset_right = 127.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.085, 0.085)
+pivot_offset = Vector2(127, 127)
 value = 100.0
 fill_mode = 3
 texture_under = ExtResource("1_htyxt")
@@ -20,6 +29,8 @@ blink_interval = 0.08
 
 [node name="MarkerWarning" type="TextureRect" parent="." unique_id=589617155]
 visible = false
+visibility_layer = 2
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

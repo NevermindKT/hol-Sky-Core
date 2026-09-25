@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 func _update_stun_bar() -> void:
 	if not is_instance_valid(enemy):
 		return
-	stun_progress_bar.value = enemy.stun_meter
+	stun_progress_bar.value = enemy.get_stun_ratio() * stun_progress_bar.max_value
 
 
 func _update_warning_blink(delta: float) -> void:

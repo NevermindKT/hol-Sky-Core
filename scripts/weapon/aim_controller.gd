@@ -1,8 +1,8 @@
 extends Node
 class_name Aim_Controller
 
-var car: Car_Movement
 var gun: GunMove
+var car: Car_Movement
 
 @export var aim_distance: float
 @export var aim_assist_radius: float = 60.0
@@ -61,9 +61,6 @@ func _process(delta: float) -> void:
 
 	_aim_turret(target, delta)
 
-	#var flashlight_desired_basis := Transform3D(Basis(), flashlight.global_position).looking_at(target, Vector3.UP).basis
-	#var flashlight_smoothing := 1.0 - exp(-flashlight_aim_smoothing * delta)
-
 
 func _aim_turret(target: Vector3, delta: float) -> void:
 	var to_target := target - gun.global_position
@@ -75,6 +72,14 @@ func _aim_turret(target: Vector3, delta: float) -> void:
 
 	var local_target := gun.to_local(target)
 	gun.aim_pitch(local_target, delta)
+	
+	var turret_forward := -gun.global_transform.basis.z
+	var car_forward := -car.global_transform.basis.z
+	turret_forward.y = 0.0
+	car_forward.y = 0.0
+
+	var relative_angle := car_forward.signed_angle_to(turret_forward, Vector3.UP)
+	Events.turret_rotation_changed.emit(relative_angle)
 
 
 func _rotate_angle_toward(from: float, to: float, max_delta: float) -> float:

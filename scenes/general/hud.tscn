@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bv7iugxmxuhxv" path="res://textures/hud/rossHair.png" id="4_p21ms"]
 [ext_resource type="Script" uid="uid://c5e3ma0wjjxgl" path="res://scenes/general/second_rectile.gd" id="5_p21ms"]
 [ext_resource type="Texture2D" uid="uid://cit5xdetb5wsk" path="res://textures/hud/lockCrosshair.png" id="6_pfecb"]
+[ext_resource type="Texture2D" uid="uid://dfop2ragb2xn8" path="res://textures/hud/turretMarker.png" id="8_4l38w"]
 
 [sub_resource type="GDScript" id="GDScript_oj1j8"]
 script/source = "extends Control
@@ -94,10 +95,26 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="HUD" type="CanvasLayer" unique_id=299315244]
+[node name="HUD" type="CanvasLayer" unique_id=299315244 node_paths=PackedStringArray("cross_hair_con", "second_rectile", "health_bar", "stamina_bar", "level_progress_bar", "enemy_compass", "left", "right", "turret_rotation_marker_container", "turret_marker", "weapon_name", "ammo_label")]
 script = ExtResource("1_p21ms")
+cross_hair_con = NodePath("CrossHairCon")
+second_rectile = NodePath("SecondRectile")
+health_bar = NodePath("Left/HealthBar")
+stamina_bar = NodePath("Left/StaminaBar")
+level_progress_bar = NodePath("Top/LevelProgressBar")
+enemy_compass = NodePath("EnemyCompass")
+left = NodePath("Left")
+right = NodePath("Right")
+hover_alpha = 0.1
+turret_rotation_marker_container = NodePath("TurretRotationMarkerContainer")
+turret_marker = NodePath("TurretRotationMarkerContainer/MarkerContainer")
+marker_radius = 175.0
+marker_screen_offset = Vector2(0, 0)
+weapon_name = NodePath("Right/WeaponName")
+ammo_label = NodePath("Right/AmmoLabel")
 
 [node name="CrossHairCon" type="Control" parent="." unique_id=1706066031]
+z_index = 2
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -174,6 +191,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_4l38w")
 show_percentage = false
 
 [node name="SecondRectile" type="Control" parent="." unique_id=868345586]
+z_index = 2
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -213,7 +231,7 @@ anchor_right = 0.5
 offset_left = -400.0
 offset_top = 250.0
 offset_right = 400.0
-offset_bottom = 290.0
+offset_bottom = 270.0
 grow_horizontal = 2
 script = ExtResource("3_5oepb")
 marker_scene = ExtResource("4_dh6d1")
@@ -228,72 +246,117 @@ grow_horizontal = 2
 layout_mode = 2
 
 [node name="Left" type="VBoxContainer" parent="." unique_id=1188987128]
+z_index = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 200.0
-offset_top = -258.99982
-offset_right = 600.0
-offset_bottom = -214.99982
+offset_left = 55.0
+offset_top = -148.0
+offset_right = 255.0
+offset_bottom = -46.815796
 grow_vertical = 0
-rotation = -0.034906585
+rotation = -0.87266463
+mouse_filter = 0
+alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="Left" unique_id=2077857558]
-custom_minimum_size = Vector2(0, 25)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 1
+mouse_filter = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_ktvve")
 theme_override_styles/fill = SubResource("StyleBoxFlat_adyy0")
 value = 100.0
 show_percentage = false
 
-[node name="Control" type="Control" parent="Left" unique_id=752057224]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-
-[node name="StaminaBar" type="ProgressBar" parent="Left/Control" unique_id=1687962986]
+[node name="StaminaBar" type="ProgressBar" parent="Left" unique_id=1687962986]
+custom_minimum_size = Vector2(0, 20)
 custom_maximum_size = Vector2(-1, 10)
-layout_mode = 1
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_2r3oe")
+value = 100.0
+show_percentage = false
+
+[node name="Right" type="Control" parent="." unique_id=1430428076]
+z_index = 1
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -323.0
+offset_right = 26.686035
+offset_bottom = -181.25983
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.87266463
+
+[node name="WeaponName" type="RichTextLabel" parent="Right" unique_id=974424412]
+layout_mode = 0
+offset_top = 37.0
+offset_right = 218.0
+offset_bottom = 68.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 22
+text = "WeaponName"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="AmmoLabel" type="RichTextLabel" parent="Right" unique_id=1957982060]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 218.0
+offset_bottom = 103.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 22
+text = "Ammo/Ammo"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="TurretRotationMarkerContainer" type="Control" parent="." unique_id=1168660309]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -7.5
+offset_top = -200.0
 offset_right = 200.0
-offset_bottom = 7.5
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 1
-theme_override_styles/fill = SubResource("StyleBoxFlat_2r3oe")
-value = 100.0
-show_percentage = false
+pivot_offset = Vector2(200, 200)
 
-[node name="Right" type="VBoxContainer" parent="." unique_id=1703934431]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -600.0
-offset_top = -265.0
-offset_right = -200.0
-offset_bottom = -223.0
-grow_horizontal = 0
-grow_vertical = 0
-rotation = 0.034906585
+[node name="MarkerContainer" type="Control" parent="TurretRotationMarkerContainer" unique_id=169131662]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+pivot_offset = Vector2(20, 20)
 
-[node name="WeaponName" type="RichTextLabel" parent="Right" unique_id=974424412]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "WeaponName"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="AmmoLabel" type="RichTextLabel" parent="Right" unique_id=1957982060]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Ammo/Ammo"
-fit_content = true
-horizontal_alignment = 1
+[node name="TurretMarker" type="TextureRect" parent="TurretRotationMarkerContainer/MarkerContainer" unique_id=315821380]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -10.0
+offset_right = 7.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.1415927
+pivot_offset = Vector2(7.5, 10)
+texture = ExtResource("8_4l38w")
+expand_mode = 1

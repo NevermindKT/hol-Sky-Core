@@ -19,7 +19,7 @@ func initialize() -> void:
 	InputController.next_weapon.connect(next_weapon)
 	InputController.previous_weapon.connect(previous_weapon)
 	
-	set_weapon(player_weapons[0])
+	set_weapon(player_weapons[0], 0)
 	fill_all_magazines()
 
 
@@ -49,7 +49,7 @@ func fire():
 	if current_weapon.ammo <= 0:
 		reload()
 		return
-
+	
 	var bullet_save_chance := UpgradeManager.get_modified(&"bullet_saving", 0.0)
 	var bullet_saved := randf() < bullet_save_chance
 	if not bullet_saved:
@@ -64,13 +64,6 @@ func fire():
 
 	if shell_ejector:
 		shell_ejector.eject(current_weapon.data.shell_type)
-
-	current_weapon.ammo -= 1
-	Events.magazine_count_changed.emit(current_weapon.ammo)
-	gun.muzzle_flash.play(false, 1.0, bullet_saved)
-	gun.play_bolt_recoil(0.8, 0.04, 0.12)
-	cooldown = 1.0 / current_weapon.data.fire_rate
-	current_weapon.data.fire_behavior.fire(self)
 
 	current_spread = min(
 		max_spread,
@@ -157,7 +150,7 @@ func next_weapon():
 	if index >= player_weapons.size():
 		index = 0
 
-	set_weapon(player_weapons[index])
+	set_weapon(player_weapons[index], 1)
 
 
 func previous_weapon():
@@ -168,15 +161,15 @@ func previous_weapon():
 	if index < 0:
 		index = player_weapons.size() - 1
 
-	set_weapon(player_weapons[index])
+	set_weapon(player_weapons[index], -1)
 
 
-func set_weapon(weapon: WeaponState):
-	if !current_weapon == null:
+func set_weapon(weapon: WeaponState, direction: int):
+	if current_weapon != null:
 			if current_weapon.is_reloading:
 				current_weapon.is_reloading = false
 				Events.reload_finished.emit()
 
 	current_weapon = weapon
-	Events.weapon_set.emit(current_weapon.data)
+	Events.weapon_set.emit(current_weapon.data, direction)
 	Events.magazine_count_changed.emit(current_weapon.ammo)

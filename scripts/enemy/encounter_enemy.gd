@@ -221,6 +221,7 @@ func apply_poison() -> void:
 	poison_timer = duration
 	poison_effect.emitting = true
 
+
 func update_poison(delta: float) -> void:
 	poison_timer = max(0.0, poison_timer - delta)
 	poison_effect.emitting = poison_timer > 0.0
@@ -282,7 +283,7 @@ func _set_stunned(value: bool) -> void:
 
 func get_stun_ratio() -> float:
 	if state == State.STUNNED:
-		return stun_timer / enemy_data.stun_duration
+		return 1.0
 	return stun_meter / enemy_data.stun_treshold
 
 # ============================ EMITTERS ========================================
