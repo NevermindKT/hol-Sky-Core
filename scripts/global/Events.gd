@@ -30,7 +30,6 @@ signal level_progress_changed(current, max)
 signal segment_spawned(segment: Road_segment)
 signal weather_changed()
 signal world_curve_trimmed(removed_length: float)
-signal cosmetic_curve_trimmed(removed_length: float)
 
 #-------------- UPGRADES
 signal upgrade_purchased(upgrade: UpgradeData)

@@ -189,13 +189,7 @@ func _trim_cosmetic_curve_front() -> void:
 	if world.ground_path.curve.point_count <= 2:
 		return
 
-	var length_before := world.ground_path.curve.get_baked_length()
 	world.ground_path.curve.remove_point(0)
-	var length_after := world.ground_path.curve.get_baked_length()
-
-	var removed_length := length_before - length_after
-	if removed_length > 0.0:
-		Events.cosmetic_curve_trimmed.emit(removed_length)
 
 
 func pick_random_segment() -> PackedScene:

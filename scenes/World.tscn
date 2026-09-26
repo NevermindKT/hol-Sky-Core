@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dsecj1ygexi3i" path="res://scripts/world/projectiles_container.gd" id="2_32lhk"]
 
 [sub_resource type="Curve3D" id="Curve3D_e5uuo"]
+bake_interval = 0.5
 
 [sub_resource type="Curve3D" id="Curve3D_32lhk"]
 
