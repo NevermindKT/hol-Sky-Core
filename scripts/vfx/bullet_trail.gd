@@ -13,6 +13,7 @@ class_name BulletTrail
 const CONTINUITY_MARGIN := 1.5
 const SAVED_TRAIL_COLOR := Color(0.25, 0.55, 1.0, 1)
 const GROWTH_DURATION := 0.12
+const MIN_VISIBLE_LENGTH := 0.001
 
 var _age := 0.0
 
@@ -101,6 +102,10 @@ func _update_length(distance_traveled: float, continuity_length: float, growth_c
 
 	var target_length: float = max(data.length, continuity_length)
 	var visible_length: float = min(min(target_length, growth_cap), distance_traveled)
+
+	mesh.visible = visible_length > MIN_VISIBLE_LENGTH
+	if not mesh.visible:
+		return
 
 	cylinder.height = visible_length
 	mesh.position.y = visible_length * 0.5

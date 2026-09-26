@@ -1,0 +1,135 @@
+[gd_resource type="Resource" script_class="LandscapeData" format=3 uid="uid://cyb31n5t64wgs"]
+
+[ext_resource type="Script" uid="uid://cunqlpr7knjb1" path="res://scripts/data/ground/landscape_data.gd" id="1_land"]
+[ext_resource type="Script" uid="uid://c50p4e7wmeocp" path="res://scripts/data/vegetation/vegetation_category_data.gd" id="2_cat"]
+[ext_resource type="Texture2D" uid="uid://cfc72g7ci7atu" path="res://textures/ground/forest_ground_06_4k/forest_ground_06_diff_4k.jpg" id="3_dirt"]
+[ext_resource type="Texture2D" uid="uid://cuwyhufgeehto" path="res://textures/ground/forrest_ground_01_4k/forrest_ground_01_diff_4k.jpg" id="4_meadow"]
+
+[sub_resource type="Curve" id="Curve_conifer"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15, 0.02), 0.0, 0.0, 0, 0, Vector2(0.6, 0.55), 1.2, 1.2, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Veg_conifers"]
+script = ExtResource("2_cat")
+category_name = "Conifers"
+placement = 1
+footprint_radius = 0.06
+folder_path = "res://models/kenney_nature-kit/tree/conifer"
+include_patterns = null
+density = 0.75
+forest_response = SubResource("Curve_conifer")
+min_road_distance = 22.0
+road_fade_distance = 15.0
+variants_per_chunk = 4
+scale_range = Vector2(8, 11)
+ground_sink = 0.04
+
+[sub_resource type="Curve" id="Curve_deciduous"]
+_data = [Vector2(0, 0.06), 0.0, 0.0, 0, 0, Vector2(0.35, 0.9), 0.0, 0.0, 0, 0, Vector2(0.7, 0.6), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Veg_deciduous"]
+script = ExtResource("2_cat")
+category_name = "Deciduous"
+placement = 1
+footprint_radius = 0.07
+folder_path = "res://models/kenney_nature-kit/tree/deciduous"
+include_patterns = null
+density = 0.2
+forest_response = SubResource("Curve_deciduous")
+min_road_distance = 20.0
+road_fade_distance = 12.0
+scale_range = Vector2(7, 9)
+ground_sink = 0.04
+
+[sub_resource type="Curve" id="Curve_deadwood"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Veg_deadwood"]
+script = ExtResource("2_cat")
+category_name = "Deadwood"
+placement = 1
+footprint_radius = 0.3
+folder_path = "res://models/kenney_nature-kit/tree/deadwood"
+include_patterns = null
+density = 0.06
+forest_response = SubResource("Curve_deadwood")
+min_road_distance = 14.0
+road_fade_distance = 6.0
+variants_per_chunk = 2
+scale_range = Vector2(3, 4.5)
+ground_sink = 0.03
+cast_shadows = false
+
+[sub_resource type="Curve" id="Curve_grass"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.45), 0.0, 0.0, 0, 0, Vector2(1, 0.12), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Veg_grass"]
+script = ExtResource("2_cat")
+category_name = "Grass"
+footprint_radius = 0.15
+folder_path = "res://models/kenney_nature-kit/grass"
+include_patterns = PackedStringArray("grass", "plant_bush", "plant_flat")
+density = 7.0
+forest_response = SubResource("Curve_grass")
+road_fade_distance = 4.0
+scale_range = Vector2(1.5, 2.8)
+cast_shadows = false
+
+[sub_resource type="Curve" id="Curve_flowers"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4, 0.3), 0.0, 0.0, 0, 0, Vector2(0.8, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Veg_flowers"]
+script = ExtResource("2_cat")
+category_name = "Flowers"
+footprint_radius = 0.1
+folder_path = "res://models/kenney_nature-kit/flowers"
+include_patterns = PackedStringArray("flower")
+density = 1.5
+forest_response = SubResource("Curve_flowers")
+min_road_distance = 12.0
+road_fade_distance = 6.0
+scale_range = Vector2(1.7, 2.2)
+cast_shadows = false
+
+[sub_resource type="Curve" id="Curve_mushrooms"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.15), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Veg_mushrooms"]
+script = ExtResource("2_cat")
+category_name = "Mushrooms"
+footprint_radius = 0.1
+folder_path = "res://models/kenney_nature-kit/flowers"
+include_patterns = PackedStringArray("mushroom")
+density = 0.5
+forest_response = SubResource("Curve_mushrooms")
+min_road_distance = 16.0
+road_fade_distance = 6.0
+variants_per_chunk = 2
+scale_range = Vector2(1.5, 2.2)
+cast_shadows = false
+
+[sub_resource type="Resource" id="Veg_stones"]
+script = ExtResource("2_cat")
+category_name = "Stones"
+placement = 1
+footprint_radius = 0.35
+folder_path = "res://models/kenney_nature-kit/stone"
+include_patterns = null
+density = 0.07
+min_road_distance = 12.0
+road_fade_distance = 6.0
+scale_range = Vector2(1.2, 2)
+ground_sink = 0.1
+
+[resource]
+script = ExtResource("1_land")
+shoulder_texture = ExtResource("3_dirt")
+meadow_texture = ExtResource("4_meadow")
+forest_texture = ExtResource("3_dirt")
+forest_tint = Color(0.7, 0.7, 0.7, 1)
+vegetation_categories = Array[ExtResource("2_cat")]([SubResource("Veg_conifers"), SubResource("Veg_deciduous"), SubResource("Veg_deadwood"), SubResource("Veg_grass"), SubResource("Veg_flowers"), SubResource("Veg_mushrooms"), SubResource("Veg_stones")])

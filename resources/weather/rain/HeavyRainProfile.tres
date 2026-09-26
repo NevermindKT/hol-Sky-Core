@@ -6,8 +6,8 @@
 script = ExtResource("1_qo6at")
 heavy = true
 amount = 2300
-drop_length = 3.0
-drop_width = 0.2
+drop_length = 2.5
+drop_width = 0.15
 rain_color = Color(0.0817, 0.112385, 0.19, 0.5882353)
 lightning_enabled = true
 lightning_min_interval = 3.0
