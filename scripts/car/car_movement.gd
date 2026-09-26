@@ -20,6 +20,12 @@ var steering_input := 0.0
 
 @export var acceleration_curve: Curve
 
+@export_category("Inertia")
+@export var hard_brake_threshold := 25.0
+@export var inertia_force_multiplier := 0.6
+
+var _previous_speed := 0.0
+
 
 @export_category("Strafe")
 @export var max_offset := 4.0
@@ -101,7 +107,7 @@ var road_manager: Road_manager
 
 func initialize(initial_speed: float):
 	speed = initial_speed
-
+	_previous_speed = initial_speed
 
 func _ready() -> void:
 	InputController.dodge.connect(dodge)
@@ -112,13 +118,14 @@ func _physics_process(delta: float) -> void:
 	get_input()
 	update_grip(delta)
 	process_speed(delta)
+	_check_hard_brake(delta)
 	process_strafe(delta)
 	process_stamina(delta)
 	process_visuals(delta)
 	process_enemies_hits()
 	process_dodge_hit_check(delta)
 	
-	set_meta("car_speed", speed)
+	#set_meta("car_speed", speed)
 	#print("Speed: ", speed)
 	#print("Lane offset: ", lane_offset)
 	#print("Lateral velosity: ", lateral_velocity)
@@ -183,6 +190,20 @@ func process_strafe(delta: float) -> void:
 	lateral_velocity *= exp(-damping * _current_grip * delta)
 
 	position.x += lateral_velocity * delta
+
+
+func _check_hard_brake(delta: float) -> void:
+	var speed_drop := _previous_speed - speed
+	_previous_speed = speed
+	
+	if speed_drop <= 0.0:
+		return
+	
+	var deceleration := speed_drop / delta
+	if deceleration < hard_brake_threshold:
+		return
+	
+	Events.player_hard_brake.emit(speed_drop * inertia_force_multiplier)
 
 # ============================ STAMINA =========================================
 
@@ -342,7 +363,7 @@ func _resolve_enemy(node: Node) -> Encounter_Enemy:
 	return null
 	
 	
-func spawn_hit_effect(hit_position: Vector3, scale: float = 1.0) -> void:
+func spawn_hit_effect(hit_position: Vector3, _scale: float = 1.0) -> void:
 	var car_hit := car_hit_effect.instantiate() as Muzzle_flash
 	if car_hit == null:
 		push_warning("Car: car_hit_effect не має скрипта Muzzle_flash")
@@ -350,4 +371,4 @@ func spawn_hit_effect(hit_position: Vector3, scale: float = 1.0) -> void:
 
 	visual_effects.get_node("Ostov").add_child(car_hit)
 	car_hit.global_position = hit_position
-	car_hit.play(true, scale)
+	car_hit.play(true, _scale)

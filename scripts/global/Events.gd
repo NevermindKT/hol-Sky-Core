@@ -8,6 +8,7 @@ signal player_health_changed(value: float)
 signal player_stamina_changed(value: float)
 
 #-------------- PLAYER MOVEMENT
+signal player_hard_brake(force: float)
 
 #-------------- UI
 signal hud_update_weapon(weapon: WeaponData)
