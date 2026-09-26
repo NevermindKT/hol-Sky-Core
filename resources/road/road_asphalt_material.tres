@@ -3,6 +3,16 @@
 [ext_resource type="Shader" uid="uid://bch57eqql6ov2" path="res://resources/shaders/road/road_wet.gdshader" id="1"]
 [ext_resource type="Texture2D" uid="uid://b1tv0l1ysegc0" path="res://textures/roads/roadTestFliped.jpg" id="2"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_road_macro"]
+noise_type = 0
+seed = 53
+frequency = 0.004
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_road_macro"]
+noise = SubResource("FastNoiseLite_road_macro")
+seamless = true
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8hyqn"]
 noise_type = 0
 seed = 13
@@ -11,6 +21,15 @@ fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sap5q"]
 noise = SubResource("FastNoiseLite_8hyqn")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_road_front"]
+noise_type = 0
+seed = 29
+frequency = 0.006
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_road_front"]
+noise = SubResource("FastNoiseLite_road_front")
 seamless = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_road_wet"]
@@ -43,6 +62,18 @@ shader_parameter/target_state = 0.0
 shader_parameter/fade_start = 0.0
 shader_parameter/fade_end = 10.0
 shader_parameter/use_uv_y_for_gradient = false
+shader_parameter/road_distance_offset = 0.0
+shader_parameter/transition_noise_texture = SubResource("NoiseTexture2D_road_front")
+shader_parameter/transition_noise_uv_scale = Vector2(0.015, 6)
+shader_parameter/transition_noise_strength = 1.0
+shader_parameter/transition_edge_softness = 8.0
+shader_parameter/transition_fade_amount = 0.5
+shader_parameter/noise_detail_scale = 2.7
+shader_parameter/noise_detail_mix = 0.35
+shader_parameter/macro_noise_texture = SubResource("NoiseTexture2D_road_macro")
+shader_parameter/macro_noise_uv_scale = Vector2(0.004, 1.5)
+shader_parameter/macro_patch_strength = 0.3
+shader_parameter/macro_puddle_strength = 0.350000016625
 shader_parameter/wet_noise_texture = SubResource("NoiseTexture2D_road_wet")
 shader_parameter/wet_noise_uv_scale = Vector2(0.12, 18)
 shader_parameter/patch_coverage = 0.2000000095
