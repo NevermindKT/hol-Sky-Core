@@ -96,7 +96,6 @@ var _current_grip := 1.0
 @export var player_status_controller: Player_Status_Controller
 
 
-
 var road_manager: Road_manager
 
 

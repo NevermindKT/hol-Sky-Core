@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://33j34s1svc7q"]
 
-[ext_resource type="Script" uid="uid://ughski8v3jcf" path="res://scripts/hud/hud.gd" id="1_p21ms"]
-[ext_resource type="Script" uid="uid://cgnsa8ouki5r2" path="res://scripts/hud/enemy_compass.gd" id="3_5oepb"]
+[ext_resource type="Script" uid="uid://ughski8v3jcf" path="res://scripts/ui/hud/hud.gd" id="1_p21ms"]
+[ext_resource type="Script" uid="uid://cgnsa8ouki5r2" path="res://scripts/ui/hud/enemy_compass.gd" id="3_5oepb"]
 [ext_resource type="Shader" uid="uid://sxln1r7nn5tk" path="res://resources/shaders/UI/reload_bar_arc.gdshader" id="3_5vyhu"]
 [ext_resource type="PackedScene" uid="uid://jm2wpcnrd3uv" path="res://scenes/general/enemy_compass_marker.tscn" id="4_dh6d1"]
 [ext_resource type="Texture2D" uid="uid://bv7iugxmxuhxv" path="res://textures/hud/rossHair.png" id="4_p21ms"]
-[ext_resource type="Script" uid="uid://c5e3ma0wjjxgl" path="res://scenes/general/second_rectile.gd" id="5_p21ms"]
+[ext_resource type="Script" uid="uid://c5e3ma0wjjxgl" path="res://scripts/ui/hud/second_rectile.gd" id="5_p21ms"]
 [ext_resource type="Texture2D" uid="uid://cit5xdetb5wsk" path="res://textures/hud/lockCrosshair.png" id="6_pfecb"]
-[ext_resource type="Script" uid="uid://d0gf238wyu787" path="res://scripts/hud/crit_hit_marker.gd" id="7_crit"]
+[ext_resource type="Script" uid="uid://d0gf238wyu787" path="res://scripts/ui/hud/crit_hit_marker.gd" id="7_crit"]
 [ext_resource type="Texture2D" uid="uid://dfop2ragb2xn8" path="res://textures/hud/turretMarker.png" id="8_4l38w"]
 
 [sub_resource type="GDScript" id="GDScript_oj1j8"]
@@ -241,9 +241,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -400.0
-offset_top = 250.0
+offset_top = 76.0
 offset_right = 400.0
-offset_bottom = 270.0
+offset_bottom = 96.0
 grow_horizontal = 2
 script = ExtResource("3_5oepb")
 marker_scene = ExtResource("4_dh6d1")

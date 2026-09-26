@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://0vt18iverqp2"]
 
-[node name="Control" type="Control" unique_id=44240212]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Script" uid="uid://dylp2aly6r51q" path="res://scripts/ui/settings_menu.gd" id="1_kqaaj"]
+[ext_resource type="Script" uid="uid://csywd3ipt3pi" path="res://scripts/ui/audio_panel.gd" id="2_h2lw8"]
+[ext_resource type="Script" uid="uid://b3cu5pgjwrvd0" path="res://scripts/ui/video_panel.gd" id="3_jf66x"]
+
+[node name="SettingsMenu" type="CanvasLayer" unique_id=2128686807 node_paths=PackedStringArray("categories_con", "setting_content_con", "audio_category_btn", "video_category_btn", "back_btn", "audio_panel", "video_panel")]
+script = ExtResource("1_kqaaj")
+categories_con = NodePath("CategoriesCon")
+setting_content_con = NodePath("SettingContent")
+audio_category_btn = NodePath("CategoriesCon/AudioCategoryBtn")
+video_category_btn = NodePath("CategoriesCon/VideoCategoryBtn")
+back_btn = NodePath("BackBtn")
+audio_panel = NodePath("SettingContent/AudioPanel")
+video_panel = NodePath("SettingContent/VideoPanel")
 
 [node name="SettingsLabel" type="RichTextLabel" parent="." unique_id=857253782]
-layout_mode = 0
 offset_left = 150.0
 offset_top = 50.0
 offset_right = 350.0
@@ -17,3 +22,149 @@ offset_bottom = 110.0
 theme_override_font_sizes/normal_font_size = 40
 text = "SETTINGS"
 horizontal_alignment = 1
+
+[node name="CategoriesCon" type="VBoxContainer" parent="." unique_id=724702335]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 61.0
+offset_top = -175.5
+offset_right = 435.0
+offset_bottom = 175.5
+grow_vertical = 2
+
+[node name="AudioCategoryBtn" type="Button" parent="CategoriesCon" unique_id=1507682183]
+layout_mode = 2
+toggle_mode = true
+text = "Audio"
+
+[node name="VideoCategoryBtn" type="Button" parent="CategoriesCon" unique_id=1805772840]
+layout_mode = 2
+toggle_mode = true
+text = "Video"
+
+[node name="SettingContent" type="Control" parent="." unique_id=1885724999]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -324.0
+offset_bottom = 324.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AudioPanel" type="Control" parent="SettingContent" unique_id=869658838 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("2_h2lw8")
+master_slider = NodePath("VBoxContainer/MasterCon/Master")
+music_slider = NodePath("VBoxContainer/MusicCon/Music")
+sfx_slider = NodePath("VBoxContainer/SFXCon/SFX")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingContent/AudioPanel" unique_id=283833658]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 21.0
+offset_top = 112.0
+offset_right = -98.0
+offset_bottom = 191.0
+grow_horizontal = 2
+
+[node name="MasterCon" type="HBoxContainer" parent="SettingContent/AudioPanel/VBoxContainer" unique_id=1702537072]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingContent/AudioPanel/VBoxContainer/MasterCon" unique_id=2012137954]
+layout_mode = 2
+text = "Master      "
+
+[node name="Master" type="HSlider" parent="SettingContent/AudioPanel/VBoxContainer/MasterCon" unique_id=461083725]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="MusicCon" type="HBoxContainer" parent="SettingContent/AudioPanel/VBoxContainer" unique_id=1347597517]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingContent/AudioPanel/VBoxContainer/MusicCon" unique_id=1910642925]
+layout_mode = 2
+text = "Music        "
+
+[node name="Music" type="HSlider" parent="SettingContent/AudioPanel/VBoxContainer/MusicCon" unique_id=975971541]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="SFXCon" type="HBoxContainer" parent="SettingContent/AudioPanel/VBoxContainer" unique_id=2126394614]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingContent/AudioPanel/VBoxContainer/SFXCon" unique_id=577084647]
+layout_mode = 2
+text = "SFX            "
+
+[node name="SFX" type="HSlider" parent="SettingContent/AudioPanel/VBoxContainer/SFXCon" unique_id=347775374]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="VideoPanel" type="Control" parent="SettingContent" unique_id=233055471 node_paths=PackedStringArray("fullscreen_checkbox", "vsync_checkbox")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("3_jf66x")
+fullscreen_checkbox = NodePath("BtnCon/FullScreenBtn")
+vsync_checkbox = NodePath("BtnCon/VSyncBtn")
+
+[node name="BtnCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1558944769]
+anchors_preset = 0
+offset_left = 21.0
+offset_top = 112.0
+offset_right = 163.0
+offset_bottom = 188.0
+
+[node name="FullScreenBtn" type="CheckButton" parent="SettingContent/VideoPanel/BtnCon" unique_id=1007677759]
+layout_mode = 1
+offset_right = 133.0
+offset_bottom = 31.0
+text = "Full Screen"
+
+[node name="VSyncBtn" type="CheckButton" parent="SettingContent/VideoPanel/BtnCon" unique_id=1776582681]
+layout_mode = 1
+offset_top = 37.0
+offset_right = 133.0
+offset_bottom = 68.0
+text = "VSync         "
+
+[node name="BackBtn" type="Button" parent="." unique_id=1918644405]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = -123.0
+offset_right = 269.0
+offset_bottom = -67.0
+grow_vertical = 0
+text = "Back"
