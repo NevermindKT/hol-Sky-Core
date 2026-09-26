@@ -96,6 +96,7 @@ rain_particles = NodePath("RainParticles")
 rain_rings = NodePath("RainRings")
 shoulder_fog_left = NodePath("ShoulderFogLeft")
 shoulder_fog_right = NodePath("ShoulderFogRight")
+wet_fade_distance = 45.0
 
 [node name="RainParticles" type="GPUParticles3D" parent="." unique_id=936890504]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.322, 0)

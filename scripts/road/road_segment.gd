@@ -39,6 +39,12 @@ func _ready() -> void:
 		polygon.material_override = polygon.material_override.duplicate()
 
 
+func surface_length() -> float:
+	if road_path and road_path.curve:
+		return road_path.curve.get_baked_length()
+	return length
+
+
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		update_path()

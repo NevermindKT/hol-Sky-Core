@@ -111,11 +111,11 @@ func _wrap_in_container(template: FogVolume) -> Node3D:
 	return container
 
 
-func apply_road(segment: Road_segment, previous_state: float) -> void:
+func apply_road(segment: Road_segment, previous_state: float, road_distance: float) -> void:
 	_apply_rain_length(segment.length)
 	_build_shoulder_chain(shoulder_fog_left, _shoulder_container_left, segment, -1.0)
 	_build_shoulder_chain(shoulder_fog_right, _shoulder_container_right, segment, 1.0)
-	_apply_road_wetness(segment, previous_state)
+	_apply_road_wetness(segment, previous_state, road_distance)
 
 
 func _apply_rain_length(length: float) -> void:
@@ -126,7 +126,7 @@ func _apply_rain_length(length: float) -> void:
 	rings_material.emission_box_extents.z = length
 
 
-func _apply_road_wetness(segment: Road_segment, previous_state: float) -> void:
+func _apply_road_wetness(segment: Road_segment, previous_state: float, road_distance: float) -> void:
 	if segment.polygon == null:
 		return
 
@@ -143,6 +143,7 @@ func _apply_road_wetness(segment: Road_segment, previous_state: float) -> void:
 	material.set_shader_parameter("target_state", target_state)
 	material.set_shader_parameter("fade_start", 0.0)
 	material.set_shader_parameter("fade_end", fade_end)
+	material.set_shader_parameter("road_distance_offset", road_distance)
 
 
 func _build_shoulder_chain(template: FogVolume, container: Node3D, segment: Road_segment, side: float) -> void:
