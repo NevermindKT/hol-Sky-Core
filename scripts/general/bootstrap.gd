@@ -38,6 +38,8 @@ func _ready() -> void:
 	car.player_status_controller.initialize()
 	car.initialize(START_SPEED)
 
+	hud.initialize(car)
+
 	road_generator.obstacle_spawn_chance = OBSTACLE_SPAWN_CHANCE
 	road_generator.initialize(world.road_set, world.obstacle_set)
 	vegetation_scatter.initialize()
@@ -89,7 +91,6 @@ func set_road_generator():
 func set_player_car():
 	aim_controller.car = car
 	road_manager.car_movement = car
-	hud.car = car
 	GrenadeSpawner.car = car
 
 

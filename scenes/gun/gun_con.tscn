@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dkfytgkhgo0oy"]
 
-[ext_resource type="Script" uid="uid://b1tl2sd6dtdmq" path="res://scenes/gun/gun_con.gd" id="1_m24rg"]
+[ext_resource type="Script" uid="uid://b1tl2sd6dtdmq" path="res://scripts/spawners/gun_con.gd" id="1_m24rg"]
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="1_mhu85"]
 
 [node name="GunCon" type="Node3D" unique_id=567497408 node_paths=PackedStringArray("gun_point", "muzzle_flash")]

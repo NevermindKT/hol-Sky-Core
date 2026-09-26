@@ -110,34 +110,55 @@ func _physics_process(delta: float) -> void:
 # ============================ STATE UPDATES ===================================
 
 func update_movement(delta: float) -> void:
-
 	var target_x := player.global_position.x + formation_offset
+	var distance := absf(target_x - global_position.x)
+
+	var speed := enemy_data.move_speed
+	if distance > enemy_data.catch_up_distance:
+		speed *= enemy_data.catch_up_multiplier
+
 	global_position.x = move_toward(
 		global_position.x,
 		target_x,
-		enemy_data.move_speed * _speed_multiplier * delta
+		speed * _speed_multiplier * delta
 	)
 
 	_move_toward_start_z(delta, _speed_multiplier)
 
 
 func update_attack(delta: float) -> void:
-	attack_timer -= delta
+	if not is_warning:
+		if attack_timer > 0.0:
+			attack_timer -= delta
+			return
 
-	if not is_warning and attack_timer <= enemy_data.attack_warning_time:
+		if not _in_attack_range():
+			return
+
+		if not encounter.try_start_attack(self):
+			return
+
 		_set_warning(true)
+		attack_timer = enemy_data.attack_warning_time
+		return
 
+	attack_timer -= delta
 	if attack_timer > 0.0:
 		return
 
-	if encounter.try_start_attack(self):
-		start_dash()
+	if not _in_attack_range():
+		_set_warning(false)
+		encounter.end_attak(self)
+		attack_timer = 0.1
+		return
+
+	start_dash()
 
 
 func update_knockback(delta: float) -> void:
 	global_position += knockback_velocity * delta
 	knockback_velocity *= exp(-knockback_drag * delta)
-	
+
 	if knockback_velocity.length() < 0.2:
 		state = State.FOLLOW
 		attack_timer = enemy_data.attack_delay
@@ -153,24 +174,30 @@ func update_dash(delta: float) -> void:
 
 func update_stun(delta: float) -> void:
 	stun_timer -= delta
-	
+
 	global_position.z = move_toward(
 		global_position.z,
 		player.global_position.z,
 		enemy_data.z_align_speed * delta
 	)
-	
+
 	if stun_timer <= 0.0:
 		end_stun()
+
+
+func update_poison(delta: float) -> void:
+	poison_timer = max(0.0, poison_timer - delta)
+	poison_effect.emitting = poison_timer > 0.0
+	take_damage(poison_dps * delta)
 
 # ============================ STATE SWITCHES & VALUES =========================
 
 func add_stun(amount: float) -> void:
 	if state == State.STUNNED:
 		return
-	
+
 	stun_meter += amount
-	
+
 	if stun_meter >= enemy_data.stun_treshold:
 		start_stun()
 
@@ -222,12 +249,6 @@ func apply_poison() -> void:
 	poison_effect.emitting = true
 
 
-func update_poison(delta: float) -> void:
-	poison_timer = max(0.0, poison_timer - delta)
-	poison_effect.emitting = poison_timer > 0.0
-	take_damage(poison_dps * delta)
-
-
 func start_dash() -> void:
 	_set_warning(false)
 	state = State.DASH
@@ -243,6 +264,9 @@ func end_dash() -> void:
 
 func set_formation_offset(offset: float) -> void:
 	formation_offset = offset
+
+func _in_attack_range() -> bool:
+	return absf(global_position.x - player.global_position.x) <= enemy_data.attack_range_x
 
 # ============================ MOVEMENT ========================================
 

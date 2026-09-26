@@ -10,7 +10,6 @@ class_name HUD
 @export var stamina_bar: ProgressBar
 @export var level_progress_bar: ProgressBar
 
-
 @export_category("Enemy")
 @export var enemy_compass: Enemy_Compass
 
@@ -42,6 +41,13 @@ var _right_tween: Tween
 
 var magazine_current_ammo: float
 var current_weapon_data: WeaponData
+
+
+func initialize(_car: Car_Movement):
+	car = _car
+	health_bar.max_value = car.player_status_controller.max_health
+	health_bar.value = health_bar.max_value
+	stamina_bar.max_value = car.max_stamina
 
 
 func _ready() -> void:

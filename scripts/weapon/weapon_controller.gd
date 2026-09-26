@@ -52,12 +52,17 @@ func fire():
 	
 	var bullet_save_chance := UpgradeManager.get_modified(&"bullet_saving", 0.0)
 	var bullet_saved := randf() < bullet_save_chance
+	
 	if not bullet_saved:
 		current_weapon.ammo -= 1
+	
 	Events.magazine_count_changed.emit(current_weapon.ammo)
 	gun.muzzle_flash.play(false, 1.0, bullet_saved)
 	gun.play_bolt_recoil(0.8, 0.04, 0.12)
+	SoundManager.play_random_sfx(current_weapon.data.fire_sounds, 0.0, current_weapon.data.fire_pitch_variation)
+
 	var fire_rate := UpgradeManager.get_modified(&"rate_of_fire", current_weapon.data.fire_rate)
+	
 	cooldown = 1.0 / fire_rate
 	current_weapon.data.fire_behavior.fire(self, bullet_saved)
 

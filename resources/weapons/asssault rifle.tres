@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://tu7n1sqj420"]
 
 [ext_resource type="Script" uid="uid://dbmg5c34sk5p8" path="res://scripts/data/weapon/behaviors/single_pojectile_behavior.gd" id="1_j5bc3"]
+[ext_resource type="AudioStream" uid="uid://blr0efgg2ra2f" path="res://audio/effects/weapons/rifle/r1.wav" id="2_2aqb7"]
 [ext_resource type="PackedScene" uid="uid://bt3acygnr2ji2" path="res://scenes/projectiles/bullet.tscn" id="2_5ldh7"]
 [ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://scripts/data/weapon/weapon_data.gd" id="3_iut23"]
+[ext_resource type="AudioStream" uid="uid://bcfbye6ptjdx1" path="res://audio/effects/weapons/rifle/r2.wav" id="3_ww8wh"]
 [ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="4_impef"]
 [ext_resource type="Resource" uid="uid://cfo06j11eq34t" path="res://resources/vfx/bullet_trails/assault_rifle_trail.tres" id="5_trail"]
 
@@ -25,6 +27,7 @@ max_spread = 0.15
 bloom_per_shot = 0.03
 bloom_recovery_rate = 0.35
 shell_type = 1
+fire_sounds = Array[AudioStream]([ExtResource("2_2aqb7"), ExtResource("3_ww8wh")])
 fire_behavior = SubResource("Resource_qv38y")
 projectile_scene = ExtResource("2_5ldh7")
 impact_effect_scene = ExtResource("4_impef")

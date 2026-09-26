@@ -54,7 +54,7 @@ metadata/_custom_type_script = "uid://nvhh14a8jfmw"
 [node name="Core" type="Node3D" unique_id=243152911]
 
 [node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("2_uhg8y")]
-max_speed = 90.0
+max_speed = 75.0
 acceleration = 20.0
 max_offset = 10.0
 strafe_speed = 17.0
@@ -132,7 +132,7 @@ sun_curve = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.92378)
 script = ExtResource("13_asndc")
 enemy_pool = Array[ExtResource("14_o0wgs")]([ExtResource("13_g88bg")])
-offscreen_spawn_distance = 30.0
+offscreen_spawn_distance = 45.0
 player = NodePath("../Car")
 test_Enemy = ExtResource("13_g88bg")
 metadata/_custom_type_script = "uid://bcc07pjuuti4w"

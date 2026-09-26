@@ -28,6 +28,10 @@ class_name WeaponData
 @export_category("Shell")
 @export var shell_type: Shell_Ejector.ShellType
 
+@export_category("Sound")
+@export var fire_sounds: Array[AudioStream] = []
+@export var fire_pitch_variation: float = 0.05
+
 @export_category("Exports")
 @export var fire_behavior: Fire_behavior
 @export var projectile_scene: PackedScene
