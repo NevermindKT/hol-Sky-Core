@@ -46,6 +46,7 @@ var knockback_drag := 8.0
 var knockback_velocity := Vector3.ZERO
 
 var _speed_multiplier := 1.0
+var stun_decay_timer := 0.0
 
 @onready var damage_hit_box: HurtBox = $DamageHitBox
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
@@ -88,7 +89,10 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if state != State.STUNNED:
-		decay_stun(delta)
+		if stun_decay_timer > 0.0:
+			stun_decay_timer -= delta
+		else:
+			decay_stun(delta)
 
 	if slow_timer > 0.0:
 		slow_timer = max(0.0, slow_timer - delta)
@@ -156,9 +160,8 @@ func update_attack(delta: float) -> void:
 
 
 func update_knockback(delta: float) -> void:
-	global_position += knockback_velocity * delta
-	knockback_velocity *= exp(-knockback_drag * delta)
-
+	_apply_knockback_decay(delta)
+	
 	if knockback_velocity.length() < 0.2:
 		state = State.FOLLOW
 		attack_timer = enemy_data.attack_delay
@@ -174,13 +177,15 @@ func update_dash(delta: float) -> void:
 
 func update_stun(delta: float) -> void:
 	stun_timer -= delta
-
+	
+	_apply_knockback_decay(delta)
+	
 	global_position.z = move_toward(
 		global_position.z,
 		player.global_position.z,
 		enemy_data.z_align_speed * delta
 	)
-
+	
 	if stun_timer <= 0.0:
 		end_stun()
 
@@ -195,9 +200,12 @@ func update_poison(delta: float) -> void:
 func add_stun(amount: float) -> void:
 	if state == State.STUNNED:
 		return
-
+	
+	print("amount: ", amount)
+	
 	stun_meter += amount
-
+	stun_decay_timer = enemy_data.stun_decay_delay
+	
 	if stun_meter >= enemy_data.stun_treshold:
 		start_stun()
 
@@ -247,6 +255,26 @@ func apply_poison() -> void:
 	poison_dps = dps
 	poison_timer = duration
 	poison_effect.emitting = true
+
+
+func _apply_knockback_decay(delta: float) -> void:
+	if knockback_velocity.length() <= 0.0:
+		return
+	
+	global_position += knockback_velocity * delta
+	knockback_velocity *= exp(-knockback_drag * delta)
+
+
+func apply_inertia_impulse(force: Vector3) -> void:
+	knockback_velocity += force * enemy_data.inertia_resistance
+	
+	if state == State.STUNNED:
+		return
+	
+	if state != State.KNOCKBACK:
+		_set_warning(false)
+		encounter.end_attak(self)
+		state = State.KNOCKBACK
 
 
 func start_dash() -> void:
@@ -336,18 +364,31 @@ func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
 
 func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, direction: Vector3, car: Car_Movement) -> void:
 	take_damage(damage)
+
 	if health <= 0.0:
 		return
 
-	_set_warning(false)
-	_set_stunned(false)
-	star_stun_effect.stop()
-	encounter.end_attak(self)
 	_spawn_dodge_hit_effect(hit_position, direction, car)
+	encounter.end_attak(self)
 
+	if state == State.STUNNED:
+		_set_warning(false)
+		_set_stunned(false)
+		star_stun_effect.stop()
+		state = State.KNOCKBACK
+		knockback_velocity = knockback
+		stun_meter = 0.0
+		return
+	
+	add_stun(UpgradeManager.get_modified(&"enemy_stunning", damage))
+
+	if state == State.STUNNED:
+		knockback_velocity = knockback / 2
+		return
+
+	_set_warning(false)
 	state = State.KNOCKBACK
 	knockback_velocity = knockback
-	stun_meter = 0.0
 
 
 func hit_player(body: Node3D) -> void:
