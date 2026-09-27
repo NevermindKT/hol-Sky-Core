@@ -1,0 +1,60 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy_corpse.gd" id="1_corpse"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_corpse"]
+friction = 0.9
+bounce = 0.15
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hit"]
+radius = 0.65
+height = 2.3
+
+[sub_resource type="HeightMapShape3D" id="HeightMapShape3D_ground"]
+resource_local_to_scene = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_corpse"]
+
+[node name="EnemyCorpse" type="Node3D" node_paths=PackedStringArray("body", "pose", "visual", "car_hit_area", "ground_body", "ground_shape")]
+script = ExtResource("1_corpse")
+body = NodePath("Body")
+pose = NodePath("Pose")
+visual = NodePath("Pose/Visual")
+car_hit_area = NodePath("Body/CarHitArea")
+ground_body = NodePath("Ground")
+ground_shape = NodePath("Ground/CollisionShape3D")
+
+[node name="Pose" type="Node3D" parent="."]
+
+[node name="Visual" type="MeshInstance3D" parent="Pose"]
+mesh = SubResource("CapsuleMesh_corpse")
+
+[node name="Body" type="RigidBody3D" parent="."]
+top_level = true
+collision_layer = 16
+collision_mask = 52
+mass = 80.0
+physics_material_override = SubResource("PhysicsMaterial_corpse")
+continuous_cd = true
+linear_damp = 0.2
+angular_damp = 0.8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="CarHitArea" type="Area3D" parent="Body"]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/CarHitArea"]
+shape = SubResource("CapsuleShape3D_hit")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("HeightMapShape3D_ground")

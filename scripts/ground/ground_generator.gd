@@ -433,6 +433,14 @@ func sample_chunk(key: Vector2i, local_x: float, local_z: float) -> Vector3:
 	return chunk.surface.sample(local_x, local_z)
 
 
+func ground_height(x: float, z: float) -> float:
+	var key := Vector2i(floori(x / chunk_size), floori(z / chunk_size))
+	var chunk: Chunk = _chunks.get(key)
+	if chunk == null or chunk.surface == null:
+		return INF
+	return chunk.surface.sample(x - key.x * chunk_size, z - key.y * chunk_size).x
+
+
 func _cell() -> float:
 	return chunk_size / float(chunk_cells)
 

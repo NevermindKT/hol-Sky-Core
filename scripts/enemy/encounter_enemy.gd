@@ -13,6 +13,8 @@ signal health_changed(current: float, maximum: float)
 @export var enemy_data: EncounterEnemyData
 @export var thermal_material: StandardMaterial3D
 @export var poison_effect: GPUParticles3D
+@export var corpse_scene: PackedScene
+@export var bullet_death_push := 4.0
 
 var health: float
 var is_active := false
@@ -46,6 +48,9 @@ var knockback_drag := 8.0
 var knockback_velocity := Vector3.ZERO
 
 var _speed_multiplier := 1.0
+
+var _is_dead := false
+var _death_push := Vector3.ZERO
 
 @onready var damage_hit_box: HurtBox = $DamageHitBox
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
@@ -302,7 +307,11 @@ func _on_attack_area_body_entered(body: Node3D) -> void:
 
 
 func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
+	_death_push = direction.normalized() * bullet_death_push
 	take_damage(damage)
+	if _is_dead:
+		_spawn_bullet_hit_effect(hit_position, direction)
+		return
 	add_stun(UpgradeManager.get_modified(&"enemy_stunning", damage))
 	apply_hit_slow()
 	apply_poison()
@@ -311,6 +320,7 @@ func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
 
 
 func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, direction: Vector3, car: Car_Movement) -> void:
+	_death_push = knockback
 	take_damage(damage)
 	if health <= 0.0:
 		return
@@ -339,6 +349,9 @@ func hit_player(body: Node3D) -> void:
 
 
 func take_damage(damage: float) -> void:
+	if _is_dead:
+		return
+
 	health -= damage
 
 	if health <= 0.0:
@@ -349,11 +362,30 @@ func take_damage(damage: float) -> void:
 
 
 func die() -> void:
+	if _is_dead:
+		return
+	_is_dead = true
+	is_active = false
+
 	_set_warning(false)
 	_set_stunned(false)
 	encounter.end_attak(self)
 	encounter.remove_enemy(self)
+	_spawn_corpse()
 	queue_free()
+
+
+func _spawn_corpse() -> void:
+	if corpse_scene == null or encounter.world == null:
+		return
+
+	var corpse := corpse_scene.instantiate() as Enemy_Corpse
+	if corpse == null:
+		push_error("Encounter_Enemy: corpse_scene does not have Enemy_Corpse script!")
+		return
+
+	encounter.world.enemies.add_child(corpse)
+	corpse.launch(encounter.world, player as Car_Movement, mesh_instance.global_transform, mesh_instance.mesh, thermal_material, _death_push)
 
 # ============================ EFFECTS =========================================
 
