@@ -7,4 +7,6 @@ script = ExtResource("1_eummh")
 density = 0.01
 shoulder_density = 0.1
 shoulder_offset = 50.0
+chance_intensify = 25.0
+chance_weaken = 55.0
 metadata/_custom_type_script = "uid://dgn3pfxbskeg0"

@@ -58,14 +58,25 @@ func _pick_new_weather() -> void:
 	current_weather.fog = _pick_smoothed(available_fog, current_weather.fog)
 
 
-func _pick_smoothed(available: Array, current: Variant) -> Variant:
+func _pick_smoothed(available: Array, current: WeatherLevel) -> WeatherLevel:
 	if available.is_empty():
 		return null
 
-	if current == null:
+	var index := available.find(current)
+	if index == -1:
 		return available[0]
 
-	var rand_int := randi() % 3 - 1
-	var current_index := available.find(current)
-	var next_index := clampi(current_index + rand_int, 0, available.size() - 1)
-	return available[next_index]
+	var up := current.chance_intensify if index < available.size() - 1 else 0.0
+	var down := current.chance_weaken if index > 0 else 0.0
+
+	var total := up + down
+	if total > 100.0:
+		up *= 100.0 / total
+		down *= 100.0 / total
+
+	var roll := randf() * 100.0
+	if roll < up:
+		return available[index + 1]
+	if roll < up + down:
+		return available[index - 1]
+	return current
