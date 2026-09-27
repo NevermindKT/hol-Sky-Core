@@ -16,6 +16,7 @@ class_name World
 @export var obstacle_set: Obstacles_set
 
 var last_world_basis: Basis
+var ground: Ground_generator
 
 func _ready():
 	last_world_basis = world.global_transform.basis
