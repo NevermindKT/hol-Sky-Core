@@ -22,7 +22,6 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 [autoload]
 
 Events="*uid://8jnql3fu3d2y"
-GameManager="*uid://bl4sxn3d4qutu"
 InputController="*uid://bxq0wqwdbfbo8"
 PauseManager="*uid://b0sb2cs28f50a"
 ProjectileSpawner="*uid://bc2hhoujpefbr"
@@ -32,9 +31,12 @@ BoostManager="*uid://dmerpx1y7qvs0"
 SoundManager="*uid://b6nq611vylrnp"
 ScreenEffects="*uid://dxdcrfeffhhhk"
 GrenadeSpawner="*uid://dsvmq0gu3juhd"
+GameManager="*uid://bl4sxn3d4qutu"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="canvas_items"
