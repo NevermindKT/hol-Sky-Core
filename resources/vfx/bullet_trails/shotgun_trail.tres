@@ -11,7 +11,4 @@ tail_width = 1.0
 core_size = 1.0
 glow_size = 2.0
 emission_strength = 5.0
-<<<<<<< HEAD
 metadata/_custom_type_script = "uid://b0cvm8gyffx4j"
-=======
->>>>>>> 918caf635c6954b64ea8ceb8fc178bc7ef3e68a7
