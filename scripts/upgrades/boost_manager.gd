@@ -1,6 +1,6 @@
 extends Node
 
-const TEST_BOOST_PATH := "res://resources/upgrades/boosts/fusion_night_vision.tres"
+const TEST_BOOST_PATH := "res://resources/upgrades/boosts/spare_tire.tres"
 
 var owned: Dictionary = {}
 var active: Array[BoostData] = []
@@ -10,7 +10,14 @@ func add_owned(boost: BoostData, amount: int = 1) -> void:
 	owned[boost.id] = owned.get(boost.id, 0) + amount
 
 func can_activate(boost: BoostData) -> bool:
-	return owned.get(boost.id, 0) > 0
+	if owned.get(boost.id, 0) <= 0:
+		return false
+
+	for effect in boost.effects:
+		if !effect.can_activate():
+			return false
+
+	return true
 
 func activate(boost: BoostData) -> void:
 	if !can_activate(boost):

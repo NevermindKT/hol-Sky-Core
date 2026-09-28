@@ -22,6 +22,9 @@
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="12_t5h3w"]
 [ext_resource type="PackedScene" uid="uid://ded5tqaoryrpc" path="res://scenes/player/ostov.tscn" id="15_xq70i"]
 [ext_resource type="PackedScene" uid="uid://c6vfw663kn4ia" path="res://scenes/car/wheel.tscn" id="19_f0rj0"]
+[ext_resource type="Script" uid="uid://dt7ljpuwok0u3" path="res://scripts/car/wheel_loss_controller.gd" id="20_wloss"]
+[ext_resource type="PackedScene" path="res://scenes/car/detached_wheel.tscn" id="21_dwheel"]
+[ext_resource type="PackedScene" path="res://scenes/vfx/effects/hub_sparks.tscn" id="22_hsparks"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
 _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
@@ -290,3 +293,10 @@ inventory = NodePath("../Inventory")
 [node name="PlayerStatusController" type="Node" parent="." unique_id=1732844712]
 script = ExtResource("10_ojawh")
 max_health = 100.0
+
+[node name="WheelLossController" type="Node" parent="." unique_id=948845545 node_paths=PackedStringArray("car")]
+script = ExtResource("20_wloss")
+car = NodePath("..")
+detached_wheel_scene = ExtResource("21_dwheel")
+hub_sparks_scene = ExtResource("22_hsparks")
+heal_ratio = 0.35

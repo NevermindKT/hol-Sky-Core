@@ -24,8 +24,30 @@ class_name Car_Wheels
 @export var steer_response := 12.0
 
 
+@export_category("Spare Tire")
+@export var restore_time := 0.35
+
+
+var missing_wheel: Node3D
+
 var _roll_angle := 0.0
 var _current_steer := 0.0
+var _meshes: Dictionary = {}
+var _mesh_scales: Dictionary = {}
+
+
+func _ready() -> void:
+	_meshes = {
+		front_left: front_left_mesh,
+		front_right: front_right_mesh,
+		rear_left: rear_left_mesh,
+		rear_right: rear_right_mesh,
+	}
+	_meshes.erase(null)
+
+	for mesh in _meshes.values():
+		if mesh:
+			_mesh_scales[mesh] = mesh.scale
 
 
 func process_wheels(delta: float, speed: float, steering_input: float) -> void:
@@ -69,3 +91,38 @@ func _set_steer(pivot: Node3D) -> void:
 	if pivot == null:
 		return
 	pivot.rotation.y = _current_steer
+
+
+func get_wheel_mesh(pivot: Node3D) -> Node3D:
+	return _meshes.get(pivot)
+
+
+func detach_random_wheel() -> Node3D:
+	if missing_wheel != null or _meshes.is_empty():
+		return null
+
+	missing_wheel = _meshes.keys().pick_random()
+
+	var mesh := get_wheel_mesh(missing_wheel)
+	if mesh:
+		mesh.visible = false
+
+	return missing_wheel
+
+
+func restore_missing_wheel() -> void:
+	if missing_wheel == null:
+		return
+
+	var mesh := get_wheel_mesh(missing_wheel)
+	missing_wheel = null
+
+	if mesh == null:
+		return
+
+	var target_scale: Vector3 = _mesh_scales.get(mesh, mesh.scale)
+	mesh.scale = target_scale * 0.01
+	mesh.visible = true
+
+	var tween := create_tween()
+	tween.tween_property(mesh, "scale", target_scale, restore_time).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
