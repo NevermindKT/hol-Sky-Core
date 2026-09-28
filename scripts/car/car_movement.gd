@@ -11,6 +11,10 @@ var last_lateral_velocity := 0.0
 
 var steering_input := 0.0
 
+var max_speed_multiplier := 1.0
+var steering_bias := 0.0
+var acceleration_multiplier := 1.0
+
 
 @export_category("Movement")
 @export var drag := 15.0
@@ -150,8 +154,8 @@ func get_target_grip() -> float:
 
 
 func process_speed(delta: float) -> void:
-	var current_acceleration := UpgradeManager.get_modified(&"acceleration", acceleration)
-	var current_max_speed := UpgradeManager.get_modified(&"max_speed", max_speed)
+	var current_acceleration := UpgradeManager.get_modified(&"acceleration", acceleration) * acceleration_multiplier
+	var current_max_speed := UpgradeManager.get_modified(&"max_speed", max_speed) * max_speed_multiplier
 
 	if InputController.accelerating:
 		var acceleration_mul = get_acceleration_multiplier()
@@ -164,14 +168,18 @@ func process_speed(delta: float) -> void:
 		back_lights.turn_off()
 
 	speed -= drag * _current_grip * delta
-	speed = clamp(speed, 0.0, current_max_speed)
+
+	if speed > current_max_speed:
+		speed = maxf(current_max_speed, speed - brake * delta)
+	speed = maxf(speed, 0.0)
 
 
 func process_strafe(delta: float) -> void:
 	if speed >= min_strafe_speed:
 		var steering_mul := get_steering_multiplier()
 
-		lane_offset += steering_input * strafe_speed * steering_mul * delta
+		var steering := clampf(steering_input + steering_bias, -1.0, 1.0)
+		lane_offset += steering * strafe_speed * steering_mul * delta
 
 		var road_offset := get_road_turn_offset()
 		lane_offset += road_offset * delta
@@ -255,7 +263,9 @@ func dodge() -> void:
 		return
 	if is_overheated or stamina <= 0.0:
 		return
-	
+	if wheels and wheels.missing_wheel != null:
+		return
+
 	var direction = sign(steering_input)
 	
 	visual_effects.apply_dodge_impulse(direction)
