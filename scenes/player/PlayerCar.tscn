@@ -80,6 +80,10 @@ player_status_controller = NodePath("PlayerStatusController")
 [node name="gun" parent="." unique_id=2088224302 instance=ExtResource("22_xq70i")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.5, 0)
 
+[node name="ShellEjector" parent="gun" unique_id=1881231443 node_paths=PackedStringArray("car") instance=ExtResource("9_els85")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.11711423, 0.39796138, -0.36482424)
+car = NodePath("../..")
+
 [node name="Visual" type="Node3D" parent="." unique_id=1626838081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.245, 0)
 script = ExtResource("2_iam02")
@@ -279,15 +283,10 @@ shotgun_ammo = 5000
 script = ExtResource("4_ojawh")
 gun = NodePath("../gun")
 car = NodePath("..")
-shell_ejector = NodePath("../ShellEjector")
+shell_ejector = NodePath("../gun/ShellEjector")
 player_weapons = Array[ExtResource("6_7lmdr")]([SubResource("Resource_lo1ro"), SubResource("Resource_y6j3g"), SubResource("Resource_iam02")])
 inventory = NodePath("../Inventory")
 
 [node name="PlayerStatusController" type="Node" parent="." unique_id=1732844712]
 script = ExtResource("10_ojawh")
 max_health = 150.0
-
-[node name="ShellEjector" parent="." unique_id=1881231443 node_paths=PackedStringArray("car") instance=ExtResource("9_els85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11711426, 0.8979614, 0.36482424)
-car = NodePath("..")
-inherit_car_speed = 0.5
