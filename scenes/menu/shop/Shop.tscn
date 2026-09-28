@@ -339,7 +339,7 @@ modulate_color = Color(1, 1, 1, 0.7294118)
 texture = ExtResource("27_fc82p")
 modulate_color = Color(1, 1, 1, 0.7294118)
 
-[node name="Shop" type="Control" unique_id=1248518968]
+[node name="Shop" type="Control" unique_id=1248518968 node_paths=PackedStringArray("money_label", "timer_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -347,6 +347,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3sxmm")
+money_label = NodePath("Header/Header/HeaderButtons/Money/MoneyEquals")
+timer_label = NodePath("TimerLabel/Timer")
 metadata/_edit_vertical_guides_ = [960.0]
 metadata/_edit_horizontal_guides_ = [540.0]
 

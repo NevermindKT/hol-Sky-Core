@@ -5,8 +5,8 @@ extends Control
 @onready var car_obj_container: HBoxContainer = $CarItems/CarObj
 @onready var bubble_sweet_container: Control = $Bubble/SweetObj
 
-@onready var money_label: Label = $Header/Pen/HeaderButtons/Money/MoneyEquals
-@onready var timer_label: Label = $TimerLabel/Timer
+@export var money_label: Label
+@export var timer_label: Label
 
 var db: SQLite = null
 
@@ -42,10 +42,13 @@ var db: SQLite = null
 
 func _ready() -> void:
 	_init_database()
-	
+
 	if not GameManager.shop_refreshed.is_connected(_on_game_manager_shop_refreshed):
 		GameManager.shop_refreshed.connect(_on_game_manager_shop_refreshed)
-		
+
+	if not GameManager.money_changed.is_connected(_on_money_changed):
+		GameManager.money_changed.connect(_on_money_changed)
+
 	render_shop()
 
 func _init_database() -> void:
@@ -63,6 +66,10 @@ func _process(_delta: float) -> void:
 func _on_game_manager_shop_refreshed() -> void:
 	render_shop()
 
+func _on_money_changed(new_amount: int) -> void:
+	if money_label:
+		money_label.text = str(new_amount)
+
 func render_shop() -> void:
 	if GameManager.current_shop_data.is_empty():
 		GameManager.current_shop_data["boost"] = GameManager.generate_category_data_from_templates(boost_templates, 7)
@@ -76,7 +83,7 @@ func render_shop() -> void:
 	_clear_container(bubble_sweet_container)
 
 	if money_label:
-		money_label.text = str(GameManager.player_money)
+		money_label.text = str(GameManager.get_player_money())
 
 	if GameManager.current_shop_data.has("boost"):
 		_render_category_items(GameManager.current_shop_data["boost"], boost_templates, boost_obj_container)
@@ -178,8 +185,8 @@ func _buy_item(data: Dictionary, shop_item: Control, name_node: Node, desc_node:
 		db.query("UPDATE Objects SET Quantity = Quantity + 1 WHERE ID = '%s';" % [data["id"]])
 		
 		if money_label:
-			money_label.text = str(GameManager.player_money)
-			
+			money_label.text = str(GameManager.get_player_money())
+
 		_apply_sold_out_state(shop_item, name_node, desc_node)
 	else:
 		print("Недостаточно средств!")
