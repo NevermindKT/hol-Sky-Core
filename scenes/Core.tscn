@@ -113,6 +113,8 @@ obstacle_set = SubResource("Resource_dakql")
 
 [node name="LightningController" parent="Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
 world = NodePath("../../World")
+strike_ahead_min = 100.0
+strike_ahead_max = 150.0
 
 [node name="FogController" parent="Environment/WeatherSystem" index="3" unique_id=1605430976]
 transition_speed = 2.0
