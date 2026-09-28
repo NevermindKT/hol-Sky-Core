@@ -80,11 +80,15 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktvve"]
+<<<<<<< HEAD
 bg_color = Color(0, 0, 0, 0.27058825)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+=======
+bg_color = Color(0.6, 0.6, 0.6, 0)
+>>>>>>> 918caf635c6954b64ea8ceb8fc178bc7ef3e68a7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adyy0"]
 bg_color = Color(0.28402486, 2.256129e-07, 0.060133174, 1)
@@ -255,13 +259,20 @@ marker_scene = ExtResource("4_dh6d1")
 [node name="Top" type="VBoxContainer" parent="." unique_id=2108867572]
 anchors_preset = 10
 anchor_right = 1.0
+<<<<<<< HEAD
 offset_bottom = 15.0
+=======
+offset_bottom = 27.0
+>>>>>>> 918caf635c6954b64ea8ceb8fc178bc7ef3e68a7
 grow_horizontal = 2
 
 [node name="LevelProgressBar" type="ProgressBar" parent="Top" unique_id=167970145]
 layout_mode = 2
+<<<<<<< HEAD
 size_flags_vertical = 3
 show_percentage = false
+=======
+>>>>>>> 918caf635c6954b64ea8ceb8fc178bc7ef3e68a7
 
 [node name="Left" type="VBoxContainer" parent="." unique_id=1188987128]
 z_index = 1

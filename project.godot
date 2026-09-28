@@ -35,7 +35,11 @@ GrenadeSpawner="*uid://dsvmq0gu3juhd"
 
 [display]
 
+<<<<<<< HEAD
 window/size/mode=3
+=======
+window/size/mode=4
+>>>>>>> 918caf635c6954b64ea8ceb8fc178bc7ef3e68a7
 window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
