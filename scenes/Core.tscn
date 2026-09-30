@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="1_i24gt"]
 [ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="2_uhg8y"]
-[ext_resource type="PackedScene" uid="uid://gk4q6i0norp7" path="res://scenes/general/pause_menu.tscn" id="4_uhg8y"]
 [ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="5_hyqco"]
 [ext_resource type="Script" uid="uid://bdv0lpvwl3hpr" path="res://scripts/general/bootstrap.gd" id="6_v852s"]
 [ext_resource type="Script" uid="uid://ndqc52ws3chl" path="res://scripts/run_manager.gd" id="7_0uqmh"]
@@ -14,7 +13,6 @@
 [ext_resource type="Resource" uid="uid://hxykvkcsp7w4" path="res://resources/weather/rain/HeavyRainProfile.tres" id="8_xwqeg"]
 [ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="9_a06ay"]
 [ext_resource type="PackedScene" uid="uid://bfh8ek3nst8so" path="res://scenes/weather/weather_system.tscn" id="10_bggva"]
-[ext_resource type="PackedScene" uid="uid://33j34s1svc7q" path="res://scenes/general/hud.tscn" id="11_wqd6n"]
 [ext_resource type="Resource" uid="uid://b2rqs0roqpye8" path="res://resources/weather/fog/LightFog.tres" id="12_xwqeg"]
 [ext_resource type="Script" uid="uid://bcc07pjuuti4w" path="res://scripts/enemy/enemy_encounter.gd" id="13_asndc"]
 [ext_resource type="Resource" uid="uid://kbikc6eesw84" path="res://resources/enemy/testEnemy.tres" id="13_g88bg"]
@@ -52,20 +50,21 @@ metadata/_custom_type_script = "uid://nvhh14a8jfmw"
 [node name="Core" type="Node3D" unique_id=243152911]
 
 [node name="Car" parent="." unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("2_uhg8y")]
-max_speed = 90.0
+max_speed = 75.0
 acceleration = 20.0
 max_offset = 10.0
 strafe_speed = 17.0
 road_turn_force = 0.8
 dodge_force = 10.0
 dodge_distance = 5.0
-dodge_damage = 80.0
+dodge_damage = 79.0
 dodge_knockback_force = 110.0
 enemy_detection_mask = 2
 stamina_regeneration_rate = 75.0
 stamina_regeneration_delay = 0.75
-overheat_delay = 1.85
+overheat_delay = 1.25
 overheat_recovery_ratio = 0.85
+damping = 9.0
 player_cam = NodePath("../PlayerCam")
 
 [node name="PlayerCam" type="Camera3D" parent="." unique_id=375104476 node_paths=PackedStringArray("car")]
@@ -95,13 +94,6 @@ aim_lean_pitch_deg = 6.0
 headlights_far_height_offset = -2.0
 headlights_far_distance_offset = 1.0
 flashlight_far_lean_multiplier = 2.5
-
-[node name="UI" type="Node" parent="." unique_id=290003646]
-
-[node name="HUD" parent="UI" unique_id=299315244 instance=ExtResource("11_wqd6n")]
-
-[node name="PauseMenu" parent="UI" unique_id=241197245 instance=ExtResource("4_uhg8y")]
-visible = false
 
 [node name="Environment" type="Node" parent="." unique_id=1285239064]
 
@@ -136,18 +128,18 @@ dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.92378)
 script = ExtResource("13_asndc")
 enemy_pool = Array[ExtResource("14_o0wgs")]([ExtResource("13_g88bg")])
-offscreen_spawn_distance = 30.0
+offscreen_spawn_distance = 45.0
+attack_cooldown = 0.2
 player = NodePath("../Car")
 test_Enemy = ExtResource("13_g88bg")
 metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Services" type="Node" parent="." unique_id=184356673]
 
-[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("car", "hud", "world", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
+[node name="Bootstrap" type="Node" parent="Services" unique_id=523784772 node_paths=PackedStringArray("world", "car", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
 script = ExtResource("6_v852s")
-car = NodePath("../../Car")
-hud = NodePath("../../UI/HUD")
 world = NodePath("../../Environment/World")
+car = NodePath("../../Car")
 run_manager = NodePath("../RunManager")
 road_manager = NodePath("../RoadManager")
 enemy_spawner = NodePath("../EnemySpawner")
@@ -191,7 +183,10 @@ lateral_offset = 1.5
 
 [node name="EncounterDirector" type="Node" parent="Services" unique_id=1870512182]
 script = ExtResource("40_g88bg")
-initial_delay_segments = 6
+initial_delay_segments = 8
+min_segments_between_encounters = 8
+base_max_weight = 45.0
+max_max_weight = 200.0
 
 [node name="WeatherGenerator" type="Node" parent="Services" unique_id=1698724359]
 script = ExtResource("16_iqacv")

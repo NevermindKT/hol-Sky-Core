@@ -89,7 +89,7 @@ func _process(delta: float) -> void:
 
 
 func _resnap_strokes_height() -> void:
-	var space_state := get_viewport().world_3d.direct_space_state
+	var space_state := car_movement.get_world_3d().direct_space_state
 
 	for stroke in _active_strokes:
 		if not is_instance_valid(stroke):

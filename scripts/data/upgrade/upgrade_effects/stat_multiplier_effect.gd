@@ -10,8 +10,8 @@ enum Operation {
 @export var operation: Operation = Operation.MULTIPLY
 @export var multiplier: float = 1.0
 
-func modify_stat(stat_id: StringName, value: float) -> float:
-	if stat_id != self.stat_id:
+func modify_stat(_stat_id: StringName, value: float) -> float:
+	if _stat_id != self.stat_id:
 		return value
 
 	match operation:
