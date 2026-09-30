@@ -6,6 +6,7 @@ class_name Pause_Menu
 @onready var exit_btn: Button = $Menu/ExitBtn
 
 @onready var menu: Control = $Menu
+@onready var tutor: Control = $Tutor
 @onready var settings_menu: CanvasLayer = $SettingsMenu
 
 @export var hover_sound: AudioStream = preload("res://audio/ui/UI_Button_Hover.wav")
@@ -52,12 +53,14 @@ func _on_continue_pressed():
 
 func _on_options_pressed():
 	menu.visible = false
+	tutor.visible = false
 	settings_menu.visible = true
 
 
 func _on_settings_closed():
 	settings_menu.visible = false
 	menu.visible = true
+	tutor.visible = true
 
 
 func _on_quit_pressed():
@@ -74,4 +77,6 @@ func check_visible():
 
 	if not PauseManager.is_paused:
 		menu.visible = true
+		tutor.visible = true
+
 		settings_menu.visible = false

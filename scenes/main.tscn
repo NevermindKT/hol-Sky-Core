@@ -196,7 +196,7 @@ script = ExtResource("19_dnhof")
 initial_delay_segments = 8
 min_segments_between_encounters = 8
 base_max_weight = 45.0
-max_max_weight = 200.0
+max_max_weight = 125.0
 
 [node name="WeatherGenerator" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=113496564]
 script = ExtResource("20_1v6qk")

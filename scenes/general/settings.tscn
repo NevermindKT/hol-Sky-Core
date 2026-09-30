@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://csywd3ipt3pi" path="res://scripts/ui/audio_panel.gd" id="2_h2lw8"]
 [ext_resource type="Script" uid="uid://b3cu5pgjwrvd0" path="res://scripts/ui/video_panel.gd" id="3_jf66x"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bv42"]
+bg_color = Color(0, 0, 0, 0.3137255)
+
 [node name="SettingsMenu" type="CanvasLayer" unique_id=2128686807 node_paths=PackedStringArray("categories_con", "setting_content_con", "audio_category_btn", "video_category_btn", "back_btn", "audio_panel", "video_panel")]
 script = ExtResource("1_kqaaj")
 categories_con = NodePath("CategoriesCon")
@@ -35,11 +38,13 @@ grow_vertical = 2
 
 [node name="VideoCategoryBtn" type="Button" parent="CategoriesCon" unique_id=1805772840]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 toggle_mode = true
 text = "Video"
 
 [node name="AudioCategoryBtn" type="Button" parent="CategoriesCon" unique_id=1507682183]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 toggle_mode = true
 text = "Audio"
 
@@ -50,14 +55,23 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -600.0
+offset_left = -1088.0
 offset_top = -324.0
+offset_right = -133.0
 offset_bottom = 324.0
 grow_horizontal = 0
 grow_vertical = 2
 
+[node name="BG" type="Panel" parent="SettingContent" unique_id=175377900]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5bv42")
+
 [node name="AudioPanel" type="Control" parent="SettingContent" unique_id=869658838 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,7 +90,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_left = 21.0
 offset_top = 112.0
-offset_right = -98.0
+offset_right = -369.0
 offset_bottom = 191.0
 grow_horizontal = 2
 
@@ -85,6 +99,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingContent/AudioPanel/VBoxContainer/MasterCon" unique_id=2012137954]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Master      "
 
 [node name="Master" type="HSlider" parent="SettingContent/AudioPanel/VBoxContainer/MasterCon" unique_id=461083725]
@@ -100,6 +115,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingContent/AudioPanel/VBoxContainer/MusicCon" unique_id=1910642925]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Music        "
 
 [node name="Music" type="HSlider" parent="SettingContent/AudioPanel/VBoxContainer/MusicCon" unique_id=975971541]
@@ -115,6 +131,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingContent/AudioPanel/VBoxContainer/SFXCon" unique_id=577084647]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "SFX            "
 
 [node name="SFX" type="HSlider" parent="SettingContent/AudioPanel/VBoxContainer/SFXCon" unique_id=347775374]
@@ -126,6 +143,7 @@ step = 0.1
 value = 1.0
 
 [node name="VideoPanel" type="Control" parent="SettingContent" unique_id=233055471 node_paths=PackedStringArray("fullscreen_checkbox", "vsync_checkbox", "resolution_option", "fov_slider", "fps_limit_option", "ui_slider", "current_fov_label", "current_ui_scale_label")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,9 +163,9 @@ current_ui_scale_label = NodePath("UIScaleCon/CurrentUIScaleLabel")
 
 [node name="ResulutionCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1187007375]
 anchors_preset = 0
-offset_left = -4.0
+offset_left = 18.0
 offset_top = 138.0
-offset_right = 388.0
+offset_right = 410.0
 offset_bottom = 189.0
 
 [node name="ResulutionOption" type="OptionButton" parent="SettingContent/VideoPanel/ResulutionCon" unique_id=1762545565]
@@ -163,8 +181,9 @@ grow_vertical = 2
 
 [node name="FPSCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1739209997]
 anchors_preset = 0
+offset_left = 22.0
 offset_top = 187.0
-offset_right = 82.0
+offset_right = 104.0
 offset_bottom = 238.0
 
 [node name="FPSCapOption" type="OptionButton" parent="SettingContent/VideoPanel/FPSCon" unique_id=1844355478]
@@ -181,9 +200,9 @@ grow_vertical = 2
 [node name="BtnCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1558944769]
 layout_mode = 1
 anchors_preset = 0
-offset_left = -5.0
+offset_left = 17.0
 offset_top = 240.0
-offset_right = 137.0
+offset_right = 159.0
 offset_bottom = 316.0
 
 [node name="FullScreenBtn" type="CheckButton" parent="SettingContent/VideoPanel/BtnCon" unique_id=1007677759]
@@ -202,8 +221,9 @@ text = "VSync         "
 [node name="FovCon" type="Control" parent="SettingContent/VideoPanel" unique_id=408412530]
 layout_mode = 1
 anchors_preset = 0
+offset_left = 22.0
 offset_top = 312.0
-offset_right = 388.0
+offset_right = 410.0
 offset_bottom = 352.0
 
 [node name="FovLabel" type="Label" parent="SettingContent/VideoPanel/FovCon" unique_id=541250370]
@@ -310,4 +330,5 @@ offset_top = -123.0
 offset_right = 269.0
 offset_bottom = -67.0
 grow_vertical = 0
+theme_override_font_sizes/font_size = 30
 text = "Back"
