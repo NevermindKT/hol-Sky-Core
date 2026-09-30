@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_qhxoo"]
 [ext_resource type="Script" uid="uid://bt04e05usq4qe" path="res://scripts/data/upgrade/boost_data.gd" id="2_6ad05"]
+[ext_resource type="Resource" path="res://resources/upgrades/effects/spare_tire_repair.tres" id="3_spare"]
 
 [resource]
 script = ExtResource("2_6ad05")
 id = "ST01"
 display_name = "Spare tire"
 description = "Spare tire"
+effects = Array[ExtResource("1_qhxoo")]([ExtResource("3_spare")])
 metadata/_custom_type_script = "uid://bt04e05usq4qe"

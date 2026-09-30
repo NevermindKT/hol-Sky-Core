@@ -23,8 +23,8 @@ func aim_pitch(local_target: Vector3, delta: float) -> void:
 	var flat_dist := Vector2(local_target.x, local_target.z).length()
 	var desired_pitch := atan2(-local_target.y, flat_dist)
 	desired_pitch = clamp(desired_pitch, deg_to_rad(min_pitch_deg), deg_to_rad(max_pitch_deg))
-
-	gun.rotation.x = move_toward(gun.rotation.x, desired_pitch, pitch_speed * delta)
+	var current_pitch_speed := pitch_speed / UpgradeManager.get_modified(&"less_turning_delay", 1.0)
+	gun.rotation.x = move_toward(gun.rotation.x, desired_pitch, current_pitch_speed * delta)
 	bolt.global_transform = gun.global_transform * bolt_offset
 
 

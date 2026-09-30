@@ -1,0 +1,288 @@
+[gd_scene format=3 uid="uid://dxa8wggvns7te"]
+
+[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="1_pibwh"]
+[ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="2_c6pm6"]
+[ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="3_5he1u"]
+[ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="4_5poiv"]
+[ext_resource type="Script" uid="uid://bocwaebt17tfi" path="res://scripts/data/road/obstacle_data.gd" id="5_2cjbq"]
+[ext_resource type="PackedScene" uid="uid://5l3jx6le81bf" path="res://scenes/obstacles/obstacle.tscn" id="6_chjal"]
+[ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="7_cjqg0"]
+[ext_resource type="PackedScene" uid="uid://bfh8ek3nst8so" path="res://scenes/weather/weather_system.tscn" id="8_vchkt"]
+[ext_resource type="Script" uid="uid://bcc07pjuuti4w" path="res://scripts/enemy/enemy_encounter.gd" id="9_txyw0"]
+[ext_resource type="Script" uid="uid://dugxq50h32qoa" path="res://resources/enemy/encounter_enemy_data.gd" id="10_vc5cj"]
+[ext_resource type="Resource" uid="uid://kbikc6eesw84" path="res://resources/enemy/testEnemy.tres" id="11_nvyfr"]
+[ext_resource type="Script" uid="uid://bdv0lpvwl3hpr" path="res://scripts/general/bootstrap.gd" id="12_ty1g6"]
+[ext_resource type="Script" uid="uid://ndqc52ws3chl" path="res://scripts/run_manager.gd" id="13_j2jfr"]
+[ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="14_bjg73"]
+[ext_resource type="Script" uid="uid://bhl1wod4cbmvb" path="res://scripts/road/road_manager.gd" id="15_bu4jf"]
+[ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="16_o7ddy"]
+[ext_resource type="Script" uid="uid://csuu8mh30lvn7" path="res://scripts/spawners/enemy_spawner.gd" id="17_0loja"]
+[ext_resource type="PackedScene" uid="uid://dj6f80eu3p4mq" path="res://scenes/enemies/enemy.tscn" id="18_ids8r"]
+[ext_resource type="Script" uid="uid://bia1b2g3noalc" path="res://scripts/enemy/encounter_director.gd" id="19_dnhof"]
+[ext_resource type="Script" uid="uid://dydg442leo0i4" path="res://scripts/weather/weather_generator.gd" id="20_1v6qk"]
+[ext_resource type="PackedScene" uid="uid://c5q2obhvjx8lj" path="res://scenes/weather/weather_zone.tscn" id="21_augu2"]
+[ext_resource type="Script" uid="uid://cj3gix68sfnqx" path="res://resources/weather/rain_data.gd" id="22_tm6hj"]
+[ext_resource type="Resource" uid="uid://bkqcw5y1s4fd5" path="res://resources/weather/rain/NoRainProfile.tres" id="23_kf5aa"]
+[ext_resource type="Resource" uid="uid://cts2oj350omv2" path="res://resources/weather/rain/RainProfile.tres" id="24_t5ykj"]
+[ext_resource type="Resource" uid="uid://hxykvkcsp7w4" path="res://resources/weather/rain/HeavyRainProfile.tres" id="25_e755i"]
+[ext_resource type="Script" uid="uid://dgn3pfxbskeg0" path="res://resources/weather/fog_data.gd" id="26_ro3en"]
+[ext_resource type="Resource" uid="uid://bfkjk34q3o5oc" path="res://resources/weather/fog/ClearNight.tres" id="27_od4ux"]
+[ext_resource type="Resource" uid="uid://b2rqs0roqpye8" path="res://resources/weather/fog/LightFog.tres" id="28_xhfw6"]
+[ext_resource type="Resource" uid="uid://4lviiw663mbm" path="res://resources/weather/fog/DenseFog.tres" id="29_1epgm"]
+[ext_resource type="Script" uid="uid://dq1h45bj2og1p" path="res://scripts/ground/ground_generator.gd" id="30_152kg"]
+[ext_resource type="Script" uid="uid://ckvbpffvi7k0i" path="res://scripts/ground/vegetation_scatter.gd" id="34_a82wo"]
+[ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="35_gdvew"]
+[ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="36_kjtvk"]
+[ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="37_xrs0c"]
+
+[sub_resource type="Resource" id="Resource_cyvft"]
+script = ExtResource("5_2cjbq")
+obstacle_scene = ExtResource("6_chjal")
+weight = 10.0
+metadata/_custom_type_script = "uid://bocwaebt17tfi"
+
+[sub_resource type="Resource" id="Resource_xljpf"]
+script = ExtResource("7_cjqg0")
+obstacles = Array[ExtResource("5_2cjbq")]([SubResource("Resource_cyvft")])
+metadata/_custom_type_script = "uid://nvhh14a8jfmw"
+
+[node name="Main" type="Node" unique_id=398161666]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=308802376]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="UI" parent="SubViewportContainer" unique_id=934683406 instance=ExtResource("1_0wfyh")]
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1338925618]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Car" parent="SubViewportContainer/SubViewport" unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("1_pibwh")]
+max_offset = 10.0
+strafe_speed = 17.0
+dodge_force = 10.0
+dodge_distance = 5.0
+damping = 9.0
+max_speed = 75.0
+acceleration = 20.0
+min_strafe_speed = null
+road_turn_force = 0.8
+dodge_min_speed = null
+dodge_window = null
+dodge_hit_radius = null
+dodge_damage = 79.0
+dodge_knockback_force = 110.0
+dodge_hit_spray_lateral = null
+enemy_detection_mask = 2
+max_stamina = null
+dodge_stamina_drain = null
+stamina_regeneration_rate = 75.0
+stamina_regeneration_delay = 0.75
+overheat_delay = 1.25
+overheat_recovery_ratio = 0.85
+grip_transition_speed = null
+base_damage = null
+player_cam = NodePath("../PlayerCam")
+
+[node name="PlayerCam" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1846742701 node_paths=PackedStringArray("car")]
+transform = Transform3D(1, 0, 0, 0, 0.86818093, 0.49624774, 0, -0.49624774, 0.86818093, 0, 5.483519, 7.1356735)
+fov = 90.0
+script = ExtResource("2_c6pm6")
+car = NodePath("../Car")
+lateral_spring = 150.0
+lateral_damping = 20.0
+yaw_gain_deg = 1.7
+yaw_max_deg = 8.0
+yaw_smoothing = 4.0
+fov_min = 80.0
+distance_max = 6.0
+height_max = 8.0
+accel_distance_push = 0.8
+accel_fov_push = 3.0
+brake_distance_push = 0.2
+incoming_lateral_impulse_per_damage = 0.5
+incoming_vertical_impulse_per_damage = 0.5
+incoming_roll_impulse_per_damage_deg = 5.0
+incoming_pitch_impulse_per_damage_deg = 5.0
+aim_lean_horizontal = 1.0
+aim_lean_vertical = 0.6
+aim_lean_yaw_deg = 4.0
+aim_lean_pitch_deg = 6.0
+headlights_far_height_offset = -2.0
+headlights_far_distance_offset = 1.0
+flashlight_far_lean_multiplier = 2.5
+
+[node name="Environment" type="Node" parent="SubViewportContainer/SubViewport" unique_id=1742827016]
+
+[node name="World" parent="SubViewportContainer/SubViewport/Environment" unique_id=1128285648 instance=ExtResource("3_5he1u")]
+road_set = ExtResource("4_5poiv")
+obstacle_set = SubResource("Resource_xljpf")
+
+[node name="WeatherSystem" parent="SubViewportContainer/SubViewport/Environment" unique_id=1765140778 instance=ExtResource("8_vchkt")]
+
+[node name="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="1" unique_id=89476310]
+light_energy = 0.04
+
+[node name="LightningController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
+world = NodePath("../../World")
+
+[node name="FogController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="3" unique_id=1605430976]
+transition_speed = 2.0
+
+[node name="SkyController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="4" unique_id=995668462]
+dusk_set_elevation_deg = -10.0
+dusk_sky_top_color = null
+dusk_sky_horizon_color = null
+dusk_sky_energy_multiplier = null
+dusk_light_color = null
+dusk_light_energy = null
+dawn_duration = null
+dawn_start_sun_elevation_deg = null
+dawn_end_sun_elevation_deg = null
+dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
+dawn_sky_energy_multiplier = null
+dawn_light_energy = null
+dawn_adjustment_brightness = null
+dawn_glow_intensity = null
+night_sun_elevation_deg = null
+sun_angle_max_deg = 13.0
+sun_curve = 1.0
+thermal_transition_duration = null
+thermal_adjustment_brightness = null
+thermal_fog_density = null
+thermal_volumetric_fog_density = null
+
+[node name="EnemyEncounter" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=2103320193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.92378)
+script = ExtResource("9_txyw0")
+enemy_pool = Array[ExtResource("10_vc5cj")]([ExtResource("11_nvyfr")])
+offscreen_spawn_distance = 45.0
+attack_cooldown = 0.2
+test_Enemy = ExtResource("11_nvyfr")
+metadata/_custom_type_script = "uid://bcc07pjuuti4w"
+
+[node name="Services" type="Node" parent="SubViewportContainer/SubViewport" unique_id=917066585]
+
+[node name="Bootstrap" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1667155510 node_paths=PackedStringArray("car", "world", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
+script = ExtResource("12_ty1g6")
+car = NodePath("../../Car")
+world = NodePath("../../Environment/World")
+run_manager = NodePath("../RunManager")
+road_manager = NodePath("../RoadManager")
+enemy_spawner = NodePath("../EnemySpawner")
+sky_controller = NodePath("../../Environment/WeatherSystem/SkyController")
+road_generator = NodePath("../RoadGenerator")
+ground_generator = NodePath("../GroundGenerator")
+weather_generator = NodePath("../WeatherGenerator")
+vegetation_scatter = NodePath("../VegetationScatter")
+tire_trail_manager = NodePath("../TireTrailManager")
+blood_trail_manager = NodePath("../BloodTrailManager")
+lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
+aim_controller = NodePath("../AimController")
+enemy_encounter = NodePath("../../EnemyEncounter")
+encounter_director = NodePath("../EncounterDirector")
+
+[node name="RunManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=126509168]
+script = ExtResource("13_j2jfr")
+
+[node name="AimController" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=523903400]
+script = ExtResource("14_bjg73")
+aim_distance = 50.0
+aim_assist_radius = 100.0
+yaw_speed = null
+
+[node name="RoadManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=441767197]
+script = ExtResource("15_bu4jf")
+turn_smoothing = 100.0
+sample_distance = 4.5
+metadata/_custom_type_script = "uid://bhl1wod4cbmvb"
+
+[node name="RoadGenerator" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1620291967]
+script = ExtResource("16_o7ddy")
+debug = false
+
+[node name="EnemySpawner" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=355578410]
+script = ExtResource("17_0loja")
+enemy_scene = ExtResource("18_ids8r")
+min_gap_m = 10.0
+max_gap_m = 20.0
+spawn_chance = 1.0
+lateral_offset = 1.5
+
+[node name="EncounterDirector" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1789766040]
+script = ExtResource("19_dnhof")
+initial_delay_segments = 8
+min_segments_between_encounters = 8
+base_max_weight = 45.0
+max_max_weight = 200.0
+
+[node name="WeatherGenerator" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=113496564]
+script = ExtResource("20_1v6qk")
+weather_zone_scene = ExtResource("21_augu2")
+available_rain = Array[ExtResource("22_tm6hj")]([ExtResource("23_kf5aa"), ExtResource("24_t5ykj"), ExtResource("25_e755i")])
+available_fog = Array[ExtResource("26_ro3en")]([ExtResource("27_od4ux"), ExtResource("28_xhfw6"), ExtResource("29_1epgm")])
+min_segments_per_weather = 3
+max_segments_per_weather = 5
+
+[node name="GroundGenerator" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=48490945]
+script = ExtResource("30_152kg")
+texture_tile_scale = 0.1
+roughness_value = null
+road_half_width = null
+ground_half_width = null
+view_radius = null
+detail_radius = null
+chunk_size = null
+chunk_cells = null
+road_surface_height = null
+road_surface_gap = null
+height_blend_radius = null
+base_blend_distance = null
+chunk_behind_distance = null
+spine_keep_behind = null
+initial_build_radius = null
+worker_tasks = null
+build_budget_ms = null
+vegetation_cluster_chunks = null
+detail_release_margin = null
+rolling_height = null
+bump_height = null
+foothill_height = null
+hill_height = null
+hill_frequency = null
+hill_warp = null
+ridge_mix = null
+hill_low = null
+hill_high = null
+region_frequency = null
+region_low = null
+region_high = null
+hill_start_distance = null
+hill_rise_distance = null
+
+[node name="VegetationScatter" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=646493951]
+script = ExtResource("34_a82wo")
+
+[node name="TireTrailManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=419725387]
+script = ExtResource("35_gdvew")
+stroke_scene = ExtResource("36_kjtvk")
+brake_speed_ratio = 0.1
+max_active_strokes = 10
+fade_duration = 5.0
+
+[node name="BloodTrailManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=468722387]
+script = ExtResource("35_gdvew")
+stroke_scene = ExtResource("37_xrs0c")
+trigger_mode = 1
+brake_speed_ratio = 0.1
+max_active_strokes = 10
+fade_duration = 5.0
+
+[editable path="SubViewportContainer/SubViewport/Environment/WeatherSystem"]

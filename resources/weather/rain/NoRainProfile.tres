@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_mjqex")
 enabled = false
+chance_intensify = 30.0
+chance_weaken = 0.0
 metadata/_custom_type_script = "uid://cj3gix68sfnqx"

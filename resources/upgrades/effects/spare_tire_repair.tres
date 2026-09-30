@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="SpareTireEffect" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/upgrade/upgrade_effects/spare_tire_effect.gd" id="1_spare"]
+
+[resource]
+script = ExtResource("1_spare")

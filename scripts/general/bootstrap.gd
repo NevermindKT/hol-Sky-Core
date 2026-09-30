@@ -74,6 +74,7 @@ func set_world():
 	ProjectileSpawner.world = world
 	lightning_controller.world = world
 	ground_generator.vegetation = vegetation_scatter
+	world.ground = ground_generator
 
 
 func set_road_manager():
