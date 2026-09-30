@@ -1,6 +1,8 @@
 extends CanvasLayer
 class_name Pause_Menu
 
+@onready var backdrop: ColorRect = $backdrop
+
 @onready var continue_btn: Button = $Menu/ContinueBtn
 @onready var options_btn: Button = $Menu/OptionsBtn
 @onready var exit_btn: Button = $Menu/ExitBtn

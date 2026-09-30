@@ -1,13 +1,26 @@
 [gd_scene format=3 uid="uid://gk4q6i0norp7"]
 
 [ext_resource type="Script" uid="uid://j4mgdsn2i0te" path="res://scripts/ui/pause_menu.gd" id="1_g8a0a"]
+[ext_resource type="Shader" uid="uid://cvh5qt2ng01ng" path="res://resources/shaders/UI/blur_backdrop.gdshader" id="2_07hio"]
 [ext_resource type="PackedScene" uid="uid://0vt18iverqp2" path="res://scenes/general/settings.tscn" id="2_8hsir"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkv1o"]
+shader = ExtResource("2_07hio")
+shader_parameter/blur_amount = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hsir"]
 bg_color = Color(0, 0, 0, 0.3137255)
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=241197245]
 script = ExtResource("1_g8a0a")
+
+[node name="backdrop" type="ColorRect" parent="." unique_id=603824113]
+material = SubResource("ShaderMaterial_pkv1o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Menu" type="VBoxContainer" parent="." unique_id=1636525033]
 anchors_preset = 4
@@ -39,9 +52,6 @@ text = "OPTIONS"
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "QUIT"
-
-[node name="SettingsMenu" parent="." unique_id=2128686807 instance=ExtResource("2_8hsir")]
-visible = false
 
 [node name="Tutor" type="Control" parent="." unique_id=489495140]
 layout_mode = 3
@@ -89,3 +99,6 @@ text = "Рух:
   F — режим ліхтаря турелі
   H — дальнє світло"
 vertical_alignment = 1
+
+[node name="SettingsMenu" parent="." unique_id=2128686807 instance=ExtResource("2_8hsir")]
+visible = false

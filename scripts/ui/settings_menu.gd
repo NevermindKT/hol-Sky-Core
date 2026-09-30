@@ -46,8 +46,8 @@ func _on_button_click():
 
 
 func _show_panel(panel: Control) -> void:
-	for child in setting_content_con.get_children():
-		child.visible = child == panel
+	for p in [audio_panel, video_panel]:
+		p.visible = p == panel
 
 
 func _on_close_pressed() -> void:
