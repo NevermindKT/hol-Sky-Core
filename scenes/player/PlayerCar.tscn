@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://cjwmiawwp4nua" path="res://scripts/vfx/wheel_dust.gd" id="6_lvrf2"]
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="6_t5h3w"]
 [ext_resource type="Script" uid="uid://dswmwrdm425uv" path="res://scripts/inventory/inventory.gd" id="7_hgb2g"]
-[ext_resource type="PackedScene" uid="uid://d3gah4j0ljcw7" path="res://scenes/gun/gun_w_script.tscn" id="8_2jmj4"]
 [ext_resource type="PackedScene" uid="uid://cgx8vcbpf1r2n" path="res://scenes/vfx/effects/engine_smoke.tscn" id="8_f6f1y"]
 [ext_resource type="PackedScene" uid="uid://ms88ls3yfth4" path="res://scenes/player/shell_ejector_right.tscn" id="9_els85"]
 [ext_resource type="Resource" uid="uid://wwwnafdpldi1" path="res://resources/weapons/shotgun.tres" id="9_lo1ro"]
@@ -22,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="12_t5h3w"]
 [ext_resource type="PackedScene" uid="uid://ded5tqaoryrpc" path="res://scenes/player/ostov.tscn" id="15_xq70i"]
 [ext_resource type="PackedScene" uid="uid://c6vfw663kn4ia" path="res://scenes/car/wheel.tscn" id="19_f0rj0"]
+[ext_resource type="PackedScene" uid="uid://dtt3trymeli7j" path="res://scenes/gun/gun.tscn" id="22_xq70i"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
 _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
@@ -55,16 +55,37 @@ collision_layer = 3
 script = ExtResource("1_y6j3g")
 drag = 4.0
 brake = 40.0
+max_speed = 20.0
+acceleration = null
 acceleration_curve = SubResource("Curve_dwkn5")
+hard_brake_threshold = null
+inertia_force_multiplier = null
 max_offset = 15.0
 strafe_speed = 12.0
+min_strafe_speed = null
 steering_curve = SubResource("Curve_58tws")
+road_turn_force = null
 dodge_force = 16.0
 dodge_distance = 15.0
+dodge_min_speed = null
+dodge_window = null
+dodge_hit_radius = null
+dodge_damage = null
+dodge_knockback_force = null
+dodge_hit_spray_lateral = null
+enemy_detection_mask = null
+max_stamina = null
+dodge_stamina_drain = null
+stamina_regeneration_rate = null
+stamina_regeneration_delay = null
+overheat_delay = null
+overheat_recovery_ratio = null
 spring = 45.0
 damping = 6.0
 grip_wet = 0.6
 grip_flooded = 0.35
+grip_transition_speed = null
+base_damage = null
 car_hit_effect = ExtResource("2_f0rj0")
 back_lights = NodePath("Visual/vfx/BackLights")
 vfx = NodePath("Visual/vfx")
@@ -76,7 +97,7 @@ inventory = NodePath("Inventory")
 weapon_controller = NodePath("WeaponController")
 player_status_controller = NodePath("PlayerStatusController")
 
-[node name="gun" parent="." unique_id=797723952 instance=ExtResource("8_2jmj4")]
+[node name="gun" parent="." unique_id=2088224302 instance=ExtResource("22_xq70i")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.5, 0)
 
 [node name="ShellEjector" parent="gun" unique_id=1881231443 node_paths=PackedStringArray("car") instance=ExtResource("9_els85")]
@@ -290,4 +311,4 @@ inventory = NodePath("../Inventory")
 
 [node name="PlayerStatusController" type="Node" parent="." unique_id=1732844712]
 script = ExtResource("10_ojawh")
-max_health = 100.0
+max_health = 150.0

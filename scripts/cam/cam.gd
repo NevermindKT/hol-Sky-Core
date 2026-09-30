@@ -102,13 +102,19 @@ var _flashlight_far_mode := false
 var _headlights_blend := 0.0
 var _flashlight_blend := 0.0
 
+var _fov_offset := 0.0
+
 
 func _ready() -> void:
 	_cam_x = global_position.x
+	_fov_offset = Settings.camera_fov - fov_min
+	Settings.fov_changed.connect(_on_fov_changed)
 	Events.player_take_damage.connect(_on_player_take_damage)
 	InputController.headlights_toggle.connect(_on_headlights_toggle)
 	InputController.flashlight_toggle.connect(_on_flashlight_toggle)
 
+func _on_fov_changed(value: float):
+	_fov_offset = value - fov_min
 
 func _on_headlights_toggle() -> void:
 	_headlights_far_mode = !_headlights_far_mode
@@ -148,7 +154,7 @@ func _physics_process(delta: float) -> void:
 
 	var mod_fov_min := UpgradeManager.get_modified(&"camera_fov", fov_min)
 	var mod_fov_max := UpgradeManager.get_modified(&"camera_fov", fov_max)
-	var target_fov: float = lerp(mod_fov_min, mod_fov_max, _speed_feel) + _fov_push
+	var target_fov: float = lerp(mod_fov_min, mod_fov_max, _speed_feel) + _fov_push + _fov_offset
 	fov = lerpf(fov, target_fov, 1.0 - exp(-fov_smoothing * delta))
 
 # ============================ LAYER 1: BASE FOLLOW ============================
@@ -282,3 +288,17 @@ func _on_player_take_damage(damage: float, source_position: Vector3) -> void:
 
 func get_aim_transform() -> Transform3D:
 	return _aim_transform
+
+
+func unproject_to_screen(world_pos: Vector3) -> Vector2:
+	var raw := unproject_position(world_pos)
+	return viewport_to_screen(raw)
+
+
+func viewport_to_screen(viewport_pos: Vector2) -> Vector2:
+	var inner_size := Vector2(get_viewport().size) # реальный размер SubViewport в этот момент
+	if inner_size.x <= 0.0 or inner_size.y <= 0.0:
+		return viewport_pos
+
+	var outer_size := get_tree().root.get_visible_rect().size # размер главного окна
+	return viewport_pos * (outer_size / inner_size)

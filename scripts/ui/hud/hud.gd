@@ -10,7 +10,6 @@ class_name HUD
 @export var stamina_bar: ProgressBar
 @export var level_progress_bar: ProgressBar
 
-
 @export_category("Enemy")
 @export var enemy_compass: Enemy_Compass
 
@@ -35,6 +34,15 @@ var car: Car_Movement
 @export var weapon_slide_distance: float = 40.0
 @export var weapon_slide_duration: float = 0.18
 
+@export_category("UI Scale")
+@export var scalable_bars: Array[ProgressBar] = []
+@export var scalable_labels: Array[Control] = []
+@export var scalable_markers: Array[Control] = []
+
+var _base_bar_sizes: Dictionary = {}
+var _base_font_sizes: Dictionary = {}
+var _base_marker_sizes: Dictionary = {}
+
 var _weapon_swap_tween: Tween
 
 var _left_tween: Tween
@@ -44,7 +52,15 @@ var magazine_current_ammo: float
 var current_weapon_data: WeaponData
 
 
+func initialize(_car: Car_Movement):
+	car = _car
+	health_bar.max_value = car.player_status_controller.max_health
+	health_bar.value = health_bar.max_value
+	stamina_bar.max_value = car.max_stamina
+
+
 func _ready() -> void:
+	add_to_group("hud")
 	PauseManager.pause_state_changed.connect(_on_pause_toggle)
 
 	Events.weapon_set.connect(set_weapon)
@@ -60,38 +76,78 @@ func _ready() -> void:
 	right.mouse_entered.connect(_on_right_mouse_entered)
 	right.mouse_exited.connect(_on_right_mouse_exited)
 
+	_cache_base_ui_sizes()
+
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(car):
 		return
 
-	var target_screen_pos := car.player_cam.unproject_position(car.global_position)
+	var target_screen_pos := car.player_cam.unproject_to_screen(car.global_position)
 	var target_pos := target_screen_pos + marker_screen_offset - turret_rotation_marker_container.size / 2.0
 	turret_rotation_marker_container.position = turret_rotation_marker_container.position.lerp(target_pos, 20.0 * delta)
 
-#---------------- PAUSE
+#------------------------------------------------------------------------- PAUSE
 
 func _on_pause_toggle():
 	visible = !PauseManager.is_paused
 
-#---------------- PROGRESS
+#---------------------------------------------------------------------- PROGRESS
 
 func update_progress(current: float, max_distance: float):
 	level_progress_bar.value = (current / max_distance) * 100.0
 
-#---------------- ENEMY COMPASS
+#----------------------------------------------------------------- ENEMY COMPASS
 
 
-#---------------- HEALTH
+#------------------------------------------------------------------------ HEALTH
 
 func update_health(value: float):
 	health_bar.value = value
 
-#---------------- STAMINA
+#----------------------------------------------------------------------- STAMINA
+
 func update_stamina(value: float):
 	stamina_bar.value = value
 
-#---------------- WEAPON
+
+#------------------------------------------------------------------------- SCALE
+
+
+func _cache_base_ui_sizes() -> void:
+	for bar in scalable_bars:
+		_base_bar_sizes[bar] = bar.custom_minimum_size
+
+	for label in scalable_labels:
+		if label is RichTextLabel:
+			_base_font_sizes[label] = label.get_theme_font_size("normal_font_size")
+		elif label is Label:
+			_base_font_sizes[label] = label.get_theme_font_size("font_size")
+
+	for marker in scalable_markers:
+		_base_marker_sizes[marker] = marker.custom_minimum_size
+
+
+func apply_ui_scale(ui_scale: float) -> void:
+	for bar in scalable_bars:
+		var base: Vector2 = _base_bar_sizes[bar]
+		bar.custom_minimum_size = base * ui_scale
+
+	for label in scalable_labels:
+		var base_size: int = _base_font_sizes[label]
+		var new_size := roundi(base_size * ui_scale)
+		if label is RichTextLabel:
+			label.add_theme_font_size_override("normal_font_size", new_size)
+		elif label is Label:
+			label.add_theme_font_size_override("font_size", new_size)
+
+	for marker in scalable_markers:
+		var base: Vector2 = _base_marker_sizes[marker]
+		marker.custom_minimum_size = base * ui_scale
+
+
+#------------------------------------------------------------------------ WEAPON
+
 
 func set_weapon(weapon: WeaponData, direction: int = 1) -> void:
 	_swap_weapon_display(weapon, direction)
@@ -141,7 +197,7 @@ func _on_turret_rotation_changed(relative_angle: float) -> void:
 	turret_marker.position = center + _offset - turret_marker.size / 2.0
 	turret_marker.rotation = -relative_angle
 
-#---------------- HOVER FADE
+#-------------------------------------------------------------------- HOVER FADE
 
 func _on_left_mouse_entered() -> void:
 	_fade(left, hover_alpha, _left_tween)

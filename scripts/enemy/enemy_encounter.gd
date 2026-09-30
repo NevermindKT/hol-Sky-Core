@@ -19,7 +19,7 @@ var attack_cooldown_timer := 0.0
 
 
 @export_category("Exports")
-@export var player: Node3D
+var player: Node3D
 @export var test_Enemy: EncounterEnemyData
 
 
@@ -31,6 +31,11 @@ var current_weight: float = 0.0
 var enemies: Array[Encounter_Enemy] = []
 
 var attacker: Encounter_Enemy = null
+
+
+func _ready() -> void:
+	Events.player_hard_brake.connect(_on_player_hard_brake)
+
 
 func inialize(_world: World) -> void:
 	world = _world
@@ -141,9 +146,6 @@ func start_encounter() -> void:
 func check_battle() -> void:
 	is_battle = is_there_enemies()
 
-	#if not is_battle:
-		#add_test_enemy()
-
 
 func is_there_enemies() -> bool:
 	return not enemies.is_empty()
@@ -164,6 +166,13 @@ func end_attak(enemy: Encounter_Enemy) -> void:
 	if attacker == enemy:
 		attacker = null
 		attack_cooldown_timer = attack_cooldown
+
+
+func _on_player_hard_brake(force: float) -> void:
+	var forward := -player.global_transform.basis.z
+	
+	for enemy in enemies:
+		enemy.apply_inertia_impulse(forward * force)
 
 # ============================ DEBUG ===========================================
 

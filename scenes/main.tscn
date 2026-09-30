@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dxa8wggvns7te"]
 
-[ext_resource type="PackedScene" path="res://scenes/ui.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://dqibow5tqw5v0" path="res://scenes/ui.tscn" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="1_pibwh"]
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="2_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="3_5he1u"]
@@ -31,6 +31,7 @@
 [ext_resource type="Resource" uid="uid://b2rqs0roqpye8" path="res://resources/weather/fog/LightFog.tres" id="28_xhfw6"]
 [ext_resource type="Resource" uid="uid://4lviiw663mbm" path="res://resources/weather/fog/DenseFog.tres" id="29_1epgm"]
 [ext_resource type="Script" uid="uid://dq1h45bj2og1p" path="res://scripts/ground/ground_generator.gd" id="30_152kg"]
+[ext_resource type="Resource" uid="uid://cyb31n5t64wgs" path="res://resources/landscape/landscape.tres" id="32_kmb1v"]
 [ext_resource type="Script" uid="uid://ckvbpffvi7k0i" path="res://scripts/ground/vegetation_scatter.gd" id="34_a82wo"]
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="35_gdvew"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="36_kjtvk"]
@@ -65,30 +66,21 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="Car" parent="SubViewportContainer/SubViewport" unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("1_pibwh")]
-max_offset = 10.0
-strafe_speed = 17.0
-dodge_force = 10.0
-dodge_distance = 5.0
-damping = 9.0
 max_speed = 75.0
 acceleration = 20.0
-min_strafe_speed = null
+max_offset = 10.0
+strafe_speed = 17.0
 road_turn_force = 0.8
-dodge_min_speed = null
-dodge_window = null
-dodge_hit_radius = null
+dodge_force = 10.0
+dodge_distance = 5.0
 dodge_damage = 79.0
 dodge_knockback_force = 110.0
-dodge_hit_spray_lateral = null
 enemy_detection_mask = 2
-max_stamina = null
-dodge_stamina_drain = null
 stamina_regeneration_rate = 75.0
 stamina_regeneration_delay = 0.75
 overheat_delay = 1.25
 overheat_recovery_ratio = 0.85
-grip_transition_speed = null
-base_damage = null
+damping = 9.0
 player_cam = NodePath("../PlayerCam")
 
 [node name="PlayerCam" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1846742701 node_paths=PackedStringArray("car")]
@@ -127,7 +119,7 @@ obstacle_set = SubResource("Resource_xljpf")
 
 [node name="WeatherSystem" parent="SubViewportContainer/SubViewport/Environment" unique_id=1765140778 instance=ExtResource("8_vchkt")]
 
-[node name="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="1" unique_id=89476310]
+[node name="Sun" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="1" unique_id=89476310]
 light_energy = 0.04
 
 [node name="LightningController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
@@ -137,27 +129,7 @@ world = NodePath("../../World")
 transition_speed = 2.0
 
 [node name="SkyController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="4" unique_id=995668462]
-dusk_set_elevation_deg = -10.0
-dusk_sky_top_color = null
-dusk_sky_horizon_color = null
-dusk_sky_energy_multiplier = null
-dusk_light_color = null
-dusk_light_energy = null
-dawn_duration = null
-dawn_start_sun_elevation_deg = null
-dawn_end_sun_elevation_deg = null
 dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
-dawn_sky_energy_multiplier = null
-dawn_light_energy = null
-dawn_adjustment_brightness = null
-dawn_glow_intensity = null
-night_sun_elevation_deg = null
-sun_angle_max_deg = 13.0
-sun_curve = 1.0
-thermal_transition_duration = null
-thermal_adjustment_brightness = null
-thermal_fog_density = null
-thermal_volumetric_fog_density = null
 
 [node name="EnemyEncounter" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=2103320193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.92378)
@@ -170,10 +142,13 @@ metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Services" type="Node" parent="SubViewportContainer/SubViewport" unique_id=917066585]
 
-[node name="Bootstrap" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1667155510 node_paths=PackedStringArray("car", "world", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
+[node name="Bootstrap" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1667155510 node_paths=PackedStringArray("game_viewport", "view_container", "ui", "world", "car", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
 script = ExtResource("12_ty1g6")
-car = NodePath("../../Car")
+game_viewport = NodePath("../..")
+view_container = NodePath("../../..")
+ui = NodePath("../../../UI")
 world = NodePath("../../Environment/World")
+car = NodePath("../../Car")
 run_manager = NodePath("../RunManager")
 road_manager = NodePath("../RoadManager")
 enemy_spawner = NodePath("../EnemySpawner")
@@ -233,39 +208,8 @@ max_segments_per_weather = 5
 
 [node name="GroundGenerator" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=48490945]
 script = ExtResource("30_152kg")
+landscape = ExtResource("32_kmb1v")
 texture_tile_scale = 0.1
-roughness_value = null
-road_half_width = null
-ground_half_width = null
-view_radius = null
-detail_radius = null
-chunk_size = null
-chunk_cells = null
-road_surface_height = null
-road_surface_gap = null
-height_blend_radius = null
-base_blend_distance = null
-chunk_behind_distance = null
-spine_keep_behind = null
-initial_build_radius = null
-worker_tasks = null
-build_budget_ms = null
-vegetation_cluster_chunks = null
-detail_release_margin = null
-rolling_height = null
-bump_height = null
-foothill_height = null
-hill_height = null
-hill_frequency = null
-hill_warp = null
-ridge_mix = null
-hill_low = null
-hill_high = null
-region_frequency = null
-region_low = null
-region_high = null
-hill_start_distance = null
-hill_rise_distance = null
 
 [node name="VegetationScatter" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=646493951]
 script = ExtResource("34_a82wo")

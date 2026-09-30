@@ -54,9 +54,11 @@ func _process(delta: float) -> void:
 		if best_hurtbox:
 			target = best_hurtbox.global_position
 			direct_hit = true
-
+	
+	var mouse_pos_screen := car.player_cam.viewport_to_screen(mouse_pos)
+	
 	is_locked_on = direct_hit
-	secondary_reticle_screen_pos = car.player_cam.unproject_position(target) if is_locked_on else mouse_pos
+	secondary_reticle_screen_pos = car.player_cam.unproject_to_screen(target) if is_locked_on else mouse_pos_screen
 
 	_aim_turret(target, delta)
 

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://gk4q6i0norp7"]
 
-[ext_resource type="Script" uid="uid://j4mgdsn2i0te" path="res://scripts/hud/pause_menu.gd" id="1_g8a0a"]
+[ext_resource type="Script" uid="uid://j4mgdsn2i0te" path="res://scripts/ui/pause_menu.gd" id="1_g8a0a"]
+[ext_resource type="PackedScene" uid="uid://0vt18iverqp2" path="res://scenes/general/settings.tscn" id="2_8hsir"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=241197245]
 script = ExtResource("1_g8a0a")
@@ -32,3 +33,6 @@ text = "OPTIONS"
 [node name="ExitBtn" type="Button" parent="Menu" unique_id=1041608353 groups=["ui_buttons"]]
 layout_mode = 2
 text = "QUIT"
+
+[node name="SettingsMenu" parent="." unique_id=2128686807 instance=ExtResource("2_8hsir")]
+visible = false
