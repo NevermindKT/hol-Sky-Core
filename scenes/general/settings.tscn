@@ -72,6 +72,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5bv42")
 
 [node name="AudioPanel" type="Control" parent="SettingContent" unique_id=869658838 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,7 +144,6 @@ step = 0.1
 value = 1.0
 
 [node name="VideoPanel" type="Control" parent="SettingContent" unique_id=233055471 node_paths=PackedStringArray("fullscreen_checkbox", "vsync_checkbox", "resolution_option", "fov_slider", "fps_limit_option", "ui_slider", "current_fov_label", "current_ui_scale_label")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -154,21 +154,28 @@ size_flags_vertical = 3
 script = ExtResource("3_jf66x")
 fullscreen_checkbox = NodePath("BtnCon/FullScreenBtn")
 vsync_checkbox = NodePath("BtnCon/VSyncBtn")
-resolution_option = NodePath("ResulutionCon/ResulutionOption")
+resolution_option = NodePath("Control/ResulutionCon/ResulutionOption")
 fov_slider = NodePath("FovCon/FovSlider")
-fps_limit_option = NodePath("FPSCon/FPSCapOption")
+fps_limit_option = NodePath("Control/FPSCon/FPSCapOption")
 ui_slider = NodePath("UIScaleCon/UISlider")
 current_fov_label = NodePath("FovCon/CurrentFovLabel")
 current_ui_scale_label = NodePath("UIScaleCon/CurrentUIScaleLabel")
 
-[node name="ResulutionCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1187007375]
+[node name="Control" type="Control" parent="SettingContent/VideoPanel" unique_id=2068066746]
 anchors_preset = 0
-offset_left = 18.0
-offset_top = 138.0
-offset_right = 410.0
-offset_bottom = 189.0
+offset_left = 23.0
+offset_top = 55.0
+offset_right = 409.0
+offset_bottom = 142.0
 
-[node name="ResulutionOption" type="OptionButton" parent="SettingContent/VideoPanel/ResulutionCon" unique_id=1762545565]
+[node name="ResulutionCon" type="Control" parent="SettingContent/VideoPanel/Control" unique_id=1187007375]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="ResulutionOption" type="OptionButton" parent="SettingContent/VideoPanel/Control/ResulutionCon" unique_id=1762545565]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -178,15 +185,17 @@ offset_top = -10.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 24
 
-[node name="FPSCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1739209997]
-anchors_preset = 0
-offset_left = 22.0
-offset_top = 187.0
-offset_right = 104.0
-offset_bottom = 238.0
+[node name="FPSCon" type="Control" parent="SettingContent/VideoPanel/Control" unique_id=1739209997]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
 
-[node name="FPSCapOption" type="OptionButton" parent="SettingContent/VideoPanel/FPSCon" unique_id=1844355478]
+[node name="FPSCapOption" type="OptionButton" parent="SettingContent/VideoPanel/Control/FPSCon" unique_id=1844355478]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -196,19 +205,21 @@ offset_top = -10.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 
 [node name="BtnCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1558944769]
 layout_mode = 1
 anchors_preset = 0
 offset_left = 17.0
-offset_top = 240.0
+offset_top = 155.0
 offset_right = 159.0
-offset_bottom = 316.0
+offset_bottom = 231.0
 
 [node name="FullScreenBtn" type="CheckButton" parent="SettingContent/VideoPanel/BtnCon" unique_id=1007677759]
 layout_mode = 1
 offset_right = 133.0
 offset_bottom = 31.0
+theme_override_font_sizes/font_size = 20
 text = "Full Screen"
 
 [node name="VSyncBtn" type="CheckButton" parent="SettingContent/VideoPanel/BtnCon" unique_id=1776582681]
@@ -216,15 +227,16 @@ layout_mode = 1
 offset_top = 37.0
 offset_right = 133.0
 offset_bottom = 68.0
+theme_override_font_sizes/font_size = 20
 text = "VSync         "
 
 [node name="FovCon" type="Control" parent="SettingContent/VideoPanel" unique_id=408412530]
 layout_mode = 1
 anchors_preset = 0
 offset_left = 22.0
-offset_top = 312.0
+offset_top = 227.0
 offset_right = 410.0
-offset_bottom = 352.0
+offset_bottom = 267.0
 
 [node name="FovLabel" type="Label" parent="SettingContent/VideoPanel/FovCon" unique_id=541250370]
 layout_mode = 1
@@ -235,6 +247,7 @@ offset_top = -11.5
 offset_right = 40.0
 offset_bottom = 11.5
 grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 text = "FOV"
 horizontal_alignment = 1
 
@@ -265,6 +278,7 @@ offset_top = -11.5
 offset_bottom = 11.5
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 text = "FOV"
 horizontal_alignment = 1
 
