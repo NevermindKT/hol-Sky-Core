@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://j4mgdsn2i0te" path="res://scripts/ui/pause_menu.gd" id="1_g8a0a"]
 [ext_resource type="PackedScene" uid="uid://0vt18iverqp2" path="res://scenes/general/settings.tscn" id="2_8hsir"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hsir"]
+bg_color = Color(0, 0, 0, 0.3137255)
+
 [node name="PauseMenu" type="CanvasLayer" unique_id=241197245]
 script = ExtResource("1_g8a0a")
 
@@ -10,10 +13,10 @@ script = ExtResource("1_g8a0a")
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 100.0
-offset_top = -82.0
-offset_right = 525.0
-offset_bottom = 82.0
+offset_left = 112.0
+offset_top = -112.5
+offset_right = 673.0
+offset_bottom = 112.5
 grow_vertical = 2
 
 [node name="PauseLabel" type="RichTextLabel" parent="Menu" unique_id=1165416295]
@@ -24,15 +27,65 @@ fit_content = true
 
 [node name="ContinueBtn" type="Button" parent="Menu" unique_id=421396324 groups=["ui_buttons"]]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "CONTINUE"
 
 [node name="OptionsBtn" type="Button" parent="Menu" unique_id=244343030 groups=["ui_buttons"]]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "OPTIONS"
 
 [node name="ExitBtn" type="Button" parent="Menu" unique_id=1041608353 groups=["ui_buttons"]]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "QUIT"
 
 [node name="SettingsMenu" parent="." unique_id=2128686807 instance=ExtResource("2_8hsir")]
 visible = false
+
+[node name="Tutor" type="Control" parent="." unique_id=489495140]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1012.0
+offset_top = -429.5
+offset_right = -74.0
+offset_bottom = 429.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BG" type="Panel" parent="Tutor" unique_id=1506544622]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8hsir")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutor" unique_id=1062325397]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 35
+text = "Рух:
+  A, D — стрільба
+  SPACE + кнопка стрільби — ухил убік
+  S — гальмування
+
+Бойові дії:
+  ЛКМ — стрільба
+  R — перезарядка
+  СКМ (вгору/вниз) — зміна зброї
+
+Інше:
+  F — режим ліхтаря турелі
+  H — дальнє світло"
+vertical_alignment = 1
