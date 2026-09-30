@@ -1,4 +1,4 @@
-extends Resource
+extends WeatherLevel
 class_name FogData
 
 

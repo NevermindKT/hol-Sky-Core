@@ -67,7 +67,8 @@ func _aim_turret(target: Vector3, delta: float) -> void:
 
 	if flat.length_squared() > 0.0001:
 		var desired_yaw := atan2(flat.x, flat.z)
-		gun.rotation.y = _rotate_angle_toward(gun.rotation.y, desired_yaw, yaw_speed * delta)
+		var current_yaw_speed := yaw_speed / UpgradeManager.get_modified(&"less_turning_delay", 1.0)
+		gun.rotation.y = _rotate_angle_toward(gun.rotation.y, desired_yaw, current_yaw_speed * delta)
 
 	var local_target := gun.to_local(target)
 	gun.aim_pitch(local_target, delta)

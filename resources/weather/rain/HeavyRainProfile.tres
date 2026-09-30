@@ -13,4 +13,6 @@ lightning_enabled = true
 lightning_min_interval = 3.0
 lightning_max_interval = 7.0
 lightning_intensity = 3.0
+chance_intensify = 0.0
+chance_weaken = 50.0
 metadata/_custom_type_script = "uid://cj3gix68sfnqx"

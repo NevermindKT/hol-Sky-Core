@@ -1,15 +1,36 @@
 [gd_resource type="Environment" format=3 uid="uid://cyvo28w2s7n64"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mowk8"]
-sky_top_color = Color(0.04005715, 0.057814613, 0.08145905, 1)
-sky_horizon_color = Color(0.18431373, 0.3529412, 0.40784314, 1)
-sky_curve = 0.14489044
-sky_energy_multiplier = 0.1
-ground_energy_multiplier = 0.1
-energy_multiplier = 0.5
+[ext_resource type="Shader" uid="uid://dtip6lji4kyfk" path="res://resources/shaders/weather/sky/sky.gdshader" id="1_skysh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sky"]
+shader = ExtResource("1_skysh")
+shader_parameter/sky_top_color = Color(0.04005715, 0.057814613, 0.08145905, 1)
+shader_parameter/sky_horizon_color = Color(0.18431373, 0.3529412, 0.40784314, 1)
+shader_parameter/sky_curve = 0.14489044
+shader_parameter/sky_energy = 0.1
+shader_parameter/ground_bottom_color = Color(0.2, 0.169, 0.133, 1)
+shader_parameter/ground_horizon_color = Color(0.6463, 0.6558, 0.6708, 1)
+shader_parameter/ground_curve = 0.02
+shader_parameter/ground_energy = 0.1
+shader_parameter/exposure = 0.5
+shader_parameter/sun_direction = Vector3(0, 0.2, -1)
+shader_parameter/sun_glow_color = Color(1, 0.6, 0.3, 1)
+shader_parameter/sun_glow_energy = 0.0
+shader_parameter/sun_glow_inner_power = 400.0
+shader_parameter/sun_glow_inner_strength = 1.5
+shader_parameter/sun_glow_outer_power = 12.0
+shader_parameter/sun_glow_outer_strength = 0.4
+shader_parameter/sun_horizon_glow_strength = 0.8
+shader_parameter/sun_horizon_glow_height = 6.0
+shader_parameter/sun_horizon_glow_spread = 3.0
+shader_parameter/moon_direction = Vector3(0, 0.4, 1)
+shader_parameter/moon_glow_color = Color(0.6, 0.7, 0.85, 1)
+shader_parameter/moon_glow_energy = 0.0
+shader_parameter/moon_glow_power = 250.0
+shader_parameter/use_debanding = true
 
 [sub_resource type="Sky" id="Sky_0uqmh"]
-sky_material = SubResource("ProceduralSkyMaterial_mowk8")
+sky_material = SubResource("ShaderMaterial_sky")
 
 [resource]
 background_mode = 2

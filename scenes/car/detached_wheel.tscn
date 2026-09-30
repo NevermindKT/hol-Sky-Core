@@ -1,0 +1,51 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/car/detached_wheel.gd" id="1_wheel"]
+[ext_resource type="PackedScene" uid="uid://c6vfw663kn4ia" path="res://scenes/car/wheel.tscn" id="2_mesh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wheel"]
+friction = 0.8
+bounce = 0.25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wheel"]
+height = 0.21
+radius = 0.31
+
+[sub_resource type="HeightMapShape3D" id="HeightMapShape3D_ground"]
+resource_local_to_scene = true
+
+[node name="DetachedWheel" type="Node3D" node_paths=PackedStringArray("body", "pose", "spin", "ground_body", "ground_shape")]
+script = ExtResource("1_wheel")
+body = NodePath("Body")
+pose = NodePath("Pose")
+spin = NodePath("Pose/Spin")
+ground_body = NodePath("Ground")
+ground_shape = NodePath("Ground/CollisionShape3D")
+
+[node name="Pose" type="Node3D" parent="."]
+
+[node name="Spin" type="Node3D" parent="Pose"]
+
+[node name="Wheel" parent="Pose/Spin" instance=ExtResource("2_mesh")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
+
+[node name="Body" type="RigidBody3D" parent="."]
+top_level = true
+collision_layer = 16
+collision_mask = 52
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_wheel")
+continuous_cd = true
+linear_damp_mode = 1
+angular_damp = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_wheel")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("HeightMapShape3D_ground")
