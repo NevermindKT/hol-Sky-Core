@@ -79,19 +79,25 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr7vf"]
+bg_color = Color(0.07450981, 0.07450981, 0.07450981, 0.22745098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37424"]
+bg_color = Color(0.6, 0.6, 0.6, 0.3137255)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktvve"]
 bg_color = Color(0, 0, 0, 0.27058825)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adyy0"]
 bg_color = Color(0.28402486, 2.256129e-07, 0.060133174, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2r3oe"]
 bg_color = Color(0.42228577, 0.5529321, 0, 1)
@@ -100,7 +106,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="HUD" type="CanvasLayer" unique_id=299315244 node_paths=PackedStringArray("cross_hair_con", "second_rectile", "health_bar", "stamina_bar", "level_progress_bar", "enemy_compass", "left", "right", "turret_rotation_marker_container", "turret_marker", "weapon_name", "ammo_label")]
+[node name="HUD" type="CanvasLayer" unique_id=299315244 node_paths=PackedStringArray("cross_hair_con", "second_rectile", "health_bar", "stamina_bar", "level_progress_bar", "enemy_compass", "left", "right", "turret_rotation_marker_container", "turret_marker", "weapon_name", "ammo_label", "scalable_bars", "scalable_labels")]
 script = ExtResource("1_p21ms")
 cross_hair_con = NodePath("CrossHairCon")
 second_rectile = NodePath("SecondRectile")
@@ -117,6 +123,8 @@ marker_radius = 175.0
 marker_screen_offset = Vector2(0, 0)
 weapon_name = NodePath("Right/WeaponName")
 ammo_label = NodePath("Right/AmmoLabel")
+scalable_bars = [NodePath("Left/HealthBar"), NodePath("Left/StaminaBar"), NodePath("Top/LevelProgressBar")]
+scalable_labels = [NodePath("Right/WeaponName"), NodePath("Right/AmmoLabel")]
 
 [node name="CrossHairCon" type="Control" parent="." unique_id=1706066031]
 z_index = 2
@@ -244,10 +252,10 @@ layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -400.0
-offset_top = 76.0
-offset_right = 400.0
-offset_bottom = 96.0
+offset_left = -450.0
+offset_top = 200.0
+offset_right = 450.0
+offset_bottom = 245.0
 grow_horizontal = 2
 script = ExtResource("3_5oepb")
 marker_scene = ExtResource("4_dh6d1")
@@ -259,8 +267,11 @@ offset_bottom = 15.0
 grow_horizontal = 2
 
 [node name="LevelProgressBar" type="ProgressBar" parent="Top" unique_id=167970145]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_nr7vf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_37424")
 show_percentage = false
 
 [node name="Left" type="VBoxContainer" parent="." unique_id=1188987128]
@@ -268,17 +279,17 @@ z_index = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 55.0
-offset_top = -148.0
-offset_right = 255.0
-offset_bottom = -46.815796
+offset_left = 29.95193
+offset_top = -169.01782
+offset_right = 396.11398
+offset_bottom = 42.13208
 grow_vertical = 0
 rotation = -0.87266463
 mouse_filter = 0
 alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="Left" unique_id=2077857558]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
@@ -289,7 +300,6 @@ show_percentage = false
 
 [node name="StaminaBar" type="ProgressBar" parent="Left" unique_id=1687962986]
 custom_minimum_size = Vector2(0, 20)
-custom_maximum_size = Vector2(-1, 10)
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
@@ -305,32 +315,38 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -192.0
-offset_top = -323.0
-offset_right = 26.686035
-offset_bottom = -181.25983
+offset_left = -271.7422
+offset_top = -395.0312
+offset_right = 53.38037
+offset_bottom = -260.08368
 grow_horizontal = 0
 grow_vertical = 0
 rotation = 0.87266463
 
 [node name="WeaponName" type="RichTextLabel" parent="Right" unique_id=974424412]
-layout_mode = 0
-offset_top = 37.0
-offset_right = 218.0
-offset_bottom = 68.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
 mouse_filter = 1
-theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/normal_font_size = 40
 text = "WeaponName"
 fit_content = true
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AmmoLabel" type="RichTextLabel" parent="Right" unique_id=1957982060]
-layout_mode = 0
-offset_top = 72.0
-offset_right = 218.0
-offset_bottom = 103.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 1
-theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/normal_font_size = 40
 text = "Ammo/Ammo"
 fit_content = true
 horizontal_alignment = 1
