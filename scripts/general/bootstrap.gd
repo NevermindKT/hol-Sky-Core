@@ -1,8 +1,11 @@
 extends Node
 
-@export var car: Car_Movement
-@export var hud: HUD
+@export var game_viewport: SubViewport
+@export var view_container: SubViewportContainer
+
+@export var ui: main_UI
 @export var world: World
+@export var car: Car_Movement
 
 @export var run_manager: Run_manager
 @export var road_manager: Road_manager
@@ -27,6 +30,8 @@ const DISTANCE_TO_END := 400.0
 const OBSTACLE_SPAWN_CHANCE = 0.05
 
 func _ready() -> void:
+	Settings.register_viewport(game_viewport, view_container)
+	Settings.register_hud(ui.hud)
 	set_world()
 	GrenadeSpawner.enemy_encounter = enemy_encounter
 	set_player_car()
@@ -38,7 +43,7 @@ func _ready() -> void:
 	car.player_status_controller.initialize()
 	car.initialize(START_SPEED)
 
-	hud.initialize(car)
+	ui.hud.initialize(car)
 
 	road_generator.obstacle_spawn_chance = OBSTACLE_SPAWN_CHANCE
 	road_generator.initialize(world.road_set, world.obstacle_set)
@@ -92,6 +97,7 @@ func set_player_car():
 	aim_controller.car = car
 	road_manager.car_movement = car
 	GrenadeSpawner.car = car
+	enemy_encounter.player = car
 
 
 func set_weapon_system():
@@ -99,8 +105,8 @@ func set_weapon_system():
 
 
 func set_encounter():
-	hud.enemy_compass.encounter = enemy_encounter
+	ui.hud.enemy_compass.encounter = enemy_encounter
 
 
 func set_aim_controller():
-	hud.second_rectile.aim_controller = aim_controller
+	ui.hud.second_rectile.aim_controller = aim_controller

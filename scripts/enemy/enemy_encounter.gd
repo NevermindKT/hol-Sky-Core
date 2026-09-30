@@ -19,7 +19,7 @@ var attack_cooldown_timer := 0.0
 
 
 @export_category("Exports")
-@export var player: Node3D
+var player: Node3D
 @export var test_Enemy: EncounterEnemyData
 
 

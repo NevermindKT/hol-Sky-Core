@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://tia2c2esp2w"]
+
+[ext_resource type="Script" uid="uid://bhlkn1iowp4fl" path="res://scripts/debug.gd" id="1_tasbd"]
+
+[node name="Debug_Overlay" type="CanvasLayer" unique_id=57384500]
+script = ExtResource("1_tasbd")
+metadata/_custom_type_script = "uid://bhlkn1iowp4fl"
+
+[node name="DebugLabel" type="RichTextLabel" parent="." unique_id=605595714]
+offset_top = 95.0
+offset_right = 461.0
+offset_bottom = 300.0
+mouse_filter = 2

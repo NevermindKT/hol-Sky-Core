@@ -27,7 +27,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	_connect_button_sounds()
-	_show_panel(audio_panel)
+	_show_panel(video_panel)
 
 
 func _connect_button_sounds():
