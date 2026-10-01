@@ -9,8 +9,13 @@ var master_volume: float = 1.0
 var music_volume: float = 1.0
 var sfx_volume: float = 1.0
 
+var is_fps_locked: bool = true
 var is_fullscreen: bool = false
 var vsync_enabled: bool = true
+
+var volumetric_fog_enabled: bool = true
+var _fog_environment: WorldEnvironment
+
 var resolution_index: int = 0
 var camera_fov: float = 75.0
 
@@ -123,7 +128,7 @@ func set_camera_fov(value: float) -> void:
 
 func set_fps_limit_index(index: int) -> void:
 	fps_limit_index = index
-	Engine.max_fps = FPS_LIMITS[index]
+	Engine.max_fps = FPS_LIMITS[fps_limit_index]
 
 
 func register_hud(hud: HUD) -> void:
@@ -140,6 +145,22 @@ func _apply_ui_scale() -> void:
 	if is_instance_valid(_hud):
 		_hud.apply_ui_scale(ui_scale)
 
+
+func register_fog_environment(world_environment: WorldEnvironment) -> void:
+	_fog_environment = world_environment
+	_apply_volumetric_fog()
+
+
+func set_volumetric_fog_enabled(value: bool) -> void:
+	volumetric_fog_enabled = value
+	_apply_volumetric_fog()
+
+
+func _apply_volumetric_fog() -> void:
+	if not is_instance_valid(_fog_environment):
+		return
+	_fog_environment.environment.volumetric_fog_enabled = volumetric_fog_enabled
+
 #------------------------------------------------------------------- PERSISTENCE
 
 
@@ -154,6 +175,7 @@ func save_settings() -> void:
 	config.set_value("video", "fov", camera_fov)
 	config.set_value("video", "fps_limit_index", fps_limit_index)
 	config.set_value("video", "ui_scale", ui_scale)
+	config.set_value("video", "volumetric_fog_enabled", volumetric_fog_enabled)
 	config.save(SAVE_PATH)
 
 
@@ -171,6 +193,7 @@ func load_settings() -> void:
 	camera_fov = config.get_value("video", "fov", camera_fov)
 	fps_limit_index = config.get_value("video", "fps_limit_index", fps_limit_index)
 	ui_scale = config.get_value("video", "ui_scale", ui_scale)
+	volumetric_fog_enabled = config.get_value("video", "volumetric_fog_enabled", volumetric_fog_enabled)
 
 
 func _apply_all() -> void:
@@ -180,4 +203,5 @@ func _apply_all() -> void:
 	set_fullscreen(is_fullscreen)
 	set_vsync(vsync_enabled)
 	set_fps_limit_index(fps_limit_index)
-	set_ui_scale(ui_scale)
+	#set_ui_scale(ui_scale)
+	set_volumetric_fog_enabled(volumetric_fog_enabled)

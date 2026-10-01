@@ -1,13 +1,16 @@
 extends Node
 class_name Ground_generator
 
-
 var world: World
 var vegetation: Vegetation_scatter
 
 const SPINE_STEP := 2.0
 const PIECE_SAMPLES := 64
 const NEEDED_REFRESH_DISTANCE := 16.0
+
+static var _mark_dirty_max_usec := 0
+static var _apply_job_max_usec := 0
+static var _rebuild_cluster_max_usec := 0
 
 const GROUND_SHADER_PATH := "res://resources/shaders/ground/ground_blend.gdshader"
 
@@ -284,6 +287,8 @@ func _commit_spine(old_size: int) -> void:
 
 
 func _mark_dirty(from_index: int) -> void:
+	var _t0 := Time.get_ticks_usec()
+	
 	var points := _spine.points
 	if from_index >= points.size():
 		return
@@ -320,6 +325,10 @@ func _mark_dirty(from_index: int) -> void:
 			if _rect_point_distance(rect, points[i].x, points[i].z) < reach:
 				_enqueue_front(key)
 				break
+
+	var _dt := Time.get_ticks_usec() - _t0
+	if _dt > _mark_dirty_max_usec:
+		_mark_dirty_max_usec = _dt
 
 
 func _build_noise() -> void:
@@ -397,6 +406,8 @@ func _evaluate(spine: Road_spine, candidates: PackedInt32Array, x: float, z: flo
 		out[2] = 0.0
 		out[3] = 0.0
 		return
+	
+	#Events.grab_query_debug(spine)
 
 	var d := q.hit_distance
 	var base := lerpf(q.hit_y, q.smooth_y, smoothstep(road_half_width, road_half_width + base_blend_distance, d))
@@ -731,6 +742,8 @@ func _compute_surface(job: ChunkJob) -> void:
 
 
 func _apply_job(job: ChunkJob) -> void:
+	var _t0 := Time.get_ticks_usec()
+
 	if job.detail_only:
 		var target: Chunk = _chunks.get(job.key)
 		if target == null or target.surface != job.surface or target.detailed:
@@ -779,6 +792,10 @@ func _apply_job(job: ChunkJob) -> void:
 	batches.append_array(job.batches)
 	_cluster_for(job.key).members[job.key] = batches
 	_dirty_clusters[_cluster_key(job.key)] = true
+
+	var _dt := Time.get_ticks_usec() - _t0
+	if _dt > _apply_job_max_usec:
+		_apply_job_max_usec = _dt
 
 
 func _unload_chunk(key: Vector2i) -> void:
@@ -830,6 +847,8 @@ func _cluster_for(key: Vector2i) -> Cluster:
 
 
 func _rebuild_cluster(cluster_key: Vector2i) -> void:
+	var _t0 := Time.get_ticks_usec()
+
 	var cluster: Cluster = _clusters.get(cluster_key)
 	if cluster == null:
 		return
@@ -869,6 +888,9 @@ func _rebuild_cluster(cluster_key: Vector2i) -> void:
 		mm.instance_count = entry[3]
 		mm.buffer = entry[2]
 
+	var _dt := Time.get_ticks_usec() - _t0
+	if _dt > _rebuild_cluster_max_usec:
+		_rebuild_cluster_max_usec = _dt
 
 func _build_index_buffer() -> void:
 	var n := chunk_cells

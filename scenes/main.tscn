@@ -210,6 +210,9 @@ max_segments_per_weather = 5
 script = ExtResource("30_152kg")
 landscape = ExtResource("32_kmb1v")
 texture_tile_scale = 0.1
+view_radius = 800.0
+chunk_size = 128.0
+vegetation_cluster_chunks = 6
 
 [node name="VegetationScatter" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=646493951]
 script = ExtResource("34_a82wo")

@@ -11,6 +11,7 @@ extends Node
 @export var road_manager: Road_manager
 @export var enemy_spawner: Enemy_spawner
 @export var sky_controller: SkyController
+#@export var fog_controller: FogController
 @export var road_generator: Road_generator
 @export var ground_generator: Ground_generator
 @export var weather_generator: Weather_generator

@@ -7,7 +7,8 @@ script = ExtResource("1_tasbd")
 metadata/_custom_type_script = "uid://bhlkn1iowp4fl"
 
 [node name="DebugLabel" type="RichTextLabel" parent="." unique_id=605595714]
+offset_left = 30.0
 offset_top = 95.0
 offset_right = 461.0
-offset_bottom = 300.0
+offset_bottom = 320.0
 mouse_filter = 2
