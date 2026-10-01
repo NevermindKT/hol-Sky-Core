@@ -1,19 +1,29 @@
 extends Control
 
+@export_category("Options")
+@export var resolution_option: OptionButton
+@export var fps_limit_option: OptionButton
+
+@export_category("CheckButtons")
 @export var fullscreen_checkbox: CheckButton
 @export var vsync_checkbox: CheckButton
-@export var resolution_option: OptionButton
-@export var fov_slider: HSlider
-@export var fps_limit_option: OptionButton
-@export var ui_slider: HSlider
+@export var fps_lock_checkbox: CheckButton
+@export var fog_btn: CheckButton
 
+@export_category("Sliders")
+@export var fov_slider: HSlider
 @export var current_fov_label: Label
+
+@export var ui_slider: HSlider
 @export var current_ui_scale_label: Label
 
 
 func _ready() -> void:
 	fullscreen_checkbox.button_pressed = Settings.is_fullscreen
 	vsync_checkbox.button_pressed = Settings.vsync_enabled
+	fog_btn.button_pressed = Settings.volumetric_fog_enabled
+	fog_btn.toggled.connect(Settings.set_volumetric_fog_enabled)
+	#fps_lock_checkbox.button_pressed = Settings.is_fps_locked
 
 	_populate_resolution_options()
 	resolution_option.selected = Settings.resolution_index

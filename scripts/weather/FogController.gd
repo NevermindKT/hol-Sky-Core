@@ -9,6 +9,7 @@ var _target_density := 0.0
 
 func _ready():
 	Events.weather_changed.connect(_on_weather_changed)
+	Settings.register_fog_environment(world_environment)
 
 	if WeatherManager.weather_data && WeatherManager.weather_data.fog:
 		var data := WeatherManager.weather_data.fog
@@ -18,6 +19,9 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if world_environment == null:
+		return
+
+	if not Settings.volumetric_fog_enabled:
 		return
 
 	var environment := world_environment.environment

@@ -43,14 +43,14 @@ func _update_stats() -> void:
 	var node_count := Performance.get_monitor(Performance.OBJECT_NODE_COUNT)
 
 	label.text = (
-		"[b]FPS:[/b] %d\n" +
-		"[b]CPU (process):[/b] %.2f ms\n" +
-		"[b]Physics:[/b] %.2f ms\n" +
-		"[b]Draw calls:[/b] %d\n" +
-		"[b]Primitives:[/b] %d\n" +
-		"[b]VRAM:[/b] %.1f MB\n" +
-		"[b]RAM (static):[/b] %.1f MB\n" +
-		"[b]Objects / Nodes:[/b] %d / %d"
+		"FPS: %d\n" +
+		"CPU (process): %.2f ms\n" +
+		"Physics: %.2f ms\n" +
+		"Draw calls: %d\n" +
+		"Primitives: %d\n" +
+		"VRAM: %.1f MB\n" +
+		"RAM (static): %.1f MB\n" +
+		"Objects / Nodes: %d / %d"
 	) % [
 		fps, cpu_frame_ms, physics_ms, draw_calls, primitives,
 		video_mem / 1048576.0, static_mem / 1048576.0,
