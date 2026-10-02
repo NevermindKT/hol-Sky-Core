@@ -86,8 +86,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 35
 text = "Рух:
-  A, D — стрільба
-  SPACE + кнопка стрільби — ухил убік
+  A, D — стрейф
+  SPACE + кнопка стрейу — ухил убік
   S — гальмування
 
 Бойові дії:
