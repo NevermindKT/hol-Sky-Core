@@ -22,7 +22,6 @@ var attack_cooldown_timer := 0.0
 var player: Node3D
 @export var test_Enemy: EncounterEnemyData
 
-
 var world: World
 
 var is_battle := false

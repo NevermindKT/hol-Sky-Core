@@ -41,3 +41,10 @@ class_name EncounterEnemyData
 @export var enemy_scene: PackedScene
 @export var dodge_hit_effect_scene: PackedScene
 @export var bullet_hit_effect_scene: PackedScene
+
+@export_category("Sounds")
+@export var take_damage_sound: AudioStream
+@export var take_damage_sound_volume: float = 0.0
+
+@export var death_sound: AudioStream
+@export var death_sound_volume: float = 0.0

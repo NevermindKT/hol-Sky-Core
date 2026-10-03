@@ -37,11 +37,11 @@ func _connect_button_sounds():
 
 
 func _on_button_hover():
-	SoundManager.play_sfx(hover_sound)
+	SoundManager.play_sfx(hover_sound, 2.0)
 
 
 func _on_button_click():
-	SoundManager.play_sfx(click_sound)
+	SoundManager.play_sfx(click_sound, 2.0)
 
 
 func _on_pause_state_changed():

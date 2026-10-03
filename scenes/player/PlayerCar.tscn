@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="2_f0rj0"]
 [ext_resource type="Script" uid="uid://xsjjwaw4g2mb" path="res://scripts/car/car_visual.gd" id="2_iam02"]
 [ext_resource type="Script" uid="uid://42qmfye5c841" path="res://scripts/car/back_lights.gd" id="3_20y2w"]
+[ext_resource type="AudioStream" uid="uid://c38dd2gk30sex" path="res://audio/effects/car/impact/1.wav" id="3_hy8se"]
 [ext_resource type="Script" uid="uid://y0s8rjnqayhg" path="res://scripts/weapon/weapon_controller.gd" id="4_ojawh"]
 [ext_resource type="Script" uid="uid://nt6h8xoqqc60" path="res://scripts/data/weapon/weapon_state.gd" id="6_7lmdr"]
 [ext_resource type="Script" uid="uid://cjwmiawwp4nua" path="res://scripts/vfx/wheel_dust.gd" id="6_lvrf2"]
@@ -22,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://ded5tqaoryrpc" path="res://scenes/player/ostov.tscn" id="15_xq70i"]
 [ext_resource type="PackedScene" uid="uid://c6vfw663kn4ia" path="res://scenes/car/wheel.tscn" id="19_f0rj0"]
 [ext_resource type="PackedScene" uid="uid://dtt3trymeli7j" path="res://scenes/gun/gun.tscn" id="22_xq70i"]
+[ext_resource type="AudioStream" uid="uid://d237hrqhiywl5" path="res://audio/effects/car/impact/2.wav" id="24_2jmj4"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
 _data = [Vector2(0, 0.39000005), 0.0, 0.0, 0, 0, Vector2(0.25925922, 1), 0.0, 0.0, 0, 0, Vector2(0.5037037, 0.90000004), 0.0, 0.0, 0, 0, Vector2(0.6259259, 0.37000006), 0.0, 0.0, 0, 0, Vector2(1, 0.07000005), 0.0, 0.0, 0, 0]
@@ -56,36 +58,16 @@ script = ExtResource("1_y6j3g")
 drag = 4.0
 brake = 40.0
 max_speed = 20.0
-acceleration = null
 acceleration_curve = SubResource("Curve_dwkn5")
-hard_brake_threshold = null
-inertia_force_multiplier = null
 max_offset = 15.0
 strafe_speed = 12.0
-min_strafe_speed = null
 steering_curve = SubResource("Curve_58tws")
-road_turn_force = null
 dodge_force = 16.0
 dodge_distance = 15.0
-dodge_min_speed = null
-dodge_window = null
-dodge_hit_radius = null
-dodge_damage = null
-dodge_knockback_force = null
-dodge_hit_spray_lateral = null
-enemy_detection_mask = null
-max_stamina = null
-dodge_stamina_drain = null
-stamina_regeneration_rate = null
-stamina_regeneration_delay = null
-overheat_delay = null
-overheat_recovery_ratio = null
 spring = 45.0
 damping = 6.0
 grip_wet = 0.6
 grip_flooded = 0.35
-grip_transition_speed = null
-base_damage = null
 car_hit_effect = ExtResource("2_f0rj0")
 back_lights = NodePath("Visual/vfx/BackLights")
 vfx = NodePath("Visual/vfx")
@@ -96,6 +78,7 @@ wheels = NodePath("Visual/WheelContainer")
 inventory = NodePath("Inventory")
 weapon_controller = NodePath("WeaponController")
 player_status_controller = NodePath("PlayerStatusController")
+impact_sound = ExtResource("3_hy8se")
 
 [node name="gun" parent="." unique_id=2088224302 instance=ExtResource("22_xq70i")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.5, 0)
@@ -307,8 +290,12 @@ gun = NodePath("../gun")
 car = NodePath("..")
 shell_ejector = NodePath("../gun/ShellEjector")
 player_weapons = Array[ExtResource("6_7lmdr")]([SubResource("Resource_lo1ro"), SubResource("Resource_y6j3g"), SubResource("Resource_iam02")])
+fire_volume = -2.0
+reload_volume = -15.0
 inventory = NodePath("../Inventory")
 
 [node name="PlayerStatusController" type="Node" parent="." unique_id=1732844712]
 script = ExtResource("10_ojawh")
 max_health = 150.0
+impact_sound = ExtResource("24_2jmj4")
+impact_sound_volume = -5.0

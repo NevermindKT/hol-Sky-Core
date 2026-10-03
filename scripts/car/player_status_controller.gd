@@ -4,6 +4,9 @@ class_name Player_Status_Controller
 var current_health: float
 @export var max_health: float
 
+@export var impact_sound: AudioStream
+@export var impact_sound_volume: float
+
 func initialize() -> void:
 	current_health = max_health
 	
@@ -33,6 +36,7 @@ func take_damage(damage_value: float, _source_position: Vector3 = Vector3.ZERO) 
 	clamp_health()
 
 	Events.player_health_changed.emit(current_health)
+	SoundManager.play_sfx(impact_sound, impact_sound_volume, 1.15)
 
 	if is_dead():
 		death()

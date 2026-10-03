@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hjo5bwqa5cma"
+path="res://.godot/imported/GORESplt_Gore Designed Transient Heavy Impact Smash 01_ESM_HALG.wav-6ccf5b848fefecac38ddae5b03580b1e.sample"
+
+[deps]
+
+source_file="res://audio/effects/enemies/take_damage/GORESplt_Gore Designed Transient Heavy Impact Smash 01_ESM_HALG.wav"
+dest_files=["res://.godot/imported/GORESplt_Gore Designed Transient Heavy Impact Smash 01_ESM_HALG.wav-6ccf5b848fefecac38ddae5b03580b1e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

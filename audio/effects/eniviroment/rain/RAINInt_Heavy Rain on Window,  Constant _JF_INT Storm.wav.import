@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d272iwa4u2bvf"
+path="res://.godot/imported/RAINInt_Heavy Rain on Window,  Constant _JF_INT Storm.wav-6b6917cf25dc7512eed99a6b2bfd18db.sample"
+
+[deps]
+
+source_file="res://audio/effects/eniviroment/rain/RAINInt_Heavy Rain on Window,  Constant _JF_INT Storm.wav"
+dest_files=["res://.godot/imported/RAINInt_Heavy Rain on Window,  Constant _JF_INT Storm.wav-6b6917cf25dc7512eed99a6b2bfd18db.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

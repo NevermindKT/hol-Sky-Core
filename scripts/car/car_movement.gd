@@ -105,6 +105,12 @@ var _current_grip := 1.0
 @export var weapon_controller: Weapon_controller
 @export var player_status_controller: Player_Status_Controller
 
+@export_category("Sounds")
+@export var impact_sound: AudioStream
+
+@export var hit_sound_cooldown: float = 0.08
+
+var _last_hit_sound_time: float = -999.0
 
 var road_manager: Road_manager
 
@@ -344,6 +350,8 @@ func _check_dodge_hit(direction: float) -> void:
 		player_cam.apply_outgoing_hit(enemy.global_position, dodge_damage)
 		dodge_already_hit.append(enemy)
 
+		_play_dodge_hit_sound()
+
 
 func process_enemies_hits() -> void:
 	for i in range(get_slide_collision_count()):
@@ -383,3 +391,11 @@ func spawn_hit_effect(hit_position: Vector3, _scale: float = 1.0) -> void:
 	visual_effects.get_node("Ostov").add_child(car_hit)
 	car_hit.global_position = hit_position
 	car_hit.play(true, _scale)
+
+
+func _play_dodge_hit_sound() -> void:
+	var now := Time.get_ticks_msec() / 1000.0
+	if now - _last_hit_sound_time < hit_sound_cooldown:
+		return
+	_last_hit_sound_time = now
+	SoundManager.play_sfx(impact_sound, -2.0, 0.92)

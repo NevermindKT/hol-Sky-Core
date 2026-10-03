@@ -32,13 +32,14 @@ func play_sfx(stream: AudioStream, volume_db: float = 0.0, pitch: float = 1.0) -
 	sfx_pool[0].play()
 
 
-func play_random_sfx(streams: Array[AudioStream], volume_db: float = 0.0, pitch_variation: float = 0.0) -> void:
+func play_random_sfx(streams: Array[AudioStream], volume_db: float = 0.0, pitch_variation: float = 0.0) -> int:
 	if streams.is_empty():
-		return
-	
-	var stream: AudioStream = streams[randi() % streams.size()]
+		return -1
+
+	var index: int = randi() % streams.size()
 	var pitch: float = 1.0 + randf_range(-pitch_variation, pitch_variation)
-	play_sfx(stream, volume_db, pitch)
+	play_sfx(streams[index], volume_db, pitch)
+	return index
 
 
 func play_music(stream: AudioStream, volume_db: float = 0.0) -> void:
@@ -51,18 +52,3 @@ func play_music(stream: AudioStream, volume_db: float = 0.0) -> void:
 
 func stop_music() -> void:
 	music_player.stop()
-
-
-#func set_master_volume(linear_value: float) -> void:
-	#var idx = AudioServer.get_bus_index("Master")
-	#AudioServer.set_bus_volume_db(idx, linear_to_db(linear_value))
-#
-#
-#func set_sfx_volume(linear_value: float) -> void:
-	#var idx = AudioServer.get_bus_index("SFX")
-	#AudioServer.set_bus_volume_db(idx, linear_to_db(linear_value))
-#
-#
-#func set_music_volume(linear_value: float) -> void:
-	#var idx = AudioServer.get_bus_index("Music")
-	#AudioServer.set_bus_volume_db(idx, linear_to_db(linear_value))

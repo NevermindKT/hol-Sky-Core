@@ -33,7 +33,12 @@
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="31_7hc18"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
+[ext_resource type="Script" uid="uid://do8buj4uqdsyy" path="res://scenes/ambient_manager.gd" id="36_p5ebu"]
+[ext_resource type="AudioStream" uid="uid://df10waqhygpgh" path="res://audio/effects/amibient/Wether_Forest_Ambience_2.mp3" id="37_ieitr"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="38_dph2j"]
+[ext_resource type="AudioStream" uid="uid://qcp2d1i57828" path="res://audio/effects/eniviroment/rain/Wether_Rain_Heavy_2.mp3" id="38_g88bg"]
+[ext_resource type="AudioStream" uid="uid://xtapyjs8dfeo" path="res://audio/effects/eniviroment/rain/Wether_Rain_Light_1.wav" id="39_armwj"]
+[ext_resource type="AudioStream" uid="uid://d1tgp21y7d3f4" path="res://audio/effects/eniviroment/rain/Wether_Rain_Light_2.wav" id="40_27c6g"]
 [ext_resource type="Script" uid="uid://bia1b2g3noalc" path="res://scripts/enemy/encounter_director.gd" id="40_g88bg"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
@@ -103,7 +108,7 @@ obstacle_set = SubResource("Resource_dakql")
 
 [node name="WeatherSystem" parent="Environment" unique_id=1765140778 instance=ExtResource("10_bggva")]
 
-[node name="DirectionalLight3D" parent="Environment/WeatherSystem" index="1" unique_id=89476310]
+[node name="Sun" parent="Environment/WeatherSystem" index="1" unique_id=89476310]
 visible = false
 light_energy = 0.04
 
@@ -124,13 +129,12 @@ moon_night_elevation_deg = 15.0
 dawn_duration = 20.0
 dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
 
-[node name="EnemyEncounter" type="Node3D" parent="." unique_id=2038877150 node_paths=PackedStringArray("player")]
+[node name="EnemyEncounter" type="Node3D" parent="." unique_id=2038877150]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.92378)
 script = ExtResource("13_asndc")
 enemy_pool = Array[ExtResource("14_o0wgs")]([ExtResource("13_g88bg")])
 offscreen_spawn_distance = 45.0
 attack_cooldown = 0.2
-player = NodePath("../Car")
 test_Enemy = ExtResource("13_g88bg")
 metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
@@ -218,5 +222,10 @@ trigger_mode = 1
 brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
+
+[node name="AmbientManager" type="Node" parent="Services" unique_id=1754425509]
+script = ExtResource("36_p5ebu")
+forest_ambient = ExtResource("37_ieitr")
+wind_sounds = Array[AudioStream]([ExtResource("38_g88bg"), ExtResource("39_armwj"), ExtResource("40_27c6g")])
 
 [editable path="Environment/WeatherSystem"]

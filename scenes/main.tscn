@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dxa8wggvns7te"]
 
-[ext_resource type="PackedScene" uid="uid://dqibow5tqw5v0" path="res://scenes/ui.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://dqibow5tqw5v0" path="res://scenes/ui/ui.tscn" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="1_pibwh"]
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="2_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="3_5he1u"]
@@ -35,7 +35,17 @@
 [ext_resource type="Script" uid="uid://ckvbpffvi7k0i" path="res://scripts/ground/vegetation_scatter.gd" id="34_a82wo"]
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="35_gdvew"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="36_kjtvk"]
+[ext_resource type="Script" uid="uid://do8buj4uqdsyy" path="res://scenes/ambient_manager.gd" id="37_5poiv"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="37_xrs0c"]
+[ext_resource type="AudioStream" uid="uid://cu00n3fvniuvg" path="res://audio/effects/amibient/natural/AMBSubn_Ambience, Forest Crickets, Birds, Connecticut 02_344 Audio_East Coast America.mp3" id="38_chjal"]
+[ext_resource type="AudioStream" uid="uid://bcaoui4uv3kdl" path="res://audio/effects/amibient/natural/STORM_StormAmbience11_InMotionAudio_BackGardenStorm.wav" id="40_vchkt"]
+[ext_resource type="AudioStream" uid="uid://dactw42r4t28w" path="res://audio/effects/amibient/natural/STORM_StormAmbience13_InMotionAudio_BackGardenStorm.wav" id="41_txyw0"]
+[ext_resource type="AudioStream" uid="uid://crpwjw4e4f2lq" path="res://audio/effects/amibient/instrumental/DSGNTonl_Designed Metal Bowed Screech Tonal Reverb 7_The Noisery_Moaning Metal.wav" id="42_vc5cj"]
+[ext_resource type="AudioStream" uid="uid://3n23q8trnwre" path="res://audio/effects/amibient/instrumental/DSGNTonl_Metal Scrape Low Tonal LFE 4_The Noisery_Moaning Metal.wav" id="43_nvyfr"]
+[ext_resource type="Script" uid="uid://b4rf1i0ro8kj0" path="res://scripts/data/sound/ambience_layer.gd" id="44_nvyfr"]
+[ext_resource type="AudioStream" uid="uid://04d6supqo8ek" path="res://audio/effects/eniviroment/wind/METLTonl_Item Spring Wire Impact Flick Top Clatter Light Tap Roll Handling Short 01_ESM_HDLM.wav" id="45_ty1g6"]
+[ext_resource type="AudioStream" uid="uid://dtvdg88gavmnk" path="res://audio/effects/eniviroment/wind/THUN_Interior Thunder Rumble_JF_INT Storm_01.wav" id="46_j2jfr"]
+[ext_resource type="AudioStream" uid="uid://p4skorlelk65" path="res://audio/effects/eniviroment/wind/WINDInt_Loop Weather Wind Whipping Constricted Flow Turbulent 01_ESM_SNLS.wav" id="48_bjg73"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("5_2cjbq")
@@ -47,6 +57,24 @@ metadata/_custom_type_script = "uid://bocwaebt17tfi"
 script = ExtResource("7_cjqg0")
 obstacles = Array[ExtResource("5_2cjbq")]([SubResource("Resource_cyvft")])
 metadata/_custom_type_script = "uid://nvhh14a8jfmw"
+
+[sub_resource type="Resource" id="Resource_ty1g6"]
+script = ExtResource("44_nvyfr")
+sounds = Array[AudioStream]([ExtResource("45_ty1g6"), ExtResource("42_vc5cj")])
+volume_db = -5.0
+metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
+
+[sub_resource type="Resource" id="Resource_txyw0"]
+script = ExtResource("44_nvyfr")
+sounds = Array[AudioStream]([ExtResource("46_j2jfr"), ExtResource("48_bjg73"), ExtResource("43_nvyfr")])
+volume_db = -5.0
+metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
+
+[sub_resource type="Resource" id="Resource_vc5cj"]
+script = ExtResource("44_nvyfr")
+sounds = Array[AudioStream]([ExtResource("38_chjal"), ExtResource("46_j2jfr")])
+volume_db = -5.0
+metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
 
 [node name="Main" type="Node" unique_id=398161666]
 
@@ -231,5 +259,11 @@ trigger_mode = 1
 brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
+
+[node name="AmbientManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1441384646]
+script = ExtResource("37_5poiv")
+ambient_playlist = Array[AudioStream]([ExtResource("40_vchkt"), ExtResource("41_txyw0")])
+ambient_volume_db = -4.0
+random_layers = Array[ExtResource("44_nvyfr")]([SubResource("Resource_ty1g6"), SubResource("Resource_txyw0"), SubResource("Resource_vc5cj")])
 
 [editable path="SubViewportContainer/SubViewport/Environment/WeatherSystem"]

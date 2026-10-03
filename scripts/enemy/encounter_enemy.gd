@@ -58,6 +58,8 @@ var _death_push := Vector3.ZERO
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @onready var star_stun_effect: Star_Stun_Effect = $StunEffectPoint/StarStunEffect
 
+@export var damage_sound_cooldown: float = 0.08
+var _last_damage_sound_time: float = -999.0
 
 func _ready() -> void:
 	damage_hit_box.body_entered.connect(_on_attack_area_body_entered)
@@ -370,6 +372,7 @@ func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
 	apply_hit_slow()
 	apply_poison()
 
+	_play_damage_sound()
 	_spawn_bullet_hit_effect(hit_position, direction)
 
 
@@ -397,6 +400,8 @@ func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, dire
 	if state == State.STUNNED:
 		knockback_velocity = knockback / 2
 		return
+
+	SoundManager.play_sfx(enemy_data.death_sound, enemy_data.death_sound_volume - 2, 1.0)
 
 	_set_warning(false)
 	state = State.KNOCKBACK
@@ -439,6 +444,7 @@ func die() -> void:
 	encounter.end_attak(self)
 	encounter.remove_enemy(self)
 	_spawn_corpse()
+	SoundManager.play_sfx(enemy_data.death_sound, enemy_data.death_sound_volume, 1.0)
 	queue_free()
 
 
@@ -465,3 +471,10 @@ func _spawn_dodge_hit_effect(hit_position: Vector3, direction: Vector3, car: Car
 	var effect := enemy_data.dodge_hit_effect_scene.instantiate() as BloodCarHit
 	get_parent().world.enemies.add_child(effect)
 	effect.play(hit_position, direction, car.speed, car)
+
+func _play_damage_sound() -> void:
+	var now := Time.get_ticks_msec() / 1000.0
+	if now - _last_damage_sound_time < damage_sound_cooldown:
+		return
+	_last_damage_sound_time = now
+	SoundManager.play_sfx(enemy_data.take_damage_sound, enemy_data.take_damage_sound_volume, 1.0)

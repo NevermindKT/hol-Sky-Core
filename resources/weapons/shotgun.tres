@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cn4um41l4ikkr" path="res://scripts/data/weapon/behaviors/multiple_projectile_behaviour.gd" id="1_33lcx"]
 [ext_resource type="PackedScene" uid="uid://bt3acygnr2ji2" path="res://scenes/projectiles/bullet.tscn" id="2_bd53d"]
+[ext_resource type="AudioStream" uid="uid://b1ugycl6lir3n" path="res://audio/effects/weapons/shotgun/1.wav" id="2_tnw6x"]
+[ext_resource type="AudioStream" uid="uid://bya5ba54w7obk" path="res://audio/effects/weapons/shotgun/2.wav" id="3_e0645"]
 [ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://scripts/data/weapon/weapon_data.gd" id="3_iijja"]
+[ext_resource type="AudioStream" uid="uid://cuxxcdvjdqp3p" path="res://audio/effects/weapons/shotgun/3.wav" id="4_i2pkd"]
 [ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="4_impef"]
+[ext_resource type="AudioStream" uid="uid://dlsqyx13iosmd" path="res://audio/effects/weapons/shotgun/4.wav" id="5_s8hbi"]
 [ext_resource type="Resource" uid="uid://bsr534lgycnea" path="res://resources/vfx/bullet_trails/shotgun_trail.tres" id="5_trail"]
 
 [sub_resource type="Resource" id="Resource_hneuh"]
@@ -27,6 +31,8 @@ max_spread = 0.3
 bloom_per_shot = 0.4
 bloom_recovery_rate = 0.3
 shell_type = 2
+fire_sounds = Array[AudioStream]([ExtResource("2_tnw6x"), ExtResource("3_e0645"), ExtResource("4_i2pkd"), ExtResource("5_s8hbi")])
+fire_pitch_variation = 0.1
 fire_behavior = SubResource("Resource_hneuh")
 projectile_scene = ExtResource("2_bd53d")
 impact_effect_scene = ExtResource("4_impef")

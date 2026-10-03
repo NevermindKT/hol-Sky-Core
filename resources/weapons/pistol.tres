@@ -1,10 +1,14 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://25wvst5frjag"]
 
 [ext_resource type="Script" uid="uid://dbmg5c34sk5p8" path="res://scripts/data/weapon/behaviors/single_pojectile_behavior.gd" id="1_l2xi2"]
+[ext_resource type="AudioStream" uid="uid://coxt4o5806xkp" path="res://audio/effects/weapons/pistol/1.wav" id="2_dajyb"]
 [ext_resource type="Script" uid="uid://di37ui7h2d4v3" path="res://scripts/data/weapon/weapon_data.gd" id="2_l2xi2"]
 [ext_resource type="PackedScene" uid="uid://bt3acygnr2ji2" path="res://scenes/projectiles/bullet.tscn" id="2_qv38y"]
 [ext_resource type="PackedScene" uid="uid://b88k4t6o4oysk" path="res://scenes/vfx/effects/impact_effect.tscn" id="3_impef"]
+[ext_resource type="AudioStream" uid="uid://bl7d7su47e7o4" path="res://audio/effects/weapons/pistol/2.wav" id="3_x5p0e"]
+[ext_resource type="AudioStream" uid="uid://d3t5eu83jtse6" path="res://audio/effects/weapons/pistol/3.wav" id="4_6p0c5"]
 [ext_resource type="Resource" uid="uid://cirkploy4fpj7" path="res://resources/vfx/bullet_trails/pistol_trail.tres" id="4_trail"]
+[ext_resource type="AudioStream" uid="uid://hru81630u2lu" path="res://audio/effects/weapons/pistol/4.wav" id="5_x5p0e"]
 
 [sub_resource type="Resource" id="Resource_paksp"]
 script = ExtResource("1_l2xi2")
@@ -24,6 +28,7 @@ projectile_distance = 120.0
 max_spread = 0.1
 bloom_per_shot = 0.025
 bloom_recovery_rate = 0.1
+fire_sounds = Array[AudioStream]([ExtResource("2_dajyb"), ExtResource("3_x5p0e"), ExtResource("4_6p0c5"), ExtResource("5_x5p0e")])
 fire_behavior = SubResource("Resource_paksp")
 projectile_scene = ExtResource("2_qv38y")
 impact_effect_scene = ExtResource("3_impef")
