@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://t8cf5hixjfyj"]
+
+[ext_resource type="AudioStream" uid="uid://cf6ln0yu4yldi" path="res://audio/weather/forest_sound/Wether_Forest_Ambience_2_loop.ogg" id="1_01ouu"]
+[ext_resource type="Script" uid="uid://ljtxboeg5atv" path="res://scripts/audio/weather_audio.gd" id="1_02em4"]
+[ext_resource type="Script" uid="uid://i1kgipkexs5m" path="res://scripts/audio/ambient_layer.gd" id="2_02em4"]
+[ext_resource type="AudioStream" uid="uid://chooj88guraom" path="res://audio/weather/forest_sound/Wether_Forest_Leaves_1_loop.ogg" id="2_bnmgo"]
+[ext_resource type="AudioStream" uid="uid://btdvyvgk4lyju" path="res://audio/weather/rain/Wether_Rain_Light_1.wav" id="5_058bq"]
+[ext_resource type="AudioStream" uid="uid://c5n2v2gshqrg4" path="res://audio/weather/rain/Wether_Rain_Light_2.wav" id="6_y1r1k"]
+[ext_resource type="AudioStream" uid="uid://xfx1i6q5c2qg" path="res://audio/weather/rain/Wether_Rain_Heavy_1.wav" id="7_iq0hf"]
+[ext_resource type="AudioStream" uid="uid://cqrkofep3b8op" path="res://audio/weather/rain/Wether_Rain_Heavy_2.mp3" id="8_plr1g"]
+[ext_resource type="AudioStream" uid="uid://dmb5x7tpw3u1x" path="res://audio/weather/rain/Wether_Rain_On_Car_1.mp3" id="9_plrto"]
+[ext_resource type="AudioStream" uid="uid://c0g70qqq1auvu" path="res://audio/weather/rain/Wether_Rain_On_Car_2.mp3" id="10_odhqq"]
+[ext_resource type="AudioStream" uid="uid://vtti5nua7wca" path="res://audio/weather/rain/Wether_Rain_On_Window.wav" id="11_8mx1s"]
+
+[node name="WeatherAudio" type="Node" unique_id=678115221 node_paths=PackedStringArray("rain_light", "rain_heavy", "rain_on_car", "rain_on_window")]
+script = ExtResource("1_02em4")
+rain_light = NodePath("RainLight")
+rain_heavy = NodePath("RainHeavy")
+rain_on_car = NodePath("RainOnCar")
+rain_on_window = NodePath("RainOnWindow")
+light_rain_on_car = 0.3
+
+[node name="ForestAmbience" type="AudioStreamPlayer" parent="." unique_id=1090734063]
+stream = ExtResource("1_01ouu")
+volume_db = 20.0
+bus = &"Ambience"
+script = ExtResource("2_02em4")
+max_volume_db = 20.0
+
+[node name="ForestLeaves" type="AudioStreamPlayer" parent="." unique_id=456713104]
+stream = ExtResource("2_bnmgo")
+bus = &"Ambience"
+script = ExtResource("2_02em4")
+
+[node name="RainLight" type="AudioStreamPlayer" parent="." unique_id=641874830]
+bus = &"Ambience"
+script = ExtResource("2_02em4")
+variants = Array[AudioStream]([ExtResource("5_058bq"), ExtResource("6_y1r1k")])
+max_volume_db = -2.0
+fade_speed = 1.0
+target = 0.0
+
+[node name="RainHeavy" type="AudioStreamPlayer" parent="." unique_id=210360265]
+bus = &"Ambience"
+script = ExtResource("2_02em4")
+variants = Array[AudioStream]([ExtResource("7_iq0hf"), ExtResource("8_plr1g")])
+max_volume_db = -6.0
+fade_speed = 1.0
+target = 0.0
+
+[node name="RainOnCar" type="AudioStreamPlayer" parent="." unique_id=1895813440]
+bus = &"Ambience"
+script = ExtResource("2_02em4")
+variants = Array[AudioStream]([ExtResource("9_plrto"), ExtResource("10_odhqq")])
+max_volume_db = -8.0
+fade_speed = 2.0
+target = 0.0
+
+[node name="RainOnWindow" type="AudioStreamPlayer" parent="." unique_id=1720443377]
+bus = &"Ambience"
+script = ExtResource("2_02em4")
+variants = Array[AudioStream]([ExtResource("11_8mx1s")])
+max_volume_db = -2.0
+fade_speed = 2.0
+target = 0.0

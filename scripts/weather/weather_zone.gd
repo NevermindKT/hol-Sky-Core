@@ -14,6 +14,7 @@ var car: Car_Movement
 const ENTER_RADIUS := 10.0
 
 var road_manager: Road_manager
+var _segment: Road_segment
 
 var _weather_data := WeatherData.new()
 var _announced := false
@@ -28,6 +29,7 @@ var _shoulder_container_right: Node3D
 
 
 func _ready() -> void:
+	add_to_group("weather_zones")
 	var mesh := rain_particles.draw_pass_1 as QuadMesh
 	if mesh:
 		rain_particles.draw_pass_1 = mesh.duplicate()
@@ -112,6 +114,7 @@ func _wrap_in_container(template: FogVolume) -> Node3D:
 
 
 func apply_road(segment: Road_segment, previous_state: float, road_distance: float) -> void:
+	_segment = segment
 	_apply_rain_length(segment.length)
 	_build_shoulder_chain(shoulder_fog_left, _shoulder_container_left, segment, -1.0)
 	_build_shoulder_chain(shoulder_fog_right, _shoulder_container_right, segment, 1.0)
@@ -214,3 +217,15 @@ func _apply_shoulder_fog(fog: FogData) -> void:
 		_shoulder_material_left.density = density
 	if _shoulder_material_right:
 		_shoulder_material_right.density = density
+
+func get_rain() -> RainData:
+	return _weather_data.rain
+
+
+func distance_to(point: Vector3) -> float:
+	if _segment == null or _segment.road_path == null or _segment.road_path.curve == null:
+		return global_position.distance_to(point)
+
+	var path := _segment.road_path
+	var closest := path.curve.get_closest_point(path.to_local(point))
+	return path.to_global(closest).distance_to(point)
