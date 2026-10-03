@@ -15,7 +15,7 @@ class_name LandscapeData
 @export_range(0.0, 1.0, 0.01) var plains_forest_threshold := 0.64
 @export_range(0.0, 0.5, 0.01) var forest_edge_noise := 0.15
 
-@export_range(4, 32, 1) var grid_cells_per_chunk := 13
+@export var grid_cell_size := 4.9
 @export var grid_margin := 1.0
 
 @export var vegetation_categories: Array[VegetationCategoryData] = []

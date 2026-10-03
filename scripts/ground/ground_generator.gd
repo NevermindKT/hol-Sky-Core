@@ -31,6 +31,7 @@ const GROUND_SHADER_PATH := "res://resources/shaders/ground/ground_blend.gdshade
 @export var height_blend_radius := 40.0
 @export var base_blend_distance := 60.0
 @export var chunk_behind_distance := 60.0
+@export var behind_keep_radius := 400.0
 @export var spine_keep_behind := 1400.0
 @export var initial_build_radius := 420.0
 @export_range(0, 32, 1) var worker_tasks := 0
@@ -323,12 +324,51 @@ func _mark_dirty(from_index: int) -> void:
 			continue
 		for i in range(from_index, points.size()):
 			if _rect_point_distance(rect, points[i].x, points[i].z) < reach:
-				_enqueue_front(key)
+				if not _chunks.has(key) or _chunk_affected(_chunks[key], points, from_index, bounds):
+					_enqueue_front(key)
 				break
 
 	var _dt := Time.get_ticks_usec() - _t0
 	if _dt > _mark_dirty_max_usec:
 		_mark_dirty_max_usec = _dt
+
+
+func _chunk_affected(chunk: Chunk, points: PackedVector3Array, from_index: int, bounds: Rect2) -> bool:
+	var surface := chunk.surface
+	if surface == null:
+		return true
+
+	var n := surface.cells
+	var cell := surface.size / float(n)
+	var margin := maxf(height_blend_radius, Road_spine.REFINE_MARGIN) + 2.0 * cell + SPINE_STEP * 2.0 + 2.0
+
+	var px := PackedFloat32Array()
+	var pz := PackedFloat32Array()
+	for i in range(from_index, points.size(), 2):
+		px.append(points[i].x)
+		pz.append(points[i].z)
+	px.append(points[points.size() - 1].x)
+	pz.append(points[points.size() - 1].z)
+
+	var distances := surface.distances
+	var ox := chunk.rect.position.x
+	var oz := chunk.rect.position.y
+	var count := px.size()
+
+	for iz in range(n + 1):
+		var vz := oz + iz * cell
+		for ix in range(n + 1):
+			var vx := ox + ix * cell
+			var limit := distances[iz * (n + 1) + ix] + margin
+			if _rect_point_distance(bounds, vx, vz) >= limit:
+				continue
+			var limit2 := limit * limit
+			for k in count:
+				var dx := px[k] - vx
+				var dz := pz[k] - vz
+				if dx * dx + dz * dz < limit2:
+					return true
+	return false
 
 
 func _build_noise() -> void:
@@ -484,7 +524,8 @@ func _refresh_needed(car_local: Vector3) -> void:
 	var unload_radius := view_radius + chunk_size
 
 	for key in _chunks.keys():
-		if _car_distance(key, car_local) > unload_radius or _is_behind(key, xform, car_local.y):
+		var distance := _car_distance(key, car_local)
+		if distance > unload_radius or (distance > behind_keep_radius + chunk_size and _is_behind(key, xform, car_local.y)):
 			_unload_chunk(key)
 
 	var half := chunk_size * 0.5
@@ -503,7 +544,7 @@ func _refresh_needed(car_local: Vector3) -> void:
 				continue
 			if _car_distance(key, car_local) > view_radius:
 				continue
-			if _is_behind(key, xform, car_local.y):
+			if _car_distance(key, car_local) > behind_keep_radius and _is_behind(key, xform, car_local.y):
 				continue
 			if check_road:
 				var road_distance := _spine.nearest_coarse_distance(cx * chunk_size + half, cz * chunk_size + half) - half_diag
@@ -568,7 +609,7 @@ func _still_needed(key: Vector2i) -> bool:
 	var car_local := _car_local()
 	if _car_distance(key, car_local) > view_radius:
 		return false
-	return not _is_behind(key, world.world.global_transform, car_local.y)
+	return _car_distance(key, car_local) <= behind_keep_radius or not _is_behind(key, world.world.global_transform, car_local.y)
 
 
 func _build_initial() -> void:
@@ -609,6 +650,14 @@ func _pump(deadline: int) -> void:
 		if Time.get_ticks_usec() >= deadline:
 			break
 
+	while _active.size() < _max_tasks:
+		var job := _next_job()
+		if job == null:
+			break
+		job.task_id = WorkerThreadPool.add_task(_run_job.bind(job))
+		_active.append(job)
+		_active_keys[job.key] = true
+
 	var rebuilt := 0
 	for cluster_key in _dirty_clusters.keys():
 		if rebuilt > 0 and Time.get_ticks_usec() >= deadline:
@@ -616,17 +665,6 @@ func _pump(deadline: int) -> void:
 		_dirty_clusters.erase(cluster_key)
 		_rebuild_cluster(cluster_key)
 		rebuilt += 1
-
-	if Time.get_ticks_usec() >= deadline:
-		return
-
-	while _active.size() < _max_tasks:
-		var job := _next_job()
-		if job == null:
-			return
-		job.task_id = WorkerThreadPool.add_task(_run_job.bind(job))
-		_active.append(job)
-		_active_keys[job.key] = true
 
 
 func _next_job() -> ChunkJob:

@@ -1,7 +1,7 @@
 extends RefCounted
 class_name Road_spine
 
-const COARSE_STRIDE := 2
+const COARSE_STRIDE := 8
 const HASH_CELL := 64.0
 const MAX_RING := 32
 const REFINE_MARGIN := 2.0
@@ -44,7 +44,6 @@ var _cdev: PackedFloat32Array = PackedFloat32Array()
 
 
 func _init(p_points: PackedVector3Array, p_offsets: PackedFloat64Array) -> void:
-	var _t0 := Time.get_ticks_usec()
 	points = p_points
 	offsets = p_offsets
 
@@ -102,7 +101,6 @@ func _init(p_points: PackedVector3Array, p_offsets: PackedFloat64Array) -> void:
 				else:
 					_hash[cell] = PackedInt32Array([k])
 
-	print("Road_spine._init: %.2f ms (points: %d)" % [(Time.get_ticks_usec() - _t0) / 1000.0, points.size()])
 
 
 func is_valid() -> bool:
@@ -207,7 +205,6 @@ func gather(x: float, z: float, half_extent: float, extra: float) -> PackedInt32
 
 
 func query(x: float, z: float, candidates: PackedInt32Array, blend_radius: float, q: Query) -> bool:
-	var _t0 := Time.get_ticks_usec()
 	var n := candidates.size()
 	if n == 0:
 		return false
@@ -241,17 +238,14 @@ func query(x: float, z: float, candidates: PackedInt32Array, blend_radius: float
 	q.refine_d2 = INF
 	_refine(candidates[best_c], x, z, q)
 	
-	Road_spine.refine_calls += 1
 	for c in n:
 		if c == best_c:
 			continue
 		var k := candidates[c]
 		var reach := cd[c] - _cdev[k]
 		if reach > 0.0 and reach * reach >= q.refine_d2:
-			Road_spine.refine_skips += 1
 			continue
 		_refine(k, x, z, q)
-		Road_spine.refine_calls += 1
 
 	var weight_sum := 0.0
 	var y_sum := 0.0
@@ -271,11 +265,6 @@ func query(x: float, z: float, candidates: PackedInt32Array, blend_radius: float
 	q.hit_y = q.refine_y
 	q.smooth_y = y_sum / weight_sum if weight_sum > 0.0 else q.refine_y
 	
-	var _dt := Time.get_ticks_usec() - _t0
-	if _dt < _q_min_usec:
-		_q_min_usec = _dt
-	if _dt > _q_max_usec:
-		_q_max_usec = _dt
 	return true
 
 

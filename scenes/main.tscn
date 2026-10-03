@@ -124,12 +124,23 @@ light_energy = 0.04
 
 [node name="LightningController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
 world = NodePath("../../World")
+strike_ahead_min = 100.0
+strike_ahead_max = 150.0
 
 [node name="FogController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="3" unique_id=1605430976]
 transition_speed = 2.0
 
 [node name="SkyController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="4" unique_id=995668462]
+dusk_duration = 50.0
+dusk_sun_azimuth_deg = -40.0
+dusk_light_energy = 1.0
+moon_azimuth_deg = 40.0
+moon_night_elevation_deg = 15.0
+dawn_duration = 20.0
 dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
+
+[node name="Moon" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="5" unique_id=730512946]
+energy = 0.08
 
 [node name="EnemyEncounter" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=2103320193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.92378)

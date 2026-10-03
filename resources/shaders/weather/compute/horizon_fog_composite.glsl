@@ -99,6 +99,13 @@ void main() {
 		far_layer = mix(sample_bicubic(screen_uv, low), sample_bicubic(screen_uv, high), blend);
 	}
 
+	if (far_layer.a < 0.02) {
+		vec4 coarse = sample_bicubic(screen_uv, mip_count - 1.0);
+		if (coarse.a > far_layer.a) {
+			far_layer = coarse;
+		}
+	}
+
 	vec3 far_color = far_layer.a > 0.0001 ? far_layer.rgb / far_layer.a : original;
 	vec3 blurred = level <= 1.0 ? mix(original, far_color, level) : far_color;
 

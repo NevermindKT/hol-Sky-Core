@@ -7,6 +7,7 @@ const CONTEXT := &"horizon_fog"
 
 @export var fog_start := 60.0
 @export var fog_end := 220.0
+@export var far_cutoff := 750.0
 @export var blur_amount := 5.0
 @export var haze_tint := Color(1.0, 1.0, 1.0, 1.0)
 @export_range(0.0, 1.0) var tint_strength := 0.0
@@ -150,7 +151,7 @@ func _dispatch_downsample(source_image: RID, destination_image: RID, depth_image
 		float(source_size.x), float(source_size.y),
 		float(destination_size.x), float(destination_size.y),
 	]))
-	push_constant.append_array(PackedFloat32Array([fog_start, fog_end, 1.0 if first_pass else 0.0, 0.0]))
+	push_constant.append_array(PackedFloat32Array([fog_start, fog_end, 1.0 if first_pass else 0.0, far_cutoff]))
 
 	var x_groups := (destination_size.x - 1) / 8 + 1
 	var y_groups := (destination_size.y - 1) / 8 + 1

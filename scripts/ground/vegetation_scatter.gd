@@ -38,7 +38,7 @@ func preload_categories(categories: Array[VegetationCategoryData]) -> void:
 
 
 func build_grid(key: Vector2i, world_seed: int, landscape: LandscapeData, surface: Ground_generator.Surface) -> GridCells:
-	var n := landscape.grid_cells_per_chunk
+	var n := maxi(1, roundi(surface.size / maxf(landscape.grid_cell_size, 0.5)))
 	var grid := GridCells.new()
 	grid.size = n + 2
 	grid.cell = surface.size / float(n)
