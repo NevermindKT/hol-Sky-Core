@@ -14,7 +14,6 @@ needs_normal_roughness = false
 script = ExtResource("1")
 fog_start = 250.0
 fog_end = 300.0
-far_cutoff = null
 blur_amount = 3.0
 
 [resource]

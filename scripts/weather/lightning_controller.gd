@@ -101,7 +101,9 @@ func flash() -> void:
 		return
 
 	var rain := weather_data.rain
-	lightning.strike(_random_strike_transform())
+	var strike := _random_strike_transform()
+	lightning.strike(strike)
+	Events.lightning_struck.emit(strike.origin)
 	var flashes := randi_range(2, 4)
 
 	for i in flashes:

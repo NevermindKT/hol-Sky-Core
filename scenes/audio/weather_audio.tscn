@@ -11,14 +11,50 @@
 [ext_resource type="AudioStream" uid="uid://dmb5x7tpw3u1x" path="res://audio/weather/rain/Wether_Rain_On_Car_1.mp3" id="9_plrto"]
 [ext_resource type="AudioStream" uid="uid://c0g70qqq1auvu" path="res://audio/weather/rain/Wether_Rain_On_Car_2.mp3" id="10_odhqq"]
 [ext_resource type="AudioStream" uid="uid://vtti5nua7wca" path="res://audio/weather/rain/Wether_Rain_On_Window.wav" id="11_8mx1s"]
+[ext_resource type="AudioStream" uid="uid://oefp13ngike0" path="res://audio/weather/heavy_rain/Wether_Thunder_Close_1.wav" id="12_plrto"]
+[ext_resource type="AudioStream" uid="uid://bgv2c4nmrtaah" path="res://audio/weather/heavy_rain/Wether_Thunder_Close_2.wav" id="13_odhqq"]
+[ext_resource type="AudioStream" uid="uid://crsurh0lsivrc" path="res://audio/weather/heavy_rain/Wether_Thunder_Close_3.wav" id="14_8mx1s"]
+[ext_resource type="AudioStream" uid="uid://bbyp11bcsfgh6" path="res://audio/weather/heavy_rain/Wether_Thunder_Close_4.wav" id="15_5ybco"]
+[ext_resource type="AudioStream" uid="uid://b4jmaav8o5g50" path="res://audio/weather/heavy_rain/Wether_Thunder_Distant_1.wav" id="16_7j7sg"]
+[ext_resource type="AudioStream" uid="uid://5fy8c2iyrq7j" path="res://audio/weather/heavy_rain/Wether_Thunder_Distant_2.wav" id="17_kjebn"]
+[ext_resource type="AudioStream" uid="uid://crogjffhlr4io" path="res://audio/weather/heavy_rain/Wether_Thunder_Distant_3.wav" id="18_d362w"]
+[ext_resource type="AudioStream" uid="uid://dskyeolwq0ium" path="res://audio/weather/heavy_rain/Wether_Thunder_Distant_4.wav" id="19_sq15n"]
+[ext_resource type="AudioStream" uid="uid://xus4g1m8rnkx" path="res://audio/weather/heavy_rain/Wether_Thunder_Distant_5.wav" id="20_0fs1b"]
+[ext_resource type="AudioStream" uid="uid://b8skr151id3k2" path="res://audio/weather/heavy_rain/Wether_Thunder_Distant_6.wav" id="21_8jjw3"]
 
-[node name="WeatherAudio" type="Node" unique_id=678115221 node_paths=PackedStringArray("rain_light", "rain_heavy", "rain_on_car", "rain_on_window")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xvofy"]
+random_pitch = 1.0656005
+random_volume_offset_db = 3.0
+streams_count = 4
+stream_0/stream = ExtResource("12_plrto")
+stream_1/stream = ExtResource("13_odhqq")
+stream_2/stream = ExtResource("14_8mx1s")
+stream_3/stream = ExtResource("15_5ybco")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ggm7h"]
+random_pitch = 1.0686826
+streams_count = 6
+stream_0/stream = ExtResource("16_7j7sg")
+stream_1/stream = ExtResource("17_kjebn")
+stream_2/stream = ExtResource("18_d362w")
+stream_3/stream = ExtResource("19_sq15n")
+stream_4/stream = ExtResource("20_0fs1b")
+stream_5/stream = ExtResource("21_8jjw3")
+
+[node name="WeatherAudio" type="Node" unique_id=678115221 node_paths=PackedStringArray("rain_light", "rain_heavy", "rain_on_car", "rain_on_window", "thunder_close", "thunder_distant")]
 script = ExtResource("1_02em4")
 rain_light = NodePath("RainLight")
 rain_heavy = NodePath("RainHeavy")
 rain_on_car = NodePath("RainOnCar")
 rain_on_window = NodePath("RainOnWindow")
 light_rain_on_car = 0.3
+thunder_close = NodePath("ThunderClose")
+thunder_distant = NodePath("ThunderDistant")
+thunder_close_max_db = 30.0
+thunder_distant_max_db = 15.0
+distant_min_interval = 4.0
+distant_max_interval = 10.0
+speed_of_sound = 150.0
 
 [node name="ForestAmbience" type="AudioStreamPlayer" parent="." unique_id=1090734063]
 stream = ExtResource("1_01ouu")
@@ -63,3 +99,13 @@ variants = Array[AudioStream]([ExtResource("11_8mx1s")])
 max_volume_db = -2.0
 fade_speed = 2.0
 target = 0.0
+
+[node name="ThunderClose" type="AudioStreamPlayer3D" parent="." unique_id=1967791406]
+stream = SubResource("AudioStreamRandomizer_xvofy")
+attenuation_model = 2
+unit_size = 40.0
+bus = &"Ambience"
+
+[node name="ThunderDistant" type="AudioStreamPlayer" parent="." unique_id=699339214]
+stream = SubResource("AudioStreamRandomizer_ggm7h")
+bus = &"Ambience"

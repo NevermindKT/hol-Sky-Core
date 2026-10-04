@@ -30,6 +30,7 @@ signal segment_dispawned
 signal level_progress_changed(current, max)
 signal segment_spawned(segment: Road_segment)
 signal weather_changed()
+signal lightning_struck(strike_position: Vector3)
 signal world_curve_trimmed(removed_length: float)
 
 #-------------- UPGRADES
