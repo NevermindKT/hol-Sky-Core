@@ -123,6 +123,10 @@ obstacle_set = SubResource("Resource_xljpf")
 
 [node name="Sun" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="1" unique_id=89476310]
 light_energy = 0.04
+shadow_enabled = true
+shadow_blur = 3.0
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 320.0
 
 [node name="LightningController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
 world = NodePath("../../World")
@@ -227,8 +231,8 @@ script = ExtResource("30_152kg")
 landscape = ExtResource("32_kmb1v")
 texture_tile_scale = 0.1
 view_radius = 800.0
+detail_radius = 300.0
 chunk_size = 128.0
-vegetation_cluster_chunks = 6
 
 [node name="VegetationScatter" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=646493951]
 script = ExtResource("34_a82wo")

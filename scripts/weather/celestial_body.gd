@@ -22,9 +22,11 @@ var energy_boost := 0.0
 var direction := Vector3.UP
 
 var _disc_material: ShaderMaterial
+var _shadow_wanted := false
 
 
 func _ready() -> void:
+	_shadow_wanted = shadow_enabled
 	if disc:
 		_disc_material = disc.material_override as ShaderMaterial
 		disc.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
@@ -39,6 +41,7 @@ func update_body(world_basis: Basis) -> void:
 	global_transform = Transform3D(Basis.looking_at(-light_direction, Vector3.UP), Vector3.ZERO)
 
 	light_energy = energy * light_horizon_factor() + energy_boost
+	shadow_enabled = _shadow_wanted and light_energy > 0.001
 
 	if _disc_material:
 		_disc_material.set_shader_parameter("body_direction", direction)

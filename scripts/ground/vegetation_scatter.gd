@@ -183,7 +183,8 @@ func create_node(category: VegetationCategoryData, mesh: Mesh) -> MultiMeshInsta
 	if category.visibility_range > 0.0:
 		mm_instance.visibility_range_end = category.visibility_range
 		mm_instance.visibility_range_end_margin = category.visibility_range * 0.15
-		mm_instance.visibility_range_fade_mode = GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
+		if category.visibility_fade:
+			mm_instance.visibility_range_fade_mode = GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
 	return mm_instance
 
 

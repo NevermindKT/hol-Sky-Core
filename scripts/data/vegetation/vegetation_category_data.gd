@@ -19,6 +19,7 @@ enum Placement { SCATTER, GRID }
 @export var ground_sink := 0.0
 
 @export var visibility_range := 0.0
+@export var visibility_fade := true
 @export var cast_shadows := true
 
 var albedo_darken := 0.5

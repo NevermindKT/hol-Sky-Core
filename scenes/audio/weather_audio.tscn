@@ -43,32 +43,36 @@ stream_5/stream = ExtResource("21_8jjw3")
 
 [node name="WeatherAudio" type="Node" unique_id=678115221 node_paths=PackedStringArray("rain_light", "rain_heavy", "rain_on_car", "rain_on_window", "thunder_close", "thunder_distant")]
 script = ExtResource("1_02em4")
-rain_light = NodePath("RainLight")
-rain_heavy = NodePath("RainHeavy")
-rain_on_car = NodePath("RainOnCar")
-rain_on_window = NodePath("RainOnWindow")
+rain_light = NodePath("rain/RainLight")
+rain_heavy = NodePath("rain/RainHeavy")
+rain_on_car = NodePath("rain/RainOnCar")
+rain_on_window = NodePath("rain/RainOnWindow")
 light_rain_on_car = 0.3
-thunder_close = NodePath("ThunderClose")
-thunder_distant = NodePath("ThunderDistant")
+thunder_close = NodePath("thunder/ThunderClose")
+thunder_distant = NodePath("thunder/ThunderDistant")
 thunder_close_max_db = 30.0
 thunder_distant_max_db = 15.0
 distant_min_interval = 4.0
 distant_max_interval = 10.0
 speed_of_sound = 150.0
 
-[node name="ForestAmbience" type="AudioStreamPlayer" parent="." unique_id=1090734063]
+[node name="forest" type="Node" parent="." unique_id=219148741]
+
+[node name="ForestAmbience" type="AudioStreamPlayer" parent="forest" unique_id=1090734063]
 stream = ExtResource("1_01ouu")
 volume_db = 20.0
 bus = &"Ambience"
 script = ExtResource("2_02em4")
 max_volume_db = 20.0
 
-[node name="ForestLeaves" type="AudioStreamPlayer" parent="." unique_id=456713104]
+[node name="ForestLeaves" type="AudioStreamPlayer" parent="forest" unique_id=456713104]
 stream = ExtResource("2_bnmgo")
 bus = &"Ambience"
 script = ExtResource("2_02em4")
 
-[node name="RainLight" type="AudioStreamPlayer" parent="." unique_id=641874830]
+[node name="rain" type="Node" parent="." unique_id=1905587473]
+
+[node name="RainLight" type="AudioStreamPlayer" parent="rain" unique_id=641874830]
 bus = &"Ambience"
 script = ExtResource("2_02em4")
 variants = Array[AudioStream]([ExtResource("5_058bq"), ExtResource("6_y1r1k")])
@@ -76,7 +80,7 @@ max_volume_db = -2.0
 fade_speed = 1.0
 target = 0.0
 
-[node name="RainHeavy" type="AudioStreamPlayer" parent="." unique_id=210360265]
+[node name="RainHeavy" type="AudioStreamPlayer" parent="rain" unique_id=210360265]
 bus = &"Ambience"
 script = ExtResource("2_02em4")
 variants = Array[AudioStream]([ExtResource("7_iq0hf"), ExtResource("8_plr1g")])
@@ -84,7 +88,7 @@ max_volume_db = -6.0
 fade_speed = 1.0
 target = 0.0
 
-[node name="RainOnCar" type="AudioStreamPlayer" parent="." unique_id=1895813440]
+[node name="RainOnCar" type="AudioStreamPlayer" parent="rain" unique_id=1895813440]
 bus = &"Ambience"
 script = ExtResource("2_02em4")
 variants = Array[AudioStream]([ExtResource("9_plrto"), ExtResource("10_odhqq")])
@@ -92,7 +96,7 @@ max_volume_db = -8.0
 fade_speed = 2.0
 target = 0.0
 
-[node name="RainOnWindow" type="AudioStreamPlayer" parent="." unique_id=1720443377]
+[node name="RainOnWindow" type="AudioStreamPlayer" parent="rain" unique_id=1720443377]
 bus = &"Ambience"
 script = ExtResource("2_02em4")
 variants = Array[AudioStream]([ExtResource("11_8mx1s")])
@@ -100,12 +104,14 @@ max_volume_db = -2.0
 fade_speed = 2.0
 target = 0.0
 
-[node name="ThunderClose" type="AudioStreamPlayer3D" parent="." unique_id=1967791406]
+[node name="thunder" type="Node" parent="." unique_id=176565632]
+
+[node name="ThunderClose" type="AudioStreamPlayer3D" parent="thunder" unique_id=1967791406]
 stream = SubResource("AudioStreamRandomizer_xvofy")
 attenuation_model = 2
 unit_size = 40.0
 bus = &"Ambience"
 
-[node name="ThunderDistant" type="AudioStreamPlayer" parent="." unique_id=699339214]
+[node name="ThunderDistant" type="AudioStreamPlayer" parent="thunder" unique_id=699339214]
 stream = SubResource("AudioStreamRandomizer_ggm7h")
 bus = &"Ambience"

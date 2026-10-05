@@ -81,8 +81,6 @@ void main() {
 					}
 					if (sky.a > 0.0) {
 						color = mix(color, sky.rgb, weights.y);
-					} else {
-						weight *= 1.0 - weights.y;
 					}
 				}
 				value = vec4(color * weight, weight);
