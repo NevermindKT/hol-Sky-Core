@@ -1,22 +1,16 @@
-shader_type spatial;
-render_mode unshaded, fog_disabled;
+shader_type canvas_item;
 
-uniform sampler2D screen_texture : hint_screen_texture;
 uniform float pixel_size : hint_range(0.0, 20.0, 1.0);
 uniform float levels : hint_range(0.0, 100.0, 1.0);
 uniform vec2 gamma;
 
-void vertex() {
-	POSITION = vec4(VERTEX.xy, 1.0, 1.0);
-}
-
 void fragment() {
-	vec2 tex_size = vec2(textureSize(screen_texture, 0));
+	vec2 tex_size = vec2(textureSize(TEXTURE, 0));
 
 	vec2 pixel_count = tex_size / (pixel_size * 2.0);
-	vec2 pixaleted_uv = floor(SCREEN_UV * pixel_count) / pixel_count;
+	vec2 pixaleted_uv = floor(UV * pixel_count) / pixel_count;
 
-	vec4 color = texture(screen_texture, pixaleted_uv);
+	vec4 color = texture(TEXTURE, pixaleted_uv);
 
 	color.rgb = pow(color.rgb, vec3(gamma.x));
 
@@ -33,6 +27,5 @@ void fragment() {
 	color.rgb *= adjusment;
 	color.rgb = pow(color.rgb, vec3(gamma.y));
 
-	ALBEDO = color.rgb;
-	ALPHA = color.a;
+	COLOR = color;
 }

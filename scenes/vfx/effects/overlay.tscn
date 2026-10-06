@@ -3,10 +3,10 @@
 [ext_resource type="Shader" uid="uid://d0akv5b1ury0b" path="res://scenes/ps1_overlay.gdshader" id="1_xogy2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_txyw0"]
-render_priority = 0
+render_priority = 127
 shader = ExtResource("1_xogy2")
 shader_parameter/pixel_size = 2.0
-shader_parameter/levels = 45.0
+shader_parameter/levels = 20.0
 shader_parameter/gamma = Vector2(0.18, 7.5)
 
 [sub_resource type="QuadMesh" id="QuadMesh_10jsn"]

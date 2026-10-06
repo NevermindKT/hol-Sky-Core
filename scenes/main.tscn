@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="2_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="3_5he1u"]
 [ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="4_5poiv"]
-[ext_resource type="PackedScene" uid="uid://bq8staujkhqed" path="res://scenes/vfx/effects/overlay.tscn" id="4_vc5cj"]
+[ext_resource type="Shader" uid="uid://d0akv5b1ury0b" path="res://scenes/ps1_overlay.gdshader" id="4_vc5cj"]
 [ext_resource type="Script" uid="uid://bocwaebt17tfi" path="res://scripts/data/road/obstacle_data.gd" id="5_2cjbq"]
 [ext_resource type="PackedScene" uid="uid://5l3jx6le81bf" path="res://scenes/obstacles/obstacle.tscn" id="6_chjal"]
 [ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="7_cjqg0"]
@@ -77,6 +77,15 @@ sounds = Array[AudioStream]([ExtResource("38_chjal"), ExtResource("46_j2jfr")])
 volume_db = -5.0
 metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vc5cj"]
+shader = ExtResource("4_vc5cj")
+shader_parameter/pixel_size = 2.0
+shader_parameter/levels = 60.0
+shader_parameter/gamma = Vector2(0.125, 10)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_txyw0"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [node name="Main" type="Node" unique_id=398161666]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=308802376]
@@ -144,8 +153,6 @@ flashlight_far_lean_multiplier = 2.5
 [node name="AudioListener3D" type="AudioListener3D" parent="SubViewportContainer/SubViewport/PlayerCam" unique_id=587824042]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 current = true
-
-[node name="Overlay" parent="SubViewportContainer/SubViewport/PlayerCam" unique_id=83961698 instance=ExtResource("4_vc5cj")]
 
 [node name="Environment" type="Node" parent="SubViewportContainer/SubViewport" unique_id=1742827016]
 
@@ -229,7 +236,7 @@ lateral_offset = 1.5
 
 [node name="EncounterDirector" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1789766040]
 script = ExtResource("19_dnhof")
-initial_delay_segments = 8
+initial_delay_segments = 25
 min_segments_between_encounters = 8
 base_max_weight = 45.0
 max_max_weight = 125.0
@@ -273,5 +280,10 @@ trigger_mode = 1
 brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
+
+[node name="Overlay" type="TextureRect" parent="SubViewportContainer" unique_id=64996111]
+material = SubResource("ShaderMaterial_vc5cj")
+layout_mode = 2
+texture = SubResource("ViewportTexture_txyw0")
 
 [editable path="SubViewportContainer/SubViewport/Environment/WeatherSystem"]
