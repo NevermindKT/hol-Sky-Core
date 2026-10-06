@@ -91,10 +91,9 @@ impact_sound = ExtResource("3_hy8se")
 engine_loop_sound = SubResource("AudioStreamOggVorbis_2jmj4")
 engine_rpm_rise_speed = 5.0
 engine_rpm_fall_speed = 2.0
-engine_min_volume_db = -10.0
-engine_max_volume_db = -2.0
+engine_min_volume_db = -7.0
 engine_min_pitch = 1.0
-engine_max_pitch = 2.5
+engine_max_pitch = 3.0
 
 [node name="gun" parent="." unique_id=2088224302 instance=ExtResource("22_xq70i")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.5, 0)

@@ -18,10 +18,18 @@ class_name EngineSound
 @export var min_pitch: float = 0.85
 @export var max_pitch: float = 1.7
 
-var volume_scale: float = 1.0
+@export_category("Amplitude Pulse")
+@export var pulse_enabled: bool = true
+@export var pulse_freq_min: float = 2.0
+@export var pulse_freq_max: float = 20.0
+@export_range(0.0, 1.0) var pulse_depth_min: float = 0.5
+@export_range(0.0, 1.0) var pulse_depth_max: float = 0.08
 
+var volume_scale: float = 1.0
 var current_rpm: float = 0.0
+
 var _player: AudioStreamPlayer
+var _pulse_phase: float = 0.0
 
 
 func _ready() -> void:
@@ -40,20 +48,34 @@ func _ready() -> void:
 func update(accelerating: bool, speed_ratio: float, delta: float) -> void:
 	var target_rpm := _get_target_rpm(accelerating, speed_ratio)
 
-	var rise_speed := rpm_rise_speed
-	var fall_speed := rpm_fall_speed
-	var speed_factor := rise_speed if target_rpm > current_rpm else fall_speed
-
+	var speed_factor := rpm_rise_speed if target_rpm > current_rpm else rpm_fall_speed
 	current_rpm = lerpf(current_rpm, target_rpm, clampf(delta * speed_factor, 0.0, 1.0))
 
-	_player.volume_db = lerpf(min_volume_db, max_volume_db, current_rpm) + linear_to_db(maxf(volume_scale, 0.0001))
+	var base_db := lerpf(min_volume_db, max_volume_db, current_rpm)
+	var pulse_db := _get_pulse_db(delta)
+
+	_player.volume_db = base_db + pulse_db + linear_to_db(maxf(volume_scale, 0.0001))
 	_player.pitch_scale = lerpf(min_pitch, max_pitch, current_rpm)
+
+
+func _get_pulse_db(delta: float) -> float:
+	if not pulse_enabled:
+		return 0.0
+
+	var freq := lerpf(pulse_freq_min, pulse_freq_max, current_rpm)
+	_pulse_phase = fmod(_pulse_phase + freq * delta, 1.0)
+
+	var wave := (sin(_pulse_phase * TAU) * 0.5) + 0.5
+
+	var depth := lerpf(pulse_depth_min, pulse_depth_max, current_rpm)
+
+	var depth_db := depth * 24.0
+	return -((1.0 - wave) * depth_db)
 
 
 func _get_target_rpm(accelerating: bool, speed_ratio: float) -> float:
 	if not accelerating:
 		return idle_rpm
-
 	return lerpf(launch_rpm, max_rpm, speed_ratio)
 
 
