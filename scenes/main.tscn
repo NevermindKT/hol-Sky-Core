@@ -36,10 +36,10 @@
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="35_gdvew"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="36_kjtvk"]
 [ext_resource type="Script" uid="uid://do8buj4uqdsyy" path="res://scripts/audio/ambient_manager.gd" id="37_5poiv"]
+[ext_resource type="AudioStream" uid="uid://c6bdvnxytedo7" path="res://audio/effects/amibient/natural/STORM_StormAmbience11_InMotionAudio_BackGardenStorm.ogg" id="37_txyw0"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="37_xrs0c"]
 [ext_resource type="AudioStream" uid="uid://cu00n3fvniuvg" path="res://audio/effects/amibient/natural/AMBSubn_Ambience, Forest Crickets, Birds, Connecticut 02_344 Audio_East Coast America.mp3" id="38_chjal"]
-[ext_resource type="AudioStream" uid="uid://bcaoui4uv3kdl" path="res://audio/effects/amibient/natural/STORM_StormAmbience11_InMotionAudio_BackGardenStorm.wav" id="40_vchkt"]
-[ext_resource type="AudioStream" uid="uid://dactw42r4t28w" path="res://audio/effects/amibient/natural/STORM_StormAmbience13_InMotionAudio_BackGardenStorm.wav" id="41_txyw0"]
+[ext_resource type="AudioStream" uid="uid://dcw8mrlxdjcoa" path="res://audio/effects/amibient/natural/STORM_StormAmbience13_InMotionAudio_BackGardenStorm.ogg" id="38_vc5cj"]
 [ext_resource type="AudioStream" uid="uid://crpwjw4e4f2lq" path="res://audio/effects/amibient/instrumental/DSGNTonl_Designed Metal Bowed Screech Tonal Reverb 7_The Noisery_Moaning Metal.wav" id="42_vc5cj"]
 [ext_resource type="AudioStream" uid="uid://3n23q8trnwre" path="res://audio/effects/amibient/instrumental/DSGNTonl_Metal Scrape Low Tonal LFE 4_The Noisery_Moaning Metal.wav" id="43_nvyfr"]
 [ext_resource type="Script" uid="uid://b4rf1i0ro8kj0" path="res://scripts/data/sound/ambience_layer.gd" id="44_nvyfr"]
@@ -259,7 +259,7 @@ fade_duration = 5.0
 
 [node name="AmbientManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1441384646]
 script = ExtResource("37_5poiv")
-ambient_playlist = Array[AudioStream]([ExtResource("40_vchkt"), ExtResource("41_txyw0")])
+ambient_playlist = Array[AudioStream]([ExtResource("37_txyw0"), ExtResource("38_vc5cj")])
 ambient_volume_db = -4.0
 random_layers = Array[ExtResource("44_nvyfr")]([SubResource("Resource_ty1g6"), SubResource("Resource_txyw0"), SubResource("Resource_vc5cj")])
 
