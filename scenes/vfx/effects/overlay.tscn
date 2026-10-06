@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bq8staujkhqed"]
+
+[ext_resource type="Shader" uid="uid://d0akv5b1ury0b" path="res://scenes/ps1_overlay.gdshader" id="1_xogy2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_txyw0"]
+render_priority = 0
+shader = ExtResource("1_xogy2")
+shader_parameter/pixel_size = 2.0
+shader_parameter/levels = 45.0
+shader_parameter/gamma = Vector2(0.18, 7.5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_10jsn"]
+material = SubResource("ShaderMaterial_txyw0")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_10jsn"]
+
+[node name="Overlay" type="MeshInstance3D" unique_id=83961698]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_10jsn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=305242025]
+visible = false
+mesh = SubResource("BoxMesh_10jsn")

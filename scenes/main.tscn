@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="2_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="3_5he1u"]
 [ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="4_5poiv"]
+[ext_resource type="PackedScene" uid="uid://bq8staujkhqed" path="res://scenes/vfx/effects/overlay.tscn" id="4_vc5cj"]
 [ext_resource type="Script" uid="uid://bocwaebt17tfi" path="res://scripts/data/road/obstacle_data.gd" id="5_2cjbq"]
 [ext_resource type="PackedScene" uid="uid://5l3jx6le81bf" path="res://scenes/obstacles/obstacle.tscn" id="6_chjal"]
 [ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="7_cjqg0"]
@@ -143,6 +144,8 @@ flashlight_far_lean_multiplier = 2.5
 [node name="AudioListener3D" type="AudioListener3D" parent="SubViewportContainer/SubViewport/PlayerCam" unique_id=587824042]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 current = true
+
+[node name="Overlay" parent="SubViewportContainer/SubViewport/PlayerCam" unique_id=83961698 instance=ExtResource("4_vc5cj")]
 
 [node name="Environment" type="Node" parent="SubViewportContainer/SubViewport" unique_id=1742827016]
 
