@@ -33,12 +33,8 @@
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="31_7hc18"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
-[ext_resource type="Script" uid="uid://do8buj4uqdsyy" path="res://scenes/ambient_manager.gd" id="36_p5ebu"]
-[ext_resource type="AudioStream" uid="uid://df10waqhygpgh" path="res://audio/effects/amibient/Wether_Forest_Ambience_2.mp3" id="37_ieitr"]
+[ext_resource type="Script" uid="uid://do8buj4uqdsyy" path="res://scripts/audio/ambient_manager.gd" id="36_p5ebu"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="38_dph2j"]
-[ext_resource type="AudioStream" uid="uid://qcp2d1i57828" path="res://audio/effects/eniviroment/rain/Wether_Rain_Heavy_2.mp3" id="38_g88bg"]
-[ext_resource type="AudioStream" uid="uid://xtapyjs8dfeo" path="res://audio/effects/eniviroment/rain/Wether_Rain_Light_1.wav" id="39_armwj"]
-[ext_resource type="AudioStream" uid="uid://d1tgp21y7d3f4" path="res://audio/effects/eniviroment/rain/Wether_Rain_Light_2.wav" id="40_27c6g"]
 [ext_resource type="Script" uid="uid://bia1b2g3noalc" path="res://scripts/enemy/encounter_director.gd" id="40_g88bg"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
@@ -225,7 +221,5 @@ fade_duration = 5.0
 
 [node name="AmbientManager" type="Node" parent="Services" unique_id=1754425509]
 script = ExtResource("36_p5ebu")
-forest_ambient = ExtResource("37_ieitr")
-wind_sounds = Array[AudioStream]([ExtResource("38_g88bg"), ExtResource("39_armwj"), ExtResource("40_27c6g")])
 
 [editable path="Environment/WeatherSystem"]

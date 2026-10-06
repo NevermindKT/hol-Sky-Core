@@ -35,7 +35,7 @@
 [ext_resource type="Script" uid="uid://ckvbpffvi7k0i" path="res://scripts/ground/vegetation_scatter.gd" id="34_a82wo"]
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="35_gdvew"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="36_kjtvk"]
-[ext_resource type="Script" uid="uid://do8buj4uqdsyy" path="res://scenes/ambient_manager.gd" id="37_5poiv"]
+[ext_resource type="Script" uid="uid://do8buj4uqdsyy" path="res://scripts/audio/ambient_manager.gd" id="37_5poiv"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="37_xrs0c"]
 [ext_resource type="AudioStream" uid="uid://cu00n3fvniuvg" path="res://audio/effects/amibient/natural/AMBSubn_Ambience, Forest Crickets, Birds, Connecticut 02_344 Audio_East Coast America.mp3" id="38_chjal"]
 [ext_resource type="AudioStream" uid="uid://bcaoui4uv3kdl" path="res://audio/effects/amibient/natural/STORM_StormAmbience11_InMotionAudio_BackGardenStorm.wav" id="40_vchkt"]
@@ -90,6 +90,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1338925618]
 handle_input_locally = false
+audio_listener_enable_3d = true
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
@@ -138,6 +139,10 @@ aim_lean_pitch_deg = 6.0
 headlights_far_height_offset = -2.0
 headlights_far_distance_offset = 1.0
 flashlight_far_lean_multiplier = 2.5
+
+[node name="AudioListener3D" type="AudioListener3D" parent="SubViewportContainer/SubViewport/PlayerCam" unique_id=587824042]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
+current = true
 
 [node name="Environment" type="Node" parent="SubViewportContainer/SubViewport" unique_id=1742827016]
 
@@ -252,6 +257,12 @@ brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
 
+[node name="AmbientManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1441384646]
+script = ExtResource("37_5poiv")
+ambient_playlist = Array[AudioStream]([ExtResource("40_vchkt"), ExtResource("41_txyw0")])
+ambient_volume_db = -4.0
+random_layers = Array[ExtResource("44_nvyfr")]([SubResource("Resource_ty1g6"), SubResource("Resource_txyw0"), SubResource("Resource_vc5cj")])
+
 [node name="BloodTrailManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=468722387]
 script = ExtResource("35_gdvew")
 stroke_scene = ExtResource("37_xrs0c")
@@ -259,11 +270,5 @@ trigger_mode = 1
 brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
-
-[node name="AmbientManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1441384646]
-script = ExtResource("37_5poiv")
-ambient_playlist = Array[AudioStream]([ExtResource("40_vchkt"), ExtResource("41_txyw0")])
-ambient_volume_db = -4.0
-random_layers = Array[ExtResource("44_nvyfr")]([SubResource("Resource_ty1g6"), SubResource("Resource_txyw0"), SubResource("Resource_vc5cj")])
 
 [editable path="SubViewportContainer/SubViewport/Environment/WeatherSystem"]

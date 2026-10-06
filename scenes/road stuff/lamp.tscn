@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b3qxr15r6jikf" path="res://models/road stuff/stolb.glb" id="1_cdodt"]
 [ext_resource type="Texture2D" uid="uid://dx5itciu45gqp" path="res://textures/road stuff/light.png" id="2_2ux5j"]
+[ext_resource type="AudioStream" uid="uid://c42sj6d1p7aeu" path="res://audio/effects/eniviroment/roadStuff/lamp/lampLoop.tres" id="3_41n6g"]
 
 [node name="Lamp" type="Node3D" unique_id=408193673]
 
@@ -22,3 +23,12 @@ spot_angle = 34.990273
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 8.158982, 1.2478769)
 billboard = 1
 texture = ExtResource("2_2ux5j")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1663767399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7683716e-07, 8.126688, 1.1659766)
+stream = ExtResource("3_41n6g")
+max_db = 0.0
+autoplay = true
+max_distance = 20.0
+panning_strength = 0.0
+bus = &"SFX"
