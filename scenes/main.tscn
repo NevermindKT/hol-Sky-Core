@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="2_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="3_5he1u"]
 [ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="4_5poiv"]
-[ext_resource type="Shader" uid="uid://d0akv5b1ury0b" path="res://scenes/ps1_overlay.gdshader" id="4_vc5cj"]
+[ext_resource type="Shader" uid="uid://d0akv5b1ury0b" path="res://resources/shaders/ps1_overlay.gdshader" id="4_vc5cj"]
 [ext_resource type="Script" uid="uid://bocwaebt17tfi" path="res://scripts/data/road/obstacle_data.gd" id="5_2cjbq"]
 [ext_resource type="PackedScene" uid="uid://5l3jx6le81bf" path="res://scenes/obstacles/obstacle.tscn" id="6_chjal"]
 [ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="7_cjqg0"]
@@ -54,14 +54,14 @@ shader_parameter/gamma = Vector2(0.15, 10.7)
 shader_parameter/posterize_strength = 0.800000038
 shader_parameter/shadow_levels = 6.0
 shader_parameter/midtone_levels = 10.0
-shader_parameter/highlight_levels = 10.0
+shader_parameter/highlight_levels = 12.0
 shader_parameter/shadow_range = 0.57999998703584
 shader_parameter/highlight_range = 0.749999983236
-shader_parameter/noise_strength = 0.07999999821184
+shader_parameter/noise_strength = 0.01999999955296
 shader_parameter/noise_darkness = 0.7999999821184
-shader_parameter/noise_scale = 5.0
+shader_parameter/noise_scale = 15.0
 shader_parameter/noise_speed = 12.0000001788144
-shader_parameter/noise_chroma = 0.499999988824
+shader_parameter/noise_chroma = 0.2999999932944
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_txyw0"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
