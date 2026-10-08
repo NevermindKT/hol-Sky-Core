@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://u2prg0i44kyr"
+path="res://.godot/imported/COMStatic_Radio Ham Loop Static Hum Active Powered On Garbled Noise 01_ESM_FA.ogg-3a2d1d3282eda5039c2670707a89d24c.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/effects/COMStatic_Radio Ham Loop Static Hum Active Powered On Garbled Noise 01_ESM_FA.ogg"
+dest_files=["res://.godot/imported/COMStatic_Radio Ham Loop Static Hum Active Powered On Garbled Noise 01_ESM_FA.ogg-3a2d1d3282eda5039c2670707a89d24c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
