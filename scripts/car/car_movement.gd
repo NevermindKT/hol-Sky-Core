@@ -131,7 +131,6 @@ var engine_sound: EngineSound
 		if engine_sound:
 			engine_sound.set_volume_scale(engine_brake_volume)
 
-
 var road_manager: Road_manager
 
 
@@ -341,6 +340,7 @@ func dodge() -> void:
 	lateral_velocity += direction * dodge_force
 	
 	_drain_stamina(dodge_stamina_drain)
+	engine_sound.trigger_dodge_boost()
 	dodge_direction = direction
 	dodge_timer = dodge_window
 	dodge_already_hit.clear()

@@ -25,6 +25,15 @@ class_name EngineSound
 @export_range(0.0, 1.0) var pulse_depth_min: float = 0.5
 @export_range(0.0, 1.0) var pulse_depth_max: float = 0.08
 
+@export_category("Dodge Boost")
+@export_range(0.0, 1.0) var dodge_rpm_boost: float = 0.55
+@export var dodge_boost_duration: float = 0.25
+@export var dodge_boost_decay_speed: float = 4.0
+@export var dodge_boost_volume_db: float = 3.0
+
+var _boost: float = 0.0
+var _boost_hold_timer: float = 0.0
+
 var volume_scale: float = 1.0
 var current_rpm: float = 0.0
 
@@ -46,16 +55,27 @@ func _ready() -> void:
 
 
 func update(accelerating: bool, speed_ratio: float, delta: float) -> void:
+	_update_boost(delta)
+
 	var target_rpm := _get_target_rpm(accelerating, speed_ratio)
+	target_rpm = clampf(target_rpm + dodge_rpm_boost * _boost, 0.0, 1.0)
 
 	var speed_factor := rpm_rise_speed if target_rpm > current_rpm else rpm_fall_speed
 	current_rpm = lerpf(current_rpm, target_rpm, clampf(delta * speed_factor, 0.0, 1.0))
 
 	var base_db := lerpf(min_volume_db, max_volume_db, current_rpm)
 	var pulse_db := _get_pulse_db(delta)
+	var boost_db := dodge_boost_volume_db * _boost
 
-	_player.volume_db = base_db + pulse_db + linear_to_db(maxf(volume_scale, 0.0001))
+	_player.volume_db = base_db + pulse_db + boost_db + linear_to_db(maxf(volume_scale, 0.0001))
 	_player.pitch_scale = lerpf(min_pitch, max_pitch, current_rpm)
+
+
+func _update_boost(delta: float) -> void:
+	if _boost_hold_timer > 0.0:
+		_boost_hold_timer -= delta
+		return
+	_boost = move_toward(_boost, 0.0, dodge_boost_decay_speed * delta)
 
 
 func _get_pulse_db(delta: float) -> float:
@@ -81,3 +101,8 @@ func _get_target_rpm(accelerating: bool, speed_ratio: float) -> float:
 
 func set_volume_scale(value: float) -> void:
 	volume_scale = clampf(value, 0.0, 1.0)
+
+
+func trigger_dodge_boost() -> void:
+	_boost = 1.0
+	_boost_hold_timer = dodge_boost_duration

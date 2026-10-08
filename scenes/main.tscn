@@ -47,25 +47,6 @@
 [ext_resource type="AudioStream" uid="uid://dtvdg88gavmnk" path="res://audio/effects/eniviroment/wind/THUN_Interior Thunder Rumble_JF_INT Storm_01.wav" id="46_j2jfr"]
 [ext_resource type="AudioStream" uid="uid://p4skorlelk65" path="res://audio/effects/eniviroment/wind/WINDInt_Loop Weather Wind Whipping Constricted Flow Turbulent 01_ESM_SNLS.wav" id="48_bjg73"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vc5cj"]
-shader = ExtResource("4_vc5cj")
-shader_parameter/pixel_size = 2.0
-shader_parameter/gamma = Vector2(0.15, 10.7)
-shader_parameter/posterize_strength = 0.800000038
-shader_parameter/shadow_levels = 6.0
-shader_parameter/midtone_levels = 10.0
-shader_parameter/highlight_levels = 12.0
-shader_parameter/shadow_range = 0.57999998703584
-shader_parameter/highlight_range = 0.749999983236
-shader_parameter/noise_strength = 0.01999999955296
-shader_parameter/noise_darkness = 0.7999999821184
-shader_parameter/noise_scale = 15.0
-shader_parameter/noise_speed = 12.0000001788144
-shader_parameter/noise_chroma = 0.2999999932944
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_txyw0"]
-viewport_path = NodePath("SubViewportContainer/SubViewport")
-
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("5_2cjbq")
 obstacle_scene = ExtResource("6_chjal")
@@ -95,6 +76,25 @@ sounds = Array[AudioStream]([ExtResource("38_chjal"), ExtResource("46_j2jfr")])
 volume_db = -5.0
 metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vc5cj"]
+shader = ExtResource("4_vc5cj")
+shader_parameter/pixel_size = 2.0
+shader_parameter/gamma = Vector2(0.15, 10)
+shader_parameter/posterize_strength = 0.800000038
+shader_parameter/shadow_levels = 6.0
+shader_parameter/midtone_levels = 10.0
+shader_parameter/highlight_levels = 12.0
+shader_parameter/shadow_range = 0.57999998703584
+shader_parameter/highlight_range = 0.749999983236
+shader_parameter/noise_strength = 0.02999999932944
+shader_parameter/noise_darkness = 0.7999999821184
+shader_parameter/noise_scale = 12.0
+shader_parameter/noise_speed = 12.0000001788144
+shader_parameter/noise_chroma = 0.7999999821184
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_txyw0"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [node name="Main" type="Node" unique_id=398161666]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=308802376]
@@ -106,11 +106,6 @@ grow_vertical = 2
 stretch = true
 
 [node name="UI" parent="SubViewportContainer" unique_id=934683406 instance=ExtResource("1_0wfyh")]
-
-[node name="Overlay" type="TextureRect" parent="SubViewportContainer" unique_id=64996111]
-material = SubResource("ShaderMaterial_vc5cj")
-layout_mode = 2
-texture = SubResource("ViewportTexture_txyw0")
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1338925618]
 handle_input_locally = false
@@ -294,5 +289,14 @@ trigger_mode = 1
 brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
+
+[node name="Overlay" type="TextureRect" parent="." unique_id=64996111]
+material = SubResource("ShaderMaterial_vc5cj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_txyw0")
 
 [editable path="SubViewportContainer/SubViewport/Environment/WeatherSystem"]
