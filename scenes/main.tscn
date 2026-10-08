@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dqibow5tqw5v0" path="res://scenes/ui/ui.tscn" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="1_pibwh"]
+[ext_resource type="Script" uid="uid://tevcxprrpkfh" path="res://scenes/main.gd" id="1_vc5cj"]
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="2_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="3_5he1u"]
 [ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="4_5poiv"]
@@ -79,7 +80,7 @@ metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vc5cj"]
 shader = ExtResource("4_vc5cj")
 shader_parameter/pixel_size = 2.0
-shader_parameter/gamma = Vector2(0.15, 10)
+shader_parameter/gamma = Vector2(0.15, 9.5)
 shader_parameter/posterize_strength = 0.800000038
 shader_parameter/shadow_levels = 6.0
 shader_parameter/midtone_levels = 10.0
@@ -95,7 +96,9 @@ shader_parameter/noise_chroma = 0.7999999821184
 [sub_resource type="ViewportTexture" id="ViewportTexture_txyw0"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[node name="Main" type="Node" unique_id=398161666]
+[node name="Main" type="Node" unique_id=398161666 node_paths=PackedStringArray("overlay")]
+script = ExtResource("1_vc5cj")
+overlay = NodePath("Overlay")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=308802376]
 anchors_preset = 15
@@ -247,7 +250,7 @@ lateral_offset = 1.5
 script = ExtResource("19_dnhof")
 initial_delay_segments = 25
 min_segments_between_encounters = 8
-base_max_weight = 45.0
+base_max_weight = 55.0
 max_max_weight = 125.0
 
 [node name="WeatherGenerator" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=113496564]

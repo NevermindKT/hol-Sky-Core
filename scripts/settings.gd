@@ -13,6 +13,7 @@ var is_fps_locked: bool = true
 var is_fullscreen: bool = false
 var vsync_enabled: bool = true
 
+var overlay_enabled: bool = true
 var volumetric_fog_enabled: bool = true
 var _fog_environment: WorldEnvironment
 
@@ -36,6 +37,7 @@ var fps_limit_index: int = 0
 const FPS_LIMITS: Array[int] = [60, 75, 90, 120, 144]
 
 var _hud: CanvasLayer
+var _overlay: TextureRect
 var ui_scale: float = 1.0
 
 func _ready() -> void:
@@ -131,6 +133,13 @@ func set_fps_limit_index(index: int) -> void:
 	Engine.max_fps = FPS_LIMITS[fps_limit_index]
 
 
+func register_overlay(overlay: TextureRect):
+	_overlay = overlay
+
+func set_overlay(value: bool):
+	overlay_enabled = value
+	
+
 func register_hud(hud: HUD) -> void:
 	_hud = hud
 	_apply_ui_scale()
@@ -156,6 +165,12 @@ func set_volumetric_fog_enabled(value: bool) -> void:
 	_apply_volumetric_fog()
 
 
+func _apply_overlay() -> void:
+	if not is_instance_valid(_overlay):
+		return
+	_overlay.visible = overlay_enabled
+
+
 func _apply_volumetric_fog() -> void:
 	if not is_instance_valid(_fog_environment):
 		return
@@ -166,15 +181,16 @@ func _apply_volumetric_fog() -> void:
 
 func save_settings() -> void:
 	var config := ConfigFile.new()
-	config.set_value("audio", "master_volume", master_volume)
-	config.set_value("audio", "music_volume", music_volume)
+	config.set_value("video", "fov", camera_fov)
+	config.set_value("video", "ui_scale", ui_scale)
+	config.set_value("video", "vsync", vsync_enabled)
 	config.set_value("audio", "sfx_volume", sfx_volume)
 	config.set_value("video", "fullscreen", is_fullscreen)
-	config.set_value("video", "vsync", vsync_enabled)
-	config.set_value("video", "resolution_index", resolution_index)
-	config.set_value("video", "fov", camera_fov)
+	config.set_value("audio", "music_volume", music_volume)
+	config.set_value("audio", "master_volume", master_volume)
 	config.set_value("video", "fps_limit_index", fps_limit_index)
-	config.set_value("video", "ui_scale", ui_scale)
+	config.set_value("video", "overlay_enabled", overlay_enabled)
+	config.set_value("video", "resolution_index", resolution_index)
 	config.set_value("video", "volumetric_fog_enabled", volumetric_fog_enabled)
 	config.save(SAVE_PATH)
 
@@ -184,24 +200,25 @@ func load_settings() -> void:
 	if config.load(SAVE_PATH) != OK:
 		return
 
-	master_volume = config.get_value("audio", "master_volume", master_volume)
-	music_volume = config.get_value("audio", "music_volume", music_volume)
-	sfx_volume = config.get_value("audio", "sfx_volume", sfx_volume)
-	is_fullscreen = config.get_value("video", "fullscreen", is_fullscreen)
-	vsync_enabled = config.get_value("video", "vsync", vsync_enabled)
-	resolution_index = config.get_value("video", "resolution_index", resolution_index)
 	camera_fov = config.get_value("video", "fov", camera_fov)
-	fps_limit_index = config.get_value("video", "fps_limit_index", fps_limit_index)
 	ui_scale = config.get_value("video", "ui_scale", ui_scale)
+	sfx_volume = config.get_value("audio", "sfx_volume", sfx_volume)
+	vsync_enabled = config.get_value("video", "vsync", vsync_enabled)
+	music_volume = config.get_value("audio", "music_volume", music_volume)
+	is_fullscreen = config.get_value("video", "fullscreen", is_fullscreen)
+	master_volume = config.get_value("audio", "master_volume", master_volume)
+	fps_limit_index = config.get_value("video", "fps_limit_index", fps_limit_index)
+	overlay_enabled = config.get_value("video", "overlay_enabled", overlay_enabled)
+	resolution_index = config.get_value("video", "resolution_index", resolution_index)
 	volumetric_fog_enabled = config.get_value("video", "volumetric_fog_enabled", volumetric_fog_enabled)
 
 
 func _apply_all() -> void:
-	set_master_volume(master_volume)
-	set_music_volume(music_volume)
-	set_sfx_volume(sfx_volume)
-	set_fullscreen(is_fullscreen)
 	set_vsync(vsync_enabled)
+	set_sfx_volume(sfx_volume)
+	set_overlay(overlay_enabled)
+	set_fullscreen(is_fullscreen)
+	set_music_volume(music_volume)
+	set_master_volume(master_volume)
 	set_fps_limit_index(fps_limit_index)
-	#set_ui_scale(ui_scale)
 	set_volumetric_fog_enabled(volumetric_fog_enabled)
