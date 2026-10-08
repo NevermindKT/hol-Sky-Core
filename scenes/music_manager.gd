@@ -22,9 +22,7 @@ class_name MusicManager
 @export var noise_max_volume_db: float = -14.0
 
 @export_category("Gap Noise")
-## Громкость радиошума между треками
 @export var gap_noise_volume_db: float = -10.0
-## Как быстро шум появляется и исчезает (ед. в секунду, 1.0 = за секунду)
 @export var gap_noise_fade_speed: float = 4.0
 
 @export_category("Damage Muffle")
@@ -60,6 +58,7 @@ func _ready() -> void:
 	_noise_player.bus = noise_bus
 	_noise_player.volume_db = -80.0
 	add_child(_noise_player)
+
 	if noise_sound:
 		_noise_player.stream = noise_sound
 		_noise_player.play()
@@ -67,9 +66,12 @@ func _ready() -> void:
 	_play_next_track()
 
 	Events.player_take_damage.connect(_on_player_take_damage)
+	InputController.next_song.connect(_play_next_track)
 
 
 func _exit_tree() -> void:
+	if Events.player_take_damage.is_connected(_on_player_take_damage):
+		Events.player_take_damage.disconnect(_on_player_take_damage)
 	if _music_bus_idx >= 0 and _lowpass:
 		for i in AudioServer.get_bus_effect_count(_music_bus_idx):
 			if AudioServer.get_bus_effect(_music_bus_idx, i) == _lowpass:

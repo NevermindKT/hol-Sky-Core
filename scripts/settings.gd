@@ -138,7 +138,7 @@ func register_overlay(overlay: TextureRect):
 
 func set_overlay(value: bool):
 	overlay_enabled = value
-	
+	_apply_overlay()
 
 func register_hud(hud: HUD) -> void:
 	_hud = hud
@@ -167,6 +167,7 @@ func set_volumetric_fog_enabled(value: bool) -> void:
 
 func _apply_overlay() -> void:
 	if not is_instance_valid(_overlay):
+		push_warning("Overlay is not")
 		return
 	_overlay.visible = overlay_enabled
 

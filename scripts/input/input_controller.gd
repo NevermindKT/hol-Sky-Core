@@ -11,8 +11,11 @@ signal dodge
 signal reload
 signal next_weapon
 signal previous_weapon
+
 signal flashlight_toggle
 signal headlights_toggle
+
+signal next_song
 
 signal pause_toggle
 
@@ -55,6 +58,9 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("test_boost"):
 		test_boost.emit()
+
+	if Input.is_action_just_pressed("NextSong"):
+		next_song.emit()
 
 	for slot in 4:
 		if Input.is_action_just_pressed("debug_upgrade_%d" % (slot + 1)):
