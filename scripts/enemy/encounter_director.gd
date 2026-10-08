@@ -13,6 +13,9 @@ var run_manager: Run_manager
 @export_category("Difficulty Scaling")
 @export var base_max_weight := 40.0
 @export var max_max_weight := 150.0
+@export var weight_growth_speed := 1.0
+@export var weight_growth_curve: Curve
+
 
 var segments_since_last_encounter := 0
 var segments_until_next_encounter := 0
@@ -55,12 +58,13 @@ func _trigger_encounter() -> void:
 
 func _get_scaled_max_weight() -> float:
 	var progress := 0.0
-	
+
 	if run_manager.distance_to_end > 0.0:
-		progress = clampf(
-			float(run_manager.distance_traveled) / float(run_manager.distance_to_end),
-			0.0,
-			1.0
-		)
-	
+		progress = float(run_manager.distance_traveled) / float(run_manager.distance_to_end)
+
+	progress = clampf(progress * weight_growth_speed, 0.0, 1.0)
+
+	if weight_growth_curve:
+		progress = weight_growth_curve.sample_baked(progress)
+
 	return lerp(base_max_weight, max_max_weight, progress)

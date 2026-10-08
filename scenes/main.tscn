@@ -283,6 +283,7 @@ initial_delay_segments = 25
 min_segments_between_encounters = 8
 base_max_weight = 55.0
 max_max_weight = 125.0
+weight_growth_speed = 2.0
 
 [node name="WeatherGenerator" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=113496564]
 script = ExtResource("20_1v6qk")
