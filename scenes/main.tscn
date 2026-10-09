@@ -52,6 +52,7 @@
 [ext_resource type="AudioStream" uid="uid://dtvdg88gavmnk" path="res://audio/effects/eniviroment/wind/THUN_Interior Thunder Rumble_JF_INT Storm_01.wav" id="46_j2jfr"]
 [ext_resource type="Script" uid="uid://bqxbgbeith4mw" path="res://scenes/music_manager.gd" id="47_nvyfr"]
 [ext_resource type="AudioStream" uid="uid://p4skorlelk65" path="res://audio/effects/eniviroment/wind/WINDInt_Loop Weather Wind Whipping Constricted Flow Turbulent 01_ESM_SNLS.wav" id="48_bjg73"]
+[ext_resource type="Script" uid="uid://bq27whxpuul5t" path="res://scenes/loading_rect.gd" id="53_o7ddy"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("5_2cjbq")
@@ -228,7 +229,7 @@ metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Services" type="Node" parent="SubViewportContainer/SubViewport" unique_id=917066585]
 
-[node name="Bootstrap" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1667155510 node_paths=PackedStringArray("game_viewport", "view_container", "ui", "world", "car", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "aim_controller", "enemy_encounter", "encounter_director")]
+[node name="Bootstrap" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1667155510 node_paths=PackedStringArray("game_viewport", "view_container", "ui", "world", "car", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "loading_rect", "aim_controller", "enemy_encounter", "encounter_director")]
 script = ExtResource("12_ty1g6")
 game_viewport = NodePath("../..")
 view_container = NodePath("../../..")
@@ -246,6 +247,7 @@ vegetation_scatter = NodePath("../VegetationScatter")
 tire_trail_manager = NodePath("../TireTrailManager")
 blood_trail_manager = NodePath("../BloodTrailManager")
 lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
+loading_rect = NodePath("../../../../LoadingRect")
 aim_controller = NodePath("../AimController")
 enemy_encounter = NodePath("../../EnemyEncounter")
 encounter_director = NodePath("../EncounterDirector")
@@ -350,5 +352,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("ViewportTexture_txyw0")
+
+[node name="LoadingRect" type="ColorRect" parent="." unique_id=1587886310]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("53_o7ddy")
 
 [editable path="SubViewportContainer/SubViewport/Environment/WeatherSystem"]

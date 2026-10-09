@@ -94,7 +94,15 @@ var _sky_parameter_cache := {}
 
 func _ready() -> void:
 	process_priority = 100
-	sky_material = world_environment.environment.sky.sky_material as ShaderMaterial
+
+	world_environment.environment = world_environment.environment.duplicate(true)
+
+	var env := world_environment.environment
+	env.sky = env.sky.duplicate(true)
+
+	sky_material = env.sky.sky_material as ShaderMaterial
+	sky_material = sky_material.duplicate(true)
+	env.sky.sky_material = sky_material
 
 	night_sky_top_color = sky_material.get_shader_parameter("sky_top_color")
 	night_sky_horizon_color = sky_material.get_shader_parameter("sky_horizon_color")
@@ -169,6 +177,9 @@ func play_dusk_intro() -> void:
 	active_tween.tween_property(sky_material, "shader_parameter/sky_energy", night_sky_energy_multiplier, dusk_duration)
 	active_tween.tween_property(moon, "elevation_deg", moon_night_elevation_deg, moon_rise_duration) \
 		.set_delay(moon_rise_delay).set_ease(Tween.EASE_OUT)
+
+	var environment := world_environment.environment
+	environment.glow_enabled = false
 
 
 func play_deadly_dawn() -> void:

@@ -21,6 +21,8 @@ extends Node
 #@export var speed_trail_manager: Speed_trail_manager
 @export var lightning_controller: LightningController
 
+@export var loading_rect: LoadingScreen
+
 @export var aim_controller: Aim_Controller
 @export var enemy_encounter: Enemy_Encounter
 @export var encounter_director: Encounter_Director
@@ -67,7 +69,12 @@ func _ready() -> void:
 	
 	encounter_director.initialize(enemy_encounter, run_manager)
 
-	InputController.test_boost.connect(BoostManager.activate_test_boost)
+	#InputController.test_boost.connect(BoostManager.activate_test_boost)
+
+	await get_tree().process_frame
+	
+	loading_rect.on_start()
+	ui.hud.on_start()
 
 	Events.run_started.emit()
 	queue_free()

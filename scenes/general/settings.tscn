@@ -72,7 +72,6 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5bv42")
 
 [node name="AudioPanel" type="Control" parent="SettingContent" unique_id=869658838 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,7 +107,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
-step = 0.1
+step = 0.05
 value = 1.0
 
 [node name="MusicCon" type="HBoxContainer" parent="SettingContent/AudioPanel/VBoxContainer" unique_id=1347597517]
@@ -124,7 +123,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
-step = 0.1
+step = 0.05
 value = 1.0
 
 [node name="SFXCon" type="HBoxContainer" parent="SettingContent/AudioPanel/VBoxContainer" unique_id=2126394614]
@@ -140,10 +139,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
-step = 0.1
+step = 0.05
 value = 1.0
 
 [node name="VideoPanel" type="Control" parent="SettingContent" unique_id=233055471 node_paths=PackedStringArray("resolution_option", "fps_limit_option", "fullscreen_checkbox", "vsync_checkbox", "overlay_checkbox", "fog_btn", "fov_slider", "current_fov_label", "ui_slider", "current_ui_scale_label")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

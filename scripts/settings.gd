@@ -167,7 +167,7 @@ func set_volumetric_fog_enabled(value: bool) -> void:
 
 func _apply_overlay() -> void:
 	if not is_instance_valid(_overlay):
-		push_warning("Overlay is not")
+		push_warning("Overlay is not valid")
 		return
 	_overlay.visible = overlay_enabled
 
