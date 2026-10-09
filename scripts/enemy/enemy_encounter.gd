@@ -11,6 +11,7 @@ class_name Enemy_Encounter
 
 @export_category("Spawn")
 @export var offscreen_spawn_distance := 12.0
+@export var offscreen_spawn_spacing := 3.0
 
 @export_category("Attack Queue")
 @export var attack_cooldown := 1.0
@@ -62,6 +63,7 @@ func spawn_random_group() -> void:
 		push_warning("Enemy_Encounter: enemy_pool is empty!")
 		return
 
+	var new_enemies: Array = []
 	var attempts := 0
 	var max_attempts := 50
 
@@ -75,12 +77,15 @@ func spawn_random_group() -> void:
 			break
 
 		var chosen: EncounterEnemyData = candidates[randi() % candidates.size()]
-		add_enemy(chosen)
-	
+		var enemy := add_enemy(chosen, false)
+		if enemy:
+			new_enemies.append(enemy)
+
+	_spawn_offscreen_batch(new_enemies)
 	start_encounter()
 
 
-func add_enemy(enemy_data: EncounterEnemyData) -> Encounter_Enemy:
+func add_enemy(enemy_data: EncounterEnemyData, spawn_offscreen := true) -> Encounter_Enemy:
 	if enemy_data == null:
 		push_warning("Enemy_Encounter: enemy_data is null!")
 		return null
@@ -103,19 +108,38 @@ func add_enemy(enemy_data: EncounterEnemyData) -> Encounter_Enemy:
 	
 	enemy.initialize(player, self, enemy_data)
 	_reflow_formation()
-	_spawn_offscreen(enemy)
 	
+	if spawn_offscreen:
+		_spawn_offscreen_batch([enemy])
+
 	is_battle = true
-	
 	return enemy
 
 
-func _spawn_offscreen(enemy: Encounter_Enemy) -> void:
-	var side = sign(enemy.formation_offset)
-	if side == 0.0:
-		side = 1.0 if randf() < 0.5 else -1.0
+func _spawn_offscreen_batch(batch: Array) -> void:
+	var left: Array = []
+	var right: Array = []
 
-	enemy.global_position.x = player.global_position.x + side * offscreen_spawn_distance
+	for enemy in batch:
+		var side := signf(enemy.formation_offset)
+		if side == 0.0:
+			side = 1.0 if right.size() <= left.size() else -1.0
+
+		if side > 0.0:
+			right.append(enemy)
+		else:
+			left.append(enemy)
+
+	_place_side(left, -1.0)
+	_place_side(right, 1.0)
+
+
+func _place_side(side_enemies: Array, side: float) -> void:
+	side_enemies.sort_custom(func(a, b): return absf(a.formation_offset) < absf(b.formation_offset))
+
+	for i in side_enemies.size():
+		var distance := offscreen_spawn_distance + i * offscreen_spawn_spacing
+		side_enemies[i].global_position.x = player.global_position.x + side * distance
 
 
 func remove_enemy(enemy: Encounter_Enemy) -> void:

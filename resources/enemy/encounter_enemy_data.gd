@@ -11,7 +11,10 @@ class_name EncounterEnemyData
 @export var move_speed := 5.0
 @export var desired_offset := 0.0
 @export var z_return_speed := 6.0
-@export var z_align_speed := 10.0 
+@export var z_align_speed := 10.0
+
+@export_category("Collision")
+@export var player_push_radius := 1.5
 
 @export_category("Inertia")
 @export var inertia_resistance := 1.0

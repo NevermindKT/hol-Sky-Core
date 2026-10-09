@@ -136,6 +136,24 @@ func update_movement(delta: float) -> void:
 	)
 
 	_move_toward_start_z(delta, _speed_multiplier)
+	_push_out_of_player()
+
+
+func _push_out_of_player() -> void:
+	var offset := global_position - player.global_position
+	offset.y = 0.0
+
+	var distance := offset.length()
+	if distance >= enemy_data.player_push_radius:
+		return
+
+	var direction: Vector3
+	if distance > 0.001:
+		direction = offset / distance
+	else:
+		direction = Vector3(signf(formation_offset) if formation_offset != 0.0 else 1.0, 0.0, 0.0)
+
+	global_position += direction * (enemy_data.player_push_radius - distance)
 
 
 func update_attack(delta: float) -> void:
@@ -196,6 +214,8 @@ func update_stun(delta: float) -> void:
 	
 	if stun_timer <= 0.0:
 		end_stun()
+	
+	_push_out_of_player()
 
 
 func update_poison(delta: float) -> void:
@@ -208,8 +228,6 @@ func update_poison(delta: float) -> void:
 func add_stun(amount: float) -> void:
 	if state == State.STUNNED:
 		return
-	
-	print("amount: ", amount)
 	
 	stun_meter += amount
 	stun_decay_timer = enemy_data.stun_decay_delay

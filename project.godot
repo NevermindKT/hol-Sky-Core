@@ -21,6 +21,7 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 
 [autoload]
 
+GameFlow="*uid://cutq725t2naxo"
 Events="*uid://8jnql3fu3d2y"
 InputController="*uid://bxq0wqwdbfbo8"
 SoundManager="*uid://b6nq611vylrnp"
