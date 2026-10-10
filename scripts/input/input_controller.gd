@@ -27,12 +27,12 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _process(_delta):
-	if Input.is_action_just_pressed("Pause"):
+	if Input.is_action_just_pressed("Pause") and not PauseManager.is_game_over:
 		pause_toggle.emit()
-	
+
 	if get_tree().paused:
 		return
-	
+
 	fire = Input.is_action_pressed("attack")
 	braking = Input.is_action_pressed("brake")
 	steering = Input.get_axis("left", "right")

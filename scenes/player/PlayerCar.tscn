@@ -310,6 +310,6 @@ inventory = NodePath("../Inventory")
 
 [node name="PlayerStatusController" type="Node" parent="." unique_id=1732844712]
 script = ExtResource("10_ojawh")
-max_health = 150.0
+max_health = 120.0
 impact_sound = ExtResource("24_2jmj4")
 impact_sound_volume = -5.0

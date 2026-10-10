@@ -20,6 +20,7 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	PauseManager.pause_state_changed.connect(_on_pause_state_changed)
+
 	continue_btn.pressed.connect(_on_continue_pressed)
 	options_btn.pressed.connect(_on_options_pressed)
 	restart_btn.pressed.connect(GameFlow.restart)
@@ -72,6 +73,10 @@ func _on_quit_pressed():
 
 
 func check_visible():
+	if PauseManager.is_game_over:
+		visible = false
+		return
+
 	visible = PauseManager.is_paused
 
 	if PauseManager.is_paused:
@@ -82,5 +87,4 @@ func check_visible():
 	if not PauseManager.is_paused:
 		menu.visible = true
 		tutor.visible = true
-
 		settings_menu.visible = false
