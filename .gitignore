@@ -3,3 +3,9 @@
 /android/
 *.tmp
 docs/tasks/
+CLAUDE.md
+PROGRESS.md
+CONTRIBUTION.md
+*.blend
+*.blend.zip
+*.blend1

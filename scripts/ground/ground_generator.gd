@@ -424,6 +424,17 @@ func _build_material() -> void:
 		_material.set_shader_parameter("meadow_texture", landscape.meadow_texture)
 		_material.set_shader_parameter("forest_texture", landscape.forest_texture)
 		_material.set_shader_parameter("forest_tint", landscape.forest_tint)
+		_material.set_shader_parameter("shoulder_normal", landscape.shoulder_normal)
+		_material.set_shader_parameter("meadow_normal", landscape.meadow_normal)
+		_material.set_shader_parameter("forest_normal", landscape.forest_normal)
+		_material.set_shader_parameter("normal_strength", landscape.normal_strength)
+		_material.set_shader_parameter("shoulder_arm", landscape.shoulder_arm)
+		_material.set_shader_parameter("meadow_arm", landscape.meadow_arm)
+		_material.set_shader_parameter("forest_arm", landscape.forest_arm)
+		_material.set_shader_parameter("ao_light_affect", landscape.ao_light_affect)
+		_material.set_shader_parameter("specular_amount", landscape.specular)
+		_material.set_shader_parameter("macro_scale", landscape.macro_scale)
+		_material.set_shader_parameter("macro_strength", landscape.macro_strength)
 	_material.set_shader_parameter("uv_scale", texture_tile_scale)
 	_material.set_shader_parameter("roughness_value", roughness_value)
 
@@ -897,11 +908,11 @@ func _rebuild_cluster(cluster_key: Vector2i) -> void:
 		return
 
 	var merged: Dictionary = {}
-	for member in cluster.members.values():
-		for batch in member:
+	for member_key in cluster.members:
+		for batch in cluster.members[member_key]:
 			if batch.count == 0:
 				continue
-			var slot_key: int = batch.mesh.get_instance_id()
+			var slot_key: int = hash([batch.mesh.get_instance_id(), member_key]) if batch.per_chunk else batch.mesh.get_instance_id()
 			var entry: Array = merged.get(slot_key, [])
 			if entry.is_empty():
 				entry = [batch.category, batch.mesh, PackedFloat32Array(), 0]
