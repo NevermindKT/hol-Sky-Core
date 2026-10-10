@@ -11,6 +11,12 @@ var enemy: Encounter_Enemy
 var blink_timer := 0.0
 var is_warning_active := false
 
+@export_category("Sound")
+@export var warning_sound: AudioStream
+@export var warning_sound_volume_db: float = -6.0
+@export var warning_sound_pitch: float = 1.0
+
+
 func set_enemy(target_enemy: Encounter_Enemy) -> void:
 	enemy = target_enemy
 	enemy.attack_state_changed.connect(_on_attack_state_changed)
@@ -38,7 +44,9 @@ func _update_stun_bar() -> void:
 func _update_warning_blink(delta: float) -> void:
 	if not is_warning_active:
 		return
+
 	blink_timer -= delta
+
 	if blink_timer <= 0.0:
 		blink_timer = blink_interval
 		marker_warning.visible = not marker_warning.visible
@@ -48,6 +56,13 @@ func _on_attack_state_changed(is_warning: bool) -> void:
 	is_warning_active = is_warning
 	blink_timer = 0.0
 	marker_warning.visible = is_warning
+
+	if is_warning:
+		_play_warning_sound()
+
+
+func _play_warning_sound() -> void:
+	SoundManager.play_sfx(warning_sound, warning_sound_volume_db, warning_sound_pitch)
 
 
 func _on_enemy_removed() -> void:

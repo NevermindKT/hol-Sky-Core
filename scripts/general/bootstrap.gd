@@ -21,6 +21,10 @@ extends Node
 #@export var speed_trail_manager: Speed_trail_manager
 @export var lightning_controller: LightningController
 
+@onready var overlay: TextureRect = $"../../../../Overlay"
+
+@export var loading_rect: LoadingScreen
+
 @export var aim_controller: Aim_Controller
 @export var enemy_encounter: Enemy_Encounter
 @export var encounter_director: Encounter_Director
@@ -33,8 +37,14 @@ const OBSTACLE_SPAWN_CHANCE = 0.05
 func _ready() -> void:
 	Settings.register_viewport(game_viewport, view_container)
 	Settings.register_hud(ui.hud)
+
+	Settings.register_overlay(overlay)
+	Settings.register_ps1_overlay_material(overlay.material as ShaderMaterial)
+
 	set_world()
+
 	GrenadeSpawner.enemy_encounter = enemy_encounter
+
 	set_player_car()
 	set_weapon_system()
 	set_road_manager()
@@ -67,7 +77,12 @@ func _ready() -> void:
 	
 	encounter_director.initialize(enemy_encounter, run_manager)
 
-	InputController.test_boost.connect(BoostManager.activate_test_boost)
+	#InputController.test_boost.connect(BoostManager.activate_test_boost)
+
+	await get_tree().process_frame
+	
+	loading_rect.on_start()
+	ui.hud.on_start()
 
 	Events.run_started.emit()
 	queue_free()

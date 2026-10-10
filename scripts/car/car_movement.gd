@@ -105,6 +105,31 @@ var _current_grip := 1.0
 @export var weapon_controller: Weapon_controller
 @export var player_status_controller: Player_Status_Controller
 
+@export_category("Sounds")
+@export var impact_sound: AudioStream
+
+@export var hit_sound_cooldown: float = 0.08
+var _last_hit_sound_time: float = -999.0
+
+
+@export_category("Engine Sound")
+@export var engine_loop_sound: AudioStream
+@export_range(0.0, 1.0) var engine_idle_rpm: float = 0.2
+@export_range(0.0, 1.0) var engine_launch_rpm: float = 0.55
+@export var engine_rpm_rise_speed: float = 6.0
+@export var engine_rpm_fall_speed: float = 2.5
+@export var engine_min_volume_db: float = -18.0
+@export var engine_max_volume_db: float = 0.0
+@export var engine_min_pitch: float = 0.85
+@export var engine_max_pitch: float = 1.7
+
+var engine_sound: EngineSound
+
+@export_range(0.0, 1.0) var engine_brake_volume: float = 1.0:
+	set(value):
+		engine_brake_volume = clampf(value, 0.0, 1.0)
+		if engine_sound:
+			engine_sound.set_volume_scale(engine_brake_volume)
 
 var road_manager: Road_manager
 
@@ -113,9 +138,26 @@ func initialize(initial_speed: float):
 	speed = initial_speed
 	_previous_speed = initial_speed
 
+
 func _ready() -> void:
 	InputController.dodge.connect(dodge)
 	stamina = max_stamina
+
+	engine_sound = EngineSound.new()
+	engine_sound.engine_loop_sound = engine_loop_sound
+	engine_sound.idle_rpm = engine_idle_rpm
+	engine_sound.launch_rpm = engine_launch_rpm
+	engine_sound.rpm_rise_speed = engine_rpm_rise_speed
+	engine_sound.rpm_fall_speed = engine_rpm_fall_speed
+	engine_sound.min_volume_db = engine_min_volume_db
+	engine_sound.max_volume_db = engine_max_volume_db
+	engine_sound.min_pitch = engine_min_pitch
+	engine_sound.max_pitch = engine_max_pitch
+	add_child(engine_sound)
+	
+	#engine_sound.set_volume_scale(engine_brake_volume)
+	#brake_sound = _create_loop_sound(brake_loop_sound)
+	#brake_sound.set_volume_scale(engine_brake_volume)
 
 
 func _physics_process(delta: float) -> void:
@@ -128,7 +170,8 @@ func _physics_process(delta: float) -> void:
 	process_visuals(delta)
 	process_enemies_hits()
 	process_dodge_hit_check(delta)
-	
+	process_sounds(delta)
+
 	#set_meta("car_speed", speed)
 	#print("Speed: ", speed)
 	#print("Lane offset: ", lane_offset)
@@ -297,6 +340,7 @@ func dodge() -> void:
 	lateral_velocity += direction * dodge_force
 	
 	_drain_stamina(dodge_stamina_drain)
+	engine_sound.trigger_dodge_boost()
 	dodge_direction = direction
 	dodge_timer = dodge_window
 	dodge_already_hit.clear()
@@ -344,6 +388,8 @@ func _check_dodge_hit(direction: float) -> void:
 		player_cam.apply_outgoing_hit(enemy.global_position, dodge_damage)
 		dodge_already_hit.append(enemy)
 
+		_play_dodge_hit_sound()
+
 
 func process_enemies_hits() -> void:
 	for i in range(get_slide_collision_count()):
@@ -372,8 +418,8 @@ func _resolve_enemy(node: Node) -> Encounter_Enemy:
 			return current
 		current = current.get_parent()
 	return null
-	
-	
+
+
 func spawn_hit_effect(hit_position: Vector3, _scale: float = 1.0) -> void:
 	var car_hit := car_hit_effect.instantiate() as Muzzle_flash
 	if car_hit == null:
@@ -383,3 +429,16 @@ func spawn_hit_effect(hit_position: Vector3, _scale: float = 1.0) -> void:
 	visual_effects.get_node("Ostov").add_child(car_hit)
 	car_hit.global_position = hit_position
 	car_hit.play(true, _scale)
+
+# ============================ SOUNDS ==========================================
+
+func process_sounds(delta: float) -> void:
+	engine_sound.update(InputController.accelerating, get_speed_ratio(), delta)
+
+
+func _play_dodge_hit_sound() -> void:
+	var now := Time.get_ticks_msec() / 1000.0
+	if now - _last_hit_sound_time < hit_sound_cooldown:
+		return
+	_last_hit_sound_time = now
+	SoundManager.play_sfx(impact_sound, -2.0, 0.92)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cu00n3fvniuvg"
+path="res://.godot/imported/AMBSubn_Ambience, Forest Crickets, Birds, Connecticut 02_344 Audio_East Coast America.mp3-c2deccaa699e8635e0044507f4410f09.mp3str"
+
+[deps]
+
+source_file="res://audio/effects/amibient/natural/AMBSubn_Ambience, Forest Crickets, Birds, Connecticut 02_344 Audio_East Coast America.mp3"
+dest_files=["res://.godot/imported/AMBSubn_Ambience, Forest Crickets, Birds, Connecticut 02_344 Audio_East Coast America.mp3-c2deccaa699e8635e0044507f4410f09.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

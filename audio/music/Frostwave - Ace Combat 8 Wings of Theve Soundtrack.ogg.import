@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bwkgu6moiqkxg"
+path="res://.godot/imported/Frostwave - Ace Combat 8 Wings of Theve Soundtrack.ogg-8e9cf730cec42e49918e3b48be4e5a1e.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Frostwave - Ace Combat 8 Wings of Theve Soundtrack.ogg"
+dest_files=["res://.godot/imported/Frostwave - Ace Combat 8 Wings of Theve Soundtrack.ogg-8e9cf730cec42e49918e3b48be4e5a1e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

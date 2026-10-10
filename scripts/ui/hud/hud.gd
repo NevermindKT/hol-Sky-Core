@@ -60,6 +60,8 @@ func initialize(_car: Car_Movement):
 
 
 func _ready() -> void:
+	visible = false
+
 	add_to_group("hud")
 	PauseManager.pause_state_changed.connect(_on_pause_toggle)
 
@@ -76,8 +78,9 @@ func _ready() -> void:
 	right.mouse_entered.connect(_on_right_mouse_entered)
 	right.mouse_exited.connect(_on_right_mouse_exited)
 
-	_cache_base_ui_sizes()
+	GameFlow.restart_requested.connect(_on_restart)
 
+	_cache_base_ui_sizes()
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(car):
@@ -86,6 +89,14 @@ func _process(delta: float) -> void:
 	var target_screen_pos := car.player_cam.unproject_to_screen(car.global_position)
 	var target_pos := target_screen_pos + marker_screen_offset - turret_rotation_marker_container.size / 2.0
 	turret_rotation_marker_container.position = turret_rotation_marker_container.position.lerp(target_pos, 20.0 * delta)
+
+#----------------------------------------------------------------------- RESTART
+
+func _on_restart():
+	visible = false
+
+func on_start():
+	visible = true
 
 #------------------------------------------------------------------------- PAUSE
 

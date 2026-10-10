@@ -11,6 +11,7 @@ class_name Enemy_Encounter
 
 @export_category("Spawn")
 @export var offscreen_spawn_distance := 12.0
+@export var offscreen_spawn_spacing := 3.0
 
 @export_category("Attack Queue")
 @export var attack_cooldown := 1.0
@@ -21,7 +22,6 @@ var attack_cooldown_timer := 0.0
 @export_category("Exports")
 var player: Node3D
 @export var test_Enemy: EncounterEnemyData
-
 
 var world: World
 
@@ -34,8 +34,8 @@ var attacker: Encounter_Enemy = null
 
 
 func _ready() -> void:
+	process_physics_priority = 10
 	Events.player_hard_brake.connect(_on_player_hard_brake)
-
 
 func inialize(_world: World) -> void:
 	world = _world
@@ -56,6 +56,70 @@ func _process(delta: float) -> void:
 	if attack_cooldown_timer > 0.0:
 		attack_cooldown_timer -= delta
 
+
+func _physics_process(_delta: float) -> void:
+	if enemies.size() < 2:
+		return
+
+	var list := enemies.duplicate()
+
+	for i in list.size():
+		for j in range(i + 1, list.size()):
+			var a: Encounter_Enemy = list[i]
+			var b: Encounter_Enemy = list[j]
+
+			if a.is_queued_for_deletion() or b.is_queued_for_deletion():
+				continue
+			if not a.is_active or not b.is_active:
+				continue
+
+			_resolve_pair(a, b)
+
+
+func _resolve_pair(a: Encounter_Enemy, b: Encounter_Enemy) -> void:
+	var offset := b.global_position - a.global_position
+	offset.y = 0.0
+
+	var min_distance := a.enemy_data.body_radius + b.enemy_data.body_radius
+	var distance := offset.length()
+
+	if distance >= min_distance:
+		return
+
+	_try_knockback_hit(a, b)
+	_try_knockback_hit(b, a)
+
+	if a.is_queued_for_deletion() or b.is_queued_for_deletion():
+		return
+
+	var direction := offset / distance if distance > 0.001 else Vector3.RIGHT
+	var overlap := min_distance - distance
+
+	# Кто не в FOLLOW (летит, оглушён, атакует) — "якорь": его не сдвигаем, уступает второй
+	var a_anchored := a.state != Encounter_Enemy.State.FOLLOW
+	var b_anchored := b.state != Encounter_Enemy.State.FOLLOW
+
+	var a_share := 0.5
+	if a_anchored and not b_anchored:
+		a_share = 0.0
+	elif b_anchored and not a_anchored:
+		a_share = 1.0
+
+	a.global_position -= direction * overlap * a_share
+	b.global_position += direction * overlap * (1.0 - a_share)
+
+
+func _try_knockback_hit(source: Encounter_Enemy, target: Encounter_Enemy) -> void:
+	if source.state != Encounter_Enemy.State.KNOCKBACK:
+		return
+	if source.knockback_velocity.length() < source.enemy_data.knockback_hit_min_speed:
+		return
+	if target in source.knockback_hit_targets:
+		return
+
+	source.knockback_hit_targets.append(target)
+	target.take_collision_damage(source.enemy_data.knockback_collision_damage)
+
 # ============================ SPAWN ===========================================
 
 func spawn_random_group() -> void:
@@ -63,6 +127,7 @@ func spawn_random_group() -> void:
 		push_warning("Enemy_Encounter: enemy_pool is empty!")
 		return
 
+	var new_enemies: Array = []
 	var attempts := 0
 	var max_attempts := 50
 
@@ -76,12 +141,15 @@ func spawn_random_group() -> void:
 			break
 
 		var chosen: EncounterEnemyData = candidates[randi() % candidates.size()]
-		add_enemy(chosen)
-	
+		var enemy := add_enemy(chosen, false)
+		if enemy:
+			new_enemies.append(enemy)
+
+	_spawn_offscreen_batch(new_enemies)
 	start_encounter()
 
 
-func add_enemy(enemy_data: EncounterEnemyData) -> Encounter_Enemy:
+func add_enemy(enemy_data: EncounterEnemyData, spawn_offscreen := true) -> Encounter_Enemy:
 	if enemy_data == null:
 		push_warning("Enemy_Encounter: enemy_data is null!")
 		return null
@@ -104,19 +172,38 @@ func add_enemy(enemy_data: EncounterEnemyData) -> Encounter_Enemy:
 	
 	enemy.initialize(player, self, enemy_data)
 	_reflow_formation()
-	_spawn_offscreen(enemy)
 	
+	if spawn_offscreen:
+		_spawn_offscreen_batch([enemy])
+
 	is_battle = true
-	
 	return enemy
 
 
-func _spawn_offscreen(enemy: Encounter_Enemy) -> void:
-	var side = sign(enemy.formation_offset)
-	if side == 0.0:
-		side = 1.0 if randf() < 0.5 else -1.0
+func _spawn_offscreen_batch(batch: Array) -> void:
+	var left: Array = []
+	var right: Array = []
 
-	enemy.global_position.x = player.global_position.x + side * offscreen_spawn_distance
+	for enemy in batch:
+		var side := signf(enemy.formation_offset)
+		if side == 0.0:
+			side = 1.0 if right.size() <= left.size() else -1.0
+
+		if side > 0.0:
+			right.append(enemy)
+		else:
+			left.append(enemy)
+
+	_place_side(left, -1.0)
+	_place_side(right, 1.0)
+
+
+func _place_side(side_enemies: Array, side: float) -> void:
+	side_enemies.sort_custom(func(a, b): return absf(a.formation_offset) < absf(b.formation_offset))
+
+	for i in side_enemies.size():
+		var distance := offscreen_spawn_distance + i * offscreen_spawn_spacing
+		side_enemies[i].global_position.x = player.global_position.x + side * distance
 
 
 func remove_enemy(enemy: Encounter_Enemy) -> void:

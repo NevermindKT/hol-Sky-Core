@@ -4,10 +4,10 @@ class_name WeatherAudio
 @export var car: Car_Movement
 
 @export_group("Rain")
-@export var rain_light: AmbientLayer
-@export var rain_heavy: AmbientLayer
-@export var rain_on_car: AmbientLayer
-@export var rain_on_window: AmbientLayer
+@export var rain_light: WeatherAudioLayer
+@export var rain_heavy: WeatherAudioLayer
+@export var rain_on_car: WeatherAudioLayer
+@export var rain_on_window: WeatherAudioLayer
 @export var rain_hear_distance := 120.0
 @export var under_rain_start := 6.0
 @export var under_rain_end := 15.0

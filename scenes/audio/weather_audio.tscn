@@ -2,7 +2,7 @@
 
 [ext_resource type="AudioStream" uid="uid://cf6ln0yu4yldi" path="res://audio/weather/forest_sound/Wether_Forest_Ambience_2_loop.ogg" id="1_01ouu"]
 [ext_resource type="Script" uid="uid://ljtxboeg5atv" path="res://scripts/audio/weather_audio.gd" id="1_02em4"]
-[ext_resource type="Script" uid="uid://i1kgipkexs5m" path="res://scripts/audio/ambient_layer.gd" id="2_02em4"]
+[ext_resource type="Script" uid="uid://i1kgipkexs5m" path="res://scripts/audio/weather_audio_layer.gd" id="2_02em4"]
 [ext_resource type="AudioStream" uid="uid://chooj88guraom" path="res://audio/weather/forest_sound/Wether_Forest_Leaves_1_loop.ogg" id="2_bnmgo"]
 [ext_resource type="AudioStream" uid="uid://btdvyvgk4lyju" path="res://audio/weather/rain/Wether_Rain_Light_1.wav" id="5_058bq"]
 [ext_resource type="AudioStream" uid="uid://c5n2v2gshqrg4" path="res://audio/weather/rain/Wether_Rain_Light_2.wav" id="6_y1r1k"]

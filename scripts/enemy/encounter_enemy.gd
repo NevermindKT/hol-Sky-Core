@@ -54,10 +54,14 @@ var stun_decay_timer := 0.0
 var _is_dead := false
 var _death_push := Vector3.ZERO
 
+var knockback_hit_targets: Array[Encounter_Enemy] = []
+
 @onready var damage_hit_box: HurtBox = $DamageHitBox
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @onready var star_stun_effect: Star_Stun_Effect = $StunEffectPoint/StarStunEffect
 
+@export var damage_sound_cooldown: float = 0.08
+var _last_damage_sound_time: float = -999.0
 
 func _ready() -> void:
 	damage_hit_box.body_entered.connect(_on_attack_area_body_entered)
@@ -93,7 +97,10 @@ func _physics_process(delta: float) -> void:
 		return
 	if player == null:
 		return
-	
+
+	if state != State.KNOCKBACK and not knockback_hit_targets.is_empty():
+		knockback_hit_targets.clear()
+
 	if state != State.STUNNED:
 		if stun_decay_timer > 0.0:
 			stun_decay_timer -= delta
@@ -134,6 +141,24 @@ func update_movement(delta: float) -> void:
 	)
 
 	_move_toward_start_z(delta, _speed_multiplier)
+	_push_out_of_player()
+
+
+func _push_out_of_player() -> void:
+	var offset := global_position - player.global_position
+	offset.y = 0.0
+
+	var distance := offset.length()
+	if distance >= enemy_data.player_push_radius:
+		return
+
+	var direction: Vector3
+	if distance > 0.001:
+		direction = offset / distance
+	else:
+		direction = Vector3(signf(formation_offset) if formation_offset != 0.0 else 1.0, 0.0, 0.0)
+
+	global_position += direction * (enemy_data.player_push_radius - distance)
 
 
 func update_attack(delta: float) -> void:
@@ -194,6 +219,8 @@ func update_stun(delta: float) -> void:
 	
 	if stun_timer <= 0.0:
 		end_stun()
+	
+	_push_out_of_player()
 
 
 func update_poison(delta: float) -> void:
@@ -206,8 +233,6 @@ func update_poison(delta: float) -> void:
 func add_stun(amount: float) -> void:
 	if state == State.STUNNED:
 		return
-	
-	print("amount: ", amount)
 	
 	stun_meter += amount
 	stun_decay_timer = enemy_data.stun_decay_delay
@@ -370,6 +395,7 @@ func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
 	apply_hit_slow()
 	apply_poison()
 
+	_play_damage_sound()
 	_spawn_bullet_hit_effect(hit_position, direction)
 
 
@@ -397,6 +423,8 @@ func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, dire
 	if state == State.STUNNED:
 		knockback_velocity = knockback / 2
 		return
+
+	SoundManager.play_sfx(enemy_data.death_sound, enemy_data.death_sound_volume - 2, 1.0)
 
 	_set_warning(false)
 	state = State.KNOCKBACK
@@ -428,6 +456,12 @@ func take_damage(damage: float) -> void:
 	_emit_health()
 
 
+func take_collision_damage(damage: float) -> void:
+	take_damage(damage)
+	if health > 0.0:
+		add_stun(damage)
+
+
 func die() -> void:
 	if _is_dead:
 		return
@@ -439,6 +473,7 @@ func die() -> void:
 	encounter.end_attak(self)
 	encounter.remove_enemy(self)
 	_spawn_corpse()
+	SoundManager.play_sfx(enemy_data.death_sound, enemy_data.death_sound_volume, 1.0)
 	queue_free()
 
 
@@ -465,3 +500,10 @@ func _spawn_dodge_hit_effect(hit_position: Vector3, direction: Vector3, car: Car
 	var effect := enemy_data.dodge_hit_effect_scene.instantiate() as BloodCarHit
 	get_parent().world.enemies.add_child(effect)
 	effect.play(hit_position, direction, car.speed, car)
+
+func _play_damage_sound() -> void:
+	var now := Time.get_ticks_msec() / 1000.0
+	if now - _last_damage_sound_time < damage_sound_cooldown:
+		return
+	_last_damage_sound_time = now
+	SoundManager.play_sfx(enemy_data.take_damage_sound, enemy_data.take_damage_sound_volume, 1.0)

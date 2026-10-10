@@ -32,10 +32,22 @@ func initialize(_road_set: Road_Set, _obstacle_set: Obstacles_set) -> void:
 	road_set = _road_set
 	obstacle_set = _obstacle_set
 
+	world.world_path.curve = world.world_path.curve.duplicate()
+	world.ground_path.curve = world.ground_path.curve.duplicate()
+
+	world.world_path.curve.clear_points()
+	world.ground_path.curve.clear_points()
+
+	last_segment = null
+	segments.clear()
+	control_points.clear()
+	road_dir = 0
+
 	spawn_start()
+
 	while segments.size() < MAX_SEGMENTS:
 		spawn_next()
-	
+
 	if debug:
 		create_debug_path()
 

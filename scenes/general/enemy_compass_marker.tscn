@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://1lto0ve7x2t0" path="res://scripts/ui/hud/compass_marker.gd" id="2_68130"]
 [ext_resource type="Texture2D" uid="uid://b4hqjdrtg1rae" path="res://textures/hud/dangerTriangleWarninig.png" id="3_7gbkv"]
 [ext_resource type="Texture2D" uid="uid://1pqc2jgvg4yp" path="res://textures/hud/stunMeteerTriangle.png" id="4_7gbkv"]
+[ext_resource type="AudioStream" uid="uid://ca3138yplogne" path="res://audio/ui/warning1.ogg" id="4_23igs"]
 
 [node name="EnemyCompassMarker" type="TextureProgressBar" unique_id=1922447050]
 offset_right = 254.0
@@ -15,7 +16,10 @@ fill_mode = 3
 texture_under = ExtResource("1_htyxt")
 texture_progress = ExtResource("1_fj27i")
 script = ExtResource("2_68130")
-blink_interval = 0.08
+blink_interval = 0.1
+warning_sound = ExtResource("4_23igs")
+warning_sound_volume_db = 0.0
+warning_sound_pitch = 2.0
 
 [node name="MarkerWarning" type="TextureRect" parent="." unique_id=589617155]
 visible = false

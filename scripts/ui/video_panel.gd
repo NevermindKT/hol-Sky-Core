@@ -7,7 +7,7 @@ extends Control
 @export_category("CheckButtons")
 @export var fullscreen_checkbox: CheckButton
 @export var vsync_checkbox: CheckButton
-@export var fps_lock_checkbox: CheckButton
+@export var overlay_checkbox: CheckButton
 @export var fog_btn: CheckButton
 
 @export_category("Sliders")
@@ -17,13 +17,20 @@ extends Control
 @export var ui_slider: HSlider
 @export var current_ui_scale_label: Label
 
+@export var gamma_slider: HSlider
+@export var current_gamma_label: Label
+
 
 func _ready() -> void:
 	fullscreen_checkbox.button_pressed = Settings.is_fullscreen
+	
 	vsync_checkbox.button_pressed = Settings.vsync_enabled
+	
 	fog_btn.button_pressed = Settings.volumetric_fog_enabled
 	fog_btn.toggled.connect(Settings.set_volumetric_fog_enabled)
-	#fps_lock_checkbox.button_pressed = Settings.is_fps_locked
+	
+	overlay_checkbox.button_pressed = Settings.overlay_enabled
+	overlay_checkbox.toggled.connect(Settings.set_overlay)
 
 	_populate_resolution_options()
 	resolution_option.selected = Settings.resolution_index
@@ -37,6 +44,10 @@ func _ready() -> void:
 
 	ui_slider.value_changed.connect(show_current_ui_scale)
 	ui_slider.value = Settings.ui_scale
+
+	gamma_slider.value_changed.connect(Settings.set_ps1_gamma)
+	gamma_slider.value_changed.connect(show_current_gamma)
+	gamma_slider.value = Settings.ps1_gamma.x
 
 	resolution_option.item_selected.connect(Settings.set_resolution_index)
 	fullscreen_checkbox.toggled.connect(Settings.set_fullscreen)
@@ -64,3 +75,7 @@ func show_current_fov(value: float):
 
 func show_current_ui_scale(value: float):
 	current_ui_scale_label.text = str(value)
+
+
+func show_current_gamma(value: float):
+	current_gamma_label.text = "%.2f" % value

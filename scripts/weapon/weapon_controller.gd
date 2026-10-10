@@ -8,11 +8,18 @@ var current_weapon: WeaponState
 @export var shell_ejector: Shell_Ejector
 @export var player_weapons: Array[WeaponState]
 
+@export var fire_volume: float
+@export var reload_volume: float
+
 @export var inventory: Inventory
 
 var cooldown := 0.0
 var current_spread: float = 0.0
 
+var _was_firing: bool = false
+var _last_shot_needs_tail: bool = false
+
+@export var reload_sound: AudioStream = preload("res://audio/effects/weapons/reload/reload.wav")
 
 func initialize() -> void:
 	InputController.reload.connect(reload)
@@ -26,7 +33,11 @@ func initialize() -> void:
 func _process(_delta: float) -> void:
 	if InputController.fire:
 		fire()
-	
+		_was_firing = true
+	elif _was_firing:
+		_flush_fire_tail()
+		_was_firing = false
+
 	cooldown -= _delta
 	
 	if current_weapon:
@@ -59,7 +70,9 @@ func fire():
 	Events.magazine_count_changed.emit(current_weapon.ammo)
 	gun.muzzle_flash.play(false, 1.0, bullet_saved)
 	gun.play_bolt_recoil(0.8, 0.04, 0.12)
-	SoundManager.play_random_sfx(current_weapon.data.fire_sounds, 0.0, current_weapon.data.fire_pitch_variation)
+	
+	var sound_index := SoundManager.play_random_sfx(current_weapon.data.fire_sounds, 0.0, current_weapon.data.fire_pitch_variation)
+	_update_tail_state(sound_index)
 
 	var fire_rate := UpgradeManager.get_modified(&"rate_of_fire", current_weapon.data.fire_rate)
 	
@@ -92,38 +105,48 @@ func get_spread_ratio() -> float:
 
 
 func reload() -> bool:
-	if current_weapon.is_reloading:
-		return false
-
-	var magazine_capacity := UpgradeManager.get_modified(&"expanded_magazine", current_weapon.data.magazine_capacity)
-
-	if current_weapon.ammo >= magazine_capacity:
-		return false
-
-	var need = magazine_capacity - current_weapon.ammo
-
-	if inventory.get_ammo(current_weapon.data.ammo_type) <= 0:
-		return false
-
-	current_weapon.is_reloading = true
-	Events.reload_started.emit(current_weapon.data.reload_duration)
-
-	await get_tree().create_timer(current_weapon.data.reload_duration).timeout
+	var weapon := current_weapon
 	
-	if !current_weapon.is_reloading:
+	if weapon.is_reloading:
+		return false
+
+	var magazine_capacity := UpgradeManager.get_modified(&"expanded_magazine", weapon.data.magazine_capacity)
+
+	if weapon.ammo >= magazine_capacity:
+		return false
+
+	var need = magazine_capacity - weapon.ammo
+
+	if inventory.get_ammo(weapon.data.ammo_type) <= 0:
+		return false
+
+	weapon.is_reloading = true
+	Events.reload_started.emit(weapon.data.reload_duration)
+	
+	var duration := weapon.data.reload_duration
+	var sound_length := reload_sound.get_length()
+	
+	var pitch := sound_length / duration
+	
+	SoundManager.play_sfx(reload_sound, reload_volume, pitch)
+
+	await get_tree().create_timer(weapon.data.reload_duration).timeout
+	
+	if !weapon.is_reloading:
 		reload_stop()
 		return false
 
 	var loaded = inventory.consume_ammo(
-		current_weapon.data.ammo_type,
+		weapon.data.ammo_type,
 		need
 	)
 
-	current_weapon.ammo += loaded
-	Events.magazine_count_changed.emit(current_weapon.ammo)
+	weapon.ammo += loaded
+	weapon.is_reloading = false
 	
-	current_weapon.is_reloading = false
-	Events.reload_finished.emit()
+	if weapon == current_weapon:
+		Events.magazine_count_changed.emit(weapon.ammo)
+		Events.reload_finished.emit()
 
 	return loaded > 0
 
@@ -172,6 +195,7 @@ func previous_weapon():
 
 
 func set_weapon(weapon: WeaponState, direction: int):
+	_flush_fire_tail()
 	if current_weapon != null:
 			if current_weapon.is_reloading:
 				current_weapon.is_reloading = false
@@ -180,3 +204,19 @@ func set_weapon(weapon: WeaponState, direction: int):
 	current_weapon = weapon
 	Events.weapon_set.emit(current_weapon.data, direction)
 	Events.magazine_count_changed.emit(current_weapon.ammo)
+
+
+func _update_tail_state(sound_index: int) -> void:
+	var has_tail_data := current_weapon.data.fire_sounds_has_tail
+
+	if sound_index < 0 or sound_index >= has_tail_data.size():
+		_last_shot_needs_tail = false
+		return
+
+	_last_shot_needs_tail = not has_tail_data[sound_index]
+
+
+func _flush_fire_tail() -> void:
+	if _last_shot_needs_tail and current_weapon.data.fire_tail_sound:
+		SoundManager.play_sfx(current_weapon.data.fire_tail_sound)
+	_last_shot_needs_tail = false

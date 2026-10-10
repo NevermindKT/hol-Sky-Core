@@ -11,8 +11,9 @@ var car: Car_Movement
 var secondary_reticle_screen_pos: Vector2
 var is_locked_on: bool = false
 
+@export var lock_sound: AudioStream = preload("uid://ca3138yplogne")
 
-func _ready() -> void:	
+func _ready() -> void:
 	gun = car.gun
 
 
@@ -57,6 +58,9 @@ func _process(delta: float) -> void:
 	
 	var mouse_pos_screen := car.player_cam.viewport_to_screen(mouse_pos)
 	
+	#if direct_hit and not is_locked_on:
+		#SoundManager.play_sfx(lock_sound, 1.0)
+
 	is_locked_on = direct_hit
 	secondary_reticle_screen_pos = car.player_cam.unproject_to_screen(target) if is_locked_on else mouse_pos_screen
 

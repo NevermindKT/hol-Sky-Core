@@ -11,7 +11,10 @@ class_name EncounterEnemyData
 @export var move_speed := 5.0
 @export var desired_offset := 0.0
 @export var z_return_speed := 6.0
-@export var z_align_speed := 10.0 
+@export var z_align_speed := 10.0
+
+@export_category("Collision")
+@export var player_push_radius := 1.5
 
 @export_category("Inertia")
 @export var inertia_resistance := 1.0
@@ -37,7 +40,20 @@ class_name EncounterEnemyData
 @export var dash_speed := 30.0
 @export var dash_duration := 1.0
 
+@export var body_radius := 0.8
+
+@export_category("Knockback Collision")
+@export var knockback_collision_damage := 15.0
+@export var knockback_hit_min_speed := 3.0
+
 @export_category("Scenes")
 @export var enemy_scene: PackedScene
 @export var dodge_hit_effect_scene: PackedScene
 @export var bullet_hit_effect_scene: PackedScene
+
+@export_category("Sounds")
+@export var take_damage_sound: AudioStream
+@export var take_damage_sound_volume: float = 0.0
+
+@export var death_sound: AudioStream
+@export var death_sound_volume: float = 0.0

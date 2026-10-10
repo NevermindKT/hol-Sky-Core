@@ -31,6 +31,8 @@ class_name WeaponData
 @export_category("Sound")
 @export var fire_sounds: Array[AudioStream] = []
 @export var fire_pitch_variation: float = 0.05
+@export var fire_tail_sound: AudioStream
+@export var fire_sounds_has_tail: Array[bool] = []
 
 @export_category("Exports")
 @export var fire_behavior: Fire_behavior

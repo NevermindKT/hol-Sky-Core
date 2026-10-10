@@ -48,6 +48,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "OPTIONS"
 
+[node name="RestartBtn" type="Button" parent="Menu" unique_id=1614274155 groups=["ui_buttons"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "RESTART"
+
 [node name="ExitBtn" type="Button" parent="Menu" unique_id=1041608353 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
@@ -87,7 +92,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 35
 text = "Рух:
   A, D — стрейф
-  SPACE + кнопка стрейу — ухил убік
+  SPACE + кнопка стрейфу — ухил убік
   S — гальмування
 
 Бойові дії:

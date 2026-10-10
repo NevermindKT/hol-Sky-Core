@@ -5,6 +5,7 @@ class_name Pause_Menu
 
 @onready var continue_btn: Button = $Menu/ContinueBtn
 @onready var options_btn: Button = $Menu/OptionsBtn
+@onready var restart_btn: Button = $Menu/RestartBtn
 @onready var exit_btn: Button = $Menu/ExitBtn
 
 @onready var menu: Control = $Menu
@@ -21,6 +22,7 @@ func _ready():
 	PauseManager.pause_state_changed.connect(_on_pause_state_changed)
 	continue_btn.pressed.connect(_on_continue_pressed)
 	options_btn.pressed.connect(_on_options_pressed)
+	restart_btn.pressed.connect(GameFlow.restart)
 	exit_btn.pressed.connect(_on_quit_pressed)
 
 	settings_menu.closed.connect(_on_settings_closed)
@@ -30,18 +32,18 @@ func _ready():
 
 
 func _connect_button_sounds():
-	var buttons: Array[Button] = [continue_btn, options_btn, exit_btn]
+	var buttons: Array[Button] = [continue_btn, options_btn, restart_btn, exit_btn]
 	for btn in buttons:
 		btn.mouse_entered.connect(_on_button_hover)
 		btn.pressed.connect(_on_button_click)
 
 
 func _on_button_hover():
-	SoundManager.play_sfx(hover_sound)
+	SoundManager.play_sfx(hover_sound, 2.0)
 
 
 func _on_button_click():
-	SoundManager.play_sfx(click_sound)
+	SoundManager.play_sfx(click_sound, 2.0)
 
 
 func _on_pause_state_changed():

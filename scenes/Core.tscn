@@ -33,6 +33,7 @@
 [ext_resource type="Script" uid="uid://ch5br2jcqe21y" path="res://scripts/vfx/tire_trail_manager.gd" id="31_7hc18"]
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="32_kusm0"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="33_i2q6t"]
+[ext_resource type="Script" uid="uid://do8buj4uqdsyy" path="res://scripts/audio/ambient_manager.gd" id="36_p5ebu"]
 [ext_resource type="Script" uid="uid://htun2hpn2qtf" path="res://scripts/weapon/aim_controller.gd" id="38_dph2j"]
 [ext_resource type="Script" uid="uid://bia1b2g3noalc" path="res://scripts/enemy/encounter_director.gd" id="40_g88bg"]
 
@@ -217,5 +218,8 @@ trigger_mode = 1
 brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
+
+[node name="AmbientManager" type="Node" parent="Services" unique_id=1754425509]
+script = ExtResource("36_p5ebu")
 
 [editable path="Environment/WeatherSystem"]
