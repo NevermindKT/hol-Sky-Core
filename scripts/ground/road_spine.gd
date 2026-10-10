@@ -1,7 +1,7 @@
 extends RefCounted
 class_name Road_spine
 
-const COARSE_STRIDE := 2
+const COARSE_STRIDE := 8
 const HASH_CELL := 64.0
 const MAX_RING := 32
 const REFINE_MARGIN := 2.0
@@ -9,12 +9,6 @@ const REFINE_MARGIN := 2.0
 var points: PackedVector3Array
 var offsets: PackedFloat64Array
 var coarse: PackedInt32Array = PackedInt32Array()
-#
-#static var refine_calls := 0
-#static var refine_skips := 0
-#
-#static var _q_min_usec := 999999999
-#static var _q_max_usec := 0
 
 static var refine_calls := 0
 static var refine_skips := 0
@@ -243,17 +237,15 @@ func query(x: float, z: float, candidates: PackedInt32Array, blend_radius: float
 
 	q.refine_d2 = INF
 	_refine(candidates[best_c], x, z, q)
-
+	
 	for c in n:
 		if c == best_c:
 			continue
 		var k := candidates[c]
 		var reach := cd[c] - _cdev[k]
 		if reach > 0.0 and reach * reach >= q.refine_d2:
-
 			continue
 		_refine(k, x, z, q)
-
 
 	var weight_sum := 0.0
 	var y_sum := 0.0
