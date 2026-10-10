@@ -72,6 +72,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5bv42")
 
 [node name="AudioPanel" type="Control" parent="SettingContent" unique_id=869658838 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,8 +143,7 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="VideoPanel" type="Control" parent="SettingContent" unique_id=233055471 node_paths=PackedStringArray("resolution_option", "fps_limit_option", "fullscreen_checkbox", "vsync_checkbox", "overlay_checkbox", "fog_btn", "fov_slider", "current_fov_label", "ui_slider", "current_ui_scale_label")]
-visible = false
+[node name="VideoPanel" type="Control" parent="SettingContent" unique_id=233055471 node_paths=PackedStringArray("resolution_option", "fps_limit_option", "fullscreen_checkbox", "vsync_checkbox", "overlay_checkbox", "fog_btn", "fov_slider", "current_fov_label", "ui_slider", "current_ui_scale_label", "gamma_slider", "current_gamma_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -162,6 +162,8 @@ fov_slider = NodePath("FovCon/FovSlider")
 current_fov_label = NodePath("FovCon/CurrentFovLabel")
 ui_slider = NodePath("UIScaleCon/UISlider")
 current_ui_scale_label = NodePath("UIScaleCon/CurrentUIScaleLabel")
+gamma_slider = NodePath("GammaCon/GammaSlider")
+current_gamma_label = NodePath("GammaCon/CurrentGammaLabel")
 
 [node name="Control" type="Control" parent="SettingContent/VideoPanel" unique_id=2068066746]
 anchors_preset = 0
@@ -254,7 +256,7 @@ layout_mode = 1
 anchors_preset = 0
 offset_left = 22.0
 offset_top = 327.0
-offset_right = 410.0
+offset_right = 522.0
 offset_bottom = 367.0
 
 [node name="FovLabel" type="Label" parent="SettingContent/VideoPanel/FovCon" unique_id=541250370]
@@ -276,7 +278,7 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 72.0
+offset_left = 99.0
 offset_top = -8.0
 offset_right = -51.0
 offset_bottom = 8.0
@@ -299,6 +301,60 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 text = "FOV"
+horizontal_alignment = 1
+
+[node name="GammaCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1992166789]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 22.0
+offset_top = 377.0
+offset_right = 522.0
+offset_bottom = 417.0
+
+[node name="GammaLabel" type="Label" parent="SettingContent/VideoPanel/GammaCon" unique_id=1900970302]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_right = 61.0
+offset_bottom = 14.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Gamma"
+horizontal_alignment = 1
+
+[node name="GammaSlider" type="HSlider" parent="SettingContent/VideoPanel/GammaCon" unique_id=1014023293]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 99.0
+offset_top = -8.0
+offset_right = -51.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 0.12
+max_value = 0.2
+step = 0.001
+value = 0.2
+
+[node name="CurrentGammaLabel" type="Label" parent="SettingContent/VideoPanel/GammaCon" unique_id=462226559]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "gamma"
 horizontal_alignment = 1
 
 [node name="UIScaleCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1641827342]

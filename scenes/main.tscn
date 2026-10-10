@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dqibow5tqw5v0" path="res://scenes/ui/ui.tscn" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="1_pibwh"]
-[ext_resource type="Script" uid="uid://tevcxprrpkfh" path="res://scenes/main.gd" id="1_vc5cj"]
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="2_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="3_5he1u"]
 [ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="4_5poiv"]
@@ -127,9 +126,7 @@ shader_parameter/noise_chroma = 0.7999999821184
 [sub_resource type="ViewportTexture" id="ViewportTexture_txyw0"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[node name="Main" type="Node" unique_id=398161666 node_paths=PackedStringArray("overlay")]
-script = ExtResource("1_vc5cj")
-overlay = NodePath("Overlay")
+[node name="Main" type="Node" unique_id=398161666]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=308802376]
 anchors_preset = 15

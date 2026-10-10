@@ -40,6 +40,12 @@ class_name EncounterEnemyData
 @export var dash_speed := 30.0
 @export var dash_duration := 1.0
 
+@export var body_radius := 0.8
+
+@export_category("Knockback Collision")
+@export var knockback_collision_damage := 15.0
+@export var knockback_hit_min_speed := 3.0
+
 @export_category("Scenes")
 @export var enemy_scene: PackedScene
 @export var dodge_hit_effect_scene: PackedScene

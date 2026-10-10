@@ -17,6 +17,9 @@ extends Control
 @export var ui_slider: HSlider
 @export var current_ui_scale_label: Label
 
+@export var gamma_slider: HSlider
+@export var current_gamma_label: Label
+
 
 func _ready() -> void:
 	fullscreen_checkbox.button_pressed = Settings.is_fullscreen
@@ -41,6 +44,10 @@ func _ready() -> void:
 
 	ui_slider.value_changed.connect(show_current_ui_scale)
 	ui_slider.value = Settings.ui_scale
+
+	gamma_slider.value_changed.connect(Settings.set_ps1_gamma)
+	gamma_slider.value_changed.connect(show_current_gamma)
+	gamma_slider.value = Settings.ps1_gamma.x
 
 	resolution_option.item_selected.connect(Settings.set_resolution_index)
 	fullscreen_checkbox.toggled.connect(Settings.set_fullscreen)
@@ -68,3 +75,7 @@ func show_current_fov(value: float):
 
 func show_current_ui_scale(value: float):
 	current_ui_scale_label.text = str(value)
+
+
+func show_current_gamma(value: float):
+	current_gamma_label.text = "%.2f" % value

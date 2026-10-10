@@ -5,6 +5,9 @@ const SAVE_PATH := "user://settings.cfg"
 var _view_container: SubViewportContainer
 var _game_viewport: SubViewport
 
+var ps1_gamma: Vector2 = Vector2(0.15, 9.5)
+var _ps1_material: ShaderMaterial
+
 var master_volume: float = 1.0
 var music_volume: float = 1.0
 var sfx_volume: float = 1.0
@@ -40,6 +43,7 @@ var _hud: CanvasLayer
 var _overlay: TextureRect
 var ui_scale: float = 1.0
 
+
 func _ready() -> void:
 	_master_bus_idx = AudioServer.get_bus_index("Master")
 	_music_bus_idx = AudioServer.get_bus_index("Music")
@@ -68,6 +72,25 @@ func set_sfx_volume(value: float) -> void:
 
 #------------------------------------------------------------------------- VIDEO
 
+#--------------------------------- GAMMA
+
+func register_ps1_overlay_material(material: ShaderMaterial) -> void:
+	_ps1_material = material
+	_apply_ps1_gamma()
+
+
+func set_ps1_gamma(value: float) -> void:
+	var ratio := ps1_gamma.y / ps1_gamma.x
+	ps1_gamma = Vector2(value, value * ratio)
+	_apply_ps1_gamma()
+
+
+func _apply_ps1_gamma() -> void:
+	if not is_instance_valid(_ps1_material):
+		return
+	_ps1_material.set_shader_parameter("gamma", ps1_gamma)
+
+#--------------------------------- VIEWPORT/SCREEN
 
 func register_viewport(viewport: SubViewport, container: SubViewportContainer) -> void:
 	_game_viewport = viewport
@@ -115,6 +138,7 @@ func _reset_render_resolution() -> void:
 	root.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
 	root.content_scale_size = Vector2i.ZERO
 
+#--------------------------------- VSYNC
 
 func set_vsync(value: bool) -> void:
 	vsync_enabled = value
@@ -122,23 +146,36 @@ func set_vsync(value: bool) -> void:
 		DisplayServer.VSYNC_ENABLED if value else DisplayServer.VSYNC_DISABLED
 	)
 
+#--------------------------------- FOV
 
 func set_camera_fov(value: float) -> void:
 	camera_fov = value
 	fov_changed.emit(value)
 
+#--------------------------------- FPS
 
 func set_fps_limit_index(index: int) -> void:
 	fps_limit_index = index
 	Engine.max_fps = FPS_LIMITS[fps_limit_index]
 
+#--------------------------------- OVERLAY
 
 func register_overlay(overlay: TextureRect):
 	_overlay = overlay
 
+
 func set_overlay(value: bool):
 	overlay_enabled = value
 	_apply_overlay()
+
+
+func _apply_overlay() -> void:
+	if not is_instance_valid(_overlay):
+		#push_warning("Overlay is not valid")
+		return
+	_overlay.visible = overlay_enabled
+
+#--------------------------------- HUD&UI
 
 func register_hud(hud: HUD) -> void:
 	_hud = hud
@@ -154,6 +191,7 @@ func _apply_ui_scale() -> void:
 	if is_instance_valid(_hud):
 		_hud.apply_ui_scale(ui_scale)
 
+#--------------------------------- FOG
 
 func register_fog_environment(world_environment: WorldEnvironment) -> void:
 	_fog_environment = world_environment
@@ -165,15 +203,9 @@ func set_volumetric_fog_enabled(value: bool) -> void:
 	_apply_volumetric_fog()
 
 
-func _apply_overlay() -> void:
-	if not is_instance_valid(_overlay):
-		push_warning("Overlay is not valid")
-		return
-	_overlay.visible = overlay_enabled
-
-
 func _apply_volumetric_fog() -> void:
 	if not is_instance_valid(_fog_environment):
+		#push_warning("Fog is not valid")
 		return
 	_fog_environment.environment.volumetric_fog_enabled = volumetric_fog_enabled
 
@@ -186,6 +218,8 @@ func save_settings() -> void:
 	config.set_value("video", "ui_scale", ui_scale)
 	config.set_value("video", "vsync", vsync_enabled)
 	config.set_value("audio", "sfx_volume", sfx_volume)
+	config.set_value("video", "ps1_gamma_x", ps1_gamma.x)
+	config.set_value("video", "ps1_gamma_y", ps1_gamma.y)
 	config.set_value("video", "fullscreen", is_fullscreen)
 	config.set_value("audio", "music_volume", music_volume)
 	config.set_value("audio", "master_volume", master_volume)
@@ -205,6 +239,8 @@ func load_settings() -> void:
 	ui_scale = config.get_value("video", "ui_scale", ui_scale)
 	sfx_volume = config.get_value("audio", "sfx_volume", sfx_volume)
 	vsync_enabled = config.get_value("video", "vsync", vsync_enabled)
+	ps1_gamma.x = config.get_value("video", "ps1_gamma_x", ps1_gamma.x)
+	ps1_gamma.y = config.get_value("video", "ps1_gamma_y", ps1_gamma.y)
 	music_volume = config.get_value("audio", "music_volume", music_volume)
 	is_fullscreen = config.get_value("video", "fullscreen", is_fullscreen)
 	master_volume = config.get_value("audio", "master_volume", master_volume)
@@ -215,6 +251,7 @@ func load_settings() -> void:
 
 
 func _apply_all() -> void:
+	_apply_ps1_gamma()
 	set_vsync(vsync_enabled)
 	set_sfx_volume(sfx_volume)
 	set_overlay(overlay_enabled)

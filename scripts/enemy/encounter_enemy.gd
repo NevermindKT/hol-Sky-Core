@@ -54,6 +54,8 @@ var stun_decay_timer := 0.0
 var _is_dead := false
 var _death_push := Vector3.ZERO
 
+var knockback_hit_targets: Array[Encounter_Enemy] = []
+
 @onready var damage_hit_box: HurtBox = $DamageHitBox
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @onready var star_stun_effect: Star_Stun_Effect = $StunEffectPoint/StarStunEffect
@@ -95,7 +97,10 @@ func _physics_process(delta: float) -> void:
 		return
 	if player == null:
 		return
-	
+
+	if state != State.KNOCKBACK and not knockback_hit_targets.is_empty():
+		knockback_hit_targets.clear()
+
 	if state != State.STUNNED:
 		if stun_decay_timer > 0.0:
 			stun_decay_timer -= delta
@@ -449,6 +454,12 @@ func take_damage(damage: float) -> void:
 		return
 
 	_emit_health()
+
+
+func take_collision_damage(damage: float) -> void:
+	take_damage(damage)
+	if health > 0.0:
+		add_stun(damage)
 
 
 func die() -> void:

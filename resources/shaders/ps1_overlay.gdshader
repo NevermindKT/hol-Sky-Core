@@ -18,8 +18,6 @@ uniform float noise_darkness : hint_range(0.0, 1.0, 0.01) = 0.5;
 uniform float noise_scale : hint_range(1.0, 100.0, 1.0) = 40.0;
 uniform float noise_speed : hint_range(0.0, 30.0, 0.1) = 10.0;
 
-// Доля "цветного" шума (хрома) против чисто яркостного (моно).
-// 0.0 = как раньше, одноцветный шум. 1.0 = полностью цветной спекл.
 uniform float noise_chroma : hint_range(0.0, 1.0, 0.01) = 0.6;
 
 
@@ -101,25 +99,17 @@ void fragment() {
 		vec3(0.299, 0.587, 0.114)
 	);
 
-	// Зерно шума — своя, отдельная от пикселизации сетка. Теперь noise_scale
-	// реально на что-то влияет.
 	vec2 noise_pixel_count = tex_size / noise_scale;
 	vec2 noise_index = floor(UV * noise_pixel_count);
 
-	// Чем темнее — тем сильнее шум (усиление сигнала на камере при высоком ISO).
-	// pow() делает нарастание резче — середина тона почти чистая, в тенях резкий скачок.
 	float shadow_mask = 1.0 - smoothstep(0.0, noise_darkness, luminance);
 	shadow_mask = pow(shadow_mask, 1.5);
 
 	vec3 noise_rgb = animated_noise_rgb(noise_index);
 	float noise_luma = (noise_rgb.r + noise_rgb.g + noise_rgb.b) / 3.0;
 
-	// Смешиваем монохромный (общий) и цветной (по каналам) шум.
 	vec3 final_noise = mix(vec3(noise_luma), noise_rgb, noise_chroma);
 
-	// Реальные сенсоры шумят неравномерно по каналам (зелёный чище,
-	// т.к. в байеровском фильтре на него вдвое больше сэмплов). Чисто
-	// косметическая деталь — можно убрать, если не понравится.
 	final_noise *= vec3(1.15, 0.85, 1.2);
 
 	posterize(color.rgb);
