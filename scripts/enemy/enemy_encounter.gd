@@ -41,7 +41,7 @@ func inialize(_world: World) -> void:
 	world = _world
 
 	if !get_children():
-		print("There no initial enemys in enemy encounter!")
+		GameLog.print("There no initial enemys in enemy encounter!")
 
 	for child in get_children():
 		if child is Encounter_Enemy:

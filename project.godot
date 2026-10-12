@@ -48,6 +48,10 @@ window/stretch/aspect="expand"
 
 import/blender/enabled=false
 
+[game]
+
+debug/logs=true
+
 [global_group]
 
 ui_buttons="buttons_lol"

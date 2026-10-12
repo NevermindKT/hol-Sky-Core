@@ -31,7 +31,7 @@ func spawn_projectile(
 	saved: bool = false
 ):
 	
-	print("spawned")
+	GameLog.print("spawned")
 	
 	var projectile = weapon.projectile_scene.instantiate() as Projectile
 

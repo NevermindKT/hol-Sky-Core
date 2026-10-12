@@ -18,6 +18,10 @@ var segments_until_change := 0
 
 var _previous_state := 0.0
 var _road_distance := 0.0
+var _pending_segments: Array[Road_segment] = []
+var _pending_frames: PackedInt64Array = []
+
+const ZONE_DELAY_FRAMES := 2
 
 
 func _ready() -> void:
@@ -31,6 +35,20 @@ func _ready() -> void:
 
 
 func _on_segment_spawned(segment: Road_segment) -> void:
+	_pending_segments.append(segment)
+	_pending_frames.append(Engine.get_process_frames() + ZONE_DELAY_FRAMES)
+
+
+func _process(_delta: float) -> void:
+	if _pending_segments.is_empty() or Engine.get_process_frames() < _pending_frames[0]:
+		return
+	var segment: Road_segment = _pending_segments.pop_front()
+	_pending_frames.remove_at(0)
+	if is_instance_valid(segment):
+		_setup_segment(segment)
+
+
+func _setup_segment(segment: Road_segment) -> void:
 	segments_since_change += 1
 
 	if segments_since_change >= segments_until_change:

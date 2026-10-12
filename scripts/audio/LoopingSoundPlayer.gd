@@ -51,7 +51,7 @@ func _begin_loop() -> void:
 		_set_loop(_loop_player, true)
 		_loop_player.play()
 		get_tree().create_timer(0.5).timeout.connect(func():
-			print("loop playing? ", _loop_player.playing, " pos: ", _loop_player.get_playback_position(), " vol: ", _loop_player.volume_db)
+			GameLog.print("loop playing? ", _loop_player.playing, " pos: ", _loop_player.get_playback_position(), " vol: ", _loop_player.volume_db)
 		)
 
 

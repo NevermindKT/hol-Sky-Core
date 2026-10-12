@@ -164,6 +164,8 @@ var _edge_noise: FastNoiseLite
 var _started := false
 var _needed_dirty := true
 var _needed_origin := Vector3(INF, INF, INF)
+var _pending_pieces: Array[PackedVector3Array] = []
+var _pending_piece_frames: PackedInt64Array = []
 
 
 func initialize() -> void:
@@ -186,6 +188,13 @@ func initialize() -> void:
 
 
 func _process(_delta: float) -> void:
+	if not _pending_pieces.is_empty() and Engine.get_process_frames() >= _pending_piece_frames[0]:
+		var piece: PackedVector3Array = _pending_pieces.pop_front()
+		_pending_piece_frames.remove_at(0)
+		var old_size := _spine_points.size()
+		_append_bezier(piece[0], piece[1], piece[2], piece[3])
+		_commit_spine(old_size)
+
 	if _spine == null or not _spine.is_valid():
 		return
 
@@ -212,17 +221,22 @@ func _on_segment_spawned(_segment: Road_segment) -> void:
 	var curve := world.ground_path.curve
 	if curve.point_count < 2:
 		return
-	var old_size := _spine_points.size()
-	_append_piece(curve, curve.point_count - 2)
-	_commit_spine(old_size)
+	_pending_pieces.append(_piece_points(curve, curve.point_count - 2))
+	_pending_piece_frames.append(Engine.get_process_frames() + 1)
+
+
+func _piece_points(curve: Curve3D, index: int) -> PackedVector3Array:
+	var p0 := curve.get_point_position(index)
+	var p1 := curve.get_point_position(index + 1)
+	return PackedVector3Array([p0, p0 + curve.get_point_out(index), p1 + curve.get_point_in(index + 1), p1])
 
 
 func _append_piece(curve: Curve3D, index: int) -> void:
-	var p0 := curve.get_point_position(index)
-	var c0 := p0 + curve.get_point_out(index)
-	var p1 := curve.get_point_position(index + 1)
-	var c1 := p1 + curve.get_point_in(index + 1)
+	var piece := _piece_points(curve, index)
+	_append_bezier(piece[0], piece[1], piece[2], piece[3])
 
+
+func _append_bezier(p0: Vector3, c0: Vector3, c1: Vector3, p1: Vector3) -> void:
 	var lengths := PackedFloat64Array([0.0])
 	var prev := p0
 	for s in range(1, PIECE_SAMPLES + 1):

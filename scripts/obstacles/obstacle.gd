@@ -19,7 +19,6 @@ func _on_body_entered(body: Node3D) -> void:
 	Events.player_take_damage.emit(damage_dealt, global_position)
 	body.spawn_hit_effect(global_position, 2.0)
 	body.apply_impact_speed_loss(speed_loss)
-	print("Player taked damage from obstacle!")
 
 
 func _on_body_exited(body: Node3D) -> void:

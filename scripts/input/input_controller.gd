@@ -64,5 +64,5 @@ func _process(_delta):
 
 	for slot in 4:
 		if Input.is_action_just_pressed("debug_upgrade_%d" % (slot + 1)):
-			print("Start: ", slot)
+			GameLog.print("Start: ", slot)
 			debug_toggle_upgrade.emit(slot)
