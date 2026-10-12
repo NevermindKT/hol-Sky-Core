@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 
 uniform float pixel_size : hint_range(0.0, 20.0, 1.0);
+uniform bool low_res_input = false;
 uniform vec2 gamma;
 
 uniform float posterize_strength : hint_range(0.0, 1.0) = 1.0;
@@ -84,11 +85,15 @@ vec3 animated_noise_rgb(vec2 position) {
 
 
 void fragment() {
+	float grid_step = max(pixel_size * 2.0, 1.0);
 	vec2 tex_size = vec2(textureSize(TEXTURE, 0));
+	if (low_res_input) {
+		tex_size *= grid_step;
+	}
 
-	vec2 pixel_count = tex_size / (pixel_size * 2.0);
+	vec2 pixel_count = tex_size / grid_step;
 	vec2 pixel_index = floor(UV * pixel_count);
-	vec2 pixaleted_uv = pixel_index / pixel_count;
+	vec2 pixaleted_uv = low_res_input ? (pixel_index + 0.5) / pixel_count : pixel_index / pixel_count;
 
 	vec4 color = texture(TEXTURE, pixaleted_uv);
 

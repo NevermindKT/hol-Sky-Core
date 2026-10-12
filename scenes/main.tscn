@@ -362,6 +362,7 @@ max_active_strokes = 10
 fade_duration = 5.0
 
 [node name="Overlay" type="TextureRect" parent="." unique_id=64996111]
+texture_filter = 1
 material = SubResource("ShaderMaterial_vc5cj")
 anchors_preset = 15
 anchor_right = 1.0

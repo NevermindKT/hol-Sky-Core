@@ -41,6 +41,7 @@ const FPS_LIMITS: Array[int] = [60, 75, 90, 120, 144]
 
 var _hud: CanvasLayer
 var _overlay: TextureRect
+var _base_shrink: int = 1
 var ui_scale: float = 1.0
 
 
@@ -77,6 +78,7 @@ func set_sfx_volume(value: float) -> void:
 func register_ps1_overlay_material(material: ShaderMaterial) -> void:
 	_ps1_material = material
 	_apply_ps1_gamma()
+	_apply_render_scale()
 
 
 func set_ps1_gamma(value: float) -> void:
@@ -95,16 +97,33 @@ func _apply_ps1_gamma() -> void:
 func register_viewport(viewport: SubViewport, container: SubViewportContainer) -> void:
 	_game_viewport = viewport
 	_view_container = container
-	_apply_render_resolution(RESOLUTIONS[resolution_index])
+	if is_fullscreen:
+		_apply_render_resolution(RESOLUTIONS[resolution_index])
+	else:
+		_apply_render_scale()
 
 
 func _apply_render_resolution(res: Vector2i) -> void:
-	if not is_instance_valid(_view_container):
-		return
-
 	var screen_size := DisplayServer.screen_get_size()
-	var shrink := maxi(1, roundi(float(screen_size.x) / float(res.x)))
-	_view_container.stretch_shrink = shrink
+	_base_shrink = maxi(1, roundi(float(screen_size.x) / float(res.x)))
+	_apply_render_scale()
+
+
+func _pixel_grid_step() -> int:
+	if not overlay_enabled or not is_instance_valid(_ps1_material):
+		return 1
+	var pixel_size: float = _ps1_material.get_shader_parameter("pixel_size")
+	return maxi(1, roundi(pixel_size * 2.0))
+
+
+func _apply_render_scale() -> void:
+	var grid_step := _pixel_grid_step()
+	if is_instance_valid(_view_container):
+		_view_container.stretch_shrink = _base_shrink * grid_step
+	if is_instance_valid(_game_viewport):
+		_game_viewport.texture_mipmap_bias = -log(float(grid_step)) / log(2.0)
+	if is_instance_valid(_ps1_material):
+		_ps1_material.set_shader_parameter("low_res_input", grid_step > 1)
 
 
 func set_resolution_index(index: int) -> void:
@@ -114,8 +133,8 @@ func set_resolution_index(index: int) -> void:
 	if is_fullscreen:
 		_apply_render_resolution(res)
 	else:
-		if is_instance_valid(_view_container):
-			_view_container.stretch_shrink = 1
+		_base_shrink = 1
+		_apply_render_scale()
 		DisplayServer.window_set_size(res)
 		var screen_size := DisplayServer.screen_get_size()
 		DisplayServer.window_set_position((screen_size - res) / 2)
@@ -174,6 +193,7 @@ func _apply_overlay() -> void:
 		#push_warning("Overlay is not valid")
 		return
 	_overlay.visible = overlay_enabled
+	_apply_render_scale()
 
 #--------------------------------- HUD&UI
 
