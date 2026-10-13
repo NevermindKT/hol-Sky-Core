@@ -163,7 +163,7 @@ func start_dialogue(entry_id: String) -> DialogueResult:
 
 	if _active:
 		push_warning(
-            "Cannot start dialogue '%s': dialogue '%s' is already running."
+			"Cannot start dialogue '%s': dialogue '%s' is already running."
 			% [entry_id, _entry_id]
 		)
 		return DialogueResult.cancelled()

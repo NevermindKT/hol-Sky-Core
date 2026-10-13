@@ -1,0 +1,1531 @@
+[gd_scene format=3 uid="uid://bb86rpp2o4f0b"]
+
+[ext_resource type="Script" uid="uid://bqiunaw81sh7s" path="res://scripts/menu/map/map_main.gd" id="1_4jp5a"]
+[ext_resource type="Texture2D" uid="uid://dtd7n5wx3jr8m" path="res://textures/menu/BG/MapBackground.png" id="2_g8try"]
+[ext_resource type="Texture2D" uid="uid://bgj1w1ydj3wel" path="res://textures/menu/arrows&icons/LockIcon.png" id="3_7bhuf"]
+[ext_resource type="Texture2D" uid="uid://x3lusvqcaset" path="res://textures/menu/map/map.png" id="3_glkao"]
+[ext_resource type="Texture2D" uid="uid://bu81hlc47oamc" path="res://textures/menu/notebook/notebook.png" id="3_qmjlt"]
+[ext_resource type="Texture2D" uid="uid://b7de06kmgleh6" path="res://textures/menu/BG/background21.png" id="3_xqkdt"]
+[ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="5_e2kap"]
+[ext_resource type="Texture2D" uid="uid://b1ndxqinywaj5" path="res://textures/menu/notebook/MoneyIcon.png" id="5_rwkw3"]
+[ext_resource type="Texture2D" uid="uid://nu0uab18voyy" path="res://textures/menu/map/forest.png" id="5_xqkdt"]
+[ext_resource type="Texture2D" uid="uid://djepas58bpu43" path="res://textures/menu/notebook/BookIcon.png" id="6_7bhuf"]
+[ext_resource type="Texture2D" uid="uid://bfuln5k307h3o" path="res://textures/menu/arrows&icons/base.svg" id="6_ehh6u"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="7_e2kap"]
+[ext_resource type="Texture2D" uid="uid://btboebmjrwtc1" path="res://textures/menu/notebook/SettingsIcon.png" id="7_po5id"]
+[ext_resource type="Texture2D" uid="uid://bq861owybkbfe" path="res://textures/menu/map/road.png" id="7_xqkdt"]
+[ext_resource type="Script" uid="uid://r6qbhb4ucdyh" path="res://scripts/menu/menu.gd" id="9_2lufi"]
+[ext_resource type="FontFile" uid="uid://cjwtnh1rcqm1c" path="res://scenes/menu/fonts/Cormorant/Cormorant-BoldItalic.ttf" id="9_e2kap"]
+[ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="10_gyiq0"]
+[ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="11_e2kap"]
+[ext_resource type="Texture2D" uid="uid://5p4jdm7xm45f" path="res://textures/menu/arrows&icons/PlayButton.png" id="12_8s6nd"]
+[ext_resource type="Texture2D" uid="uid://b1srf6vb3vj1m" path="res://textures/menu/notebook/turret.png" id="12_xaeb3"]
+[ext_resource type="Texture2D" uid="uid://bdeccl11vh3tx" path="res://textures/menu/notebook/car.png" id="13_spjye"]
+[ext_resource type="Texture2D" uid="uid://c8eqbl22v43n1" path="res://textures/menu/notebook/map.png" id="14_53vcc"]
+[ext_resource type="Texture2D" uid="uid://c1o42mj32s5k1" path="res://textures/menu/notebook/shop.png" id="15_mx7lj"]
+[ext_resource type="Texture2D" uid="uid://bnos70j1vjsfk" path="res://textures/menu/notebook/inventory.png" id="15_spjye"]
+[ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="16_q2at7"]
+[ext_resource type="FontFile" uid="uid://t6tnq2nlemob" path="res://scenes/menu/fonts/Cormorant/Cormorant-MediumItalic.ttf" id="17_twxtu"]
+[ext_resource type="Texture2D" uid="uid://bs5l3mujykj7y" path="res://textures/menu/notebook/header.png" id="19_glkao"]
+[ext_resource type="Texture2D" uid="uid://dtsqlrhx1rb2l" path="res://textures/menu/arrows&icons/CloseIcon.png" id="23_4jp5a"]
+[ext_resource type="Texture2D" uid="uid://cwppcbu8i18wg" path="res://textures/menu/arrows&icons/Arrow.png" id="26_2ehqf"]
+[ext_resource type="Texture2D" uid="uid://mikjm2b2if8w" path="res://textures/menu/LockPaper.png" id="26_mbyvp"]
+[ext_resource type="Script" uid="uid://bl4sxn3d4qutu" path="res://scripts/menu/GameManager.gd" id="28_g8try"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7if1s"]
+texture = ExtResource("2_g8try")
+modulate_color = Color(1.331864, 1.331864, 1.331864, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vnypt"]
+texture = ExtResource("3_glkao")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fck3"]
+texture = ExtResource("3_xqkdt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1hg1l"]
+texture = ExtResource("3_7bhuf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gxrfn"]
+texture = ExtResource("3_7bhuf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xqkdt"]
+texture = ExtResource("3_7bhuf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x38ol"]
+texture = ExtResource("5_xqkdt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g7l7j"]
+texture = ExtResource("6_ehh6u")
+region_rect = Rect2(7, 7, 86, 86)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aelyn"]
+texture = ExtResource("19_glkao")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xaeb3"]
+texture = ExtResource("3_qmjlt")
+region_rect = Rect2(0, 416, 2633, 120)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tw2qx"]
+texture = ExtResource("12_xaeb3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uiaj7"]
+texture = ExtResource("12_xaeb3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wfq6"]
+texture = ExtResource("12_xaeb3")
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4k4a"]
+texture = ExtResource("13_spjye")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p1c7b"]
+texture = ExtResource("13_spjye")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_keie2"]
+texture = ExtResource("13_spjye")
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ddpo1"]
+texture = ExtResource("14_53vcc")
+expand_margin_top = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj7eh"]
+texture = ExtResource("14_53vcc")
+expand_margin_top = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_brorb"]
+texture = ExtResource("14_53vcc")
+expand_margin_top = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7yafb"]
+texture = ExtResource("15_spjye")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q8sxb"]
+texture = ExtResource("15_spjye")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ri1et"]
+texture = ExtResource("15_spjye")
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_322xf"]
+texture = ExtResource("15_mx7lj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jicxv"]
+texture = ExtResource("15_mx7lj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkldt"]
+texture = ExtResource("15_mx7lj")
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_alg4n"]
+texture = ExtResource("26_mbyvp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gy3ke"]
+texture = ExtResource("12_8s6nd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqhb3"]
+texture = ExtResource("11_e2kap")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grfbt"]
+texture = ExtResource("19_glkao")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s835k"]
+texture = ExtResource("5_rwkw3")
+modulate_color = Color(1, 1, 1, 0.7294118)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nliuf"]
+texture = ExtResource("6_7bhuf")
+modulate_color = Color(1, 1, 1, 0.7294118)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvutn"]
+texture = ExtResource("7_po5id")
+modulate_color = Color(1, 1, 1, 0.7294118)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_spjye"]
+texture = ExtResource("23_4jp5a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53vcc"]
+texture = ExtResource("23_4jp5a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mx7lj"]
+texture = ExtResource("23_4jp5a")
+
+[sub_resource type="GDScript" id="GDScript_glkao"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d7huy"]
+texture = ExtResource("26_mbyvp")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnypt"]
+bg_color = Color(0.83137256, 0.827451, 0.75686276, 1)
+draw_center = false
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.39, 0.343655, 0.26909998, 0.5176471)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbyvp"]
+bg_color = Color(0.83137256, 0.827451, 0.75686276, 1)
+draw_center = false
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.25, 0.2225, 0.175, 0.6627451)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ehqf"]
+bg_color = Color(0.83137256, 0.827451, 0.75686276, 1)
+draw_center = false
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.25, 0.2225, 0.175, 0.6627451)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksf5k"]
+texture = ExtResource("5_e2kap")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehh6u"]
+bg_color = Color(0.7607843, 0.7176471, 0.654902, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.65882355, 0.627451, 0.5686275, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ue822"]
+bg_color = Color(0.74375, 0.70265883, 0.6410221, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.646875, 0.6126035, 0.5569123, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2at7"]
+bg_color = Color(0.765625, 0.72102547, 0.6578428, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.690625, 0.6602679, 0.5995536, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p20mb"]
+texture = ExtResource("26_2ehqf")
+modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glkao"]
+bg_color = Color(0.734375, 0.734375, 0.734375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lxo0m"]
+texture = ExtResource("26_2ehqf")
+
+[node name="Map" type="Control" unique_id=861827653]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4jp5a")
+metadata/_edit_horizontal_guides_ = [540.0]
+metadata/_edit_vertical_guides_ = [960.0]
+
+[node name="Background" type="Panel" parent="." unique_id=770605735]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7if1s")
+
+[node name="Map" type="Panel" parent="." unique_id=834063712]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -753.0
+offset_top = -434.0
+offset_right = 753.0
+offset_bottom = 434.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(772.5, 513)
+theme_override_styles/panel = SubResource("StyleBoxTexture_vnypt")
+
+[node name="Details" type="Panel" parent="Map" unique_id=746472195]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -483.0
+offset_top = 120.0
+offset_right = 439.2627
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7fck3")
+
+[node name="Misto1" type="Control" parent="Map" unique_id=1265466791]
+layout_mode = 1
+anchor_left = 0.48100004
+anchor_top = 0.49500003
+anchor_right = 0.48100004
+anchor_bottom = 0.49500003
+offset_left = 63.613953
+offset_top = 61.339966
+offset_right = 383.61395
+offset_bottom = 394.33997
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(156, 160)
+
+[node name="LockMisto1" type="Button" parent="Map/Misto1" unique_id=1945434561]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 103.0
+offset_right = 168.0
+offset_bottom = 181.0
+pivot_offset = Vector2(37, 32)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 100
+theme_override_styles/normal = SubResource("StyleBoxTexture_1hg1l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gxrfn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xqkdt")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Step1" type="Control" parent="Map" unique_id=187333275]
+layout_mode = 1
+anchor_left = 0.31187916
+anchor_top = 0.13563137
+anchor_right = 0.5498792
+anchor_bottom = 0.5616314
+offset_left = 0.30999756
+offset_top = 2.2719727
+offset_right = 0.5999756
+offset_bottom = -2.9519653
+pivot_offset = Vector2(187, 232)
+metadata/_edit_use_anchors_ = true
+
+[node name="LockStep1" type="Button" parent="Map/Step1" unique_id=1840924556]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 193.0
+offset_right = 226.0
+offset_bottom = 271.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 100
+theme_override_styles/normal = SubResource("StyleBoxTexture_1hg1l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gxrfn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xqkdt")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Lis1" type="Panel" parent="Map" unique_id=1382135685]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.314
+anchor_top = 0.642
+anchor_right = 0.314
+anchor_bottom = 0.642
+offset_left = -336.884
+offset_top = -306.25604
+offset_right = 345.116
+offset_bottom = 304.74396
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(344, 305)
+theme_override_styles/panel = SubResource("StyleBoxTexture_x38ol")
+
+[node name="Roads" type="Control" parent="Map/Lis1" unique_id=123300519]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="12" type="Line2D" parent="Map/Lis1/Roads" unique_id=989311550]
+position = Vector2(-343, -357)
+points = PackedVector2Array(617, 547, 610, 578, 615, 600, 619, 618, 643, 621, 672, 622, 698, 622, 732, 628)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="13" type="Line2D" parent="Map/Lis1/Roads" unique_id=521956238]
+position = Vector2(-343, -357)
+points = PackedVector2Array(617, 547, 609, 577, 614, 597, 622, 624, 648, 620, 676, 623, 697, 622, 726, 615, 775, 609, 839, 622, 866, 646, 888, 680, 892, 699, 894, 770)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="14" type="Line2D" parent="Map/Lis1/Roads" unique_id=1545980573]
+position = Vector2(-343, -357)
+points = PackedVector2Array(617, 547, 592, 589, 568, 627, 571, 666, 594, 693, 617, 711, 656, 727, 709, 737, 733, 747, 757, 761, 777, 787, 782, 817, 775, 854)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="15" type="Line2D" parent="Map/Lis1/Roads" unique_id=927470568]
+position = Vector2(-343, -357)
+points = PackedVector2Array(617, 547, 599, 574, 584, 603, 571, 620, 555, 647)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="23" type="Line2D" parent="Map/Lis1/Roads" unique_id=1876252551]
+position = Vector2(-343, -357)
+points = PackedVector2Array(895, 768, 896, 725, 888, 679, 867, 647, 837, 621, 803, 613, 774, 609, 741, 622)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="24" type="Line2D" parent="Map/Lis1/Roads" unique_id=755060070]
+position = Vector2(-343, -357)
+points = PackedVector2Array(776, 852, 782, 816, 781, 773, 801, 757, 820, 752, 854, 752, 884, 728, 889, 719, 892, 700, 888, 679, 867, 647, 838, 621, 803, 613, 774, 609, 753, 614, 740, 622)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="25" type="Line2D" parent="Map/Lis1/Roads" unique_id=557413346]
+position = Vector2(-343, -357)
+points = PackedVector2Array(554, 650, 580, 648, 600, 638, 622, 624, 645, 620, 671, 623, 698, 622, 734, 623)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="34" type="Line2D" parent="Map/Lis1/Roads" unique_id=1718049631]
+position = Vector2(-343, -357)
+points = PackedVector2Array(892, 769, 851, 753, 820, 751, 801, 757, 782, 772, 777, 790, 782, 813, 776, 852)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="35" type="Line2D" parent="Map/Lis1/Roads" unique_id=182907964]
+position = Vector2(-343, -357)
+points = PackedVector2Array(895, 769, 850, 753, 821, 751, 801, 757, 759, 762, 710, 736, 656, 727, 616, 710, 590, 686, 554, 652)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="45" type="Line2D" parent="Map/Lis1/Roads" unique_id=1949557631]
+position = Vector2(-343, -357)
+points = PackedVector2Array(775, 855, 782, 816, 777, 788, 757, 761, 710, 736, 656, 727, 616, 710, 585, 683, 556, 651)
+width = 20.0
+default_color = Color(0.95, 1, 0.95, 1)
+texture = ExtResource("7_xqkdt")
+texture_mode = 2
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 200.0
+round_precision = 32
+
+[node name="Markers" type="Control" parent="Map/Lis1" unique_id=16319710]
+anchors_preset = 0
+offset_left = 51.0
+offset_top = 55.0
+offset_right = 656.0
+offset_bottom = 570.0
+
+[node name="Lis11" type="Button" parent="Map/Lis1/Markers" unique_id=1770227724]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.5
+offset_top = -155.5
+offset_right = -49.5
+offset_bottom = -95.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30, 27)
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+text = "1001"
+
+[node name="Lis12" type="Button" parent="Map/Lis1/Markers" unique_id=800059834]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.5
+offset_top = -72.5
+offset_right = 74.5
+offset_bottom = -12.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30.000061, 30)
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+text = "1002"
+
+[node name="Lis13" type="Button" parent="Map/Lis1/Markers" unique_id=2004700498]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 172.5
+offset_top = 72.5
+offset_right = 232.5
+offset_bottom = 132.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30, 30)
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+text = "1003"
+
+[node name="Lis14" type="Button" parent="Map/Lis1/Markers" unique_id=1957293263]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 46.5
+offset_top = 166.5
+offset_right = 106.5
+offset_bottom = 226.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50.571533, 49.571533)
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+text = "1004"
+
+[node name="Lis15" type="Button" parent="Map/Lis1/Markers" unique_id=1856255308]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.5
+offset_top = -47.5
+offset_right = -115.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(30, 30)
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+text = "1005"
+
+[node name="ActiveLis1" type="Button" parent="Map/Lis1" unique_id=1044866494]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -23.5
+offset_right = 45.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 100
+theme_override_styles/normal = SubResource("StyleBoxTexture_aelyn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aelyn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_aelyn")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Footer" type="Panel" parent="." unique_id=507525789]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -394.0702
+offset_top = -45.0
+offset_right = 394.0702
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_xaeb3")
+
+[node name="MenuButtons" type="HBoxContainer" parent="Footer" unique_id=1719213950]
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -387.0702
+offset_top = -62.0
+offset_right = 342.9298
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("9_2lufi")
+
+[node name="TurretButton" type="Button" parent="Footer/MenuButtons" unique_id=661589821]
+custom_minimum_size = Vector2(138, 170)
+custom_maximum_size = Vector2(-1, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_e2kap")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_tw2qx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uiaj7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1wfq6")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="CarButton" type="Button" parent="Footer/MenuButtons" unique_id=124959573]
+custom_minimum_size = Vector2(138, 170)
+custom_maximum_size = Vector2(-1, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_e2kap")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_h4k4a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p1c7b")
+theme_override_styles/hover = SubResource("StyleBoxTexture_keie2")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="MapButton" type="Button" parent="Footer/MenuButtons" unique_id=44791462]
+custom_minimum_size = Vector2(138, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_e2kap")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_ddpo1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bj7eh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_brorb")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="InventoryButton" type="Button" parent="Footer/MenuButtons" unique_id=1350700101]
+custom_minimum_size = Vector2(138, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_e2kap")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_7yafb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q8sxb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ri1et")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="ShopButton" type="Button" parent="Footer/MenuButtons" unique_id=392468225]
+custom_minimum_size = Vector2(138, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_e2kap")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_322xf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jicxv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pkldt")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="Base" type="Panel" parent="." unique_id=217001280]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -581.0
+offset_top = -306.0
+offset_right = 12.0
+offset_bottom = 306.0
+grow_vertical = 2
+pivot_offset = Vector2(80, 449)
+theme_override_styles/panel = SubResource("StyleBoxTexture_alg4n")
+
+[node name="BaseNum" type="Label" parent="Base" unique_id=801075222]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.147
+anchor_right = 0.5
+anchor_bottom = 0.147
+offset_left = -130.73193
+offset_top = -19.963997
+offset_right = 118.26807
+offset_bottom = 43.26989
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_gyiq0")
+theme_override_font_sizes/font_size = 50
+text = "База #"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BaseName" type="Label" parent="Base" unique_id=720887606]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.20300001
+anchor_right = 0.5
+anchor_bottom = 0.20300001
+offset_left = -153.2319
+offset_top = 14.763992
+offset_right = 140.7681
+offset_bottom = 53.680496
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_gyiq0")
+theme_override_font_sizes/font_size = 25
+text = " —  —"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hardness" type="Label" parent="Base" unique_id=1688608170]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.41500002
+anchor_right = 0.5
+anchor_bottom = 0.41500002
+offset_left = -207.5
+offset_top = -65.98001
+offset_right = 206.76807
+offset_bottom = -28.980011
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 7
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 30
+vertical_alignment = 1
+
+[node name="Monsters" type="Label" parent="Base" unique_id=1075805817]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.41500002
+anchor_right = 0.5
+anchor_bottom = 0.41500002
+offset_left = -207.5
+offset_top = -16.980011
+offset_right = 216.76807
+offset_bottom = 22.019989
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 7
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 30
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Base" unique_id=777245604]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.41500002
+anchor_right = 0.5
+anchor_bottom = 0.41500002
+offset_left = -207.5
+offset_top = 38.01999
+offset_right = 208.5
+offset_bottom = 164.02002
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -12
+theme_override_constants/paragraph_spacing = 1
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 30
+
+[node name="Play" type="Button" parent="Base" unique_id=1719372733]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.837
+anchor_right = 0.5
+anchor_bottom = 0.837
+offset_left = -71.13248
+offset_top = -70.24402
+offset_right = 39.5
+offset_bottom = 9.017883
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_gy3ke")
+
+[node name="Header" type="Control" parent="." unique_id=1063021593]
+layout_mode = 1
+anchor_right = 0.99700004
+anchor_bottom = 0.109000005
+offset_right = 5.7598877
+offset_bottom = -117.72001
+grow_horizontal = 2
+script = ExtResource("16_q2at7")
+
+[node name="Block" type="Panel" parent="Header" unique_id=1850785376]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -543.0
+offset_top = 28.0
+offset_right = -31.041138
+offset_bottom = 106.22593
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 6.2831855
+theme_override_styles/panel = SubResource("StyleBoxTexture_sqhb3")
+
+[node name="Name" type="Label" parent="Header/Block" unique_id=2126954317]
+layout_mode = 0
+offset_left = 95.35571
+offset_top = 12.999992
+offset_right = 410.3557
+offset_bottom = 61.999992
+theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
+theme_override_fonts/font = ExtResource("17_twxtu")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Header" type="Panel" parent="Header" unique_id=823009394]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_grfbt")
+
+[node name="HeaderButtons" type="HBoxContainer" parent="Header/Header" unique_id=1036593880]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.57900006
+anchor_top = 0.582
+anchor_right = 0.57900006
+anchor_bottom = 0.582
+offset_left = 381.31995
+offset_top = -37.962
+offset_right = 670.31995
+offset_bottom = 24.037998
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Money" type="HBoxContainer" parent="Header/Header/HeaderButtons" unique_id=1161333593]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="MoneyEquals" type="Label" parent="Header/Header/HeaderButtons/Money" unique_id=1748585663]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
+theme_override_font_sizes/font_size = 30
+text = "1000"
+
+[node name="MoneyIcon" type="Panel" parent="Header/Header/HeaderButtons/Money" unique_id=1882845416]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_s835k")
+
+[node name="BookIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=1750922357]
+custom_minimum_size = Vector2(40, 30)
+custom_maximum_size = Vector2(-1, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_nliuf")
+
+[node name="SettingsIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=186424647]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_hvutn")
+
+[node name="Close" type="Button" parent="." unique_id=681310306]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.966
+anchor_top = 0.141
+anchor_right = 0.966
+anchor_bottom = 0.141
+offset_left = -33.71997
+offset_top = -9.279999
+offset_right = 32.28003
+offset_bottom = 56.72
+rotation = -0.0022424909
+pivot_offset = Vector2(33, 33)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 100
+theme_override_styles/normal = SubResource("StyleBoxTexture_spjye")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_53vcc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mx7lj")
+icon_alignment = 1
+expand_icon = true
+script = SubResource("GDScript_glkao")
+
+[node name="LockMessage" type="Panel" parent="." unique_id=1132575657]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -283.25928
+offset_top = -945.0
+offset_right = 283.25928
+offset_bottom = -561.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_d7huy")
+
+[node name="Label1" type="Label" parent="LockMessage" unique_id=290856125]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07700001
+anchor_top = 0.15900001
+anchor_right = 0.91700006
+anchor_bottom = 0.326
+offset_left = 49.637344
+offset_top = 10.943996
+offset_right = -36.23828
+offset_bottom = 34.815994
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("10_gyiq0")
+theme_override_font_sizes/font_size = 40
+text = "У вас немає доступу 
+до цієї локації!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="LockMessage" unique_id=776032754]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07700001
+anchor_top = 0.094000004
+anchor_right = 0.93200004
+anchor_bottom = 0.326
+offset_left = 31.637344
+offset_top = 115.904
+offset_right = -38.736023
+offset_bottom = 103.815994
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 30
+text = "Продовжуйте виконувати квести:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Next" type="Button" parent="LockMessage" unique_id=2026348715]
+layout_mode = 0
+offset_left = 103.25928
+offset_top = 235.0
+offset_right = 266.25928
+offset_bottom = 319.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_gyiq0")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vnypt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mbyvp")
+text = "Далі"
+
+[node name="Quests" type="Button" parent="LockMessage" unique_id=1404858660]
+layout_mode = 0
+offset_left = 277.25928
+offset_top = 235.0
+offset_right = 440.25928
+offset_bottom = 319.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_gyiq0")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vnypt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ehqf")
+text = "Перейти 
+до квестів"
+
+[node name="Quests" type="Panel" parent="." unique_id=2084657128]
+layout_mode = 0
+offset_left = 1920.0
+offset_top = 226.0
+offset_right = 2379.0
+offset_bottom = 903.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ksf5k")
+
+[node name="Locations" type="VBoxContainer" parent="Quests" unique_id=1011866007]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 114.17999
+offset_right = 390.0
+offset_bottom = 281.18
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme_override_constants/separation = 10
+script = ExtResource("28_g8try")
+
+[node name="Lis1" type="Button" parent="Quests/Locations" unique_id=1079615256]
+z_index = 1
+z_as_relative = false
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
+theme_override_colors/font_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
+theme_override_constants/icon_max_width = 30
+theme_override_fonts/font = ExtResource("10_gyiq0")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehh6u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ue822")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q2at7")
+text = "Ліс 1"
+
+[node name="Arrow" type="Panel" parent="Quests/Locations/Lis1" unique_id=953693517]
+layout_mode = 0
+offset_left = 14.299999
+offset_top = 13.0
+offset_right = 43.7
+offset_bottom = 41.0
+pivot_offset = Vector2(14.699951, 14)
+theme_override_styles/panel = SubResource("StyleBoxTexture_p20mb")
+
+[node name="Quests" type="VBoxContainer" parent="Quests/Locations" unique_id=1885988932]
+visible = false
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 6
+
+[node name="Quest1" type="Button" parent="Quests/Locations/Quests" unique_id=1390490604]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
+text = "101"
+
+[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest1" unique_id=1366171625]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 6.8200073
+offset_right = -70.0
+offset_bottom = 29.820007
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest1" unique_id=2002968695]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -30.179993
+offset_right = -70.0
+offset_bottom = -6.1799927
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 10
+vertical_alignment = 1
+
+[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest1" unique_id=120842622]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = 9.820007
+offset_right = -11.876648
+offset_bottom = -10.539978
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quest2" type="Button" parent="Quests/Locations/Quests" unique_id=549834942]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
+text = "102"
+
+[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest2" unique_id=1539132144]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 6.8200073
+offset_right = -70.0
+offset_bottom = 29.820007
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest2" unique_id=1069935391]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -30.179993
+offset_right = -70.0
+offset_bottom = -6.1799927
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 12
+vertical_alignment = 1
+
+[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest2" unique_id=1123699472]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = 9.820007
+offset_right = -11.876648
+offset_bottom = -10.539978
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quest3" type="Button" parent="Quests/Locations/Quests" unique_id=1112792286]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
+text = "103"
+
+[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest3" unique_id=943520973]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 6.8200073
+offset_right = -70.0
+offset_bottom = 29.820007
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest3" unique_id=2054373412]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -30.179993
+offset_right = -70.0
+offset_bottom = -6.1799927
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 12
+vertical_alignment = 1
+
+[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest3" unique_id=1816309101]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = 9.820007
+offset_right = -11.876648
+offset_bottom = -10.539978
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Quests/Locations/Quests/Quest3/Progress" unique_id=61304392]
+
+[node name="Quest4" type="Button" parent="Quests/Locations/Quests" unique_id=891210578]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
+text = "104"
+
+[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest4" unique_id=1902922197]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 6.8200073
+offset_right = -70.0
+offset_bottom = 29.820007
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest4" unique_id=517640158]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -30.179993
+offset_right = -70.0
+offset_bottom = -6.1799927
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 11
+vertical_alignment = 1
+
+[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest4" unique_id=1307539707]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = 9.820007
+offset_right = -11.876648
+offset_bottom = -10.539978
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quest5" type="Button" parent="Quests/Locations/Quests" unique_id=138849252]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 0)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
+text = "105"
+
+[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest5" unique_id=1827650659]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 6.8200073
+offset_right = -70.0
+offset_bottom = 31.820007
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest5" unique_id=2087596302]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -30.179993
+offset_right = -70.0
+offset_bottom = -6.1799927
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+theme_override_font_sizes/font_size = 13
+vertical_alignment = 1
+
+[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest5" unique_id=946860856]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = 9.820007
+offset_right = -11.876648
+offset_bottom = -10.539978
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_e2kap")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OpenClose" type="Button" parent="Quests" unique_id=996871474]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.513
+anchor_right = 0.5
+anchor_bottom = 0.513
+offset_left = -280.5
+offset_top = -23.175018
+offset_right = -226.15283
+offset_bottom = 31.17215
+rotation = 1.5707964
+pivot_offset = Vector2(25, 25)
+theme_override_styles/normal = SubResource("StyleBoxTexture_lxo0m")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lxo0m")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lxo0m")
+
+[node name="QuestsLabel" type="Label" parent="Quests" unique_id=971132873]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07700001
+anchor_top = 0.15900001
+anchor_right = 0.91700006
+anchor_bottom = 0.326
+offset_left = -9.343002
+offset_top = -61.823006
+offset_right = -4.903015
+offset_bottom = -129.222
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("10_gyiq0")
+theme_override_font_sizes/font_size = 40
+text = "Квести"
+horizontal_alignment = 1
+vertical_alignment = 1

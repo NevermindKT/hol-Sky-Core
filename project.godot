@@ -23,6 +23,7 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 
 GameFlow="*uid://cutq725t2naxo"
 Events="*uid://8jnql3fu3d2y"
+GameManager="*uid://bl4sxn3d4qutu"
 InputController="*uid://bxq0wqwdbfbo8"
 SoundManager="*uid://b6nq611vylrnp"
 PauseManager="*uid://b0sb2cs28f50a"

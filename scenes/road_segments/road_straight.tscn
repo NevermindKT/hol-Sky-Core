@@ -45,7 +45,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 transform = Transform3D(3, 0, 0, 0, 1.096, 0, 0, 0, 1.096, 0, 0.3, 17.5)
 size = Vector3(16.053467, 0.5, 54.964966)
 
-
 [node name="Obstacles" type="Node" parent="." unique_id=1283524179]
 
 [node name="ObstaclePlacement1" type="Marker3D" parent="Obstacles" unique_id=1663887939]
@@ -59,12 +58,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 curve = SubResource("Curve3D_fladq")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoadPath" unique_id=1358451266]
-cast_shadow = 0
 layers = 3
+material_override = ExtResource("5_asphalt")
+cast_shadow = 0
 use_collision = true
 collision_layer = 4
 collision_mask = 0
-material_override = ExtResource("5_asphalt")
 polygon = PackedVector2Array(-8, 0, -8, 0.05, 8, 0.05, 8, 0)
 mode = 2
 path_node = NodePath("..")
