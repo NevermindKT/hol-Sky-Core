@@ -7,6 +7,7 @@ var vegetation: Vegetation_scatter
 const SPINE_STEP := 2.0
 const PIECE_SAMPLES := 64
 const NEEDED_REFRESH_DISTANCE := 16.0
+const SHELL_REFRESH_DISTANCE := 4.0
 
 static var _mark_dirty_max_usec := 0
 static var _apply_job_max_usec := 0
@@ -153,6 +154,8 @@ var _index_buffer := PackedInt32Array()
 var _max_tasks := 1
 var _clusters: Dictionary = {}
 var _dirty_clusters: Dictionary = {}
+var _shells: Dictionary = {}
+var _shell_origin := Vector3(INF, INF, INF)
 
 var _world_seed := 0
 var _hill_noise: FastNoiseLite
@@ -185,6 +188,9 @@ func initialize() -> void:
 	_commit_spine(old_size)
 
 	Events.segment_spawned.connect(_on_segment_spawned)
+	for child in world.road_container.get_children():
+		if child is Road_segment:
+			_bind_road_material(child)
 
 
 func _process(_delta: float) -> void:
@@ -208,6 +214,7 @@ func _process(_delta: float) -> void:
 		_refresh_needed(car_local)
 
 	_pump(Time.get_ticks_usec() + int(build_budget_ms * 1000.0))
+	_update_shells(car_local)
 
 
 func _exit_tree() -> void:
@@ -217,7 +224,8 @@ func _exit_tree() -> void:
 	_active_keys.clear()
 
 
-func _on_segment_spawned(_segment: Road_segment) -> void:
+func _on_segment_spawned(segment: Road_segment) -> void:
+	_bind_road_material(segment)
 	var curve := world.ground_path.curve
 	if curve.point_count < 2:
 		return
@@ -450,6 +458,16 @@ func _build_material() -> void:
 		_material.set_shader_parameter("macro_scale", landscape.macro_scale)
 		_material.set_shader_parameter("macro_strength", landscape.macro_strength)
 	_material.set_shader_parameter("uv_scale", texture_tile_scale)
+	if landscape:
+		_material.set_shader_parameter("shoulder_start", road_half_width + landscape.shoulder_width)
+		_material.set_shader_parameter("shoulder_fade", landscape.shoulder_fade)
+	if landscape and landscape.grass_shell_material:
+		var shell_material := landscape.grass_shell_material
+		shell_material.set_shader_parameter("shell_count", landscape.grass_shell_count)
+		shell_material.set_shader_parameter("fade_end", landscape.grass_shell_radius)
+		shell_material.set_shader_parameter("fade_start", landscape.grass_shell_radius * 0.65)
+		shell_material.set_shader_parameter("road_start", road_half_width + landscape.shoulder_width)
+		shell_material.set_shader_parameter("road_fade", landscape.shoulder_fade)
 	_material.set_shader_parameter("roughness_value", roughness_value)
 
 
@@ -799,6 +817,7 @@ func _compute_surface(job: ChunkJob) -> void:
 			job.uvs[vi] = Vector2(float(job.key.x * n + ix) * cell, float(job.key.y * n + iz) * cell)
 			job.weights[vi * 4] = 1.0 - smoothstep(shoulder_start, shoulder_start + shoulder_fade, surface.distances[vi])
 			job.weights[vi * 4 + 1] = surface.forest[vi]
+			job.weights[vi * 4 + 2] = minf(surface.distances[vi], 1.0e6)
 
 	job.surface = surface
 	job.reach = reach + maxf(height_blend_radius, Road_spine.REFINE_MARGIN) + SPINE_STEP
@@ -846,6 +865,9 @@ func _apply_job(job: ChunkJob) -> void:
 		_chunks[job.key] = chunk
 
 	chunk.node.mesh = mesh
+	var shell: MultiMeshInstance3D = _shells.get(job.key)
+	if shell:
+		shell.multimesh.mesh = mesh
 	chunk.surface = job.surface
 	chunk.grid = job.grid
 	chunk.reach = job.reach
@@ -865,6 +887,7 @@ func _unload_chunk(key: Vector2i) -> void:
 	var chunk: Chunk = _chunks[key]
 	chunk.node.queue_free()
 	_chunks.erase(key)
+	_shells.erase(key)
 	for job in _active:
 		if job.key == key:
 			job.stale = true
@@ -978,3 +1001,65 @@ func _rect_rect_distance(a: Rect2, b: Rect2) -> float:
 	var dx := maxf(maxf(a.position.x - b.end.x, 0.0), b.position.x - a.end.x)
 	var dz := maxf(maxf(a.position.y - b.end.y, 0.0), b.position.y - a.end.y)
 	return sqrt(dx * dx + dz * dz)
+
+
+func _update_shells(car_local: Vector3) -> void:
+	if landscape == null or landscape.grass_shell_material == null or landscape.grass_shell_count <= 0:
+		return
+	if car_local.distance_to(_shell_origin) < SHELL_REFRESH_DISTANCE and _shells.size() > 0:
+		return
+	_shell_origin = car_local
+
+	var radius := landscape.grass_shell_radius + SHELL_REFRESH_DISTANCE
+	var wanted := {}
+	var min_x := floori((car_local.x - radius) / chunk_size)
+	var max_x := floori((car_local.x + radius) / chunk_size)
+	var min_z := floori((car_local.z - radius) / chunk_size)
+	var max_z := floori((car_local.z + radius) / chunk_size)
+	for kz in range(min_z, max_z + 1):
+		for kx in range(min_x, max_x + 1):
+			var key := Vector2i(kx, kz)
+			var chunk: Chunk = _chunks.get(key)
+			if chunk and chunk.node.mesh and _car_distance(key, car_local) <= radius:
+				wanted[key] = chunk
+
+	for key in _shells.keys():
+		if not wanted.has(key):
+			var old: MultiMeshInstance3D = _shells[key]
+			if is_instance_valid(old):
+				old.queue_free()
+			_shells.erase(key)
+
+	for key in wanted:
+		if not _shells.has(key):
+			_shells[key] = _create_shell(wanted[key])
+
+
+func _create_shell(chunk: Chunk) -> MultiMeshInstance3D:
+	var mm := MultiMesh.new()
+	mm.transform_format = MultiMesh.TRANSFORM_3D
+	mm.mesh = chunk.node.mesh
+	mm.instance_count = landscape.grass_shell_count
+	for i in mm.instance_count:
+		mm.set_instance_transform(i, Transform3D.IDENTITY)
+
+	var shell := MultiMeshInstance3D.new()
+	shell.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	shell.multimesh = mm
+	shell.material_override = landscape.grass_shell_material
+	shell.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	shell.extra_cull_margin = 1.0
+	chunk.node.add_child(shell)
+	return shell
+
+
+func _bind_road_material(segment: Road_segment) -> void:
+	if segment.polygon == null or not segment.polygon.material_override is ShaderMaterial:
+		return
+	var material := segment.polygon.material_override as ShaderMaterial
+	var ground_from_polygon := world.ground_container.global_transform.affine_inverse() * segment.polygon.global_transform
+	material.set_shader_parameter("ground_transform", Projection(ground_from_polygon))
+	material.set_shader_parameter("edge_texture_scale", texture_tile_scale)
+	if landscape:
+		material.set_shader_parameter("edge_texture", landscape.shoulder_texture)
+		material.set_shader_parameter("edge_specular", landscape.specular)

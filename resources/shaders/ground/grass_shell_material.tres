@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ba7uqa8ksjavx"]
+
+[ext_resource type="Shader" uid="uid://bc2rpvly1di7p" path="res://resources/shaders/ground/grass_shell.gdshader" id="1_shell"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_shell")
+shader_parameter/shell_count = 14
+shader_parameter/shell_height = 0.32
+shader_parameter/fade_start = 38.0
+shader_parameter/fade_end = 58.0
+shader_parameter/road_start = 10.0
+shader_parameter/road_fade = 3.5
+shader_parameter/edge_noise_scale = 0.35
+shader_parameter/edge_noise_amount = 1.5
+shader_parameter/grass_growth_distance = 4.0
+shader_parameter/forest_thinning = 0.6
+shader_parameter/blade_density = 11.0
+shader_parameter/blade_width = 0.8
+shader_parameter/min_blade_height = 0.35
+shader_parameter/patch_scale = 0.08
+shader_parameter/patch_strength = 0.55
+shader_parameter/root_color = Color(0.17, 0.15, 0.07, 1)
+shader_parameter/tip_color = Color(0.4, 0.44, 0.17, 1)
+shader_parameter/dry_color = Color(0.44, 0.39, 0.19, 1)
+shader_parameter/dry_amount = 0.35
+shader_parameter/wind_strength = 0.12
+shader_parameter/wind_speed = 1.6
+shader_parameter/wind_wave_scale = 0.12
+shader_parameter/wind_direction = Vector2(1, 0.3)

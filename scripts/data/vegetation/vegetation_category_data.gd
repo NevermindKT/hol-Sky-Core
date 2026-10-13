@@ -22,6 +22,7 @@ enum Placement { SCATTER, GRID }
 
 @export var visibility_range := 0.0
 @export var visibility_fade := true
+@export var shrink_distance := Vector2.ZERO
 @export var cast_shadows := true
 @export var lod_bias := 1.0
 @export var lod_road_distances: PackedFloat32Array = PackedFloat32Array()
@@ -31,6 +32,7 @@ enum Placement { SCATTER, GRID }
 @export_range(0.0, 1.0, 0.01) var specular := 0.1
 @export var wind_strength := 0.0
 @export var wind_speed := 1.0
+@export_range(0.0, 1.0, 0.01) var normal_up_blend := 0.0
 
 
 func weight_for(forest: float, road_distance: float) -> float:

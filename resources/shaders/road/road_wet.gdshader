@@ -49,6 +49,37 @@ uniform vec3 puddle_albedo_tint : source_color = vec3(0.75, 0.75, 0.8);
 uniform float puddle_clearcoat : hint_range(0.0, 1.0) = 1.0;
 uniform float puddle_clearcoat_roughness : hint_range(0.0, 1.0) = 0.01;
 
+uniform float road_width = 16.0;
+uniform vec2 road_top_v_range = vec2(0.125, 0.25);
+uniform sampler2D edge_texture : source_color, filter_linear_mipmap, repeat_enable;
+uniform float edge_texture_scale = 0.2;
+uniform float edge_blend_width = 0.8;
+uniform float edge_noise_scale = 0.25;
+uniform float edge_noise_amount = 0.35;
+uniform float edge_specular : hint_range(0.0, 1.0) = 0.2;
+uniform mat4 ground_transform = mat4(1.0);
+
+varying vec2 ground_position;
+
+float edge_hash(vec2 p)
+{
+	p = fract(p * vec2(123.34, 456.21));
+	p += dot(p, p + 45.32);
+	return fract(p.x * p.y);
+}
+
+float edge_noise(vec2 p)
+{
+	vec2 i = floor(p);
+	vec2 f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	float a = edge_hash(i);
+	float b = edge_hash(i + vec2(1.0, 0.0));
+	float c = edge_hash(i + vec2(0.0, 1.0));
+	float d = edge_hash(i + vec2(1.0, 1.0));
+	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+
 vec2 road_noise_uv(vec2 uv, vec2 scale)
 {
 	return vec2(fract(road_distance_offset * scale.x) + uv.x * scale.x, uv.y * scale.y);
@@ -63,8 +94,23 @@ float layered_noise(sampler2D tex, vec2 uv, vec2 scale)
 	return (blended - 0.5) * contrast + 0.5;
 }
 
+void vertex()
+{
+	ground_position = (ground_transform * vec4(VERTEX, 1.0)).xz;
+}
+
 void fragment()
 {
+	float edge_blend = 0.0;
+	float across = (UV.y - road_top_v_range.x) / (road_top_v_range.y - road_top_v_range.x);
+	if (across >= 0.0 && across <= 1.0)
+	{
+		float side = across < 0.5 ? 0.0 : 1.0;
+		float along = UV.x * edge_noise_scale + side * 57.0;
+		float wobble = (edge_noise(vec2(along, 0.0)) * 0.75 + edge_noise(vec2(along * 2.3, 9.0)) * 0.25) * edge_noise_amount;
+		edge_blend = 1.0 - smoothstep(0.0, edge_blend_width + wobble, min(across, 1.0 - across) * road_width);
+	}
+
 	float pos_along_road = use_uv_y_for_gradient ? UV.y : UV.x;
 
 	float progress = 0.0;
@@ -92,7 +138,7 @@ void fragment()
 	float grown_wetness = smoothstep(patch_threshold - patch_edge_softness, patch_threshold + patch_edge_softness, patch_noise);
 	float patch_mask = smoothstep(local_patch_coverage - patch_edge_softness, local_patch_coverage + patch_edge_softness, patch_noise);
 	float faded_wetness = wet_factor * mix(patch_mask, 1.0, coverage_factor);
-	float wetness = mix(grown_wetness, faded_wetness, transition_fade_amount);
+	float wetness = mix(grown_wetness, faded_wetness, transition_fade_amount) * (1.0 - edge_blend);
 
 	vec3 tint = mix(dry_albedo_tint, wet_albedo_tint, wetness);
 	float roughness = mix(dry_roughness, wet_roughness, wetness);
@@ -105,7 +151,7 @@ void fragment()
 	float puddle_threshold = mix(1.0 + puddle_edge_softness, local_puddle_coverage, puddle_factor);
 	float grown_puddle = smoothstep(puddle_threshold - puddle_edge_softness, puddle_threshold + puddle_edge_softness, puddle_shape);
 	float faded_puddle = puddle_factor * smoothstep(local_puddle_coverage - puddle_edge_softness, local_puddle_coverage + puddle_edge_softness, puddle_shape);
-	float puddle_mask = mix(grown_puddle, faded_puddle, transition_fade_amount);
+	float puddle_mask = mix(grown_puddle, faded_puddle, transition_fade_amount) * (1.0 - edge_blend);
 
 	tint = mix(tint, puddle_albedo_tint, puddle_mask);
 	roughness = mix(roughness, puddle_roughness, puddle_mask);
@@ -113,7 +159,9 @@ void fragment()
 	clearcoat = mix(clearcoat, puddle_clearcoat, puddle_mask);
 	clearcoat_roughness = mix(clearcoat_roughness, puddle_clearcoat_roughness, puddle_mask);
 
-	ALBEDO = texture(albedo_texture, UV * uv_scale).rgb * tint;
+	roughness = mix(roughness, 1.0, edge_blend);
+	specular = mix(specular, edge_specular, edge_blend);
+	ALBEDO = mix(texture(albedo_texture, UV * uv_scale).rgb * tint, texture(edge_texture, ground_position * edge_texture_scale).rgb, edge_blend);
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
 	CLEARCOAT = clearcoat;

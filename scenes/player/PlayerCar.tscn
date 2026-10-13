@@ -22,10 +22,10 @@
 [ext_resource type="Resource" uid="uid://25wvst5frjag" path="res://resources/weapons/pistol.tres" id="12_t5h3w"]
 [ext_resource type="PackedScene" uid="uid://ded5tqaoryrpc" path="res://scenes/player/ostov.tscn" id="15_xq70i"]
 [ext_resource type="PackedScene" uid="uid://c6vfw663kn4ia" path="res://scenes/car/wheel.tscn" id="19_f0rj0"]
-[ext_resource type="PackedScene" uid="uid://dtt3trymeli7j" path="res://scenes/gun/gun.tscn" id="22_xq70i"]
 [ext_resource type="Script" uid="uid://dt7ljpuwok0u3" path="res://scripts/car/wheel_loss_controller.gd" id="20_wloss"]
 [ext_resource type="PackedScene" path="res://scenes/car/detached_wheel.tscn" id="21_dwheel"]
 [ext_resource type="PackedScene" path="res://scenes/vfx/effects/hub_sparks.tscn" id="22_hsparks"]
+[ext_resource type="PackedScene" uid="uid://dtt3trymeli7j" path="res://scenes/gun/gun.tscn" id="22_xq70i"]
 [ext_resource type="AudioStream" uid="uid://d237hrqhiywl5" path="res://audio/effects/car/impact/2.wav" id="24_2jmj4"]
 
 [sub_resource type="Curve" id="Curve_dwkn5"]
@@ -206,7 +206,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.25
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -2.15)
 
 [node name="Visual_vfx_ForwardLights#SpotLight3D" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=1295753280]
-transform = Transform3D(0.9998039, -0.0052247075, 0.01910103, 0.0038136744, 0.9973118, 0.07317594, -0.019432003, -0.07308874, 0.9971361, -0.48, 0, 0)
+transform = Transform3D(0.9999939, -0.0034906515, 0, 0.0034812773, 0.9973084, 0.073238194, -0.000255649, -0.07323775, 0.99731445, -0.48, 0, 0)
 light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
 light_energy = 10.0
 light_projector = ExtResource("12_hlcookie")
@@ -219,19 +219,19 @@ spot_range = 45.0
 spot_attenuation = 0.3
 spot_angle = 22.0
 script = ExtResource("11_hlmode")
-close_range = 70.0
+close_range = 90.0
 close_angle = 80.0
 close_energy = 15.0
 close_attenuation = 0.6
 close_volumetric_fog_energy = 0.2
 far_range = 150.0
 far_angle = 35.0
-far_energy = 20.0
+far_energy = 40.0
 far_attenuation = 0.3
 far_volumetric_fog_energy = 0.1
 
 [node name="Visual_vfx_ForwardLights#SpotLight3D2" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=300350988]
-transform = Transform3D(0.9996733, -0.0052247066, 0.025018563, 0.0033804758, 0.9973118, 0.07319724, -0.02533374, -0.07308875, 0.9970037, 0.48, 0, 0)
+transform = Transform3D(0.9999939, -0.0034906515, 0, 0.0034812773, 0.9973084, 0.073238194, -0.000255649, -0.07323775, 0.99731445, 0.48, 0, 0)
 light_color = Color(0.83538944, 0.78866106, 0.68345046, 1)
 light_energy = 10.0
 light_projector = ExtResource("12_hlcookie")
@@ -244,14 +244,14 @@ spot_range = 45.0
 spot_attenuation = 0.3
 spot_angle = 22.0
 script = ExtResource("11_hlmode")
-close_range = 70.0
+close_range = 90.0
 close_angle = 80.0
 close_energy = 15.0
 close_attenuation = 0.6
 close_volumetric_fog_energy = 0.2
 far_range = 150.0
 far_angle = 35.0
-far_energy = 20.0
+far_energy = 40.0
 far_attenuation = 0.3
 far_volumetric_fog_energy = 0.1
 

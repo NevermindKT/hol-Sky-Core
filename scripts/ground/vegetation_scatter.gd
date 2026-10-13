@@ -596,7 +596,7 @@ func _prepare_material(material: Material, category: VegetationCategoryData, hei
 
 	base.metallic_specular = category.specular
 	var cutout := base.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED
-	if category.wind_strength > 0.0:
+	if category.wind_strength > 0.0 or category.shrink_distance.y > 0.0 or category.normal_up_blend > 0.0:
 		return _make_wind_material(base, cutout, category, height)
 	if cutout:
 		base.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR
@@ -643,6 +643,9 @@ func _make_wind_material(base: BaseMaterial3D, cutout: bool, category: Vegetatio
 	material.set_shader_parameter("wind_strength", category.wind_strength)
 	material.set_shader_parameter("wind_speed", category.wind_speed)
 	material.set_shader_parameter("wind_height", maxf(height, 0.01))
+	material.set_shader_parameter("shrink_start", category.shrink_distance.x)
+	material.set_shader_parameter("shrink_end", category.shrink_distance.y)
+	material.set_shader_parameter("normal_up_blend", category.normal_up_blend)
 
 	_wind_materials.append(material)
 	return material

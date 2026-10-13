@@ -18,6 +18,9 @@ uniform float wind_speed = 1.0;
 uniform float wind_height = 1.0;
 uniform float wind_intensity = 1.0;
 uniform vec3 wind_direction = vec3(1.0, 0.0, 0.3);
+uniform float shrink_start = 0.0;
+uniform float normal_up_blend : hint_range(0.0, 1.0) = 0.0;
+uniform float shrink_end = 0.0;
 
 void vertex()
 {
@@ -35,6 +38,11 @@ void vertex()
 		VERTEX += dir * bend * (0.4 + 0.6 * gust);
 		VERTEX += NORMAL * flutter * bend * 0.08;
 	}
+	if (shrink_end > 0.0)
+	{
+		vec3 origin = (MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+		VERTEX *= 1.0 - smoothstep(shrink_start, shrink_end, distance(origin.xz, CAMERA_POSITION_WORLD.xz));
+	}
 }
 
 void fragment()
@@ -49,6 +57,7 @@ void fragment()
 	AO = dot(texture(ao_texture, UV), ao_channel);
 	AO_LIGHT_AFFECT = ao_light_affect;
 	SPECULAR = specular_amount;
+	NORMAL = normalize(mix(NORMAL, (VIEW_MATRIX * vec4(0.0, 1.0, 0.0, 0.0)).xyz, normal_up_blend));
 	NORMAL_MAP = texture(normal_texture, UV).rgb;
 	NORMAL_MAP_DEPTH = normal_scale;
 }

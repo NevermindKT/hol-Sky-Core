@@ -20,8 +20,31 @@ uniform float macro_strength : hint_range(0.0, 1.0) = 0.35;
 
 uniform float uv_scale : hint_range(0.01, 2.0) = 0.2;
 uniform float roughness_value : hint_range(0.0, 1.0) = 1.0;
+uniform float shoulder_start = 10.0;
+uniform float shoulder_fade = 3.5;
+uniform float edge_noise_scale = 0.35;
+uniform float edge_noise_amount = 1.5;
 
 varying vec4 ground_weights;
+
+float edge_hash(vec2 p)
+{
+	p = fract(p * vec2(123.34, 456.21));
+	p += dot(p, p + 45.32);
+	return fract(p.x * p.y);
+}
+
+float edge_noise(vec2 p)
+{
+	vec2 i = floor(p);
+	vec2 f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	float a = edge_hash(i);
+	float b = edge_hash(i + vec2(1.0, 0.0));
+	float c = edge_hash(i + vec2(0.0, 1.0));
+	float d = edge_hash(i + vec2(1.0, 1.0));
+	return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
 
 void vertex()
 {
@@ -36,14 +59,15 @@ void fragment()
 	vec2 forest_uv = tiled_uv * 0.9 + vec2(0.37, 0.61);
 
 	float forest_weight = smoothstep(0.1, 0.7, ground_weights.y);
-	float shoulder_weight = clamp(ground_weights.x, 0.0, 1.0);
+	float edge = (edge_noise(UV * edge_noise_scale) * 0.65 + edge_noise(UV * edge_noise_scale * 3.1) * 0.35 - 0.5) * 2.0 * edge_noise_amount;
+	float shoulder_weight = 1.0 - smoothstep(shoulder_start, shoulder_start + shoulder_fade, ground_weights.z + edge);
 
 	vec3 meadow = texture(meadow_texture, tiled_uv).rgb;
 	vec3 forest = texture(forest_texture, forest_uv).rgb * forest_tint;
 	vec3 shoulder = texture(shoulder_texture, tiled_uv).rgb;
 	vec3 macro = texture(meadow_texture, UV * macro_scale + vec2(0.13, 0.71), 4.0).rgb;
 	float macro_tone = dot(macro, vec3(0.333)) / max(dot(textureLod(meadow_texture, vec2(0.5), 20.0).rgb, vec3(0.333)), 0.01);
-	ALBEDO = mix(mix(meadow, forest, forest_weight), shoulder, shoulder_weight) * mix(1.0, macro_tone, macro_strength);
+	ALBEDO = mix(mix(meadow, forest, forest_weight) * mix(1.0, macro_tone, macro_strength), shoulder, shoulder_weight);
 
 	vec3 meadow_n = texture(meadow_normal, tiled_uv).rgb;
 	vec3 forest_n = texture(forest_normal, forest_uv).rgb;

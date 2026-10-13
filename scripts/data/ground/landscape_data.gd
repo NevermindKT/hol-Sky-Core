@@ -31,4 +31,8 @@ class_name LandscapeData
 @export var grid_cell_size := 4.9
 @export var grid_margin := 1.0
 
+@export var grass_shell_material: ShaderMaterial
+@export_range(0, 32, 1) var grass_shell_count := 14
+@export var grass_shell_radius := 58.0
+
 @export var vegetation_categories: Array[VegetationCategoryData] = []

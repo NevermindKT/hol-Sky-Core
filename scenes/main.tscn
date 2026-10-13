@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://dxa8wggvns7te"]
 
 [ext_resource type="PackedScene" uid="uid://dqibow5tqw5v0" path="res://scenes/ui/ui.tscn" id="1_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://t8cf5hixjfyj" path="res://scenes/audio/weather_audio.tscn" id="10_fuf3a"]
 [ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="1_pibwh"]
 [ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="2_c6pm6"]
 [ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="3_5he1u"]
@@ -12,6 +11,7 @@
 [ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="7_cjqg0"]
 [ext_resource type="PackedScene" uid="uid://bfh8ek3nst8so" path="res://scenes/weather/weather_system.tscn" id="8_vchkt"]
 [ext_resource type="Script" uid="uid://bcc07pjuuti4w" path="res://scripts/enemy/enemy_encounter.gd" id="9_txyw0"]
+[ext_resource type="PackedScene" uid="uid://t8cf5hixjfyj" path="res://scenes/audio/weather_audio.tscn" id="10_fuf3a"]
 [ext_resource type="Script" uid="uid://dugxq50h32qoa" path="res://resources/enemy/encounter_enemy_data.gd" id="10_vc5cj"]
 [ext_resource type="Resource" uid="uid://kbikc6eesw84" path="res://resources/enemy/testEnemy.tres" id="11_nvyfr"]
 [ext_resource type="Script" uid="uid://bdv0lpvwl3hpr" path="res://scripts/general/bootstrap.gd" id="12_ty1g6"]
@@ -111,6 +111,7 @@ metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vc5cj"]
 shader = ExtResource("4_vc5cj")
 shader_parameter/pixel_size = 2.0
+shader_parameter/low_res_input = false
 shader_parameter/gamma = Vector2(0.15, 9.5)
 shader_parameter/posterize_strength = 0.800000038
 shader_parameter/shadow_levels = 6.0
@@ -208,8 +209,9 @@ obstacle_set = SubResource("Resource_xljpf")
 light_energy = 0.04
 shadow_enabled = true
 shadow_blur = 3.0
+directional_shadow_mode = 1
 directional_shadow_blend_splits = true
-directional_shadow_max_distance = 320.0
+directional_shadow_max_distance = 90.0
 
 [node name="LightningController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
 world = NodePath("../../World")
@@ -229,7 +231,12 @@ dawn_duration = 20.0
 dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
 
 [node name="Moon" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="5" unique_id=730512946]
-energy = 0.08
+shadow_enabled = true
+shadow_blur = 3.0
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 90.0
+energy = 0.1
 
 [node name="WeatherAudio" parent="SubViewportContainer/SubViewport/Environment" unique_id=367977148 node_paths=PackedStringArray("car") instance=ExtResource("10_fuf3a")]
 car = NodePath("../../Car")

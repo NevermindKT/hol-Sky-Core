@@ -1,22 +1,152 @@
 [gd_resource type="Resource" script_class="LandscapeData" format=3 uid="uid://cyb31n5t64wgs"]
 
 [ext_resource type="Script" uid="uid://cunqlpr7knjb1" path="res://scripts/data/ground/landscape_data.gd" id="1_land"]
-[ext_resource type="Texture2D" uid="uid://cu4bjy8kcwv7r" path="res://textures/ground/forest_ground_04/forest_ground_04_diff_2k.jpg" id="3_earth"]
-[ext_resource type="Texture2D" uid="uid://bk4eadt2skml4" path="res://textures/ground/forest_ground_04/forest_ground_04_nor_gl_2k.png" id="4_earth_nor"]
-[ext_resource type="Texture2D" uid="uid://c2nf24ulfh838" path="res://textures/ground/forest_ground_04/forest_ground_04_arm_2k.png" id="5_earth_arm"]
-[ext_resource type="Texture2D" uid="uid://dirgg14o1bwwi" path="res://textures/ground/rocky_trail/rocky_trail_diff_2k.jpg" id="6_trail"]
-[ext_resource type="Texture2D" uid="uid://dd6jkfuk4lmho" path="res://textures/ground/rocky_trail/rocky_trail_nor_gl_2k.png" id="7_trail_nor"]
-[ext_resource type="Texture2D" uid="uid://ck6hbh2lhesbo" path="res://textures/ground/rocky_trail/rocky_trail_arm_2k.png" id="8_trail_arm"]
+[ext_resource type="Script" uid="uid://c50p4e7wmeocp" path="res://scripts/data/vegetation/vegetation_category_data.gd" id="2_cat"]
+[ext_resource type="Texture2D" uid="uid://b2nn2kwtmdaaf" path="res://textures/ground/psx/psx_meadow.png" id="3_meadow"]
+[ext_resource type="Texture2D" uid="uid://dbjlap52wl0ne" path="res://textures/ground/psx/psx_forest.png" id="4_forest"]
+[ext_resource type="Texture2D" uid="uid://ce30puqvsk0se" path="res://textures/ground/psx/psx_shoulder.png" id="5_shoulder"]
+[ext_resource type="Material" path="res://resources/shaders/ground/grass_shell_material.tres" id="6_shell"]
+
+[sub_resource type="Curve" id="Curve_conifer"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15, 0.02), 0.0, 0.0, 0, 0, Vector2(0.6, 0.55), 1.2, 1.2, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Veg_conifers"]
+script = ExtResource("2_cat")
+category_name = "Conifers"
+placement = 1
+footprint_radius = 0.3
+folder_path = "res://models/nature/psx_trees/conifer"
+include_patterns = null
+exclude_patterns = null
+density = 0.75
+forest_response = SubResource("Curve_conifer")
+min_road_distance = 22.0
+road_fade_distance = 15.0
+variants_per_chunk = 5
+scale_range = Vector2(0.8, 1.25)
+ground_sink = 0.02
+lod_road_distances = null
+lod_keep_ratios = null
+wind_strength = 0.1
+normal_up_blend = 0.6
+
+[sub_resource type="Curve" id="Curve_deciduous"]
+_data = [Vector2(0, 0.06), 0.0, 0.0, 0, 0, Vector2(0.35, 0.9), 0.0, 0.0, 0, 0, Vector2(0.7, 0.6), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Veg_deciduous"]
+script = ExtResource("2_cat")
+category_name = "Deciduous"
+placement = 1
+footprint_radius = 0.35
+folder_path = "res://models/nature/psx_trees/deciduous"
+include_patterns = null
+exclude_patterns = null
+density = 0.3
+forest_response = SubResource("Curve_deciduous")
+min_road_distance = 20.0
+road_fade_distance = 12.0
+variants_per_chunk = 5
+scale_range = Vector2(0.7, 1.05)
+ground_sink = 0.02
+lod_road_distances = null
+lod_keep_ratios = null
+wind_strength = 0.15
+normal_up_blend = 0.6
+
+[sub_resource type="Resource" id="Veg_autumn"]
+script = ExtResource("2_cat")
+category_name = "Autumn"
+placement = 1
+footprint_radius = 0.35
+folder_path = "res://models/nature/psx_trees/autumn"
+include_patterns = null
+exclude_patterns = null
+density = 0.06
+forest_response = SubResource("Curve_deciduous")
+min_road_distance = 20.0
+road_fade_distance = 12.0
+variants_per_chunk = 2
+scale_range = Vector2(0.7, 1)
+ground_sink = 0.02
+lod_road_distances = null
+lod_keep_ratios = null
+wind_strength = 0.15
+normal_up_blend = 0.6
+
+[sub_resource type="Curve" id="Curve_bush"]
+_data = [Vector2(0, 0.35), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Veg_bushes"]
+script = ExtResource("2_cat")
+category_name = "Bushes"
+footprint_radius = 2.0
+folder_path = "res://models/nature/psx_trees/bush"
+include_patterns = null
+exclude_patterns = PackedStringArray("bush01", "bush03", "bush05", "bush07")
+density = 0.25
+forest_response = SubResource("Curve_bush")
+min_road_distance = 12.0
+road_fade_distance = 6.0
+scale_range = Vector2(0.36, 0.6)
+ground_sink = 0.02
+cast_shadows = false
+lod_road_distances = null
+lod_keep_ratios = null
+wind_strength = 0.2
+normal_up_blend = 0.6
+
+[sub_resource type="Resource" id="Veg_stones"]
+script = ExtResource("2_cat")
+category_name = "Stones"
+placement = 1
+footprint_radius = 0.6
+folder_path = "res://models/nature/stones"
+include_patterns = null
+exclude_patterns = null
+density = 0.08
+road_fade_distance = 6.0
+variants_per_chunk = 4
+scale_range = Vector2(0.6, 1.3)
+ground_sink = 0.12
+lod_road_distances = null
+lod_keep_ratios = null
+
+[sub_resource type="Curve" id="Curve_grass"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 0.3), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Veg_grass"]
+script = ExtResource("2_cat")
+category_name = "Grass"
+folder_path = "res://models/nature/grass"
+include_patterns = null
+exclude_patterns = null
+density = 6.0
+forest_response = SubResource("Curve_grass")
+min_road_distance = 14.0
+road_fade_distance = 5.0
+max_road_distance = 70.0
+variants_per_chunk = 6
+scale_range = Vector2(1.3, 2.1)
+visibility_range = 120.0
+visibility_fade = false
+shrink_distance = Vector2(42, 60)
+cast_shadows = false
+lod_road_distances = null
+lod_keep_ratios = null
+wind_strength = 0.12
+wind_speed = 2.0
 
 [resource]
 script = ExtResource("1_land")
-shoulder_texture = ExtResource("6_trail")
-meadow_texture = ExtResource("3_earth")
-forest_texture = ExtResource("3_earth")
-forest_tint = Color(0.7, 0.7, 0.7, 1)
-shoulder_normal = ExtResource("7_trail_nor")
-meadow_normal = ExtResource("4_earth_nor")
-forest_normal = ExtResource("4_earth_nor")
-shoulder_arm = ExtResource("8_trail_arm")
-meadow_arm = ExtResource("5_earth_arm")
-forest_arm = ExtResource("5_earth_arm")
+shoulder_texture = ExtResource("5_shoulder")
+meadow_texture = ExtResource("3_meadow")
+forest_texture = ExtResource("4_forest")
+forest_tint = Color(1, 1, 1, 1)
+shoulder_width = 2.0
+shoulder_fade = 3.5
+grass_shell_material = ExtResource("6_shell")
+vegetation_categories = Array[ExtResource("2_cat")]([SubResource("Veg_conifers"), SubResource("Veg_deciduous"), SubResource("Veg_autumn"), SubResource("Veg_bushes"), SubResource("Veg_stones"), SubResource("Veg_grass")])
