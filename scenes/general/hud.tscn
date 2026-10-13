@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cit5xdetb5wsk" path="res://textures/hud/lockCrosshair.png" id="6_pfecb"]
 [ext_resource type="Script" uid="uid://d0gf238wyu787" path="res://scripts/ui/hud/crit_hit_marker.gd" id="7_crit"]
 [ext_resource type="Texture2D" uid="uid://dfop2ragb2xn8" path="res://textures/hud/turretMarker.png" id="8_4l38w"]
+[ext_resource type="Texture2D" uid="uid://be5orsb3ylep2" path="res://textures/hud/ammoIcons/Asset 1.svg" id="9_2r3oe"]
 
 [sub_resource type="GDScript" id="GDScript_oj1j8"]
 script/source = "extends Control
@@ -106,7 +107,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="HUD" type="CanvasLayer" unique_id=299315244 node_paths=PackedStringArray("cross_hair_con", "second_rectile", "health_bar", "stamina_bar", "level_progress_bar", "enemy_compass", "left", "right", "turret_rotation_marker_container", "turret_marker", "weapon_name", "ammo_label", "scalable_bars", "scalable_labels")]
+[node name="HUD" type="CanvasLayer" unique_id=299315244 node_paths=PackedStringArray("cross_hair_con", "second_rectile", "health_bar", "stamina_bar", "level_progress_bar", "enemy_compass", "left", "right", "turret_rotation_marker_container", "turret_marker", "weapon_name", "ammo_label", "scalable_bars", "scalable_labels", "ammo_icon_rect")]
 script = ExtResource("1_p21ms")
 cross_hair_con = NodePath("CrossHairCon")
 second_rectile = NodePath("SecondRectile")
@@ -123,8 +124,10 @@ marker_radius = 250.0
 marker_screen_offset = Vector2(0, 0)
 weapon_name = NodePath("Right/WeaponName")
 ammo_label = NodePath("Right/AmmoLabel")
+weapon_slide_duration = 0.13
 scalable_bars = [NodePath("Left/HealthBar"), NodePath("Left/StaminaBar"), NodePath("Top/LevelProgressBar")]
 scalable_labels = [NodePath("Right/WeaponName"), NodePath("Right/AmmoLabel")]
+ammo_icon_rect = NodePath("Right/AmmoIconRect")
 
 [node name="CrossHairCon" type="Control" parent="." unique_id=1706066031]
 z_index = 2
@@ -315,15 +318,19 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -271.7422
-offset_top = -395.0312
-offset_right = 53.38037
-offset_bottom = -260.08368
+offset_left = -380.0
+offset_top = -372.00006
+offset_right = -55.0
+offset_bottom = -82.000305
 grow_horizontal = 0
 grow_vertical = 0
-rotation = 0.87266463
+rotation = 0.34906584
+pivot_offset = Vector2(162.5, 145)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="WeaponName" type="RichTextLabel" parent="Right" unique_id=974424412]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -336,32 +343,52 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AmmoIconRect" type="TextureRect" parent="Right" unique_id=1263946958]
+modulate = Color(1, 1, 1, 0.29411766)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -72.5
+offset_right = 32.0
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_2r3oe")
+expand_mode = 1
+
 [node name="AmmoLabel" type="RichTextLabel" parent="Right" unique_id=1957982060]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -31.0
+anchor_bottom = 0.5
+offset_top = -27.5
+offset_bottom = 27.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 40
 text = "Ammo/Ammo"
 fit_content = true
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TurretRotationMarkerContainer" type="Control" parent="." unique_id=1168660309]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -200.0
-offset_right = 200.0
-offset_bottom = 200.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -560.0
+offset_bottom = -140.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(200, 200)
@@ -385,13 +412,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = 8.0
-offset_right = 15.0
-offset_bottom = 63.0
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 30.0
+offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 3.1415927
-pivot_offset = Vector2(7.5, 10)
 texture = ExtResource("8_4l38w")
 expand_mode = 1

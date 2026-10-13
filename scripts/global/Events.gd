@@ -25,6 +25,9 @@ signal critical_hit(position: Vector3)
 
 signal turret_rotation_changed(angle: float)
 
+#-------------- ENEMIES
+signal enemy_killed(enemy_data: EncounterEnemyData)
+
 #-------------- ROAD/LEVEL
 signal segment_dispawned
 signal level_progress_changed(current, max)

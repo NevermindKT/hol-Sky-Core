@@ -66,3 +66,9 @@ func _process(_delta):
 		if Input.is_action_just_pressed("debug_upgrade_%d" % (slot + 1)):
 			print("Start: ", slot)
 			debug_toggle_upgrade.emit(slot)
+
+func set_photo_mouse_mode(enabled: bool) -> void:
+	if enabled:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN

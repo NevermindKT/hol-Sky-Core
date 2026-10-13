@@ -260,7 +260,7 @@ func _kill_active_tween() -> void:
 	if active_tween and active_tween.is_valid():
 		active_tween.kill()
 
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode == KEY_P:
-		play_deadly_dawn()
+#
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event is InputEventKey and event.pressed and event.keycode == KEY_P:
+		#play_deadly_dawn()

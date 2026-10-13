@@ -465,14 +465,20 @@ func take_collision_damage(damage: float) -> void:
 func die() -> void:
 	if _is_dead:
 		return
+	
 	_is_dead = true
 	is_active = false
 
 	_set_warning(false)
 	_set_stunned(false)
+
 	encounter.end_attak(self)
 	encounter.remove_enemy(self)
+
+	Events.enemy_killed.emit(enemy_data)
+
 	_spawn_corpse()
+
 	SoundManager.play_sfx(enemy_data.death_sound, enemy_data.death_sound_volume, 1.0)
 	queue_free()
 

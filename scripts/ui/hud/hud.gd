@@ -39,6 +39,15 @@ var car: Car_Movement
 @export var scalable_labels: Array[Control] = []
 @export var scalable_markers: Array[Control] = []
 
+@export_category("Ammo Icon")
+@export var ammo_icon_rect: TextureRect
+@export var ammo_icon_base_alpha: float = 0.294
+
+const ASSET_1 = preload("uid://be5orsb3ylep2")
+const ASSET_2 = preload("uid://c1hamw5rj7ynk")
+const ASSET_3 = preload("uid://dyxc3tcxy7l6g")
+const ASSET_4 = preload("uid://nkcbinbtsx7i")
+
 var _base_bar_sizes: Dictionary = {}
 var _base_font_sizes: Dictionary = {}
 var _base_marker_sizes: Dictionary = {}
@@ -160,9 +169,16 @@ func apply_ui_scale(ui_scale: float) -> void:
 #------------------------------------------------------------------------ WEAPON
 
 
-func set_weapon(weapon: WeaponData, direction: int = 1) -> void:
-	_swap_weapon_display(weapon, direction)
+func _set_ammo_icon(ammo_type: Ammo_Type.Type) -> void:
+	if ammo_type == Ammo_Type.Type.PISTOL:
+		ammo_icon_rect.texture = ASSET_1
+	elif ammo_type == Ammo_Type.Type.SHOTGUN:
+		ammo_icon_rect.texture = ASSET_2
+	elif ammo_type == Ammo_Type.Type.RIFLE:
+		ammo_icon_rect.texture = ASSET_3
 
+func set_weapon(weapon: WeaponData, _direction: int = 1) -> void:
+	_swap_weapon_display(weapon, _direction)
 
 func _swap_weapon_display(weapon: WeaponData, direction: int) -> void:
 	if is_instance_valid(_weapon_swap_tween):
@@ -174,19 +190,20 @@ func _swap_weapon_display(weapon: WeaponData, direction: int) -> void:
 	_weapon_swap_tween = create_tween()
 
 	_weapon_swap_tween.set_parallel(true)
-	_weapon_swap_tween.tween_property(weapon_name, "position:x", -slide, half)
-	_weapon_swap_tween.tween_property(weapon_name, "modulate:a", 0.0, half)
+	_weapon_swap_tween.tween_property(ammo_icon_rect, "position:x", -slide, half)
+	_weapon_swap_tween.tween_property(ammo_icon_rect, "modulate:a", 0.0, half)
 
 	_weapon_swap_tween.chain().tween_callback(func():
 		current_weapon_data = weapon
 		weapon_name.text = weapon.name
+		_set_ammo_icon(weapon.ammo_type)
 		update_ammo()
-		weapon_name.position.x = slide
+		ammo_icon_rect.position.x = slide
 	)
 
 	_weapon_swap_tween.chain().set_parallel(true)
-	_weapon_swap_tween.tween_property(weapon_name, "position:x", 0.0, half)
-	_weapon_swap_tween.tween_property(weapon_name, "modulate:a", 1.0, half)
+	_weapon_swap_tween.tween_property(ammo_icon_rect, "position:x", 130.0, half)
+	_weapon_swap_tween.tween_property(ammo_icon_rect, "modulate:a", ammo_icon_base_alpha, half)
 
 
 func change_ammo(count: float):
@@ -198,8 +215,8 @@ func update_ammo():
 	if current_weapon_data == null:
 		return
 
-	var magazine_size := UpgradeManager.get_modified(&"expanded_magazine", current_weapon_data.magazine_capacity)
-	ammo_label.text = "%s / %s" % [int(magazine_current_ammo), int(magazine_size)]
+	#var magazine_size := UpgradeManager.get_modified(&"expanded_magazine", current_weapon_data.magazine_capacity)
+	ammo_label.text = "%s / %s" % [int(magazine_current_ammo), int(car.inventory.get_ammo(current_weapon_data.ammo_type))]
 
 
 func _on_turret_rotation_changed(relative_angle: float) -> void:

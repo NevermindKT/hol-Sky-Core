@@ -64,6 +64,17 @@ class_name Player_Camera
 @export var flashlight_preset_smoothing := 2.5
 @export var flashlight_far_lean_multiplier := 1.8
 
+
+@export_group("Photo Mode")
+@export var photo_move_speed: float = 8.0
+@export var photo_boost_multiplier: float = 3.0
+@export var photo_mouse_sensitivity: float = 0.002
+
+var _photo_mode: bool = false
+var _photo_yaw: float = 0.0
+var _photo_pitch: float = 0.0
+
+
 # Layer 1: lateral spring follow + yaw/roll
 var _cam_x := 0.0
 var _lateral_vel := 0.0
@@ -207,7 +218,7 @@ func _process_aim_lean(delta: float) -> void:
 
 	_aim_lean = _aim_lean.lerp(screen_offset, 1.0 - exp(-aim_lean_smoothing * delta))
 
-# ============================ LAYER 2: INPUT PUSH ==============================
+# ============================ LAYER 2: INPUT PUSH =============================
 
 func _process_input_push(delta: float) -> void:
 	var t := 1.0 - exp(-push_smoothing * delta)
@@ -217,7 +228,7 @@ func _process_input_push(delta: float) -> void:
 	_distance_push = _accel_push * accel_distance_push - _brake_push * brake_distance_push
 	_fov_push = _accel_push * accel_fov_push - _brake_push * brake_fov_push
 
-# ============================ LAYER 3: IMPACT IMPULSES =========================
+# ============================ LAYER 3: IMPACT IMPULSES ========================
 
 func _process_impact(delta: float) -> void:
 	_impact_pos_vel += -_impact_pos_offset * impact_spring * delta
@@ -284,7 +295,7 @@ func apply_outgoing_hit(contact_point: Vector3, damage: float) -> void:
 func _on_player_take_damage(damage: float, source_position: Vector3) -> void:
 	apply_incoming_hit(source_position, damage)
 
-# ============================ LAYER 4: AIM BLEND ===============================
+# ============================ LAYER 4: AIM BLEND ==============================
 
 func get_aim_transform() -> Transform3D:
 	return _aim_transform
@@ -302,3 +313,74 @@ func viewport_to_screen(viewport_pos: Vector2) -> Vector2:
 
 	var outer_size := get_tree().root.get_visible_rect().size # размер главного окна
 	return viewport_pos * (outer_size / inner_size)
+
+
+# ============================ PHOTO MODE ======================================
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_P:
+			_toggle_photo_mode()
+			print("Photo mode: ", _photo_mode)
+			print("Mouse mode: ", Input.mouse_mode)
+
+	if event is InputEventMouseMotion:
+		print("Input_Controller MOUSE: ", event.relative)
+
+	if _photo_mode and event is InputEventMouseMotion:
+		print("Mouse motion: ", event.relative)
+
+		_photo_yaw -= event.relative.x * photo_mouse_sensitivity
+		_photo_pitch -= event.relative.y * photo_mouse_sensitivity
+		_photo_pitch = clampf(
+			_photo_pitch,
+			deg_to_rad(-89.0),
+			deg_to_rad(89.0)
+		)
+
+		global_rotation = Vector3(_photo_pitch, _photo_yaw, 0.0)
+
+
+func _toggle_photo_mode() -> void:
+	_photo_mode = not _photo_mode
+
+	if _photo_mode:
+		_photo_yaw = global_rotation.y
+		_photo_pitch = global_rotation.x
+
+		set_physics_process(false)
+		InputController.set_photo_mouse_mode(true)
+	else:
+		set_physics_process(true)
+		InputController.set_photo_mouse_mode(false)
+
+
+func _process(delta: float) -> void:
+	if not _photo_mode:
+		return
+
+	var direction := Vector3.ZERO
+
+	var forward := -global_transform.basis.z
+	var right := global_transform.basis.x
+
+	if Input.is_key_pressed(KEY_W):
+		direction += forward
+	if Input.is_key_pressed(KEY_S):
+		direction -= forward
+	if Input.is_key_pressed(KEY_D):
+		direction += right
+	if Input.is_key_pressed(KEY_A):
+		direction -= right
+	if Input.is_key_pressed(KEY_E):
+		direction += Vector3.UP
+	if Input.is_key_pressed(KEY_Q):
+		direction -= Vector3.UP
+
+	var speed := photo_move_speed
+
+	if Input.is_key_pressed(KEY_SHIFT):
+		speed *= photo_boost_multiplier
+
+	if direction.length_squared() > 0.0:
+		global_position += direction.normalized() * speed * delta

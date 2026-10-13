@@ -22,7 +22,6 @@ func consume_ammo(ammo_type: Ammo_Type.Type, amount: int) -> int:
 			var taken = min(shotgun_ammo, amount)
 			shotgun_ammo -= taken
 			return taken
-
 	return 0
 
 
@@ -36,5 +35,4 @@ func get_ammo(ammo_type: Ammo_Type.Type) -> int:
 
 		Ammo_Type.Type.SHOTGUN:
 			return shotgun_ammo
-
 	return 0

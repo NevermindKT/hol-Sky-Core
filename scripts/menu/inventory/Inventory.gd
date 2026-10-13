@@ -173,13 +173,13 @@ func update_sell_button_text() -> void:
 func _on_sell_button_pressed() -> void:
 	var count_to_sell = clampi(sell_input_quantity.text.to_int(), 1, max_item_count)
 	var total_price = int(round(count_to_sell * current_item_unit_price * 0.67))
-	
+
 	# Списываем проданные предметы из базы данных
 	db.query("UPDATE Objects SET Quantity = Quantity - %d WHERE ID = '%s';" % [count_to_sell, current_selected_id])
-	
+
 	# Начисляем деньги через обновленный менеджер (запишется в таблицу Money и обновит хедер)
 	GameManager.add_money(total_price)
-		
+
 	print("Продано успешно на сумму: ", total_price)
 	if obj_info_panel:
 		obj_info_panel.visible = false

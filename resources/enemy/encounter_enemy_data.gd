@@ -1,6 +1,8 @@
 extends Resource
 class_name EncounterEnemyData
 
+@export var display_name := "Enemy name"
+
 @export_category("Group")
 @export var weight := 25.0
 
