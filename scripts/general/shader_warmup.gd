@@ -135,6 +135,8 @@ func _prepare(node: Node) -> void:
 		(node as AudioStreamPlayer2D).autoplay = false
 	if node is AnimationPlayer:
 		(node as AnimationPlayer).autoplay = ""
+	if node is Light3D:
+		(node as Light3D).light_volumetric_fog_energy = 0.0
 	if node is Camera3D:
 		(node as Camera3D).current = false
 	if node is Timer:
