@@ -1,0 +1,4343 @@
+{
+  "intro_line1": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Ви під'їхали до блокпосту перед базою",
+		"speed": 22.0,
+		"before_pause": 0.2,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line2",
+	"presentation": {
+	  "environment": "guard",
+	  "character": ""
+	}
+  },
+  "intro_line2": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Повітря смерділо трупами",
+		"speed": 22.0,
+		"after_pause": 0.2
+	  },
+	  {
+		"text": ", порохом",
+		"speed": 22.0,
+		"after_pause": 0.2
+	  },
+	  {
+		"text": " та брехнею",
+		"speed": 22.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line3",
+	"presentation": {
+	  "environment": "guard",
+	  "character": ""
+	}
+  },
+  "intro_line3": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Вартовий",
+		"speed": 22.0,
+		"after_pause": 0.1
+	  },
+	  {
+		"text": " відпрацьованими кроками",
+		"speed": 22.0,
+		"after_pause": 0.1
+	  },
+	  {
+		"text": " підходить до вашої машини",
+		"speed": 22.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line4",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "watchful"
+	}
+  },
+  "intro_line4": {
+	"speaker": "security",
+	"interrupt_time": 0.0,
+	"choice_time": 5.0,
+	"segments": [
+	  {
+		"text": "Ім'я",
+		"speed": 30.0,
+		"after_pause": 0.1
+	  }
+	],
+	"interrupt_choices": [
+	  {
+		"text": "Віктор",
+		"next": "intro_line5.1"
+	  }
+	],
+	"choices": [
+	  {
+		"text": "Віктор",
+		"next": "intro_line5.1"
+	  },
+	  {
+		"text": "Ти не знаєш мого імені?",
+		"next": "intro_line5.2"
+	  },
+	  {
+		"text": "Називай мене найманцем?",
+		"next": "intro_line5.3"
+	  }
+	],
+	"ignore": "intro_line4",
+	"next": "",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "watchful"
+	}
+  },
+  "intro_line5.1": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Віктор",
+		"speed": 25.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line6.1",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "watchful"
+	}
+  },
+  "intro_line6.1": {
+	"speaker": "security",
+	"segments": [
+	  {
+		"text": "Проходь",
+		"speed": 25.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line7",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "watchful"
+	}
+  },
+  "intro_line5.2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Ти",
+		"speed": 25.0,
+		"after_pause": 0.2
+	  },
+	  {
+		"text": " не знаєш",
+		"speed": 25.0,
+		"after_pause": 0.2
+	  },
+	  {
+		"text": " мого імені?",
+		"speed": 22.0,
+		"after_pause": 1.5
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line6.2",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "watchful"
+	}
+  },
+  "intro_line6.2": {
+	"speaker": "security",
+	"segments": [
+	  {
+		"text": "Я не знав",
+		"speed": 25.0,
+		"after_pause": 0.2
+	  },
+	  {
+		"text": ", чи вмієш ти розмовляти",
+		"speed": 25.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line7",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "irritated"
+	}
+  },
+  "intro_line5.3": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Називай мене",
+		"speed": 20.0,
+		"after_pause": 0.1
+	  },
+	  {
+		"text": " найманцем",
+		"speed": 50.0,
+		"after_pause": 1.2,
+		"tags": [
+		  "color=#9000ff",
+          "shake"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line6.3",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "watchful"
+	}
+  },
+  "intro_line6.3": {
+	"speaker": "security",
+	"segments": [
+	  {
+		"text": "Оригінально..",
+		"speed": 15.0,
+		"after_pause": 0.8,
+		"tags": [
+          "color=#ff0000"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line7",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "irritated"
+	}
+  },
+  "intro_line7": {
+	"speaker": "security",
+	"segments": [
+	  {
+		"text": "Машину залишай у ремонтному секторі",
+		"speed": 25.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line8",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "serious"
+	}
+  },
+  "intro_line8": {
+	"speaker": "security",
+	"segments": [
+	  {
+		"text": "Нагороду отримаєш після обробки зйомки з відеореєстратора",
+		"speed": 25.0,
+		"after_pause": 1.5
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line9",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "serious"
+	}
+  },
+  "intro_line9": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Де адміністратор?",
+		"speed": 25.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line10",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "watchful"
+	}
+  },
+  "intro_line10": {
+	"speaker": "security",
+	"segments": [
+	  {
+		"text": "У вежі",
+		"speed": 25.0,
+		"after_pause": 0.6
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line11",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "serious"
+	}
+  },
+  "intro_line11": {
+	"speaker": "security",
+	"interrupt_time": 1.4,
+	"choice_time": 3.0,
+	"segments": [
+	  {
+		"text": "Але спочатку зайди в",
+		"speed": 25.0
+	  },
+	  {
+		"text": " бар",
+		"speed": 35.0,
+		"after_pause": 1.0,
+		"tags": [
+          "color=#ffe100"
+		]
+	  }
+	],
+	"interrupt_choices": [
+	  {
+		"text": "(Йти далі)",
+		"next": "intro_line14"
+	  }
+	],
+	"choices": [
+	  {
+		"text": "Добре, тоді спочатку піду до вежі",
+		"next": "intro_line12.1"
+	  },
+	  {
+		"text": "Навіщо?",
+		"next": "intro_line12.2"
+	  }
+	],
+	"ignore": "intro_line14",
+	"next": "",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "serious"
+	}
+  },
+  "intro_line12.1": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Добре",
+		"speed": 25.0,
+		"after_pause": 0.2
+	  },
+	  {
+		"text": ", тоді спочатку піду до",
+		"speed": 30.0
+	  },
+	  {
+		"text": " вежі",
+		"speed": 35.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line13.1",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "watchful"
+	}
+  },
+  "intro_line13.1": {
+	"speaker": "security",
+	"segments": [
+	  {
+		"text": "Йди вже",
+		"speed": 30.0,
+		"after_pause": 0.2,
+		"tags": [
+          "color=#ff0000"
+		]
+	  },
+	  {
+		"text": ", жартівник",
+		"speed": 30.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#ff0000"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line14",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "serious"
+	}
+  },
+  "intro_line12.2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Навіщо?",
+		"speed": 25.0,
+		"after_pause": 0.6
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line13.2",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "watchful"
+	}
+  },
+  "intro_line13.2": {
+	"speaker": "security",
+	"segments": [
+	  {
+		"text": "Це традиція",
+		"speed": 25.0,
+		"after_pause": 0.2
+	  },
+	  {
+		"text": ", усі спочатку йдуть в",
+		"speed": 25.0
+	  },
+	  {
+		"text": " бар",
+		"speed": 35.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#ffe100"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "intro_line14",
+	"presentation": {
+	  "environment": "guard",
+	  "character": "security",
+	  "emotion": "serious"
+	}
+  },
+  "intro_line14": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Ви припаркували машину",
+		"speed": 22.0,
+		"after_pause": 0.1
+	  },
+	  {
+		"text": " та направились до бару",
+		"speed": 22.0,
+		"after_pause": 1.5
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_line1",
+	"presentation": {
+	  "environment": "guard",
+	  "character": ""
+	}
+  },
+  "bar_line1": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Пізній вечір",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_line2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": ""
+	}
+  },
+  "bar_line2": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Бар напівпорожній",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_line3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": ""
+	}
+  },
+  "bar_line3": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "За сусіднім столом сидить чоловік років сорока-п’ятдесяти",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_line4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": ""
+	}
+  },
+  "bar_line4": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Перед ним майже недоторкана склянка",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_line5",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_line5": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він кілька разів поглядає на вас,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " ніби впізнає,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " але не певен,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " чи варто говорити",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_line6",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_line6": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Ви проходите до бармена повз незнайомця",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_line7",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_line7": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Ти ж ",
+		"speed": 30.0,
+		"after_pause": 0.0
+	  },
+	  {
+		"text": "звідти,",
+		"speed": 19.0,
+		"after_pause": 0.25,
+		"tags": [
+          "color=#9000ff"
+		]
+	  },
+	  {
+		"text": " так?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [
+	  {
+		"text": "Звідки «звідти»?",
+		"next": "bar_line8.1"
+	  }
+	],
+	"choices": [],
+	"next": "",
+	"event": "bar.met",
+	"interrupt_time": 3.5,
+	"choice_time": 0.0,
+	"ignore": "bar_origin",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_line8.1": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Звідки «звідти»?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_line8.1_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_line8.1_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "З кварталів біля старої насосної. ",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": "Не прикидайся, ",
+		"speed": 38.0,
+		"after_pause": 0.22,
+		"tags": [
+          "color=#ff0000"
+		]
+	  },
+	  {
+		"text": "акцент у вас там у половини району однаковий",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_first_choice",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_origin": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "З боку старої насосної.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Бачив тебе там кілька разів",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_first_choice",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_first_choice": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Незнайомець чекає на вашу відповідь",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Можливо. Тобі що?",
+		"next": "bar_sick"
+	  },
+	  {
+		"text": "Ти стежиш за мною?",
+		"next": "bar_follow"
+	  },
+	  {
+		"text": "Помилився",
+		"next": "bar_wrong"
+	  },
+	  {
+		"text": "[Мовчати]",
+		"next": "bar_silent"
+	  }
+	],
+	"next": "",
+	"choice_time": 18.13,
+	"ignore": "bar_silent",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_sick": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Можливо. ",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": "Тобі що?",
+		"speed": 38.0,
+		"after_pause": 0.8,
+		"tags": [
+          "color=#ff0000"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_sick_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_sick_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Хотів спитати.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " У вас там теж люди сипляться?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_sick_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_sick_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Сипляться?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_sick_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_sick_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Температура. ",
+		"speed": 30.0,
+		"after_pause": 0.45
+	  },
+	  {
+		"text": "Блювання. ",
+		"speed": 30.0,
+		"after_pause": 0.45
+	  },
+	  {
+		"text": "Судоми. ",
+		"speed": 30.0,
+		"after_pause": 0.7
+	  },
+	  {
+		"text": "Дехто просто слабшає з кожним днем. ",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": "А дехто навпаки…",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_sick_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_sick_4": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він коротко дивиться вбік",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_sick_5",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_sick_5": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Наче й не хворів ніколи",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common_question",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_follow": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Ти стежиш за мною?",
+		"speed": 38.0,
+		"after_pause": 0.8,
+		"tags": [
+          "color=#ff0000"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_follow_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_follow_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Ні.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " І якби стежив -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " навряд чи сказав би",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_follow_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_follow_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Тоді звідки знаєш?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_follow_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_follow_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Я тут майже щовечора.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Люди говорять.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Особливо коли п’яні",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_follow_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_follow_4": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "І останнім часом усі говорять про одне й те саме",
+		"speed": 30.0,
+		"after_pause": 1.0,
+		"before_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common_question",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_wrong": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Помилився",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_wrong_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_wrong_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Може й так",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_wrong_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_wrong_2": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він відвертається.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Через кілька секунд говорить уже ніби сам до себе",
+		"speed": 30.0,
+		"after_pause": 2.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_wrong_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_wrong_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Просто дивно.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " В одному районі шестеро злягли.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " В іншому -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " дев’ятеро.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " А лікарі роблять вигляд,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що між цим немає нічого спільного",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "А що між ними спільного?",
+		"next": "bar_common_question"
+	  },
+	  {
+		"text": "Люди постійно хворіють",
+		"next": "bar_dismiss"
+	  },
+	  {
+		"text": "Ти явно щось хочеш сказати. Кажи",
+		"next": "bar_tell"
+	  },
+	  {
+		"text": "[Не реагувати]",
+		"next": "bar_silent"
+	  }
+	],
+	"next": "",
+	"choice_time": 28.0,
+	"ignore": "bar_silent",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_dismiss": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Люди постійно хворіють",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_dismiss_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_dismiss_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Звісно.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Але не завжди цілими кварталами й з однаковими симптомами",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common_question",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_tell": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Ти явно щось хочеш сказати.",
+		"speed": 38.0,
+		"after_pause": 0.55,
+		"tags": [
+          "color=#ff0000"
+		]
+	  },
+	  {
+		"text": " Кажи",
+		"speed": 38.0,
+		"after_pause": 0.8,
+		"tags": [
+          "color=#ff0000"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_silent": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Гаразд.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Не моя справа",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_silent_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_silent_1": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він робить ковток.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Кілька секунд мовчить",
+		"speed": 30.0,
+		"after_pause": 2.0
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_silent_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_silent_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Просто якщо живеш там -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " не пий сьогодні з крана",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Чому?",
+		"next": "bar_why_water"
+	  },
+	  {
+		"text": "Що ти знаєш?",
+		"next": "bar_know"
+	  },
+	  {
+		"text": "Дуже смішно",
+		"next": "bar_funny"
+	  },
+	  {
+		"text": "[Продовжити ігнорувати]",
+		"next": "bar_ignore_end"
+	  }
+	],
+	"next": "",
+	"choice_time": 18.97,
+	"ignore": "bar_ignore_end",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_why_water": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Чому?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_know": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Що ти знаєш?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_funny": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Дуже смішно",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_funny_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_funny_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Я не жартую.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " У вашому районі люди хворіють.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " І не тільки у вашому",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common_question",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_ignore_end": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Як хочеш",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_ignore_end_1",
+	"event": "bar.ignored",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_ignore_end_1": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Незнайомець відвертається,",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " але потім знову дивиться на вас.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Схоже, він хоче дещо залишити",
+		"speed": 30.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_refuse_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_common_question": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "А що між ними спільного?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_common": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Спочатку я думав -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " нічого",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_common_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Різний вік. ",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": "Різна робота. ",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": "Різні райони",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_common_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_common_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "А потім один знайомий сказав,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що в них усіх вода йде через одну систему очищення",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [
+	  {
+		"text": "Ти думаєш, справа у воді?",
+		"next": "bar_water_interrupt"
+	  }
+	],
+	"choices": [],
+	"next": "",
+	"interrupt_time": 5.0,
+	"choice_time": 0.0,
+	"ignore": "bar_water_continue",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_water_interrupt": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Ти думаєш,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " справа у воді?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_water_interrupt_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_water_interrupt_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Я нічого не думаю",
+		"speed": 30.0,
+		"after_pause": 1.6
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_water_interrupt_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_water_interrupt_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Я просто перестав її пити",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_water_choice",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_water_continue": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Може,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " збіг.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Може,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " ні.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Але після того я почав купувати воду в пляшках",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_water_choice",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_water_choice": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він обводить пальцем край склянки",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "І стало краще?",
+		"next": "bar_better"
+	  },
+	  {
+		"text": "Це нічого не доводить",
+		"next": "bar_proof"
+	  },
+	  {
+		"text": "Хто тобі сказав про систему очищення?",
+		"next": "bar_source"
+	  },
+	  {
+		"text": "Якщо ти це знаєш, чому ніхто нічого не робить?",
+		"next": "bar_police"
+	  }
+	],
+	"next": "",
+	"choice_time": 22.06,
+	"ignore": "bar_scientist",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_better": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "І стало краще?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_better_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_better_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Я й не хворів",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_better_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_better_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Тоді навіщо перестав?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_better_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_better_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Бо не люблю перевіряти теорії на собі",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_scientist",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_proof": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Це нічого не доводить",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_proof_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_proof_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Саме так",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_proof_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_proof_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Тому я й не бігаю вулицями з плакатом «нас труять»",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_proof_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_proof_3": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він нахиляється ближче",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_proof_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_proof_4": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Але є людина,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " яка може це довести",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_scientist",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_source": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Хто тобі сказав про систему очищення?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_source_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_source_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Колишній працівник водоканалу",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_source_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_source_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Колишній?",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_source_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_source_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Три тижні тому ще працював",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_source_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_source_4": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "А тепер?",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_source_5",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_source_5": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "А тепер ",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": "не дуже хоче говорити",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [
+	  {
+		"text": "Йому погрожували?",
+		"next": "bar_threat"
+	  }
+	],
+	"choices": [],
+	"next": "",
+	"interrupt_time": 4.3,
+	"choice_time": 0.0,
+	"ignore": "bar_scientist",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_threat": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Йому погрожували?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_threat_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_threat_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Не знаю",
+		"speed": 30.0,
+		"after_pause": 1.5
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_threat_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_threat_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Але звільнився він швидко.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " І з міста поїхав ще швидше",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_scientist",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_police": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Якщо ти це знаєш,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " чому ніхто нічого не робить?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_police_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_police_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "А що робити?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_police_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_police_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Прийти до поліції й сказати: ",
+		"speed": 30.0,
+		"after_pause": 0.4
+	  },
+	  {
+		"text": "«Добрий вечір,",
+		"speed": 19.0,
+		"after_pause": 0.22,
+		"tags": [
+          "color=#9000ff"
+		]
+	  },
+	  {
+		"text": " мені здається,",
+		"speed": 19.0,
+		"after_pause": 0.22,
+		"tags": [
+          "color=#9000ff"
+		]
+	  },
+	  {
+		"text": " вода дивна»?",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_police_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_police_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Без аналізів це просто балачки п’яниць",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_scientist",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_scientist": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Є один чоловік",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_scientist_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_scientist_1": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Який чоловік?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_scientist_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_scientist_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Хімік.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Біолог.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Чорт його знає,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " як правильно",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_scientist_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_scientist_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Раніше працював у міській лабораторії.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Зараз сам по собі",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [
+	  {
+		"text": "І він уже перевіряв воду?",
+		"next": "bar_tested"
+	  }
+	],
+	"choices": [],
+	"next": "",
+	"interrupt_time": 4.6,
+	"choice_time": 0.0,
+	"ignore": "bar_two_samples",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_tested": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "І він уже перевіряв воду?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_tested_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_tested_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Намагався",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_tested_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_tested_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "І?",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_tested_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_tested_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Каже,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що зразків недостатньо",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_scientist_choice",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_two_samples": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Я носив йому воду з двох районів.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Він знайшов щось дивне,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " але сказав,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що двох проб мало",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_scientist_choice",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_scientist_choice": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Незнайомець знижує голос",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Що саме він знайшов?",
+		"next": "bar_found"
+	  },
+	  {
+		"text": "Чому він сам не збере зразки?",
+		"next": "bar_collect"
+	  },
+	  {
+		"text": "І ти хочеш, щоб це зробив я?",
+		"next": "bar_me"
+	  },
+	  {
+		"text": "Мені це не цікаво",
+		"next": "bar_uninterested"
+	  }
+	],
+	"next": "",
+	"choice_time": 19.76,
+	"ignore": "bar_uninterested",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_found": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Що саме він знайшов?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_found_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_found_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Не сказав",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_found_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_found_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Зручно",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_found_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_found_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Сказав тільки,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що цього там бути не повинно",
+		"speed": 30.0,
+		"after_pause": 1.6
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_found_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_found_4": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "І попросив принести ще воду",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_listen",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_collect": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Чому він сам не збере зразки?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_collect_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_collect_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Бо якщо він почне бігати по місту з пробірками,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " його помітять",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_collect_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_collect_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Хто?",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_collect_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_collect_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Ось це гарне питання",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_listen",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_me": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "І ти хочеш,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " щоб це зробив я?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_me_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_me_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Ні",
+		"speed": 30.0,
+		"after_pause": 1.6
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_me_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_me_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Він хоче",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_me_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_me_3": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Він мене навіть не знає",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_me_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_me_4": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Тому я спочатку й запитав,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " звідки ти",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_listen",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_uninterested": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Мені це не цікаво",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_uninterested_1",
+	"event": "prysmak.rumor",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_uninterested_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Чудово",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_uninterested_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_uninterested_2": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він відхиляється назад",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_uninterested_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_uninterested_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Не наполягаю. Але дещо залишу",
+		"speed": 30.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_refuse_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_listen": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він замовкає,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " даючи вам вирішити",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Що йому потрібно?",
+		"next": "bar_samples"
+	  },
+	  {
+		"text": "Мені це не цікаво",
+		"next": "bar_uninterested"
+	  }
+	],
+	"next": "",
+	"choice_time": 18.39,
+	"ignore": "bar_uninterested",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_samples": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Що йому потрібно?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_samples_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_samples_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Три проби",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_samples_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_samples_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Перша -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " вода з твого району",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_samples_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_samples_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Друга -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " біля промислової зони",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_samples_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_samples_4": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Третя -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " з району за північною станцією",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [
+	  {
+		"text": "Чому саме ці місця?",
+		"next": "bar_branches"
+	  }
+	],
+	"choices": [],
+	"next": "",
+	"interrupt_time": 3.7,
+	"choice_time": 0.0,
+	"ignore": "bar_same_substance",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_branches": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Чому саме ці місця?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_branches_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_branches_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Бо вони живляться з різних гілок",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_branches_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_branches_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Якщо у всіх буде одне й те саме -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " це вже не випадковість",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_final_choice",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_same_substance": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Якщо він знайде однакову речовину у всіх трьох,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " зможе зрозуміти,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " звідки вона потрапляє в систему",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_final_choice",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_final_choice": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Незнайомець чекає на ваше рішення",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Де його знайти?",
+		"next": "bar_address"
+	  },
+	  {
+		"text": "Що я з цього матиму?",
+		"next": "bar_reward"
+	  },
+	  {
+		"text": "Чому ти сам цього не зробиш?",
+		"next": "bar_why_you"
+	  },
+	  {
+		"text": "Ні. Надто підозріло",
+		"next": "bar_refuse"
+	  }
+	],
+	"next": "",
+	"choice_time": 22.06,
+	"ignore": "bar_timeout",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_address": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Де його знайти?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_address_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_address_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Стара ветеринарна клініка на східній околиці",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_address_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_address_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Ветеринарна?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_address_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_address_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Лабораторія є лабораторія",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_address_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_address_4": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Постукай три рази. ",
+		"speed": 30.0,
+		"after_pause": 0.7
+	  },
+	  {
+		"text": "Зачекай. ",
+		"speed": 30.0,
+		"after_pause": 1.0
+	  },
+	  {
+		"text": "Потім ще два",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_address_5",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_address_5": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Серйозно?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_address_6",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_address_6": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Серйозно",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_quest_active",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_quest_active": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "НОВИЙ КВЕСТ:",
+		"speed": 30.0,
+		"after_pause": 0.4
+	  },
+	  {
+		"text": " «ПРИСМАК».",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Знайти вченого у старій ветеринарній клініці",
+		"speed": 30.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_to_barman",
+	"event": "prysmak.active",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_reward": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Що я з цього матиму?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_reward_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_reward_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Якщо він помиляється -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " майже нічого",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_reward_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_reward_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "А якщо ні?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_reward_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_reward_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Тоді,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " можливо,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " дізнаєшся,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що саме ти п’єш щодня",
+		"speed": 30.0,
+		"after_pause": 1.6
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_reward_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_reward_4": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Мені цього вистачило",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Давай адресу",
+		"next": "bar_give_address"
+	  },
+	  {
+		"text": "Чому ти сам цього не зробиш?",
+		"next": "bar_why_you"
+	  },
+	  {
+		"text": "Ні. Надто підозріло",
+		"next": "bar_refuse"
+	  }
+	],
+	"next": "",
+	"choice_time": 19.63,
+	"ignore": "bar_timeout",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "sly_smile"
+	}
+  },
+  "bar_give_address": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Давай адресу",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_address_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_why_you": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Чому ти сам цього не зробиш?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_why_you_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_why_you_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Бо мене вже бачили з ним",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_why_you_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_why_you_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Хто бачив?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_why_you_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_why_you_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Не знаю",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_why_you_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_why_you_4": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Тоді звідки знаєш,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що бачили?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_why_you_5",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_why_you_5": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Бо після нашої останньої зустрічі двоє чоловіків чекали біля мого будинку",
+		"speed": 30.0,
+		"after_pause": 1.4
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_why_you_6",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_why_you_6": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Я вирішив,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що наукова цікавість має межі",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Давай адресу",
+		"next": "bar_give_address"
+	  },
+	  {
+		"text": "Ні. Надто підозріло",
+		"next": "bar_refuse"
+	  }
+	],
+	"next": "",
+	"choice_time": 20.66,
+	"ignore": "bar_timeout",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_refuse": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Ні.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Надто підозріло",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_refuse_1",
+
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_refuse_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Розумно",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_refuse_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_refuse_2": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він дістає з кишені складений папір і кладе на стіл",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_refuse_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_refuse_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Тому адресу я все одно залишу",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_refuse_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_refuse_4": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Не хочеш -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " викинь",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_refuse_5",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_refuse_5": {
+	"speaker": "narrator",
+	"event": "prysmak.inactive",
+	"segments": [
+	  {
+		"text": "Неактивна наводка:",
+		"speed": 30.0,
+		"after_pause": 0.4
+	  },
+	  {
+		"text": " «ПРИСМАК».",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " На папері -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " адреса старої ветеринарної клініки на східній околиці",
+		"speed": 30.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_to_barman",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_timeout": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Гаразд",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_timeout_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_timeout_1": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він кладе папір на стіл",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_timeout_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_timeout_2": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Я вже сказав більше,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " ніж хотів",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_timeout_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_timeout_3": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Незнайомець встає",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_timeout_4",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_timeout_4": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "І ще одне",
+		"speed": 24.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [
+	  {
+		"text": "Що?",
+		"next": "bar_last_interrupt"
+	  }
+	],
+	"choices": [],
+	"next": "",
+	"interrupt_time": 3.5,
+	"choice_time": 0.0,
+	"ignore": "bar_last_continue",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_last_interrupt": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Що?",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_last_interrupt_1",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_last_interrupt_1": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Якщо він справді щось знайде -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " не неси це одразу в поліцію",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_last_interrupt_2",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_last_interrupt_2": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Чому?",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_last_interrupt_3",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_last_interrupt_3": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Бо я не знаю,",
+		"speed": 24.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " кому тут можна довіряти",
+		"speed": 24.0,
+		"after_pause": 1.5
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_leaves",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_last_continue": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Якщо він щось знайде -",
+		"speed": 30.0,
+		"after_pause": 0.3
+	  },
+	  {
+		"text": " спершу подумай,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " кому про це говорити",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_leaves",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "nervous"
+	}
+  },
+  "bar_leaves": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Він іде",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_leaves_1",
+	"event": "prysmak.left_active",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": ""
+	}
+  },
+  "bar_leaves_1": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "НОВИЙ КВЕСТ:",
+		"speed": 30.0,
+		"after_pause": 0.4
+	  },
+	  {
+		"text": " «ПРИСМАК».",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " На столі залишилася адреса старої ветеринарної клініки на східній околиці",
+		"speed": 30.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_to_barman",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": ""
+	}
+  },
+  "bar_return_ignored": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Тепер хочеш поговорити?",
+		"speed": 30.0,
+		"after_pause": 0.65
+	  },
+	  {
+		"text": " Кажи коротко",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Що ти знаєш про воду?",
+		"next": "bar_know"
+	  },
+	  {
+		"text": "[Піти]",
+		"next": "bar_return_end"
+	  }
+	],
+	"next": "",
+	"choice_time": 18.95,
+	"ignore": "bar_return_end",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_return_rumor": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Передумав?",
+		"speed": 30.0,
+		"after_pause": 0.65
+	  },
+	  {
+		"text": " Тоді слухай",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Що йому потрібно?",
+		"next": "bar_samples"
+	  },
+	  {
+		"text": "[Піти]",
+		"next": "bar_return_end"
+	  }
+	],
+	"next": "",
+	"choice_time": 18.49,
+	"ignore": "bar_return_end",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_return_inactive": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Адресу я залишив.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Далі вирішуй сам",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Гаразд. Де його знайти?",
+		"next": "bar_address"
+	  },
+	  {
+		"text": "[Піти]",
+		"next": "bar_return_end"
+	  }
+	],
+	"next": "",
+	"choice_time": 18.79,
+	"ignore": "bar_return_end",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_return_active": {
+	"speaker": "stranger",
+	"segments": [
+	  {
+		"text": "Стара ветеринарна клініка на східній околиці.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Три рази,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " зачекай,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " потім ще два.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Більше мені додати нічого",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_to_barman",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_return_end": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Ви відходите від столика",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_to_barman",
+	"presentation": {
+	  "environment": "stranger",
+	  "character": "stranger",
+	  "emotion": "curious"
+	}
+  },
+  "bar_barman": {
+	"speaker": "barman",
+	"segments": [
+	  {
+		"text": "Не знаю,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що він тобі наговорив,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " але я б на твоєму місці не слухав",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [
+	  {
+		"text": "Чому?",
+		"next": "bar_barman_why"
+	  },
+	  {
+		"text": "Ти підслуховував?",
+		"next": "bar_barman_listened"
+	  },
+	  {
+		"text": "Він казав про воду",
+		"next": "bar_barman_water"
+	  },
+	  {
+		"text": "[Піти]",
+		"next": "bar_barman_end"
+	  }
+	],
+	"next": "",
+	"choice_time": 21.84,
+	"ignore": "bar_barman_end",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "talking"
+	}
+  },
+  "bar_barman_why": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Чому?",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "listening"
+	}
+  },
+  "bar_barman_listened": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Ти підслуховував?",
+		"speed": 38.0,
+		"after_pause": 0.8,
+		"tags": [
+          "color=#ff0000"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_listened_1",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "listening"
+	}
+  },
+  "bar_barman_listened_1": {
+	"speaker": "barman",
+	"segments": [
+	  {
+		"text": "У напівпорожньому барі важко нічого не чути.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Він не вперше про це говорить",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "talking"
+	}
+  },
+  "bar_barman_water": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "Він казав про воду",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_water_1",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "listening"
+	}
+  },
+  "bar_barman_water_1": {
+	"speaker": "barman",
+	"segments": [
+	  {
+		"text": "Знову вода.",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  },
+	  {
+		"text": " Я так і думав",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "talking"
+	}
+  },
+  "bar_barman_month": {
+	"speaker": "barman",
+	"segments": [
+	  {
+		"text": "Бо ще місяць тому він був нормальним",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month_1",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "talking"
+	}
+  },
+  "bar_barman_month_1": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "А тепер?",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month_2",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "listening"
+	}
+  },
+  "bar_barman_month_2": {
+	"speaker": "barman",
+	"segments": [
+	  {
+		"text": "Тепер приходить,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " замовляє випивку і не п’є її,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " варто лиш сказати, що я в неї поклав лід",
+		"speed": 30.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month_3",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "talking"
+	}
+  },
+  "bar_barman_month_3": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Бармен киває на склянку незнайомця",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month_4",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "listening"
+	}
+  },
+  "bar_barman_month_4": {
+	"speaker": "barman",
+	"segments": [
+	  {
+		"text": "Каже,",
+		"speed": 30.0,
+		"after_pause": 0.22
+	  },
+	  {
+		"text": " що льоду не хоче",
+		"speed": 30.0,
+		"after_pause": 0.8
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month_5",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "talking"
+	}
+  },
+  "bar_barman_month_5": {
+	"speaker": "hero",
+	"segments": [
+	  {
+		"text": "І?",
+		"speed": 30.0,
+		"after_pause": 0.55
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month_6",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "listening"
+	}
+  },
+  "bar_barman_month_6": {
+	"speaker": "barman",
+	"segments": [
+	  {
+		"text": "Лід ми робимо з водопровідної води",
+		"speed": 30.0,
+		"after_pause": 1.6
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_month_7",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "talking"
+	}
+  },
+  "bar_barman_month_7": {
+	"speaker": "barman",
+	"segments": [
+	  {
+		"text": "От і думай",
+		"speed": 19.0,
+		"after_pause": 1.2,
+		"tags": [
+          "color=#9000ff"
+		]
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman_end",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "talking"
+	}
+  },
+  "bar_to_barman": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Ви йдете далі до барної стійки",
+		"speed": 30.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "bar_barman",
+	"presentation": {
+	  "environment": "barman",
+	  "character": "barman",
+	  "emotion": "listening"
+	}
+  },
+  "bar_barman_end": {
+	"speaker": "narrator",
+	"segments": [
+	  {
+		"text": "Ви відходите від барної стійки",
+		"speed": 30.0,
+		"after_pause": 1.2
+	  }
+	],
+	"interrupt_choices": [],
+	"choices": [],
+	"next": "",
+	"presentation": {
+	  "environment": "barman",
+	  "character": ""
+	}
+  }
+}

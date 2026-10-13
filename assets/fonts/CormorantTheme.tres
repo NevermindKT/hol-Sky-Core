@@ -1,0 +1,14 @@
+[gd_resource type="Theme" format=3 uid="uid://dttv70j3366pp"]
+
+[ext_resource type="FontFile" path="res://assets/fonts/Cormorant-Light.ttf" id="1_font"]
+
+
+[resource]
+default_font = ExtResource("1_font")
+default_font_size = 24
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 5
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/constants/outline_size = 5
+RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
+RichTextLabel/constants/outline_size = 5

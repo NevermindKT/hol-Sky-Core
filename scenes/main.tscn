@@ -49,9 +49,9 @@
 [ext_resource type="Script" uid="uid://b4rf1i0ro8kj0" path="res://scripts/data/sound/ambience_layer.gd" id="44_nvyfr"]
 [ext_resource type="AudioStream" uid="uid://04d6supqo8ek" path="res://audio/effects/eniviroment/wind/METLTonl_Item Spring Wire Impact Flick Top Clatter Light Tap Roll Handling Short 01_ESM_HDLM.wav" id="45_ty1g6"]
 [ext_resource type="AudioStream" uid="uid://dtvdg88gavmnk" path="res://audio/effects/eniviroment/wind/THUN_Interior Thunder Rumble_JF_INT Storm_01.wav" id="46_j2jfr"]
-[ext_resource type="Script" uid="uid://bqxbgbeith4mw" path="res://scenes/music_manager.gd" id="47_nvyfr"]
+[ext_resource type="Script" uid="uid://bqxbgbeith4mw" path="res://scripts/audio/music_manager.gd" id="47_nvyfr"]
 [ext_resource type="AudioStream" uid="uid://p4skorlelk65" path="res://audio/effects/eniviroment/wind/WINDInt_Loop Weather Wind Whipping Constricted Flow Turbulent 01_ESM_SNLS.wav" id="48_bjg73"]
-[ext_resource type="Script" uid="uid://bq27whxpuul5t" path="res://scenes/loading_rect.gd" id="53_o7ddy"]
+[ext_resource type="Script" uid="uid://bq27whxpuul5t" path="res://scripts/loading_rect.gd" id="53_o7ddy"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("5_2cjbq")

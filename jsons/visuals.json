@@ -1,0 +1,54 @@
+{
+  "environments": {
+	"guard": {
+	  "background": "res://assets/img/Scene Assets/Охоронець/BG.png",
+	  "footer": "res://assets/img/Scene Assets/Охоронець/Footer.png"
+	},
+	"stranger": {
+	  "background": "res://assets/img/Scene Assets/Дивний чоловік/BG.png",
+	  "footer": "res://assets/img/Scene Assets/Дивний чоловік/Footer.png"
+	},
+	"barman": {
+	  "background": "res://assets/img/Scene Assets/Бармен/BG.png",
+	  "footer": "res://assets/img/Scene Assets/Бармен/Footer.png"
+	},
+	"scientist": {
+	  "background": "res://assets/img/Scene Assets/Вчений/BG.png",
+	  "footer": "res://assets/img/Scene Assets/Вчений/Footer.png"
+	}
+  },
+  "characters": {
+	"security": {
+	  "default_emotion": "watchful",
+	  "emotions": {
+		"watchful": "res://assets/img/Characters/guard_01_watchful.png",
+		"irritated": "res://assets/img/Characters/guard_02_irritated.png",
+		"serious": "res://assets/img/Characters/guard_03_serious.png"
+	  }
+	},
+	"stranger": {
+	  "default_emotion": "curious",
+	  "emotions": {
+		"curious": "res://assets/img/Characters/stranger_01_curious.png",
+		"nervous": "res://assets/img/Characters/stranger_02_nervous.png",
+		"sly_smile": "res://assets/img/Characters/stranger_03_sly_smile.png"
+	  }
+	},
+	"barman": {
+	  "default_emotion": "listening",
+	  "emotions": {
+		"listening": "res://assets/img/Characters/bartender_01_listening.png",
+		"listening_alternate": "res://assets/img/Characters/bartender_02_listening.png",
+		"talking": "res://assets/img/Characters/bartender_03_talking.png"
+	  }
+	},
+	"scientist": {
+	  "default_emotion": "thoughtful",
+	  "emotions": {
+		"thoughtful": "res://assets/img/Characters/scientist_01_thoughtful.png",
+		"serious_explanation": "res://assets/img/Characters/scientist_02_serious_explanation.png",
+		"thoughtful_alternate": "res://assets/img/Characters/scientist_03_thoughtful.png"
+	  }
+	}
+  }
+}
