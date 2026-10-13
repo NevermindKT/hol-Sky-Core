@@ -38,6 +38,8 @@ func _ready() -> void:
 	Settings.register_viewport(game_viewport, view_container)
 	Settings.register_hud(ui.hud)
 
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
 	Settings.register_overlay(overlay)
 	Settings.register_ps1_overlay_material(overlay.material as ShaderMaterial)
 
