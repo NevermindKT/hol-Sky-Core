@@ -1,34 +1,34 @@
 {
 	"narrator": {
 		"name": " ",
-		"color": "#000000"
+		"color": "#FFFFFF"
 	},
 	"unknown_m": {
 		"name": "Невідомий чоловічий голос",
-		"color": "#000000"
+		"color": "#FFFFFF"
 	},
 	"unknown_w": {
 		"name": "Невідомий жіночий голос",
-		"color": "#000000"
+		"color": "#FFFFFF"
 	},
 	"security": {
 		"name": "Охоронець",
-		"color": "#000000"
+		"color": "#FFFFFF"
 	},
 	"barman": {
 		"name": "Бармен",
-		"color": "#000000"
+		"color": "#FFFFFF"
 	},
 	"hero": {
 		"name": "Віктор",
-		"color": "#000000"
+		"color": "#FFFFFF"
 	},
 	"margaryta": {
 		"name": "Маргарита",
-		"color": "#000000"
+		"color": "#FFFFFF"
 	},
 	"stranger": {
 		"name": "Незнайомець",
-		"color": "#000000"
+		"color": "#FFFFFF"
 	}
 }

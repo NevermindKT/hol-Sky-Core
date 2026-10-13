@@ -524,7 +524,7 @@
 	"speaker": "narrator",
 	"segments": [
 	  {
-		"text": "За сусіднім столом сидить чоловік років сорока-п’ятдесяти",
+		"text": "За сусіднім столом сидить чоловік років двацяти-тридцяти",
 		"speed": 30.0,
 		"after_pause": 0.8
 	  }
@@ -3459,7 +3459,6 @@
 	"interrupt_choices": [],
 	"choices": [],
 	"next": "bar_refuse_1",
-
 	"presentation": {
 	  "environment": "stranger",
 	  "character": "stranger",

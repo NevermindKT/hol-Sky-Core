@@ -154,6 +154,7 @@ bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("12_ygcl5")
+speaker_sounds_path = "res://audio/dialogue_sounds"
 metadata/_edit_use_anchors_ = true
 
 [node name="NameBox" type="ColorRect" parent="Interface" unique_id=1395303975]
