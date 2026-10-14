@@ -3,6 +3,7 @@ class_name Pause_Manager
 
 var is_paused := false
 var is_game_over := false
+var is_photo_mode := false
 
 signal pause_state_changed
 
@@ -20,6 +21,11 @@ func set_paused(value: bool):
 	is_paused = value
 	get_tree().paused = is_paused
 	pause_state_changed.emit()
+
+
+func set_photo_mode(value: bool) -> void:
+	is_photo_mode = value
+	set_paused(value)
 
 
 func set_game_over() -> void:

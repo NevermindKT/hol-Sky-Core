@@ -74,6 +74,10 @@ var _photo_mode: bool = false
 var _photo_yaw: float = 0.0
 var _photo_pitch: float = 0.0
 
+var _last_mouse_pos: Vector2
+var _photo_look_initialized := false
+
+var _photo_motion_accum := Vector2.ZERO
 
 # Layer 1: lateral spring follow + yaw/roll
 var _cam_x := 0.0
@@ -117,6 +121,8 @@ var _fov_offset := 0.0
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	InputController.photo_mode_toggle.connect(_toggle_photo_mode)
 	_cam_x = global_position.x
 	_fov_offset = Settings.camera_fov - fov_min
 	Settings.fov_changed.connect(_on_fov_changed)
@@ -317,29 +323,6 @@ func viewport_to_screen(viewport_pos: Vector2) -> Vector2:
 
 # ============================ PHOTO MODE ======================================
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_P:
-			_toggle_photo_mode()
-			print("Photo mode: ", _photo_mode)
-			print("Mouse mode: ", Input.mouse_mode)
-
-	if event is InputEventMouseMotion:
-		print("Input_Controller MOUSE: ", event.relative)
-
-	if _photo_mode and event is InputEventMouseMotion:
-		print("Mouse motion: ", event.relative)
-
-		_photo_yaw -= event.relative.x * photo_mouse_sensitivity
-		_photo_pitch -= event.relative.y * photo_mouse_sensitivity
-		_photo_pitch = clampf(
-			_photo_pitch,
-			deg_to_rad(-89.0),
-			deg_to_rad(89.0)
-		)
-
-		global_rotation = Vector3(_photo_pitch, _photo_yaw, 0.0)
-
 
 func _toggle_photo_mode() -> void:
 	_photo_mode = not _photo_mode
@@ -347,18 +330,49 @@ func _toggle_photo_mode() -> void:
 	if _photo_mode:
 		_photo_yaw = global_rotation.y
 		_photo_pitch = global_rotation.x
+		_photo_motion_accum = Vector2.ZERO
 
+		physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 		set_physics_process(false)
 		InputController.set_photo_mouse_mode(true)
+		InputController.photo_mouse_motion.connect(_on_photo_mouse_motion)
+		PauseManager.set_photo_mode(true)
 	else:
+		InputController.photo_mouse_motion.disconnect(_on_photo_mouse_motion)
 		set_physics_process(true)
+		physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+		reset_physics_interpolation()
 		InputController.set_photo_mouse_mode(false)
+		PauseManager.set_photo_mode(false)
+
+
+func _on_photo_mouse_motion(relative: Vector2) -> void:
+	_photo_motion_accum += relative
 
 
 func _process(delta: float) -> void:
 	if not _photo_mode:
 		return
 
+	_process_photo_look()
+	_process_photo_movement(delta)
+
+
+func _process_photo_look() -> void:
+	if _photo_motion_accum == Vector2.ZERO:
+		return
+
+	var motion := _photo_motion_accum
+	_photo_motion_accum = Vector2.ZERO
+
+	_photo_yaw -= motion.x * photo_mouse_sensitivity
+	_photo_pitch -= motion.y * photo_mouse_sensitivity
+	_photo_pitch = clampf(_photo_pitch, deg_to_rad(-89.0), deg_to_rad(89.0))
+
+	global_rotation = Vector3(_photo_pitch, _photo_yaw, 0.0)
+
+
+func _process_photo_movement(delta: float) -> void:
 	var direction := Vector3.ZERO
 
 	var forward := -global_transform.basis.z
@@ -378,7 +392,6 @@ func _process(delta: float) -> void:
 		direction -= Vector3.UP
 
 	var speed := photo_move_speed
-
 	if Input.is_key_pressed(KEY_SHIFT):
 		speed *= photo_boost_multiplier
 

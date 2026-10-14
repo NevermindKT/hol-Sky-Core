@@ -73,7 +73,7 @@ func _on_quit_pressed():
 
 
 func check_visible():
-	if PauseManager.is_game_over:
+	if PauseManager.is_game_over or PauseManager.is_photo_mode:
 		visible = false
 		return
 

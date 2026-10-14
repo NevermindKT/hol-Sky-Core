@@ -165,6 +165,7 @@ player_cam = NodePath("../PlayerCam")
 engine_max_volume_db = -4.0
 
 [node name="PlayerCam" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1846742701 node_paths=PackedStringArray("car")]
+physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 0.86818093, 0.49624774, 0, -0.49624774, 0.86818093, 0, 5.483519, 7.1356735)
 fov = 90.0
 script = ExtResource("2_c6pm6")

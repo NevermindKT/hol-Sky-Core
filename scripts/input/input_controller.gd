@@ -18,17 +18,24 @@ signal headlights_toggle
 signal next_song
 
 signal pause_toggle
+signal photo_mode_toggle
 
 signal test_boost
 signal debug_toggle_upgrade(slot: int)
+
+signal photo_mouse_motion(relative: Vector2)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
+
 func _process(_delta):
-	if Input.is_action_just_pressed("Pause") and not PauseManager.is_game_over:
+	if Input.is_action_just_pressed("Pause") and not PauseManager.is_game_over and not PauseManager.is_photo_mode:
 		pause_toggle.emit()
+
+	if Input.is_action_just_pressed("photo_mode"):
+		photo_mode_toggle.emit()
 
 	if get_tree().paused:
 		return
@@ -67,8 +74,14 @@ func _process(_delta):
 			print("Start: ", slot)
 			debug_toggle_upgrade.emit(slot)
 
+
 func set_photo_mouse_mode(enabled: bool) -> void:
 	if enabled:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		photo_mouse_motion.emit(event.relative)
