@@ -4,29 +4,29 @@ class_name Player_Camera
 @export var car: Car_Movement
 
 @export_group("Lateral Follow")
-@export var lateral_spring := 22.0
-@export var lateral_damping := 14.0
-@export var yaw_gain_deg := 0.6
-@export var yaw_max_deg := 2.5
-@export var yaw_smoothing := 3.5
+@export var lateral_spring := 150.0
+@export var lateral_damping := 20.0
+@export var yaw_gain_deg := 1.7
+@export var yaw_max_deg := 8.0
+@export var yaw_smoothing := 4.0
 @export var roll_gain_deg := 0.1
 @export var roll_max_deg := 2.0
 @export var roll_smoothing := 3.5
 
 @export_group("Speed Orbit")
 @export var speed_feel_smoothing := 2.0
-@export var fov_min := 75.0
+@export var fov_min := 80.0
 @export var fov_max := 100.0
 @export var fov_smoothing := 8.0
 @export var distance_min := 5.0
-@export var distance_max := 9.0
+@export var distance_max := 6.0
 @export var height_min := 4.0
-@export var height_max := 7.0
+@export var height_max := 8.0
 
 @export_group("Input Push")
-@export var accel_distance_push := 1.5
-@export var accel_fov_push := 6.0
-@export var brake_distance_push := 1.2
+@export var accel_distance_push := 0.8
+@export var accel_fov_push := 3.0
+@export var brake_distance_push := 0.2
 @export var brake_fov_push := 5.0
 @export var push_smoothing := 5.0
 
@@ -36,10 +36,10 @@ class_name Player_Camera
 @export var impact_rot_spring := 50.0
 @export var impact_rot_damping := 9.0
 @export var impact_noise_duration := 0.25
-@export var incoming_lateral_impulse_per_damage := 0.05
-@export var incoming_vertical_impulse_per_damage := 0.04
-@export var incoming_roll_impulse_per_damage_deg := 1.2
-@export var incoming_pitch_impulse_per_damage_deg := 1.0
+@export var incoming_lateral_impulse_per_damage := 0.5
+@export var incoming_vertical_impulse_per_damage := 0.5
+@export var incoming_roll_impulse_per_damage_deg := 5.0
+@export var incoming_pitch_impulse_per_damage_deg := 5.0
 @export var incoming_noise_per_damage := 0.03
 @export var outgoing_lateral_impulse_per_damage := 0.04
 @export var outgoing_roll_impulse_per_damage_deg := 1.0
@@ -50,19 +50,19 @@ class_name Player_Camera
 
 @export_group("Aim Lean")
 @export var aim_lean_smoothing := 4.0
-@export var aim_lean_horizontal := 0.5
-@export var aim_lean_vertical := 0.3
-@export var aim_lean_yaw_deg := 3.0
-@export var aim_lean_pitch_deg := 2.0
+@export var aim_lean_horizontal := 1.0
+@export var aim_lean_vertical := 0.6
+@export var aim_lean_yaw_deg := 4.0
+@export var aim_lean_pitch_deg := 6.0
 
 @export_group("Headlight-Linked Presets")
 @export var headlights_preset_smoothing := 2.5
-@export var headlights_far_height_offset := -1.5
-@export var headlights_far_distance_offset := 0.0
+@export var headlights_far_height_offset := -2.0
+@export var headlights_far_distance_offset := 1.0
 
 @export_group("Flashlight-Linked Aim Lean")
 @export var flashlight_preset_smoothing := 2.5
-@export var flashlight_far_lean_multiplier := 1.8
+@export var flashlight_far_lean_multiplier := 2.5
 
 # Layer 1: lateral spring follow + yaw/roll
 var _cam_x := 0.0

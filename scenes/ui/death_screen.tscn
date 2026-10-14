@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://ctk5tcu8fvmu5"]
+
+[ext_resource type="Script" path="res://scenes/ui/death_screen.gd" id="1_j0ehl"]
+[ext_resource type="Shader" uid="uid://cvh5qt2ng01ng" path="res://resources/shaders/UI/blur_backdrop.gdshader" id="2_njuei"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6at5"]
+shader = ExtResource("2_njuei")
+shader_parameter/blur_amount = 4.0
+
+[node name="Death_screen" type="CanvasLayer" unique_id=2138021163 node_paths=PackedStringArray("restart_btn", "exit_btn")]
+script = ExtResource("1_j0ehl")
+restart_btn = NodePath("Menu/RestartBtn")
+exit_btn = NodePath("Menu/ExitBtn")
+
+[node name="backdrop" type="ColorRect" parent="." unique_id=1425322494]
+material = SubResource("ShaderMaterial_w6at5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="." unique_id=1641323400]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.5
+offset_top = -112.5
+offset_right = 280.5
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="DeathLabel" type="RichTextLabel" parent="Menu" unique_id=1130963898]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 44
+text = "CRASHED"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RestartBtn" type="Button" parent="Menu" unique_id=1336964018 groups=["ui_buttons"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "RETRY"
+
+[node name="ExitBtn" type="Button" parent="Menu" unique_id=933683804 groups=["ui_buttons"]]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "QUIT"

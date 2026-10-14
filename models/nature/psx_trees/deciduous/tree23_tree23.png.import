@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqd3bhwhlgjti"
-path="res://.godot/imported/tree23_tree23.png-f742c95b585643ecf2d13e1ba709d889.ctex"
+path.s3tc="res://.godot/imported/tree23_tree23.png-f742c95b585643ecf2d13e1ba709d889.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "c1d448d7772d7c7ca15aa08792999f83"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://models/nature/psx_trees/deciduous/tree23_tree23.png"
-dest_files=["res://.godot/imported/tree23_tree23.png-f742c95b585643ecf2d13e1ba709d889.ctex"]
+dest_files=["res://.godot/imported/tree23_tree23.png-f742c95b585643ecf2d13e1ba709d889.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

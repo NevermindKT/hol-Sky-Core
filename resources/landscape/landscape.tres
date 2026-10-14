@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b2nn2kwtmdaaf" path="res://textures/ground/psx/psx_meadow.png" id="3_meadow"]
 [ext_resource type="Texture2D" uid="uid://dbjlap52wl0ne" path="res://textures/ground/psx/psx_forest.png" id="4_forest"]
 [ext_resource type="Texture2D" uid="uid://ce30puqvsk0se" path="res://textures/ground/psx/psx_shoulder.png" id="5_shoulder"]
-[ext_resource type="Material" path="res://resources/shaders/ground/grass_shell_material.tres" id="6_shell"]
+[ext_resource type="Material" uid="uid://ba7uqa8ksjavx" path="res://resources/shaders/ground/grass_shell_material.tres" id="6_shell"]
 
 [sub_resource type="Curve" id="Curve_conifer"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15, 0.02), 0.0, 0.0, 0, 0, Vector2(0.6, 0.55), 1.2, 1.2, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
