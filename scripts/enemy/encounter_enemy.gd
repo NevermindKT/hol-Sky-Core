@@ -401,12 +401,12 @@ func _on_hit(hit_position: Vector3, direction: Vector3, damage: float) -> void:
 
 func on_dodge_hit(damage: float, knockback: Vector3, hit_position: Vector3, direction: Vector3, car: Car_Movement) -> void:
 	_death_push = knockback
+	_spawn_dodge_hit_effect(hit_position, direction, car)
 	take_damage(damage)
 
 	if health <= 0.0:
 		return
 
-	_spawn_dodge_hit_effect(hit_position, direction, car)
 	encounter.end_attak(self)
 
 	if state == State.STUNNED:

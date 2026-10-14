@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="7_cjqg0"]
 [ext_resource type="PackedScene" uid="uid://bfh8ek3nst8so" path="res://scenes/weather/weather_system.tscn" id="8_vchkt"]
 [ext_resource type="Script" uid="uid://bcc07pjuuti4w" path="res://scripts/enemy/enemy_encounter.gd" id="9_txyw0"]
+[ext_resource type="PackedScene" uid="uid://t8cf5hixjfyj" path="res://scenes/audio/weather_audio.tscn" id="10_fuf3a"]
 [ext_resource type="Script" uid="uid://dugxq50h32qoa" path="res://resources/enemy/encounter_enemy_data.gd" id="10_vc5cj"]
 [ext_resource type="Resource" uid="uid://kbikc6eesw84" path="res://resources/enemy/testEnemy.tres" id="11_nvyfr"]
 [ext_resource type="Script" uid="uid://bdv0lpvwl3hpr" path="res://scripts/general/bootstrap.gd" id="12_ty1g6"]
@@ -111,6 +112,7 @@ metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vc5cj"]
 shader = ExtResource("4_vc5cj")
 shader_parameter/pixel_size = 2.0
+shader_parameter/low_res_input = false
 shader_parameter/gamma = Vector2(0.15, 9.5)
 shader_parameter/posterize_strength = 0.800000038
 shader_parameter/shadow_levels = 6.0
@@ -122,7 +124,7 @@ shader_parameter/noise_strength = 0.0499999988824
 shader_parameter/noise_darkness = 0.7999999821184
 shader_parameter/noise_scale = 12.0
 shader_parameter/noise_speed = 12.0000001788144
-shader_parameter/noise_chroma = 0.7999999821184
+shader_parameter/noise_chroma = 0.1999999955296
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_txyw0"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -169,7 +171,6 @@ transform = Transform3D(1, 0, 0, 0, 0.86818093, 0.49624774, 0, -0.49624774, 0.86
 fov = 90.0
 script = ExtResource("2_c6pm6")
 car = NodePath("../Car")
-lateral_spring = 25.0
 
 [node name="AudioListener3D" type="AudioListener3D" parent="SubViewportContainer/SubViewport/PlayerCam" unique_id=587824042]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
@@ -185,15 +186,39 @@ obstacle_set = SubResource("Resource_xljpf")
 
 [node name="Sun" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="1" unique_id=89476310]
 light_energy = 0.04
+shadow_enabled = true
+shadow_blur = 3.0
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 90.0
 
 [node name="LightningController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
 world = NodePath("../../World")
+strike_ahead_min = 100.0
+strike_ahead_max = 150.0
 
 [node name="FogController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="3" unique_id=1605430976]
 transition_speed = 2.0
 
 [node name="SkyController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="4" unique_id=995668462]
+dusk_duration = 50.0
+dusk_sun_azimuth_deg = -40.0
+dusk_light_energy = 1.0
+moon_azimuth_deg = 40.0
+moon_night_elevation_deg = 15.0
+dawn_duration = 20.0
 dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
+
+[node name="Moon" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="5" unique_id=730512946]
+shadow_enabled = true
+shadow_blur = 3.0
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 90.0
+energy = 0.1
+
+[node name="WeatherAudio" parent="SubViewportContainer/SubViewport/Environment" unique_id=367977148 node_paths=PackedStringArray("car") instance=ExtResource("10_fuf3a")]
+car = NodePath("../../Car")
 
 [node name="EnemyEncounter" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=2103320193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.92378)
@@ -275,8 +300,9 @@ max_segments_per_weather = 5
 [node name="GroundGenerator" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=48490945]
 script = ExtResource("30_152kg")
 landscape = ExtResource("32_kmb1v")
-texture_tile_scale = 0.1
+texture_tile_scale = 0.35
 view_radius = 800.0
+detail_radius = 300.0
 chunk_size = 128.0
 vegetation_cluster_chunks = 6
 
@@ -325,6 +351,7 @@ fade_duration = 5.0
 script = ExtResource("51_o7ddy")
 
 [node name="Overlay" type="TextureRect" parent="." unique_id=64996111]
+texture_filter = 1
 material = SubResource("ShaderMaterial_vc5cj")
 anchors_preset = 15
 anchor_right = 1.0
@@ -334,6 +361,7 @@ grow_vertical = 2
 texture = SubResource("ViewportTexture_txyw0")
 
 [node name="LoadingRect" type="ColorRect" parent="." unique_id=1587886310]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

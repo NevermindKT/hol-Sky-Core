@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
 	var result := space_state.intersect_ray(query)
 
 	var direct_hit := false
+	var mouse_pos_screen := car.player_cam.viewport_to_screen(mouse_pos)
 	if not result.is_empty():
 		target = result.position
 
@@ -46,8 +47,8 @@ func _process(delta: float) -> void:
 		for hb in get_tree().get_nodes_in_group("hurtboxes"):
 			if car.player_cam.is_position_behind(hb.global_position):
 				continue
-			var screen_pos := car.player_cam.unproject_position(hb.global_position)
-			var dist := mouse_pos.distance_to(screen_pos)
+			var screen_pos := car.player_cam.unproject_to_screen(hb.global_position)
+			var dist := mouse_pos_screen.distance_to(screen_pos)
 			if dist < best_dist:
 				best_dist = dist
 				best_hurtbox = hb
@@ -55,8 +56,7 @@ func _process(delta: float) -> void:
 		if best_hurtbox:
 			target = best_hurtbox.global_position
 			direct_hit = true
-	
-	var mouse_pos_screen := car.player_cam.viewport_to_screen(mouse_pos)
+
 	
 	#if direct_hit and not is_locked_on:
 		#SoundManager.play_sfx(lock_sound, 1.0)

@@ -55,16 +55,16 @@ func purchase(upgrade: UpgradeData) -> void:
 func debug_toggle(id: String) -> void:
 	if purchased.has(id):
 		purchased.erase(id)
-		print("Upgrade OFF: ", id)
+		GameLog.print("Upgrade OFF: ", id)
 		return
 
 	for upgrade in database.upgrades:
 		if upgrade.id == id:
 			purchased[id] = upgrade
-			print("Upgrade ON: ", id)
+			GameLog.print("Upgrade ON: ", id)
 			return
 
-	print("Upgrade not found: ", id)
+	GameLog.print("Upgrade not found: ", id)
 
 func _on_debug_toggle_upgrade(slot: int) -> void:
 	if slot < DEBUG_UPGRADE_IDS.size():

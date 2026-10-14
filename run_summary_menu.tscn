@@ -1,5 +1,4 @@
 [gd_scene format=3 uid="uid://p7ufkd6leg0l"]
-
 [ext_resource type="Script" uid="uid://ctvaygbubrum2" path="res://run_summary_menu.gd" id="1_2a4k7"]
 
 [node name="RunSummary" type="Control" unique_id=479002571 node_paths=PackedStringArray("time_label", "damage_label", "kills_total_label")]

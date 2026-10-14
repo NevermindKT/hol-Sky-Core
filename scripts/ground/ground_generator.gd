@@ -7,6 +7,7 @@ var vegetation: Vegetation_scatter
 const SPINE_STEP := 2.0
 const PIECE_SAMPLES := 64
 const NEEDED_REFRESH_DISTANCE := 16.0
+const SHELL_REFRESH_DISTANCE := 4.0
 
 static var _mark_dirty_max_usec := 0
 static var _apply_job_max_usec := 0
@@ -31,6 +32,7 @@ const GROUND_SHADER_PATH := "res://resources/shaders/ground/ground_blend.gdshade
 @export var height_blend_radius := 40.0
 @export var base_blend_distance := 60.0
 @export var chunk_behind_distance := 60.0
+@export var behind_keep_radius := 400.0
 @export var spine_keep_behind := 1400.0
 @export var initial_build_radius := 420.0
 @export_range(0, 32, 1) var worker_tasks := 0
@@ -152,6 +154,8 @@ var _index_buffer := PackedInt32Array()
 var _max_tasks := 1
 var _clusters: Dictionary = {}
 var _dirty_clusters: Dictionary = {}
+var _shells: Dictionary = {}
+var _shell_origin := Vector3(INF, INF, INF)
 
 var _world_seed := 0
 var _hill_noise: FastNoiseLite
@@ -163,6 +167,8 @@ var _edge_noise: FastNoiseLite
 var _started := false
 var _needed_dirty := true
 var _needed_origin := Vector3(INF, INF, INF)
+var _pending_pieces: Array[PackedVector3Array] = []
+var _pending_piece_frames: PackedInt64Array = []
 
 
 func initialize() -> void:
@@ -182,9 +188,19 @@ func initialize() -> void:
 	_commit_spine(old_size)
 
 	Events.segment_spawned.connect(_on_segment_spawned)
+	for child in world.road_container.get_children():
+		if child is Road_segment:
+			_bind_road_material(child)
 
 
 func _process(_delta: float) -> void:
+	if not _pending_pieces.is_empty() and Engine.get_process_frames() >= _pending_piece_frames[0]:
+		var piece: PackedVector3Array = _pending_pieces.pop_front()
+		_pending_piece_frames.remove_at(0)
+		var old_size := _spine_points.size()
+		_append_bezier(piece[0], piece[1], piece[2], piece[3])
+		_commit_spine(old_size)
+
 	if _spine == null or not _spine.is_valid():
 		return
 
@@ -198,6 +214,7 @@ func _process(_delta: float) -> void:
 		_refresh_needed(car_local)
 
 	_pump(Time.get_ticks_usec() + int(build_budget_ms * 1000.0))
+	_update_shells(car_local)
 
 
 func _exit_tree() -> void:
@@ -207,21 +224,27 @@ func _exit_tree() -> void:
 	_active_keys.clear()
 
 
-func _on_segment_spawned(_segment: Road_segment) -> void:
+func _on_segment_spawned(segment: Road_segment) -> void:
+	_bind_road_material(segment)
 	var curve := world.ground_path.curve
 	if curve.point_count < 2:
 		return
-	var old_size := _spine_points.size()
-	_append_piece(curve, curve.point_count - 2)
-	_commit_spine(old_size)
+	_pending_pieces.append(_piece_points(curve, curve.point_count - 2))
+	_pending_piece_frames.append(Engine.get_process_frames() + 1)
+
+
+func _piece_points(curve: Curve3D, index: int) -> PackedVector3Array:
+	var p0 := curve.get_point_position(index)
+	var p1 := curve.get_point_position(index + 1)
+	return PackedVector3Array([p0, p0 + curve.get_point_out(index), p1 + curve.get_point_in(index + 1), p1])
 
 
 func _append_piece(curve: Curve3D, index: int) -> void:
-	var p0 := curve.get_point_position(index)
-	var c0 := p0 + curve.get_point_out(index)
-	var p1 := curve.get_point_position(index + 1)
-	var c1 := p1 + curve.get_point_in(index + 1)
+	var piece := _piece_points(curve, index)
+	_append_bezier(piece[0], piece[1], piece[2], piece[3])
 
+
+func _append_bezier(p0: Vector3, c0: Vector3, c1: Vector3, p1: Vector3) -> void:
 	var lengths := PackedFloat64Array([0.0])
 	var prev := p0
 	for s in range(1, PIECE_SAMPLES + 1):
@@ -323,12 +346,51 @@ func _mark_dirty(from_index: int) -> void:
 			continue
 		for i in range(from_index, points.size()):
 			if _rect_point_distance(rect, points[i].x, points[i].z) < reach:
-				_enqueue_front(key)
+				if not _chunks.has(key) or _chunk_affected(_chunks[key], points, from_index, bounds):
+					_enqueue_front(key)
 				break
 
 	var _dt := Time.get_ticks_usec() - _t0
 	if _dt > _mark_dirty_max_usec:
 		_mark_dirty_max_usec = _dt
+
+
+func _chunk_affected(chunk: Chunk, points: PackedVector3Array, from_index: int, bounds: Rect2) -> bool:
+	var surface := chunk.surface
+	if surface == null:
+		return true
+
+	var n := surface.cells
+	var cell := surface.size / float(n)
+	var margin := maxf(height_blend_radius, Road_spine.REFINE_MARGIN) + 2.0 * cell + SPINE_STEP * 2.0 + 2.0
+
+	var px := PackedFloat32Array()
+	var pz := PackedFloat32Array()
+	for i in range(from_index, points.size(), 2):
+		px.append(points[i].x)
+		pz.append(points[i].z)
+	px.append(points[points.size() - 1].x)
+	pz.append(points[points.size() - 1].z)
+
+	var distances := surface.distances
+	var ox := chunk.rect.position.x
+	var oz := chunk.rect.position.y
+	var count := px.size()
+
+	for iz in range(n + 1):
+		var vz := oz + iz * cell
+		for ix in range(n + 1):
+			var vx := ox + ix * cell
+			var limit := distances[iz * (n + 1) + ix] + margin
+			if _rect_point_distance(bounds, vx, vz) >= limit:
+				continue
+			var limit2 := limit * limit
+			for k in count:
+				var dx := px[k] - vx
+				var dz := pz[k] - vz
+				if dx * dx + dz * dz < limit2:
+					return true
+	return false
 
 
 func _build_noise() -> void:
@@ -384,7 +446,28 @@ func _build_material() -> void:
 		_material.set_shader_parameter("meadow_texture", landscape.meadow_texture)
 		_material.set_shader_parameter("forest_texture", landscape.forest_texture)
 		_material.set_shader_parameter("forest_tint", landscape.forest_tint)
+		_material.set_shader_parameter("shoulder_normal", landscape.shoulder_normal)
+		_material.set_shader_parameter("meadow_normal", landscape.meadow_normal)
+		_material.set_shader_parameter("forest_normal", landscape.forest_normal)
+		_material.set_shader_parameter("normal_strength", landscape.normal_strength)
+		_material.set_shader_parameter("shoulder_arm", landscape.shoulder_arm)
+		_material.set_shader_parameter("meadow_arm", landscape.meadow_arm)
+		_material.set_shader_parameter("forest_arm", landscape.forest_arm)
+		_material.set_shader_parameter("ao_light_affect", landscape.ao_light_affect)
+		_material.set_shader_parameter("specular_amount", landscape.specular)
+		_material.set_shader_parameter("macro_scale", landscape.macro_scale)
+		_material.set_shader_parameter("macro_strength", landscape.macro_strength)
 	_material.set_shader_parameter("uv_scale", texture_tile_scale)
+	if landscape:
+		_material.set_shader_parameter("shoulder_start", road_half_width + landscape.shoulder_width)
+		_material.set_shader_parameter("shoulder_fade", landscape.shoulder_fade)
+	if landscape and landscape.grass_shell_material:
+		var shell_material := landscape.grass_shell_material
+		shell_material.set_shader_parameter("shell_count", landscape.grass_shell_count)
+		shell_material.set_shader_parameter("fade_end", landscape.grass_shell_radius)
+		shell_material.set_shader_parameter("fade_start", landscape.grass_shell_radius * 0.65)
+		shell_material.set_shader_parameter("road_start", road_half_width + landscape.shoulder_width)
+		shell_material.set_shader_parameter("road_fade", landscape.shoulder_fade)
 	_material.set_shader_parameter("roughness_value", roughness_value)
 
 
@@ -484,7 +567,8 @@ func _refresh_needed(car_local: Vector3) -> void:
 	var unload_radius := view_radius + chunk_size
 
 	for key in _chunks.keys():
-		if _car_distance(key, car_local) > unload_radius or _is_behind(key, xform, car_local.y):
+		var distance := _car_distance(key, car_local)
+		if distance > unload_radius or (distance > behind_keep_radius + chunk_size and _is_behind(key, xform, car_local.y)):
 			_unload_chunk(key)
 
 	var half := chunk_size * 0.5
@@ -503,7 +587,7 @@ func _refresh_needed(car_local: Vector3) -> void:
 				continue
 			if _car_distance(key, car_local) > view_radius:
 				continue
-			if _is_behind(key, xform, car_local.y):
+			if _car_distance(key, car_local) > behind_keep_radius and _is_behind(key, xform, car_local.y):
 				continue
 			if check_road:
 				var road_distance := _spine.nearest_coarse_distance(cx * chunk_size + half, cz * chunk_size + half) - half_diag
@@ -568,7 +652,7 @@ func _still_needed(key: Vector2i) -> bool:
 	var car_local := _car_local()
 	if _car_distance(key, car_local) > view_radius:
 		return false
-	return not _is_behind(key, world.world.global_transform, car_local.y)
+	return _car_distance(key, car_local) <= behind_keep_radius or not _is_behind(key, world.world.global_transform, car_local.y)
 
 
 func _build_initial() -> void:
@@ -609,6 +693,14 @@ func _pump(deadline: int) -> void:
 		if Time.get_ticks_usec() >= deadline:
 			break
 
+	while _active.size() < _max_tasks:
+		var job := _next_job()
+		if job == null:
+			break
+		job.task_id = WorkerThreadPool.add_task(_run_job.bind(job))
+		_active.append(job)
+		_active_keys[job.key] = true
+
 	var rebuilt := 0
 	for cluster_key in _dirty_clusters.keys():
 		if rebuilt > 0 and Time.get_ticks_usec() >= deadline:
@@ -616,17 +708,6 @@ func _pump(deadline: int) -> void:
 		_dirty_clusters.erase(cluster_key)
 		_rebuild_cluster(cluster_key)
 		rebuilt += 1
-
-	if Time.get_ticks_usec() >= deadline:
-		return
-
-	while _active.size() < _max_tasks:
-		var job := _next_job()
-		if job == null:
-			return
-		job.task_id = WorkerThreadPool.add_task(_run_job.bind(job))
-		_active.append(job)
-		_active_keys[job.key] = true
 
 
 func _next_job() -> ChunkJob:
@@ -736,6 +817,7 @@ func _compute_surface(job: ChunkJob) -> void:
 			job.uvs[vi] = Vector2(float(job.key.x * n + ix) * cell, float(job.key.y * n + iz) * cell)
 			job.weights[vi * 4] = 1.0 - smoothstep(shoulder_start, shoulder_start + shoulder_fade, surface.distances[vi])
 			job.weights[vi * 4 + 1] = surface.forest[vi]
+			job.weights[vi * 4 + 2] = minf(surface.distances[vi], 1.0e6)
 
 	job.surface = surface
 	job.reach = reach + maxf(height_blend_radius, Road_spine.REFINE_MARGIN) + SPINE_STEP
@@ -783,6 +865,9 @@ func _apply_job(job: ChunkJob) -> void:
 		_chunks[job.key] = chunk
 
 	chunk.node.mesh = mesh
+	var shell: MultiMeshInstance3D = _shells.get(job.key)
+	if shell:
+		shell.multimesh.mesh = mesh
 	chunk.surface = job.surface
 	chunk.grid = job.grid
 	chunk.reach = job.reach
@@ -802,6 +887,7 @@ func _unload_chunk(key: Vector2i) -> void:
 	var chunk: Chunk = _chunks[key]
 	chunk.node.queue_free()
 	_chunks.erase(key)
+	_shells.erase(key)
 	for job in _active:
 		if job.key == key:
 			job.stale = true
@@ -859,11 +945,11 @@ func _rebuild_cluster(cluster_key: Vector2i) -> void:
 		return
 
 	var merged: Dictionary = {}
-	for member in cluster.members.values():
-		for batch in member:
+	for member_key in cluster.members:
+		for batch in cluster.members[member_key]:
 			if batch.count == 0:
 				continue
-			var slot_key: int = batch.mesh.get_instance_id()
+			var slot_key: int = hash([batch.mesh.get_instance_id(), member_key]) if batch.per_chunk else batch.mesh.get_instance_id()
 			var entry: Array = merged.get(slot_key, [])
 			if entry.is_empty():
 				entry = [batch.category, batch.mesh, PackedFloat32Array(), 0]
@@ -915,3 +1001,65 @@ func _rect_rect_distance(a: Rect2, b: Rect2) -> float:
 	var dx := maxf(maxf(a.position.x - b.end.x, 0.0), b.position.x - a.end.x)
 	var dz := maxf(maxf(a.position.y - b.end.y, 0.0), b.position.y - a.end.y)
 	return sqrt(dx * dx + dz * dz)
+
+
+func _update_shells(car_local: Vector3) -> void:
+	if landscape == null or landscape.grass_shell_material == null or landscape.grass_shell_count <= 0:
+		return
+	if car_local.distance_to(_shell_origin) < SHELL_REFRESH_DISTANCE and _shells.size() > 0:
+		return
+	_shell_origin = car_local
+
+	var radius := landscape.grass_shell_radius + SHELL_REFRESH_DISTANCE
+	var wanted := {}
+	var min_x := floori((car_local.x - radius) / chunk_size)
+	var max_x := floori((car_local.x + radius) / chunk_size)
+	var min_z := floori((car_local.z - radius) / chunk_size)
+	var max_z := floori((car_local.z + radius) / chunk_size)
+	for kz in range(min_z, max_z + 1):
+		for kx in range(min_x, max_x + 1):
+			var key := Vector2i(kx, kz)
+			var chunk: Chunk = _chunks.get(key)
+			if chunk and chunk.node.mesh and _car_distance(key, car_local) <= radius:
+				wanted[key] = chunk
+
+	for key in _shells.keys():
+		if not wanted.has(key):
+			var old: MultiMeshInstance3D = _shells[key]
+			if is_instance_valid(old):
+				old.queue_free()
+			_shells.erase(key)
+
+	for key in wanted:
+		if not _shells.has(key):
+			_shells[key] = _create_shell(wanted[key])
+
+
+func _create_shell(chunk: Chunk) -> MultiMeshInstance3D:
+	var mm := MultiMesh.new()
+	mm.transform_format = MultiMesh.TRANSFORM_3D
+	mm.mesh = chunk.node.mesh
+	mm.instance_count = landscape.grass_shell_count
+	for i in mm.instance_count:
+		mm.set_instance_transform(i, Transform3D.IDENTITY)
+
+	var shell := MultiMeshInstance3D.new()
+	shell.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	shell.multimesh = mm
+	shell.material_override = landscape.grass_shell_material
+	shell.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	shell.extra_cull_margin = 1.0
+	chunk.node.add_child(shell)
+	return shell
+
+
+func _bind_road_material(segment: Road_segment) -> void:
+	if segment.polygon == null or not segment.polygon.material_override is ShaderMaterial:
+		return
+	var material := segment.polygon.material_override as ShaderMaterial
+	var ground_from_polygon := world.ground_container.global_transform.affine_inverse() * segment.polygon.global_transform
+	material.set_shader_parameter("ground_transform", Projection(ground_from_polygon))
+	material.set_shader_parameter("edge_texture_scale", texture_tile_scale)
+	if landscape:
+		material.set_shader_parameter("edge_texture", landscape.shoulder_texture)
+		material.set_shader_parameter("edge_specular", landscape.specular)

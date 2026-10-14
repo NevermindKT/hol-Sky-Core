@@ -49,7 +49,7 @@ func is_dead() -> bool:
 
 
 func death() -> void:
-	print("player is dead!")
+	GameLog.print("player is dead!")
 	Events.player_died.emit()
 
 

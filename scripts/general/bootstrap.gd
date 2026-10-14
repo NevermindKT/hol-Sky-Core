@@ -79,10 +79,12 @@ func _ready() -> void:
 	
 	encounter_director.initialize(enemy_encounter, run_manager)
 
-	#InputController.test_boost.connect(BoostManager.activate_test_boost)
+	InputController.test_boost.connect(BoostManager.activate_test_boost)
 
 	await get_tree().process_frame
-	
+
+	await Shader_Warmup.new().run(get_tree().root.get_children(), game_viewport.get_camera_3d())
+
 	loading_rect.on_start()
 	ui.hud.on_start()
 

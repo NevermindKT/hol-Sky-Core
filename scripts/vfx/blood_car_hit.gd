@@ -51,8 +51,8 @@ func play(hit_position: Vector3, hit_direction: Vector3, car_speed: float = 0.0,
 	var speed_scale := 1.0
 	if reference_speed > 0.0:
 		speed_scale = clampf(car_speed / reference_speed, min_intensity_scale, max_intensity_scale)
-	print(speed_scale)
-	print(car_speed / reference_speed)
+	GameLog.print(speed_scale)
+	GameLog.print(car_speed / reference_speed)
 	if _process_mat:
 		_process_mat.initial_velocity_min = _base_velocity_min * speed_scale
 		_process_mat.initial_velocity_max = _base_velocity_max * speed_scale

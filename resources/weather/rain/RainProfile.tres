@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_yc813")
 drop_length = 1.5
-drop_width = 0.1
+drop_width = 0.05
 rain_color = Color(0.08088668, 0.11235331, 0.19194536, 1)
 chance_intensify = 25.0
 chance_weaken = 35.0

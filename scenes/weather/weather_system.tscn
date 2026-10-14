@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/weather/celestial_body.gd" id="6_celes"]
 [ext_resource type="Shader" path="res://resources/shaders/weather/sky/sun_disc.gdshader" id="7_sundi"]
 [ext_resource type="Shader" path="res://resources/shaders/weather/sky/moon_disc.gdshader" id="8_moond"]
-[ext_resource type="Texture2D" path="res://resources/textures/sky/moon_albedo.jpg" id="9_moont"]
+[ext_resource type="Texture2D" path="res://textures/sky/moon_albedo.jpg" id="9_moont"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_skydisc"]
 
