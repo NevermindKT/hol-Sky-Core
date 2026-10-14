@@ -1,3 +1,159 @@
 [gd_scene format=3 uid="uid://p7ufkd6leg0l"]
 
-[node name="RunSummary" type="CanvasLayer" unique_id=891689980]
+[ext_resource type="Script" uid="uid://ctvaygbubrum2" path="res://run_summary_menu.gd" id="1_2a4k7"]
+
+[node name="RunSummary" type="Control" unique_id=479002571 node_paths=PackedStringArray("time_label", "damage_label", "kills_total_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2a4k7")
+time_label = NodePath("Left/Time/TimeLable")
+damage_label = NodePath("Left/Damage/DamageLable")
+kills_total_label = NodePath("Left/Kills/KillsLable")
+
+[node name="RunEndLabel" type="RichTextLabel" parent="." unique_id=648158041]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -255.5
+offset_top = 162.0
+offset_right = 255.5
+offset_bottom = 303.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "YOU SURVIVED...
+for now."
+horizontal_alignment = 1
+
+[node name="Left" type="Control" parent="." unique_id=1554170039]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 336.0
+offset_top = -101.0
+offset_right = 917.0
+offset_bottom = 101.0
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="Left" unique_id=393102889]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.60784316)
+
+[node name="Time" type="Control" parent="Left" unique_id=1088812682]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 16.0
+offset_right = 250.0
+offset_bottom = 76.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Left/Time" unique_id=1098181393]
+layout_mode = 1
+offset_right = 92.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 35
+text = "TIME:"
+horizontal_alignment = 1
+
+[node name="TimeLable" type="Label" parent="Left/Time" unique_id=1670916752]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_bottom = 49.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 35
+text = "TIME"
+horizontal_alignment = 1
+
+[node name="Damage" type="Control" parent="Left" unique_id=1332686225]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 72.0
+offset_right = 250.0
+offset_bottom = 132.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Left/Damage" unique_id=547105015]
+layout_mode = 1
+offset_right = 92.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 35
+text = "DAMAGE TAKEN:"
+horizontal_alignment = 1
+
+[node name="DamageLable" type="Label" parent="Left/Damage" unique_id=748536847]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_bottom = 49.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 35
+text = "DAMAGE"
+horizontal_alignment = 1
+
+[node name="Kills" type="Control" parent="Left" unique_id=1161509235]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 128.0
+offset_right = 250.0
+offset_bottom = 188.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Left/Kills" unique_id=1139405017]
+layout_mode = 1
+offset_right = 92.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 35
+text = "TOTAL KILLS:"
+horizontal_alignment = 1
+
+[node name="KillsLable" type="Label" parent="Left/Kills" unique_id=152307125]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_bottom = 49.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 35
+text = "KILLS"
+horizontal_alignment = 1
+
+[node name="Right" type="Control" parent="." unique_id=1780626468]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2

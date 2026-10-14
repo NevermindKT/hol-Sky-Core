@@ -11,6 +11,10 @@ var kills_by_enemy: Dictionary = {}
 var _running := true
 var _finished := false
 
+static var last_summary: Dictionary = {}
+
+@export_file("*.tscn") var summary_scene_path: String
+@export var summary_delay := 1.5
 
 func _ready() -> void:
 	Events.enemy_killed.connect(_on_enemy_killed)

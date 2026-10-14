@@ -1,11 +1,24 @@
 [gd_scene format=3 uid="uid://b8atrlyexe8f8"]
 
 [ext_resource type="Script" uid="uid://dsv8uiwux2euc" path="res://scenes/ui/death_screen.gd" id="1_j0ehl"]
+[ext_resource type="Shader" uid="uid://cvh5qt2ng01ng" path="res://resources/shaders/UI/blur_backdrop.gdshader" id="2_njuei"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6at5"]
+shader = ExtResource("2_njuei")
+shader_parameter/blur_amount = 4.0
 
 [node name="Death_screen" type="CanvasLayer" unique_id=2138021163 node_paths=PackedStringArray("restart_btn", "exit_btn")]
 script = ExtResource("1_j0ehl")
 restart_btn = NodePath("Menu/RestartBtn")
 exit_btn = NodePath("Menu/ExitBtn")
+
+[node name="backdrop" type="ColorRect" parent="." unique_id=1425322494]
+material = SubResource("ShaderMaterial_w6at5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Menu" type="VBoxContainer" parent="." unique_id=1641323400]
 anchors_preset = 8
