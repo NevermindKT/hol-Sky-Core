@@ -45,21 +45,21 @@ void posterize(inout vec3 color) {
 		local_levels = highlight_levels;
 	}
 
-	float range = upper - lower;
+	float range = max(upper - lower, 0.0001);
 	float normalized = (luminance - lower) / range;
 	float posterized = floor(normalized * local_levels + 0.5) / local_levels;
 
 	posterized = lower + posterized * range;
+	posterized = mix(luminance, posterized, posterize_strength);
 
-	posterized = mix(
-		luminance,
-		posterized,
-		posterize_strength
-	);
+	if (luminance < 0.1) {
+		color = vec3(posterized);
+	} else {
+		float ratio = posterized / luminance;
+		color *= ratio;
+	}
 
-	float ratio = posterized / max(luminance, 0.0001);
-
-	color *= ratio;
+	color = clamp(color, 0.0, 1.0);
 }
 
 
