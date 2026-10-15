@@ -17,11 +17,28 @@
 [ext_resource type="Script" uid="uid://2lb04tc2jfnk" path="res://addons/dialogue_system/core/ChoiceManager.gd" id="15_wqeuu"]
 [ext_resource type="PackedScene" uid="uid://bv7q1fxkfbi15" path="res://addons/dialogue_system/ui/DialogueChoiceButton.tscn" id="16_r3ahn"]
 
+[ext_resource type="Shader" path="res://addons/dialogue_system/ui/CharacterShadow.gdshader" id="17_box_shadow"]
+
+[sub_resource type="Gradient" id="Gradient_bottom_vignette"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture_bottom_vignette"]
+gradient = SubResource("Gradient_bottom_vignette")
+width = 2
+height = 256
+fill_from = Vector2(0, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_box_shadow"]
+shader = ExtResource("17_box_shadow")
+shader_parameter/shadow_color = Color(0, 0, 0, 0.65)
+shader_parameter/softness = 6.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_glow"]
 shader = ExtResource("5_aycxu")
 shader_parameter/warm_light = Color(1, 0.78, 0.42, 0.35)
 shader_parameter/cool_light = Color(0.6, 0.78, 1, 0.28)
-shader_parameter/radius = 18.0
+shader_parameter/radius = 36.0
 
 [node name="DialogueSystem" type="CanvasLayer" unique_id=711074856 node_paths=PackedStringArray("background", "footer", "character", "typer", "timeline", "choice_manager", "name_label", "dialogue_log")]
 script = ExtResource("1_mgery")
@@ -96,6 +113,17 @@ texture = ExtResource("6_dfw0c")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="BottomVignette" type="TextureRect" parent="Interface"]
+layout_mode = 1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture_bottom_vignette")
+expand_mode = 1
+
 [node name="Choices" type="MarginContainer" parent="Interface" unique_id=759675116]
 layout_mode = 1
 anchors_preset = -1
@@ -124,6 +152,23 @@ mouse_filter = 2
 texture = ExtResource("7_m25rc")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Shadow" type="TextureRect" parent="Interface/DialogueBox"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_box_shadow")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 18.0
+offset_right = 12.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_m25rc")
+expand_mode = 1
 
 [node name="DialogueText" type="RichTextLabel" parent="Interface/DialogueBox" unique_id=1604454967]
 layout_mode = 1
