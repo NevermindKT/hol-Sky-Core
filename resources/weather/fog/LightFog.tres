@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_eummh")
-density = 0.01
-shoulder_density = 0.1
+density = 0.0126
+shoulder_density = 0.15
 shoulder_offset = 50.0
 chance_intensify = 25.0
 chance_weaken = 55.0

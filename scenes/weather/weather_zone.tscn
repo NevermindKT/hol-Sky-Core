@@ -74,18 +74,22 @@ alpha_curve = SubResource("CurveTexture_j3aom")
 [sub_resource type="PlaneMesh" id="PlaneMesh_hc2fx"]
 size = Vector2(1, 1)
 
+[sub_resource type="Gradient" id="Gradient_shoulder"]
+offsets = PackedFloat32Array(0.4431818, 0.65)
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cnbax"]
 seed = 1
-frequency = 0.03
+frequency = 0.05
 fractal_gain = 0.89
 fractal_weighted_strength = 0.7
 
 [sub_resource type="NoiseTexture3D" id="NoiseTexture3D_dic2c"]
 noise = SubResource("FastNoiseLite_cnbax")
+color_ramp = SubResource("Gradient_shoulder")
 
 [sub_resource type="FogMaterial" id="FogMaterial_cnbax"]
 density = 0.15
-emission = Color(0.115200005, 0.12565334, 0.16, 1)
+emission = Color(0.057, 0.0849, 0.15, 1)
 height_falloff = 0.1
 edge_fade = 0.4
 density_texture = SubResource("NoiseTexture3D_dic2c")

@@ -224,12 +224,12 @@ close_range = 90.0
 close_angle = 80.0
 close_energy = 15.0
 close_attenuation = 0.6
-close_volumetric_fog_energy = 0.2
+close_volumetric_fog_energy = 0.03
 far_range = 150.0
 far_angle = 35.0
 far_energy = 40.0
 far_attenuation = 0.3
-far_volumetric_fog_energy = 0.1
+far_volumetric_fog_energy = 0.015
 
 [node name="Visual_vfx_ForwardLights#SpotLight3D2" type="SpotLight3D" parent="Visual/ForwardLights" unique_id=300350988]
 transform = Transform3D(0.9999939, -0.0034906515, 0, 0.0034812773, 0.9973084, 0.073238194, -0.000255649, -0.07323775, 0.99731445, 0.48, 0, 0)
@@ -249,12 +249,12 @@ close_range = 90.0
 close_angle = 80.0
 close_energy = 15.0
 close_attenuation = 0.6
-close_volumetric_fog_energy = 0.2
+close_volumetric_fog_energy = 0.03
 far_range = 150.0
 far_angle = 35.0
 far_energy = 40.0
 far_attenuation = 0.3
-far_volumetric_fog_energy = 0.1
+far_volumetric_fog_energy = 0.015
 
 [node name="WheelContainer" type="Node3D" parent="Visual" unique_id=826983752 node_paths=PackedStringArray("front_left", "front_right", "rear_left", "rear_right", "front_left_mesh", "front_right_mesh", "rear_left_mesh", "rear_right_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
