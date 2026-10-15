@@ -1,9 +1,49 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dg7y5ectrcuo7"]
 
 [ext_resource type="Resource" uid="uid://s0gpyox15kbl" path="res://resources/upgrades/branches/fire_power_branch.tres" id="1_qnqok"]
-[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_spd4v"]
 [ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_ee4fc"]
-[ext_resource type="Resource" uid="uid://bg1oxlbdxk7gf" path="res://resources/upgrades/effects/rate_of_fire.tres" id="3_xnoev"]
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="eff_base"]
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="eff_stat"]
+[ext_resource type="Script" uid="uid://d18mggsnx5se3" path="res://scripts/data/upgrade/upgrade_level.gd" id="level"]
+
+[sub_resource type="Resource" id="Effect_L1_1"]
+script = ExtResource("eff_stat")
+stat_id = &"rate_of_fire"
+multiplier = 2.0
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
+
+[sub_resource type="Resource" id="Level_1"]
+script = ExtResource("level")
+cost = 0
+description = "rate_of_fire x2"
+effects = Array[ExtResource("eff_base")]([SubResource("Effect_L1_1")])
+metadata/_custom_type_script = "uid://d18mggsnx5se3"
+
+[sub_resource type="Resource" id="Effect_L2_1"]
+script = ExtResource("eff_stat")
+stat_id = &"rate_of_fire"
+multiplier = 2.5
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
+
+[sub_resource type="Resource" id="Level_2"]
+script = ExtResource("level")
+cost = 0
+description = "rate_of_fire x2.5"
+effects = Array[ExtResource("eff_base")]([SubResource("Effect_L2_1")])
+metadata/_custom_type_script = "uid://d18mggsnx5se3"
+
+[sub_resource type="Resource" id="Effect_L3_1"]
+script = ExtResource("eff_stat")
+stat_id = &"rate_of_fire"
+multiplier = 3.0
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
+
+[sub_resource type="Resource" id="Level_3"]
+script = ExtResource("level")
+cost = 0
+description = "rate_of_fire x3"
+effects = Array[ExtResource("eff_base")]([SubResource("Effect_L3_1")])
+metadata/_custom_type_script = "uid://d18mggsnx5se3"
 
 [resource]
 script = ExtResource("2_ee4fc")
@@ -11,5 +51,5 @@ id = "RF01"
 display_name = "Rate of fire"
 description = "Rate of fire"
 branch = ExtResource("1_qnqok")
-effects = Array[ExtResource("1_spd4v")]([ExtResource("3_xnoev")])
+levels = Array[ExtResource("level")]([SubResource("Level_1"), SubResource("Level_2"), SubResource("Level_3")])
 metadata/_custom_type_script = "uid://c8kc8gepimq0l"

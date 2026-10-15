@@ -37,7 +37,7 @@ signal lightning_struck(strike_position: Vector3)
 signal world_curve_trimmed(removed_length: float)
 
 #-------------- UPGRADES
-signal upgrade_purchased(upgrade: UpgradeData)
+signal upgrade_level_changed(upgrade: UpgradeData, level: int)
 
 #-------------- VISION
 signal thermal_vision_changed(active: bool)
