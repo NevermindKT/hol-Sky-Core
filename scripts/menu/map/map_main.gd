@@ -143,7 +143,7 @@ func _load_current_active_base() -> void:
 	var res = db.query_result
 	if not res.is_empty():
 		current_base_id = int(res[0].get("ID", -1))
-	
+
 	_update_markers_scale()
 	_update_roads_appearance()
 	_check_and_update_quests_logic()

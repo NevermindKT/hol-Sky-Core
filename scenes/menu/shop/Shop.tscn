@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bh42l8gnauhus" path="res://textures/menu/clerks/Clerk1.png" id="16_rovg2"]
 [ext_resource type="Texture2D" uid="uid://ddfy2nn74kgol" path="res://textures/menu/clerks/Clerk2.png" id="17_27fgn"]
 [ext_resource type="Texture2D" uid="uid://dtx3rsqrdcdto" path="res://textures/menu/clerks/Clerk3.png" id="18_el58o"]
-[ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="20_rk3x7"]
 [ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="21_8m6vm"]
 [ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="22_217ds"]
 [ext_resource type="Texture2D" uid="uid://dvovopfeksjtt" path="res://textures/menu/Bubble.png" id="22_sai0e"]
@@ -1749,6 +1748,3 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_bu8xo")
-
-[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("20_rk3x7")]
-layout_mode = 1

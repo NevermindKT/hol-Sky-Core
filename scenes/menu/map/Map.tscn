@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://btboebmjrwtc1" path="res://textures/menu/notebook/SettingsIcon.png" id="7_po5id"]
 [ext_resource type="Texture2D" uid="uid://bq861owybkbfe" path="res://textures/menu/map/road.png" id="7_xqkdt"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="10_gyiq0"]
-[ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="10_pc58k"]
 [ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="11_e2kap"]
 [ext_resource type="Texture2D" uid="uid://5p4jdm7xm45f" path="res://textures/menu/arrows&icons/PlayButton.png" id="12_8s6nd"]
 [ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="16_q2at7"]
@@ -624,9 +623,6 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_aelyn")
 theme_override_styles/hover = SubResource("StyleBoxTexture_aelyn")
 icon_alignment = 1
 expand_icon = true
-
-[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("10_pc58k")]
-layout_mode = 1
 
 [node name="Base" type="Panel" parent="." unique_id=217001280]
 layout_mode = 1

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cckur0myp2qfs"]
 
 [ext_resource type="Texture2D" uid="uid://bu81hlc47oamc" path="res://textures/menu/notebook/notebook.png" id="1_bna4i"]
-[ext_resource type="Script" uid="uid://r6qbhb4ucdyh" path="res://scripts/menu/menu.gd" id="2_owifx"]
+[ext_resource type="Script" uid="uid://r6qbhb4ucdyh" path="res://scripts/menu/footer.gd" id="2_owifx"]
 [ext_resource type="FontFile" uid="uid://cjwtnh1rcqm1c" path="res://scenes/menu/fonts/Cormorant/Cormorant-BoldItalic.ttf" id="3_2875h"]
 [ext_resource type="Texture2D" uid="uid://b1srf6vb3vj1m" path="res://textures/menu/notebook/turret.png" id="4_lrkb3"]
 [ext_resource type="Texture2D" uid="uid://bdeccl11vh3tx" path="res://textures/menu/notebook/car.png" id="5_d84x1"]
@@ -65,7 +65,7 @@ texture = ExtResource("8_4pwws")
 texture = ExtResource("8_4pwws")
 expand_margin_top = 5.0
 
-[node name="Footer" type="Panel" unique_id=1968318440]
+[node name="Footer" type="Panel" unique_id=1968318440 node_paths=PackedStringArray("MapButton", "CarButton", "ShopButton", "TurretButton", "InventoryButton")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -78,6 +78,12 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_xaeb3")
+script = ExtResource("2_owifx")
+MapButton = NodePath("MenuButtons/MapButton")
+CarButton = NodePath("MenuButtons/CarButton")
+ShopButton = NodePath("MenuButtons/ShopButton")
+TurretButton = NodePath("MenuButtons/TurretButton")
+InventoryButton = NodePath("MenuButtons/InventoryButton")
 
 [node name="MenuButtons" type="HBoxContainer" parent="." unique_id=1793721120]
 propagate_maximum_size = false
@@ -95,12 +101,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 alignment = 1
-script = ExtResource("2_owifx")
-map_scene_path = "uid://bb86rpp2o4f0b"
-turret_scene_path = "uid://boiqi5lnl8ftn"
-car_scene_path = "uid://4ojvx270ebjd"
-inventory_scene_path = "uid://bix78nnee7b6"
-shop_scene_path = "uid://dnhmhc64aam65"
 
 [node name="TurretButton" type="Button" parent="MenuButtons" unique_id=2087070738]
 custom_minimum_size = Vector2(138, 170)

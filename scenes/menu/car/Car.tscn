@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://djepas58bpu43" path="res://textures/menu/notebook/BookIcon.png" id="7_ih26l"]
 [ext_resource type="Texture2D" uid="uid://bgj1w1ydj3wel" path="res://textures/menu/arrows&icons/LockIcon.png" id="7_wpdqh"]
 [ext_resource type="Texture2D" uid="uid://btboebmjrwtc1" path="res://textures/menu/notebook/SettingsIcon.png" id="8_q6v0g"]
-[ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="15_bo7pk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfrgi"]
 bg_color = Color(0.728125, 0.728125, 0.67611605, 1)
@@ -829,6 +828,3 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_cx5wq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4moqt")
 text = ">"
 icon_alignment = 1
-
-[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("15_bo7pk")]
-layout_mode = 1

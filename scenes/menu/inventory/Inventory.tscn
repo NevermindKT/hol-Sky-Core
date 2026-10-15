@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="18_rog58"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="19_ckekd"]
 [ext_resource type="Texture2D" uid="uid://5p4jdm7xm45f" path="res://textures/menu/arrows&icons/PlayButton.png" id="19_wgdau"]
-[ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="20_rb0tf"]
 [ext_resource type="Texture2D" uid="uid://bfuln5k307h3o" path="res://textures/menu/arrows&icons/base.svg" id="20_rog58"]
 [ext_resource type="Script" uid="uid://bqiunaw81sh7s" path="res://scripts/menu/map/map_main.gd" id="21_2d1xj"]
 [ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="21_sb0qg"]
@@ -1841,6 +1840,3 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_nwpui")
-
-[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("20_rb0tf")]
-layout_mode = 1

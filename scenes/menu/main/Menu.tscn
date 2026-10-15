@@ -45,7 +45,7 @@ grow_vertical = 2
 rotation = -0.034906585
 theme_override_constants/separation = 0
 
-[node name="Button" type="Button" parent="VBoxContainer" unique_id=916711973]
+[node name="ContinueBtn" type="Button" parent="VBoxContainer" unique_id=916711973]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -59,7 +59,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
 text = "Continue"
 alignment = 2
 
-[node name="Button2" type="Button" parent="VBoxContainer" unique_id=352790787]
+[node name="NewGameBtn" type="Button" parent="VBoxContainer" unique_id=352790787]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -73,7 +73,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
 text = "New Game"
 alignment = 2
 
-[node name="Button3" type="Button" parent="VBoxContainer" unique_id=16693818]
+[node name="SettingsBtn" type="Button" parent="VBoxContainer" unique_id=16693818]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -87,7 +87,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
 text = "Settings"
 alignment = 2
 
-[node name="Button4" type="Button" parent="VBoxContainer" unique_id=1903210021]
+[node name="TitlesBtn" type="Button" parent="VBoxContainer" unique_id=1903210021]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -101,7 +101,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
 text = "Titles"
 alignment = 2
 
-[node name="Button5" type="Button" parent="VBoxContainer" unique_id=1631202606]
+[node name="ExitBtn" type="Button" parent="VBoxContainer" unique_id=1631202606]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
