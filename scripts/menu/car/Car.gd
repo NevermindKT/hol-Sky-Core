@@ -17,6 +17,8 @@ var current_type_index: int = 0
 
 func _ready() -> void:
 	_init_database()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 	if template_level:
 		template_level.visible = false
 		

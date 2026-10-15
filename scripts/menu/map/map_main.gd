@@ -1,11 +1,11 @@
 extends Control
 
 # --- СУЩЕСТВУЮЩИЕ ПЕРЕМЕННЫЕ КАРТЫ И БАЗ ---
-@onready var map_node: Panel = $Map 
-@onready var lis1_node: Control = $Map/Lis1 
-@onready var lis1_roads: Control = $Map/Lis1/Roads 
-@onready var lis1_markers: Control = $Map/Lis1/Markers 
-@onready var active_lis1: Button = $Map/Lis1/ActiveLis1
+@export var map_node: Panel
+@export var lis1_node: Control 
+@export var lis1_roads: Control 
+@export var lis1_markers: Control 
+@export var active_lis1: Button
 
 @onready var BasePanel: Panel = $Base
 @onready var base_num_label: Label = $Base/BaseNum
@@ -66,6 +66,7 @@ var db: SQLite = null
 
 func _ready() -> void:
 	_init_database()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if map_node:
 		map_node.position = default_map_pos

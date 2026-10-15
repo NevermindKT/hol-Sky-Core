@@ -10,12 +10,6 @@ var points: PackedVector3Array
 var offsets: PackedFloat64Array
 var coarse: PackedInt32Array = PackedInt32Array()
 
-static var refine_calls := 0
-static var refine_skips := 0
-
-static var _q_min_usec := 999999999
-static var _q_max_usec := 0
-
 class Query:
 	var cd := PackedFloat32Array()
 	var cu := PackedFloat32Array()

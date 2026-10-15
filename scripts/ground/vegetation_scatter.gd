@@ -362,13 +362,14 @@ func _collect_mesh_instances(node: Node, xform: Transform3D, out: Array) -> void
 
 func _build_variant(group: Array, pivot: Vector3, category: VegetationCategoryData) -> MeshVariant:
 	var variant := MeshVariant.new()
+	var height := 0.0
 
 	if group.size() == 1:
 		var mesh_instance: MeshInstance3D = group[0][0]
 		var local: Transform3D = group[0][1]
 		local.origin -= pivot
 		var mesh: Mesh = mesh_instance.mesh.duplicate()
-		var height := mesh.get_aabb().end.y
+		height = mesh.get_aabb().end.y
 		for i in mesh.get_surface_count():
 			mesh.surface_set_material(i, _prepare_material(mesh_instance.get_active_material(i), category, height))
 		variant.mesh = mesh
@@ -376,7 +377,6 @@ func _build_variant(group: Array, pivot: Vector3, category: VegetationCategoryDa
 		return variant
 
 	var surfaces: Array = []
-	var height := 0.0
 	for part in group:
 		var mesh_instance: MeshInstance3D = part[0]
 		var array_mesh := mesh_instance.mesh as ArrayMesh
@@ -503,21 +503,21 @@ func _thin_cards(arrays: Array, ratio: float, seed_offset: int) -> Array:
 		counts[r] += 1
 
 	var grow := minf(1.0 / sqrt(ratio), 3.0)
-	var remap := PackedInt32Array()
-	remap.resize(vertices.size())
-	remap.fill(-1)
+	var veg_remap := PackedInt32Array()
+	veg_remap.resize(vertices.size())
+	veg_remap.fill(-1)
 	var kept_vertices := PackedInt32Array()
 	for v in vertices.size():
 		if keep[roots[v]]:
-			remap[v] = kept_vertices.size()
+			veg_remap[v] = kept_vertices.size()
 			kept_vertices.append(v)
 	if kept_vertices.is_empty():
 		return []
 
 	var new_indices := PackedInt32Array()
 	for t in range(0, indices.size(), 3):
-		if remap[indices[t]] >= 0:
-			new_indices.append_array([remap[indices[t]], remap[indices[t + 1]], remap[indices[t + 2]]])
+		if veg_remap[indices[t]] >= 0:
+			new_indices.append_array([veg_remap[indices[t]], veg_remap[indices[t + 1]], veg_remap[indices[t + 2]]])
 
 	var result := []
 	result.resize(Mesh.ARRAY_MAX)

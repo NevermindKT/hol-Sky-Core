@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8atrlyexe8f8"]
 
-[ext_resource type="Script" uid="uid://dsv8uiwux2euc" path="res://scenes/ui/death_screen.gd" id="1_j0ehl"]
+[ext_resource type="Script" uid="uid://dsv8uiwux2euc" path="res://scripts/ui/death_screen.gd" id="1_j0ehl"]
 [ext_resource type="Shader" uid="uid://cvh5qt2ng01ng" path="res://resources/shaders/UI/blur_backdrop.gdshader" id="2_njuei"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w6at5"]

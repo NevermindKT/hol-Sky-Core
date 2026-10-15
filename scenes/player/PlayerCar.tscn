@@ -329,7 +329,7 @@ car = NodePath("..")
 shell_ejector = NodePath("../gun/ShellEjector")
 player_weapons = Array[ExtResource("6_7lmdr")]([SubResource("Resource_lo1ro"), SubResource("Resource_y6j3g"), SubResource("Resource_iam02")])
 fire_volume = -2.0
-reload_volume = -15.0
+reload_volume = -10.0
 inventory = NodePath("../Inventory")
 
 [node name="PlayerStatusController" type="Node" parent="." unique_id=1732844712]

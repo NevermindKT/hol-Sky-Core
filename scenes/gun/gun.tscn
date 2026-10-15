@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dtt3trymeli7j"]
 
 [ext_resource type="PackedScene" uid="uid://ceqo1nncnmjiu" path="res://models/gun/gun.glb" id="1_csbbp"]
-[ext_resource type="Script" uid="uid://bk3hmvv5f73dm" path="res://turret_move.gd" id="2_eo2c1"]
+[ext_resource type="Script" uid="uid://bk3hmvv5f73dm" path="res://scripts/car/turret_move.gd" id="2_eo2c1"]
 [ext_resource type="PackedScene" uid="uid://bowyp25n4kleh" path="res://scenes/vfx/muzzle_flash.tscn" id="3_eo2c1"]
 [ext_resource type="Script" uid="uid://doqemi4j5nlhh" path="res://scripts/car/flashlight_controller.gd" id="4_c6023"]
 

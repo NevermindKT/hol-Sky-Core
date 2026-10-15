@@ -173,7 +173,7 @@ var _pending_piece_frames: PackedInt64Array = []
 
 func initialize() -> void:
 	_world_seed = randi()
-	_max_tasks = worker_tasks if worker_tasks > 0 else clampi(OS.get_processor_count() / 3, 2, 4)
+	_max_tasks = worker_tasks if worker_tasks > 0 else clampi(int(OS.get_processor_count() / 3.0), 2, 4)
 	_build_index_buffer()
 	_build_noise()
 	_build_material()
@@ -284,7 +284,7 @@ func _commit_spine(old_size: int) -> void:
 	var changed_from := 0
 	if old_size > 0:
 		var last_global := _spine_global_start + old_size - 1
-		changed_from = (last_global / stride) * stride - _spine_global_start
+		changed_from = floori(float(last_global) / stride) * stride - _spine_global_start
 
 	if _started:
 		var xform := world.world.global_transform

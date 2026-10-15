@@ -7,6 +7,8 @@ var db: SQLite = null
 
 func _ready() -> void:
 	_init_database()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 	refresh_turrets()
 	
 	if GameManager.has_signal("money_changed"):

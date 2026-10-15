@@ -28,6 +28,8 @@ const RARITIES = ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
 
 func _ready() -> void:
 	_init_database()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 	if obj_info_panel:
 		obj_info_panel.position = hidden_position
 		obj_info_panel.visible = false

@@ -1,15 +1,18 @@
 extends Control
 class_name Run_summary_screen
 
-@export_file("*.tscn") var restart_scene_path: String
+@export_category("Scenes")
 @export_file("*.tscn") var menu_scene_path: String
 
+@export_category("Lables")
 @export var time_label: Label
 @export var damage_label: Label
 @export var kills_total_label: Label
-#@onready var kills_list: VBoxContainer = %KillsList
-#@onready var restart_button: Button = %RestartButton
-#@onready var menu_button: Button = %MenuButton
+
+@export_category("Buttons")
+@export var kill_list: VBoxContainer
+@export var restart_button: Button
+@export var menu_button: Button
 
 
 func _ready() -> void:
@@ -18,9 +21,9 @@ func _ready() -> void:
 
 	_fill(Run_stats.last_summary)
 
-	#restart_button.pressed.connect(_on_restart_pressed)
-	#menu_button.visible = not menu_scene_path.is_empty()
-	#menu_button.pressed.connect(_on_menu_pressed)
+	restart_button.pressed.connect(_on_restart_pressed)
+	menu_button.visible = not menu_scene_path.is_empty()
+	menu_button.pressed.connect(_on_menu_pressed)
 
 
 func _fill(summary: Dictionary) -> void:
@@ -31,11 +34,11 @@ func _fill(summary: Dictionary) -> void:
 	for entry in summary.get("kills", []):
 		var row := Label.new()
 		row.text = "%s × %d" % [entry["name"], entry["count"]]
-		#kills_list.add_child(row)
+		kill_list.add_child(row)
 
 
 func _on_restart_pressed() -> void:
-	get_tree().change_scene_to_file(restart_scene_path)
+	GameFlow.restart()
 
 
 func _on_menu_pressed() -> void:

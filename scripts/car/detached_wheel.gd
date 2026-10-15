@@ -144,8 +144,8 @@ func _process_rolling(delta: float, local: Transform3D) -> void:
 
 	var axle := body.global_transform.basis.x.normalized()
 	var angular := body.angular_velocity
-	var spin := axle * axle.dot(angular)
-	var wobble := angular - spin
+	var _spin := axle * axle.dot(angular)
+	var wobble := angular - _spin
 
 	body.angular_velocity = wobble + (axle.cross(target_axle) * upright_strength - wobble * upright_damping) * delta
 

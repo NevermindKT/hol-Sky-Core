@@ -107,7 +107,7 @@ func _update_damage(delta: float) -> void:
 		return
 	_damage = move_toward(_damage, 0.0, damage_recover_speed * delta)
 
-func _on_player_take_damage(_damage: float, _source_position: Vector3) -> void:
+func _on_player_take_damage(_damage_: float, _source_position: Vector3) -> void:
 	trigger_damage_muffle()
 
 # ============================ TRACKS ==========================================

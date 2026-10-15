@@ -41,7 +41,15 @@ func finish() -> void:
 		return
 	_finished = true
 	_running = false
-	summary_ready.emit(get_summary())
+
+	last_summary = get_summary()
+	summary_ready.emit(last_summary)
+
+	if summary_scene_path.is_empty():
+		return
+
+	await get_tree().create_timer(summary_delay).timeout
+	get_tree().change_scene_to_file(summary_scene_path)
 
 
 func get_summary() -> Dictionary:

@@ -12,7 +12,6 @@ func _ready() -> void:
 	Events.player_died.connect(show_self)
 	restart_btn.pressed.connect(_restart_pressed)
 	exit_btn.pressed.connect(_quit_pressed)
-	print("Death screen ready")
 
 
 func show_self():

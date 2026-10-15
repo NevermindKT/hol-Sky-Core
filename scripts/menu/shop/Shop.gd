@@ -42,6 +42,8 @@ var db: SQLite = null
 
 func _ready() -> void:
 	_init_database()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 
 	if not GameManager.shop_refreshed.is_connected(_on_game_manager_shop_refreshed):
 		GameManager.shop_refreshed.connect(_on_game_manager_shop_refreshed)

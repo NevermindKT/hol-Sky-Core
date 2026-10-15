@@ -117,7 +117,7 @@ func update_path() -> void:
 func road_transform_at(t: float) -> Transform3D:
 	t = clampf(t, 0.0, 1.0)
 
-	var road_path := get_node_or_null("RoadPath") as Path3D
+	road_path = get_node_or_null("RoadPath") as Path3D
 	if road_path and road_path.curve and road_path.curve.get_baked_length() > 0.0:
 		var curve := road_path.curve
 		var offset := t * curve.get_baked_length()
@@ -127,13 +127,13 @@ func road_transform_at(t: float) -> Transform3D:
 	var a := anchor.position
 	var point := o.lerp(a, t)
 	var dir := a - o
-	var basis := Basis.IDENTITY
+	var _basis := Basis.IDENTITY
 	if dir.length_squared() > 0.0001:
-		basis = Basis.looking_at(dir.normalized(), Vector3.UP)
-	return Transform3D(basis, point)
+		_basis = Basis.looking_at(dir.normalized(), Vector3.UP)
+	return Transform3D(_basis, point)
 
 func closest_t(local_point: Vector3) -> float:
-	var road_path := get_node_or_null("RoadPath") as Path3D
+	road_path = get_node_or_null("RoadPath") as Path3D
 	if road_path and road_path.curve and road_path.curve.get_baked_length() > 0.0:
 		var curve := road_path.curve
 		var curve_local: Vector3 = road_path.transform.affine_inverse() * local_point
