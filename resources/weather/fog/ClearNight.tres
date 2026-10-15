@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_4akhs")
-density = 0.005
-shoulder_density = 0.05
+density = 0.0063
+shoulder_density = 0.075
 shoulder_offset = 100.0
 chance_intensify = 30.0
 chance_weaken = 0.0

@@ -35,4 +35,5 @@ close_energy = 20.0
 far_range = 120.0
 far_angle = 15.0
 far_energy = 50.0
-far_volumetric_fog_energy = 2.0
+close_volumetric_fog_energy = 0.12
+far_volumetric_fog_energy = 0.12

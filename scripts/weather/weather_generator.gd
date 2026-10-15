@@ -76,7 +76,10 @@ func _pick_new_weather() -> void:
 	current_weather.fog = _pick_smoothed(available_fog, current_weather.fog)
 
 
-func _pick_smoothed(available: Array, current: WeatherLevel) -> WeatherLevel:
+func _pick_smoothed(all_levels: Array, current: WeatherLevel) -> WeatherLevel:
+	var available := all_levels.filter(func(level: WeatherLevel) -> bool: return level.enable_toggle)
+	if available.is_empty():
+		available = all_levels
 	if available.is_empty():
 		return null
 
