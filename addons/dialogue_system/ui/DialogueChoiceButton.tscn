@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bv7q1fxkfbi15"]
+
+[ext_resource type="Script" uid="uid://d3w7mmi1j8c28" path="res://addons/dialogue_system/ui/DialogueChoiceButton.gd" id="1_1xt0e"]
+[ext_resource type="FontFile" uid="uid://v2v43utxox51" path="res://assets/fonts/Cormorant-Light.ttf" id="2_font"]
+
+[node name="Button" type="Button" unique_id=1906104256]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+anchors_preset = -1
+anchor_right = 0.3159722
+anchor_bottom = 0.15432099
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 70
+text = "Abshxd"
+autowrap_mode = 3
+script = ExtResource("1_1xt0e")
+metadata/_edit_use_anchors_ = true

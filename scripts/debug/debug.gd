@@ -33,7 +33,7 @@ func _update_stats() -> void:
 	var fps := Performance.get_monitor(Performance.TIME_FPS)
 	var cpu_frame_ms := Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0
 	var physics_ms := Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000.0
-	var render_ms := Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)
+	#var render_ms := Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)
 
 	var draw_calls := Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)
 	var primitives := Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME)

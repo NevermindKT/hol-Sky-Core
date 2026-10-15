@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://33j34s1svc7q" path="res://scenes/general/hud.tscn" id="1_yev5y"]
 [ext_resource type="PackedScene" uid="uid://gk4q6i0norp7" path="res://scenes/general/pause_menu.tscn" id="2_gdt2y"]
 [ext_resource type="PackedScene" uid="uid://tia2c2esp2w" path="res://scenes/ui/debug_overlay.tscn" id="3_wm3ai"]
+[ext_resource type="PackedScene" uid="uid://b8atrlyexe8f8" path="res://scenes/ui/death_screen.tscn" id="5_0dwhk"]
 
 [node name="UI" type="Node" unique_id=934683406]
 script = ExtResource("1_gdt2y")
@@ -14,3 +15,6 @@ script = ExtResource("1_gdt2y")
 visible = false
 
 [node name="Debug_Overlay" parent="." unique_id=57384500 instance=ExtResource("3_wm3ai")]
+
+[node name="Death_screen" parent="." unique_id=2138021163 instance=ExtResource("5_0dwhk")]
+visible = false

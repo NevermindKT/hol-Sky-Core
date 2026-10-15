@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://erdp5lch5wa2"
-path="res://.godot/imported/tree35_tree35.png-7df85c1aceb4540fc17d29b6d9ab6973.ctex"
+path.s3tc="res://.godot/imported/tree35_tree35.png-7df85c1aceb4540fc17d29b6d9ab6973.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "d9b3f4178725c5f497ed581c6aa7df9f"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://models/nature/psx_trees/autumn/tree35_tree35.png"
-dest_files=["res://.godot/imported/tree35_tree35.png-7df85c1aceb4540fc17d29b6d9ab6973.ctex"]
+dest_files=["res://.godot/imported/tree35_tree35.png-7df85c1aceb4540fc17d29b6d9ab6973.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

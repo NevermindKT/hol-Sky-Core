@@ -27,5 +27,4 @@ func _on_segment_despawned():
 
 func end_run():
 	run_ended = true
-	GameLog.print("Run ended.")
 	Events.run_ended.emit()

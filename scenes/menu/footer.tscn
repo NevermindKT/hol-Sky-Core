@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://cckur0myp2qfs"]
+
+[ext_resource type="Texture2D" uid="uid://bu81hlc47oamc" path="res://textures/menu/notebook/notebook.png" id="1_bna4i"]
+[ext_resource type="Script" uid="uid://r6qbhb4ucdyh" path="res://scripts/menu/menu.gd" id="2_owifx"]
+[ext_resource type="FontFile" uid="uid://cjwtnh1rcqm1c" path="res://scenes/menu/fonts/Cormorant/Cormorant-BoldItalic.ttf" id="3_2875h"]
+[ext_resource type="Texture2D" uid="uid://b1srf6vb3vj1m" path="res://textures/menu/notebook/turret.png" id="4_lrkb3"]
+[ext_resource type="Texture2D" uid="uid://bdeccl11vh3tx" path="res://textures/menu/notebook/car.png" id="5_d84x1"]
+[ext_resource type="Texture2D" uid="uid://c8eqbl22v43n1" path="res://textures/menu/notebook/map.png" id="6_xcgw8"]
+[ext_resource type="Texture2D" uid="uid://bnos70j1vjsfk" path="res://textures/menu/notebook/inventory.png" id="7_7j3jm"]
+[ext_resource type="Texture2D" uid="uid://c1o42mj32s5k1" path="res://textures/menu/notebook/shop.png" id="8_4pwws"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xaeb3"]
+texture = ExtResource("1_bna4i")
+region_rect = Rect2(0, 416, 2633, 120)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tw2qx"]
+texture = ExtResource("4_lrkb3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uiaj7"]
+texture = ExtResource("4_lrkb3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wfq6"]
+texture = ExtResource("4_lrkb3")
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4k4a"]
+texture = ExtResource("5_d84x1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p1c7b"]
+texture = ExtResource("5_d84x1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_keie2"]
+texture = ExtResource("5_d84x1")
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ddpo1"]
+texture = ExtResource("6_xcgw8")
+expand_margin_top = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj7eh"]
+texture = ExtResource("6_xcgw8")
+expand_margin_top = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_brorb"]
+texture = ExtResource("6_xcgw8")
+expand_margin_top = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7yafb"]
+texture = ExtResource("7_7j3jm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q8sxb"]
+texture = ExtResource("7_7j3jm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ri1et"]
+texture = ExtResource("7_7j3jm")
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_322xf"]
+texture = ExtResource("8_4pwws")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jicxv"]
+texture = ExtResource("8_4pwws")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkldt"]
+texture = ExtResource("8_4pwws")
+expand_margin_top = 5.0
+
+[node name="Footer" type="Panel" unique_id=1968318440]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -394.0702
+offset_top = -45.0
+offset_right = 394.0702
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_xaeb3")
+
+[node name="MenuButtons" type="HBoxContainer" parent="." unique_id=1793721120]
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -387.0702
+offset_top = -62.0
+offset_right = 342.9298
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("2_owifx")
+map_scene_path = "uid://bb86rpp2o4f0b"
+turret_scene_path = "uid://boiqi5lnl8ftn"
+car_scene_path = "uid://4ojvx270ebjd"
+inventory_scene_path = "uid://bix78nnee7b6"
+shop_scene_path = "uid://dnhmhc64aam65"
+
+[node name="TurretButton" type="Button" parent="MenuButtons" unique_id=2087070738]
+custom_minimum_size = Vector2(138, 170)
+custom_maximum_size = Vector2(-1, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_2875h")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_tw2qx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uiaj7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1wfq6")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="CarButton" type="Button" parent="MenuButtons" unique_id=1777039532]
+custom_minimum_size = Vector2(138, 170)
+custom_maximum_size = Vector2(-1, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_2875h")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_h4k4a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p1c7b")
+theme_override_styles/hover = SubResource("StyleBoxTexture_keie2")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="MapButton" type="Button" parent="MenuButtons" unique_id=660115889]
+custom_minimum_size = Vector2(138, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_2875h")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_ddpo1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bj7eh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_brorb")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="InventoryButton" type="Button" parent="MenuButtons" unique_id=1387092179]
+custom_minimum_size = Vector2(138, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_2875h")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_7yafb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q8sxb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ri1et")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
+[node name="ShopButton" type="Button" parent="MenuButtons" unique_id=738329216]
+custom_minimum_size = Vector2(138, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
+theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
+theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
+theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_2875h")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_322xf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jicxv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pkldt")
+autowrap_trim_flags = 0
+icon_alignment = 1

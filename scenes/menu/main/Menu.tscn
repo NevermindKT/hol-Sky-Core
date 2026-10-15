@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://cmmy07rt8wv7p"]
+
+[ext_resource type="Texture2D" uid="uid://cis71tbb2pkc8" path="res://textures/menu/BG/MainMenuBackground.png" id="1_8010q"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="2_a4lia"]
+[ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="3_s0due"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vnypt"]
+texture = ExtResource("1_8010q")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cx167"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dolsu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n4eug"]
+
+[node name="Menu" type="Control" unique_id=851692338]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_vertical_guides_ = [885.0]
+
+[node name="Panel" type="Panel" parent="." unique_id=74522248]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -2051.0
+offset_bottom = 1300.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_vnypt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1388701148]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 184.98526
+offset_top = -250.65979
+offset_right = 516.0409
+offset_bottom = 171.93768
+grow_vertical = 2
+rotation = -0.034906585
+theme_override_constants/separation = 0
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=916711973]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431373, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_a4lia")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+text = "Continue"
+alignment = 2
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=352790787]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431373, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_a4lia")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+text = "New Game"
+alignment = 2
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=16693818]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431373, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_a4lia")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+text = "Settings"
+alignment = 2
+
+[node name="Button4" type="Button" parent="VBoxContainer" unique_id=1903210021]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431373, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_a4lia")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+text = "Titles"
+alignment = 2
+
+[node name="Button5" type="Button" parent="VBoxContainer" unique_id=1631202606]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431373, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_a4lia")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+text = "Exit"
+alignment = 2
+
+[node name="Label" type="Label" parent="." unique_id=73637372]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = -418.0
+offset_right = 688.0
+offset_bottom = -282.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_s0due")
+theme_override_font_sizes/font_size = 120
+text = "Hollow Sky"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Label" unique_id=1875495913]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = 31.0
+offset_right = 327.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_s0due")
+theme_override_font_sizes/font_size = 70
+text = "— The Afterroute —"
+horizontal_alignment = 1
+vertical_alignment = 1

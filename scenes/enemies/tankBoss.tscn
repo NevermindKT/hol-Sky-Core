@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dpm50177e6xfa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q6m77"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_elpsl"]
+radius = 1.1230469
+height = 4.366081
+
+[sub_resource type="BoxMesh" id="BoxMesh_10jsn"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_10jsn"]
+radius = 0.68896484
+height = 3.2425842
+
+[node name="Tank" type="Node3D" unique_id=1697044551]
+
+[node name="Turret" type="Node3D" parent="." unique_id=587030306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.7, 2.3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Turret" unique_id=775291019]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 4, 0, 0, 0)
+mesh = SubResource("BoxMesh_elpsl")
+
+[node name="Gun" type="Node3D" parent="Turret" unique_id=1653649555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4700321, 0.4606228, -2.2005143)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Turret/Gun" unique_id=953586602]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 3, -0.08939865, 0.031234264, -0.74000823)
+mesh = SubResource("BoxMesh_q6m77")
+
+[node name="Area3D" type="Area3D" parent="Turret" unique_id=1304624776]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Turret/Area3D" unique_id=1701344479]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.00333786)
+shape = SubResource("CapsuleShape3D_elpsl")
+
+[node name="LegR" type="Node3D" parent="." unique_id=1203851838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="FTrack" type="MeshInstance3D" parent="LegR" unique_id=692385871]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, -1.55)
+mesh = SubResource("BoxMesh_10jsn")
+
+[node name="RTrack" type="MeshInstance3D" parent="LegR" unique_id=1904850827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 1.6)
+mesh = SubResource("BoxMesh_10jsn")
+
+[node name="HitBox" type="Area3D" parent="LegR" unique_id=1409858774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LegR/HitBox" unique_id=539394553]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.1923732e-09, -0.05015564)
+shape = SubResource("CapsuleShape3D_10jsn")
+
+[node name="LegL" type="Node3D" parent="." unique_id=1371855095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="FTrack" type="MeshInstance3D" parent="LegL" unique_id=859450926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, -1.55)
+mesh = SubResource("BoxMesh_10jsn")
+
+[node name="RTrack" type="MeshInstance3D" parent="LegL" unique_id=301890633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 1.6)
+mesh = SubResource("BoxMesh_10jsn")
+
+[node name="HitBox" type="Area3D" parent="LegL" unique_id=975773824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LegL/HitBox" unique_id=526269813]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.1923732e-09, -0.05015564)
+shape = SubResource("CapsuleShape3D_10jsn")

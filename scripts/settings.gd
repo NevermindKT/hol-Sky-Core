@@ -137,7 +137,7 @@ func set_resolution_index(index: int) -> void:
 		_apply_render_scale()
 		DisplayServer.window_set_size(res)
 		var screen_size := DisplayServer.screen_get_size()
-		DisplayServer.window_set_position((screen_size - res) / 2)
+		DisplayServer.window_set_position(Vector2i((screen_size - res) / 2.0))
 
 
 func set_fullscreen(value: bool) -> void:

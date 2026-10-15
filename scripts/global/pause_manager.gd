@@ -2,6 +2,8 @@ extends Node
 class_name Pause_Manager
 
 var is_paused := false
+var is_game_over := false
+var is_photo_mode := false
 
 signal pause_state_changed
 
@@ -10,6 +12,8 @@ func _ready() -> void:
 	GameFlow.restart_requested.connect(_on_restart)
 
 func toggle_pause():
+	if is_game_over:
+		return
 	set_paused(!is_paused)
 
 
@@ -18,5 +22,16 @@ func set_paused(value: bool):
 	get_tree().paused = is_paused
 	pause_state_changed.emit()
 
+
+func set_photo_mode(value: bool) -> void:
+	is_photo_mode = value
+	set_paused(value)
+
+
+func set_game_over() -> void:
+	is_game_over = true
+	set_paused(true)
+
 func _on_restart():
 	is_paused = false
+	is_game_over = false

@@ -10,7 +10,6 @@ func spawn_single(
 	saved: bool = false
 ):
 	var projectile = weapon.projectile_scene.instantiate()
-
 	world.projectiles.add_child(projectile)
 
 	projectile.global_transform = spawn_transform
@@ -30,11 +29,7 @@ func spawn_projectile(
 	shooter: CollisionObject3D = null,
 	saved: bool = false
 ):
-	
-	GameLog.print("spawned")
-	
 	var projectile = weapon.projectile_scene.instantiate() as Projectile
-
 	world.projectiles.add_child(projectile)
 
 	projectile.global_position = position
@@ -53,7 +48,6 @@ func spawn_multiple(
 	shooter: CollisionObject3D = null,
 	saved: bool = false
 ):
-
 	for i in weapon.projectile_count:
 
 		var direction = get_spread_direction(
@@ -72,7 +66,6 @@ func spawn_multiple(
 
 func get_spread_direction(transform: Transform3D, angle: float) -> Vector3:
 	var clean_basis := transform.basis.orthonormalized()
-	
 	var direction = -clean_basis.z
 
 	var right = clean_basis.x

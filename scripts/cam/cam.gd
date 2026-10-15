@@ -4,29 +4,29 @@ class_name Player_Camera
 @export var car: Car_Movement
 
 @export_group("Lateral Follow")
-@export var lateral_spring := 22.0
-@export var lateral_damping := 14.0
-@export var yaw_gain_deg := 0.6
-@export var yaw_max_deg := 2.5
-@export var yaw_smoothing := 3.5
+@export var lateral_spring := 150.0
+@export var lateral_damping := 20.0
+@export var yaw_gain_deg := 1.7
+@export var yaw_max_deg := 8.0
+@export var yaw_smoothing := 4.0
 @export var roll_gain_deg := 0.1
 @export var roll_max_deg := 2.0
 @export var roll_smoothing := 3.5
 
 @export_group("Speed Orbit")
 @export var speed_feel_smoothing := 2.0
-@export var fov_min := 75.0
+@export var fov_min := 80.0
 @export var fov_max := 100.0
 @export var fov_smoothing := 8.0
 @export var distance_min := 5.0
-@export var distance_max := 9.0
+@export var distance_max := 6.0
 @export var height_min := 4.0
-@export var height_max := 7.0
+@export var height_max := 8.0
 
 @export_group("Input Push")
-@export var accel_distance_push := 1.5
-@export var accel_fov_push := 6.0
-@export var brake_distance_push := 1.2
+@export var accel_distance_push := 0.8
+@export var accel_fov_push := 3.0
+@export var brake_distance_push := 0.2
 @export var brake_fov_push := 5.0
 @export var push_smoothing := 5.0
 
@@ -36,10 +36,10 @@ class_name Player_Camera
 @export var impact_rot_spring := 50.0
 @export var impact_rot_damping := 9.0
 @export var impact_noise_duration := 0.25
-@export var incoming_lateral_impulse_per_damage := 0.05
-@export var incoming_vertical_impulse_per_damage := 0.04
-@export var incoming_roll_impulse_per_damage_deg := 1.2
-@export var incoming_pitch_impulse_per_damage_deg := 1.0
+@export var incoming_lateral_impulse_per_damage := 0.5
+@export var incoming_vertical_impulse_per_damage := 0.5
+@export var incoming_roll_impulse_per_damage_deg := 5.0
+@export var incoming_pitch_impulse_per_damage_deg := 5.0
 @export var incoming_noise_per_damage := 0.03
 @export var outgoing_lateral_impulse_per_damage := 0.04
 @export var outgoing_roll_impulse_per_damage_deg := 1.0
@@ -50,19 +50,31 @@ class_name Player_Camera
 
 @export_group("Aim Lean")
 @export var aim_lean_smoothing := 4.0
-@export var aim_lean_horizontal := 0.5
-@export var aim_lean_vertical := 0.3
-@export var aim_lean_yaw_deg := 3.0
-@export var aim_lean_pitch_deg := 2.0
+@export var aim_lean_horizontal := 1.0
+@export var aim_lean_vertical := 0.6
+@export var aim_lean_yaw_deg := 4.0
+@export var aim_lean_pitch_deg := 6.0
 
 @export_group("Headlight-Linked Presets")
 @export var headlights_preset_smoothing := 2.5
-@export var headlights_far_height_offset := -1.5
-@export var headlights_far_distance_offset := 0.0
+@export var headlights_far_height_offset := -2.0
+@export var headlights_far_distance_offset := 1.0
 
 @export_group("Flashlight-Linked Aim Lean")
 @export var flashlight_preset_smoothing := 2.5
-@export var flashlight_far_lean_multiplier := 1.8
+@export var flashlight_far_lean_multiplier := 2.5
+
+
+@export_group("Photo Mode")
+@export var photo_move_speed: float = 8.0
+@export var photo_boost_multiplier: float = 3.0
+@export var photo_mouse_sensitivity: float = 0.002
+
+var _photo_mode: bool = false
+var _photo_yaw: float = 0.0
+var _photo_pitch: float = 0.0
+
+var _photo_motion_accum := Vector2.ZERO
 
 # Layer 1: lateral spring follow + yaw/roll
 var _cam_x := 0.0
@@ -106,6 +118,8 @@ var _fov_offset := 0.0
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	InputController.photo_mode_toggle.connect(_toggle_photo_mode)
 	_cam_x = global_position.x
 	_fov_offset = Settings.camera_fov - fov_min
 	Settings.fov_changed.connect(_on_fov_changed)
@@ -207,7 +221,7 @@ func _process_aim_lean(delta: float) -> void:
 
 	_aim_lean = _aim_lean.lerp(screen_offset, 1.0 - exp(-aim_lean_smoothing * delta))
 
-# ============================ LAYER 2: INPUT PUSH ==============================
+# ============================ LAYER 2: INPUT PUSH =============================
 
 func _process_input_push(delta: float) -> void:
 	var t := 1.0 - exp(-push_smoothing * delta)
@@ -217,7 +231,7 @@ func _process_input_push(delta: float) -> void:
 	_distance_push = _accel_push * accel_distance_push - _brake_push * brake_distance_push
 	_fov_push = _accel_push * accel_fov_push - _brake_push * brake_fov_push
 
-# ============================ LAYER 3: IMPACT IMPULSES =========================
+# ============================ LAYER 3: IMPACT IMPULSES ========================
 
 func _process_impact(delta: float) -> void:
 	_impact_pos_vel += -_impact_pos_offset * impact_spring * delta
@@ -284,7 +298,7 @@ func apply_outgoing_hit(contact_point: Vector3, damage: float) -> void:
 func _on_player_take_damage(damage: float, source_position: Vector3) -> void:
 	apply_incoming_hit(source_position, damage)
 
-# ============================ LAYER 4: AIM BLEND ===============================
+# ============================ LAYER 4: AIM BLEND ==============================
 
 func get_aim_transform() -> Transform3D:
 	return _aim_transform
@@ -302,3 +316,79 @@ func viewport_to_screen(viewport_pos: Vector2) -> Vector2:
 
 	var outer_size := get_tree().root.get_visible_rect().size # размер главного окна
 	return viewport_pos * (outer_size / inner_size)
+
+
+# ============================ PHOTO MODE ======================================
+
+
+func _toggle_photo_mode() -> void:
+	_photo_mode = not _photo_mode
+
+	if _photo_mode:
+		_photo_yaw = global_rotation.y
+		_photo_pitch = global_rotation.x
+		_photo_motion_accum = Vector2.ZERO
+
+		set_physics_process(false)
+		InputController.set_photo_mouse_mode(true)
+		InputController.photo_mouse_motion.connect(_on_photo_mouse_motion)
+		PauseManager.set_photo_mode(true)
+	else:
+		InputController.photo_mouse_motion.disconnect(_on_photo_mouse_motion)
+		set_physics_process(true)
+		reset_physics_interpolation()
+		InputController.set_photo_mouse_mode(false)
+		PauseManager.set_photo_mode(false)
+
+
+func _on_photo_mouse_motion(relative: Vector2) -> void:
+	_photo_motion_accum += relative
+
+
+func _process(delta: float) -> void:
+	if not _photo_mode:
+		return
+
+	_process_photo_look()
+	_process_photo_movement(delta)
+
+
+func _process_photo_look() -> void:
+	if _photo_motion_accum == Vector2.ZERO:
+		return
+
+	var motion := _photo_motion_accum
+	_photo_motion_accum = Vector2.ZERO
+
+	_photo_yaw -= motion.x * photo_mouse_sensitivity
+	_photo_pitch -= motion.y * photo_mouse_sensitivity
+	_photo_pitch = clampf(_photo_pitch, deg_to_rad(-89.0), deg_to_rad(89.0))
+
+	global_rotation = Vector3(_photo_pitch, _photo_yaw, 0.0)
+
+
+func _process_photo_movement(delta: float) -> void:
+	var direction := Vector3.ZERO
+
+	var forward := -global_transform.basis.z
+	var right := global_transform.basis.x
+
+	if Input.is_key_pressed(KEY_W):
+		direction += forward
+	if Input.is_key_pressed(KEY_S):
+		direction -= forward
+	if Input.is_key_pressed(KEY_D):
+		direction += right
+	if Input.is_key_pressed(KEY_A):
+		direction -= right
+	if Input.is_key_pressed(KEY_E):
+		direction += Vector3.UP
+	if Input.is_key_pressed(KEY_Q):
+		direction -= Vector3.UP
+
+	var speed := photo_move_speed
+	if Input.is_key_pressed(KEY_SHIFT):
+		speed *= photo_boost_multiplier
+
+	if direction.length_squared() > 0.0:
+		global_position += direction.normalized() * speed * delta

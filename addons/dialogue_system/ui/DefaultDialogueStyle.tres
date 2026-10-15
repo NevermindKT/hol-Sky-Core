@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueStyle" format=3 uid="uid://c43kg6t0qfdqr"]
+
+[ext_resource type="Script" uid="uid://ch3cj4agg7lgc" path="res://addons/dialogue_system/ui/DialogueStyle.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://crcx4nc7us1oy" path="res://assets/img/UI/Choice Button 1.png" id="2_texture"]
+
+[resource]
+script = ExtResource("1")
+button_texture = ExtResource("2_texture")

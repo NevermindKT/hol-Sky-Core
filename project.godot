@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [audio]
 
-buses/default_bus_layout="res://audio/default_bus_layout.tres"
+buses/default_bus_layout="uid://dp7vtt0ymq46v"
 
 [autoload]
 
@@ -34,6 +34,7 @@ BoostManager="*uid://dmerpx1y7qvs0"
 ScreenEffects="*uid://dxdcrfeffhhhk"
 GrenadeSpawner="*uid://dsvmq0gu3juhd"
 DebugStats="uid://b0uj75mlijwsw"
+GameManager="*uid://bl4sxn3d4qutu"
 
 [display]
 
@@ -43,6 +44,10 @@ window/size/mode=4
 window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_system/plugin.cfg")
 
 [filesystem]
 
@@ -151,6 +156,11 @@ toggle_debug={
 NextSong={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+photo_mode={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"location":0,"echo":false,"script":null)
 ]
 }
 

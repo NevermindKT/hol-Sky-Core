@@ -9,6 +9,7 @@
 
 [resource]
 script = ExtResource("2_1ag7c")
+display_name = "Wolf"
 weight = 30.0
 max_health = 400.0
 move_speed = 8.0

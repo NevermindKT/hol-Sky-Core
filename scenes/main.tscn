@@ -50,9 +50,10 @@
 [ext_resource type="Script" uid="uid://b4rf1i0ro8kj0" path="res://scripts/data/sound/ambience_layer.gd" id="44_nvyfr"]
 [ext_resource type="AudioStream" uid="uid://04d6supqo8ek" path="res://audio/effects/eniviroment/wind/METLTonl_Item Spring Wire Impact Flick Top Clatter Light Tap Roll Handling Short 01_ESM_HDLM.wav" id="45_ty1g6"]
 [ext_resource type="AudioStream" uid="uid://dtvdg88gavmnk" path="res://audio/effects/eniviroment/wind/THUN_Interior Thunder Rumble_JF_INT Storm_01.wav" id="46_j2jfr"]
-[ext_resource type="Script" uid="uid://bqxbgbeith4mw" path="res://scenes/music_manager.gd" id="47_nvyfr"]
+[ext_resource type="Script" uid="uid://bqxbgbeith4mw" path="res://scripts/audio/music_manager.gd" id="47_nvyfr"]
 [ext_resource type="AudioStream" uid="uid://p4skorlelk65" path="res://audio/effects/eniviroment/wind/WINDInt_Loop Weather Wind Whipping Constricted Flow Turbulent 01_ESM_SNLS.wav" id="48_bjg73"]
-[ext_resource type="Script" uid="uid://bq27whxpuul5t" path="res://scenes/loading_rect.gd" id="53_o7ddy"]
+[ext_resource type="Script" uid="uid://c368fw1usnanj" path="res://scripts/run_stats.gd" id="51_o7ddy"]
+[ext_resource type="Script" uid="uid://bq27whxpuul5t" path="res://scripts/screen_effects/loading_rect.gd" id="53_o7ddy"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("5_2cjbq")
@@ -119,11 +120,11 @@ shader_parameter/midtone_levels = 10.0
 shader_parameter/highlight_levels = 12.0
 shader_parameter/shadow_range = 0.57999998703584
 shader_parameter/highlight_range = 0.749999983236
-shader_parameter/noise_strength = 0.0499999988824
+shader_parameter/noise_strength = 0.01999999955296
 shader_parameter/noise_darkness = 0.7999999821184
 shader_parameter/noise_scale = 12.0
 shader_parameter/noise_speed = 12.0000001788144
-shader_parameter/noise_chroma = 0.7999999821184
+shader_parameter/noise_chroma = 0.1999999955296
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_txyw0"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -150,7 +151,7 @@ render_target_update_mode = 4
 max_speed = 75.0
 acceleration = 20.0
 max_offset = 10.0
-strafe_speed = 17.0
+strafe_speed = 14.5
 road_turn_force = 0.8
 dodge_force = 10.0
 dodge_distance = 5.0
@@ -161,7 +162,7 @@ stamina_regeneration_rate = 75.0
 stamina_regeneration_delay = 0.75
 overheat_delay = 1.25
 overheat_recovery_ratio = 0.85
-damping = 9.0
+damping = 11.0
 player_cam = NodePath("../PlayerCam")
 engine_max_volume_db = -4.0
 
@@ -170,28 +171,6 @@ transform = Transform3D(1, 0, 0, 0, 0.86818093, 0.49624774, 0, -0.49624774, 0.86
 fov = 90.0
 script = ExtResource("2_c6pm6")
 car = NodePath("../Car")
-lateral_spring = 150.0
-lateral_damping = 20.0
-yaw_gain_deg = 1.7
-yaw_max_deg = 8.0
-yaw_smoothing = 4.0
-fov_min = 80.0
-distance_max = 6.0
-height_max = 8.0
-accel_distance_push = 0.8
-accel_fov_push = 3.0
-brake_distance_push = 0.2
-incoming_lateral_impulse_per_damage = 0.5
-incoming_vertical_impulse_per_damage = 0.5
-incoming_roll_impulse_per_damage_deg = 5.0
-incoming_pitch_impulse_per_damage_deg = 5.0
-aim_lean_horizontal = 1.0
-aim_lean_vertical = 0.6
-aim_lean_yaw_deg = 4.0
-aim_lean_pitch_deg = 6.0
-headlights_far_height_offset = -2.0
-headlights_far_distance_offset = 1.0
-flashlight_far_lean_multiplier = 2.5
 
 [node name="AudioListener3D" type="AudioListener3D" parent="SubViewportContainer/SubViewport/PlayerCam" unique_id=587824042]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
@@ -368,6 +347,9 @@ brake_speed_ratio = 0.1
 max_active_strokes = 10
 fade_duration = 5.0
 
+[node name="RunStats" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1836640605]
+script = ExtResource("51_o7ddy")
+
 [node name="Overlay" type="TextureRect" parent="." unique_id=64996111]
 texture_filter = 1
 material = SubResource("ShaderMaterial_vc5cj")
@@ -379,6 +361,7 @@ grow_vertical = 2
 texture = SubResource("ViewportTexture_txyw0")
 
 [node name="LoadingRect" type="ColorRect" parent="." unique_id=1587886310]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

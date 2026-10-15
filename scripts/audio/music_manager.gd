@@ -7,6 +7,7 @@ class_name MusicManager
 @export var tracks: Array[AudioStream] = []
 @export var music_bus: String = "Music"
 @export var music_volume_db: float = -6.0
+@export var start_delay: float = 3.0
 @export var gap_between_tracks: float = 1.0
 
 @export_category("Speed Muffle")
@@ -63,7 +64,7 @@ func _ready() -> void:
 		_noise_player.stream = noise_sound
 		_noise_player.play()
 
-	_play_next_track()
+	_start_first_track()
 
 	Events.player_take_damage.connect(_on_player_take_damage)
 	InputController.next_song.connect(_play_next_track)
@@ -106,7 +107,7 @@ func _update_damage(delta: float) -> void:
 		return
 	_damage = move_toward(_damage, 0.0, damage_recover_speed * delta)
 
-func _on_player_take_damage(_damage: float, _source_position: Vector3) -> void:
+func _on_player_take_damage(_damage_: float, _source_position: Vector3) -> void:
 	trigger_damage_muffle()
 
 # ============================ TRACKS ==========================================
@@ -124,6 +125,16 @@ func _play_next_track() -> void:
 
 	_music_player.stream = tracks[index]
 	_music_player.play()
+
+
+func _start_first_track() -> void:
+	if start_delay <= 0.0:
+		_play_next_track()
+		return
+
+	_in_gap = true
+	await get_tree().create_timer(start_delay).timeout
+	_play_next_track()
 
 
 func _on_track_finished() -> void:

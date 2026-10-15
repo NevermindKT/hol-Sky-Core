@@ -1,0 +1,359 @@
+[gd_scene format=3 uid="uid://bv5hxpnxp3qfm"]
+
+[ext_resource type="Script" uid="uid://cv5pgvnjd6ab0" path="res://addons/dialogue_system/DialogueSystem.gd" id="1_mgery"]
+[ext_resource type="Resource" uid="uid://c43kg6t0qfdqr" path="res://addons/dialogue_system/ui/DefaultDialogueStyle.tres" id="2_20um5"]
+[ext_resource type="Texture2D" uid="uid://cbkkqleuwkqtj" path="res://assets/img/Scene Assets/Бармен/BG.png" id="3_mgery"]
+[ext_resource type="Texture2D" uid="uid://bkn8km4d07iwm" path="res://assets/img/Characters/stranger_01_curious.png" id="4_20um5"]
+[ext_resource type="Shader" uid="uid://dg0f7awqi0bg3" path="res://addons/dialogue_system/ui/CharacterGlow.gdshader" id="5_aycxu"]
+[ext_resource type="Texture2D" uid="uid://ccxntdt3rircc" path="res://assets/img/Scene Assets/Дивний чоловік/Footer.png" id="6_dfw0c"]
+[ext_resource type="Texture2D" uid="uid://cxswveftj5sue" path="res://assets/img/UI/Dialogue Box.png" id="7_m25rc"]
+[ext_resource type="FontFile" uid="uid://v2v43utxox51" path="res://assets/fonts/Cormorant-Light.ttf" id="8_aycxu"]
+[ext_resource type="FontFile" uid="uid://cagemnlh7rsid" path="res://assets/fonts/Cormorant-Bold.ttf" id="9_nm7g3"]
+[ext_resource type="FontFile" uid="uid://bfaplsp4vuoh1" path="res://assets/fonts/Cormorant-BoldItalic.ttf" id="10_7ltoa"]
+[ext_resource type="FontFile" uid="uid://c586504ffyix" path="res://assets/fonts/Cormorant-Italic.ttf" id="11_23ndh"]
+[ext_resource type="Script" uid="uid://boaofagq7ewx3" path="res://addons/dialogue_system/core/TextTyper.gd" id="12_ygcl5"]
+[ext_resource type="Script" uid="uid://d1ixrrn04scea" path="res://addons/dialogue_system/core/DialogueTimeline.gd" id="13_remex"]
+[ext_resource type="Script" uid="uid://dkqb77xrd1d6w" path="res://addons/dialogue_system/ui/DialogueLog.gd" id="14_0vlww"]
+[ext_resource type="Script" uid="uid://2lb04tc2jfnk" path="res://addons/dialogue_system/core/ChoiceManager.gd" id="15_wqeuu"]
+[ext_resource type="PackedScene" uid="uid://bv7q1fxkfbi15" path="res://addons/dialogue_system/ui/DialogueChoiceButton.tscn" id="16_r3ahn"]
+
+[ext_resource type="Shader" path="res://addons/dialogue_system/ui/CharacterShadow.gdshader" id="17_box_shadow"]
+
+[sub_resource type="Gradient" id="Gradient_bottom_vignette"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture_bottom_vignette"]
+gradient = SubResource("Gradient_bottom_vignette")
+width = 2
+height = 256
+fill_from = Vector2(0, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_box_shadow"]
+shader = ExtResource("17_box_shadow")
+shader_parameter/shadow_color = Color(0, 0, 0, 0.65)
+shader_parameter/softness = 6.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glow"]
+shader = ExtResource("5_aycxu")
+shader_parameter/warm_light = Color(1, 0.78, 0.42, 0.35)
+shader_parameter/cool_light = Color(0.6, 0.78, 1, 0.28)
+shader_parameter/radius = 36.0
+
+[node name="DialogueSystem" type="CanvasLayer" unique_id=711074856 node_paths=PackedStringArray("background", "footer", "character", "typer", "timeline", "choice_manager", "name_label", "dialogue_log")]
+script = ExtResource("1_mgery")
+dialogues_path = "res://jsons/dialogues.json"
+speakers_path = "res://jsons/speakers.json"
+visuals_path = "res://jsons/visuals.json"
+background = NodePath("Interface/BG")
+footer = NodePath("Interface/Footer")
+character = NodePath("Interface/Character")
+typer = NodePath("Interface/DialogueBox/DialogueText")
+timeline = NodePath("Interface/Timeline")
+choice_manager = NodePath("ChoiceManager")
+name_label = NodePath("Interface/NameBox/SpeakerName")
+dialogue_log = NodePath("Interface/DialogueLog")
+dialogue_style = ExtResource("2_20um5")
+
+[node name="Interface" type="Control" parent="." unique_id=281751678]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="BG" type="TextureRect" parent="Interface" unique_id=901846054]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("3_mgery")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Character" type="TextureRect" parent="Interface" unique_id=1843941288]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2875
+anchor_top = 0.042592593
+anchor_right = 0.6875
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_20um5")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Glow" type="TextureRect" parent="Interface/Character" unique_id=1920473153]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_glow")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_20um5")
+expand_mode = 1
+
+[node name="Footer" type="TextureRect" parent="Interface" unique_id=572565679]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7092593
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_dfw0c")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BottomVignette" type="TextureRect" parent="Interface"]
+layout_mode = 1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture_bottom_vignette")
+expand_mode = 1
+
+[node name="Choices" type="MarginContainer" parent="Interface" unique_id=759675116]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08802083
+anchor_top = 0.86203706
+anchor_right = 0.9453125
+anchor_bottom = 0.96481484
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Interface/Choices" unique_id=1415260287]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="DialogueBox" type="TextureRect" parent="Interface" unique_id=462023262]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.086979166
+anchor_top = 0.56574076
+anchor_right = 0.946875
+anchor_bottom = 0.8361111
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_m25rc")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Shadow" type="TextureRect" parent="Interface/DialogueBox"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_box_shadow")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 18.0
+offset_right = 12.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_m25rc")
+expand_mode = 1
+
+[node name="DialogueText" type="RichTextLabel" parent="Interface/DialogueBox" unique_id=1604454967]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.22098887
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -0.33332825
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("8_aycxu")
+theme_override_fonts/bold_font = ExtResource("9_nm7g3")
+theme_override_fonts/bold_italics_font = ExtResource("10_7ltoa")
+theme_override_fonts/italics_font = ExtResource("11_23ndh")
+theme_override_fonts/mono_font = ExtResource("8_aycxu")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("12_ygcl5")
+speaker_sounds_path = "res://audio/dialogue_sounds"
+metadata/_edit_use_anchors_ = true
+
+[node name="NameBox" type="ColorRect" parent="Interface" unique_id=1395303975]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08802083
+anchor_top = 0.56574076
+anchor_right = 0.21302083
+anchor_bottom = 0.6259259
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeakerName" type="RichTextLabel" parent="Interface/NameBox" unique_id=908928423]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("8_aycxu")
+theme_override_fonts/bold_font = ExtResource("9_nm7g3")
+theme_override_fonts/bold_italics_font = ExtResource("10_7ltoa")
+theme_override_fonts/italics_font = ExtResource("11_23ndh")
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timeline" type="ProgressBar" parent="Interface" unique_id=1855115158]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.042592593
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+show_percentage = false
+script = ExtResource("13_remex")
+metadata/_edit_use_anchors_ = true
+
+[node name="OpenLogButton" type="Button" parent="Interface" unique_id=1218919716]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.91197914
+anchor_top = 0.06759259
+anchor_right = 0.9671875
+anchor_bottom = 0.11574074
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("9_nm7g3")
+theme_override_font_sizes/font_size = 24
+text = "LOG"
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogueLog" type="Control" parent="Interface" unique_id=1622134679 node_paths=PackedStringArray("entries_label", "open_button", "close_button")]
+process_mode = 3
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_0vlww")
+entries_label = NodePath("Panel/Margin/Content/Scroll/Entries")
+open_button = NodePath("../OpenLogButton")
+close_button = NodePath("Panel/Margin/Content/Header/CloseButton")
+
+[node name="Panel" type="ColorRect" parent="Interface/DialogueLog" unique_id=779992508]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.035, 0.03, 0.025, 0.96)
+
+[node name="Margin" type="MarginContainer" parent="Interface/DialogueLog/Panel" unique_id=370227582]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 180.0
+offset_top = 70.0
+offset_right = -180.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="Interface/DialogueLog/Panel/Margin" unique_id=1856071083]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Header" type="HBoxContainer" parent="Interface/DialogueLog/Panel/Margin/Content" unique_id=1119791846]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Interface/DialogueLog/Panel/Margin/Content/Header" unique_id=501944511]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("9_nm7g3")
+theme_override_font_sizes/font_size = 42
+text = "LOG"
+
+[node name="CloseButton" type="Button" parent="Interface/DialogueLog/Panel/Margin/Content/Header" unique_id=962260970]
+custom_minimum_size = Vector2(120, 52)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_nm7g3")
+theme_override_font_sizes/font_size = 22
+text = "CLOSE"
+
+[node name="Divider" type="HSeparator" parent="Interface/DialogueLog/Panel/Margin/Content" unique_id=1512129763]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Interface/DialogueLog/Panel/Margin/Content" unique_id=997266858]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Entries" type="RichTextLabel" parent="Interface/DialogueLog/Panel/Margin/Content/Scroll" unique_id=758454790]
+custom_minimum_size = Vector2(0, 700)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("8_aycxu")
+theme_override_fonts/bold_font = ExtResource("9_nm7g3")
+theme_override_fonts/bold_italics_font = ExtResource("10_7ltoa")
+theme_override_fonts/italics_font = ExtResource("11_23ndh")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "Історія діалогу з’явиться тут."
+fit_content = true
+scroll_active = false
+
+[node name="ChoiceManager" type="Node" parent="." unique_id=826415910 node_paths=PackedStringArray("timeline", "container")]
+script = ExtResource("15_wqeuu")
+timeline = NodePath("../Interface/Timeline")
+container = NodePath("../Interface/Choices/VBoxContainer")
+button_scene = ExtResource("16_r3ahn")

@@ -144,8 +144,8 @@ func _process_rolling(delta: float, local: Transform3D) -> void:
 
 	var axle := body.global_transform.basis.x.normalized()
 	var angular := body.angular_velocity
-	var spin := axle * axle.dot(angular)
-	var wobble := angular - spin
+	var _spin := axle * axle.dot(angular)
+	var wobble := angular - _spin
 
 	body.angular_velocity = wobble + (axle.cross(target_axle) * upright_strength - wobble * upright_damping) * delta
 
@@ -202,7 +202,7 @@ func _update_ground(local_position: Vector3) -> void:
 	_ground_center = center.round()
 
 	var size := ground_patch_cells + 1
-	var half := ground_patch_cells / 2
+	var half: int = floori(ground_patch_cells / 2.0)
 	_heights.resize(size * size)
 
 	for iz in size:

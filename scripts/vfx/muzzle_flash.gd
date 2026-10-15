@@ -18,7 +18,7 @@ func _ready() -> void:
 	if spot_light:
 		_default_light_color = spot_light.light_color
 
-func play(queue_free: bool = false, size: float = 1.0, saved: bool = false) -> void:
+func play(_queue_free: bool = false, size: float = 1.0, saved: bool = false) -> void:
 	scale = Vector3.ONE * size
 
 	for i in particles.size():
@@ -32,7 +32,7 @@ func play(queue_free: bool = false, size: float = 1.0, saved: bool = false) -> v
 		spot_light.show()
 	await get_tree().create_timer(particles[0].lifetime).timeout
 
-	if not queue_free:
+	if not _queue_free:
 		if spot_light:
 			spot_light.hide()
 	else:

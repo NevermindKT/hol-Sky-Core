@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bltgk61n30ho4"]
+
+[ext_resource type="Script" uid="uid://c5utalljlmbs3" path="res://scripts/DialogueMain.gd" id="1_wk3si"]
+[ext_resource type="PackedScene" uid="uid://bv5hxpnxp3qfm" path="res://addons/dialogue_system/DialogueSystem.tscn" id="2_wai38"]
+
+[node name="Main" type="Node3D" unique_id=1713886692]
+script = ExtResource("1_wk3si")
+
+[node name="DialogueSystem" parent="." unique_id=711074856 instance=ExtResource("2_wai38")]
