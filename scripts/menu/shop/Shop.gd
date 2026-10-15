@@ -1,8 +1,8 @@
 extends Control
 
-@onready var boost_obj_container: HBoxContainer = $BoostItems/BoostObj
-@onready var bullet_obj_container: HBoxContainer = $BulletItems/BulletObj
-@onready var car_obj_container: HBoxContainer = $CarItems/CarObj
+@onready var boost_obj_container: HBoxContainer = $Items/BoostObj
+@onready var bullet_obj_container: HBoxContainer = $Items/BulletObj
+@onready var car_obj_container: HBoxContainer = $Items/CarObj
 @onready var bubble_sweet_container: Control = $Bubble/SweetObj
 
 @export var money_label: Label

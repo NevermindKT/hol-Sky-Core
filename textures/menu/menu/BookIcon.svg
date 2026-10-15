@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="BookIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        stroke-width: 5px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        stroke-linejoin: round;
+      }
+
+      .cls-1, .cls-2, .cls-4, .cls-6 {
+        stroke: #514f43;
+      }
+
+      .cls-1, .cls-5, .cls-7 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #bbb39a;
+      }
+
+      .cls-3 {
+        fill: #292b29;
+        stroke: #292b29;
+        stroke-width: 10px;
+      }
+
+      .cls-4 {
+        fill: #76634d;
+      }
+
+      .cls-4, .cls-6 {
+        stroke-width: 8px;
+      }
+
+      .cls-5 {
+        stroke: #ded5b6;
+        stroke-width: 2px;
+      }
+
+      .cls-6 {
+        fill: #ded5b6;
+      }
+
+      .cls-7 {
+        stroke: #827d69;
+        stroke-width: 7px;
+      }
+    </style>
+  </defs>
+  <g id="BookIcon_editable_vector" data-name="BookIcon editable vector">
+    <polygon class="cls-3" points="65 132 198 122 256 155 314 122 447 132 447 399 314 389 256 422 198 389 65 399 65 132"/>
+    <polygon class="cls-4" points="65 120 198 110 256 143 314 110 447 120 447 387 314 377 256 410 198 377 65 387 65 120"/>
+    <polygon class="cls-6" points="83 102 192 102 256 135 320 102 429 102 429 365 318 365 256 398 194 365 83 365 83 102"/>
+    <polygon class="cls-2" points="256 135 320 102 429 102 429 365 318 365 256 398 256 135"/>
+    <line class="cls-1" x1="256" y1="146" x2="256" y2="380"/>
+    <path class="cls-7" d="M290,190l26-12.6c4.59-2.23,9.68-3.25,14.78-2.96l63.23,3.56"/>
+    <path class="cls-7" d="M290,241l26-12.6c4.59-2.23,9.68-3.25,14.78-2.96l63.23,3.56"/>
+    <path class="cls-7" d="M290,292l26-12.6c4.59-2.23,9.68-3.25,14.78-2.96l63.23,3.56"/>
+    <path class="cls-7" d="M219,190.37l-26-12.6c-4.59-2.23-9.68-3.25-14.78-2.96l-63.23,3.56"/>
+    <path class="cls-7" d="M219,241.37l-26-12.6c-4.59-2.23-9.68-3.25-14.78-2.96l-63.23,3.56"/>
+    <path class="cls-7" d="M219,292.37l-26-12.6c-4.59-2.23-9.68-3.25-14.78-2.96l-63.23,3.56"/>
+    <line class="cls-5" x1="115" y1="342" x2="124" y2="340"/>
+  </g>
+</svg>

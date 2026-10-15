@@ -149,7 +149,6 @@ render_target_update_mode = 4
 
 [node name="Car" parent="SubViewportContainer/SubViewport" unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("1_pibwh")]
 max_speed = 75.0
-acceleration = 20.0
 max_offset = 10.0
 strafe_speed = 14.5
 road_turn_force = 0.8

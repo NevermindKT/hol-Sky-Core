@@ -1,4 +1,3 @@
-
 extends Control
 
 @export_category("Footer")

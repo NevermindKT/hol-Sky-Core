@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://bix78nnee7b6"]
 
 [ext_resource type="Script" uid="uid://b6x5l3kriw6qo" path="res://scripts/menu/inventory/Inventory.gd" id="1_3t7i5"]
+[ext_resource type="Texture2D" uid="uid://cswdpv7p2cm20" path="res://textures/menu/map/Arrow.png" id="9_4arbu"]
 [ext_resource type="Texture2D" uid="uid://c7gfoa766n8ht" path="res://textures/menu/arrows&icons/BoostIcon.png" id="12_jqy3g"]
 [ext_resource type="Texture2D" uid="uid://cld3s5piwvyk7" path="res://textures/menu/arrows&icons/BulletIcon.png" id="14_y1tmo"]
-[ext_resource type="Texture2D" uid="uid://bgj1w1ydj3wel" path="res://textures/menu/arrows&icons/LockIcon.png" id="17_vxqsg"]
+[ext_resource type="Texture2D" uid="uid://dlqa1vpe7064m" path="res://textures/menu/map/LockIcon.svg" id="17_vxqsg"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="17_y1tmo"]
-[ext_resource type="Texture2D" uid="uid://bralluxjsrsim" path="res://textures/menu/arrows&icons/MapMarker.png" id="18_bl4n0"]
+[ext_resource type="Texture2D" uid="uid://h2cobtjl2jgf" path="res://textures/menu/map/MapMarker.svg" id="18_bl4n0"]
 [ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="18_rog58"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="19_ckekd"]
-[ext_resource type="Texture2D" uid="uid://5p4jdm7xm45f" path="res://textures/menu/arrows&icons/PlayButton.png" id="19_wgdau"]
+[ext_resource type="Texture2D" uid="uid://gygyl0ptapc3" path="res://textures/menu/map/PlayButton.svg" id="19_wgdau"]
 [ext_resource type="Texture2D" uid="uid://bfuln5k307h3o" path="res://textures/menu/arrows&icons/base.svg" id="20_rog58"]
 [ext_resource type="Script" uid="uid://bqiunaw81sh7s" path="res://scripts/menu/map/map_main.gd" id="21_2d1xj"]
-[ext_resource type="Texture2D" uid="uid://cwppcbu8i18wg" path="res://textures/menu/arrows&icons/Arrow.png" id="23_b8hp3"]
+[ext_resource type="Texture2D" uid="uid://cswdpv7p2cm20" path="res://textures/menu/map/Arrow.png" id="23_b8hp3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ji1w6"]
 bg_color = Color(0.728125, 0.728125, 0.67611605, 1)
@@ -1478,7 +1479,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_y1tmo")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qm8p1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qm8p1")
 text = "Common"
-icon = ExtResource("23_b8hp3")
+icon = ExtResource("9_4arbu")
 icon_alignment = 1
 
 [node name="Emount" type="Label" parent="Car/Common" unique_id=893785141]

@@ -49,8 +49,8 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("6_1bewf")]
+[node name="Header" parent="." unique_id=1044605363 instance=ExtResource("9_gwl71")]
 layout_mode = 1
 
-[node name="Header" parent="." unique_id=1044605363 instance=ExtResource("9_gwl71")]
+[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("6_1bewf")]
 layout_mode = 1

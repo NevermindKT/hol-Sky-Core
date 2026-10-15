@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="MoneyIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b99b50;
+        stroke-miterlimit: 10;
+        stroke-width: 5px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #514f43;
+      }
+
+      .cls-3 {
+        stroke-width: 7px;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-2 {
+        stroke-linejoin: round;
+      }
+
+      .cls-3, .cls-5, .cls-6, .cls-7 {
+        fill: none;
+        stroke: #ded5b6;
+      }
+
+      .cls-4 {
+        fill: #292b29;
+        stroke: #292b29;
+        stroke-width: 10px;
+      }
+
+      .cls-5, .cls-2 {
+        stroke-width: 8px;
+      }
+
+      .cls-6 {
+        stroke-width: 6px;
+      }
+
+      .cls-7 {
+        stroke-width: 4px;
+      }
+
+      .cls-2 {
+        fill: #7e8a69;
+      }
+    </style>
+  </defs>
+  <g id="MoneyIcon_editable_vector" data-name="MoneyIcon editable vector">
+    <polygon class="cls-4" points="86 124 364 124 380 284 98 284 86 124"/>
+    <polygon class="cls-2" points="86 112 364 112 380 272 98 272 86 112"/>
+    <polyline class="cls-7" points="86 112 364 112 380 272"/>
+    <polygon class="cls-6" points="115 136 336 136 349 248 126 248 115 136"/>
+    <ellipse class="cls-1" cx="225.5" cy="192" rx="35.5" ry="40"/>
+    <polyline class="cls-3" points="225 169 211 184 235 197 222 218"/>
+    <line class="cls-5" x1="148" y1="182" x2="168" y2="182"/>
+    <line class="cls-5" x1="296" y1="202" x2="317" y2="202"/>
+    <polygon class="cls-4" points="64 178 342 178 358 338 76 338 64 178"/>
+    <polygon class="cls-2" points="64 166 342 166 358 326 76 326 64 166"/>
+    <polyline class="cls-7" points="64 166 342 166 358 326"/>
+    <polygon class="cls-6" points="93 190 314 190 327 302 104 302 93 190"/>
+    <ellipse class="cls-1" cx="203.5" cy="246" rx="35.5" ry="40"/>
+    <polyline class="cls-3" points="203 223 189 238 213 251 200 272"/>
+    <line class="cls-5" x1="126" y1="236" x2="146" y2="236"/>
+    <line class="cls-5" x1="274" y1="256" x2="295" y2="256"/>
+    <polygon class="cls-4" points="100 233 378 233 394 393 112 393 100 233"/>
+    <polygon class="cls-2" points="100 221 378 221 394 381 112 381 100 221"/>
+    <polyline class="cls-7" points="100 221 378 221 394 381"/>
+    <polygon class="cls-6" points="129 245 350 245 363 357 140 357 129 245"/>
+    <ellipse class="cls-1" cx="246" cy="301" rx="38" ry="40"/>
+    <polyline class="cls-3" points="261.1 278.44 231.97 292.22 261.1 310.89 229.82 323.56"/>
+    <line class="cls-5" x1="160" y1="302" x2="180" y2="302"/>
+    <line class="cls-5" x1="308.83" y1="302" x2="329.83" y2="302"/>
+  </g>
+</svg>
