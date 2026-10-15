@@ -1,7 +1,7 @@
 extends Control
 
 @onready var trees_container = $Trees 
-@onready var money_label: Label = $Header/Header/HeaderButtons/Money/MoneyEquals
+#@onready var money_label: Label = $Header/Header/HeaderButtons/Money/MoneyEquals
 
 var db: SQLite = null
 
@@ -11,23 +11,23 @@ func _ready() -> void:
 
 	refresh_turrets()
 	
-	if GameManager.has_signal("money_changed"):
-		GameManager.money_changed.connect(_on_money_changed)
-	update_money_display()
+	#if BaseInventoryManager.has_signal("money_changed"):
+		#BaseInventoryManager.money_changed.connect(_on_money_changed)
+	#update_money_display()
 
 func _init_database() -> void:
 	db = SQLite.new()
 	db.path = "res://objects.db"
 	db.open_db()
 
-func update_money_display() -> void:
-	if money_label:
-		# Исправлено: используем метод get_player_money() вместо прямой переменной
-		money_label.text = str(GameManager.get_player_money())
-
-func _on_money_changed(new_amount: int) -> void:
-	if money_label:
-		money_label.text = str(new_amount)
+#func update_money_display() -> void:
+	#if money_label:
+		## Исправлено: используем метод get_player_money() вместо прямой переменной
+		#money_label.text = str(BaseInventoryManager.get_player_money())
+#
+#func _on_money_changed(new_amount: int) -> void:
+	#if money_label:
+		#money_label.text = str(new_amount)
 
 # Главная функция обновления дерева объектов
 func refresh_turrets() -> void:
@@ -128,9 +128,9 @@ func _on_turret_pressed(item_id: int, price: int) -> void:
 			return
 
 	# Списываем деньги через GameManager (метод spend_money уже корректно работает с базой данных)
-	if GameManager.spend_money(price):
+	if BaseInventoryManager.spend_money(price):
 		db.query("UPDATE Turret SET Purchased = 1 WHERE ID = %d;" % item_id)
 		print("Успешная покупка объекта ID: ", item_id)
 		refresh_turrets()
 	else:
-		print("Недостаточно денег в GameManager!")
+		print("Недостаточно денег в BaseInventoryManager!")

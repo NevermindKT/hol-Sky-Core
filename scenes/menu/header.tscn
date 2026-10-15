@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://cxtwcdkuyojpl"]
+
+[ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="1_tj4am"]
+[ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="2_mckkr"]
+[ext_resource type="FontFile" uid="uid://t6tnq2nlemob" path="res://scenes/menu/fonts/Cormorant/Cormorant-MediumItalic.ttf" id="3_2so0b"]
+[ext_resource type="Texture2D" uid="uid://bs5l3mujykj7y" path="res://textures/menu/notebook/header.png" id="4_lsn1v"]
+[ext_resource type="Texture2D" uid="uid://b1ndxqinywaj5" path="res://textures/menu/notebook/MoneyIcon.png" id="5_n4tod"]
+[ext_resource type="Texture2D" uid="uid://djepas58bpu43" path="res://textures/menu/notebook/BookIcon.png" id="6_4xk4v"]
+[ext_resource type="Texture2D" uid="uid://btboebmjrwtc1" path="res://textures/menu/notebook/SettingsIcon.png" id="7_yc4th"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqhb3"]
+texture = ExtResource("2_mckkr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grfbt"]
+texture = ExtResource("4_lsn1v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s835k"]
+texture = ExtResource("5_n4tod")
+modulate_color = Color(1, 1, 1, 0.7294118)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nliuf"]
+texture = ExtResource("6_4xk4v")
+modulate_color = Color(1, 1, 1, 0.7294118)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvutn"]
+texture = ExtResource("7_yc4th")
+modulate_color = Color(1, 1, 1, 0.7294118)
+
+[node name="Header" type="Control" unique_id=1044605363 node_paths=PackedStringArray("money_label")]
+layout_mode = 3
+anchor_right = 0.99700004
+anchor_bottom = 0.109000005
+offset_right = 5.7598877
+offset_bottom = -117.72001
+grow_horizontal = 2
+script = ExtResource("1_tj4am")
+money_label = NodePath("Header/HeaderButtons/Money/MoneyEquals")
+
+[node name="Block" type="Panel" parent="." unique_id=334768569]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -543.0
+offset_top = 28.0
+offset_right = -31.041138
+offset_bottom = 106.22593
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 6.2831855
+theme_override_styles/panel = SubResource("StyleBoxTexture_sqhb3")
+
+[node name="Name" type="Label" parent="Block" unique_id=885657095]
+layout_mode = 0
+offset_left = 95.35571
+offset_top = 12.999992
+offset_right = 410.3557
+offset_bottom = 61.999992
+theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
+theme_override_fonts/font = ExtResource("3_2so0b")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Header" type="Panel" parent="." unique_id=1979033740]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_grfbt")
+
+[node name="HeaderButtons" type="HBoxContainer" parent="Header" unique_id=1353191415]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.57900006
+anchor_top = 0.582
+anchor_right = 0.57900006
+anchor_bottom = 0.582
+offset_left = 381.31995
+offset_top = -37.962
+offset_right = 670.31995
+offset_bottom = 24.037998
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Money" type="HBoxContainer" parent="Header/HeaderButtons" unique_id=1723702746]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="MoneyEquals" type="Label" parent="Header/HeaderButtons/Money" unique_id=2097140684]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
+theme_override_font_sizes/font_size = 30
+text = "1000"
+
+[node name="MoneyIcon" type="Panel" parent="Header/HeaderButtons/Money" unique_id=2146597406]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_s835k")
+
+[node name="BookIcon" type="Panel" parent="Header/HeaderButtons" unique_id=266428147]
+custom_minimum_size = Vector2(40, 30)
+custom_maximum_size = Vector2(-1, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_nliuf")
+
+[node name="SettingsIcon" type="Panel" parent="Header/HeaderButtons" unique_id=1254850108]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_hvutn")

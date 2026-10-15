@@ -7,34 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="3_6m0sd"]
 [ext_resource type="Texture2D" uid="uid://cwppcbu8i18wg" path="res://textures/menu/arrows&icons/Arrow.png" id="3_cx5wq"]
 [ext_resource type="FontFile" uid="uid://t6tnq2nlemob" path="res://scenes/menu/fonts/Cormorant/Cormorant-MediumItalic.ttf" id="4_6gqua"]
-[ext_resource type="Texture2D" uid="uid://bs5l3mujykj7y" path="res://textures/menu/notebook/header.png" id="5_07q6t"]
 [ext_resource type="Texture2D" uid="uid://bralluxjsrsim" path="res://textures/menu/arrows&icons/MapMarker.png" id="5_11doy"]
 [ext_resource type="Texture2D" uid="uid://5p4jdm7xm45f" path="res://textures/menu/arrows&icons/PlayButton.png" id="6_o5kg8"]
-[ext_resource type="Texture2D" uid="uid://b1ndxqinywaj5" path="res://textures/menu/notebook/MoneyIcon.png" id="6_qk428"]
-[ext_resource type="Texture2D" uid="uid://djepas58bpu43" path="res://textures/menu/notebook/BookIcon.png" id="7_ih26l"]
 [ext_resource type="Texture2D" uid="uid://bgj1w1ydj3wel" path="res://textures/menu/arrows&icons/LockIcon.png" id="7_wpdqh"]
-[ext_resource type="Texture2D" uid="uid://btboebmjrwtc1" path="res://textures/menu/notebook/SettingsIcon.png" id="8_q6v0g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfrgi"]
 bg_color = Color(0.728125, 0.728125, 0.67611605, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wb6uh"]
 texture = ExtResource("3_6m0sd")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w6f3p"]
-texture = ExtResource("5_07q6t")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t5b82"]
-texture = ExtResource("6_qk428")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hf35w"]
-texture = ExtResource("7_ih26l")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m5k7c"]
-texture = ExtResource("8_q6v0g")
-modulate_color = Color(1, 1, 1, 0.7294118)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epxna"]
 bg_color = Color(0.4117647, 0.6117647, 0.30980393, 1)
@@ -336,65 +317,6 @@ theme_override_fonts/font = ExtResource("4_6gqua")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Header" type="Panel" parent="Background/Header" unique_id=840740289]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 91.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_w6f3p")
-
-[node name="HeaderButtons" type="HBoxContainer" parent="Background/Header/Header" unique_id=1471019276]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.57900006
-anchor_top = 0.582
-anchor_right = 0.57900006
-anchor_bottom = 0.582
-offset_left = 381.31995
-offset_top = -37.962
-offset_right = 670.31995
-offset_bottom = 24.037998
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="Money" type="HBoxContainer" parent="Background/Header/Header/HeaderButtons" unique_id=1572705565]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="MoneyEquals" type="Label" parent="Background/Header/Header/HeaderButtons/Money" unique_id=771518969]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_font_sizes/font_size = 30
-text = "1000"
-
-[node name="MoneyIcon" type="Panel" parent="Background/Header/Header/HeaderButtons/Money" unique_id=533939307]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_t5b82")
-
-[node name="BookIcon" type="Panel" parent="Background/Header/Header/HeaderButtons" unique_id=341677426]
-custom_minimum_size = Vector2(40, 30)
-custom_maximum_size = Vector2(-1, 40)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_hf35w")
-
-[node name="SettingsIcon" type="Panel" parent="Background/Header/Header/HeaderButtons" unique_id=128935313]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_m5k7c")
 
 [node name="Car" type="HBoxContainer" parent="." unique_id=1876317470]
 custom_minimum_size = Vector2(460, 100)

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dnhmhc64aam65" path="res://scenes/menu/shop/Shop.tscn" id="5_gwl71"]
 [ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="6_1bewf"]
 [ext_resource type="PackedScene" uid="uid://boiqi5lnl8ftn" path="res://scenes/menu/turret/Turret.tscn" id="7_4yqvd"]
+[ext_resource type="PackedScene" uid="uid://cxtwcdkuyojpl" path="res://scenes/menu/header.tscn" id="9_gwl71"]
 
 [node name="MenuCore" type="Control" unique_id=864477046 node_paths=PackedStringArray("footer", "main_menu", "car", "map", "shop", "turret", "inventory")]
 layout_mode = 3
@@ -49,4 +50,7 @@ visible = false
 layout_mode = 1
 
 [node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("6_1bewf")]
+layout_mode = 1
+
+[node name="Header" parent="." unique_id=1044605363 instance=ExtResource("9_gwl71")]
 layout_mode = 1

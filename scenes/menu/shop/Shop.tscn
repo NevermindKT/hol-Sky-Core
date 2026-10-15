@@ -10,15 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bh42l8gnauhus" path="res://textures/menu/clerks/Clerk1.png" id="16_rovg2"]
 [ext_resource type="Texture2D" uid="uid://ddfy2nn74kgol" path="res://textures/menu/clerks/Clerk2.png" id="17_27fgn"]
 [ext_resource type="Texture2D" uid="uid://dtx3rsqrdcdto" path="res://textures/menu/clerks/Clerk3.png" id="18_el58o"]
-[ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="21_8m6vm"]
-[ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="22_217ds"]
 [ext_resource type="Texture2D" uid="uid://dvovopfeksjtt" path="res://textures/menu/Bubble.png" id="22_sai0e"]
 [ext_resource type="Texture2D" uid="uid://mikjm2b2if8w" path="res://textures/menu/LockPaper.png" id="23_j6og7"]
-[ext_resource type="FontFile" uid="uid://t6tnq2nlemob" path="res://scenes/menu/fonts/Cormorant/Cormorant-MediumItalic.ttf" id="23_pw2l5"]
-[ext_resource type="Texture2D" uid="uid://bs5l3mujykj7y" path="res://textures/menu/notebook/header.png" id="24_f4b5r"]
-[ext_resource type="Texture2D" uid="uid://b1ndxqinywaj5" path="res://textures/menu/notebook/MoneyIcon.png" id="25_oqqfn"]
-[ext_resource type="Texture2D" uid="uid://djepas58bpu43" path="res://textures/menu/notebook/BookIcon.png" id="26_qea3c"]
-[ext_resource type="Texture2D" uid="uid://btboebmjrwtc1" path="res://textures/menu/notebook/SettingsIcon.png" id="27_fc82p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l8eaw"]
 texture = ExtResource("1_fhtem")
@@ -257,24 +250,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5nfyk"]
-texture = ExtResource("22_217ds")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_acvmk"]
-texture = ExtResource("24_f4b5r")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_thias"]
-texture = ExtResource("25_oqqfn")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itdpw"]
-texture = ExtResource("26_qea3c")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bu8xo"]
-texture = ExtResource("27_fc82p")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
 [node name="Shop" type="Control" unique_id=1248518968 node_paths=PackedStringArray("money_label", "timer_label")]
 layout_mode = 3
 anchors_preset = 15
@@ -283,7 +258,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3sxmm")
-money_label = NodePath("Header/Header/HeaderButtons/Money/MoneyEquals")
+money_label = NodePath("")
 timer_label = NodePath("TimerLabel/Timer")
 metadata/_edit_vertical_guides_ = [960.0]
 metadata/_edit_horizontal_guides_ = [540.0]
@@ -1652,99 +1627,3 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_qcro8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_f4b5r")
 text = "Перейти 
 до мапи"
-
-[node name="Header" type="Control" parent="." unique_id=116006627]
-layout_mode = 1
-anchor_right = 0.99700004
-anchor_bottom = 0.109000005
-offset_right = 5.7598877
-offset_bottom = -117.72001
-grow_horizontal = 2
-script = ExtResource("21_8m6vm")
-
-[node name="Block" type="Panel" parent="Header" unique_id=1623158864]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -543.0
-offset_top = 28.0
-offset_right = -31.041138
-offset_bottom = 106.22593
-grow_horizontal = 0
-grow_vertical = 2
-rotation = 6.2831855
-theme_override_styles/panel = SubResource("StyleBoxTexture_5nfyk")
-
-[node name="Name" type="Label" parent="Header/Block" unique_id=1470009133]
-layout_mode = 0
-offset_left = 95.35571
-offset_top = 12.999992
-offset_right = 410.3557
-offset_bottom = 61.999992
-theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_fonts/font = ExtResource("23_pw2l5")
-theme_override_font_sizes/font_size = 40
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Header" type="Panel" parent="Header" unique_id=2080008113]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 91.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_acvmk")
-
-[node name="HeaderButtons" type="HBoxContainer" parent="Header/Header" unique_id=1775037784]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.57900006
-anchor_top = 0.582
-anchor_right = 0.57900006
-anchor_bottom = 0.582
-offset_left = 381.31995
-offset_top = -37.962
-offset_right = 670.31995
-offset_bottom = 24.037998
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="Money" type="HBoxContainer" parent="Header/Header/HeaderButtons" unique_id=1778896782]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="MoneyEquals" type="Label" parent="Header/Header/HeaderButtons/Money" unique_id=85786785]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_font_sizes/font_size = 30
-text = "1000"
-
-[node name="MoneyIcon" type="Panel" parent="Header/Header/HeaderButtons/Money" unique_id=2086235364]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_thias")
-
-[node name="BookIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=110691844]
-custom_minimum_size = Vector2(40, 30)
-custom_maximum_size = Vector2(-1, 40)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_itdpw")
-
-[node name="SettingsIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=51501267]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_bu8xo")
