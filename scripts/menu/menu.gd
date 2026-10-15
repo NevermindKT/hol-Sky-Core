@@ -15,20 +15,20 @@ func _ready() -> void:
 
 func MapButtonPressed() -> void:
 	print("Нажата кнопка: MapButton")
-	get_tree().change_scene_to_file("res://map/Map.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/map/Map.tscn")
 
 func TurretButtonPressed() -> void:
 	print("Нажата кнопка: TurretButton")
-	get_tree().change_scene_to_file("res://turret/Turret.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/turret/Turret.tscn")
 
 func CarButtonPressed() -> void:
 	print("Нажата кнопка: CarButton")
-	get_tree().change_scene_to_file("res://car/Car.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/car/Car.tscn")
 
 func InventoryButtonPressed() -> void:
 	print("Нажата кнопка: InventoryButton")
-	get_tree().change_scene_to_file("res://inventory/Inventory.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/inventory/Inventory.tscn")
 
 func ShopButtonPressed() -> void:
 	print("Нажата кнопка: ShopButton")
-	get_tree().change_scene_to_file("res://shop/Shop.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/shop/Shop.tscn")
