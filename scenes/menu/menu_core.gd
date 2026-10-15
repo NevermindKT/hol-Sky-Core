@@ -5,10 +5,12 @@ extends Control
 @export var footer: Footer
 
 @export_category("Menus")
+@export var main_menu: Control
+
 @export var car: Control
 @export var map: Control
 @export var shop: Control
-@export var main_menu: Control
+@export var turret: Control
 @export var inventory: Control
 
 
@@ -30,7 +32,7 @@ func _map_button_pressed() -> void:
 
 
 func _turret_button_pressed() -> void:
-	_show_menu(main_menu)
+	_show_menu(turret)
 
 
 func _car_button_pressed() -> void:
@@ -49,5 +51,6 @@ func _hide_all():
 	car.hide()
 	map.hide()
 	shop.hide()
+	turret.hide()
 	main_menu.hide()
 	inventory.hide()

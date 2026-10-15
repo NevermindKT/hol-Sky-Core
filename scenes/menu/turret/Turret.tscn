@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dest2ct5kot18" path="res://scripts/menu/turret/turret.gd" id="1_dgvtk"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="10_0rxae"]
-[ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="10_h2kqr"]
 [ext_resource type="Texture2D" uid="uid://bs5l3mujykj7y" path="res://textures/menu/notebook/header.png" id="11_4cs7u"]
 [ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="11_mfwc3"]
 [ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="12_8ej8h"]
@@ -437,6 +436,3 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_fhcrm")
-
-[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("10_h2kqr")]
-layout_mode = 1

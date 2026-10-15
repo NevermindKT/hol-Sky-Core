@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bb86rpp2o4f0b" path="res://scenes/menu/map/Map.tscn" id="4_4yqvd"]
 [ext_resource type="PackedScene" uid="uid://dnhmhc64aam65" path="res://scenes/menu/shop/Shop.tscn" id="5_gwl71"]
 [ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="6_1bewf"]
+[ext_resource type="PackedScene" uid="uid://boiqi5lnl8ftn" path="res://scenes/menu/turret/Turret.tscn" id="7_4yqvd"]
 
-[node name="MenuCore" type="Control" unique_id=864477046 node_paths=PackedStringArray("footer", "car", "map", "shop", "main_menu", "inventory")]
+[node name="MenuCore" type="Control" unique_id=864477046 node_paths=PackedStringArray("footer", "main_menu", "car", "map", "shop", "turret", "inventory")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,10 +18,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pwjqe")
 footer = NodePath("Footer")
+main_menu = NodePath("Menu")
 car = NodePath("Car")
 map = NodePath("Map")
 shop = NodePath("Shop")
-main_menu = NodePath("Menu")
+turret = NodePath("Turret")
 inventory = NodePath("Inventory")
 
 [node name="Menu" parent="." unique_id=851692338 instance=ExtResource("1_idd3s")]
@@ -39,6 +41,10 @@ layout_mode = 1
 layout_mode = 1
 
 [node name="Shop" parent="." unique_id=1248518968 instance=ExtResource("5_gwl71")]
+visible = false
+layout_mode = 1
+
+[node name="Turret" parent="." unique_id=987103532 instance=ExtResource("7_4yqvd")]
 visible = false
 layout_mode = 1
 
