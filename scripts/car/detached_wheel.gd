@@ -202,7 +202,7 @@ func _update_ground(local_position: Vector3) -> void:
 	_ground_center = center.round()
 
 	var size := ground_patch_cells + 1
-	var half := ground_patch_cells / 2
+	var half: int = floori(ground_patch_cells / 2.0)
 	_heights.resize(size * size)
 
 	for iz in size:

@@ -1,41 +1,40 @@
 extends Control
 
 # --- СУЩЕСТВУЮЩИЕ ПЕРЕМЕННЫЕ КАРТЫ И БАЗ ---
+@export_category("Map")
 @export var map_node: Panel
 @export var lis1_node: Control 
 @export var lis1_roads: Control 
 @export var lis1_markers: Control 
 @export var active_lis1: Button
 
-@onready var BasePanel: Panel = $Base
-@onready var base_num_label: Label = $Base/BaseNum
-@onready var base_name_label: Label = $Base/BaseName
-@onready var hardness_label: Label = $Base/Hardness
-@onready var monsters_label: Label = $Base/Monsters
-@onready var description_label: Label = $Base/Description
-@onready var play_button: Button = $Base/Play
+@export_category("Base")
+@export var BasePanel: Panel
+@export var base_num_label: Label
+@export var base_name_label: Label
+@export var hardness_label: Label
+@export var monsters_label: Label
+@export var description_label: Label
+@export var play_button: Button
 
-@onready var close_button: Button = $Close
-@onready var name_label: Label = $Header/Block/Name
+
+@export var close_button: Button
+@export var name_label: Label
 
 # --- ПЕРЕМЕННЫЕ СИСТЕМЫ КВЕСТОВ ---
-@onready var quests_panel: Panel = $Quests
-@onready var quests_open_close_btn: Button = $Quests/OpenClose
-@onready var lis1_quest_category: Button = $Quests/Locations/Lis1
-@onready var lis1_arrow: Control = $Quests/Locations/Lis1/Arrow
-@onready var lis1_quests_vbox: VBoxContainer = $Quests/Locations/Quests
+@export_category("Quest")
+@export var quests_panel: Panel
+@export var quests_open_close_btn: Button
+@export var lis1_quest_category: Button
+@export var lis1_arrow: Control
+@export var lis1_quests_vbox: VBoxContainer
 
 # Ссылки на 5 фиксированных квестов
-@onready var quest_nodes: Array[Button] = [
-	$Quests/Locations/Quests/Quest1,
-	$Quests/Locations/Quests/Quest2,
-	$Quests/Locations/Quests/Quest3,
-	$Quests/Locations/Quests/Quest4,
-	$Quests/Locations/Quests/Quest5
-]
+@export var quest_nodes: Array[Button] = []
+@export var marker_nodes: Array[Button] = []
 
 # Ссылка на ваш узел Timer в квесте 3
-@onready var quest3_timer_node: Timer = $Quests/Locations/Quests/Quest3/Progress/Timer
+@export var quest3_timer_node: Timer
 
 var quests_hidden_pos: Vector2 = Vector2(1920.0, 226.0)
 var quests_visible_pos: Vector2 = Vector2(1499.0, 226.0)
@@ -113,8 +112,7 @@ func _ready() -> void:
 		if not quest3_timer_node.timeout.is_connected(_on_quest3_timeout):
 			quest3_timer_node.timeout.connect(_on_quest3_timeout)
 
-	var markers = [$Map/Lis1/Markers/Lis11, $Map/Lis1/Markers/Lis12, $Map/Lis1/Markers/Lis13, $Map/Lis1/Markers/Lis14, $Map/Lis1/Markers/Lis15]
-	for m in markers:
+	for m in marker_nodes:
 		if m:
 			m.pressed.connect(func(): _on_marker_pressed(m))
 
@@ -289,8 +287,7 @@ func _update_ui_quests() -> void:
 
 # --- ОСТАЛЬНЫЕ МЕТОДЫ КАРТЫ И БАЗ ---
 func _update_markers_scale() -> void:
-	var markers = [$Map/Lis1/Markers/Lis11, $Map/Lis1/Markers/Lis12, $Map/Lis1/Markers/Lis13, $Map/Lis1/Markers/Lis14, $Map/Lis1/Markers/Lis15]
-	for m in markers:
+	for m in marker_nodes:
 		if m:
 			if m.size != Vector2.ZERO:
 				m.pivot_offset = m.size / 2.0

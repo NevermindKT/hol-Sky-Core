@@ -190,7 +190,7 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lxo0m"]
 texture = ExtResource("26_2ehqf")
 
-[node name="Map" type="Control" unique_id=861827653 node_paths=PackedStringArray("map_node", "lis1_node", "lis1_roads", "lis1_markers", "active_lis1")]
+[node name="Map" type="Control" unique_id=861827653 node_paths=PackedStringArray("map_node", "lis1_node", "lis1_roads", "lis1_markers", "active_lis1", "BasePanel", "base_num_label", "base_name_label", "hardness_label", "monsters_label", "description_label", "play_button", "close_button", "name_label", "quests_panel", "quests_open_close_btn", "lis1_quest_category", "lis1_arrow", "lis1_quests_vbox", "quest_nodes", "marker_nodes", "quest3_timer_node")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,6 +203,23 @@ lis1_node = NodePath("Map/Lis1")
 lis1_roads = NodePath("Map/Lis1/Roads")
 lis1_markers = NodePath("Map/Lis1/Markers")
 active_lis1 = NodePath("Map/Lis1/ActiveLis1")
+BasePanel = NodePath("Base")
+base_num_label = NodePath("Base/BaseNum")
+base_name_label = NodePath("Base/BaseName")
+hardness_label = NodePath("Base/Hardness")
+monsters_label = NodePath("Base/Monsters")
+description_label = NodePath("Base/Description")
+play_button = NodePath("Base/Play")
+close_button = NodePath("Close")
+name_label = NodePath("Header/Block/Name")
+quests_panel = NodePath("Quests")
+quests_open_close_btn = NodePath("Quests/OpenClose")
+lis1_quest_category = NodePath("Quests/Locations/Lis1")
+lis1_arrow = NodePath("Quests/Locations/Lis1/Arrow")
+lis1_quests_vbox = NodePath("Quests/Locations/Quests")
+quest_nodes = [NodePath("Quests/Locations/Quests/Quest1"), NodePath("Quests/Locations/Quests/Quest2"), NodePath("Quests/Locations/Quests/Quest3"), NodePath("Quests/Locations/Quests/Quest4"), NodePath("Quests/Locations/Quests/Quest5")]
+marker_nodes = [NodePath("Map/Lis1/Markers/Lis11"), NodePath("Map/Lis1/Markers/Lis12"), NodePath("Map/Lis1/Markers/Lis13"), NodePath("Map/Lis1/Markers/Lis14"), NodePath("Map/Lis1/Markers/Lis15")]
+quest3_timer_node = NodePath("Quests/Locations/Quests/Quest3/Progress/Timer")
 metadata/_edit_horizontal_guides_ = [540.0]
 metadata/_edit_vertical_guides_ = [960.0]
 

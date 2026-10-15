@@ -55,8 +55,8 @@ func _place(node: Node, index: int) -> void:
 	add_child(node)
 	if node is Node3D:
 		var column := index % COLUMNS
-		var row := index / COLUMNS
-		(node as Node3D).position = Vector3((column - (COLUMNS - 1) * 0.5) * SPACING, (row % 3 - 1) * SPACING, -(row / 3) * SPACING)
+		var row: int = floori(index / float(COLUMNS))
+		(node as Node3D).position = Vector3((column - (COLUMNS - 1) * 0.5) * SPACING, (row % 3 - 1) * SPACING, -floori(row / 3.0) * SPACING)
 
 
 func _scan_tree(node: Node) -> void:

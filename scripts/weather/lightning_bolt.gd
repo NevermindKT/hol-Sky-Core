@@ -64,7 +64,7 @@ func add_branches(
 
 	var branch_count := randi_range(
 		min_branches,
-		min(max_branches, parent.size() / 6)
+		mini(max_branches, floori(parent.size() / 6.0))
 	)
 
 	var used_indices: Array[int] = []

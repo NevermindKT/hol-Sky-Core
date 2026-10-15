@@ -63,7 +63,7 @@ func _init_database() -> void:
 func _process(_delta: float) -> void:
 	if timer_label:
 		var time_left = max(0.0, GameManager.shop_time_left)
-		var minutes = int(time_left) / 60
+		var minutes = int(time_left / 60)
 		var seconds = int(time_left) % 60
 		timer_label.text = "%02d:%02d" % [minutes, seconds]
 

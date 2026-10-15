@@ -67,4 +67,4 @@ func get_summary() -> Dictionary:
 
 
 static func format_time(seconds: float) -> String:
-	return "%02d:%02d" % [int(seconds) / 60, int(seconds) % 60]
+	return "%02d:%02d" % [floori(int(seconds) / 60.0), int(seconds) % 60]

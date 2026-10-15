@@ -149,7 +149,7 @@ func _find_scene_icon_by_id(target_id: String) -> Texture2D:
 					return inner_icon.icon
 	return null
 
-func _on_upgrade_pressed(car_item: Dictionary, btn_sell: Button) -> void:
+func _on_upgrade_pressed(car_item: Dictionary, _btn_sell: Button) -> void:
 	var type_obj = str(car_item["TypeObj"])
 	var num_obj = int(car_item["NumObj"])
 	var money_cost = int(car_item["Money"])

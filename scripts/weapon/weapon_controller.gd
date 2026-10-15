@@ -157,18 +157,24 @@ func reload_stop():
 
 func fill_all_magazines():
 	for weapon in player_weapons:
-		var magazine_capacity := UpgradeManager.get_modified(&"expanded_magazine", weapon.data.magazine_capacity)
-		var need := magazine_capacity - weapon.ammo
-		
+		var magazine_capacity: int = roundi(
+			UpgradeManager.get_modified(
+				&"expanded_magazine",
+				weapon.data.magazine_capacity
+			)
+		)
+		var need: int = floori(magazine_capacity - weapon.ammo)
+
 		if need <= 0:
 			continue
-		
-		var loaded := inventory.consume_ammo(
+
+		var loaded: int = inventory.consume_ammo(
 			weapon.data.ammo_type,
 			need
 		)
-		
+
 		weapon.ammo += loaded
+
 	Events.magazine_count_changed.emit(current_weapon.ammo)
 
 

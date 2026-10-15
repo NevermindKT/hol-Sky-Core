@@ -92,7 +92,7 @@ func _render_view(scene_buffers: RenderSceneBuffersRD, scene_data: RenderSceneDa
 	var projection_floats := _inverse_projection_floats(scene_data)
 
 	var mip_name := StringName("mip_chain_%d" % view)
-	var base_mip_size := Vector2i(maxi(1, size.x / 2), maxi(1, size.y / 2))
+	var base_mip_size := Vector2i(maxi(1, floori(size.x / 2.0)), maxi(1, floori(size.y / 2.0)))
 
 	scene_buffers.create_texture(
 		CONTEXT, mip_name,
@@ -105,7 +105,8 @@ func _render_view(scene_buffers: RenderSceneBuffersRD, scene_data: RenderSceneDa
 	var level_sizes: Array[Vector2i] = [base_mip_size]
 	for i in range(1, MIP_COUNT):
 		var previous: Vector2i = level_sizes[i - 1]
-		level_sizes.append(Vector2i(maxi(1, previous.x / 2), maxi(1, previous.y / 2)))
+		level_sizes.append(Vector2i(maxi(1, floori(previous.x / 2.0)), maxi(1, floori(previous.y / 2.0))
+))
 
 	var previous_image := color_image
 	var previous_size := size
@@ -153,8 +154,8 @@ func _dispatch_downsample(source_image: RID, destination_image: RID, depth_image
 	]))
 	push_constant.append_array(PackedFloat32Array([fog_start, fog_end, 1.0 if first_pass else 0.0, far_cutoff]))
 
-	var x_groups := (destination_size.x - 1) / 8 + 1
-	var y_groups := (destination_size.y - 1) / 8 + 1
+	var x_groups: int = ceili(destination_size.x / 8.0)
+	var y_groups: int = ceili(destination_size.y / 8.0)
 
 	var compute_list := rd.compute_list_begin()
 	rd.compute_list_bind_compute_pipeline(compute_list, downsample_pipeline)
@@ -190,8 +191,8 @@ func _dispatch_composite(color_image: RID, depth_image: RID, mip_texture: RID, p
 	push_constant.append_array(PackedFloat32Array([blur_amount, tint_strength, opacity, float(MIP_COUNT)]))
 	push_constant.append_array(PackedFloat32Array([1.0 if debug_view_depth else 0.0, 0.0, 0.0, 0.0]))
 
-	var x_groups := (size.x - 1) / 8 + 1
-	var y_groups := (size.y - 1) / 8 + 1
+	var x_groups: int = ceili(size.x / 8.0)
+	var y_groups: int = ceili(size.y / 8.0)
 
 	var compute_list := rd.compute_list_begin()
 	rd.compute_list_bind_compute_pipeline(compute_list, composite_pipeline)

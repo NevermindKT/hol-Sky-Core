@@ -48,7 +48,7 @@ func play() -> void:
 
 
 func stop() -> void:
-	var pending := _stars.size()
+	var pending := [_stars.size()]
 
 	for i in _stars.size():
 		if _tweens[i]:
@@ -59,12 +59,11 @@ func stop() -> void:
 		tween.tween_property(_materials[i], "albedo_color:a", 0.0, fade_duration)
 		tween.finished.connect(func() -> void:
 			trail.emitting = false
-			pending -= 1
-			if pending <= 0:
+			pending[0] -= 1
+			if pending[0] <= 0:
 				set_process(false)
 		)
 		_tweens[i] = tween
-
 
 func _process(delta: float) -> void:
 	_time += delta
