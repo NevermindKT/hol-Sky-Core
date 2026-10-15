@@ -3,7 +3,7 @@ render_mode unshaded, blend_add;
 
 uniform vec4 warm_light : source_color = vec4(1.0, 0.78, 0.42, 0.35);
 uniform vec4 cool_light : source_color = vec4(0.60, 0.78, 1.0, 0.28);
-uniform float radius : hint_range(1.0, 48.0) = 18.0;
+uniform float radius : hint_range(1.0, 48.0) = 36.0;
 
 void fragment() {
     float halo = 0.0;
