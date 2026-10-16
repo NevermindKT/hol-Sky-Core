@@ -4,5 +4,5 @@
 
 [node name="Ostov" unique_id=669655594 instance=ExtResource("1_u5sya")]
 
-[node name="Car" parent="." index="0" unique_id=1766158426]
-layers = 5
+[node name="Car" parent="." index="0" unique_id=875774531]
+layers = 4

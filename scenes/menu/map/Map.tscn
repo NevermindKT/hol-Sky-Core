@@ -1,29 +1,24 @@
 [gd_scene format=3 uid="uid://bb86rpp2o4f0b"]
 
 [ext_resource type="Script" uid="uid://bqiunaw81sh7s" path="res://scripts/menu/map/map_main.gd" id="1_4jp5a"]
-[ext_resource type="Texture2D" uid="uid://dtd7n5wx3jr8m" path="res://textures/menu/BG/MapBackground.png" id="2_g8try"]
-[ext_resource type="Texture2D" uid="uid://bgj1w1ydj3wel" path="res://textures/menu/arrows&icons/LockIcon.png" id="3_7bhuf"]
+[ext_resource type="Texture2D" uid="uid://nk1huyks1st5" path="res://textures/menu/map/MapBackground.png" id="2_g8try"]
+[ext_resource type="Texture2D" uid="uid://dlqa1vpe7064m" path="res://textures/menu/map/LockIcon.svg" id="3_7bhuf"]
 [ext_resource type="Texture2D" uid="uid://x3lusvqcaset" path="res://textures/menu/map/map.png" id="3_glkao"]
-[ext_resource type="Texture2D" uid="uid://b7de06kmgleh6" path="res://textures/menu/BG/background21.png" id="3_xqkdt"]
+[ext_resource type="Texture2D" uid="uid://cl57sdkctjh3d" path="res://textures/menu/map/BackDetails/cup.png" id="4_ehh6u"]
 [ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="5_e2kap"]
-[ext_resource type="Texture2D" uid="uid://b1ndxqinywaj5" path="res://textures/menu/notebook/MoneyIcon.png" id="5_rwkw3"]
+[ext_resource type="Texture2D" uid="uid://cmdtxd5qfwat4" path="res://textures/menu/map/BackDetails/pack.png" id="5_xaeb3"]
 [ext_resource type="Texture2D" uid="uid://nu0uab18voyy" path="res://textures/menu/map/forest.png" id="5_xqkdt"]
-[ext_resource type="Texture2D" uid="uid://djepas58bpu43" path="res://textures/menu/notebook/BookIcon.png" id="6_7bhuf"]
-[ext_resource type="Texture2D" uid="uid://bfuln5k307h3o" path="res://textures/menu/arrows&icons/base.svg" id="6_ehh6u"]
+[ext_resource type="Texture2D" uid="uid://s1f5p6ty2qkp" path="res://textures/menu/map/BackDetails/background21.png" id="6_spjye"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="7_e2kap"]
-[ext_resource type="Texture2D" uid="uid://btboebmjrwtc1" path="res://textures/menu/notebook/SettingsIcon.png" id="7_po5id"]
 [ext_resource type="Texture2D" uid="uid://bq861owybkbfe" path="res://textures/menu/map/road.png" id="7_xqkdt"]
+[ext_resource type="Texture2D" uid="uid://h2cobtjl2jgf" path="res://textures/menu/map/MapMarker.svg" id="8_ehh6u"]
+[ext_resource type="Texture2D" uid="uid://ofnfw0nyprde" path="res://textures/menu/map/WoodImage.svg" id="9_xaeb3"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="10_gyiq0"]
-[ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="10_pc58k"]
-[ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="11_e2kap"]
-[ext_resource type="Texture2D" uid="uid://5p4jdm7xm45f" path="res://textures/menu/arrows&icons/PlayButton.png" id="12_8s6nd"]
-[ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="16_q2at7"]
-[ext_resource type="FontFile" uid="uid://t6tnq2nlemob" path="res://scenes/menu/fonts/Cormorant/Cormorant-MediumItalic.ttf" id="17_twxtu"]
-[ext_resource type="Texture2D" uid="uid://bs5l3mujykj7y" path="res://textures/menu/notebook/header.png" id="19_glkao"]
-[ext_resource type="Texture2D" uid="uid://dtsqlrhx1rb2l" path="res://textures/menu/arrows&icons/CloseIcon.png" id="23_4jp5a"]
-[ext_resource type="Texture2D" uid="uid://cwppcbu8i18wg" path="res://textures/menu/arrows&icons/Arrow.png" id="26_2ehqf"]
+[ext_resource type="Texture2D" uid="uid://gygyl0ptapc3" path="res://textures/menu/map/PlayButton.svg" id="21_spjye"]
 [ext_resource type="Texture2D" uid="uid://mikjm2b2if8w" path="res://textures/menu/LockPaper.png" id="26_mbyvp"]
-[ext_resource type="Script" uid="uid://bl4sxn3d4qutu" path="res://scripts/menu/GameManager.gd" id="28_g8try"]
+[ext_resource type="Script" uid="uid://cm51amwgn7tby" path="res://scripts/menu/base_inventory_manager.gd" id="28_g8try"]
+[ext_resource type="Texture2D" uid="uid://baupkomftiu5v" path="res://textures/menu/map/CloseIcon.svg" id="29_h4k4a"]
+[ext_resource type="Texture2D" uid="uid://cswdpv7p2cm20" path="res://textures/menu/map/Arrow.png" id="33_ddpo1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7if1s"]
 texture = ExtResource("2_g8try")
@@ -32,8 +27,24 @@ modulate_color = Color(1.331864, 1.331864, 1.331864, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vnypt"]
 texture = ExtResource("3_glkao")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7fck3"]
-texture = ExtResource("3_xqkdt")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iini3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5vyfu"]
+texture = ExtResource("4_ehh6u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_easud"]
+texture = ExtResource("5_xaeb3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vxepj"]
+texture = ExtResource("6_spjye")
+texture_margin_left = 39.613567
+texture_margin_top = 6.8474884
+region_rect = Rect2(3055.946, 525.5668, 425.61084, 679.4332)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lowf0"]
+texture = ExtResource("6_spjye")
+texture_margin_left = 13.525766
+region_rect = Rect2(126.81851, 28.224823, 512.5128, 1164.4768)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1hg1l"]
 texture = ExtResource("3_7bhuf")
@@ -48,44 +59,29 @@ texture = ExtResource("3_7bhuf")
 texture = ExtResource("5_xqkdt")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g7l7j"]
-texture = ExtResource("6_ehh6u")
-region_rect = Rect2(7, 7, 86, 86)
+texture = ExtResource("8_ehh6u")
+region_rect = Rect2(106.22241, 55.342766, 301.8178, 435.578)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aelyn"]
-texture = ExtResource("19_glkao")
+texture = ExtResource("9_xaeb3")
+texture_margin_top = 5.280008
+texture_margin_bottom = 0.72727376
+region_rect = Rect2(68.835815, 67, 358.16418, 314.5374)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_alg4n"]
 texture = ExtResource("26_mbyvp")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gy3ke"]
-texture = ExtResource("12_8s6nd")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqhb3"]
-texture = ExtResource("11_e2kap")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grfbt"]
-texture = ExtResource("19_glkao")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s835k"]
-texture = ExtResource("5_rwkw3")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nliuf"]
-texture = ExtResource("6_7bhuf")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvutn"]
-texture = ExtResource("7_po5id")
-modulate_color = Color(1, 1, 1, 0.7294118)
+texture = ExtResource("21_spjye")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_spjye"]
-texture = ExtResource("23_4jp5a")
+texture = ExtResource("29_h4k4a")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53vcc"]
-texture = ExtResource("23_4jp5a")
+texture = ExtResource("29_h4k4a")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mx7lj"]
-texture = ExtResource("23_4jp5a")
+texture = ExtResource("29_h4k4a")
 
 [sub_resource type="GDScript" id="GDScript_glkao"]
 
@@ -177,7 +173,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p20mb"]
-texture = ExtResource("26_2ehqf")
+texture = ExtResource("33_ddpo1")
 modulate_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glkao"]
@@ -188,9 +184,9 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lxo0m"]
-texture = ExtResource("26_2ehqf")
+texture = ExtResource("33_ddpo1")
 
-[node name="Map" type="Control" unique_id=861827653 node_paths=PackedStringArray("map_node", "lis1_node", "lis1_roads", "lis1_markers", "active_lis1", "BasePanel", "base_num_label", "base_name_label", "hardness_label", "monsters_label", "description_label", "play_button", "close_button", "name_label", "quests_panel", "quests_open_close_btn", "lis1_quest_category", "lis1_arrow", "lis1_quests_vbox", "quest_nodes", "marker_nodes", "quest3_timer_node")]
+[node name="Map" type="Control" unique_id=861827653 node_paths=PackedStringArray("map_node", "lis1_node", "lis1_roads", "lis1_markers", "active_lis1", "BasePanel", "base_num_label", "base_name_label", "hardness_label", "monsters_label", "description_label", "play_button", "close_button", "quests_panel", "quests_open_close_btn", "lis1_quest_category", "lis1_arrow", "lis1_quests_vbox", "quest_nodes", "marker_nodes", "quest3_timer_node")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -211,7 +207,6 @@ monsters_label = NodePath("Base/Monsters")
 description_label = NodePath("Base/Description")
 play_button = NodePath("Base/Play")
 close_button = NodePath("Close")
-name_label = NodePath("Header/Block/Name")
 quests_panel = NodePath("Quests")
 quests_open_close_btn = NodePath("Quests/OpenClose")
 lis1_quest_category = NodePath("Quests/Locations/Lis1")
@@ -248,18 +243,50 @@ grow_vertical = 2
 pivot_offset = Vector2(772.5, 513)
 theme_override_styles/panel = SubResource("StyleBoxTexture_vnypt")
 
-[node name="Details" type="Panel" parent="Map" unique_id=746472195]
+[node name="Details" type="Panel" parent="Map" unique_id=1659748424]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -483.0
-offset_top = 120.0
-offset_right = 439.2627
-offset_bottom = 44.0
+offset_left = -207.0
+offset_top = -15.0
+offset_right = 207.0
+offset_bottom = 61.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_7fck3")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iini3")
+
+[node name="1" type="Panel" parent="Map/Details" unique_id=421818688]
+layout_mode = 0
+offset_left = 1611.0
+offset_top = 15.0
+offset_right = 2090.0
+offset_bottom = 389.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_5vyfu")
+
+[node name="2" type="Panel" parent="Map/Details" unique_id=1267946394]
+layout_mode = 0
+offset_left = -379.0
+offset_top = -66.0
+offset_right = 178.0
+offset_bottom = 389.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_easud")
+
+[node name="3" type="Panel" parent="Map/Details" unique_id=125179860]
+layout_mode = 0
+offset_left = 1562.0
+offset_top = 416.0
+offset_right = 1912.2637
+offset_bottom = 925.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_vxepj")
+
+[node name="4" type="Panel" parent="Map/Details" unique_id=711763380]
+layout_mode = 0
+offset_left = -43.0
+offset_top = 249.0
+offset_right = 249.0
+offset_bottom = 902.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_lowf0")
 
 [node name="Misto1" type="Control" parent="Map" unique_id=1265466791]
 layout_mode = 1
@@ -346,7 +373,7 @@ offset_bottom = 40.0
 
 [node name="12" type="Line2D" parent="Map/Lis1/Roads" unique_id=989311550]
 position = Vector2(-343, -357)
-points = PackedVector2Array(617, 547, 610, 578, 615, 600, 619, 618, 643, 621, 672, 622, 698, 622, 732, 628)
+points = PackedVector2Array(617, 548, 614, 582, 617, 600, 628, 613, 644, 620, 672, 621, 699, 622, 737, 623)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -359,7 +386,7 @@ round_precision = 32
 
 [node name="13" type="Line2D" parent="Map/Lis1/Roads" unique_id=521956238]
 position = Vector2(-343, -357)
-points = PackedVector2Array(617, 547, 609, 577, 614, 597, 622, 624, 648, 620, 676, 623, 697, 622, 726, 615, 775, 609, 839, 622, 866, 646, 888, 680, 892, 699, 894, 770)
+points = PackedVector2Array(617, 547, 614, 583, 617, 601, 631, 615, 652, 621, 670, 621, 697, 622, 742, 623, 766, 614, 787, 610, 813, 612, 837, 622, 865, 643, 879, 661, 888, 680, 896, 705, 898, 726, 899, 764)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -372,7 +399,7 @@ round_precision = 32
 
 [node name="14" type="Line2D" parent="Map/Lis1/Roads" unique_id=1545980573]
 position = Vector2(-343, -357)
-points = PackedVector2Array(617, 547, 592, 589, 568, 627, 571, 666, 594, 693, 617, 711, 656, 727, 709, 737, 733, 747, 757, 761, 777, 787, 782, 817, 775, 854)
+points = PackedVector2Array(617, 547, 596, 579, 567, 627, 554, 648, 570, 667, 594, 693, 617, 711, 635, 721, 657, 727, 684, 733, 710, 736, 729, 742, 746, 751, 769, 773, 777, 788, 782, 805, 780, 823, 773, 848)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -385,7 +412,7 @@ round_precision = 32
 
 [node name="15" type="Line2D" parent="Map/Lis1/Roads" unique_id=927470568]
 position = Vector2(-343, -357)
-points = PackedVector2Array(617, 547, 599, 574, 584, 603, 571, 620, 555, 647)
+points = PackedVector2Array(617, 547, 599, 574, 584, 598, 571, 620, 555, 647)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -398,7 +425,7 @@ round_precision = 32
 
 [node name="23" type="Line2D" parent="Map/Lis1/Roads" unique_id=1876252551]
 position = Vector2(-343, -357)
-points = PackedVector2Array(895, 768, 896, 725, 888, 679, 867, 647, 837, 621, 803, 613, 774, 609, 741, 622)
+points = PackedVector2Array(898, 765, 898, 726, 896, 704, 888, 679, 879, 661, 866, 643, 839, 623, 814, 612, 788, 610, 768, 613, 745, 623)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -411,7 +438,7 @@ round_precision = 32
 
 [node name="24" type="Line2D" parent="Map/Lis1/Roads" unique_id=755060070]
 position = Vector2(-343, -357)
-points = PackedVector2Array(776, 852, 782, 816, 781, 773, 801, 757, 820, 752, 854, 752, 884, 728, 889, 719, 892, 700, 888, 679, 867, 647, 838, 621, 803, 613, 774, 609, 753, 614, 740, 622)
+points = PackedVector2Array(774, 846, 779, 818, 780, 805, 777, 788, 769, 774, 792, 758, 821, 751, 850, 753, 873, 759, 895, 769, 899, 731, 896, 705, 888, 679, 879, 661, 865, 643, 837, 622, 813, 612, 788, 610, 766, 614, 745, 622)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -424,7 +451,7 @@ round_precision = 32
 
 [node name="25" type="Line2D" parent="Map/Lis1/Roads" unique_id=557413346]
 position = Vector2(-343, -357)
-points = PackedVector2Array(554, 650, 580, 648, 600, 638, 622, 624, 645, 620, 671, 623, 698, 622, 734, 623)
+points = PackedVector2Array(554, 650, 579, 642, 600, 631, 622, 624, 645, 620, 671, 621, 698, 622, 735, 623)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -437,7 +464,7 @@ round_precision = 32
 
 [node name="34" type="Line2D" parent="Map/Lis1/Roads" unique_id=1718049631]
 position = Vector2(-343, -357)
-points = PackedVector2Array(892, 769, 851, 753, 820, 751, 801, 757, 782, 772, 777, 790, 782, 813, 776, 852)
+points = PackedVector2Array(892, 769, 873, 759, 851, 753, 820, 751, 790, 759, 769, 773, 777, 788, 780, 805, 779, 824, 773, 847)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -450,7 +477,7 @@ round_precision = 32
 
 [node name="35" type="Line2D" parent="Map/Lis1/Roads" unique_id=182907964]
 position = Vector2(-343, -357)
-points = PackedVector2Array(895, 769, 850, 753, 821, 751, 801, 757, 759, 762, 710, 736, 656, 727, 616, 710, 590, 686, 554, 652)
+points = PackedVector2Array(894, 770, 873, 759, 850, 753, 821, 751, 792, 758, 769, 773, 759, 762, 746, 751, 729, 742, 710, 736, 681, 732, 656, 727, 634, 720, 616, 710, 595, 694, 579, 677, 555, 650)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -463,7 +490,7 @@ round_precision = 32
 
 [node name="45" type="Line2D" parent="Map/Lis1/Roads" unique_id=1949557631]
 position = Vector2(-343, -357)
-points = PackedVector2Array(775, 855, 782, 816, 777, 788, 757, 761, 710, 736, 656, 727, 616, 710, 585, 683, 556, 651)
+points = PackedVector2Array(773, 847, 779, 825, 780, 805, 777, 788, 769, 773, 757, 761, 746, 751, 729, 742, 710, 736, 681, 732, 656, 727, 635, 721, 616, 710, 599, 697, 585, 683, 569, 666, 556, 651)
 width = 20.0
 default_color = Color(0.95, 1, 0.95, 1)
 texture = ExtResource("7_xqkdt")
@@ -488,13 +515,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -109.5
-offset_top = -155.5
-offset_right = -49.5
-offset_bottom = -95.5
+offset_left = -97.5
+offset_top = -162.5
+offset_right = -60.5
+offset_bottom = -112.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(30, 27)
+pivot_offset = Vector2(18, 48)
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
@@ -512,13 +539,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 14.5
-offset_top = -72.5
-offset_right = 74.5
-offset_bottom = -12.5
+offset_left = 28.5
+offset_top = -89.5
+offset_right = 65.5
+offset_bottom = -39.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(30.000061, 30)
+pivot_offset = Vector2(18, 49)
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
@@ -536,13 +563,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 172.5
-offset_top = 72.5
-offset_right = 232.5
-offset_bottom = 132.5
+offset_left = 182.5
+offset_top = 63.5
+offset_right = 219.5
+offset_bottom = 113.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(30, 30)
+pivot_offset = Vector2(18, 49)
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
@@ -560,13 +587,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 46.5
-offset_top = 166.5
-offset_right = 106.5
-offset_bottom = 226.5
+offset_left = 58.5
+offset_top = 144.5
+offset_right = 95.5
+offset_bottom = 194.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(50.571533, 49.571533)
+pivot_offset = Vector2(18, 48)
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
@@ -584,13 +611,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -175.5
-offset_top = -47.5
-offset_right = -115.5
-offset_bottom = 12.5
+offset_left = -168.5
+offset_top = -58.5
+offset_right = -131.5
+offset_bottom = -8.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(30, 30)
+pivot_offset = Vector2(19, 48)
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
@@ -624,9 +651,6 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_aelyn")
 theme_override_styles/hover = SubResource("StyleBoxTexture_aelyn")
 icon_alignment = 1
 expand_icon = true
-
-[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("10_pc58k")]
-layout_mode = 1
 
 [node name="Base" type="Panel" parent="." unique_id=217001280]
 layout_mode = 1
@@ -743,109 +767,15 @@ anchor_left = 0.5
 anchor_top = 0.837
 anchor_right = 0.5
 anchor_bottom = 0.837
-offset_left = -71.13248
+offset_left = -57.132477
 offset_top = -70.24402
-offset_right = 39.5
-offset_bottom = 9.017883
+offset_right = 22.867523
+offset_bottom = 9.755981
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_gy3ke")
-
-[node name="Header" type="Control" parent="." unique_id=1063021593]
-layout_mode = 1
-anchor_right = 0.99700004
-anchor_bottom = 0.109000005
-offset_right = 5.7598877
-offset_bottom = -117.72001
-grow_horizontal = 2
-script = ExtResource("16_q2at7")
-
-[node name="Block" type="Panel" parent="Header" unique_id=1850785376]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -543.0
-offset_top = 28.0
-offset_right = -31.041138
-offset_bottom = 106.22593
-grow_horizontal = 0
-grow_vertical = 2
-rotation = 6.2831855
-theme_override_styles/panel = SubResource("StyleBoxTexture_sqhb3")
-
-[node name="Name" type="Label" parent="Header/Block" unique_id=2126954317]
-layout_mode = 0
-offset_left = 95.35571
-offset_top = 12.999992
-offset_right = 410.3557
-offset_bottom = 61.999992
-theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_fonts/font = ExtResource("17_twxtu")
-theme_override_font_sizes/font_size = 40
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Header" type="Panel" parent="Header" unique_id=823009394]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 91.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_grfbt")
-
-[node name="HeaderButtons" type="HBoxContainer" parent="Header/Header" unique_id=1036593880]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.57900006
-anchor_top = 0.582
-anchor_right = 0.57900006
-anchor_bottom = 0.582
-offset_left = 381.31995
-offset_top = -37.962
-offset_right = 670.31995
-offset_bottom = 24.037998
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="Money" type="HBoxContainer" parent="Header/Header/HeaderButtons" unique_id=1161333593]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="MoneyEquals" type="Label" parent="Header/Header/HeaderButtons/Money" unique_id=1748585663]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_font_sizes/font_size = 30
-text = "1000"
-
-[node name="MoneyIcon" type="Panel" parent="Header/Header/HeaderButtons/Money" unique_id=1882845416]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_s835k")
-
-[node name="BookIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=1750922357]
-custom_minimum_size = Vector2(40, 30)
-custom_maximum_size = Vector2(-1, 40)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_nliuf")
-
-[node name="SettingsIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=186424647]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_hvutn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gy3ke")
 
 [node name="Close" type="Button" parent="." unique_id=681310306]
 layout_mode = 1
@@ -855,9 +785,9 @@ anchor_top = 0.141
 anchor_right = 0.966
 anchor_bottom = 0.141
 offset_left = -33.71997
-offset_top = -9.279999
+offset_top = -46.279984
 offset_right = 32.28003
-offset_bottom = 56.72
+offset_bottom = 19.720016
 rotation = -0.0022424909
 pivot_offset = Vector2(33, 33)
 size_flags_horizontal = 0
@@ -1012,7 +942,6 @@ pivot_offset = Vector2(14.699951, 14)
 theme_override_styles/panel = SubResource("StyleBoxTexture_p20mb")
 
 [node name="Quests" type="VBoxContainer" parent="Quests/Locations" unique_id=1885988932]
-visible = false
 propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1337,7 +1266,6 @@ offset_left = -280.5
 offset_top = -23.175018
 offset_right = -226.15283
 offset_bottom = 31.17215
-rotation = 1.5707964
 pivot_offset = Vector2(25, 25)
 theme_override_styles/normal = SubResource("StyleBoxTexture_lxo0m")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_lxo0m")

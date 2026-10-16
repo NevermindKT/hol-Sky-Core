@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="PlayButton" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 9px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-5 {
+        stroke: #292b29;
+      }
+
+      .cls-1, .cls-5, .cls-3 {
+        fill: #292b29;
+      }
+
+      .cls-2 {
+        fill: #a7a48d;
+        stroke: #ded5b6;
+        stroke-width: 4px;
+      }
+
+      .cls-6 {
+        fill: #fff;
+        opacity: .5;
+      }
+
+      .cls-5 {
+        stroke-width: 10px;
+      }
+
+      .cls-5, .cls-7, .cls-8 {
+        stroke-linejoin: round;
+      }
+
+      .cls-9, .cls-4 {
+        fill: #514f43;
+      }
+
+      .cls-7 {
+        fill: none;
+      }
+
+      .cls-7, .cls-8, .cls-3, .cls-4 {
+        stroke: #514f43;
+      }
+
+      .cls-7, .cls-8, .cls-4 {
+        stroke-width: 8px;
+      }
+
+      .cls-8 {
+        fill: #b99b50;
+      }
+
+      .cls-3 {
+        stroke-width: 6px;
+      }
+    </style>
+  </defs>
+  <g id="PlayButton_editable_vector" data-name="PlayButton editable vector">
+    <circle class="cls-1" cx="256" cy="268" r="196"/>
+    <circle class="cls-4" cx="256" cy="256" r="196"/>
+    <circle class="cls-2" cx="256" cy="256" r="180"/>
+    <circle class="cls-3" cx="256" cy="256" r="152"/>
+    <polygon class="cls-5" points="208 169 352 264 208 359 208 169"/>
+    <polygon class="cls-8" points="208 157 352 252 208 347 208 157"/>
+    <polygon class="cls-6" points="208 347.22 326.67 252.22 208 157.22 352 252.22 208 347.22"/>
+    <polygon class="cls-9" points="121.27 160 139.94 157 132.47 163 118.78 165 121.27 160"/>
+    <polygon class="cls-9" points="349.24 375.56 371 372.56 362.29 378.56 346.33 380.56 349.24 375.56"/>
+    <polygon class="cls-7" points="208 157 352 252 208 347 208 157"/>
+  </g>
+</svg>

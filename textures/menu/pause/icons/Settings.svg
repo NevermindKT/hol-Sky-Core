@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="PAUSE_SETTINGS_native_vectors" data-name="PAUSE + SETTINGS — native vectors" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: url(#New_Gradient_Swatch_1);
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 25px;
+      }
+
+      .cls-2 {
+        stroke: url(#New_Gradient_Swatch_1-2);
+      }
+    </style>
+    <linearGradient id="New_Gradient_Swatch_1" data-name="New Gradient Swatch 1" x1="66.19" y1="267.29" x2="450.09" y2="267.29" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e5d9bd"/>
+      <stop offset="1" stop-color="#a18c63"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_1-2" data-name="New Gradient Swatch 1" x1="183.64" y1="267.29" x2="332.64" y2="267.29" xlink:href="#New_Gradient_Swatch_1"/>
+  </defs>
+  <g id="Settings">
+    <polygon class="cls-1" points="400.14 267.29 437.59 290.92 432.97 314.14 425.36 336.56 414.89 357.79 370.8 353.73 358.55 367.7 368.33 410.89 348.64 424.04 327.41 434.51 304.99 442.12 276.67 408.08 258.14 409.29 234.51 446.74 211.29 442.12 188.87 434.51 167.64 424.04 171.7 379.95 157.73 367.7 114.54 377.48 101.39 357.79 90.92 336.56 83.31 314.14 117.35 285.82 116.14 267.29 78.69 243.66 83.31 220.44 90.92 198.02 101.39 176.79 145.48 180.85 157.73 166.88 147.95 123.69 167.64 110.54 188.87 100.07 211.29 92.46 239.61 126.5 258.14 125.29 281.77 87.84 304.99 92.46 327.41 100.07 348.64 110.54 344.58 154.63 358.55 166.88 401.74 157.1 414.89 176.79 425.36 198.02 432.97 220.44 398.93 248.76 400.14 267.29"/>
+    <circle class="cls-2" cx="258.14" cy="267.29" r="62"/>
+  </g>
+</svg>

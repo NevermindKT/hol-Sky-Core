@@ -1,17 +1,19 @@
 extends Node3D
 class_name GunMove
 
+@export_category("Exports")
+@export var gun_point: Marker3D
 @export var gun: BoneAttachment3D
 @export var bolt: BoneAttachment3D
+@export var muzzle_flash: Muzzle_flash
 
+@export_category("Variables")
 @export var pitch_speed: float = 2.0
 @export var min_pitch_deg: float = -22.0
 @export var max_pitch_deg: float = 18.0
 
-@export var gun_point: Marker3D
-@export var muzzle_flash: Muzzle_flash
-
 var bolt_offset: Transform3D
+
 
 func _ready() -> void:
 	gun.override_pose = true

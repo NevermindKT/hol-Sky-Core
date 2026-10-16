@@ -4,38 +4,18 @@
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="1_o5wyr"]
 [ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="2_epxna"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="2_k0gdn"]
-[ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="3_6m0sd"]
-[ext_resource type="Texture2D" uid="uid://cwppcbu8i18wg" path="res://textures/menu/arrows&icons/Arrow.png" id="3_cx5wq"]
+[ext_resource type="Texture2D" uid="uid://j6omidc10whs" path="res://textures/menu/map/BackDetails/pencil.png" id="3_6m0sd"]
+[ext_resource type="Texture2D" uid="uid://cswdpv7p2cm20" path="res://textures/menu/map/Arrow.png" id="3_cx5wq"]
 [ext_resource type="FontFile" uid="uid://t6tnq2nlemob" path="res://scenes/menu/fonts/Cormorant/Cormorant-MediumItalic.ttf" id="4_6gqua"]
-[ext_resource type="Texture2D" uid="uid://bs5l3mujykj7y" path="res://textures/menu/notebook/header.png" id="5_07q6t"]
-[ext_resource type="Texture2D" uid="uid://bralluxjsrsim" path="res://textures/menu/arrows&icons/MapMarker.png" id="5_11doy"]
-[ext_resource type="Texture2D" uid="uid://5p4jdm7xm45f" path="res://textures/menu/arrows&icons/PlayButton.png" id="6_o5kg8"]
-[ext_resource type="Texture2D" uid="uid://b1ndxqinywaj5" path="res://textures/menu/notebook/MoneyIcon.png" id="6_qk428"]
-[ext_resource type="Texture2D" uid="uid://djepas58bpu43" path="res://textures/menu/notebook/BookIcon.png" id="7_ih26l"]
-[ext_resource type="Texture2D" uid="uid://bgj1w1ydj3wel" path="res://textures/menu/arrows&icons/LockIcon.png" id="7_wpdqh"]
-[ext_resource type="Texture2D" uid="uid://btboebmjrwtc1" path="res://textures/menu/notebook/SettingsIcon.png" id="8_q6v0g"]
-[ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="15_bo7pk"]
+[ext_resource type="Texture2D" uid="uid://h2cobtjl2jgf" path="res://textures/menu/map/MapMarker.svg" id="5_11doy"]
+[ext_resource type="Texture2D" uid="uid://gygyl0ptapc3" path="res://textures/menu/map/PlayButton.svg" id="6_o5kg8"]
+[ext_resource type="Texture2D" uid="uid://dlqa1vpe7064m" path="res://textures/menu/map/LockIcon.svg" id="7_wpdqh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfrgi"]
 bg_color = Color(0.728125, 0.728125, 0.67611605, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wb6uh"]
 texture = ExtResource("3_6m0sd")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w6f3p"]
-texture = ExtResource("5_07q6t")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t5b82"]
-texture = ExtResource("6_qk428")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hf35w"]
-texture = ExtResource("7_ih26l")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m5k7c"]
-texture = ExtResource("8_q6v0g")
-modulate_color = Color(1, 1, 1, 0.7294118)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epxna"]
 bg_color = Color(0.4117647, 0.6117647, 0.30980393, 1)
@@ -282,7 +262,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Car" type="Control" unique_id=460311930]
+[node name="Car" type="Control" unique_id=460311930 node_paths=PackedStringArray("type_object_label", "btn_previous", "btn_next")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -290,6 +270,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d27xw")
+type_object_label = NodePath("Types/Control/Object")
+btn_previous = NodePath("Types/Control/Previous")
+btn_next = NodePath("Types/Control/Next")
 
 [node name="Background" type="Panel" parent="." unique_id=453470279]
 layout_mode = 1
@@ -311,6 +294,7 @@ grow_horizontal = 2
 script = ExtResource("2_epxna")
 
 [node name="Block" type="Panel" parent="Background/Header" unique_id=1268463154]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -337,65 +321,6 @@ theme_override_fonts/font = ExtResource("4_6gqua")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Header" type="Panel" parent="Background/Header" unique_id=840740289]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 91.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_w6f3p")
-
-[node name="HeaderButtons" type="HBoxContainer" parent="Background/Header/Header" unique_id=1471019276]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.57900006
-anchor_top = 0.582
-anchor_right = 0.57900006
-anchor_bottom = 0.582
-offset_left = 381.31995
-offset_top = -37.962
-offset_right = 670.31995
-offset_bottom = 24.037998
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="Money" type="HBoxContainer" parent="Background/Header/Header/HeaderButtons" unique_id=1572705565]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="MoneyEquals" type="Label" parent="Background/Header/Header/HeaderButtons/Money" unique_id=771518969]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_font_sizes/font_size = 30
-text = "1000"
-
-[node name="MoneyIcon" type="Panel" parent="Background/Header/Header/HeaderButtons/Money" unique_id=533939307]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_t5b82")
-
-[node name="BookIcon" type="Panel" parent="Background/Header/Header/HeaderButtons" unique_id=341677426]
-custom_minimum_size = Vector2(40, 30)
-custom_maximum_size = Vector2(-1, 40)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_hf35w")
-
-[node name="SettingsIcon" type="Panel" parent="Background/Header/Header/HeaderButtons" unique_id=128935313]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_m5k7c")
 
 [node name="Car" type="HBoxContainer" parent="." unique_id=1876317470]
 custom_minimum_size = Vector2(460, 100)
@@ -758,23 +683,29 @@ offset_bottom = -262.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Selling" type="HBoxContainer" parent="Types" unique_id=317799622]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 2.0
-offset_right = 410.0
-offset_bottom = 58.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 40
-alignment = 1
+[node name="Control" type="Control" parent="Types" unique_id=670023443]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Previous" type="Button" parent="Types/Selling" unique_id=1704037440]
+[node name="Previous" type="Button" parent="Types/Control" unique_id=1704037440]
 z_index = 5
 z_as_relative = false
 custom_minimum_size = Vector2(30, 30)
 custom_maximum_size = Vector2(30, 30)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 30.0
+offset_bottom = 15.0
+grow_vertical = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -796,19 +727,40 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4moqt")
 text = "<"
 icon_alignment = 1
 
-[node name="Object" type="Label" parent="Types/Selling" unique_id=751044934]
-layout_mode = 2
+[node name="Object" type="Label" parent="Types/Control" unique_id=751044934]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -24.5
+offset_right = 35.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_o5wyr")
 theme_override_font_sizes/font_size = 40
 text = "Tyre"
 
-[node name="Next" type="Button" parent="Types/Selling" unique_id=1512622754]
+[node name="Next" type="Button" parent="Types/Control" unique_id=1512622754]
 z_index = 5
 z_as_relative = false
 custom_minimum_size = Vector2(30, 30)
 custom_maximum_size = Vector2(30, 30)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -829,6 +781,3 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_cx5wq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4moqt")
 text = ">"
 icon_alignment = 1
-
-[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("15_bo7pk")]
-layout_mode = 1

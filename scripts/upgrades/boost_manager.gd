@@ -6,8 +6,15 @@ var owned: Dictionary = {}
 var active: Array[BoostData] = []
 var _time_left: Dictionary = {}
 
+
+func _ready() -> void:
+	if not InputController.test_boost.is_connected(activate_test_boost):
+		InputController.test_boost.connect(activate_test_boost)
+
+
 func add_owned(boost: BoostData, amount: int = 1) -> void:
 	owned[boost.id] = owned.get(boost.id, 0) + amount
+
 
 func can_activate(boost: BoostData) -> bool:
 	if owned.get(boost.id, 0) <= 0:
@@ -18,6 +25,7 @@ func can_activate(boost: BoostData) -> bool:
 			return false
 
 	return true
+
 
 func activate(boost: BoostData) -> void:
 	if !can_activate(boost):
@@ -38,10 +46,12 @@ func activate(boost: BoostData) -> void:
 	for effect in boost.effects:
 		effect.on_event(&"boost_activated", {"boost": boost})
 
+
 func activate_test_boost() -> void:
 	var boost := load(TEST_BOOST_PATH) as BoostData
 	add_owned(boost)
 	activate(boost)
+
 
 func _process(delta: float) -> void:
 	var real_delta := delta / Engine.time_scale if Engine.time_scale > 0.0 else delta

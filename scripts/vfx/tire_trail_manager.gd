@@ -55,6 +55,11 @@ func initialize(_world: World, _car_movement: Car_Movement, _road_manager: Road_
 	skid_point_l2 = car_movement.get_node_or_null("SkidPointContainer/SkidPointL2")
 	skid_point_r2 = car_movement.get_node_or_null("SkidPointContainer/SkidPointR2")
 
+	#skid_point_l = car_movement.get_node_or_null("Visual/WheelContainer/SkidPointContainer/SkidPointL")
+	#skid_point_r = car_movement.get_node_or_null("Visual/WheelContainer/SkidPointContainer/SkidPointR")
+	#skid_point_l2 = car_movement.get_node_or_null("Visual/WheelContainer/SkidPointContainer/SkidPointL2")
+	#skid_point_r2 = car_movement.get_node_or_null("Visual/WheelContainer/SkidPointContainer/SkidPointR2")
+
 	assert(stroke_scene != null, "TireTrailManager: не призначено Stroke Scene в Inspector.")
 	assert(skid_point_l != null, "TireTrailManager: не знайдено SkidPointL під Car.")
 	assert(skid_point_r != null, "TireTrailManager: не знайдено SkidPointR під Car.")

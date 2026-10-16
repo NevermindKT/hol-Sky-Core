@@ -1,25 +1,18 @@
 [gd_scene format=3 uid="uid://bix78nnee7b6"]
 
 [ext_resource type="Script" uid="uid://b6x5l3kriw6qo" path="res://scripts/menu/inventory/Inventory.gd" id="1_3t7i5"]
+[ext_resource type="Texture2D" uid="uid://cswdpv7p2cm20" path="res://textures/menu/map/Arrow.png" id="9_4arbu"]
 [ext_resource type="Texture2D" uid="uid://c7gfoa766n8ht" path="res://textures/menu/arrows&icons/BoostIcon.png" id="12_jqy3g"]
 [ext_resource type="Texture2D" uid="uid://cld3s5piwvyk7" path="res://textures/menu/arrows&icons/BulletIcon.png" id="14_y1tmo"]
-[ext_resource type="Texture2D" uid="uid://bgj1w1ydj3wel" path="res://textures/menu/arrows&icons/LockIcon.png" id="17_vxqsg"]
+[ext_resource type="Texture2D" uid="uid://dlqa1vpe7064m" path="res://textures/menu/map/LockIcon.svg" id="17_vxqsg"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="17_y1tmo"]
-[ext_resource type="Texture2D" uid="uid://bralluxjsrsim" path="res://textures/menu/arrows&icons/MapMarker.png" id="18_bl4n0"]
+[ext_resource type="Texture2D" uid="uid://h2cobtjl2jgf" path="res://textures/menu/map/MapMarker.svg" id="18_bl4n0"]
 [ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="18_rog58"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="19_ckekd"]
-[ext_resource type="Texture2D" uid="uid://5p4jdm7xm45f" path="res://textures/menu/arrows&icons/PlayButton.png" id="19_wgdau"]
-[ext_resource type="PackedScene" uid="uid://cckur0myp2qfs" path="res://scenes/menu/footer.tscn" id="20_rb0tf"]
+[ext_resource type="Texture2D" uid="uid://gygyl0ptapc3" path="res://textures/menu/map/PlayButton.svg" id="19_wgdau"]
 [ext_resource type="Texture2D" uid="uid://bfuln5k307h3o" path="res://textures/menu/arrows&icons/base.svg" id="20_rog58"]
 [ext_resource type="Script" uid="uid://bqiunaw81sh7s" path="res://scripts/menu/map/map_main.gd" id="21_2d1xj"]
-[ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="21_sb0qg"]
-[ext_resource type="Texture2D" uid="uid://mcgqkkb46bqe" path="res://textures/menu/notebook/pensil.png" id="22_b8hp3"]
-[ext_resource type="Texture2D" uid="uid://cwppcbu8i18wg" path="res://textures/menu/arrows&icons/Arrow.png" id="23_b8hp3"]
-[ext_resource type="FontFile" uid="uid://t6tnq2nlemob" path="res://scenes/menu/fonts/Cormorant/Cormorant-MediumItalic.ttf" id="23_ccums"]
-[ext_resource type="Texture2D" uid="uid://bs5l3mujykj7y" path="res://textures/menu/notebook/header.png" id="24_jcf5l"]
-[ext_resource type="Texture2D" uid="uid://b1ndxqinywaj5" path="res://textures/menu/notebook/MoneyIcon.png" id="25_gyy46"]
-[ext_resource type="Texture2D" uid="uid://djepas58bpu43" path="res://textures/menu/notebook/BookIcon.png" id="26_ji1w6"]
-[ext_resource type="Texture2D" uid="uid://btboebmjrwtc1" path="res://textures/menu/notebook/SettingsIcon.png" id="27_gw44v"]
+[ext_resource type="Texture2D" uid="uid://cswdpv7p2cm20" path="res://textures/menu/map/Arrow.png" id="23_b8hp3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ji1w6"]
 bg_color = Color(0.728125, 0.728125, 0.67611605, 1)
@@ -312,24 +305,6 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sobh1"]
-texture = ExtResource("22_b8hp3")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dxpqv"]
-texture = ExtResource("24_jcf5l")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_np485"]
-texture = ExtResource("25_gyy46")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s3qci"]
-texture = ExtResource("26_ji1w6")
-modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nwpui"]
-texture = ExtResource("27_gw44v")
-modulate_color = Color(1, 1, 1, 0.7294118)
 
 [node name="Inventory" type="Control" unique_id=333159010]
 layout_mode = 3
@@ -1504,7 +1479,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_y1tmo")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qm8p1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qm8p1")
 text = "Common"
-icon = ExtResource("23_b8hp3")
+icon = ExtResource("9_4arbu")
 icon_alignment = 1
 
 [node name="Emount" type="Label" parent="Car/Common" unique_id=893785141]
@@ -1745,102 +1720,3 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 text = "35"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Header" type="Control" parent="." unique_id=1133587642]
-layout_mode = 1
-anchor_right = 0.99700004
-anchor_bottom = 0.109000005
-offset_right = 5.7598877
-offset_bottom = -117.72001
-grow_horizontal = 2
-script = ExtResource("21_sb0qg")
-
-[node name="Block" type="Panel" parent="Header" unique_id=96664003]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -543.0
-offset_top = 28.0
-offset_right = -31.041138
-offset_bottom = 106.22593
-grow_horizontal = 0
-grow_vertical = 2
-rotation = 6.2831855
-theme_override_styles/panel = SubResource("StyleBoxTexture_sobh1")
-
-[node name="Name" type="Label" parent="Header/Block" unique_id=1162763953]
-layout_mode = 0
-offset_left = 95.35571
-offset_top = 12.999992
-offset_right = 410.3557
-offset_bottom = 61.999992
-theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_fonts/font = ExtResource("23_ccums")
-theme_override_font_sizes/font_size = 40
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Header" type="Panel" parent="Header" unique_id=759647500]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 91.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_dxpqv")
-
-[node name="HeaderButtons" type="HBoxContainer" parent="Header/Header" unique_id=1254916857]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.57900006
-anchor_top = 0.582
-anchor_right = 0.57900006
-anchor_bottom = 0.582
-offset_left = 381.31995
-offset_top = -37.962
-offset_right = 670.31995
-offset_bottom = 24.037998
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="Money" type="HBoxContainer" parent="Header/Header/HeaderButtons" unique_id=385579761]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="MoneyEquals" type="Label" parent="Header/Header/HeaderButtons/Money" unique_id=293704261]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_font_sizes/font_size = 30
-text = "1000"
-
-[node name="MoneyIcon" type="Panel" parent="Header/Header/HeaderButtons/Money" unique_id=502232739]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_np485")
-
-[node name="BookIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=2062153545]
-custom_minimum_size = Vector2(40, 30)
-custom_maximum_size = Vector2(-1, 40)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_s3qci")
-
-[node name="SettingsIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=1649887238]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_nwpui")
-
-[node name="Footer" parent="." unique_id=1968318440 instance=ExtResource("20_rb0tf")]
-layout_mode = 1

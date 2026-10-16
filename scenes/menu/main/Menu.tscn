@@ -2,16 +2,93 @@
 
 [ext_resource type="Texture2D" uid="uid://cis71tbb2pkc8" path="res://textures/menu/BG/MainMenuBackground.png" id="1_8010q"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="2_a4lia"]
-[ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="3_s0due"]
+[ext_resource type="Texture2D" uid="uid://beqd6smjpnbdk" path="res://textures/menu/main/01 Continue — plate + vector icon.png" id="3_klrtg"]
+[ext_resource type="Texture2D" uid="uid://deq0fn3xlj3uq" path="res://textures/menu/main/02 New Game — plate + vector icon.png" id="4_pd6cf"]
+[ext_resource type="Texture2D" uid="uid://do1b0c28vwtyi" path="res://textures/menu/main/03 Settings — plate + vector icon.png" id="5_nyq28"]
+[ext_resource type="Texture2D" uid="uid://jvmox2i0iqy3" path="res://textures/menu/main/04 Credits — plate + vector icon.png" id="6_ey7qv"]
+[ext_resource type="Texture2D" uid="uid://pw6bywk11h4c" path="res://textures/menu/main/05 Exit — plate + vector icon.png" id="7_3psi8"]
+[ext_resource type="Texture2D" uid="uid://cv0yb11oymm55" path="res://textures/menu/main/00 LOGO — vector outlines + editable type.png" id="8_58y2i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vnypt"]
 texture = ExtResource("1_8010q")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cx167"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqhb3"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("3_klrtg")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dolsu"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ril0"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("3_klrtg")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n4eug"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3gabt"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("3_klrtg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grfbt"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("4_pd6cf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j6k7d"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("4_pd6cf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cokw7"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("4_pd6cf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s835k"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("5_nyq28")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_px7dt"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("5_nyq28")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yy1dd"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("5_nyq28")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksf5k"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("6_ey7qv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jkamo"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("6_ey7qv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_601i3"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("6_ey7qv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_alg4n"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("7_3psi8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hudhx"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("7_3psi8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5eqxm"]
+content_margin_left = 90.0
+content_margin_right = 0.0
+texture = ExtResource("7_3psi8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gy3ke"]
+texture = ExtResource("8_58y2i")
 
 [node name="Menu" type="Control" unique_id=851692338]
 layout_mode = 3
@@ -38,14 +115,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 184.98526
-offset_top = -250.65979
-offset_right = 516.0409
-offset_bottom = 171.93768
+offset_top = -60.0
+offset_right = 658.0
+offset_bottom = 362.59747
 grow_vertical = 2
-rotation = -0.034906585
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="VBoxContainer" unique_id=916711973]
+[node name="ContinueBtn" type="Button" parent="VBoxContainer" unique_id=916711973]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -53,13 +129,14 @@ theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_a4lia")
 theme_override_font_sizes/font_size = 45
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+theme_override_styles/normal = SubResource("StyleBoxTexture_sqhb3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3ril0")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3gabt")
 text = "Continue"
-alignment = 2
+alignment = 0
+icon_alignment = 1
 
-[node name="Button2" type="Button" parent="VBoxContainer" unique_id=352790787]
+[node name="NewGameBtn" type="Button" parent="VBoxContainer" unique_id=352790787]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -67,13 +144,14 @@ theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_a4lia")
 theme_override_font_sizes/font_size = 45
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+theme_override_styles/normal = SubResource("StyleBoxTexture_grfbt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_j6k7d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cokw7")
 text = "New Game"
-alignment = 2
+alignment = 0
+icon_alignment = 1
 
-[node name="Button3" type="Button" parent="VBoxContainer" unique_id=16693818]
+[node name="SettingsBtn" type="Button" parent="VBoxContainer" unique_id=16693818]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -81,13 +159,14 @@ theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_a4lia")
 theme_override_font_sizes/font_size = 45
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+theme_override_styles/normal = SubResource("StyleBoxTexture_s835k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_px7dt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_yy1dd")
 text = "Settings"
-alignment = 2
+alignment = 0
+icon_alignment = 1
 
-[node name="Button4" type="Button" parent="VBoxContainer" unique_id=1903210021]
+[node name="TitlesBtn" type="Button" parent="VBoxContainer" unique_id=1903210021]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -95,13 +174,14 @@ theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_a4lia")
 theme_override_font_sizes/font_size = 45
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ksf5k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jkamo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_601i3")
 text = "Titles"
-alignment = 2
+alignment = 0
+icon_alignment = 1
 
-[node name="Button5" type="Button" parent="VBoxContainer" unique_id=1631202606]
+[node name="ExitBtn" type="Button" parent="VBoxContainer" unique_id=1631202606]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -109,46 +189,17 @@ theme_override_colors/font_outline_color = Color(0.19607843, 0.20784314, 0.18431
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("2_a4lia")
 theme_override_font_sizes/font_size = 45
-theme_override_styles/normal = SubResource("StyleBoxEmpty_cx167")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_dolsu")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_n4eug")
+theme_override_styles/normal = SubResource("StyleBoxTexture_alg4n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hudhx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5eqxm")
 text = "Exit"
-alignment = 2
+alignment = 0
+icon_alignment = 1
 
-[node name="Label" type="Label" parent="." unique_id=73637372]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 63.0
-offset_top = -418.0
-offset_right = 688.0
-offset_bottom = -282.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_s0due")
-theme_override_font_sizes/font_size = 120
-text = "Hollow Sky"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="Label" unique_id=1875495913]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -327.0
-offset_top = 31.0
-offset_right = 327.0
-offset_bottom = 140.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_s0due")
-theme_override_font_sizes/font_size = 70
-text = "— The Afterroute —"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Panel2" type="Panel" parent="." unique_id=1929589682]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 152.0
+offset_right = 839.0
+offset_bottom = 455.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_gy3ke")

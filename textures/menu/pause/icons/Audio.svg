@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="PAUSE_SETTINGS_native_vectors" data-name="PAUSE + SETTINGS — native vectors" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: url(#New_Gradient_Swatch_1);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 25px;
+      }
+    </style>
+    <linearGradient id="New_Gradient_Swatch_1" data-name="New Gradient Swatch 1" x1="84.64" y1="267.29" x2="422.14" y2="267.29" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e5d9bd"/>
+      <stop offset="1" stop-color="#a18c63"/>
+    </linearGradient>
+  </defs>
+  <g id="Audio">
+    <path class="cls-1" d="M97.14,222.29h71l90-79v248l-90-79h-71v-90ZM313.14,199.29c42,45.33,42,90.67,0,136M358.14,154.29c68.67,75.33,68.67,150.67,0,226"/>
+  </g>
+</svg>

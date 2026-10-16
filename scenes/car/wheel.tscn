@@ -4,5 +4,6 @@
 
 [node name="Wheel" unique_id=1305455613 instance=ExtResource("1_ypdop")]
 
-[node name="Cylinder_001" parent="." index="0" unique_id=1110242306]
+[node name="Cylinder_001" parent="." index="0" unique_id=1013110970]
 transform = Transform3D(0, 0.19481257, 0, -0.57513577, 0, 0, 0, 0, 0.57513577, 0, 0, 0)
+layers = 2

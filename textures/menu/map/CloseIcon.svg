@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="CloseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        opacity: .5;
+      }
+
+      .cls-2 {
+        fill: #292b29;
+        stroke: #292b29;
+        stroke-width: 10px;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-linejoin: round;
+      }
+
+      .cls-4 {
+        fill: #514f43;
+      }
+
+      .cls-3 {
+        fill: #a85842;
+        stroke: #514f43;
+        stroke-width: 8px;
+      }
+    </style>
+  </defs>
+  <g id="CloseIcon_editable_vector" data-name="CloseIcon editable vector">
+    <polygon class="cls-2" points="100 89 256 245 412 89 450 127 294 283 450 439 412 477 256 321 100 477 62 439 218 283 62 127 100 89"/>
+    <polygon class="cls-3" points="100 77 256 233 412 77 450 115 294 271 450 427 412 465 256 309 100 465 62 427 218 271 62 115 100 77"/>
+    <polygon class="cls-1" points="450 115 442.34 122.67 412 92.33 256 248.33 100 92.33 69.67 122.67 62 115 100 77 256 233 412 77 450 115"/>
+    <polygon class="cls-4" points="75.78 125.83 90.78 122.83 84.78 128.83 73.78 130.83 75.78 125.83"/>
+    <polygon class="cls-4" points="350.92 398.83 387.39 395.67 372.8 402 346.06 404.11 350.92 398.83"/>
+    <polygon class="cls-4" points="171.07 388.95 145.97 384.92 156.01 392.98 174.42 395.67 171.07 388.95"/>
+  </g>
+</svg>

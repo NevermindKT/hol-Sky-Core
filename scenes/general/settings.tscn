@@ -1,52 +1,133 @@
 [gd_scene format=3 uid="uid://0vt18iverqp2"]
 
 [ext_resource type="Script" uid="uid://dylp2aly6r51q" path="res://scripts/ui/settings_menu.gd" id="1_kqaaj"]
+[ext_resource type="Texture2D" uid="uid://3dsx0b0jp5ok" path="res://textures/menu/pause/Movement divider.png" id="2_dcjrv"]
 [ext_resource type="Script" uid="uid://csywd3ipt3pi" path="res://scripts/ui/audio_panel.gd" id="2_h2lw8"]
+[ext_resource type="Texture2D" uid="uid://clu3b6be0h77e" path="res://textures/menu/pause/NORMAL — steel.png" id="2_tdice"]
+[ext_resource type="Texture2D" uid="uid://b0bn626o5d32u" path="res://textures/menu/pause/SELECTED — amber.png" id="3_aaxas"]
 [ext_resource type="Script" uid="uid://b3cu5pgjwrvd0" path="res://scripts/ui/video_panel.gd" id="3_jf66x"]
+[ext_resource type="Texture2D" uid="uid://m6ltlhh17dj1" path="res://textures/menu/pause/icons/Video.svg" id="4_aaxas"]
+[ext_resource type="Texture2D" uid="uid://dbstu2neypi04" path="res://textures/menu/pause/icons/Audio.svg" id="5_aaxas"]
+[ext_resource type="Texture2D" uid="uid://dx2tsdu32gt4s" path="res://textures/menu/pause/icons/Back.svg" id="6_j456c"]
+[ext_resource type="Texture2D" uid="uid://l6bhsmqerr4o" path="res://textures/menu/pause/switch active.png" id="8_j1ljh"]
+[ext_resource type="Texture2D" uid="uid://b37rof6ltxrps" path="res://textures/menu/pause/Switch non active.png" id="9_j456c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1ljh"]
+texture = ExtResource("2_tdice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pvlrc"]
+texture = ExtResource("2_tdice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j456c"]
+texture = ExtResource("3_aaxas")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0sjge"]
+texture = ExtResource("2_tdice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dcjrv"]
+texture = ExtResource("2_tdice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_erfjq"]
+texture = ExtResource("2_tdice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rjln0"]
+texture = ExtResource("3_aaxas")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bv42"]
 bg_color = Color(0, 0, 0, 0.3137255)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aaxas"]
+texture = ExtResource("2_tdice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7shmn"]
+texture = ExtResource("2_tdice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1aqt5"]
+texture = ExtResource("3_aaxas")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t6olg"]
+texture = ExtResource("2_tdice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m0a24"]
+texture = ExtResource("2_tdice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b1pw0"]
+texture = ExtResource("3_aaxas")
 
 [node name="SettingsMenu" type="CanvasLayer" unique_id=2128686807 node_paths=PackedStringArray("categories_con", "setting_content_con", "audio_category_btn", "video_category_btn", "back_btn", "audio_panel", "video_panel")]
 script = ExtResource("1_kqaaj")
 categories_con = NodePath("CategoriesCon")
 setting_content_con = NodePath("SettingContent")
-audio_category_btn = NodePath("CategoriesCon/AudioCategoryBtn")
-video_category_btn = NodePath("CategoriesCon/VideoCategoryBtn")
-back_btn = NodePath("BackBtn")
+audio_category_btn = NodePath("CategoriesCon/AudioBtn")
+video_category_btn = NodePath("CategoriesCon/VideoBtn")
+back_btn = NodePath("CategoriesCon/SaveBtn")
 audio_panel = NodePath("SettingContent/AudioPanel")
 video_panel = NodePath("SettingContent/VideoPanel")
-
-[node name="SettingsLabel" type="RichTextLabel" parent="." unique_id=857253782]
-offset_left = 150.0
-offset_top = 50.0
-offset_right = 350.0
-offset_bottom = 110.0
-theme_override_font_sizes/normal_font_size = 40
-text = "SETTINGS"
-horizontal_alignment = 1
 
 [node name="CategoriesCon" type="VBoxContainer" parent="." unique_id=724702335]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 61.0
-offset_top = -175.5
-offset_right = 435.0
-offset_bottom = 175.5
+offset_left = 140.0
+offset_top = -385.0
+offset_right = 620.0
+offset_bottom = -114.0
 grow_vertical = 2
+theme_override_constants/separation = 11
 
-[node name="VideoCategoryBtn" type="Button" parent="CategoriesCon" unique_id=1805772840]
+[node name="SettingsLabel" type="RichTextLabel" parent="CategoriesCon" unique_id=857253782]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-toggle_mode = true
-text = "Video"
+theme_override_font_sizes/normal_font_size = 40
+text = "SETTINGS"
 
-[node name="AudioCategoryBtn" type="Button" parent="CategoriesCon" unique_id=1507682183]
+[node name="Divider" type="TextureRect" parent="CategoriesCon" unique_id=1243519310]
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
+texture = ExtResource("2_dcjrv")
+expand_mode = 1
+
+[node name="VideoBtn" type="Button" parent="CategoriesCon" unique_id=1538704144 groups=["ui_buttons"]]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme_override_constants/h_separation = 60
+theme_override_constants/icon_max_width = 45
 theme_override_font_sizes/font_size = 30
-toggle_mode = true
-text = "Audio"
+theme_override_styles/normal = SubResource("StyleBoxTexture_j1ljh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pvlrc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_j456c")
+text = "VIDEO"
+icon = ExtResource("4_aaxas")
+alignment = 0
+expand_icon = true
+
+[node name="AudioBtn" type="Button" parent="CategoriesCon" unique_id=375462157 groups=["ui_buttons"]]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme_override_constants/h_separation = 55
+theme_override_constants/icon_max_width = 50
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_j1ljh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0sjge")
+theme_override_styles/hover = SubResource("StyleBoxTexture_j456c")
+text = "AUDIO"
+icon = ExtResource("5_aaxas")
+alignment = 0
+expand_icon = true
+
+[node name="SaveBtn" type="Button" parent="CategoriesCon" unique_id=1918644405]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme_override_constants/h_separation = 65
+theme_override_constants/icon_max_width = 40
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_dcjrv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_erfjq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rjln0")
+text = "SAVE"
+icon = ExtResource("6_j456c")
+alignment = 0
+expand_icon = true
 
 [node name="SettingContent" type="Control" parent="." unique_id=1885724999]
 layout_mode = 3
@@ -57,8 +138,8 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -1088.0
 offset_top = -324.0
-offset_right = -133.0
-offset_bottom = 324.0
+offset_right = -230.0
+offset_bottom = 249.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -81,29 +162,29 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("2_h2lw8")
-master_slider = NodePath("VBoxContainer/MasterCon/Master")
-music_slider = NodePath("VBoxContainer/MusicCon/Music")
-sfx_slider = NodePath("VBoxContainer/SFXCon/SFX")
+master_slider = NodePath("Content/MasterCon/Master")
+music_slider = NodePath("Content/MusicCon/Music")
+sfx_slider = NodePath("Content/SFXCon/SFX")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingContent/AudioPanel" unique_id=283833658]
+[node name="Content" type="VBoxContainer" parent="SettingContent/AudioPanel" unique_id=283833658]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 21.0
-offset_top = 112.0
-offset_right = -369.0
-offset_bottom = 191.0
+offset_left = 20.0
+offset_top = 25.0
+offset_right = -370.0
+offset_bottom = 138.0
 grow_horizontal = 2
 
-[node name="MasterCon" type="HBoxContainer" parent="SettingContent/AudioPanel/VBoxContainer" unique_id=1702537072]
+[node name="MasterCon" type="HBoxContainer" parent="SettingContent/AudioPanel/Content" unique_id=1702537072]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingContent/AudioPanel/VBoxContainer/MasterCon" unique_id=2012137954]
+[node name="Label" type="Label" parent="SettingContent/AudioPanel/Content/MasterCon" unique_id=2012137954]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Master      "
 
-[node name="Master" type="HSlider" parent="SettingContent/AudioPanel/VBoxContainer/MasterCon" unique_id=461083725]
+[node name="Master" type="HSlider" parent="SettingContent/AudioPanel/Content/MasterCon" unique_id=461083725]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -111,15 +192,15 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="MusicCon" type="HBoxContainer" parent="SettingContent/AudioPanel/VBoxContainer" unique_id=1347597517]
+[node name="MusicCon" type="HBoxContainer" parent="SettingContent/AudioPanel/Content" unique_id=1347597517]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingContent/AudioPanel/VBoxContainer/MusicCon" unique_id=1910642925]
+[node name="Label" type="Label" parent="SettingContent/AudioPanel/Content/MusicCon" unique_id=1910642925]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Music        "
 
-[node name="Music" type="HSlider" parent="SettingContent/AudioPanel/VBoxContainer/MusicCon" unique_id=975971541]
+[node name="Music" type="HSlider" parent="SettingContent/AudioPanel/Content/MusicCon" unique_id=975971541]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -127,15 +208,15 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="SFXCon" type="HBoxContainer" parent="SettingContent/AudioPanel/VBoxContainer" unique_id=2126394614]
+[node name="SFXCon" type="HBoxContainer" parent="SettingContent/AudioPanel/Content" unique_id=2126394614]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingContent/AudioPanel/VBoxContainer/SFXCon" unique_id=577084647]
+[node name="Label" type="Label" parent="SettingContent/AudioPanel/Content/SFXCon" unique_id=577084647]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "SFX            "
 
-[node name="SFX" type="HSlider" parent="SettingContent/AudioPanel/VBoxContainer/SFXCon" unique_id=347775374]
+[node name="SFX" type="HSlider" parent="SettingContent/AudioPanel/Content/SFXCon" unique_id=347775374]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -152,210 +233,148 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("3_jf66x")
-resolution_option = NodePath("Control/ResulutionCon/ResulutionOption")
-fps_limit_option = NodePath("Control/FPSCon/FPSCapOption")
-fullscreen_checkbox = NodePath("BtnCon/FullScreenBtn")
-vsync_checkbox = NodePath("BtnCon/VSyncBtn")
-overlay_checkbox = NodePath("BtnCon/OverlayBtn")
-fog_btn = NodePath("BtnCon/FogBtn")
-fov_slider = NodePath("FovCon/FovSlider")
-current_fov_label = NodePath("FovCon/CurrentFovLabel")
+resolution_option = NodePath("Content/ResulutionOption")
+fps_limit_option = NodePath("Content/FPSCapOption")
+fullscreen_checkbox = NodePath("Content/ButtonsCon/FullScreenBtn")
+vsync_checkbox = NodePath("Content/ButtonsCon/VSyncBtn")
+overlay_checkbox = NodePath("Content/ButtonsCon/OverlayBtn")
+fog_btn = NodePath("Content/ButtonsCon/FogBtn")
+fov_slider = NodePath("Content/HBoxContainer/Sliders/FovCon/FovSlider")
+current_fov_label = NodePath("Content/HBoxContainer/Label2/CurrentFovLabel")
 ui_slider = NodePath("UIScaleCon/UISlider")
 current_ui_scale_label = NodePath("UIScaleCon/CurrentUIScaleLabel")
-gamma_slider = NodePath("GammaCon/GammaSlider")
-current_gamma_label = NodePath("GammaCon/CurrentGammaLabel")
+gamma_slider = NodePath("Content/HBoxContainer/Sliders/GammaCon/GammaSlider")
+current_gamma_label = NodePath("Content/HBoxContainer/Label2/CurrentGammaLabel")
 
-[node name="Control" type="Control" parent="SettingContent/VideoPanel" unique_id=2068066746]
-anchors_preset = 0
-offset_left = 23.0
-offset_top = 55.0
-offset_right = 409.0
-offset_bottom = 142.0
-
-[node name="ResulutionCon" type="Control" parent="SettingContent/VideoPanel/Control" unique_id=1187007375]
-custom_minimum_size = Vector2(0, 30)
+[node name="Content" type="VBoxContainer" parent="SettingContent/VideoPanel" unique_id=430263717]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
+offset_left = 20.0
+offset_top = 25.0
+offset_right = 649.0
+offset_bottom = 443.0
+theme_override_constants/separation = 18
 
-[node name="ResulutionOption" type="OptionButton" parent="SettingContent/VideoPanel/Control/ResulutionCon" unique_id=1762545565]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -10.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ResulutionOption" type="OptionButton" parent="SettingContent/VideoPanel/Content" unique_id=1762545565]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_aaxas")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7shmn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1aqt5")
+alignment = 1
 
-[node name="FPSCon" type="Control" parent="SettingContent/VideoPanel/Control" unique_id=1739209997]
-custom_minimum_size = Vector2(100, 30)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-grow_vertical = 0
-
-[node name="FPSCapOption" type="OptionButton" parent="SettingContent/VideoPanel/Control/FPSCon" unique_id=1844355478]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -10.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="FPSCapOption" type="OptionButton" parent="SettingContent/VideoPanel/Content" unique_id=1844355478]
+custom_minimum_size = Vector2(150, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/h_separation = 40
 theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_t6olg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m0a24")
+theme_override_styles/hover = SubResource("StyleBoxTexture_b1pw0")
+alignment = 1
 
-[node name="BtnCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1558944769]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 17.0
-offset_top = 155.0
-offset_right = 159.0
-offset_bottom = 231.0
+[node name="ButtonsCon" type="VBoxContainer" parent="SettingContent/VideoPanel/Content" unique_id=929648112]
+custom_maximum_size = Vector2(250, -1)
+layout_mode = 2
 
-[node name="FullScreenBtn" type="CheckButton" parent="SettingContent/VideoPanel/BtnCon" unique_id=1007677759]
-layout_mode = 1
-offset_right = 133.0
-offset_bottom = 31.0
+[node name="FullScreenBtn" type="CheckButton" parent="SettingContent/VideoPanel/Content/ButtonsCon" unique_id=1007677759]
+layout_mode = 2
+theme_override_constants/icon_max_width = 60
 theme_override_font_sizes/font_size = 20
+theme_override_icons/checked = ExtResource("8_j1ljh")
+theme_override_icons/unchecked = ExtResource("9_j456c")
 text = "Full Screen"
 
-[node name="VSyncBtn" type="CheckButton" parent="SettingContent/VideoPanel/BtnCon" unique_id=1776582681]
-layout_mode = 1
-offset_top = 37.0
-offset_right = 133.0
-offset_bottom = 68.0
+[node name="VSyncBtn" type="CheckButton" parent="SettingContent/VideoPanel/Content/ButtonsCon" unique_id=1776582681]
+layout_mode = 2
+theme_override_constants/icon_max_width = 60
 theme_override_font_sizes/font_size = 20
+theme_override_icons/checked = ExtResource("8_j1ljh")
+theme_override_icons/unchecked = ExtResource("9_j456c")
 text = "VSync         "
 
-[node name="OverlayBtn" type="CheckButton" parent="SettingContent/VideoPanel/BtnCon" unique_id=520762457]
-layout_mode = 1
-offset_top = 79.0
-offset_right = 152.0
-offset_bottom = 115.0
+[node name="OverlayBtn" type="CheckButton" parent="SettingContent/VideoPanel/Content/ButtonsCon" unique_id=520762457]
+layout_mode = 2
+theme_override_constants/icon_max_width = 60
 theme_override_font_sizes/font_size = 20
+theme_override_icons/checked = ExtResource("8_j1ljh")
+theme_override_icons/unchecked = ExtResource("9_j456c")
 text = "Overlay "
 
-[node name="FogBtn" type="CheckButton" parent="SettingContent/VideoPanel/BtnCon" unique_id=1277950753]
-layout_mode = 1
-offset_top = 119.0
-offset_right = 152.0
-offset_bottom = 155.0
+[node name="FogBtn" type="CheckButton" parent="SettingContent/VideoPanel/Content/ButtonsCon" unique_id=1277950753]
+layout_mode = 2
+theme_override_constants/icon_max_width = 60
 theme_override_font_sizes/font_size = 20
+theme_override_icons/checked = ExtResource("8_j1ljh")
+theme_override_icons/unchecked = ExtResource("9_j456c")
 text = "Fog
 "
 
-[node name="FovCon" type="Control" parent="SettingContent/VideoPanel" unique_id=408412530]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 22.0
-offset_top = 327.0
-offset_right = 522.0
-offset_bottom = 367.0
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingContent/VideoPanel/Content" unique_id=1377000766]
+layout_mode = 2
+theme_override_constants/separation = 30
 
-[node name="FovLabel" type="Label" parent="SettingContent/VideoPanel/FovCon" unique_id=541250370]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -11.5
-offset_right = 40.0
-offset_bottom = 11.5
-grow_vertical = 2
+[node name="Label" type="VBoxContainer" parent="SettingContent/VideoPanel/Content/HBoxContainer" unique_id=1695717063]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 15
+
+[node name="FovLabel" type="Label" parent="SettingContent/VideoPanel/Content/HBoxContainer/Label" unique_id=541250370]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "FOV"
-horizontal_alignment = 1
 
-[node name="FovSlider" type="HSlider" parent="SettingContent/VideoPanel/FovCon" unique_id=1944680882]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 99.0
-offset_top = -8.0
-offset_right = -51.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="GammaLabel" type="Label" parent="SettingContent/VideoPanel/Content/HBoxContainer/Label" unique_id=153490931]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Gamma"
+
+[node name="Sliders" type="VBoxContainer" parent="SettingContent/VideoPanel/Content/HBoxContainer" unique_id=979760873]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FovCon" type="HBoxContainer" parent="SettingContent/VideoPanel/Content/HBoxContainer/Sliders" unique_id=1944323749]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="FovSlider" type="HSlider" parent="SettingContent/VideoPanel/Content/HBoxContainer/Sliders/FovCon" unique_id=1944680882]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 min_value = 60.0
 value = 80.0
 
-[node name="CurrentFovLabel" type="Label" parent="SettingContent/VideoPanel/FovCon" unique_id=1919874124]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -11.5
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+[node name="GammaCon" type="HBoxContainer" parent="SettingContent/VideoPanel/Content/HBoxContainer/Sliders" unique_id=123125880]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="GammaSlider" type="HSlider" parent="SettingContent/VideoPanel/Content/HBoxContainer/Sliders/GammaCon" unique_id=1477781342]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.05
+max_value = 0.16
+step = 0.001
+value = 0.12000000000000001
+
+[node name="Label2" type="VBoxContainer" parent="SettingContent/VideoPanel/Content/HBoxContainer" unique_id=1617625000]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CurrentFovLabel" type="Label" parent="SettingContent/VideoPanel/Content/HBoxContainer/Label2" unique_id=1919874124]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "FOV"
-horizontal_alignment = 1
 
-[node name="GammaCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1992166789]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 22.0
-offset_top = 377.0
-offset_right = 522.0
-offset_bottom = 417.0
-
-[node name="GammaLabel" type="Label" parent="SettingContent/VideoPanel/GammaCon" unique_id=1900970302]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -14.0
-offset_right = 61.0
-offset_bottom = 14.0
-grow_vertical = 2
+[node name="CurrentGammaLabel" type="Label" parent="SettingContent/VideoPanel/Content/HBoxContainer/Label2" unique_id=2088047447]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Gamma"
-horizontal_alignment = 1
-
-[node name="GammaSlider" type="HSlider" parent="SettingContent/VideoPanel/GammaCon" unique_id=1014023293]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 99.0
-offset_top = -8.0
-offset_right = -51.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-min_value = 0.1
-max_value = 0.155
-step = 0.001
-value = 0.155
-
-[node name="CurrentGammaLabel" type="Label" parent="SettingContent/VideoPanel/GammaCon" unique_id=462226559]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -11.5
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "gamma"
-horizontal_alignment = 1
 
 [node name="UIScaleCon" type="Control" parent="SettingContent/VideoPanel" unique_id=1641827342]
 visible = false
@@ -409,15 +428,3 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "UI"
 horizontal_alignment = 1
-
-[node name="BackBtn" type="Button" parent="." unique_id=1918644405]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 61.0
-offset_top = -123.0
-offset_right = 269.0
-offset_bottom = -67.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 30
-text = "Save"

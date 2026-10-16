@@ -14,6 +14,7 @@ config/name="HolSkyCoreGamePlay"
 run/main_scene="uid://dxa8wggvns7te"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://dxa8wggvns7te"
 
 [audio]
 
@@ -34,7 +35,7 @@ BoostManager="*uid://dmerpx1y7qvs0"
 ScreenEffects="*uid://dxdcrfeffhhhk"
 GrenadeSpawner="*uid://dsvmq0gu3juhd"
 DebugStats="uid://b0uj75mlijwsw"
-GameManager="*uid://bl4sxn3d4qutu"
+BaseInventoryManager="*uid://cm51amwgn7tby"
 
 [display]
 

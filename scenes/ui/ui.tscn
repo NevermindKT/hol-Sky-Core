@@ -15,6 +15,7 @@ script = ExtResource("1_gdt2y")
 visible = false
 
 [node name="Debug_Overlay" parent="." unique_id=57384500 instance=ExtResource("3_wm3ai")]
+layer = 2
 
 [node name="Death_screen" parent="." unique_id=2138021163 instance=ExtResource("5_0dwhk")]
 visible = false

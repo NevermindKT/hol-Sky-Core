@@ -1,14 +1,12 @@
 extends Control
 
-@onready var boost_obj_container: HBoxContainer = $BoostItems/BoostObj
-@onready var bullet_obj_container: HBoxContainer = $BulletItems/BulletObj
-@onready var car_obj_container: HBoxContainer = $CarItems/CarObj
+@onready var boost_obj_container: HBoxContainer = $Items/BoostObj
+@onready var bullet_obj_container: HBoxContainer = $Items/BulletObj
+@onready var car_obj_container: HBoxContainer = $Items/CarObj
 @onready var bubble_sweet_container: Control = $Bubble/SweetObj
 
 @export var money_label: Label
 @export var timer_label: Label
-
-var db: SQLite = null
 
 @onready var boost_templates = {
 	"Common": $Boost/Common,
@@ -41,28 +39,22 @@ var db: SQLite = null
 ]
 
 func _ready() -> void:
-	_init_database()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+	if not BaseInventoryManager.shop_refreshed.is_connected(_on_game_manager_shop_refreshed):
+		BaseInventoryManager.shop_refreshed.connect(_on_game_manager_shop_refreshed)
 
-	if not GameManager.shop_refreshed.is_connected(_on_game_manager_shop_refreshed):
-		GameManager.shop_refreshed.connect(_on_game_manager_shop_refreshed)
-
-	if not GameManager.money_changed.is_connected(_on_money_changed):
-		GameManager.money_changed.connect(_on_money_changed)
+	if not BaseInventoryManager.money_changed.is_connected(_on_money_changed):
+		BaseInventoryManager.money_changed.connect(_on_money_changed)
 
 	render_shop()
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _init_database() -> void:
-	db = SQLite.new()
-	db.path = "res://objects.db"
-	db.open_db()
 
 func _process(_delta: float) -> void:
 	if timer_label:
-		var time_left = max(0.0, GameManager.shop_time_left)
+		var time_left = max(0.0, BaseInventoryManager.shop_time_left)
 		var minutes = int(time_left / 60)
 		var seconds = int(time_left) % 60
 		timer_label.text = "%02d:%02d" % [minutes, seconds]
@@ -75,11 +67,11 @@ func _on_money_changed(new_amount: int) -> void:
 		money_label.text = str(new_amount)
 
 func render_shop() -> void:
-	if GameManager.current_shop_data.is_empty():
-		GameManager.current_shop_data["boost"] = GameManager.generate_category_data_from_templates(boost_templates, 7)
-		GameManager.current_shop_data["bullet"] = GameManager.generate_category_data_from_templates(bullet_templates, 7)
-		GameManager.current_shop_data["car"] = GameManager.generate_category_data_from_templates(car_templates, 7)
-		GameManager.current_shop_data["sweet"] = GameManager.generate_sweet_data_from_templates([boost_templates, bullet_templates, car_templates])
+	if BaseInventoryManager.current_shop_data.is_empty():
+		BaseInventoryManager.current_shop_data["boost"] = BaseInventoryManager.generate_category_data_from_templates(boost_templates, 7)
+		BaseInventoryManager.current_shop_data["bullet"] = BaseInventoryManager.generate_category_data_from_templates(bullet_templates, 7)
+		BaseInventoryManager.current_shop_data["car"] = BaseInventoryManager.generate_category_data_from_templates(car_templates, 7)
+		BaseInventoryManager.current_shop_data["sweet"] = BaseInventoryManager.generate_sweet_data_from_templates([boost_templates, bullet_templates, car_templates])
 
 	_clear_container(boost_obj_container)
 	_clear_container(bullet_obj_container)
@@ -87,16 +79,16 @@ func render_shop() -> void:
 	_clear_container(bubble_sweet_container)
 
 	if money_label:
-		money_label.text = str(GameManager.get_player_money())
+		money_label.text = str(BaseInventoryManager.get_player_money())
 
-	if GameManager.current_shop_data.has("boost"):
-		_render_category_items(GameManager.current_shop_data["boost"], boost_templates, boost_obj_container)
-	if GameManager.current_shop_data.has("bullet"):
-		_render_category_items(GameManager.current_shop_data["bullet"], bullet_templates, bullet_obj_container)
-	if GameManager.current_shop_data.has("car"):
-		_render_category_items(GameManager.current_shop_data["car"], car_templates, car_obj_container)
-	if GameManager.current_shop_data.has("sweet"):
-		_render_sweet_item(GameManager.current_shop_data["sweet"])
+	if BaseInventoryManager.current_shop_data.has("boost"):
+		_render_category_items(BaseInventoryManager.current_shop_data["boost"], boost_templates, boost_obj_container)
+	if BaseInventoryManager.current_shop_data.has("bullet"):
+		_render_category_items(BaseInventoryManager.current_shop_data["bullet"], bullet_templates, bullet_obj_container)
+	if BaseInventoryManager.current_shop_data.has("car"):
+		_render_category_items(BaseInventoryManager.current_shop_data["car"], car_templates, car_obj_container)
+	if BaseInventoryManager.current_shop_data.has("sweet"):
+		_render_sweet_item(BaseInventoryManager.current_shop_data["sweet"])
 		
 	_update_clerks()
 
@@ -109,7 +101,7 @@ func _update_clerks() -> void:
 	if clerks.is_empty():
 		return
 	
-	var current_clerk_index = GameManager.active_clerk_index
+	var current_clerk_index = BaseInventoryManager.active_clerk_index
 	
 	for i in range(clerks.size()):
 		var clerk = clerks[i]
@@ -159,7 +151,7 @@ func _create_card_from_data(data: Dictionary, templates: Dictionary, target_cont
 	if icon_node is TextureRect and data["icon"] != "":
 		icon_node.texture = load(data["icon"])
 
-	if GameManager.is_purchased(data["unique_key"]):
+	if BaseInventoryManager.is_purchased(data["unique_key"]):
 		_apply_sold_out_state(shop_item, name_node, desc_node)
 	else:
 		if desc_node:
@@ -184,16 +176,39 @@ func _create_card_from_data(data: Dictionary, templates: Dictionary, target_cont
 	target_container.add_child(shop_item)
 
 func _buy_item(data: Dictionary, shop_item: Control, name_node: Node, desc_node: Node) -> void:
-	if GameManager.spend_money(data["price"]):
-		GameManager.mark_as_purchased(data["unique_key"])
-		db.query("UPDATE Objects SET Quantity = Quantity + 1 WHERE ID = '%s';" % [data["id"]])
-		
-		if money_label:
-			money_label.text = str(GameManager.get_player_money())
+	var item_id := str(data.get("id", ""))
+	var unique_key: String = str(data.get("unique_key", ""))
+	var price := int(data.get("price", 0))
 
-		_apply_sold_out_state(shop_item, name_node, desc_node)
-	else:
+	# Находим предмет в JSON
+	var inventory_item = BaseInventoryManager.find_object_by_id(item_id)
+
+	if inventory_item.is_empty():
+		push_warning("Предмет с ID %s не найден в objects.json" % item_id)
+		return
+
+	# Проверяем, что предмет ещё не куплен
+	if BaseInventoryManager.is_purchased(unique_key):
+		return
+
+	# Списываем деньги
+	if not BaseInventoryManager.spend_money(price):
 		print("Недостаточно средств!")
+		return
+
+	# Увеличиваем количество предмета в инвентаре
+	inventory_item["Quantity"] = int(inventory_item.get("Quantity", 0)) + 1
+
+	# Сохраняем изменения в JSON
+	BaseInventoryManager.save_data()
+
+	# Помечаем товар как купленный
+	BaseInventoryManager.mark_as_purchased(unique_key)
+
+	if money_label:
+		money_label.text = str(BaseInventoryManager.get_player_money())
+
+	_apply_sold_out_state(shop_item, name_node, desc_node)
 
 func _apply_sold_out_state(shop_item: Control, name_node: Node, desc_node: Node) -> void:
 	if shop_item is BaseButton:

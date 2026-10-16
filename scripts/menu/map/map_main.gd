@@ -61,10 +61,8 @@ var zoomed_lis1_scale: Vector2 = Vector2(1.1, 1.1)
 
 var current_base_id: int = -1
 var is_animating: bool = false
-var db: SQLite = null
 
 func _ready() -> void:
-	_init_database()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if map_node:
@@ -132,158 +130,206 @@ func _process(_delta: float) -> void:
 			var rem_time = int(ceil(quest3_timer_node.time_left))
 			prog_lbl.text = "(Таймер: %d сек.)" % rem_time
 
-func _init_database() -> void:
-	db = SQLite.new()
-	db.path = "res://objects.db"
-	db.open_db()
+
 
 func _load_current_active_base() -> void:
-	if db == null: return
-	db.query("SELECT ID FROM Bases WHERE ISActive = 1;")
-	var res = db.query_result
-	if not res.is_empty():
-		current_base_id = int(res[0].get("ID", -1))
-	
+	var bases: Array = BaseInventoryManager.get_rows("Bases")
+
+	for row in bases:
+		if int(row.get("ISActive", 0)) == 1:
+			current_base_id = int(row.get("ID", -1))
+			break
+
 	_update_markers_scale()
 	_update_roads_appearance()
 	_check_and_update_quests_logic()
 
 # --- ЛОГИКА ПРОВЕРКИ И ВЫПОЛНЕНИЯ КВЕСТОВ ---
+
 func _check_and_update_quests_logic() -> void:
-	if db == null: return
-
 	for q_btn in quest_nodes:
-		if not q_btn: continue
-		var q_id = int(q_btn.text.strip_edges()) # ID квеста берется из текста кнопки
-		if q_id == 0: continue
+		if not q_btn:
+			continue
 
-		db.query("SELECT Unlocked, Have, Need FROM Quests WHERE ID = %d;" % q_id)
-		var q_res = db.query_result
-		if q_res.is_empty(): continue
-		
-		var unlocked = int(q_res[0].get("Unlocked", 0))
-		var have = int(q_res[0].get("Have", 0))
-		var need = int(q_res[0].get("Need", 1))
+		var q_id := int(q_btn.text.strip_edges())
+		if q_id == 0:
+			continue
 
-		# Если квест доступен для выполнения (Unlocked == 1)
-		if unlocked == 1:
-			var calculated_have = have
+		var quest = BaseInventoryManager.find_row("Quests", "ID", q_id)
+		if quest.is_empty():
+			continue
 
-			# Квесты 101 и 105: Have = 1 если база 1004 активна (ISActive == 1)
-			if q_id == 101 or q_id == 105:
-				db.query("SELECT ISActive FROM Bases WHERE ID = 1004;")
-				var b_res = db.query_result
-				if not b_res.is_empty() and int(b_res[0].get("ISActive", 0)) == 1:
-					calculated_have = 1
-				else:
-					calculated_have = 0
-				
-				db.query("UPDATE Quests SET Have = %d WHERE ID = %d;" % [calculated_have, q_id])
+		var unlocked := int(quest.get("Unlocked", 0))
+		var have := int(quest.get("Have", 0))
+		var need := int(quest.get("Need", 1))
 
-			# Квест 103: подстраиваем таймер под Need из базы и запускаем, если он еще не запущен
-			elif q_id == 103:
-				if have < need:
-					if quest3_timer_node and quest3_timer_node.is_stopped() and quest3_timer_node.time_left == 0.0:
-						quest3_timer_node.wait_time = float(need) # Устанавливаем время из базы данных (Need)
-						quest3_timer_node.start()
-				else:
-					calculated_have = need
-					db.query("UPDATE Quests SET Have = %d WHERE ID = %d;" % [calculated_have, q_id])
+		if unlocked != 1:
+			continue
 
-			# Проверка завершения квеста
-			if calculated_have >= need:
-				db.query("UPDATE Quests SET Unlocked = 2 WHERE ID = %d;" % q_id)
-				
-				if q_id == 101:
-					db.query("UPDATE Quests SET Unlocked = 1 WHERE ID = 102;")
-				elif q_id == 102:
-					db.query("UPDATE Quests SET Unlocked = 1 WHERE ID = 103;")
-				elif q_id == 103:
-					db.query("UPDATE Quests SET Unlocked = 1 WHERE ID = 104;")
-				elif q_id == 104:
-					db.query("UPDATE Quests SET Unlocked = 1 WHERE ID = 105;")
+		var calculated_have := have
+
+		# Квесты 101 и 105: нужна активная база 1004.
+		if q_id == 101 or q_id == 105:
+			var base = BaseInventoryManager.find_row("Bases", "ID", 1004)
+
+			if not base.is_empty() and int(base.get("ISActive", 0)) == 1:
+				calculated_have = 1
+			else:
+				calculated_have = 0
+
+			BaseInventoryManager.update_row(
+				"Quests", "ID", q_id, {"Have": calculated_have}
+			)
+
+		# Квест 103: таймер.
+		elif q_id == 103:
+			if have < need:
+				if quest3_timer_node \
+				and quest3_timer_node.is_stopped() \
+				and quest3_timer_node.time_left == 0.0:
+					quest3_timer_node.wait_time = float(need)
+					quest3_timer_node.start()
+			else:
+				calculated_have = need
+
+				BaseInventoryManager.update_row(
+					"Quests", "ID", q_id, {"Have": calculated_have}
+				)
+
+		if calculated_have >= need:
+			BaseInventoryManager.update_row(
+				"Quests", "ID", q_id, {"Unlocked": 2}
+			)
+
+			match q_id:
+				101:
+					BaseInventoryManager.update_row(
+						"Quests", "ID", 102, {"Unlocked": 1}
+					)
+				102:
+					BaseInventoryManager.update_row(
+						"Quests", "ID", 103, {"Unlocked": 1}
+					)
+				103:
+					BaseInventoryManager.update_row(
+						"Quests", "ID", 104, {"Unlocked": 1}
+					)
+				104:
+					BaseInventoryManager.update_row(
+						"Quests", "ID", 105, {"Unlocked": 1}
+					)
 
 	if lis1_quests_open:
 		_update_ui_quests()
 
+
 # Срабатывает автоматически, когда встроенный Timer досчитает до 0
 func _on_quest3_timeout() -> void:
-	if db == null: return
-	db.query("SELECT Need FROM Quests WHERE ID = 103;")
-	var res = db.query_result
-	var need_val = int(res[0].get("Need", 10)) if not res.is_empty() else 10
-	
-	db.query("UPDATE Quests SET Have = %d WHERE ID = 103;" % need_val)
+	var quest = BaseInventoryManager.find_row("Quests", "ID", 103)
+	var need_val := int(quest.get("Need", 10))
+
+	BaseInventoryManager.update_row(
+		"Quests", "ID", 103, {"Have": need_val}
+	)
+
 	_check_and_update_quests_logic()
+
 	if lis1_quests_open:
 		_update_ui_quests()
 
 # Функция учета посещения баз для квестов 102 и 104 (без повторов)
 func _handle_base_for_quests_102_104(base_id: int) -> void:
-	var target_bases = [1001, 1002, 1003, 1005]
+	var target_bases := [1001, 1002, 1003, 1005]
+
 	if base_id not in target_bases:
 		return
 
 	for q_id in [102, 104]:
-		db.query("SELECT Unlocked, Have, Need FROM Quests WHERE ID = %d;" % q_id)
-		var res = db.query_result
-		if not res.is_empty() and int(res[0].get("Unlocked", 0)) == 1:
-			if base_id not in quest_visited_bases[q_id]:
-				quest_visited_bases[q_id].append(base_id)
-				var new_have = quest_visited_bases[q_id].size()
-				var need = int(res[0].get("Need", 4))
+		var quest = BaseInventoryManager.find_row("Quests", "ID", q_id)
 
-				db.query("UPDATE Quests SET Have = %d WHERE ID = %d;" % [new_have, q_id])
+		if quest.is_empty() or int(quest.get("Unlocked", 0)) != 1:
+			continue
 
-				if new_have >= need:
-					db.query("UPDATE Quests SET Unlocked = 2 WHERE ID = %d;" % q_id)
-					if q_id == 102:
-						db.query("UPDATE Quests SET Unlocked = 1 WHERE ID = 103;")
-					elif q_id == 104:
-						db.query("UPDATE Quests SET Unlocked = 1 WHERE ID = 105;")
+		if base_id not in quest_visited_bases[q_id]:
+			quest_visited_bases[q_id].append(base_id)
+
+			var new_have: int = quest_visited_bases[q_id].size()
+			var need: int = int(quest.get("Need", 4))
+
+			if new_have >= need:
+				BaseInventoryManager.update_row(
+					"Quests", "ID", q_id,
+					{"Have": new_have, "Unlocked": 2}
+				)
+
+				if q_id == 102:
+					BaseInventoryManager.update_row(
+						"Quests", "ID", 103, {"Unlocked": 1}
+					)
+				elif q_id == 104:
+					BaseInventoryManager.update_row(
+						"Quests", "ID", 105, {"Unlocked": 1}
+					)
+			else:
+				BaseInventoryManager.update_row(
+					"Quests", "ID", q_id, {"Have": new_have}
+				)
 
 # --- ОБНОВЛЕНИЕ UI КВЕСТОВ ИЗ БАЗЫ ДАННЫХ ---
+
 func _update_ui_quests() -> void:
-	if db == null: return
-
 	for q_btn in quest_nodes:
-		if not q_btn: continue
-		var q_id = int(q_btn.text.strip_edges()) # ID берется из текста кнопки
-		if q_id == 0: continue
+		if not q_btn:
+			continue
 
-		db.query("SELECT * FROM Quests WHERE ID = %d;" % q_id)
-		var result = db.query_result
-		if result.is_empty(): continue
+		var q_id := int(q_btn.text.strip_edges())
+		if q_id == 0:
+			continue
 
-		var row = result[0]
-		var unlocked = int(row.get("Unlocked", 0))
-		var have = int(row.get("Have", 0))
-		var need = int(row.get("Need", 1))
+		var row = BaseInventoryManager.find_row("Quests", "ID", q_id)
+		if row.is_empty():
+			continue
 
-		var name_lbl = q_btn.get_node_or_null("Name") as Label
-		var desc_lbl = q_btn.get_node_or_null("Description") as Label
-		var prog_lbl = q_btn.get_node_or_null("Progress") as Label
+		var unlocked := int(row.get("Unlocked", 0))
+		var have := int(row.get("Have", 0))
+		var need := int(row.get("Need", 1))
+
+		var name_lbl := q_btn.get_node_or_null("Name") as Label
+		var desc_lbl := q_btn.get_node_or_null("Description") as Label
+		var prog_lbl := q_btn.get_node_or_null("Progress") as Label
 
 		if unlocked == 0:
-			if name_lbl: name_lbl.text = "Квест поки недоступний"
-			if desc_lbl: desc_lbl.text = "???"
-			if prog_lbl: prog_lbl.text = "Недоступно"
+			if name_lbl:
+				name_lbl.text = "Квест поки недоступний"
+			if desc_lbl:
+				desc_lbl.text = "???"
+			if prog_lbl:
+				prog_lbl.text = "Недоступно"
+
 		elif unlocked == 2:
-			if name_lbl: name_lbl.text = str(row.get("Name", ""))
-			if desc_lbl: desc_lbl.text = str(row.get("Description", ""))
-			if prog_lbl: prog_lbl.text = "Виконано"
+			if name_lbl:
+				name_lbl.text = str(row.get("Name", ""))
+			if desc_lbl:
+				desc_lbl.text = str(row.get("Description", ""))
+			if prog_lbl:
+				prog_lbl.text = "Виконано"
+
 		elif unlocked == 1:
-			if name_lbl: name_lbl.text = str(row.get("Name", ""))
-			if desc_lbl: desc_lbl.text = str(row.get("Description", ""))
+			if name_lbl:
+				name_lbl.text = str(row.get("Name", ""))
+			if desc_lbl:
+				desc_lbl.text = str(row.get("Description", ""))
+
 			if prog_lbl:
 				if q_id == 103:
 					if quest3_timer_node and not quest3_timer_node.is_stopped():
-						var rem_time = int(ceil(quest3_timer_node.time_left))
+						var rem_time := int(ceil(quest3_timer_node.time_left))
 						prog_lbl.text = "(Таймер: %d сек.)" % rem_time
 					else:
-						prog_lbl.text = "(Виконано)"
+						prog_lbl.text = "(Выполнено)"
 				else:
 					prog_lbl.text = "(%d) / (%d)" % [have, need]
+
 
 # --- ОСТАЛЬНЫЕ МЕТОДЫ КАРТЫ И БАЗ ---
 func _update_markers_scale() -> void:
@@ -301,31 +347,39 @@ func _update_markers_scale() -> void:
 			else:
 				m.scale = Vector2(1.0, 1.0)
 
-func _update_roads_appearance() -> void:
-	if db == null or lis1_roads == null: return
 
-	db.query("SELECT * FROM Bases WHERE ISActive = 1;")
-	var result = db.query_result
-	
-	var allowed_roads = []
-	if not result.is_empty():
-		var active_row = result[0]
+func _update_roads_appearance() -> void:
+	if lis1_roads == null:
+		return
+
+	var active_row: Dictionary = {}
+
+	for row in BaseInventoryManager.get_rows("Bases"):
+		if int(row.get("ISActive", 0)) == 1:
+			active_row = row
+			break
+
+	var allowed_roads: Array[String] = []
+
+	if not active_row.is_empty():
 		for i in range(1, 6):
-			var col_name = "Base" + str(i)
-			if active_row.has(col_name) and active_row[col_name] != null:
-				var road_val = int(active_row[col_name])
-				if road_val != 0:
-					allowed_roads.append(str(road_val))
+			var road_value = active_row.get("Base" + str(i), 0)
+
+			if road_value != null and int(road_value) != 0:
+				allowed_roads.append(str(int(road_value)))
 
 	for road_node in lis1_roads.get_children():
 		road_node.visible = true
-		var road_num = road_node.name
 
-		if road_num in allowed_roads:
+		if road_node.name in allowed_roads:
 			road_node.modulate = Color(1.0, 1.0, 1.0, 1.0)
-			lis1_roads.move_child(road_node, lis1_roads.get_child_count() - 1)
+			lis1_roads.move_child(
+				road_node,
+				lis1_roads.get_child_count() - 1
+			)
 		else:
 			road_node.modulate = Color(0.35, 0.35, 0.35, 0.7)
+
 
 func _on_quests_open_close_pressed() -> void:
 	if is_animating: return
@@ -427,90 +481,124 @@ func _on_close_map_pressed() -> void:
 
 	is_animating = false
 
+
 func _on_marker_pressed(marker_button: Button) -> void:
-	if is_animating: return
+	if is_animating:
+		return
 
 	current_base_id = marker_button.text.to_int()
 	_update_markers_scale()
 
-	if db:
-		db.query("SELECT * FROM Bases WHERE ID = %d;" % current_base_id)
-		var result = db.query_result
-		if not result.is_empty():
-			var row = result[0]
-			if base_num_label: base_num_label.text = "База № %s" % str(row.get("BaseNum", ""))
-			if base_name_label: base_name_label.text = "—%s—" % str(row.get("BaseName", ""))
-			if monsters_label: monsters_label.text = str(row.get("Monsters", ""))
-			
-			var desc = row.get("Description", "")
-			if desc == "" and row.has("description"):
-				desc = row.get("description", "")
-			if description_label: 
-				description_label.text = str(desc)
+	var row = BaseInventoryManager.find_row(
+		"Bases", "ID", current_base_id
+	)
 
-			var is_active_base = int(row.get("ISActive", 0)) == 1
+	if not row.is_empty():
+		if base_num_label:
+			base_num_label.text = "База № %s" % str(row.get("BaseNum", ""))
 
-			if is_active_base:
-				if play_button: play_button.visible = false
-				if hardness_label: hardness_label.text = "Ви тут"
-			else:
-				if play_button: play_button.visible = true
-				
-				var found_hardness = false
-				for i in range(1, 6):
-					var r_num = row.get("Base" + str(i))
-					if r_num != null and int(r_num) != 0:
-						db.query("SELECT Hardness FROM Roads WHERE Number = %d;" % int(r_num))
-						var r_res = db.query_result
-						if not r_res.is_empty():
-							if hardness_label:
-								hardness_label.text = str(r_res[0].get("Hardness", ""))
-							found_hardness = true
-						break
-				if not found_hardness and hardness_label:
-					hardness_label.text = ""
+		if base_name_label:
+			base_name_label.text = "—%s—" % str(row.get("BaseName", ""))
+
+		if monsters_label:
+			monsters_label.text = str(row.get("Monsters", ""))
+
+		var desc = row.get("Description", row.get("description", ""))
+
+		if description_label:
+			description_label.text = str(desc)
+
+		var is_active_base := int(row.get("ISActive", 0)) == 1
+
+		if is_active_base:
+			if play_button:
+				play_button.visible = false
+			if hardness_label:
+				hardness_label.text = "Ви тут"
+		else:
+			if play_button:
+				play_button.visible = true
+
+			var found_hardness := false
+
+			for i in range(1, 6):
+				var road_num = row.get("Base" + str(i), 0)
+
+				if road_num != null and int(road_num) != 0:
+					var road = BaseInventoryManager.find_row(
+						"Roads", "Number", int(road_num)
+					)
+
+					if not road.is_empty():
+						if hardness_label:
+							hardness_label.text = str(
+								road.get("Hardness", "")
+							)
+						found_hardness = true
+
+					break
+
+			if not found_hardness and hardness_label:
+				hardness_label.text = ""
 
 	is_animating = true
 
 	if BasePanel.position == base_visible_pos:
 		await slide_to(BasePanel, hidden_pos)
 
-	if name_label: name_label.text = "Ліс"
+	if name_label:
+		name_label.text = "Ліс"
 
-	var anim_tween = create_tween()
-	anim_tween.tween_property(BasePanel, "position", base_visible_pos, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	
+	var anim_tween := create_tween()
+	anim_tween.tween_property(
+		BasePanel, "position", base_visible_pos, 0.4
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
 	await anim_tween.finished
 	is_animating = false
 
+
 func _on_road_pressed(road_button: Button) -> void:
-	var road_number = road_button.name.to_int()
-	if db:
-		db.query("SELECT Hardness FROM Roads WHERE Number = %d;" % road_number)
-		var result = db.query_result
-		if not result.is_empty():
-			var road_hardness = result[0].get("Hardness", "")
-			if hardness_label:
-				hardness_label.text = str(road_hardness)
+	var road_number := road_button.name.to_int()
+
+	var road = BaseInventoryManager.find_row(
+		"Roads", "Number", road_number
+	)
+
+	if not road.is_empty() and hardness_label:
+		hardness_label.text = str(road.get("Hardness", ""))
+
 
 func _on_base_play_pressed() -> void:
-	if current_base_id == -1 or db == null:
+	if current_base_id == -1:
 		return
 
-	db.query("UPDATE Bases SET ISActive = 0;")
-	db.query("UPDATE Bases SET ISActive = 1 WHERE ID = %d;" % current_base_id)
-	
-	print("База с ID %d теперь активна (ISActive = 1)" % current_base_id)
+	var selected_base = BaseInventoryManager.find_row(
+		"Bases", "ID", current_base_id
+	)
 
-	# Проверяем прогресс квестов 102 и 104 при активации базы
+	if selected_base.is_empty():
+		return
+
+	for row in BaseInventoryManager.get_rows("Bases"):
+		row["ISActive"] = 1 if int(row.get("ID", -1)) == current_base_id else 0
+
+	BaseInventoryManager.save_data()
+
+	print("База с ID %d теперь активна" % current_base_id)
+
 	_handle_base_for_quests_102_104(current_base_id)
 
 	_update_markers_scale()
 	_update_roads_appearance()
 	_check_and_update_quests_logic()
 
-	if play_button: play_button.visible = false
-	if hardness_label: hardness_label.text = "Ви тут"
+	if play_button:
+		play_button.visible = false
+
+	if hardness_label:
+		hardness_label.text = "Ви тут"
+
 
 func slide_to(node: Control, target_pos: Vector2) -> void:
 	var tween = create_tween()

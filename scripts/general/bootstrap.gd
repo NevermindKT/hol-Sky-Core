@@ -31,7 +31,7 @@ extends Node
 
 const START_SPEED = 40.0
 const START_DISTANCE := 5.0
-const DISTANCE_TO_END := 80.0
+const DISTANCE_TO_END := 300.0
 const OBSTACLE_SPAWN_CHANCE = 0.05
 
 func _ready() -> void:
@@ -79,7 +79,7 @@ func _ready() -> void:
 	
 	encounter_director.initialize(enemy_encounter, run_manager)
 
-	InputController.test_boost.connect(BoostManager.activate_test_boost)
+	#InputController.test_boost.connect(BoostManager.activate_test_boost)
 
 	await get_tree().process_frame
 
