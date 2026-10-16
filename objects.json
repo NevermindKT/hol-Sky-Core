@@ -1,0 +1,31 @@
+{
+  "Money": [
+    {
+      "MONEY": 10000
+    }
+  ],
+  "Objects": [
+    {
+      "ID": "1001",
+      "Name": "Шини",
+      "Quantity": 10,
+      "Percent": 50.0,
+      "Descriprion": "Обычные шины",
+      "Emount": 100,
+      "IconPath": "",
+      "Rarity": "Common"
+    }
+  ],
+  "Car": [
+    {
+      "ID": 1,
+      "Type": "Шини",
+      "TypeObj": "Шини",
+      "Level": 1,
+      "Name": "Улучшенные шины",
+      "NumObj": 3,
+      "Money": 500,
+      "Purchased": 0
+    }
+  ]
+}

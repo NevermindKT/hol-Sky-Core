@@ -262,7 +262,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Car" type="Control" unique_id=460311930]
+[node name="Car" type="Control" unique_id=460311930 node_paths=PackedStringArray("type_object_label", "btn_previous", "btn_next")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -270,6 +270,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d27xw")
+type_object_label = NodePath("Types/Control/Object")
+btn_previous = NodePath("Types/Control/Previous")
+btn_next = NodePath("Types/Control/Next")
 
 [node name="Background" type="Panel" parent="." unique_id=453470279]
 layout_mode = 1
@@ -291,6 +294,7 @@ grow_horizontal = 2
 script = ExtResource("2_epxna")
 
 [node name="Block" type="Panel" parent="Background/Header" unique_id=1268463154]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -679,23 +683,29 @@ offset_bottom = -262.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Selling" type="HBoxContainer" parent="Types" unique_id=317799622]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 2.0
-offset_right = 410.0
-offset_bottom = 58.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 40
-alignment = 1
+[node name="Control" type="Control" parent="Types" unique_id=670023443]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Previous" type="Button" parent="Types/Selling" unique_id=1704037440]
+[node name="Previous" type="Button" parent="Types/Control" unique_id=1704037440]
 z_index = 5
 z_as_relative = false
 custom_minimum_size = Vector2(30, 30)
 custom_maximum_size = Vector2(30, 30)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 30.0
+offset_bottom = 15.0
+grow_vertical = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -717,19 +727,40 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4moqt")
 text = "<"
 icon_alignment = 1
 
-[node name="Object" type="Label" parent="Types/Selling" unique_id=751044934]
-layout_mode = 2
+[node name="Object" type="Label" parent="Types/Control" unique_id=751044934]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -24.5
+offset_right = 35.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_o5wyr")
 theme_override_font_sizes/font_size = 40
 text = "Tyre"
 
-[node name="Next" type="Button" parent="Types/Selling" unique_id=1512622754]
+[node name="Next" type="Button" parent="Types/Control" unique_id=1512622754]
 z_index = 5
 z_as_relative = false
 custom_minimum_size = Vector2(30, 30)
 custom_maximum_size = Vector2(30, 30)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)

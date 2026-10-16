@@ -8,8 +8,6 @@ extends Control
 @export var money_label: Label
 @export var timer_label: Label
 
-var db: SQLite = null
-
 @onready var boost_templates = {
 	"Common": $Boost/Common,
 	"Uncommon": $Boost/Uncommon,
@@ -41,9 +39,7 @@ var db: SQLite = null
 ]
 
 func _ready() -> void:
-	_init_database()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
 
 	if not BaseInventoryManager.shop_refreshed.is_connected(_on_game_manager_shop_refreshed):
 		BaseInventoryManager.shop_refreshed.connect(_on_game_manager_shop_refreshed)
@@ -55,10 +51,6 @@ func _ready() -> void:
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _init_database() -> void:
-	db = SQLite.new()
-	db.path = "res://objects.db"
-	db.open_db()
 
 func _process(_delta: float) -> void:
 	if timer_label:
@@ -184,16 +176,39 @@ func _create_card_from_data(data: Dictionary, templates: Dictionary, target_cont
 	target_container.add_child(shop_item)
 
 func _buy_item(data: Dictionary, shop_item: Control, name_node: Node, desc_node: Node) -> void:
-	if BaseInventoryManager.spend_money(data["price"]):
-		BaseInventoryManager.mark_as_purchased(data["unique_key"])
-		db.query("UPDATE Objects SET Quantity = Quantity + 1 WHERE ID = '%s';" % [data["id"]])
-		
-		if money_label:
-			money_label.text = str(BaseInventoryManager.get_player_money())
+	var item_id := str(data.get("id", ""))
+	var unique_key: String = str(data.get("unique_key", ""))
+	var price := int(data.get("price", 0))
 
-		_apply_sold_out_state(shop_item, name_node, desc_node)
-	else:
+	# Находим предмет в JSON
+	var inventory_item = BaseInventoryManager.find_object_by_id(item_id)
+
+	if inventory_item.is_empty():
+		push_warning("Предмет с ID %s не найден в objects.json" % item_id)
+		return
+
+	# Проверяем, что предмет ещё не куплен
+	if BaseInventoryManager.is_purchased(unique_key):
+		return
+
+	# Списываем деньги
+	if not BaseInventoryManager.spend_money(price):
 		print("Недостаточно средств!")
+		return
+
+	# Увеличиваем количество предмета в инвентаре
+	inventory_item["Quantity"] = int(inventory_item.get("Quantity", 0)) + 1
+
+	# Сохраняем изменения в JSON
+	BaseInventoryManager.save_data()
+
+	# Помечаем товар как купленный
+	BaseInventoryManager.mark_as_purchased(unique_key)
+
+	if money_label:
+		money_label.text = str(BaseInventoryManager.get_player_money())
+
+	_apply_sold_out_state(shop_item, name_node, desc_node)
 
 func _apply_sold_out_state(shop_item: Control, name_node: Node, desc_node: Node) -> void:
 	if shop_item is BaseButton:
