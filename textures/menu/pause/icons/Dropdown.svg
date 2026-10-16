@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="PAUSE_SETTINGS_native_vectors" data-name="PAUSE + SETTINGS — native vectors" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="43.83" y1="286.17" x2="476.5" y2="286.17" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e5d9bd"/>
+      <stop offset="1" stop-color="#a18c63"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-1" d="M43.83,167.29h92.81c9.92,0,19.2,4.9,24.78,13.1l94.57,138.67,96.88-138.92c5.61-8.05,14.8-12.84,24.61-12.84h99.01l-220.5,237.76L43.83,167.29Z"/>
+</svg>

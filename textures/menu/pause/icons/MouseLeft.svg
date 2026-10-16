@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="PAUSE_SETTINGS_native_vectors" data-name="PAUSE + SETTINGS — native vectors" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#New_Gradient_Swatch_1-3);
+      }
+
+      .cls-2 {
+        stroke: url(#New_Gradient_Swatch_1);
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 25px;
+      }
+
+      .cls-3 {
+        stroke: url(#New_Gradient_Swatch_1-2);
+      }
+    </style>
+    <linearGradient id="New_Gradient_Swatch_1" data-name="New Gradient Swatch 1" x1="258.14" y1="74.79" x2="258.14" y2="255.79" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e5d9bd"/>
+      <stop offset="1" stop-color="#a18c63"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_1-2" data-name="New Gradient Swatch 1" y2="459.79" xlink:href="#New_Gradient_Swatch_1"/>
+    <linearGradient id="New_Gradient_Swatch_1-3" data-name="New Gradient Swatch 1" x1="205.64" y1="119.16" x2="205.64" y2="215.43" xlink:href="#New_Gradient_Swatch_1"/>
+  </defs>
+  <g id="MouseLeft">
+    <path class="cls-2" d="M258.14,87.29v156M153.14,243.29h210"/>
+    <path class="cls-3" d="M258.14,87.29h0c57.99,0,105,47.01,105,105v150c0,57.99-47.01,105-105,105h0c-57.99,0-105-47.01-105-105v-150c0-57.99,47.01-105,105-105Z"/>
+    <path class="cls-1" d="M177.84,215.43v-27.39c0-37.59,27.8-63.23,55.61-68.89v96.28h-55.61Z"/>
+  </g>
+</svg>

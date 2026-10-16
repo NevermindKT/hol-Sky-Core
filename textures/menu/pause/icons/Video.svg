@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="PAUSE_SETTINGS_native_vectors" data-name="PAUSE + SETTINGS — native vectors" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: url(#New_Gradient_Swatch_1);
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 25px;
+      }
+
+      .cls-2 {
+        stroke: url(#New_Gradient_Swatch_1-2);
+      }
+    </style>
+    <linearGradient id="New_Gradient_Swatch_1" data-name="New Gradient Swatch 1" x1="258.14" y1="349.79" x2="258.14" y2="430.79" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e5d9bd"/>
+      <stop offset="1" stop-color="#a18c63"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_1-2" data-name="New Gradient Swatch 1" y1="114.79" y2="374.79" xlink:href="#New_Gradient_Swatch_1"/>
+  </defs>
+  <g id="Video">
+    <path class="cls-1" d="M258.14,362.29v53M184.14,418.29h148"/>
+    <rect class="cls-2" x="87.14" y="127.29" width="342" height="235" rx="16" ry="16"/>
+  </g>
+</svg>
