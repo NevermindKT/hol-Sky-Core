@@ -1,6 +1,26 @@
 [gd_scene format=3 uid="uid://p7ufkd6leg0l"]
 
 [ext_resource type="Script" uid="uid://ctvaygbubrum2" path="res://scripts/ui/run_summary_menu.gd" id="1_i5676"]
+[ext_resource type="Texture2D" uid="uid://clu3b6be0h77e" path="res://textures/menu/pause/NORMAL — steel.png" id="2_vkd5t"]
+[ext_resource type="Texture2D" uid="uid://b0bn626o5d32u" path="res://textures/menu/pause/SELECTED — amber.png" id="3_2udyh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5676"]
+texture = ExtResource("2_vkd5t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldbp3"]
+texture = ExtResource("2_vkd5t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f0p57"]
+texture = ExtResource("3_2udyh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkd5t"]
+texture = ExtResource("2_vkd5t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2udyh"]
+texture = ExtResource("2_vkd5t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_srdkp"]
+texture = ExtResource("3_2udyh")
 
 [node name="RunSummary" type="Control" unique_id=479002571 node_paths=PackedStringArray("time_label", "damage_label", "kills_total_label", "kill_list", "restart_button", "menu_button")]
 layout_mode = 3
@@ -15,8 +35,8 @@ time_label = NodePath("Left/Time/TimeLable")
 damage_label = NodePath("Left/Damage/DamageLable")
 kills_total_label = NodePath("Left/Kills/KillsLable")
 kill_list = NodePath("Right/KillList")
-restart_button = NodePath("Buttons/RestartBtn")
-menu_button = NodePath("Buttons/MenuBtn")
+restart_button = NodePath("Left/Buttons/RestartBtn")
+menu_button = NodePath("Left/Buttons/MenuBtn")
 
 [node name="RunEndLabel" type="RichTextLabel" parent="." unique_id=648158041]
 layout_mode = 1
@@ -33,7 +53,7 @@ text = "YOU SURVIVED...
 for now."
 horizontal_alignment = 1
 
-[node name="Left" type="Control" parent="." unique_id=1554170039]
+[node name="Left" type="VBoxContainer" parent="." unique_id=1709321393]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -41,133 +61,86 @@ anchor_bottom = 0.5
 offset_left = 232.0
 offset_top = -101.0
 offset_right = 814.0
-offset_bottom = 99.0
+offset_bottom = 87.0
 grow_vertical = 2
+theme_override_constants/separation = 15
 
-[node name="BG" type="ColorRect" parent="Left" unique_id=393102889]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.60784316)
-
-[node name="Time" type="Control" parent="Left" unique_id=1088812682]
+[node name="Time" type="HBoxContainer" parent="Left" unique_id=497444156]
 custom_minimum_size = Vector2(500, 60)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -250.0
-offset_top = 16.0
-offset_right = 250.0
-offset_bottom = 76.0
-grow_horizontal = 2
+layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="Left/Time" unique_id=1098181393]
-layout_mode = 1
-offset_right = 92.0
-offset_bottom = 49.0
+layout_mode = 2
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 35
 text = "TIME:"
 horizontal_alignment = 1
 
 [node name="TimeLable" type="Label" parent="Left/Time" unique_id=1670916752]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -92.0
-offset_bottom = 49.0
-grow_horizontal = 0
+layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "TIME"
 horizontal_alignment = 1
 
-[node name="Damage" type="Control" parent="Left" unique_id=1332686225]
+[node name="Damage" type="HBoxContainer" parent="Left" unique_id=64138113]
 custom_minimum_size = Vector2(500, 60)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -250.0
-offset_top = 72.0
-offset_right = 250.0
-offset_bottom = 132.0
-grow_horizontal = 2
+layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="Left/Damage" unique_id=547105015]
-layout_mode = 1
-offset_right = 92.0
-offset_bottom = 49.0
+layout_mode = 2
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 35
 text = "DAMAGE TAKEN:"
 horizontal_alignment = 1
 
 [node name="DamageLable" type="Label" parent="Left/Damage" unique_id=748536847]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -92.0
-offset_bottom = 49.0
-grow_horizontal = 0
+layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "DAMAGE"
 horizontal_alignment = 1
 
-[node name="Kills" type="Control" parent="Left" unique_id=1161509235]
+[node name="Kills" type="HBoxContainer" parent="Left" unique_id=1813081548]
 custom_minimum_size = Vector2(500, 60)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -250.0
-offset_top = 128.0
-offset_right = 250.0
-offset_bottom = 188.0
-grow_horizontal = 2
+layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="Left/Kills" unique_id=1139405017]
-layout_mode = 1
-offset_right = 92.0
-offset_bottom = 49.0
+layout_mode = 2
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 35
 text = "TOTAL KILLS:"
 horizontal_alignment = 1
 
 [node name="KillsLable" type="Label" parent="Left/Kills" unique_id=152307125]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -92.0
-offset_bottom = 49.0
-grow_horizontal = 0
+layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "KILLS"
 horizontal_alignment = 1
 
-[node name="Buttons" type="HBoxContainer" parent="." unique_id=1855843616]
-layout_mode = 0
-offset_left = 232.0
-offset_top = 664.37
-offset_right = 814.0
-offset_bottom = 746.0
+[node name="Buttons" type="HBoxContainer" parent="Left" unique_id=1855843616]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="MenuBtn" type="Button" parent="Buttons" unique_id=2052425360 groups=["ui_buttons"]]
+[node name="MenuBtn" type="Button" parent="Left/Buttons" unique_id=2052425360 groups=["ui_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_i5676")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ldbp3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_f0p57")
 text = "RTB (MENU)"
 
-[node name="RestartBtn" type="Button" parent="Buttons" unique_id=509655138 groups=["ui_buttons"]]
+[node name="RestartBtn" type="Button" parent="Left/Buttons" unique_id=509655138 groups=["ui_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_vkd5t")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2udyh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_srdkp")
 text = "RESTART"
 
 [node name="Right" type="Control" parent="." unique_id=1780626468]
