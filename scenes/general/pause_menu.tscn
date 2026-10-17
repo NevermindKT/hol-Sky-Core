@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://3dsx0b0jp5ok" path="res://textures/menu/pause/Movement divider.png" id="3_ooqrl"]
 [ext_resource type="Texture2D" uid="uid://clu3b6be0h77e" path="res://textures/menu/pause/NORMAL — steel.png" id="3_pkv1o"]
 [ext_resource type="Texture2D" uid="uid://b0bn626o5d32u" path="res://textures/menu/pause/SELECTED — amber.png" id="4_gx83u"]
+[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://scenes/menu/fonts/Cormorant/Cormorant-SemiBold.ttf" id="4_vas54"]
 [ext_resource type="Texture2D" uid="uid://cduta45axfy0w" path="res://textures/menu/pause/icons/Continue.svg" id="5_72y1a"]
 [ext_resource type="Texture2D" uid="uid://cv3wop11rmik" path="res://textures/menu/pause/icons/Settings.svg" id="6_1kkfb"]
 [ext_resource type="Texture2D" uid="uid://depmgmqhqxw6f" path="res://textures/menu/pause/icons/Artboard 1.svg" id="7_sgec6"]
@@ -89,7 +90,8 @@ custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 theme_override_constants/h_separation = 40
 theme_override_constants/icon_max_width = 50
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("4_vas54")
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxTexture_pkv1o")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_sjti8")
 theme_override_styles/hover = SubResource("StyleBoxTexture_gx83u")
@@ -103,7 +105,8 @@ custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 theme_override_constants/h_separation = 40
 theme_override_constants/icon_max_width = 50
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("4_vas54")
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxTexture_72y1a")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_0wtgd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1kkfb")
@@ -117,7 +120,8 @@ custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 theme_override_constants/h_separation = 40
 theme_override_constants/icon_max_width = 50
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("4_vas54")
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxTexture_sgec6")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_8ic8r")
 theme_override_styles/hover = SubResource("StyleBoxTexture_42ot7")
@@ -131,7 +135,8 @@ custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 theme_override_constants/h_separation = 40
 theme_override_constants/icon_max_width = 50
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("4_vas54")
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxTexture_ooqrl")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_h7gxv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vas54")
@@ -171,7 +176,8 @@ anchor_bottom = 1.0
 offset_left = 28.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 35
+theme_override_fonts/normal_font = ExtResource("4_vas54")
+theme_override_font_sizes/normal_font_size = 40
 text = "Рух:
   A, D — стрейф
   SPACE + кнопка стрейфу — ухил убік
