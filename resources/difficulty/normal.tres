@@ -6,5 +6,5 @@
 script = ExtResource("1_diff")
 id = &"normal"
 display_name = "Нормально"
-distance_to_end = 300.0
+distance_to_end = 320.0
 max_enemy_weight = 140.0

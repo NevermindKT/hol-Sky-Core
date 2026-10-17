@@ -256,6 +256,7 @@ theme_override_constants/separation = 18
 
 [node name="ResulutionOption" type="OptionButton" parent="SettingContent/VideoPanel/Content" unique_id=1762545565]
 custom_minimum_size = Vector2(0, 45)
+custom_maximum_size = Vector2(250, -1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_aaxas")

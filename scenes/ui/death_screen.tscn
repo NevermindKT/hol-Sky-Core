@@ -2,10 +2,30 @@
 
 [ext_resource type="Script" uid="uid://dsv8uiwux2euc" path="res://scripts/ui/death_screen.gd" id="1_j0ehl"]
 [ext_resource type="Shader" uid="uid://cvh5qt2ng01ng" path="res://resources/shaders/UI/blur_backdrop.gdshader" id="2_njuei"]
+[ext_resource type="Texture2D" uid="uid://clu3b6be0h77e" path="res://textures/menu/pause/NORMAL — steel.png" id="3_ascqi"]
+[ext_resource type="Texture2D" uid="uid://b0bn626o5d32u" path="res://textures/menu/pause/SELECTED — amber.png" id="4_oad3j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w6at5"]
 shader = ExtResource("2_njuei")
 shader_parameter/blur_amount = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_njuei"]
+texture = ExtResource("3_ascqi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w6at5"]
+texture = ExtResource("3_ascqi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ascqi"]
+texture = ExtResource("4_oad3j")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0863s"]
+texture = ExtResource("3_ascqi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5d08o"]
+texture = ExtResource("3_ascqi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qj43u"]
+texture = ExtResource("4_oad3j")
 
 [node name="Death_screen" type="CanvasLayer" unique_id=2138021163 node_paths=PackedStringArray("restart_btn", "exit_btn")]
 layer = 10
@@ -53,9 +73,15 @@ horizontal_alignment = 1
 [node name="RestartBtn" type="Button" parent="Menu" unique_id=1336964018 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_njuei")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_w6at5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ascqi")
 text = "RETRY"
 
 [node name="ExitBtn" type="Button" parent="Menu" unique_id=933683804 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_0863s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5d08o")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qj43u")
 text = "MENU"

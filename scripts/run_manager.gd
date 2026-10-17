@@ -1,6 +1,7 @@
 extends Node
 class_name Run_manager
 
+@export var encounter: Enemy_Encounter
 @export var segment_length := 55.0
 @export var average_speed := 55.0
 @export var dawn_time_multiplier := 1.5
@@ -12,6 +13,7 @@ var time_limit := 0.0
 var time_left := 0.0
 var _shown_seconds := -1
 
+var distance_reached := false
 var run_ended := false
 var dawn_started := false
 var _timer_running := false
@@ -51,6 +53,9 @@ func _emit_time_left() -> void:
 
 
 func _on_segment_despawned():
+	if distance_reached:
+		return
+
 	distance_traveled += 1
 
 	Events.level_progress_changed.emit(
@@ -59,11 +64,25 @@ func _on_segment_despawned():
 	)
 
 	if distance_traveled >= distance_to_end:
-		if !run_ended:
-			end_run()
+		distance_reached = true
+		_try_end_run()
+
+
+func _try_end_run() -> void:
+	if run_ended:
+		return
+
+	if encounter and encounter.is_battle:
+		encounter.battle_ended.connect(end_run, CONNECT_ONE_SHOT)
+		return
+
+	end_run()
 
 
 func end_run():
+	if run_ended:
+		return
+
 	run_ended = true
 	Events.run_ended.emit()
 
