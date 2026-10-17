@@ -91,6 +91,5 @@ func start_dawn() -> void:
 	time_left = 0.0
 	_emit_time_left()
 	_timer_running = false
-	run_ended = true
 	dawn_started = true
 	Events.dawn_started.emit()

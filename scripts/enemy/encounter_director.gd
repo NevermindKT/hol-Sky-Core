@@ -34,7 +34,7 @@ func initialize(_encounter: Enemy_Encounter, _run_manager: Run_manager) -> void:
 
 
 func _on_segment_despawned() -> void:
-	if run_manager.run_ended or run_manager.distance_reached:
+	if run_manager.run_ended or run_manager.distance_reached or run_manager.dawn_started:
 		return
 	if encounter.is_battle:
 		return
