@@ -32,6 +32,7 @@ var enemies: Array[Encounter_Enemy] = []
 
 var attacker: Encounter_Enemy = null
 
+signal battle_ended
 
 func _ready() -> void:
 	process_physics_priority = 10
@@ -231,7 +232,11 @@ func start_encounter() -> void:
 
 
 func check_battle() -> void:
+	var was_battle := is_battle
 	is_battle = is_there_enemies()
+
+	if was_battle and not is_battle:
+		battle_ended.emit()
 
 
 func is_there_enemies() -> bool:

@@ -3,6 +3,7 @@ class_name Run_summary_screen
 
 @export_category("Scenes")
 @export_file("*.tscn") var menu_scene_path: String
+@export_file("*.tscn") var restart_scene_path: String
 
 @export_category("Lables")
 @export var time_label: Label
@@ -27,18 +28,19 @@ func _ready() -> void:
 
 
 func _fill(summary: Dictionary) -> void:
-	time_label.text = "Время: %s" % Run_stats.format_time(summary.get("time", 0.0))
-	damage_label.text = "Получено урона: %d" % roundi(summary.get("damage_taken", 0.0))
-	kills_total_label.text = "Убито врагов: %d" % summary.get("kills_total", 0)
+	time_label.text = "%s" % Run_stats.format_time(summary.get("time", 0.0))
+	damage_label.text = "%d" % roundi(summary.get("damage_taken", 0.0))
+	kills_total_label.text = "%d" % summary.get("kills_total", 0)
 
 	for entry in summary.get("kills", []):
 		var row := Label.new()
 		row.text = "%s × %d" % [entry["name"], entry["count"]]
+		row.add_theme_font_size_override("", 25)
 		kill_list.add_child(row)
 
 
 func _on_restart_pressed() -> void:
-	GameFlow.restart()
+	get_tree().change_scene_to_file(restart_scene_path)
 
 
 func _on_menu_pressed() -> void:

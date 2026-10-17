@@ -5,6 +5,9 @@ const SFX_POOL_SIZE = 8
 var music_player: AudioStreamPlayer
 var sfx_pool: Array[AudioStreamPlayer] = []
 
+var startup_delay: float = 5.0
+var startup_fade_time: float = 0.8
+
 func _ready() -> void:
 	for i in SFX_POOL_SIZE:
 		var p := AudioStreamPlayer.new()
@@ -15,6 +18,24 @@ func _ready() -> void:
 	music_player = AudioStreamPlayer.new()
 	music_player.bus = "Music"
 	add_child(music_player)
+	fade_in_master(startup_delay, startup_fade_time)
+
+
+func fade_in_master(delay: float, _fade_time: float) -> void:
+	var master := AudioServer.get_bus_index("Master")
+	#var target_db := AudioServer.get_bus_volume_db(master)
+
+	AudioServer.set_bus_volume_db(master, -80.0)
+
+	await get_tree().create_timer(delay).timeout
+
+	#var tween := create_tween()
+	#tween.tween_method(
+		#func(db: float): AudioServer.set_bus_volume_db(master, db),
+		#-80.0,
+		#target_db,
+		#fade_time
+	#)
 
 
 func play_sfx(stream: AudioStream, volume_db: float = 0.0, pitch: float = 1.0) -> void:

@@ -31,7 +31,7 @@ extends Node
 
 const START_SPEED = 40.0
 const START_DISTANCE := 5.0
-const DISTANCE_TO_END := 300.0
+const DISTANCE_TO_END := 320.0
 const OBSTACLE_SPAWN_CHANCE = 0.05
 
 func _ready() -> void:
