@@ -3,6 +3,7 @@
 [ext_resource type="Resource" uid="uid://s0gpyox15kbl" path="res://resources/upgrades/branches/fire_power_branch.tres" id="1_88sa6"]
 [ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_clxsj"]
 [ext_resource type="Resource" uid="uid://d4jk5x63ortvs" path="res://resources/upgrades/data/expanded_magazine.tres" id="6_o7nfb"]
+[ext_resource type="Resource" uid="uid://cu2c5dfyavtqo" path="res://resources/upgrades/data/bullet_saving.tres" id="6_o7nfc"]
 [ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="eff_base"]
 [ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="eff_stat"]
 [ext_resource type="Script" uid="uid://d18mggsnx5se3" path="res://scripts/data/upgrade/upgrade_level.gd" id="level"]
@@ -76,6 +77,6 @@ id = "BP01"
 display_name = "Bullet poison"
 description = "Bullet poison"
 branch = ExtResource("1_88sa6")
-prerequisites = Array[ExtResource("2_clxsj")]([ExtResource("6_o7nfb")])
+prerequisites = Array[ExtResource("2_clxsj")]([ExtResource("6_o7nfb"), ExtResource("6_o7nfc")])
 levels = Array[ExtResource("level")]([SubResource("Level_1"), SubResource("Level_2"), SubResource("Level_3")])
 metadata/_custom_type_script = "uid://c8kc8gepimq0l"

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://gk4q6i0norp7" path="res://scenes/general/pause_menu.tscn" id="2_gdt2y"]
 [ext_resource type="PackedScene" uid="uid://tia2c2esp2w" path="res://scenes/ui/debug_overlay.tscn" id="3_wm3ai"]
 [ext_resource type="PackedScene" uid="uid://b8atrlyexe8f8" path="res://scenes/ui/death_screen.tscn" id="5_0dwhk"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dawn_fade.tscn" id="6_dawn"]
 
 [node name="UI" type="Node" unique_id=934683406]
 script = ExtResource("1_gdt2y")
@@ -16,6 +17,8 @@ visible = false
 
 [node name="Debug_Overlay" parent="." unique_id=57384500 instance=ExtResource("3_wm3ai")]
 layer = 2
+
+[node name="DawnFade" parent="." instance=ExtResource("6_dawn")]
 
 [node name="Death_screen" parent="." unique_id=2138021163 instance=ExtResource("5_0dwhk")]
 visible = false

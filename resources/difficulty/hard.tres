@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RunDifficulty" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run/run_difficulty.gd" id="1_diff"]
+
+[resource]
+script = ExtResource("1_diff")
+id = &"hard"
+display_name = "Складно"
+distance_to_end = 400.0
+max_enemy_weight = 200.0

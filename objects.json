@@ -27,5 +27,171 @@
       "Money": 500,
       "Purchased": 0
     }
+  ],
+  "Bases": [
+    {
+      "BaseNum": 1,
+      "ID": 1001,
+      "BaseName": "Бар \"Янтарна крапля\"",
+      "Monsters": "Монстри: Вовк - полювальник",
+      "Description": "Опис: База, в якій алкоголь\nвідіграє важливу роль і підіймає\nбойовий дух.",
+      "ISActive": 0,
+      "Base1": 0,
+      "Base2": 12,
+      "Base3": 13,
+      "Base4": 14,
+      "Base5": 15
+    },
+    {
+      "BaseNum": 2,
+      "ID": 1002,
+      "BaseName": "Лабораторія №67",
+      "Monsters": "Монстри: Вовк - полювальник",
+      "Description": "Опис: Закинута лабораторія \nза словами місцевих жителів. \nАбо ні?",
+      "ISActive": 1,
+      "Base1": 12,
+      "Base2": 0,
+      "Base3": 23,
+      "Base4": 24,
+      "Base5": 25
+    },
+    {
+      "BaseNum": 3,
+      "ID": 1003,
+      "BaseName": "Санаторій \"Веселка\"",
+      "Monsters": "Монстри: Вовк - полювальник",
+      "Description": "Опис: Від людей для людей. \nМісце, що відновлювало життєві \nсили.",
+      "ISActive": 0,
+      "Base1": 13,
+      "Base2": 23,
+      "Base3": 0,
+      "Base4": 34,
+      "Base5": 35
+    },
+    {
+      "BaseNum": 4,
+      "ID": 1004,
+      "BaseName": "Будиночок біля озера",
+      "Monsters": "Монстри: Вовк - полювальник",
+      "Description": "Опис: За словами дивного \nчоловіка тут живе вчений.",
+      "ISActive": 0,
+      "Base1": 14,
+      "Base2": 24,
+      "Base3": 34,
+      "Base4": 0,
+      "Base5": 45
+    },
+    {
+      "BaseNum": 5,
+      "ID": 1005,
+      "BaseName": "Завод №9",
+      "Monsters": "Монстри: Вовк - полювальник",
+      "Description": "Опис: В минулому найбільший \nзавод з виготовлення зброї.",
+      "ISActive": 0,
+      "Base1": 15,
+      "Base2": 25,
+      "Base3": 35,
+      "Base4": 45,
+      "Base5": 0
+    }
+  ],
+  "Roads": [
+    {
+      "Number": 12,
+      "Hardness": "Складність: Нормально",
+      "Difficulty": "normal"
+    },
+    {
+      "Number": 13,
+      "Hardness": "Складність: Складно",
+      "Difficulty": "hard"
+    },
+    {
+      "Number": 14,
+      "Hardness": "Складність: Складно",
+      "Difficulty": "hard"
+    },
+    {
+      "Number": 15,
+      "Hardness": "Складність: Легко",
+      "Difficulty": "easy"
+    },
+    {
+      "Number": 23,
+      "Hardness": "Складність: Нормально",
+      "Difficulty": "normal"
+    },
+    {
+      "Number": 24,
+      "Hardness": "Складність: Легко",
+      "Difficulty": "easy"
+    },
+    {
+      "Number": 25,
+      "Hardness": "Складність: Нормально",
+      "Difficulty": "normal"
+    },
+    {
+      "Number": 34,
+      "Hardness": "Складність: Легко",
+      "Difficulty": "easy"
+    },
+    {
+      "Number": 35,
+      "Hardness": "Складність: Складно",
+      "Difficulty": "hard"
+    },
+    {
+      "Number": 45,
+      "Hardness": "Складність: Складно",
+      "Difficulty": "hard"
+    }
+  ],
+  "Quests": [
+    {
+      "Name": "\"Присмак\"",
+      "ID": 101,
+      "Location": "Лic 1",
+      "Unlocked": 2,
+      "Description": "Приїдьте до будиночку біля озера і познайомтесь з вченим.",
+      "Have": 1,
+      "Need": 1
+    },
+    {
+      "Name": "\"Зразки\"",
+      "ID": 102,
+      "Location": "Лic 1",
+      "Unlocked": 2,
+      "Description": "Відвідайте всі бази і зберіть чотири зразки води.",
+      "Have": 4,
+      "Need": 4
+    },
+    {
+      "Name": "\"Очікування результатів\"",
+      "ID": 103,
+      "Location": "Лic 1",
+      "Unlocked": 2,
+      "Description": "Дочекайтесь результатів аналізу.",
+      "Have": 25,
+      "Need": 25
+    },
+    {
+      "Name": "\"Розвідка\"",
+      "ID": 104,
+      "Location": "Лic 1",
+      "Unlocked": 1,
+      "Description": "Відвідайте всі бази і поспілкуйтесь з місцевими жителями.",
+      "Have": 1,
+      "Need": 4
+    },
+    {
+      "Name": "\"Наслідок\"",
+      "ID": 105,
+      "Location": "Лic 1",
+      "Unlocked": 0,
+      "Description": "Поверніться до вченого.",
+      "Have": 0,
+      "Need": 1
+    }
   ]
 }

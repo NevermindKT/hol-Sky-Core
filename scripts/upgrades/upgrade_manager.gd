@@ -55,10 +55,12 @@ func trigger(event_id: StringName, context: Dictionary = {}) -> void:
 			effect.on_event(event_id, context)
 
 func is_unlocked(upgrade_data: UpgradeData) -> bool:
+	if upgrade_data.prerequisites.is_empty():
+		return true
 	for prerequisite in upgrade_data.prerequisites:
-		if get_level(prerequisite.id) < UNLOCK_LEVEL:
-			return false
-	return true
+		if get_level(prerequisite.id) >= UNLOCK_LEVEL:
+			return true
+	return false
 
 func is_maxed(upgrade_data: UpgradeData) -> bool:
 	return get_level(upgrade_data.id) >= upgrade_data.max_level

@@ -1,0 +1,37 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://scripts/audio/music_director.gd" id="1_dir"]
+[ext_resource type="Script" path="res://scripts/audio/music_combat_set.gd" id="2_set"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/dusk_inside.ogg" id="3_dusk_a"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/dusk_stalker.ogg" id="4_dusk_b"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/predator_main.ogg" id="5_pm"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/predator_drums.ogg" id="6_pd"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/predator_hp.ogg" id="7_ph"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/predator_warning.ogg" id="8_pw"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/hunt_main.ogg" id="9_hm"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/hunt_drums.ogg" id="10_hd"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/hunt_hp.ogg" id="11_hh"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/hunt_warning.ogg" id="12_hw"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/impact.ogg" id="13_imp"]
+
+[sub_resource type="Resource" id="Resource_predator"]
+script = ExtResource("2_set")
+set_name = "Predator"
+main = ExtResource("5_pm")
+drums = ExtResource("6_pd")
+low_hp = ExtResource("7_ph")
+warning = ExtResource("8_pw")
+
+[sub_resource type="Resource" id="Resource_hunt"]
+script = ExtResource("2_set")
+set_name = "Hunt"
+main = ExtResource("9_hm")
+drums = ExtResource("10_hd")
+low_hp = ExtResource("11_hh")
+warning = ExtResource("12_hw")
+
+[node name="MusicDirector" type="Node"]
+script = ExtResource("1_dir")
+dusk_tracks = Array[AudioStream]([ExtResource("3_dusk_a"), ExtResource("4_dusk_b")])
+combat_sets = Array[ExtResource("2_set")]([SubResource("Resource_predator"), SubResource("Resource_hunt")])
+impact = ExtResource("13_imp")

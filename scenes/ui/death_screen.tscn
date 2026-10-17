@@ -8,6 +8,7 @@ shader = ExtResource("2_njuei")
 shader_parameter/blur_amount = 4.0
 
 [node name="Death_screen" type="CanvasLayer" unique_id=2138021163 node_paths=PackedStringArray("restart_btn", "exit_btn")]
+layer = 10
 script = ExtResource("1_j0ehl")
 restart_btn = NodePath("Menu/RestartBtn")
 exit_btn = NodePath("Menu/ExitBtn")
@@ -38,6 +39,12 @@ alignment = 1
 
 [node name="DeathLabel" type="RichTextLabel" parent="Menu" unique_id=1130963898]
 layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 14
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
 theme_override_font_sizes/normal_font_size = 44
 text = "CRASHED"
 fit_content = true
@@ -51,4 +58,4 @@ text = "RETRY"
 [node name="ExitBtn" type="Button" parent="Menu" unique_id=933683804 groups=["ui_buttons"]]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "QUIT"
+text = "MENU"

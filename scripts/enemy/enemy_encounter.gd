@@ -147,6 +147,8 @@ func spawn_random_group() -> void:
 
 	_spawn_offscreen_batch(new_enemies)
 	start_encounter()
+	if not new_enemies.is_empty():
+		Events.encounter_started.emit()
 
 
 func add_enemy(enemy_data: EncounterEnemyData, spawn_offscreen := true) -> Encounter_Enemy:
@@ -231,7 +233,10 @@ func start_encounter() -> void:
 
 
 func check_battle() -> void:
+	var was_battle := is_battle
 	is_battle = is_there_enemies()
+	if was_battle and not is_battle:
+		Events.encounter_ended.emit()
 
 
 func is_there_enemies() -> bool:

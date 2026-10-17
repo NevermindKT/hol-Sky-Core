@@ -46,3 +46,12 @@ var thermal_vision_active := false
 #-------------- RUN
 signal run_started
 signal run_ended
+signal dawn_started
+signal dawn_time_changed(seconds_left: int)
+signal dawn_finished
+signal dawn_blackout
+
+#-------------- ENCOUNTERS
+signal encounter_incoming
+signal encounter_started
+signal encounter_ended

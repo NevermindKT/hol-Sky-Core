@@ -60,8 +60,17 @@ func _process(delta: float) -> void:
 		_time_left[boost] -= real_delta
 
 		if _time_left[boost] <= 0.0:
-			active.erase(boost)
-			_time_left.erase(boost)
+			_expire(boost)
 
-			for effect in boost.effects:
-				effect.on_event(&"boost_expired", {"boost": boost})
+
+func clear_active() -> void:
+	for boost in active.duplicate():
+		_expire(boost)
+
+
+func _expire(boost: BoostData) -> void:
+	active.erase(boost)
+	_time_left.erase(boost)
+
+	for effect in boost.effects:
+		effect.on_event(&"boost_expired", {"boost": boost})

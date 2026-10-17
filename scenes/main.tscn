@@ -39,12 +39,8 @@
 [ext_resource type="PackedScene" uid="uid://dai1plo0j20el" path="res://scenes/vfx/effects/tire_trail_stroke.tscn" id="36_kjtvk"]
 [ext_resource type="Script" uid="uid://do8buj4uqdsyy" path="res://scripts/audio/ambient_manager.gd" id="37_5poiv"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="37_xrs0c"]
-[ext_resource type="AudioStream" uid="uid://6vq1urn1bbkt" path="res://audio/music/bAd Companyz.ogg" id="38_bjg73"]
 [ext_resource type="AudioStream" uid="uid://cu00n3fvniuvg" path="res://audio/effects/amibient/natural/AMBSubn_Ambience, Forest Crickets, Birds, Connecticut 02_344 Audio_East Coast America.mp3" id="38_chjal"]
 [ext_resource type="AudioStream" uid="uid://c6bdvnxytedo7" path="res://audio/effects/amibient/natural/STORM_StormAmbience11_InMotionAudio_BackGardenStorm.ogg" id="38_txyw0"]
-[ext_resource type="AudioStream" uid="uid://htkhissh4gjc" path="res://audio/music/THE ANSWER - Armored Core Tribute Album - #02 Twisted on the Surface.ogg" id="38_ty1g6"]
-[ext_resource type="AudioStream" uid="uid://dgi0nxoqp0nvc" path="res://audio/music/Days.ogg" id="40_bjg73"]
-[ext_resource type="AudioStream" uid="uid://bwkgu6moiqkxg" path="res://audio/music/Frostwave - Ace Combat 8 Wings of Theve Soundtrack.ogg" id="41_bu4jf"]
 [ext_resource type="AudioStream" uid="uid://crpwjw4e4f2lq" path="res://audio/effects/amibient/instrumental/DSGNTonl_Designed Metal Bowed Screech Tonal Reverb 7_The Noisery_Moaning Metal.wav" id="42_vc5cj"]
 [ext_resource type="AudioStream" uid="uid://3n23q8trnwre" path="res://audio/effects/amibient/instrumental/DSGNTonl_Metal Scrape Low Tonal LFE 4_The Noisery_Moaning Metal.wav" id="43_nvyfr"]
 [ext_resource type="Script" uid="uid://b4rf1i0ro8kj0" path="res://scripts/data/sound/ambience_layer.gd" id="44_nvyfr"]
@@ -52,6 +48,7 @@
 [ext_resource type="AudioStream" uid="uid://dtvdg88gavmnk" path="res://audio/effects/eniviroment/wind/THUN_Interior Thunder Rumble_JF_INT Storm_01.wav" id="46_j2jfr"]
 [ext_resource type="Script" uid="uid://bqxbgbeith4mw" path="res://scripts/audio/music_manager.gd" id="47_nvyfr"]
 [ext_resource type="AudioStream" uid="uid://p4skorlelk65" path="res://audio/effects/eniviroment/wind/WINDInt_Loop Weather Wind Whipping Constricted Flow Turbulent 01_ESM_SNLS.wav" id="48_bjg73"]
+[ext_resource type="PackedScene" path="res://scenes/audio/music_director.tscn" id="49_bjg73"]
 [ext_resource type="Script" uid="uid://c368fw1usnanj" path="res://scripts/run_stats.gd" id="51_o7ddy"]
 [ext_resource type="Script" uid="uid://bq27whxpuul5t" path="res://scripts/screen_effects/loading_rect.gd" id="53_o7ddy"]
 
@@ -318,7 +315,6 @@ fade_duration = 5.0
 [node name="MusicManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=341409651 node_paths=PackedStringArray("car")]
 script = ExtResource("47_nvyfr")
 car = NodePath("../../Car")
-tracks = Array[AudioStream]([ExtResource("38_bjg73"), ExtResource("38_ty1g6"), ExtResource("40_bjg73"), ExtResource("41_bu4jf")])
 gap_between_tracks = 2.2
 clean_start_ratio = 0.3
 clean_end_ratio = 0.65
@@ -348,6 +344,10 @@ fade_duration = 5.0
 
 [node name="RunStats" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1836640605]
 script = ExtResource("51_o7ddy")
+summary_scene_path = "res://scenes/ui/run_summary_menu.tscn"
+
+[node name="MusicDirector" parent="SubViewportContainer/SubViewport/Services" unique_id=261061250 instance=ExtResource("49_bjg73")]
+dusk_variant = 1
 
 [node name="Overlay" type="TextureRect" parent="." unique_id=64996111]
 texture_filter = 1

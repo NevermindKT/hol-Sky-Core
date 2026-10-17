@@ -3,6 +3,7 @@
 [ext_resource type="Resource" uid="uid://i8hopcggudai" path="res://resources/upgrades/branches/accuracy_branch.tres" id="1_wdoqs"]
 [ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_ce2bc"]
 [ext_resource type="Resource" uid="uid://dls2ryjrvjcmq" path="res://resources/upgrades/data/less_spread.tres" id="5_0rggi"]
+[ext_resource type="Resource" uid="uid://ehf26lt3mmae" path="res://resources/upgrades/data/less_turning_delay.tres" id="5_0rggj"]
 [ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="eff_base"]
 [ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="eff_stat"]
 [ext_resource type="Script" uid="uid://d18mggsnx5se3" path="res://scripts/data/upgrade/upgrade_level.gd" id="level"]
@@ -55,6 +56,6 @@ id = "CC01"
 display_name = "Critical damage chance"
 description = "Critical damage chance"
 branch = ExtResource("1_wdoqs")
-prerequisites = Array[ExtResource("2_ce2bc")]([ExtResource("5_0rggi")])
+prerequisites = Array[ExtResource("2_ce2bc")]([ExtResource("5_0rggi"), ExtResource("5_0rggj")])
 levels = Array[ExtResource("level")]([SubResource("Level_1"), SubResource("Level_2"), SubResource("Level_3")])
 metadata/_custom_type_script = "uid://c8kc8gepimq0l"

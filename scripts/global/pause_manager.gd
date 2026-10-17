@@ -12,7 +12,7 @@ func _ready() -> void:
 	GameFlow.restart_requested.connect(_on_restart)
 
 func toggle_pause():
-	if is_game_over:
+	if is_game_over or !GameFlow.in_run:
 		return
 	set_paused(!is_paused)
 

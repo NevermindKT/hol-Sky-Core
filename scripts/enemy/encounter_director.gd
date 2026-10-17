@@ -9,6 +9,7 @@ var run_manager: Run_manager
 @export var initial_delay_segments := 4
 @export var min_segments_between_encounters := 6
 @export var max_segments_between_encounters := 12
+@export var warning_segments := 2
 
 @export_category("Difficulty Scaling")
 @export var base_max_weight := 40.0
@@ -40,6 +41,9 @@ func _on_segment_despawned() -> void:
 		return
 	
 	segments_since_last_encounter += 1
+
+	if segments_until_next_encounter - segments_since_last_encounter == warning_segments:
+		Events.encounter_incoming.emit()
 	
 	if segments_since_last_encounter >= segments_until_next_encounter:
 		_trigger_encounter()

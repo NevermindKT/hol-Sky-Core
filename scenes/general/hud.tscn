@@ -107,13 +107,14 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="HUD" type="CanvasLayer" unique_id=299315244 node_paths=PackedStringArray("cross_hair_con", "second_rectile", "health_bar", "stamina_bar", "level_progress_bar", "enemy_compass", "left", "right", "turret_rotation_marker_container", "turret_marker", "weapon_name", "ammo_label", "scalable_bars", "scalable_labels", "ammo_icon_rect")]
+[node name="HUD" type="CanvasLayer" unique_id=299315244 node_paths=PackedStringArray("cross_hair_con", "second_rectile", "health_bar", "stamina_bar", "level_progress_bar", "dawn_timer_label", "enemy_compass", "left", "right", "turret_rotation_marker_container", "turret_marker", "weapon_name", "ammo_label", "scalable_bars", "scalable_labels", "ammo_icon_rect")]
 script = ExtResource("1_p21ms")
 cross_hair_con = NodePath("CrossHairCon")
 second_rectile = NodePath("SecondRectile")
 health_bar = NodePath("Left/HealthBar")
 stamina_bar = NodePath("Left/StaminaBar")
 level_progress_bar = NodePath("Top/LevelProgressBar")
+dawn_timer_label = NodePath("DawnTimer")
 enemy_compass = NodePath("EnemyCompass")
 left = NodePath("Left")
 right = NodePath("Right")
@@ -276,6 +277,21 @@ size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_nr7vf")
 theme_override_styles/fill = SubResource("StyleBoxFlat_37424")
 show_percentage = false
+
+[node name="DawnTimer" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 22.0
+offset_right = -24.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "00:00"
+horizontal_alignment = 2
 
 [node name="Left" type="VBoxContainer" parent="." unique_id=1188987128]
 z_index = 1

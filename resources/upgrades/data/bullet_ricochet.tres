@@ -3,6 +3,7 @@
 [ext_resource type="Resource" uid="uid://b0hc3h2qjskei" path="res://resources/upgrades/branches/damage_branch.tres" id="1_um0nx"]
 [ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_ixgg1"]
 [ext_resource type="Resource" uid="uid://cnnh1uw8uk831" path="res://resources/upgrades/data/enemy_stunning.tres" id="5_k18wa"]
+[ext_resource type="Resource" uid="uid://bhxot516pku0x" path="res://resources/upgrades/data/enemy_slowdown.tres" id="5_k18wb"]
 [ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="eff_base"]
 [ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="eff_stat"]
 [ext_resource type="Script" uid="uid://d18mggsnx5se3" path="res://scripts/data/upgrade/upgrade_level.gd" id="level"]
@@ -11,7 +12,6 @@
 script = ExtResource("eff_stat")
 stat_id = &"bullet_ricochet"
 operation = 1
-multiplier = 1.0
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_1"]
@@ -55,6 +55,6 @@ id = "BR01"
 display_name = "Bullet ricochet"
 description = "Bullet ricochet"
 branch = ExtResource("1_um0nx")
-prerequisites = Array[ExtResource("2_ixgg1")]([ExtResource("5_k18wa")])
+prerequisites = Array[ExtResource("2_ixgg1")]([ExtResource("5_k18wa"), ExtResource("5_k18wb")])
 levels = Array[ExtResource("level")]([SubResource("Level_1"), SubResource("Level_2"), SubResource("Level_3")])
 metadata/_custom_type_script = "uid://c8kc8gepimq0l"

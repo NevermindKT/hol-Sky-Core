@@ -9,6 +9,7 @@ class_name HUD
 @export var health_bar: ProgressBar
 @export var stamina_bar: ProgressBar
 @export var level_progress_bar: ProgressBar
+@export var dawn_timer_label: Label
 
 @export_category("Enemy")
 @export var enemy_compass: Enemy_Compass
@@ -80,6 +81,7 @@ func _ready() -> void:
 	Events.player_health_changed.connect(update_health)
 	Events.player_stamina_changed.connect(update_stamina)
 	Events.level_progress_changed.connect(update_progress)
+	Events.dawn_time_changed.connect(update_dawn_timer)
 	Events.turret_rotation_changed.connect(_on_turret_rotation_changed)
 
 	left.mouse_entered.connect(_on_left_mouse_entered)
@@ -116,6 +118,10 @@ func _on_pause_toggle():
 
 func update_progress(current: float, max_distance: float):
 	level_progress_bar.value = (current / max_distance) * 100.0
+
+
+func update_dawn_timer(seconds_left: int):
+	dawn_timer_label.text = "%02d:%02d" % [floori(seconds_left / 60.0), seconds_left % 60]
 
 #----------------------------------------------------------------- ENEMY COMPASS
 

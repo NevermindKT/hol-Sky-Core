@@ -122,6 +122,7 @@ func _ready() -> void:
 	_baseline_volumetric_fog_density = environment.volumetric_fog_density
 
 	Events.run_started.connect(play_dusk_intro)
+	Events.dawn_started.connect(_on_dawn_started)
 	Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
 
 
@@ -254,6 +255,12 @@ func _on_thermal_vision_changed(active: bool) -> void:
 	_thermal_tween.tween_property(environment, "adjustment_brightness", target_brightness, thermal_transition_duration)
 	_thermal_tween.tween_property(environment, "fog_density", target_fog_density, thermal_transition_duration)
 	_thermal_tween.tween_property(environment, "volumetric_fog_density", target_volumetric_fog_density, thermal_transition_duration)
+
+
+func _on_dawn_started() -> void:
+	play_deadly_dawn()
+	await active_tween.finished
+	Events.dawn_finished.emit()
 
 
 func _kill_active_tween() -> void:

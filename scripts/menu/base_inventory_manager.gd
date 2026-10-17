@@ -52,6 +52,24 @@ func load_data() -> void:
 	# Создаём сохранение при первом запуске.
 	if not FileAccess.file_exists(SAVE_PATH):
 		save_data()
+	elif _add_missing_tables():
+		save_data()
+
+
+func _add_missing_tables() -> bool:
+	var source = JSON.parse_string(FileAccess.get_file_as_string(SOURCE_PATH))
+
+	if not source is Dictionary:
+		return false
+
+	var added := false
+
+	for table_name in source:
+		if not data.has(table_name):
+			data[table_name] = source[table_name]
+			added = true
+
+	return added
 
 
 func save_data() -> void:
@@ -79,7 +97,7 @@ func find_object_by_name(object_name: String) -> Dictionary:
 
 func find_object_by_id(object_id: String) -> Dictionary:
 	for item in data.get("Objects", []):
-		if str(item.get("ID", "")) == object_id:
+		if _key(item.get("ID", "")) == _key(object_id):
 			return item
 
 	return {}
@@ -384,13 +402,20 @@ func get_rows(table_name: String) -> Array:
 	return []
 
 
+func _key(value: Variant) -> String:
+	if value is float and value == floorf(value):
+		return str(int(value))
+
+	return str(value)
+
+
 func find_row(
 	table_name: String,
 	field: String,
 	value: Variant
 ) -> Dictionary:
 	for row in get_rows(table_name):
-		if str(row.get(field, "")) == str(value):
+		if _key(row.get(field, "")) == _key(value):
 			return row
 
 	return {}

@@ -1,0 +1,71 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/loading_screen.gd" id="1_load"]
+[ext_resource type="Script" path="res://scripts/ui/loading_spinner.gd" id="2_spin"]
+[ext_resource type="Texture2D" uid="uid://cis71tbb2pkc8" path="res://textures/menu/BG/MainMenuBackground.png" id="3_bg"]
+[ext_resource type="Texture2D" uid="uid://cv0yb11oymm55" path="res://textures/menu/main/00 LOGO — vector outlines + editable type.png" id="4_logo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bg"]
+texture = ExtResource("3_bg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_logo"]
+texture = ExtResource("4_logo")
+
+[node name="LoadingScreen" type="CanvasLayer" node_paths=PackedStringArray("root")]
+layer = 100
+script = ExtResource("1_load")
+root = NodePath("Root")
+
+[node name="Root" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Black" type="ColorRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Background" type="Panel" parent="Root"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -2051.0
+offset_bottom = 1300.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bg")
+
+[node name="Logo" type="Panel" parent="Root"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 152.0
+offset_right = 839.0
+offset_bottom = 455.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_logo")
+
+[node name="Spinner" type="Control" parent="Root"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("2_spin")
