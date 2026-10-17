@@ -48,9 +48,14 @@
 [ext_resource type="AudioStream" uid="uid://dtvdg88gavmnk" path="res://audio/effects/eniviroment/wind/THUN_Interior Thunder Rumble_JF_INT Storm_01.wav" id="46_j2jfr"]
 [ext_resource type="Script" uid="uid://bqxbgbeith4mw" path="res://scripts/audio/music_manager.gd" id="47_nvyfr"]
 [ext_resource type="AudioStream" uid="uid://p4skorlelk65" path="res://audio/effects/eniviroment/wind/WINDInt_Loop Weather Wind Whipping Constricted Flow Turbulent 01_ESM_SNLS.wav" id="48_bjg73"]
-[ext_resource type="PackedScene" path="res://scenes/audio/music_director.tscn" id="49_bjg73"]
 [ext_resource type="Script" uid="uid://c368fw1usnanj" path="res://scripts/run_stats.gd" id="51_o7ddy"]
 [ext_resource type="Script" uid="uid://bq27whxpuul5t" path="res://scripts/screen_effects/loading_rect.gd" id="53_o7ddy"]
+[ext_resource type="AudioStream" uid="uid://pbfrmltjxdel" path="res://audio/music/afterroute/dusk_inside.ogg" id="60_dusk_a"]
+[ext_resource type="AudioStream" uid="uid://cgmjjxc5djvkl" path="res://audio/music/afterroute/dusk_stalker.ogg" id="61_dusk_b"]
+[ext_resource type="Resource" path="res://resources/audio/music/predator_set.tres" id="62_pred"]
+[ext_resource type="Resource" path="res://resources/audio/music/hunt_set.tres" id="63_hunt"]
+[ext_resource type="Script" uid="uid://c7gfj26sn8i8l" path="res://scripts/audio/music_combat_set.gd" id="64_mset"]
+[ext_resource type="AudioStream" uid="uid://bkq1hhm3t2kva" path="res://audio/music/afterroute/impact.ogg" id="65_imp"]
 
 [sub_resource type="Resource" id="Resource_cyvft"]
 script = ExtResource("5_2cjbq")
@@ -252,6 +257,7 @@ encounter_director = NodePath("../EncounterDirector")
 
 [node name="RunManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=126509168]
 script = ExtResource("13_j2jfr")
+dawn_time_multiplier = 1.2
 
 [node name="AimController" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=523903400]
 script = ExtResource("14_bjg73")
@@ -315,7 +321,13 @@ fade_duration = 5.0
 [node name="MusicManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=341409651 node_paths=PackedStringArray("car")]
 script = ExtResource("47_nvyfr")
 car = NodePath("../../Car")
-gap_between_tracks = 2.2
+music_volume_db = 16.0
+dusk_tracks = Array[AudioStream]([ExtResource("60_dusk_a"), ExtResource("61_dusk_b")])
+dusk_variant = 1
+combat_sets = Array[ExtResource("64_mset")]([ExtResource("62_pred"), ExtResource("63_hunt")])
+impact = ExtResource("65_imp")
+ambient_volume_db = 2.0
+warning_volume_db = 3.0
 clean_start_ratio = 0.3
 clean_end_ratio = 0.65
 transition_speed = 1.0
@@ -345,9 +357,6 @@ fade_duration = 5.0
 [node name="RunStats" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1836640605]
 script = ExtResource("51_o7ddy")
 summary_scene_path = "res://scenes/ui/run_summary_menu.tscn"
-
-[node name="MusicDirector" parent="SubViewportContainer/SubViewport/Services" unique_id=261061250 instance=ExtResource("49_bjg73")]
-dusk_variant = 1
 
 [node name="Overlay" type="TextureRect" parent="." unique_id=64996111]
 texture_filter = 1

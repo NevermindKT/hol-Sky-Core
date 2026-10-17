@@ -9,7 +9,7 @@ var run_manager: Run_manager
 @export var initial_delay_segments := 4
 @export var min_segments_between_encounters := 6
 @export var max_segments_between_encounters := 12
-@export var warning_segments := 2
+@export var warning_time := 5.0
 
 @export_category("Difficulty Scaling")
 @export var base_max_weight := 40.0
@@ -20,6 +20,7 @@ var run_manager: Run_manager
 
 var segments_since_last_encounter := 0
 var segments_until_next_encounter := 0
+var _warned := false
 
 
 func _ready() -> void:
@@ -42,14 +43,23 @@ func _on_segment_despawned() -> void:
 	
 	segments_since_last_encounter += 1
 
-	if segments_until_next_encounter - segments_since_last_encounter == warning_segments:
+	if not _warned and _seconds_to_encounter() <= warning_time:
+		_warned = true
 		Events.encounter_incoming.emit()
 	
 	if segments_since_last_encounter >= segments_until_next_encounter:
 		_trigger_encounter()
 
 
+func _seconds_to_encounter() -> float:
+	var remaining := segments_until_next_encounter - segments_since_last_encounter
+	var car := encounter.player as Car_Movement
+	var speed := car.speed if car else run_manager.average_speed
+	return remaining * run_manager.segment_length / maxf(speed, 1.0)
+
+
 func _trigger_encounter() -> void:
+	_warned = false
 	segments_since_last_encounter = 0
 	segments_until_next_encounter = randi_range(
 		min_segments_between_encounters,
