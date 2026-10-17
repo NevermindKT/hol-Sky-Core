@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cmmy07rt8wv7p"]
 
-[ext_resource type="Texture2D" uid="uid://cis71tbb2pkc8" path="res://textures/menu/BG/MainMenuBackground.png" id="1_8010q"]
+[ext_resource type="Script" uid="uid://cq5xa8ga83ire" path="res://scenes/menu/main/menu.gd" id="1_pd6cf"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="2_a4lia"]
+[ext_resource type="Texture2D" uid="uid://bjnvnkevs1peg" path="res://textures/menu/main/Back.png" id="2_pd6cf"]
 [ext_resource type="Texture2D" uid="uid://beqd6smjpnbdk" path="res://textures/menu/main/01 Continue — plate + vector icon.png" id="3_klrtg"]
 [ext_resource type="Texture2D" uid="uid://deq0fn3xlj3uq" path="res://textures/menu/main/02 New Game — plate + vector icon.png" id="4_pd6cf"]
 [ext_resource type="Texture2D" uid="uid://do1b0c28vwtyi" path="res://textures/menu/main/03 Settings — plate + vector icon.png" id="5_nyq28"]
@@ -10,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cv0yb11oymm55" path="res://textures/menu/main/00 LOGO — vector outlines + editable type.png" id="8_58y2i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vnypt"]
-texture = ExtResource("1_8010q")
+texture = ExtResource("2_pd6cf")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqhb3"]
 content_margin_left = 90.0
@@ -97,6 +98,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pd6cf")
 metadata/_edit_vertical_guides_ = [885.0]
 
 [node name="Panel" type="Panel" parent="." unique_id=74522248]
@@ -105,7 +107,8 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -2051.0
-offset_bottom = 1300.0
+offset_top = -49.0
+offset_bottom = 1349.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_vnypt")
 
@@ -121,7 +124,7 @@ offset_bottom = 362.59747
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="VBoxContainer" unique_id=916711973]
+[node name="Continue" type="Button" parent="VBoxContainer" unique_id=916711973]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -136,7 +139,7 @@ text = "Continue"
 alignment = 0
 icon_alignment = 1
 
-[node name="Button2" type="Button" parent="VBoxContainer" unique_id=352790787]
+[node name="NewGame" type="Button" parent="VBoxContainer" unique_id=352790787]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -151,7 +154,7 @@ text = "New Game"
 alignment = 0
 icon_alignment = 1
 
-[node name="Button3" type="Button" parent="VBoxContainer" unique_id=16693818]
+[node name="Settings" type="Button" parent="VBoxContainer" unique_id=16693818]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -166,7 +169,7 @@ text = "Settings"
 alignment = 0
 icon_alignment = 1
 
-[node name="Button4" type="Button" parent="VBoxContainer" unique_id=1903210021]
+[node name="Titles" type="Button" parent="VBoxContainer" unique_id=1903210021]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2
@@ -181,7 +184,7 @@ text = "Titles"
 alignment = 0
 icon_alignment = 1
 
-[node name="Button5" type="Button" parent="VBoxContainer" unique_id=1631202606]
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1631202606]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_default_cursor_shape = 2

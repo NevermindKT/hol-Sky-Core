@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="CLEAN_ICONS_consistent_20pt_rounded_strokes" data-name="CLEAN ICONS — consistent 20pt rounded strokes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #d8c8a9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+  <g id="AmmoSave">
+    <path class="cls-1" d="M237.69,308v-80c0-20.67,7.8-39,23.4-55,15.6,16,23.4,34.33,23.4,55v80h-46.8ZM237.69,338h46.8M272.52,115c73.23,0,132.6,63.13,132.6,141,0,77.87-58.48,140.33-131.72,140.33M296.3,425.89l-22.89-29.56,22.89-28.22M249.48,397c-73.23,0-132.6-63.13-132.6-141s58.48-140.33,131.72-140.33M225.7,86.11l22.89,29.56-22.89,28.22"/>
+  </g>
+</svg>

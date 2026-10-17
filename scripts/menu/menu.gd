@@ -15,20 +15,40 @@ func _ready() -> void:
 
 func MapButtonPressed() -> void:
 	print("Нажата кнопка: MapButton")
-	get_tree().change_scene_to_file("res://scenes/menu/map/Map.tscn")
+	var target_scene = "res://scenes/menu/map/Map.tscn"
+	if get_tree().current_scene.scene_file_path == target_scene:
+		print("Вы уже находитесь на этой сцене.")
+		return
+	get_tree().change_scene_to_file(target_scene)
 
 func TurretButtonPressed() -> void:
 	print("Нажата кнопка: TurretButton")
-	get_tree().change_scene_to_file("res://scenes/menu/turret/Turret.tscn")
+	var target_scene = "res://scenes/menu/turret/Turret.tscn"
+	if get_tree().current_scene.scene_file_path == target_scene:
+		print("Вы уже находитесь на этой сцене.")
+		return
+	get_tree().change_scene_to_file(target_scene)
 
 func CarButtonPressed() -> void:
 	print("Нажата кнопка: CarButton")
-	get_tree().change_scene_to_file("res://scenes/menu/car/Car.tscn")
+	var target_scene = "res://scenes/menu/car/Car.tscn"
+	if get_tree().current_scene.scene_file_path == target_scene:
+		print("Вы уже находитесь на этой сцене.")
+		return
+	get_tree().change_scene_to_file(target_scene)
 
 func InventoryButtonPressed() -> void:
 	print("Нажата кнопка: InventoryButton")
-	get_tree().change_scene_to_file("res://scenes/menu/inventory/Inventory.tscn")
+	var target_scene = "res://scenes/menu/inventory/Inventory.tscn"
+	if get_tree().current_scene.scene_file_path == target_scene:
+		print("Вы уже находитесь на этой сцене.")
+		return
+	get_tree().change_scene_to_file(target_scene)
 
 func ShopButtonPressed() -> void:
 	print("Нажата кнопка: ShopButton")
-	get_tree().change_scene_to_file("res://scenes/menu/shop/Shop.tscn")
+	var target_scene = "res://scenes/menu/shop/Shop.tscn"
+	if get_tree().current_scene.scene_file_path == target_scene:
+		print("Вы уже находитесь на этой сцене.")
+		return
+	get_tree().change_scene_to_file(target_scene)

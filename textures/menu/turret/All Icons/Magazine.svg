@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="CLEAN_ICONS_consistent_20pt_rounded_strokes" data-name="CLEAN ICONS — consistent 20pt rounded strokes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #d8c8a9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+  <g id="Magazine">
+    <path class="cls-1" d="M199.8,115h124.41c3.75,0,6.8,3.04,6.8,6.8v156.2c0,41.81-13.04,80.52-39.11,116.13-1.7,2.32-4.68,3.34-7.44,2.52l-114.36-33.95c-4.41-1.31-6.25-6.52-3.68-10.34,17.72-26.34,26.59-53.8,26.59-82.36V121.8c0-3.75,3.04-6.8,6.8-6.8ZM233,164v113c0,30.67-6,54-18,70M284,164v113c0,32-6.67,59.67-20,83"/>
+  </g>
+</svg>

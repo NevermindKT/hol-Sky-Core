@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="CLEAN_ICONS_consistent_20pt_rounded_strokes" data-name="CLEAN ICONS — consistent 20pt rounded strokes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #d8c8a9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+  <g id="FireRate">
+    <path class="cls-1" d="M125,329v-110c0-19.33,7.33-36,22-50,14.67,14,22,30.67,22,50v110h-44ZM239,329v-160c0-19.33,7.33-36,22-50,14.67,14,22,30.67,22,50v160h-44ZM353,329v-110c0-19.33,7.33-36,22-50,14.67,14,22,30.67,22,50v110h-44ZM125,366h44M239,366h44M353,366h44"/>
+  </g>
+</svg>

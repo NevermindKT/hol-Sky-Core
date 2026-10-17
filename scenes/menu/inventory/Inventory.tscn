@@ -1,21 +1,18 @@
 [gd_scene format=3 uid="uid://bix78nnee7b6"]
 
 [ext_resource type="Script" uid="uid://b6x5l3kriw6qo" path="res://scripts/menu/inventory/Inventory.gd" id="1_3t7i5"]
+[ext_resource type="Texture2D" uid="uid://buqwarq4g3ls5" path="res://textures/menu/inventory/CityStreetAsphaltGenericClean001_COL_2K copy.png" id="2_n5s87"]
 [ext_resource type="Script" uid="uid://r6qbhb4ucdyh" path="res://scripts/menu/menu.gd" id="2_rgoiq"]
+[ext_resource type="Texture2D" uid="uid://dyt8y73rgtqtd" path="res://textures/menu/inventory/Empty yellow pickup bed.png" id="3_hrd7n"]
 [ext_resource type="FontFile" uid="uid://cjwtnh1rcqm1c" path="res://scenes/menu/fonts/Cormorant/Cormorant-BoldItalic.ttf" id="3_u76j4"]
-[ext_resource type="Texture2D" uid="uid://c7gfoa766n8ht" path="res://textures/menu/arrows&icons/BoostIcon.png" id="12_jqy3g"]
-[ext_resource type="Texture2D" uid="uid://cld3s5piwvyk7" path="res://textures/menu/arrows&icons/BulletIcon.png" id="14_y1tmo"]
-[ext_resource type="Texture2D" uid="uid://dlqa1vpe7064m" path="res://textures/menu/map/LockIcon.svg" id="17_vxqsg"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="17_y1tmo"]
-[ext_resource type="Texture2D" uid="uid://h2cobtjl2jgf" path="res://textures/menu/map/MapMarker.svg" id="18_bl4n0"]
 [ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="18_rog58"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="19_ckekd"]
-[ext_resource type="Texture2D" uid="uid://gygyl0ptapc3" path="res://textures/menu/map/PlayButton.svg" id="19_wgdau"]
-[ext_resource type="Texture2D" uid="uid://bfuln5k307h3o" path="res://textures/menu/arrows&icons/base.svg" id="20_rog58"]
 [ext_resource type="Script" uid="uid://bqiunaw81sh7s" path="res://scripts/menu/map/map_main.gd" id="21_2d1xj"]
 [ext_resource type="Texture2D" uid="uid://dcp36gnc5evld" path="res://textures/menu/menu/turret.png" id="21_p5sbb"]
 [ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="21_sb0qg"]
 [ext_resource type="Texture2D" uid="uid://cjafnvnsvyoos" path="res://textures/menu/menu/car.png" id="22_2d1xj"]
+[ext_resource type="Texture2D" uid="uid://dqkiqxjhul0va" path="res://textures/menu/shop/Items/06-adrenaline.png" id="22_5nbk1"]
 [ext_resource type="Texture2D" uid="uid://bnp4hu2iregv0" path="res://textures/menu/menu/notebook.png" id="22_b8hp3"]
 [ext_resource type="Texture2D" uid="uid://cswdpv7p2cm20" path="res://textures/menu/map/Arrow.png" id="23_b8hp3"]
 [ext_resource type="Texture2D" uid="uid://cins4rs8cwbtd" path="res://textures/menu/menu/map.png" id="23_sb0qg"]
@@ -24,10 +21,28 @@
 [ext_resource type="Texture2D" uid="uid://dxrvo1jvox2n" path="res://textures/menu/menu/shop.png" id="25_ccums"]
 [ext_resource type="Texture2D" uid="uid://dqpbccox31hqr" path="res://textures/menu/menu/MoneyIcon.svg" id="25_gyy46"]
 [ext_resource type="Texture2D" uid="uid://dk4cqcgtpnrxk" path="res://textures/menu/menu/BookIcon.svg" id="26_ji1w6"]
+[ext_resource type="Texture2D" uid="uid://dqffell63op1i" path="res://textures/menu/shop/Items/07-nitrous.png" id="26_wohe3"]
 [ext_resource type="Texture2D" uid="uid://b62i3i4ne1jym" path="res://textures/menu/menu/SettingsIcon.svg" id="27_gw44v"]
+[ext_resource type="Texture2D" uid="uid://67r6mnqguytw" path="res://textures/menu/shop/Items/08-night-vision.png" id="27_qcma1"]
+[ext_resource type="Texture2D" uid="uid://cau7q5yb67w7k" path="res://textures/menu/shop/Items/09-flashbang.png" id="28_wr6s3"]
+[ext_resource type="Texture2D" uid="uid://ibxqmqpr6i1j" path="res://textures/menu/shop/Items/10-spare-tire.png" id="29_xffty"]
+[ext_resource type="Texture2D" uid="uid://d1sc8rm85kx1" path="res://textures/menu/shop/Items/11-smg-ammo.png" id="30_muamv"]
+[ext_resource type="Texture2D" uid="uid://bq7fyxh7365va" path="res://textures/menu/shop/Items/12-rifle-ammo.png" id="31_7i64j"]
+[ext_resource type="Texture2D" uid="uid://boae8hoao3ctj" path="res://textures/menu/shop/Items/13-piercing-ammo.png" id="32_s0xtw"]
+[ext_resource type="Texture2D" uid="uid://d3m7n2xg3rfhr" path="res://textures/menu/shop/Items/14-shotgun-ammo.png" id="33_0pwlr"]
+[ext_resource type="FontFile" uid="uid://cwccufg4psr6q" path="res://scenes/menu/fonts/SpecialElite-Regular.ttf" id="34_dm5l1"]
+[ext_resource type="Texture2D" uid="uid://bpcr5r3wqrobb" path="res://textures/menu/shop/Items/15-fire-ammo.png" id="34_dry18"]
+[ext_resource type="Texture2D" uid="uid://bga3krss480fh" path="res://textures/menu/shop/Items/01-tire-repair.png" id="35_hokr0"]
+[ext_resource type="Texture2D" uid="uid://c0bg3vrdw0dhv" path="res://textures/menu/shop/Items/02-door-repair.png" id="36_42voi"]
+[ext_resource type="Texture2D" uid="uid://d75co4cb1wbp" path="res://textures/menu/shop/Items/03-suspension-repair.png" id="37_v0jps"]
+[ext_resource type="Texture2D" uid="uid://df2sju8cy72n3" path="res://textures/menu/shop/Items/04-frame-repair.png" id="38_n50wv"]
+[ext_resource type="Texture2D" uid="uid://j8asukdyxxd5" path="res://textures/menu/shop/Items/05-engine-repair.png" id="39_05fso"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ji1w6"]
-bg_color = Color(0.728125, 0.728125, 0.67611605, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kk2uh"]
+texture = ExtResource("2_n5s87")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_no68b"]
+texture = ExtResource("3_hrd7n")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ccums"]
 texture = ExtResource("18_rog58")
@@ -46,44 +61,52 @@ texture = ExtResource("18_rog58")
 content_margin_top = 20.0
 content_margin_bottom = 20.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb0qg"]
-bg_color = Color(0.7607843, 0.7176471, 0.654902, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.65882355, 0.627451, 0.5686275, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccuo5"]
+bg_color = Color(0.16078432, 0.16862746, 0.16078432, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.1254902, 0.12941177, 0.1254902, 1)
+border_blend = true
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dm5l1"]
+bg_color = Color(0.12451338, 0.131078, 0.12451347, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.10298411, 0.106427245, 0.10298409, 1)
 border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8hp3"]
-bg_color = Color(0.74375, 0.70265883, 0.6410221, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.646875, 0.6126035, 0.5569123, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yb7il"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1948809, 0.20389709, 0.19488055, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.15761775, 0.16221261, 0.15761757, 1)
 border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccums"]
-bg_color = Color(0.765625, 0.72102547, 0.6578428, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.690625, 0.6602679, 0.5995536, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnypt"]
 bg_color = Color(1, 1, 1, 1)
@@ -91,11 +114,58 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.7607843, 0.7176471, 0.654902, 1)
+border_color = Color(0.1254902, 0.12941177, 0.1254902, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nbk1"]
+bg_color = Color(0.16078432, 0.16862746, 0.16078432, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.1254902, 0.12941177, 0.1254902, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1ef8"]
+bg_color = Color(0.12451338, 0.131078, 0.12451347, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.10298411, 0.106427245, 0.10298409, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpejg"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1948809, 0.20389709, 0.19488055, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.15761775, 0.16221261, 0.15761757, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gtyaf"]
 texture = ExtResource("23_b8hp3")
@@ -214,177 +284,102 @@ texture = ExtResource("25_ccums")
 texture = ExtResource("25_ccums")
 expand_margin_top = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1tmo"]
-bg_color = Color(0.4117647, 0.6117647, 0.30980393, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.24145508, 0.359375, 0.18249512, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5nbk1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qm8p1"]
-bg_color = Color(0.29447114, 0.4375, 0.22155449, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.19533812, 0.29062498, 0.14769466, 1)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1ef8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jwdi"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.775, 0.775, 0.775, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpejg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxqsg"]
-bg_color = Color(0.24791665, 0.4205729, 0.53125, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.170625, 0.28945312, 0.36562502, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbkdv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl4n0"]
-bg_color = Color(0.24791665, 0.4205729, 0.53125, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.170625, 0.28945312, 0.36562502, 1)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wohe3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgdau"]
-bg_color = Color(0.52666426, 0.2091716, 0.63125, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.3108108, 0.12499999, 0.375, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rog58"]
-bg_color = Color(0.4083463, 0.1615101, 0.49062502, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.26487628, 0.10729163, 0.32187498, 1)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckekd"]
-bg_color = Color(0.53125, 0.1328125, 0.18261719, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.328125, 0.08203125, 0.11358178, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5sbb"]
-bg_color = Color(0.41250002, 0.10388887, 0.14361103, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.25625002, 0.064062506, 0.08846727, 1)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d1xj"]
-bg_color = Color(0.85, 0.8029668, 0.14450002, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.5686275, 0.4912053, 0.07627143, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcf5l"]
-bg_color = Color(0.85, 0.8029668, 0.14450002, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.5686275, 0.4912053, 0.07627143, 1)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyy46"]
-bg_color = Color(0.659375, 0.62291193, 0.11242799, 1)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(0.5125, 0.4418103, 0.067155175, 1)
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hrd7n"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dm5l1"]
 texture = ExtResource("24_jcf5l")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6rky"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yb7il"]
 texture = ExtResource("25_gyy46")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(46.785828, 81.08251, 365.26794, 342.97546)
+modulate_color = Color(0.92941177, 0.92941177, 0.92941177, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h2pgf"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5nbk1"]
+load_path = "res://.godot/imported/MoneyIcon.svg-a81939725b315406ecbf98806825912c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e1ef8"]
+texture = SubResource("CompressedTexture2D_5nbk1")
+region_rect = Rect2(46.785828, 81.08251, 365.26794, 342.97546)
+modulate_color = Color(0.85882354, 0.85882354, 0.85882354, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bpejg"]
+load_path = "res://.godot/imported/MoneyIcon.svg-a81939725b315406ecbf98806825912c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kbkdv"]
+texture = SubResource("CompressedTexture2D_bpejg")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(46.785828, 81.08251, 365.26794, 342.97546)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wohe3"]
 texture = ExtResource("26_ji1w6")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(51.92981, 51.92981, 408.14038, 408.14038)
+modulate_color = Color(0.92941177, 0.92941177, 0.92941177, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldtbl"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qcma1"]
+load_path = "res://.godot/imported/BookIcon.svg-aaa917046a319d24a49d2d8ce3307e37.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wr6s3"]
+texture = SubResource("CompressedTexture2D_qcma1")
+region_rect = Rect2(51.92981, 51.92981, 408.14038, 408.14038)
+modulate_color = Color(0.85882354, 0.85882354, 0.85882354, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xffty"]
+load_path = "res://.godot/imported/BookIcon.svg-aaa917046a319d24a49d2d8ce3307e37.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_muamv"]
+texture = SubResource("CompressedTexture2D_xffty")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(51.92981, 51.92981, 408.14038, 408.14038)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7i64j"]
 texture = ExtResource("27_gw44v")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(48.50006, 48.50006, 414.99988, 414.99988)
+modulate_color = Color(0.92941177, 0.92941177, 0.92941177, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s0xtw"]
+load_path = "res://.godot/imported/SettingsIcon.svg-655826e38ed952bef83103e9cfcf632f.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0pwlr"]
+texture = SubResource("CompressedTexture2D_s0xtw")
+region_rect = Rect2(48.50006, 48.50006, 414.99988, 414.99988)
+modulate_color = Color(0.85882354, 0.85882354, 0.85882354, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dry18"]
+load_path = "res://.godot/imported/SettingsIcon.svg-655826e38ed952bef83103e9cfcf632f.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hokr0"]
+texture = SubResource("CompressedTexture2D_dry18")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(48.50006, 48.50006, 414.99988, 414.99988)
 
 [node name="Inventory" type="Control" unique_id=333159010]
 layout_mode = 3
@@ -402,22 +397,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ji1w6")
+theme_override_styles/panel = SubResource("StyleBoxTexture_kk2uh")
+
+[node name="Car" type="Panel" parent="Background" unique_id=1341653305]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 90.66675
+offset_top = 76.0
+offset_right = -90.66675
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_no68b")
 
 [node name="InventoryGrid" type="GridContainer" parent="." unique_id=805763816]
-custom_minimum_size = Vector2(1000, 500)
+custom_minimum_size = Vector2(700, 500)
 custom_maximum_size = Vector2(1000, 1000000)
 propagate_maximum_size = false
-layout_mode = 0
-offset_left = 442.0
-offset_top = 319.0
-offset_right = 1442.0
-offset_bottom = 819.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -275.0
+offset_right = 350.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 0
 layout_direction = 2
 theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 60
-columns = 8
+columns = 6
 
 [node name="ObjInfo" type="Panel" parent="." unique_id=1304994074]
 z_index = 5
@@ -453,8 +468,8 @@ alignment = 1
 
 [node name="Icon" type="Button" parent="ObjInfo/Info" unique_id=1589539158]
 z_index = 5
-custom_minimum_size = Vector2(200, 200)
-custom_maximum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(200, 250)
+custom_maximum_size = Vector2(200, 250)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -471,7 +486,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -480,7 +495,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -504,36 +519,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_sb0qg")
 text = "У вас є:"
 vertical_alignment = 1
 
-[node name="Use" type="Button" parent="ObjInfo/Info" unique_id=941531892]
-z_index = 5
-z_as_relative = false
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_sb0qg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_b8hp3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ccums")
-text = "Використати"
-icon_alignment = 1
-
-[node name="Container" type="Container" parent="ObjInfo/Info" unique_id=607541]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
 [node name="Selling" type="HBoxContainer" parent="ObjInfo/Info" unique_id=1059309667]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -548,22 +533,16 @@ custom_maximum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_constants/icon_max_width = 30
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_sb0qg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_b8hp3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ccums")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_ccuo5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dm5l1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yb7il")
 text = "-"
 icon_alignment = 1
 
@@ -588,22 +567,15 @@ custom_maximum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_constants/icon_max_width = 30
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_sb0qg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_b8hp3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ccums")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_ccuo5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dm5l1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yb7il")
 text = "+"
 icon_alignment = 1
 
@@ -618,11 +590,11 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
@@ -631,9 +603,9 @@ theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0
 theme_override_constants/icon_max_width = 30
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_sb0qg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_b8hp3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ccums")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bpejg")
 text = "Продати за:"
 icon_alignment = 1
 
@@ -1127,7 +1099,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_wgvt7")
 autowrap_trim_flags = 0
 icon_alignment = 1
 
-[node name="Boost" type="HBoxContainer" parent="." unique_id=403358526]
+[node name="Boost" type="HBoxContainer" parent="." unique_id=1369175827]
 custom_minimum_size = Vector2(460, 100)
 layout_mode = 0
 offset_left = -38.0
@@ -1136,7 +1108,7 @@ offset_right = 422.0
 offset_bottom = -471.0
 theme_override_constants/separation = 20
 
-[node name="Common" type="Button" parent="Boost" unique_id=2003673719]
+[node name="Common" type="Button" parent="Boost" unique_id=1436899151]
 show_behind_parent = true
 z_index = 2
 custom_minimum_size = Vector2(100, 100)
@@ -1146,39 +1118,20 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_styles/normal = SubResource("StyleBoxFlat_y1tmo")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qm8p1")
-theme_override_styles/hover = SubResource("StyleBoxFlat_qm8p1")
-text = "Common"
-icon = ExtResource("12_jqy3g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("22_5nbk1")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Boost/Common" unique_id=650461862]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Common" unique_id=1446642970]
+[node name="ID" type="Label" parent="Boost/Common" unique_id=466767709]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1187,7 +1140,7 @@ text = "11"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Uncommon" type="Button" parent="Boost" unique_id=1169463070]
+[node name="Uncommon" type="Button" parent="Boost" unique_id=398144719]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1197,40 +1150,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_vxqsg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vxqsg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bl4n0")
-text = "Uncommon"
-icon = ExtResource("12_jqy3g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("26_wohe3")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Boost/Uncommon" unique_id=767177896]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Uncommon" unique_id=1696121803]
+[node name="ID" type="Label" parent="Boost/Uncommon" unique_id=1676498852]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1239,7 +1173,7 @@ text = "12"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Rare" type="Button" parent="Boost" unique_id=2009532168]
+[node name="Rare" type="Button" parent="Boost" unique_id=271601454]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1249,40 +1183,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 140
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_wgdau")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rog58")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rog58")
-text = "Rare"
-icon = ExtResource("12_jqy3g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("27_qcma1")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Boost/Rare" unique_id=1630116526]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Rare" unique_id=795220665]
+[node name="ID" type="Label" parent="Boost/Rare" unique_id=1062961272]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1291,7 +1206,7 @@ text = "13"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Epic" type="Button" parent="Boost" unique_id=375231596]
+[node name="Epic" type="Button" parent="Boost" unique_id=1949717356]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1301,40 +1216,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_ckekd")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_p5sbb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_p5sbb")
-text = "Epic"
-icon = ExtResource("12_jqy3g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("28_wr6s3")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Boost/Epic" unique_id=466096695]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Epic" unique_id=1892314054]
+[node name="ID" type="Label" parent="Boost/Epic" unique_id=1810625516]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1343,7 +1239,7 @@ text = "14"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Legendary" type="Button" parent="Boost" unique_id=1517684355]
+[node name="Legendary" type="Button" parent="Boost" unique_id=519051710]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1353,40 +1249,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_2d1xj")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jcf5l")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gyy46")
-text = "Legendary"
-icon = ExtResource("12_jqy3g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("29_xffty")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Boost/Legendary" unique_id=1645464460]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Legendary" unique_id=196766403]
+[node name="ID" type="Label" parent="Boost/Legendary" unique_id=1073921798]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1395,7 +1272,7 @@ text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Bullet" type="HBoxContainer" parent="." unique_id=999896631]
+[node name="Bullet" type="HBoxContainer" parent="." unique_id=618790391]
 custom_minimum_size = Vector2(460, 100)
 layout_mode = 0
 offset_left = -38.0
@@ -1404,7 +1281,7 @@ offset_right = 422.0
 offset_bottom = -305.0
 theme_override_constants/separation = 20
 
-[node name="Common" type="Button" parent="Bullet" unique_id=1670504769]
+[node name="Common" type="Button" parent="Bullet" unique_id=1524849242]
 show_behind_parent = true
 z_index = 2
 custom_minimum_size = Vector2(100, 100)
@@ -1414,39 +1291,20 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_styles/normal = SubResource("StyleBoxFlat_y1tmo")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qm8p1")
-theme_override_styles/hover = SubResource("StyleBoxFlat_qm8p1")
-text = "Common"
-icon = ExtResource("14_y1tmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("30_muamv")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Bullet/Common" unique_id=493064369]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Common" unique_id=1231340652]
+[node name="ID" type="Label" parent="Bullet/Common" unique_id=1867638719]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1455,7 +1313,7 @@ text = "21"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Uncommon" type="Button" parent="Bullet" unique_id=595254788]
+[node name="Uncommon" type="Button" parent="Bullet" unique_id=1096558670]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1465,40 +1323,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_vxqsg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vxqsg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bl4n0")
-text = "Uncommon"
-icon = ExtResource("14_y1tmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("31_7i64j")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Bullet/Uncommon" unique_id=1826789615]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Uncommon" unique_id=1350236494]
+[node name="ID" type="Label" parent="Bullet/Uncommon" unique_id=56124806]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1507,7 +1346,7 @@ text = "22"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Rare" type="Button" parent="Bullet" unique_id=590122014]
+[node name="Rare" type="Button" parent="Bullet" unique_id=1087460172]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1517,40 +1356,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_wgdau")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rog58")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rog58")
-text = "Rare"
-icon = ExtResource("14_y1tmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("32_s0xtw")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Bullet/Rare" unique_id=1142251663]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Rare" unique_id=718866020]
+[node name="ID" type="Label" parent="Bullet/Rare" unique_id=872495633]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1559,7 +1379,7 @@ text = "23"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Epic" type="Button" parent="Bullet" unique_id=662604772]
+[node name="Epic" type="Button" parent="Bullet" unique_id=771242510]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1569,40 +1389,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_ckekd")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_p5sbb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_p5sbb")
-text = "Epic"
-icon = ExtResource("14_y1tmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("33_0pwlr")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Bullet/Epic" unique_id=18773918]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Epic" unique_id=705314562]
+[node name="ID" type="Label" parent="Bullet/Epic" unique_id=1720931747]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1611,7 +1412,7 @@ text = "24"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Legendary" type="Button" parent="Bullet" unique_id=660104952]
+[node name="Legendary" type="Button" parent="Bullet" unique_id=1781457915]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1621,40 +1422,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_2d1xj")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jcf5l")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gyy46")
-text = "Legendary"
-icon = ExtResource("14_y1tmo")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("34_dry18")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Bullet/Legendary" unique_id=881213046]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Legendary" unique_id=1708938930]
+[node name="ID" type="Label" parent="Bullet/Legendary" unique_id=772448962]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1663,7 +1445,7 @@ text = "25"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Car" type="HBoxContainer" parent="." unique_id=547209819]
+[node name="Car" type="HBoxContainer" parent="." unique_id=1099693923]
 custom_minimum_size = Vector2(460, 100)
 layout_mode = 0
 offset_left = -38.0
@@ -1672,7 +1454,7 @@ offset_right = 422.0
 offset_bottom = -129.0
 theme_override_constants/separation = 20
 
-[node name="Common" type="Button" parent="Car" unique_id=283904207]
+[node name="Common" type="Button" parent="Car" unique_id=853938840]
 show_behind_parent = true
 z_index = 2
 custom_minimum_size = Vector2(100, 100)
@@ -1682,39 +1464,20 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_styles/normal = SubResource("StyleBoxFlat_y1tmo")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qm8p1")
-theme_override_styles/hover = SubResource("StyleBoxFlat_qm8p1")
-text = "Common"
-icon = ExtResource("23_b8hp3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("35_hokr0")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Car/Common" unique_id=893785141]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Common" unique_id=825301439]
+[node name="ID" type="Label" parent="Car/Common" unique_id=822626422]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1723,7 +1486,7 @@ text = "31"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Uncommon" type="Button" parent="Car" unique_id=499273651]
+[node name="Uncommon" type="Button" parent="Car" unique_id=980079034]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1733,40 +1496,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_vxqsg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vxqsg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bl4n0")
-text = "Uncommon"
-icon = ExtResource("17_vxqsg")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("36_42voi")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Car/Uncommon" unique_id=2109632347]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Uncommon" unique_id=662728418]
+[node name="ID" type="Label" parent="Car/Uncommon" unique_id=635451717]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1775,7 +1519,7 @@ text = "32"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Rare" type="Button" parent="Car" unique_id=1834240576]
+[node name="Rare" type="Button" parent="Car" unique_id=94775558]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1785,40 +1529,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_wgdau")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rog58")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rog58")
-text = "Rare"
-icon = ExtResource("18_bl4n0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("37_v0jps")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Car/Rare" unique_id=294955348]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Rare" unique_id=733676279]
+[node name="ID" type="Label" parent="Car/Rare" unique_id=1544344287]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1827,7 +1552,7 @@ text = "33"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Epic" type="Button" parent="Car" unique_id=736108305]
+[node name="Epic" type="Button" parent="Car" unique_id=1460748994]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1837,40 +1562,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_ckekd")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_p5sbb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_p5sbb")
-text = "Epic"
-icon = ExtResource("19_wgdau")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("38_n50wv")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Car/Epic" unique_id=49040631]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Epic" unique_id=1173048814]
+[node name="ID" type="Label" parent="Car/Epic" unique_id=777261570]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1879,7 +1585,7 @@ text = "34"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Legendary" type="Button" parent="Car" unique_id=808497591]
+[node name="Legendary" type="Button" parent="Car" unique_id=389542081]
 show_behind_parent = true
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
@@ -1889,40 +1595,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 0.3764706)
-theme_override_constants/icon_max_width = 70
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 120
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_2d1xj")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jcf5l")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gyy46")
-text = "Legendary"
-icon = ExtResource("20_rog58")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
+icon = ExtResource("39_05fso")
 icon_alignment = 1
+vertical_icon_alignment = 2
 
-[node name="Emount" type="Label" parent="Car/Legendary" unique_id=55448901]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_6jwdi")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Legendary" unique_id=1039105325]
+[node name="ID" type="Label" parent="Car/Legendary" unique_id=1046280307]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 23.0
@@ -1931,7 +1618,7 @@ text = "35"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Header" type="Control" parent="." unique_id=1109574261]
+[node name="Header" type="Control" parent="." unique_id=1591252798]
 layout_mode = 1
 anchor_right = 0.99700004
 anchor_bottom = 0.109000005
@@ -1940,15 +1627,15 @@ offset_bottom = -117.72001
 grow_horizontal = 2
 script = ExtResource("21_sb0qg")
 
-[node name="Header" type="Panel" parent="Header" unique_id=1815145132]
+[node name="Header" type="Panel" parent="Header" unique_id=26822553]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 91.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_hrd7n")
+theme_override_styles/panel = SubResource("StyleBoxTexture_dm5l1")
 
-[node name="HeaderButtons" type="HBoxContainer" parent="Header/Header" unique_id=1914916024]
+[node name="HeaderButtons" type="HBoxContainer" parent="Header/Header" unique_id=425702498]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.57900006
@@ -1962,39 +1649,46 @@ offset_bottom = 24.037998
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Money" type="HBoxContainer" parent="Header/Header/HeaderButtons" unique_id=1798950590]
+[node name="Money" type="HBoxContainer" parent="Header/Header/HeaderButtons" unique_id=1491054215]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="MoneyEquals" type="Label" parent="Header/Header/HeaderButtons/Money" unique_id=736005904]
-custom_minimum_size = Vector2(30, 30)
+[node name="MoneyEquals" type="Label" parent="Header/Header/HeaderButtons/Money" unique_id=331995194]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_font_sizes/font_size = 30
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("34_dm5l1")
+theme_override_font_sizes/font_size = 35
 text = "1000"
+horizontal_alignment = 2
+vertical_alignment = 2
 
-[node name="MoneyIcon" type="Panel" parent="Header/Header/HeaderButtons/Money" unique_id=962513533]
+[node name="MoneyIcon" type="Button" parent="Header/Header/HeaderButtons/Money" unique_id=1963036144]
 custom_minimum_size = Vector2(60, 60)
+custom_maximum_size = Vector2(60, 60)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_k6rky")
+theme_override_styles/normal = SubResource("StyleBoxTexture_yb7il")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e1ef8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kbkdv")
 
-[node name="BookIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=1911082708]
-custom_minimum_size = Vector2(80, 120)
-custom_maximum_size = Vector2(80, 60)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_h2pgf")
-
-[node name="SettingsIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=608930057]
+[node name="BookIcon" type="Button" parent="Header/Header/HeaderButtons" unique_id=1340817769]
 custom_minimum_size = Vector2(60, 60)
+custom_maximum_size = Vector2(60, 60)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_ldtbl")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wohe3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wr6s3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_muamv")
+
+[node name="SettingsIcon" type="Button" parent="Header/Header/HeaderButtons" unique_id=1878612203]
+custom_minimum_size = Vector2(60, 60)
+custom_maximum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_7i64j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0pwlr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hokr0")

@@ -89,6 +89,9 @@ func refresh_inventory() -> void:
 					
 					item_node.visible = true
 					
+					# Настройка эффекта увеличения при наведении с защитой от прозрачности
+					_setup_hover_scale_effect(item_node)
+					
 					var target_button = item_node if item_node is BaseButton else item_node.get_node_or_null("Button")
 					if not target_button and not item_node is BaseButton:
 						target_button = item_node.find_child("*Button*", true, false)
@@ -107,6 +110,40 @@ func refresh_inventory() -> void:
 					item_node.visible = false
 					if item_node.get_parent() == inventory_grid:
 						item_node.get_parent().remove_child(item_node)
+
+# Функция плавной анимации увеличения при наведении мыши без потери прозрачности
+func _setup_hover_scale_effect(item_node: Control) -> void:
+	if item_node.has_meta("hover_effect_initialized"):
+		return
+	item_node.set_meta("hover_effect_initialized", true)
+	
+	# Устанавливаем точку масштабирования по центру элемента
+	item_node.pivot_offset = item_node.size / 2.0
+	
+	# Жестко фиксируем полную непрозрачность
+	var initial_color = item_node.modulate
+	initial_color.a = 1.0
+	item_node.modulate = initial_color
+	
+	if not item_node.mouse_entered.is_connected(_on_item_mouse_entered.bind(item_node)):
+		item_node.mouse_entered.connect(_on_item_mouse_entered.bind(item_node))
+		item_node.mouse_exited.connect(_on_item_mouse_exited.bind(item_node))
+
+func _on_item_mouse_entered(item_node: Control) -> void:
+	var current_color = item_node.modulate
+	current_color.a = 1.0
+	item_node.modulate = current_color
+	
+	var tween = item_node.create_tween().set_parallel(true)
+	tween.tween_property(item_node, "scale", Vector2(1.08, 1.08), 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+
+func _on_item_mouse_exited(item_node: Control) -> void:
+	var current_color = item_node.modulate
+	current_color.a = 1.0
+	item_node.modulate = current_color
+	
+	var tween = item_node.create_tween().set_parallel(true)
+	tween.tween_property(item_node, "scale", Vector2(1.0, 1.0), 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 func _on_inventory_item_clicked(item: Dictionary, item_node: Control) -> void:
 	current_selected_id = str(item["ID"])
@@ -177,7 +214,7 @@ func _on_sell_button_pressed() -> void:
 	# Списываем проданные предметы из базы данных
 	db.query("UPDATE Objects SET Quantity = Quantity - %d WHERE ID = '%s';" % [count_to_sell, current_selected_id])
 	
-	# Начисляем деньги через обновленный менеджер (запишется в таблицу Money и обновит хедер)
+	# Начисляем деньги через GameManager
 	GameManager.add_money(total_price)
 		
 	print("Продано успешно на сумму: ", total_price)

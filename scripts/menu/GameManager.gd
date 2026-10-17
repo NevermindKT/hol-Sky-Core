@@ -8,22 +8,27 @@ var shop_timer_active: bool = true
 var current_shop_data: Dictionary = {}
 var active_clerk_index: int = 0
 
+# --- ПЕРЕМЕННЫЕ ТАЙМЕРА КВЕСТА 103 ---
+var quest103_time_left: float = 0.0
+var quest103_active: bool = false
+
 var db: SQLite = null
 
 signal money_changed(new_amount: int)
 signal shop_refreshed 
+signal quest103_tick(time_left: float) # Сигнал для обновления интерфейса
+signal quest103_finished             # Сигнал окончания таймера
 
 func _ready() -> void:
 	_init_database()
 
 func _init_database() -> void:
 	db = SQLite.new()
-	db.path = "res://objects.db"
+	db.path = "objects.db"
 	db.open_db()
 
 # --- СИСТЕМА ДЕНЕГ ИЗ БАЗЫ ДАННЫХ ---
 
-# Получить текущее количество денег из базы
 func get_player_money() -> int:
 	if not db:
 		_init_database()
@@ -34,7 +39,6 @@ func get_player_money() -> int:
 		return int(res[0].get("MONEY", 0))
 	return 0
 
-# Установить/сохранить конкретное количество денег в базу
 func set_player_money(amount: int) -> void:
 	if not db:
 		_init_database()
@@ -42,7 +46,6 @@ func set_player_money(amount: int) -> void:
 	db.query("UPDATE Money SET MONEY = %d;" % amount)
 	emit_signal("money_changed", amount)
 
-# Потратить деньги (с проверкой, хватает ли средств)
 func spend_money(amount: int) -> bool:
 	var current_money = get_player_money()
 	if current_money >= amount:
@@ -51,19 +54,34 @@ func spend_money(amount: int) -> bool:
 		return true
 	return false
 
-# Добавить деньги (например, при продаже или награде)
 func add_money(amount: int) -> void:
 	var current_money = get_player_money()
 	var new_money = current_money + amount
 	set_player_money(new_money)
 
-# --- ОСТАЛЬНАЯ ЛОГИКА ---
+# --- ЛОГИКА ТАЙМЕРА КВЕСТА 103 ---
+
+func start_quest103_timer(duration: float) -> void:
+	if not quest103_active and quest103_time_left <= 0.0:
+		quest103_time_left = duration
+		quest103_active = true
 
 func _process(delta: float) -> void:
+	# Магазин
 	if shop_timer_active:
 		shop_time_left -= delta
 		if shop_time_left <= 0:
 			trigger_shop_refresh()
+
+	# Таймер квеста 103 работает глобально
+	if quest103_active:
+		quest103_time_left -= delta
+		emit_signal("quest103_tick", quest103_time_left)
+		
+		if quest103_time_left <= 0:
+			quest103_time_left = 0.0
+			quest103_active = false
+			emit_signal("quest103_finished")
 
 func trigger_shop_refresh() -> void:
 	shop_time_left = 10.0 

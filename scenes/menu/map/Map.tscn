@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://h2cobtjl2jgf" path="res://textures/menu/map/MapMarker.svg" id="8_ehh6u"]
 [ext_resource type="Script" uid="uid://r6qbhb4ucdyh" path="res://scripts/menu/menu.gd" id="9_2lufi"]
 [ext_resource type="FontFile" uid="uid://cjwtnh1rcqm1c" path="res://scenes/menu/fonts/Cormorant/Cormorant-BoldItalic.ttf" id="9_e2kap"]
-[ext_resource type="Texture2D" uid="uid://ofnfw0nyprde" path="res://textures/menu/map/WoodImage.svg" id="9_xaeb3"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="10_gyiq0"]
 [ext_resource type="Texture2D" uid="uid://dcp36gnc5evld" path="res://textures/menu/menu/turret.png" id="12_xaeb3"]
 [ext_resource type="Texture2D" uid="uid://cjafnvnsvyoos" path="res://textures/menu/menu/car.png" id="13_spjye"]
@@ -25,6 +24,7 @@
 [ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="16_q2at7"]
 [ext_resource type="Texture2D" uid="uid://cd82c33cjst20" path="res://textures/menu/menu/header.png" id="19_glkao"]
 [ext_resource type="Texture2D" uid="uid://gygyl0ptapc3" path="res://textures/menu/map/PlayButton.svg" id="21_spjye"]
+[ext_resource type="FontFile" uid="uid://cwccufg4psr6q" path="res://scenes/menu/fonts/SpecialElite-Regular.ttf" id="25_6bk2s"]
 [ext_resource type="Texture2D" uid="uid://dqpbccox31hqr" path="res://textures/menu/menu/MoneyIcon.svg" id="26_53vcc"]
 [ext_resource type="Texture2D" uid="uid://mikjm2b2if8w" path="res://textures/menu/LockPaper.png" id="26_mbyvp"]
 [ext_resource type="Texture2D" uid="uid://dk4cqcgtpnrxk" path="res://textures/menu/menu/BookIcon.svg" id="27_mx7lj"]
@@ -59,27 +59,99 @@ texture = ExtResource("6_spjye")
 texture_margin_left = 13.525766
 region_rect = Rect2(126.81851, 28.224823, 512.5128, 1164.4768)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1hg1l"]
-texture = ExtResource("3_7bhuf")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6bk2s"]
+texture = ExtResource("6_spjye")
+texture_margin_left = 13.525766
+region_rect = Rect2(3260.5127, 514.035, 211.28809, 277.21698)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gxrfn"]
-texture = ExtResource("3_7bhuf")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xqkdt"]
-texture = ExtResource("3_7bhuf")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vramg"]
+texture = ExtResource("6_spjye")
+texture_margin_left = 13.525766
+region_rect = Rect2(148.9602, 626.0161, 321.7728, 345.64337)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x38ol"]
 texture = ExtResource("5_xqkdt")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g7l7j"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y08ir"]
 texture = ExtResource("8_ehh6u")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(106.22241, 55.342766, 301.8178, 435.578)
+modulate_color = Color(0.8776157, 0.8776158, 0.8776157, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6bk2s"]
+load_path = "res://.godot/imported/MapMarker.svg-196ffa9685c0aca533a109f9fdaf42da.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f24pu"]
+texture = SubResource("CompressedTexture2D_6bk2s")
+region_rect = Rect2(106.22241, 55.342766, 301.8178, 435.578)
+modulate_color = Color(0.815815, 0.81581557, 0.81581515, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_52cv8"]
+load_path = "res://.godot/imported/MapMarker.svg-196ffa9685c0aca533a109f9fdaf42da.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_snwym"]
+texture = SubResource("CompressedTexture2D_52cv8")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 region_rect = Rect2(106.22241, 55.342766, 301.8178, 435.578)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aelyn"]
-texture = ExtResource("9_xaeb3")
-texture_margin_top = 5.280008
-texture_margin_bottom = 0.72727376
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y08ir"]
+load_path = "res://.godot/imported/WoodImage.svg-7b09a22ffab9ddaa40a1f96f24cd5251.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g7r7c"]
+texture = SubResource("CompressedTexture2D_y08ir")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
 region_rect = Rect2(68.835815, 67, 358.16418, 314.5374)
+modulate_color = Color(0.8089983, 0.8089983, 0.8089982, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f24pu"]
+load_path = "res://.godot/imported/WoodImage.svg-7b09a22ffab9ddaa40a1f96f24cd5251.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_52cv8"]
+texture = SubResource("CompressedTexture2D_f24pu")
+region_rect = Rect2(68.835815, 67, 358.16418, 314.5374)
+modulate_color = Color(0.7480997, 0.7480997, 0.7480996, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_snwym"]
+load_path = "res://.godot/imported/WoodImage.svg-7b09a22ffab9ddaa40a1f96f24cd5251.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xk0q5"]
+texture = SubResource("CompressedTexture2D_snwym")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(68.835815, 67, 358.16418, 314.5374)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t0327"]
+texture = ExtResource("3_7bhuf")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+modulate_color = Color(0.8879926, 0.88799256, 0.8879925, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tj1cr"]
+texture = ExtResource("3_7bhuf")
+modulate_color = Color(0.8431842, 0.8431838, 0.8431835, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j4jdl"]
+texture = ExtResource("3_7bhuf")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xaeb3"]
 texture = ExtResource("3_qmjlt")
@@ -140,29 +212,55 @@ expand_margin_top = 5.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_alg4n"]
 texture = ExtResource("26_mbyvp")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vramg"]
+load_path = "res://.godot/imported/PlayButton.svg-f102e46175f291cadfdbf38254041f8c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cfwwa"]
+texture = SubResource("CompressedTexture2D_vramg")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+modulate_color = Color(0.89839125, 0.8983909, 0.8983909, 1)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gy3ke"]
 texture = ExtResource("21_spjye")
+modulate_color = Color(0.8192276, 0.81922776, 0.8192277, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grfbt"]
-texture = ExtResource("19_glkao")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u2jn3"]
+load_path = "res://.godot/imported/PlayButton.svg-f102e46175f291cadfdbf38254041f8c.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s835k"]
-texture = ExtResource("26_53vcc")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m8rub"]
+texture = SubResource("CompressedTexture2D_u2jn3")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nliuf"]
-texture = ExtResource("27_mx7lj")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g7r7c"]
+load_path = "res://.godot/imported/CloseIcon.svg-63e1555dcf152d7fcf2475de07f6d527.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvutn"]
-texture = ExtResource("28_tw2qx")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_spjye"]
-texture = ExtResource("29_h4k4a")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2jn3"]
+texture = SubResource("CompressedTexture2D_g7r7c")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+modulate_color = Color(0.8879926, 0.88799256, 0.8879925, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53vcc"]
 texture = ExtResource("29_h4k4a")
+modulate_color = Color(0.846616, 0.846616, 0.8466159, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mx7lj"]
-texture = ExtResource("29_h4k4a")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m8rub"]
+load_path = "res://.godot/imported/CloseIcon.svg-63e1555dcf152d7fcf2475de07f6d527.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7m4fa"]
+texture = SubResource("CompressedTexture2D_m8rub")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="GDScript" id="GDScript_glkao"]
 
@@ -214,58 +312,170 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksf5k"]
 texture = ExtResource("5_e2kap")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehh6u"]
-bg_color = Color(0.7607843, 0.7176471, 0.654902, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.65882355, 0.627451, 0.5686275, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leuhn"]
+bg_color = Color(0.16078432, 0.16862746, 0.16078432, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.12451338, 0.131078, 0.12451347, 1)
 border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ue822"]
-bg_color = Color(0.74375, 0.70265883, 0.6410221, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.646875, 0.6126035, 0.5569123, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bk2s"]
+bg_color = Color(0.12451338, 0.131078, 0.12451347, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.10298411, 0.106427245, 0.10298409, 1)
 border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2at7"]
-bg_color = Color(0.765625, 0.72102547, 0.6578428, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.690625, 0.6602679, 0.5995536, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vramg"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1948809, 0.20389709, 0.19488055, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.15761775, 0.16221261, 0.15761757, 1)
 border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p20mb"]
 texture = ExtResource("33_ddpo1")
-modulate_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glkao"]
-bg_color = Color(0.734375, 0.734375, 0.734375, 1)
+bg_color = Color(0.7254902, 0.60784316, 0.3137255, 0.4509804)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7r7c"]
+bg_color = Color(0.7046671, 0.58910537, 0.29957625, 0.4509804)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f24pu"]
+bg_color = Color(0.76870006, 0.6475694, 0.3463697, 0.4509804)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lxo0m"]
 texture = ExtResource("33_ddpo1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b0cm2"]
+texture = ExtResource("19_glkao")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i4kje"]
+texture = ExtResource("26_53vcc")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(46.785828, 81.08251, 365.26794, 342.97546)
+modulate_color = Color(0.92941177, 0.92941177, 0.92941177, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y8tgg"]
+load_path = "res://.godot/imported/MoneyIcon.svg-a81939725b315406ecbf98806825912c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_16i2t"]
+texture = SubResource("CompressedTexture2D_y8tgg")
+region_rect = Rect2(46.785828, 81.08251, 365.26794, 342.97546)
+modulate_color = Color(0.85882354, 0.85882354, 0.85882354, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yabq1"]
+load_path = "res://.godot/imported/MoneyIcon.svg-a81939725b315406ecbf98806825912c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e57sv"]
+texture = SubResource("CompressedTexture2D_yabq1")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(46.785828, 81.08251, 365.26794, 342.97546)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gu5lf"]
+texture = ExtResource("27_mx7lj")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(51.92981, 51.92981, 408.14038, 408.14038)
+modulate_color = Color(0.92941177, 0.92941177, 0.92941177, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_faexp"]
+load_path = "res://.godot/imported/BookIcon.svg-aaa917046a319d24a49d2d8ce3307e37.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qpvvs"]
+texture = SubResource("CompressedTexture2D_faexp")
+region_rect = Rect2(51.92981, 51.92981, 408.14038, 408.14038)
+modulate_color = Color(0.85882354, 0.85882354, 0.85882354, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c3hjb"]
+load_path = "res://.godot/imported/BookIcon.svg-aaa917046a319d24a49d2d8ce3307e37.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nvj48"]
+texture = SubResource("CompressedTexture2D_c3hjb")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(51.92981, 51.92981, 408.14038, 408.14038)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8mpl"]
+texture = ExtResource("28_tw2qx")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(48.50006, 48.50006, 414.99988, 414.99988)
+modulate_color = Color(0.92941177, 0.92941177, 0.92941177, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nyth4"]
+load_path = "res://.godot/imported/SettingsIcon.svg-655826e38ed952bef83103e9cfcf632f.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6vlq7"]
+texture = SubResource("CompressedTexture2D_nyth4")
+region_rect = Rect2(48.50006, 48.50006, 414.99988, 414.99988)
+modulate_color = Color(0.85882354, 0.85882354, 0.85882354, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lu0fk"]
+load_path = "res://.godot/imported/SettingsIcon.svg-655826e38ed952bef83103e9cfcf632f.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1uu6a"]
+texture = SubResource("CompressedTexture2D_lu0fk")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(48.50006, 48.50006, 414.99988, 414.99988)
 
 [node name="Map" type="Control" unique_id=861827653]
 layout_mode = 3
@@ -334,7 +544,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_easud")
 
 [node name="3" type="Panel" parent="Map/Details" unique_id=125179860]
 layout_mode = 0
-offset_left = 1562.0
+offset_left = 1576.0
 offset_top = 416.0
 offset_right = 1912.2637
 offset_bottom = 925.0
@@ -348,67 +558,21 @@ offset_right = 249.0
 offset_bottom = 902.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_lowf0")
 
-[node name="Misto1" type="Control" parent="Map" unique_id=1265466791]
-layout_mode = 1
-anchor_left = 0.48100004
-anchor_top = 0.49500003
-anchor_right = 0.48100004
-anchor_bottom = 0.49500003
-offset_left = 63.613953
-offset_top = 61.339966
-offset_right = 383.61395
-offset_bottom = 394.33997
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(156, 160)
-
-[node name="LockMisto1" type="Button" parent="Map/Misto1" unique_id=1945434561]
+[node name="5" type="Panel" parent="Map/Details" unique_id=1943233892]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 103.0
-offset_right = 168.0
-offset_bottom = 181.0
-pivot_offset = Vector2(37, 32)
-size_flags_horizontal = 0
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 100
-theme_override_styles/normal = SubResource("StyleBoxTexture_1hg1l")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_gxrfn")
-theme_override_styles/hover = SubResource("StyleBoxTexture_xqkdt")
-icon_alignment = 1
-expand_icon = true
+offset_left = -128.0
+offset_top = 593.0
+offset_right = -11.0
+offset_bottom = 742.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_6bk2s")
 
-[node name="Step1" type="Control" parent="Map" unique_id=187333275]
-layout_mode = 1
-anchor_left = 0.31187916
-anchor_top = 0.13563137
-anchor_right = 0.5498792
-anchor_bottom = 0.5616314
-offset_left = 0.30999756
-offset_top = 2.2719727
-offset_right = 0.5999756
-offset_bottom = -2.9519653
-pivot_offset = Vector2(187, 232)
-metadata/_edit_use_anchors_ = true
-
-[node name="LockStep1" type="Button" parent="Map/Step1" unique_id=1840924556]
+[node name="6" type="Panel" parent="Map/Details" unique_id=443275543]
 layout_mode = 0
-offset_left = 148.0
-offset_top = 193.0
-offset_right = 226.0
-offset_bottom = 271.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 100
-theme_override_styles/normal = SubResource("StyleBoxTexture_1hg1l")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_gxrfn")
-theme_override_styles/hover = SubResource("StyleBoxTexture_xqkdt")
-icon_alignment = 1
-expand_icon = true
+offset_left = -151.0
+offset_top = 374.0
+offset_right = 25.0
+offset_bottom = 568.8462
+theme_override_styles/panel = SubResource("StyleBoxTexture_vramg")
 
 [node name="Lis1" type="Panel" parent="Map" unique_id=1382135685]
 layout_mode = 1
@@ -587,9 +751,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
-theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y08ir")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_f24pu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_snwym")
 text = "1001"
 
 [node name="Lis12" type="Button" parent="Map/Lis1/Markers" unique_id=800059834]
@@ -600,9 +764,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 28.5
-offset_top = -89.5
+offset_top = -81.5
 offset_right = 65.5
-offset_bottom = -39.5
+offset_bottom = -31.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(18, 49)
@@ -611,9 +775,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
-theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y08ir")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_f24pu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_snwym")
 text = "1002"
 
 [node name="Lis13" type="Button" parent="Map/Lis1/Markers" unique_id=2004700498]
@@ -623,10 +787,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 182.5
-offset_top = 63.5
-offset_right = 219.5
-offset_bottom = 113.5
+offset_left = 177.5
+offset_top = 69.5
+offset_right = 214.5
+offset_bottom = 119.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(18, 49)
@@ -635,9 +799,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
-theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y08ir")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_f24pu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_snwym")
 text = "1003"
 
 [node name="Lis14" type="Button" parent="Map/Lis1/Markers" unique_id=1957293263]
@@ -659,9 +823,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
-theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y08ir")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_f24pu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_snwym")
 text = "1004"
 
 [node name="Lis15" type="Button" parent="Map/Lis1/Markers" unique_id=1856255308]
@@ -671,10 +835,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -168.5
-offset_top = -58.5
-offset_right = -131.5
-offset_bottom = -8.5
+offset_left = -164.5
+offset_top = -56.5
+offset_right = -127.5
+offset_bottom = -6.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(19, 48)
@@ -683,9 +847,9 @@ theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
-theme_override_styles/normal = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_g7l7j")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g7l7j")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y08ir")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_f24pu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_snwym")
 text = "1005"
 
 [node name="ActiveLis1" type="Button" parent="Map/Lis1" unique_id=1044866494]
@@ -696,9 +860,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -33.0
-offset_top = -23.5
+offset_top = -21.5
 offset_right = 45.0
-offset_bottom = 54.5
+offset_bottom = 52.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
@@ -706,9 +870,71 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 100
-theme_override_styles/normal = SubResource("StyleBoxTexture_aelyn")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_aelyn")
-theme_override_styles/hover = SubResource("StyleBoxTexture_aelyn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_g7r7c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_52cv8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xk0q5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Misto1" type="Control" parent="Map" unique_id=1265466791]
+layout_mode = 1
+anchor_left = 0.48100004
+anchor_top = 0.49500003
+anchor_right = 0.48100004
+anchor_bottom = 0.49500003
+offset_left = 63.613953
+offset_top = 61.339966
+offset_right = 383.61395
+offset_bottom = 394.33997
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(156, 160)
+
+[node name="LockMisto1" type="Button" parent="Map/Misto1" unique_id=1945434561]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 103.0
+offset_right = 168.0
+offset_bottom = 181.0
+pivot_offset = Vector2(37, 32)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 100
+theme_override_styles/normal = SubResource("StyleBoxTexture_t0327")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_tj1cr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_j4jdl")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Step1" type="Control" parent="Map" unique_id=187333275]
+layout_mode = 1
+anchor_left = 0.31187916
+anchor_top = 0.13563137
+anchor_right = 0.5498792
+anchor_bottom = 0.5616314
+offset_left = 0.30999756
+offset_top = 2.2719727
+offset_right = 0.5999756
+offset_bottom = -2.9519653
+pivot_offset = Vector2(187, 232)
+metadata/_edit_use_anchors_ = true
+
+[node name="LockStep1" type="Button" parent="Map/Step1" unique_id=1840924556]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 193.0
+offset_right = 226.0
+offset_bottom = 271.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 100
+theme_override_styles/normal = SubResource("StyleBoxTexture_t0327")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_tj1cr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_j4jdl")
 icon_alignment = 1
 expand_icon = true
 
@@ -957,83 +1183,15 @@ anchor_left = 0.5
 anchor_top = 0.837
 anchor_right = 0.5
 anchor_bottom = 0.837
-offset_left = -57.132477
-offset_top = -70.24402
-offset_right = 22.867523
-offset_bottom = 9.755981
+offset_left = -62.5
+offset_top = -94.24405
+offset_right = 58.764954
+offset_bottom = 27.020874
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_gy3ke")
+theme_override_styles/normal = SubResource("StyleBoxTexture_cfwwa")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_gy3ke")
-theme_override_styles/hover = SubResource("StyleBoxTexture_gy3ke")
-
-[node name="Header" type="Control" parent="." unique_id=1063021593]
-layout_mode = 1
-anchor_right = 0.99700004
-anchor_bottom = 0.109000005
-offset_right = 5.7598877
-offset_bottom = -117.72001
-grow_horizontal = 2
-script = ExtResource("16_q2at7")
-
-[node name="Header" type="Panel" parent="Header" unique_id=823009394]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 91.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_grfbt")
-
-[node name="HeaderButtons" type="HBoxContainer" parent="Header/Header" unique_id=1036593880]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.57900006
-anchor_top = 0.582
-anchor_right = 0.57900006
-anchor_bottom = 0.582
-offset_left = 381.31995
-offset_top = -37.962
-offset_right = 670.31995
-offset_bottom = 24.037998
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="Money" type="HBoxContainer" parent="Header/Header/HeaderButtons" unique_id=1161333593]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 15
-alignment = 1
-
-[node name="MoneyEquals" type="Label" parent="Header/Header/HeaderButtons/Money" unique_id=1748585663]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
-theme_override_font_sizes/font_size = 30
-text = "1000"
-
-[node name="MoneyIcon" type="Panel" parent="Header/Header/HeaderButtons/Money" unique_id=1882845416]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_s835k")
-
-[node name="BookIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=1750922357]
-custom_minimum_size = Vector2(80, 120)
-custom_maximum_size = Vector2(80, 60)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_nliuf")
-
-[node name="SettingsIcon" type="Panel" parent="Header/Header/HeaderButtons" unique_id=186424647]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_hvutn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m8rub")
 
 [node name="Close" type="Button" parent="." unique_id=681310306]
 layout_mode = 1
@@ -1053,9 +1211,9 @@ size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 100
-theme_override_styles/normal = SubResource("StyleBoxTexture_spjye")
+theme_override_styles/normal = SubResource("StyleBoxTexture_u2jn3")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_53vcc")
-theme_override_styles/hover = SubResource("StyleBoxTexture_mx7lj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7m4fa")
 icon_alignment = 1
 expand_icon = true
 script = SubResource("GDScript_glkao")
@@ -1151,15 +1309,15 @@ layout_mode = 0
 offset_left = 1920.0
 offset_top = 226.0
 offset_right = 2379.0
-offset_bottom = 903.0
+offset_bottom = 786.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_ksf5k")
 
 [node name="Locations" type="VBoxContainer" parent="Quests" unique_id=1011866007]
 layout_mode = 0
 offset_left = 50.0
-offset_top = 114.17999
+offset_top = 100.0
 offset_right = 390.0
-offset_bottom = 281.18
+offset_bottom = 494.0
 size_flags_horizontal = 6
 size_flags_vertical = 2
 theme_override_constants/separation = 10
@@ -1168,38 +1326,41 @@ script = ExtResource("28_g8try")
 [node name="Lis1" type="Button" parent="Quests/Locations" unique_id=1079615256]
 z_index = 1
 z_as_relative = false
-custom_minimum_size = Vector2(340, 0)
+custom_minimum_size = Vector2(340, 100)
+custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_constants/icon_max_width = 30
 theme_override_fonts/font = ExtResource("10_gyiq0")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_ehh6u")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ue822")
-theme_override_styles/hover = SubResource("StyleBoxFlat_q2at7")
-text = "Ліс 1"
+theme_override_styles/normal = SubResource("StyleBoxFlat_leuhn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6bk2s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vramg")
+text = "Ліс"
 
 [node name="Arrow" type="Panel" parent="Quests/Locations/Lis1" unique_id=953693517]
 layout_mode = 0
 offset_left = 14.299999
-offset_top = 13.0
+offset_top = 17.0
 offset_right = 43.7
-offset_bottom = 41.0
+offset_bottom = 45.0
 pivot_offset = Vector2(14.699951, 14)
 theme_override_styles/panel = SubResource("StyleBoxTexture_p20mb")
 
 [node name="Quests" type="VBoxContainer" parent="Quests/Locations" unique_id=1885988932]
+visible = false
 propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1215,6 +1376,8 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g7r7c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f24pu")
 text = "101"
 
 [node name="Name" type="Label" parent="Quests/Locations/Quests/Quest1" unique_id=1366171625]
@@ -1267,7 +1430,7 @@ theme_override_fonts/font = ExtResource("7_e2kap")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quest2" type="Button" parent="Quests/Locations/Quests" unique_id=549834942]
+[node name="Quest2" type="Button" parent="Quests/Locations/Quests" unique_id=2106010349]
 custom_minimum_size = Vector2(340, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 0)
@@ -1276,9 +1439,11 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g7r7c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f24pu")
 text = "102"
 
-[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest2" unique_id=1539132144]
+[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest2" unique_id=1371069317]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 10
@@ -1293,7 +1458,7 @@ theme_override_fonts/font = ExtResource("7_e2kap")
 theme_override_font_sizes/font_size = 20
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest2" unique_id=1069935391]
+[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest2" unique_id=455932472]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 12
@@ -1308,10 +1473,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_e2kap")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 10
 vertical_alignment = 1
 
-[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest2" unique_id=1123699472]
+[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest2" unique_id=134837008]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -1328,7 +1493,7 @@ theme_override_fonts/font = ExtResource("7_e2kap")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quest3" type="Button" parent="Quests/Locations/Quests" unique_id=1112792286]
+[node name="Quest3" type="Button" parent="Quests/Locations/Quests" unique_id=1667562532]
 custom_minimum_size = Vector2(340, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 0)
@@ -1337,9 +1502,11 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g7r7c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f24pu")
 text = "103"
 
-[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest3" unique_id=943520973]
+[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest3" unique_id=984826991]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 10
@@ -1354,7 +1521,7 @@ theme_override_fonts/font = ExtResource("7_e2kap")
 theme_override_font_sizes/font_size = 20
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest3" unique_id=2054373412]
+[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest3" unique_id=1026761777]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 12
@@ -1369,10 +1536,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_e2kap")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 10
 vertical_alignment = 1
 
-[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest3" unique_id=1816309101]
+[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest3" unique_id=59454068]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -1389,9 +1556,7 @@ theme_override_fonts/font = ExtResource("7_e2kap")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="Quests/Locations/Quests/Quest3/Progress" unique_id=61304392]
-
-[node name="Quest4" type="Button" parent="Quests/Locations/Quests" unique_id=891210578]
+[node name="Quest4" type="Button" parent="Quests/Locations/Quests" unique_id=1654757523]
 custom_minimum_size = Vector2(340, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 0)
@@ -1400,9 +1565,11 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g7r7c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f24pu")
 text = "104"
 
-[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest4" unique_id=1902922197]
+[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest4" unique_id=1999175281]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 10
@@ -1417,7 +1584,7 @@ theme_override_fonts/font = ExtResource("7_e2kap")
 theme_override_font_sizes/font_size = 20
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest4" unique_id=517640158]
+[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest4" unique_id=26607710]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 12
@@ -1432,10 +1599,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_e2kap")
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 10
 vertical_alignment = 1
 
-[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest4" unique_id=1307539707]
+[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest4" unique_id=1472571518]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -1452,7 +1619,7 @@ theme_override_fonts/font = ExtResource("7_e2kap")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quest5" type="Button" parent="Quests/Locations/Quests" unique_id=138849252]
+[node name="Quest5" type="Button" parent="Quests/Locations/Quests" unique_id=2094273663]
 custom_minimum_size = Vector2(340, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.88, 0.88, 0.88, 0)
@@ -1461,9 +1628,11 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 0)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
 theme_override_styles/normal = SubResource("StyleBoxFlat_glkao")
-text = "105"
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g7r7c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f24pu")
+text = "104"
 
-[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest5" unique_id=1827650659]
+[node name="Name" type="Label" parent="Quests/Locations/Quests/Quest5" unique_id=1750609833]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 10
@@ -1471,14 +1640,14 @@ anchor_right = 1.0
 offset_left = 10.0
 offset_top = 6.8200073
 offset_right = -70.0
-offset_bottom = 31.820007
+offset_bottom = 29.820007
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_e2kap")
 theme_override_font_sizes/font_size = 20
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest5" unique_id=2087596302]
+[node name="Description" type="Label" parent="Quests/Locations/Quests/Quest5" unique_id=1445007475]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 12
@@ -1493,10 +1662,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_e2kap")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 10
 vertical_alignment = 1
 
-[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest5" unique_id=946860856]
+[node name="Progress" type="Label" parent="Quests/Locations/Quests/Quest5" unique_id=1491599858]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -1524,6 +1693,7 @@ offset_left = -280.5
 offset_top = -23.175018
 offset_right = -226.15283
 offset_bottom = 31.17215
+rotation = 1.5707964
 pivot_offset = Vector2(25, 25)
 theme_override_styles/normal = SubResource("StyleBoxTexture_lxo0m")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_lxo0m")
@@ -1537,9 +1707,9 @@ anchor_top = 0.15900001
 anchor_right = 0.91700006
 anchor_bottom = 0.326
 offset_left = -9.343002
-offset_top = -61.823006
+offset_top = -49.040016
 offset_right = -4.903015
-offset_bottom = -129.222
+offset_bottom = -93.560005
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -10
 theme_override_fonts/font = ExtResource("10_gyiq0")
@@ -1547,3 +1717,78 @@ theme_override_font_sizes/font_size = 40
 text = "Квести"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Header" type="Control" parent="." unique_id=1189393523]
+layout_mode = 1
+anchor_right = 0.99700004
+anchor_bottom = 0.109000005
+offset_right = 5.7598877
+offset_bottom = -117.72001
+grow_horizontal = 2
+script = ExtResource("16_q2at7")
+
+[node name="Header" type="Panel" parent="Header" unique_id=363916358]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b0cm2")
+
+[node name="HeaderButtons" type="HBoxContainer" parent="Header/Header" unique_id=1594720676]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.57900006
+anchor_top = 0.582
+anchor_right = 0.57900006
+anchor_bottom = 0.582
+offset_left = 379.31995
+offset_top = -34.962
+offset_right = 718.31995
+offset_bottom = 27.037998
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Money" type="HBoxContainer" parent="Header/Header/HeaderButtons" unique_id=621297524]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="MoneyEquals" type="Label" parent="Header/Header/HeaderButtons/Money" unique_id=2003287827]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 1, 1, 0.7294118)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("25_6bk2s")
+theme_override_font_sizes/font_size = 35
+text = "1000"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="MoneyIcon" type="Button" parent="Header/Header/HeaderButtons/Money" unique_id=1566828109]
+custom_minimum_size = Vector2(60, 60)
+custom_maximum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_i4kje")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_16i2t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e57sv")
+
+[node name="BookIcon" type="Button" parent="Header/Header/HeaderButtons" unique_id=152298657]
+custom_minimum_size = Vector2(60, 60)
+custom_maximum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_gu5lf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qpvvs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_nvj48")
+
+[node name="SettingsIcon" type="Button" parent="Header/Header/HeaderButtons" unique_id=91141882]
+custom_minimum_size = Vector2(60, 60)
+custom_maximum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_j8mpl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6vlq7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1uu6a")

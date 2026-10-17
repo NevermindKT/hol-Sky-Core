@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="CLEAN_ICONS_consistent_20pt_rounded_strokes" data-name="CLEAN ICONS — consistent 20pt rounded strokes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #d8c8a9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+  <g id="Money">
+    <g>
+      <rect class="cls-1" x="117" y="178" width="288" height="171" rx="16" ry="16"/>
+      <path class="cls-1" d="M150,145h222M159,218h24M339,309h24"/>
+      <circle class="cls-1" cx="261" cy="263" r="42"/>
+    </g>
+  </g>
+</svg>

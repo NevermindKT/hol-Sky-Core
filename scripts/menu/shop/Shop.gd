@@ -6,7 +6,18 @@ extends Control
 @onready var bubble_sweet_container: Control = $Bubble/SweetObj
 
 @export var money_label: Label
-@export var timer_label: Label
+@onready var timer_label: Label = $Background/Timerr/TimerLabel/Timer
+
+# Элементы панели описания товара (рамка всегда видна)
+@onready var info_panel: Control = $Background/ObjDescription
+@onready var info_name_label: Label = $Background/ObjDescription/Name
+@onready var info_rarity_label: Label = $Background/ObjDescription/Rarity
+@onready var info_desc_label: Label = $Background/ObjDescription/Description
+
+# =========================================================================
+# ⏱️ ВЫ МОЖЕТЕ ИЗМЕНИТЬ ЭТО ЧИСЛО, ЧТОБЫ УДЛИННИТЬ ИЛИ УКОРОТИТЬ ВРЕМЯ ТАЙМЕРА
+# =========================================================================
+@export var shop_refresh_duration: float = 10.0
 
 var db: SQLite = null
 
@@ -42,7 +53,13 @@ var db: SQLite = null
 
 func _ready() -> void:
 	_init_database()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	# Рамка описания теперь всегда видна с самого начала
+	if info_panel:
+		info_panel.visible = true
+
+	if GameManager.shop_time_left <= 0.0:
+		GameManager.shop_time_left = shop_refresh_duration
 
 	if not GameManager.shop_refreshed.is_connected(_on_game_manager_shop_refreshed):
 		GameManager.shop_refreshed.connect(_on_game_manager_shop_refreshed)
@@ -51,6 +68,7 @@ func _ready() -> void:
 		GameManager.money_changed.connect(_on_money_changed)
 
 	render_shop()
+	update_timer_display()
 
 func _init_database() -> void:
 	db = SQLite.new()
@@ -58,6 +76,9 @@ func _init_database() -> void:
 	db.open_db()
 
 func _process(_delta: float) -> void:
+	update_timer_display()
+
+func update_timer_display() -> void:
 	if timer_label:
 		var time_left = max(0.0, GameManager.shop_time_left)
 		var minutes = int(time_left) / 60
@@ -143,11 +164,6 @@ func _create_card_from_data(data: Dictionary, templates: Dictionary, target_cont
 	if name_node is Label or name_node is Button: 
 		name_node.text = str(data["name"])
 
-	var desc_node = shop_item.get_node_or_null("Description")
-	if desc_node is Label:
-		desc_node.text = str(data["desc"])
-		desc_node.modulate.a = 0.0
-
 	var price_node = shop_item.get_node_or_null("Emount")
 	if price_node is Label or price_node is Button:
 		price_node.text = str(data["price"])
@@ -157,30 +173,95 @@ func _create_card_from_data(data: Dictionary, templates: Dictionary, target_cont
 		icon_node.texture = load(data["icon"])
 
 	if GameManager.is_purchased(data["unique_key"]):
-		_apply_sold_out_state(shop_item, name_node, desc_node)
+		_apply_sold_out_state(shop_item, name_node, price_node)
 	else:
-		if desc_node:
-			shop_item.mouse_entered.connect(func():
-				var is_sold = (name_node and name_node.text == "Sold Out") or (shop_item is BaseButton and shop_item.disabled)
-				if not is_sold:
-					desc_node.modulate.a = 1.0
-			)
-			shop_item.mouse_exited.connect(func():
-				desc_node.modulate.a = 0.0
-			)
+		_setup_hover_scale_effect(shop_item, price_node, icon_node, data)
 
 		if shop_item is BaseButton:
-			shop_item.pressed.connect(func(): _buy_item(data, shop_item, name_node, desc_node))
+			shop_item.pressed.connect(func(): _buy_item(data, shop_item, name_node, price_node))
 		else:
 			shop_item.mouse_filter = Control.MOUSE_FILTER_STOP
 			shop_item.gui_input.connect(func(event: InputEvent):
 				if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-					_buy_item(data, shop_item, name_node, desc_node)
+					_buy_item(data, shop_item, name_node, price_node)
 			)
 
 	target_container.add_child(shop_item)
 
-func _buy_item(data: Dictionary, shop_item: Control, name_node: Node, desc_node: Node) -> void:
+func _setup_hover_scale_effect(item_node: Control, price_node: Node, icon_node: Node, data: Dictionary) -> void:
+	if item_node.has_meta("hover_effect_initialized"):
+		return
+	item_node.set_meta("hover_effect_initialized", true)
+	
+	item_node.pivot_offset = item_node.size / 2.0
+	
+	if price_node is Control:
+		price_node.pivot_offset = price_node.size / 2.0
+		item_node.set_meta("price_node", price_node)
+		
+	if icon_node is Control:
+		item_node.set_meta("icon_node", icon_node)
+		item_node.set_meta("base_icon_pos", icon_node.position)
+	
+	var initial_color = item_node.modulate
+	initial_color.a = 1.0
+	item_node.modulate = initial_color
+	
+	if not item_node.mouse_entered.is_connected(_on_shop_item_mouse_entered.bind(item_node, data)):
+		item_node.mouse_entered.connect(_on_shop_item_mouse_entered.bind(item_node, data))
+		item_node.mouse_exited.connect(_on_shop_item_mouse_exited.bind(item_node))
+
+func _on_shop_item_mouse_entered(item_node: Control, data: Dictionary) -> void:
+	var current_color = item_node.modulate
+	current_color.a = 1.0
+	item_node.modulate = current_color
+	
+	if info_name_label:
+		info_name_label.text = str(data.get("name", ""))
+	if info_rarity_label:
+		info_rarity_label.text = str(data.get("rarity", ""))
+	if info_desc_label:
+		info_desc_label.text = str(data.get("desc", ""))
+	
+	var tween = item_node.create_tween().set_parallel(true)
+	tween.tween_property(item_node, "scale", Vector2(1.08, 1.08), 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	if item_node.has_meta("icon_node"):
+		var i_node = item_node.get_meta("icon_node") as Control
+		var base_i_pos = item_node.get_meta("base_icon_pos") as Vector2
+		if i_node and is_instance_valid(i_node):
+			tween.tween_property(i_node, "position:y", base_i_pos.y - 20.0, 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	if item_node.has_meta("price_node"):
+		var p_node = item_node.get_meta("price_node") as Control
+		if p_node and is_instance_valid(p_node):
+			tween.tween_property(p_node, "scale", Vector2(0.925, 0.925), 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+
+func _on_shop_item_mouse_exited(item_node: Control) -> void:
+	var current_color = item_node.modulate
+	current_color.a = 1.0
+	item_node.modulate = current_color
+	
+	# Больше не скрываем info_panel при уводе мыши, рамка остается на месте
+	
+	var tween = item_node.create_tween().set_parallel(true)
+	tween.tween_property(item_node, "scale", Vector2(1.0, 1.0), 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	if item_node.has_meta("icon_node"):
+		var i_node = item_node.get_meta("icon_node") as Control
+		var base_i_pos = item_node.get_meta("base_icon_pos") as Vector2
+		if i_node and is_instance_valid(i_node):
+			tween.tween_property(i_node, "position:y", base_i_pos.y, 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	if item_node.has_meta("price_node"):
+		var p_node = item_node.get_meta("price_node") as Control
+		if p_node and is_instance_valid(p_node):
+			tween.tween_property(p_node, "scale", Vector2(1.0, 1.0), 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+
+func _buy_item(data: Dictionary, shop_item: Control, name_node: Node, price_node: Node) -> void:
+	if GameManager.is_purchased(data["unique_key"]):
+		return
+
 	if GameManager.spend_money(data["price"]):
 		GameManager.mark_as_purchased(data["unique_key"])
 		db.query("UPDATE Objects SET Quantity = Quantity + 1 WHERE ID = '%s';" % [data["id"]])
@@ -188,42 +269,32 @@ func _buy_item(data: Dictionary, shop_item: Control, name_node: Node, desc_node:
 		if money_label:
 			money_label.text = str(GameManager.get_player_money())
 
-		_apply_sold_out_state(shop_item, name_node, desc_node)
+		_apply_sold_out_state(shop_item, name_node, price_node)
 	else:
 		print("Недостаточно средств!")
 
-func _apply_sold_out_state(shop_item: Control, name_node: Node, desc_node: Node) -> void:
+func _apply_sold_out_state(shop_item: Control, name_node: Node, price_node: Node) -> void:
 	if shop_item is BaseButton:
-		var normal_style = shop_item.get_theme_stylebox("normal")
-		var new_style: StyleBoxFlat
-		if normal_style is StyleBoxFlat:
-			new_style = normal_style.duplicate() as StyleBoxFlat
-		else:
-			new_style = StyleBoxFlat.new()
-			if normal_style: new_style.bg_color = normal_style.bg_color
-		
-		new_style.bg_color = new_style.bg_color.darkened(0.2)
-		new_style.set_corner_radius_all(10)
-		shop_item.add_theme_stylebox_override("normal", new_style)
-		shop_item.disabled = true
-	else:
-		shop_item.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		if shop_item is Panel or shop_item is PanelContainer:
-			var panel_style = shop_item.get_theme_stylebox("panel")
-			var new_style: StyleBoxFlat
-			if panel_style is StyleBoxFlat:
-				new_style = panel_style.duplicate() as StyleBoxFlat
-			else:
-				new_style = StyleBoxFlat.new()
-				if panel_style: new_style.bg_color = panel_style.bg_color
+		shop_item.disabled = false 
+	
+	shop_item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	shop_item.scale = Vector2(1.0, 1.0)
+	
+	if item_has_icon_node(shop_item):
+		var i_node = shop_item.get_meta("icon_node") as Control
+		var base_i_pos = shop_item.get_meta("base_icon_pos") as Vector2
+		if i_node and is_instance_valid(i_node):
+			i_node.position = base_i_pos
 			
-			new_style.bg_color = new_style.bg_color.darkened(0.2)
-			new_style.set_corner_radius_all(10)
-			shop_item.add_theme_stylebox_override("panel", new_style)
-		else:
-			shop_item.self_modulate = Color(0.8, 0.8, 0.8, 1.0)
-			
+	if price_node is Control:
+		price_node.scale = Vector2(1.0, 1.0)
+	
 	if name_node is Label or name_node is Button:
 		name_node.text = "Sold Out"
-	if desc_node is Label:
-		desc_node.modulate.a = 0.0
+		
+	if price_node is Label or price_node is Button:
+		price_node.text = "Продано"
+
+func item_has_icon_node(item_node: Control) -> bool:
+	return item_node.has_meta("icon_node")

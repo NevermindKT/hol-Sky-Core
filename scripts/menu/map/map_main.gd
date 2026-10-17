@@ -34,9 +34,6 @@ extends Control
 	$Quests/Locations/Quests/Quest5
 ]
 
-# Ссылка на ваш узел Timer в квесте 3
-@onready var quest3_timer_node: Timer = $Quests/Locations/Quests/Quest3/Progress/Timer
-
 var quests_hidden_pos: Vector2 = Vector2(1920.0, 226.0)
 var quests_visible_pos: Vector2 = Vector2(1499.0, 226.0)
 var quests_is_open: bool = false
@@ -54,11 +51,11 @@ var base_visible_pos: Vector2 = Vector2(-27.0, 171.0)
 
 var default_map_pos: Vector2 = Vector2(207.0, 109.0)
 var default_map_scale: Vector2 = Vector2(1.0, 1.0)
-var zoomed_map_pos: Vector2 = Vector2(481.0, -21.0)
-var zoomed_map_scale: Vector2 = Vector2(1.0, 1.0)
+var zoomed_map_pos: Vector2 = Vector2(590.0, -21.0)
+var zoomed_map_scale: Vector2 = Vector2(1.3, 1.3)
 
 var default_lis1_scale: Vector2 = Vector2(1.0, 1.0)
-var zoomed_lis1_scale: Vector2 = Vector2(1.1, 1.1)
+var zoomed_lis1_scale: Vector2 = Vector2(1.0, 1.0)
 
 var current_base_id: int = -1
 var is_animating: bool = false
@@ -66,6 +63,7 @@ var db: SQLite = null
 
 func _ready() -> void:
 	_init_database()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if map_node:
 		map_node.position = default_map_pos
@@ -106,11 +104,11 @@ func _ready() -> void:
 	if active_lis1:
 		active_lis1.pressed.connect(_on_active_lis1_pressed)
 
-	# Настраиваем узел Timer (one_shot, подключение сигнала)
-	if quest3_timer_node:
-		quest3_timer_node.one_shot = true
-		if not quest3_timer_node.timeout.is_connected(_on_quest3_timeout):
-			quest3_timer_node.timeout.connect(_on_quest3_timeout)
+	# Подключаем сигналы глобального таймера из GameManager
+	if not GameManager.is_connected("quest103_tick", Callable(self, "_on_quest103_tick")):
+		GameManager.connect("quest103_tick", Callable(self, "_on_quest103_tick"))
+	if not GameManager.is_connected("quest103_finished", Callable(self, "_on_quest103_finished")):
+		GameManager.connect("quest103_finished", Callable(self, "_on_quest103_finished"))
 
 	var markers = [$Map/Lis1/Markers/Lis11, $Map/Lis1/Markers/Lis12, $Map/Lis1/Markers/Lis13, $Map/Lis1/Markers/Lis14, $Map/Lis1/Markers/Lis15]
 	for m in markers:
@@ -124,14 +122,6 @@ func _ready() -> void:
 
 	_load_current_active_base()
 	_check_and_update_quests_logic()
-
-func _process(_delta: float) -> void:
-	# Если панель квестов открыта и таймер идет, плавно обновляем отображение секунд
-	if lis1_quests_open and quest3_timer_node and not quest3_timer_node.is_stopped():
-		var prog_lbl = quest_nodes[2].get_node_or_null("Progress") as Label
-		if prog_lbl:
-			var rem_time = int(ceil(quest3_timer_node.time_left))
-			prog_lbl.text = "(Таймер: %d сек.)" % rem_time
 
 func _init_database() -> void:
 	db = SQLite.new()
@@ -181,12 +171,11 @@ func _check_and_update_quests_logic() -> void:
 				
 				db.query("UPDATE Quests SET Have = %d WHERE ID = %d;" % [calculated_have, q_id])
 
-			# Квест 103: подстраиваем таймер под Need из базы и запускаем, если он еще не запущен
+			# Квест 103: запускаем глобальный таймер в GameManager, подстраиваясь под Need
 			elif q_id == 103:
 				if have < need:
-					if quest3_timer_node and quest3_timer_node.is_stopped() and quest3_timer_node.time_left == 0.0:
-						quest3_timer_node.wait_time = float(need) # Устанавливаем время из базы данных (Need)
-						quest3_timer_node.start()
+					if GameManager.quest103_time_left <= 0.0 and not GameManager.quest103_active:
+						GameManager.start_quest103_timer(float(need))
 				else:
 					calculated_have = need
 					db.query("UPDATE Quests SET Have = %d WHERE ID = %d;" % [calculated_have, q_id])
@@ -207,8 +196,16 @@ func _check_and_update_quests_logic() -> void:
 	if lis1_quests_open:
 		_update_ui_quests()
 
-# Срабатывает автоматически, когда встроенный Timer досчитает до 0
-func _on_quest3_timeout() -> void:
+# Получение тика от GameManager для обновления текста таймера
+func _on_quest103_tick(time_left: float) -> void:
+	if lis1_quests_open:
+		var prog_lbl = quest_nodes[2].get_node_or_null("Progress") as Label
+		if prog_lbl:
+			var rem_time = int(ceil(time_left))
+			prog_lbl.text = "Таймер: %d сек." % rem_time
+
+# Срабатывает, когда глобальный таймер в GameManager завершился
+func _on_quest103_finished() -> void:
 	if db == null: return
 	db.query("SELECT Need FROM Quests WHERE ID = 103;")
 	var res = db.query_result
@@ -278,13 +275,13 @@ func _update_ui_quests() -> void:
 			if desc_lbl: desc_lbl.text = str(row.get("Description", ""))
 			if prog_lbl:
 				if q_id == 103:
-					if quest3_timer_node and not quest3_timer_node.is_stopped():
-						var rem_time = int(ceil(quest3_timer_node.time_left))
-						prog_lbl.text = "(Таймер: %d сек.)" % rem_time
+					if GameManager.quest103_active:
+						var rem_time = int(ceil(GameManager.quest103_time_left))
+						prog_lbl.text = "Таймер: %d сек." % rem_time
 					else:
-						prog_lbl.text = "(Виконано)"
+						prog_lbl.text = "Виконано"
 				else:
-					prog_lbl.text = "(%d) / (%d)" % [have, need]
+					prog_lbl.text = "%d / %d" % [have, need]
 
 # --- ОСТАЛЬНЫЕ МЕТОДЫ КАРТЫ И БАЗ ---
 func _update_markers_scale() -> void:
@@ -499,6 +496,7 @@ func _on_base_play_pressed() -> void:
 	if current_base_id == -1 or db == null:
 		return
 
+	db.query("UPDATE Bases WHERE ISActive = 0;") # или UPDATE Bases SET ISActive = 0;
 	db.query("UPDATE Bases SET ISActive = 0;")
 	db.query("UPDATE Bases SET ISActive = 1 WHERE ID = %d;" % current_base_id)
 	
