@@ -331,12 +331,11 @@ fade_duration = 5.0
 [node name="MusicManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=341409651 node_paths=PackedStringArray("car")]
 script = ExtResource("47_nvyfr")
 car = NodePath("../../Car")
-music_volume_db = 16.0
+music_volume_db = 14.0
 dusk_tracks = Array[AudioStream]([ExtResource("60_dusk_a"), ExtResource("61_dusk_b")])
 dusk_variant = 1
 combat_sets = Array[ExtResource("64_mset")]([ExtResource("62_pred"), ExtResource("63_hunt")])
 impact = ExtResource("65_imp")
-ambient_volume_db = 2.0
 warning_volume_db = 3.0
 clean_start_ratio = 0.3
 clean_end_ratio = 0.65
