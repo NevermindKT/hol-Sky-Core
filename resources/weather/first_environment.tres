@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://dtip6lji4kyfk" path="res://resources/shaders/weather/sky/sky.gdshader" id="1_skysh"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_oqemt"]
+noise_type = 0
 seed = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jv4bp"]
@@ -36,12 +37,12 @@ shader_parameter/moon_glow_energy = 0.0
 shader_parameter/moon_glow_power = 250.0
 shader_parameter/use_debanding = true
 shader_parameter/cloud_noise = SubResource("NoiseTexture2D_jv4bp")
-shader_parameter/cloud_light_color = Color(0.7764706, 0.7764706, 0.7764706, 1)
-shader_parameter/cloud_shadow_color = Color(0.57700837, 0.5770084, 0.57700837, 1)
+shader_parameter/cloud_light_color = Color(0.9779369, 0.97793704, 0.9779369, 1)
+shader_parameter/cloud_shadow_color = Color(0.69135666, 0.6913569, 0.69135684, 1)
 shader_parameter/cloud_yaw = 0.0
 shader_parameter/cloud_scale = 0.05000000074506
 shader_parameter/cloud_wind = Vector2(0.004, 0.002)
-shader_parameter/cloud_coverage = 0.90000004275
+shader_parameter/cloud_coverage = 0.6000000285
 shader_parameter/cloud_softness = 0.00999999977648
 shader_parameter/cloud_horizon_fade = 0.10000000405148
 
