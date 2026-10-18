@@ -139,6 +139,8 @@ func _on_flashlight_toggle() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if car == null:
+		return
 	_process_lateral_follow(delta)
 	_process_speed_feel(delta)
 	_process_input_push(delta)

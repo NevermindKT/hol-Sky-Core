@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://djwxwpscpaf07"]
+
+[ext_resource type="Shader" uid="uid://d0akv5b1ury0b" path="res://resources/shaders/ps1_overlay.gdshader" id="1_jmcd5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vc5cj"]
+shader = ExtResource("1_jmcd5")
+shader_parameter/pixel_size = 2.0
+shader_parameter/low_res_input = false
+shader_parameter/gamma = Vector2(0.15, 9.5)
+shader_parameter/posterize_strength = 0.800000038
+shader_parameter/shadow_levels = 6.0
+shader_parameter/midtone_levels = 10.0
+shader_parameter/highlight_levels = 12.0
+shader_parameter/shadow_range = 0.57999998703584
+shader_parameter/highlight_range = 0.749999983236
+shader_parameter/noise_strength = 0.06999999843536
+shader_parameter/noise_darkness = 0.7999999821184
+shader_parameter/noise_scale = 12.0
+shader_parameter/noise_speed = 12.0000001788144
+shader_parameter/noise_chroma = 0.1999999955296
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_txyw0"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[node name="Overlay" type="TextureRect" unique_id=631129038]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vc5cj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_txyw0")

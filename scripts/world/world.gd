@@ -1,16 +1,16 @@
 extends Node
 class_name World
 
-@onready var world: Node3D = $World
-@onready var world_path: Path3D = $WorldPath
-@onready var projectiles: Node3D = $Projectiles
-@onready var road_container: Node3D = $World/RoadContainer
-@onready var enemies: Node3D = $World/Enemies
-@onready var ground_container: Node3D = $World/GroundContainer
-@onready var path_follow_3d: PathFollow3D = $WorldPath/PathFollow3D
-@onready var trail_container: Node3D = $World/TrailContainer
+@export var world: Node3D
+@export var world_path: Path3D
+@export var projectiles: Node3D
+@export var road_container: Node3D
+@export var enemies: Node3D
+@export var ground_container: Node3D
+@export var path_follow_3d: PathFollow3D
+@export var trail_container: Node3D
 
-@onready var ground_path: Path3D = $GroundPath
+@export var ground_path: Path3D
 
 @export var road_set: Road_Set
 @export var obstacle_set: Obstacles_set

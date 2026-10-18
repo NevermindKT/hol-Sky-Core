@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://bkofqf6ofc4o3"]
+
+[ext_resource type="PackedScene" uid="uid://cvss3kmdnwbp7" path="res://scenes/World.tscn" id="1_0wcor"]
+[ext_resource type="Script" uid="uid://b1c7wir0n5ael" path="res://scripts/road/road_generator.gd" id="1_c1gna"]
+[ext_resource type="Script" uid="uid://dq1h45bj2og1p" path="res://scripts/ground/ground_generator.gd" id="2_0wcor"]
+[ext_resource type="Resource" uid="uid://5ay5tpwia72b" path="res://resources/road/test_road_set.tres" id="2_d6sgc"]
+[ext_resource type="Resource" uid="uid://c4c3g4xb37qda" path="res://resources/road/obstacle_set.tres" id="3_hbm6h"]
+[ext_resource type="Script" uid="uid://o814stxgn452" path="res://scripts/menu/menu_bg_bootstrap.gd" id="5_ed5m1"]
+[ext_resource type="Script" uid="uid://ckvbpffvi7k0i" path="res://scripts/ground/vegetation_scatter.gd" id="5_fccyc"]
+[ext_resource type="PackedScene" uid="uid://bfh8ek3nst8so" path="res://scenes/weather/weather_system.tscn" id="7_28v7y"]
+[ext_resource type="PackedScene" uid="uid://djwxwpscpaf07" path="res://scenes/ps1_overlay.tscn" id="8_30qy1"]
+[ext_resource type="Resource" uid="uid://cyb31n5t64wgs" path="res://resources/landscape/landscape.tres" id="8_qsq72"]
+[ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="10_rhu8c"]
+[ext_resource type="Shader" uid="uid://d0akv5b1ury0b" path="res://resources/shaders/ps1_overlay.gdshader" id="12_6ql47"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tafnw"]
+shader = ExtResource("12_6ql47")
+shader_parameter/pixel_size = 2.0
+shader_parameter/low_res_input = false
+shader_parameter/gamma = Vector2(0.15, 9.5)
+shader_parameter/posterize_strength = 0.800000038
+shader_parameter/shadow_levels = 6.0
+shader_parameter/midtone_levels = 10.0
+shader_parameter/highlight_levels = 12.0
+shader_parameter/shadow_range = 0.57999998703584
+shader_parameter/highlight_range = 0.749999983236
+shader_parameter/noise_strength = 0.01999999955296
+shader_parameter/noise_darkness = 0.7999999821184
+shader_parameter/noise_scale = 12.0
+shader_parameter/noise_speed = 12.0000001788144
+shader_parameter/noise_chroma = 0.1999999955296
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6ql47"]
+viewport_path = NodePath("../SubViewportContainer/SubViewport")
+
+[node name="Node3D" type="Node3D" unique_id=901735089]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1332365595]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=279691978]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="World" parent="SubViewportContainer/SubViewport" unique_id=1128285648 instance=ExtResource("1_0wcor")]
+road_set = ExtResource("2_d6sgc")
+obstacle_set = ExtResource("3_hbm6h")
+
+[node name="VegGen" type="Node" parent="SubViewportContainer/SubViewport" unique_id=1340335512]
+script = ExtResource("5_fccyc")
+
+[node name="RoadGen" type="Node" parent="SubViewportContainer/SubViewport" unique_id=741167782]
+script = ExtResource("1_c1gna")
+
+[node name="GroundGen" type="Node" parent="SubViewportContainer/SubViewport" unique_id=1296382706]
+script = ExtResource("2_0wcor")
+landscape = ExtResource("8_qsq72")
+
+[node name="WeatherSystem" parent="SubViewportContainer/SubViewport" unique_id=1765140778 instance=ExtResource("7_28v7y")]
+
+[node name="Sun" parent="SubViewportContainer/SubViewport/WeatherSystem" index="1" unique_id=89476310]
+light_energy = 0.04
+shadow_enabled = true
+shadow_blur = 3.0
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 90.0
+
+[node name="LightningController" parent="SubViewportContainer/SubViewport/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
+world = NodePath("../../World")
+strike_ahead_min = 100.0
+strike_ahead_max = 150.0
+
+[node name="FogController" parent="SubViewportContainer/SubViewport/WeatherSystem" index="3" unique_id=1605430976]
+transition_speed = 2.0
+
+[node name="SkyController" parent="SubViewportContainer/SubViewport/WeatherSystem" index="4" unique_id=995668462 node_paths=PackedStringArray("world")]
+world = NodePath("../../World")
+dusk_duration = 50.0
+dusk_sun_azimuth_deg = 160.0
+dusk_light_energy = 1.0
+moon_azimuth_deg = 200.0
+moon_night_elevation_deg = 15.0
+dawn_duration = 20.0
+dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
+
+[node name="Moon" parent="SubViewportContainer/SubViewport/WeatherSystem" index="5" unique_id=730512946]
+shadow_enabled = true
+shadow_blur = 3.0
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 90.0
+energy = 0.1
+
+[node name="CloudRotate" parent="SubViewportContainer/SubViewport/WeatherSystem" index="6" unique_id=2014250662 node_paths=PackedStringArray("world_root", "world_environment")]
+world_root = NodePath("../../World")
+world_environment = NodePath("../WorldEnvironment")
+
+[node name="MenuBGBootstrap" type="Node" parent="SubViewportContainer/SubViewport" unique_id=266738782 node_paths=PackedStringArray("world", "road_gen", "ground_gen", "veg_gen", "sky_controller")]
+script = ExtResource("5_ed5m1")
+world = NodePath("../World")
+road_gen = NodePath("../RoadGen")
+ground_gen = NodePath("../GroundGen")
+veg_gen = NodePath("../VegGen")
+sky_controller = NodePath("../WeatherSystem/SkyController")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=108952356]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -1.1920929e-07, 11.338314, -6.612536)
+fov = 90.0
+script = ExtResource("10_rhu8c")
+
+[node name="Overlay" parent="." unique_id=631129038 instance=ExtResource("8_30qy1")]
+material = SubResource("ShaderMaterial_tafnw")
+texture = SubResource("ViewportTexture_6ql47")
+
+[editable path="SubViewportContainer/SubViewport/WeatherSystem"]

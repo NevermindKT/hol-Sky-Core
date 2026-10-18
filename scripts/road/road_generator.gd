@@ -3,7 +3,7 @@ class_name Road_generator
 
 var world: World
 
-@export var debug: bool = true
+@export var debug: bool = false
 
 var road_set: Road_Set
 var obstacle_set: Obstacles_set
