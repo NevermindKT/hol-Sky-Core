@@ -179,8 +179,10 @@ func set_fps_limit_index(index: int) -> void:
 
 #--------------------------------- OVERLAY
 
-func register_overlay(overlay: TextureRect):
+
+func register_overlay(overlay: TextureRect) -> void:
 	_overlay = overlay
+	_apply_overlay()
 
 
 func set_overlay(value: bool):
