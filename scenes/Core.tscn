@@ -279,8 +279,6 @@ fade_duration = 5.0
 [node name="MusicManager" type="Node" parent="Services" unique_id=923625287 node_paths=PackedStringArray("car")]
 script = ExtResource("35_km0fw")
 car = NodePath("../../Car")
-tracks = Array[AudioStream]([ExtResource("36_a3gn5"), ExtResource("37_od8a5"), ExtResource("38_qfphn"), ExtResource("39_m661r")])
-gap_between_tracks = 2.2
 clean_start_ratio = 0.3
 clean_end_ratio = 0.65
 transition_speed = 1.0

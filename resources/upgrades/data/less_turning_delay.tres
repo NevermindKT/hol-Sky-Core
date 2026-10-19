@@ -1,10 +1,50 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://ehf26lt3mmae"]
 
-[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_8sosl"]
 [ext_resource type="Resource" uid="uid://i8hopcggudai" path="res://resources/upgrades/branches/accuracy_branch.tres" id="1_myvyy"]
 [ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_wvnwq"]
-[ext_resource type="Resource" uid="uid://cl0ke2opld8rc" path="res://resources/upgrades/effects/less_turning_delay.tres" id="3_orki4"]
 [ext_resource type="Resource" uid="uid://dajl615dqpj11" path="res://resources/upgrades/data/less_recoil.tres" id="5_ap4pn"]
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="eff_base"]
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="eff_stat"]
+[ext_resource type="Script" uid="uid://d18mggsnx5se3" path="res://scripts/data/upgrade/upgrade_level.gd" id="level"]
+
+[sub_resource type="Resource" id="Effect_L1_1"]
+script = ExtResource("eff_stat")
+stat_id = &"less_turning_delay"
+multiplier = 0.5
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
+
+[sub_resource type="Resource" id="Level_1"]
+script = ExtResource("level")
+cost = 0
+description = "less_turning_delay x0.5"
+effects = Array[ExtResource("eff_base")]([SubResource("Effect_L1_1")])
+metadata/_custom_type_script = "uid://d18mggsnx5se3"
+
+[sub_resource type="Resource" id="Effect_L2_1"]
+script = ExtResource("eff_stat")
+stat_id = &"less_turning_delay"
+multiplier = 0.4
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
+
+[sub_resource type="Resource" id="Level_2"]
+script = ExtResource("level")
+cost = 0
+description = "less_turning_delay x0.4"
+effects = Array[ExtResource("eff_base")]([SubResource("Effect_L2_1")])
+metadata/_custom_type_script = "uid://d18mggsnx5se3"
+
+[sub_resource type="Resource" id="Effect_L3_1"]
+script = ExtResource("eff_stat")
+stat_id = &"less_turning_delay"
+multiplier = 0.33
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
+
+[sub_resource type="Resource" id="Level_3"]
+script = ExtResource("level")
+cost = 0
+description = "less_turning_delay x0.33"
+effects = Array[ExtResource("eff_base")]([SubResource("Effect_L3_1")])
+metadata/_custom_type_script = "uid://d18mggsnx5se3"
 
 [resource]
 script = ExtResource("2_wvnwq")
@@ -13,5 +53,5 @@ display_name = "Less turning delay"
 description = "Less turning delay"
 branch = ExtResource("1_myvyy")
 prerequisites = Array[ExtResource("2_wvnwq")]([ExtResource("5_ap4pn")])
-effects = Array[ExtResource("1_8sosl")]([ExtResource("3_orki4")])
+levels = Array[ExtResource("level")]([SubResource("Level_1"), SubResource("Level_2"), SubResource("Level_3")])
 metadata/_custom_type_script = "uid://c8kc8gepimq0l"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MusicCombatSet" format=3]
+
+[ext_resource type="Script" uid="uid://c7gfj26sn8i8l" path="res://scripts/audio/music_combat_set.gd" id="1_set"]
+[ext_resource type="AudioStream" uid="uid://cgqlpwpdn1ahl" path="res://audio/music/afterroute/hunt_main.ogg" id="2_main"]
+[ext_resource type="AudioStream" uid="uid://cnegwwuny6kn" path="res://audio/music/afterroute/hunt_drums.ogg" id="3_drums"]
+[ext_resource type="AudioStream" uid="uid://dgo8a7mp1d4ex" path="res://audio/music/afterroute/hunt_hp.ogg" id="4_hp"]
+[ext_resource type="AudioStream" uid="uid://1wju14glanah" path="res://audio/music/afterroute/hunt_warning.ogg" id="5_warn"]
+
+[resource]
+script = ExtResource("1_set")
+set_name = "Hunt"
+main = ExtResource("2_main")
+drums = ExtResource("3_drums")
+low_hp = ExtResource("4_hp")
+warning = ExtResource("5_warn")

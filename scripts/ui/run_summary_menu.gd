@@ -35,13 +35,13 @@ func _fill(summary: Dictionary) -> void:
 	for entry in summary.get("kills", []):
 		var row := Label.new()
 		row.text = "%s × %d" % [entry["name"], entry["count"]]
-		row.add_theme_font_size_override("", 25)
+		row.add_theme_font_size_override("font_size", 25)
 		kill_list.add_child(row)
 
 
 func _on_restart_pressed() -> void:
-	get_tree().change_scene_to_file(restart_scene_path)
+	GameFlow.change_scene(restart_scene_path)
 
 
 func _on_menu_pressed() -> void:
-	get_tree().change_scene_to_file(menu_scene_path)
+	GameFlow.change_scene(menu_scene_path)

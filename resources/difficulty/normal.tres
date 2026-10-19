@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RunDifficulty" format=3 uid="uid://camogcpxfegey"]
+
+[ext_resource type="Script" uid="uid://cc5le7kmkkdg" path="res://scripts/data/run/run_difficulty.gd" id="1_diff"]
+
+[resource]
+script = ExtResource("1_diff")
+id = &"normal"
+display_name = "Нормально"
+distance_to_end = 320.0

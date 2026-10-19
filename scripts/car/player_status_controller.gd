@@ -12,6 +12,7 @@ func initialize() -> void:
 	
 	Events.player_heal.connect(heal)
 	Events.player_take_damage.connect(take_damage)
+	Events.dawn_blackout.connect(_on_dawn_blackout)
 
 	Events.player_health_changed.emit(current_health)
 
@@ -51,6 +52,15 @@ func is_dead() -> bool:
 func death() -> void:
 	GameLog.print("player is dead!")
 	Events.player_died.emit()
+
+
+func _on_dawn_blackout() -> void:
+	if is_dead():
+		return
+
+	current_health = 0.0
+	Events.player_health_changed.emit(current_health)
+	death()
 
 
 func one_shot_protect() -> void:

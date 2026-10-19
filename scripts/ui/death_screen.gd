@@ -25,7 +25,7 @@ func _restart_pressed():
 
 
 func _quit_pressed():
-	get_tree().quit(0)
+	GameFlow.go_to_menu()
 
 
 func _on_button_hover():

@@ -49,7 +49,7 @@ func finish() -> void:
 		return
 
 	await get_tree().create_timer(summary_delay).timeout
-	get_tree().change_scene_to_file(summary_scene_path)
+	GameFlow.change_scene(summary_scene_path)
 
 
 func get_summary() -> Dictionary:

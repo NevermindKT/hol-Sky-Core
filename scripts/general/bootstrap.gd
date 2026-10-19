@@ -31,7 +31,6 @@ extends Node
 
 const START_SPEED = 40.0
 const START_DISTANCE := 5.0
-const DISTANCE_TO_END := 320.0
 const OBSTACLE_SPAWN_CHANCE = 0.05
 
 func _ready() -> void:
@@ -66,7 +65,7 @@ func _ready() -> void:
 
 	set_road_generator()
 
-	run_manager.initialize(DISTANCE_TO_END)
+	run_manager.initialize(GameFlow.difficulty.distance_to_end)
 	
 	tire_trail_manager.initialize(world, car, road_manager)
 	blood_trail_manager.initialize(world, car, road_manager)
@@ -78,6 +77,7 @@ func _ready() -> void:
 	set_encounter()
 	
 	encounter_director.initialize(enemy_encounter, run_manager)
+	encounter_director.max_max_weight = GameFlow.difficulty.max_enemy_weight
 
 	#InputController.test_boost.connect(BoostManager.activate_test_boost)
 
@@ -88,6 +88,7 @@ func _ready() -> void:
 	loading_rect.on_start()
 	ui.hud.on_start()
 
+	GameFlow.in_run = true
 	Events.run_started.emit()
 	queue_free()
 

@@ -1,9 +1,49 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dajl615dqpj11"]
 
 [ext_resource type="Resource" uid="uid://i8hopcggudai" path="res://resources/upgrades/branches/accuracy_branch.tres" id="1_1m1sn"]
-[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="1_dtuyo"]
 [ext_resource type="Script" uid="uid://c8kc8gepimq0l" path="res://scripts/data/upgrade/upgrade_data.gd" id="2_q0lsb"]
-[ext_resource type="Resource" uid="uid://kgqhpm6pyac8" path="res://resources/upgrades/effects/less_recoil.tres" id="3_v7d1w"]
+[ext_resource type="Script" uid="uid://cn1iqvxg0wjcd" path="res://scripts/data/upgrade/upgrade_effect.gd" id="eff_base"]
+[ext_resource type="Script" uid="uid://bu0ke47ej7sud" path="res://scripts/data/upgrade/upgrade_effects/stat_multiplier_effect.gd" id="eff_stat"]
+[ext_resource type="Script" uid="uid://d18mggsnx5se3" path="res://scripts/data/upgrade/upgrade_level.gd" id="level"]
+
+[sub_resource type="Resource" id="Effect_L1_1"]
+script = ExtResource("eff_stat")
+stat_id = &"less_recoil"
+multiplier = 0.9
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
+
+[sub_resource type="Resource" id="Level_1"]
+script = ExtResource("level")
+cost = 0
+description = "less_recoil x0.9"
+effects = Array[ExtResource("eff_base")]([SubResource("Effect_L1_1")])
+metadata/_custom_type_script = "uid://d18mggsnx5se3"
+
+[sub_resource type="Resource" id="Effect_L2_1"]
+script = ExtResource("eff_stat")
+stat_id = &"less_recoil"
+multiplier = 0.8
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
+
+[sub_resource type="Resource" id="Level_2"]
+script = ExtResource("level")
+cost = 0
+description = "less_recoil x0.8"
+effects = Array[ExtResource("eff_base")]([SubResource("Effect_L2_1")])
+metadata/_custom_type_script = "uid://d18mggsnx5se3"
+
+[sub_resource type="Resource" id="Effect_L3_1"]
+script = ExtResource("eff_stat")
+stat_id = &"less_recoil"
+multiplier = 0.7
+metadata/_custom_type_script = "uid://bu0ke47ej7sud"
+
+[sub_resource type="Resource" id="Level_3"]
+script = ExtResource("level")
+cost = 0
+description = "less_recoil x0.7"
+effects = Array[ExtResource("eff_base")]([SubResource("Effect_L3_1")])
+metadata/_custom_type_script = "uid://d18mggsnx5se3"
 
 [resource]
 script = ExtResource("2_q0lsb")
@@ -11,5 +51,5 @@ id = "LR01"
 display_name = "Less recoil"
 description = "Less recoil"
 branch = ExtResource("1_1m1sn")
-effects = Array[ExtResource("1_dtuyo")]([ExtResource("3_v7d1w")])
+levels = Array[ExtResource("level")]([SubResource("Level_1"), SubResource("Level_2"), SubResource("Level_3")])
 metadata/_custom_type_script = "uid://c8kc8gepimq0l"

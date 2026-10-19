@@ -69,7 +69,7 @@ func _on_settings_closed():
 
 
 func _on_quit_pressed():
-	get_tree().quit(0)
+	GameFlow.go_to_menu()
 
 
 func check_visible():

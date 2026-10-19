@@ -37,7 +37,7 @@ signal lightning_struck(strike_position: Vector3)
 signal world_curve_trimmed(removed_length: float)
 
 #-------------- UPGRADES
-signal upgrade_purchased(upgrade: UpgradeData)
+signal upgrade_level_changed(upgrade: UpgradeData, level: int)
 
 #-------------- VISION
 signal thermal_vision_changed(active: bool)
@@ -46,3 +46,12 @@ var thermal_vision_active := false
 #-------------- RUN
 signal run_started
 signal run_ended
+signal dawn_started
+signal dawn_time_changed(seconds_left: int)
+signal dawn_finished
+signal dawn_blackout
+
+#-------------- ENCOUNTERS
+signal encounter_incoming
+signal encounter_started
+signal encounter_ended

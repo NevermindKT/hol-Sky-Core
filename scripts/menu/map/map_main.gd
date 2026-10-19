@@ -519,27 +519,10 @@ func _on_marker_pressed(marker_button: Button) -> void:
 			if play_button:
 				play_button.visible = true
 
-			var found_hardness := false
+			var road := _get_road_to(row)
 
-			for i in range(1, 6):
-				var road_num = row.get("Base" + str(i), 0)
-
-				if road_num != null and int(road_num) != 0:
-					var road = BaseInventoryManager.find_row(
-						"Roads", "Number", int(road_num)
-					)
-
-					if not road.is_empty():
-						if hardness_label:
-							hardness_label.text = str(
-								road.get("Hardness", "")
-							)
-						found_hardness = true
-
-					break
-
-			if not found_hardness and hardness_label:
-				hardness_label.text = ""
+			if hardness_label:
+				hardness_label.text = str(road.get("Hardness", ""))
 
 	is_animating = true
 
@@ -580,6 +563,11 @@ func _on_base_play_pressed() -> void:
 	if selected_base.is_empty():
 		return
 
+	var road := _get_road_to(selected_base)
+	var difficulty := GameFlow.get_difficulty(
+		StringName(str(road.get("Difficulty", GameFlow.DEFAULT_DIFFICULTY)))
+	)
+
 	for row in BaseInventoryManager.get_rows("Bases"):
 		row["ISActive"] = 1 if int(row.get("ID", -1)) == current_base_id else 0
 
@@ -598,6 +586,23 @@ func _on_base_play_pressed() -> void:
 
 	if hardness_label:
 		hardness_label.text = "Ви тут"
+
+	GameFlow.start_run(difficulty)
+
+
+func _get_road_to(target_base: Dictionary) -> Dictionary:
+	for row in BaseInventoryManager.get_rows("Bases"):
+		if int(row.get("ISActive", 0)) != 1:
+			continue
+
+		var road_num = row.get("Base" + str(int(target_base.get("BaseNum", 0))), 0)
+
+		if road_num == null or int(road_num) == 0:
+			return {}
+
+		return BaseInventoryManager.find_row("Roads", "Number", int(road_num))
+
+	return {}
 
 
 func slide_to(node: Control, target_pos: Vector2) -> void:
