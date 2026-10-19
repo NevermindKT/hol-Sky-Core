@@ -44,7 +44,7 @@ shader_parameter/cloud_scale = 0.05000000074506
 shader_parameter/cloud_wind = Vector2(0.004, 0.002)
 shader_parameter/cloud_coverage = 0.6000000285
 shader_parameter/cloud_softness = 0.00999999977648
-shader_parameter/cloud_horizon_fade = 0.10000000405148
+shader_parameter/cloud_horizon_fade = 0.35000001592648
 
 [sub_resource type="Sky" id="Sky_0uqmh"]
 sky_material = SubResource("ShaderMaterial_sky")

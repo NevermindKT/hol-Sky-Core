@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cmmy07rt8wv7p"]
 
 [ext_resource type="Texture2D" uid="uid://cis71tbb2pkc8" path="res://textures/menu/BG/MainMenuBackground.png" id="1_8010q"]
+[ext_resource type="Script" uid="uid://bfh3g3lpegmqe" path="res://scenes/menu/main/main_menu.gd" id="1_pd6cf"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="2_a4lia"]
 [ext_resource type="Texture2D" uid="uid://beqd6smjpnbdk" path="res://textures/menu/main/01 Continue — plate + vector icon.png" id="3_klrtg"]
 [ext_resource type="Texture2D" uid="uid://deq0fn3xlj3uq" path="res://textures/menu/main/02 New Game — plate + vector icon.png" id="4_pd6cf"]
@@ -97,9 +98,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pd6cf")
 metadata/_edit_vertical_guides_ = [885.0]
 
-[node name="Panel" type="Panel" parent="." unique_id=74522248]
+[node name="OldBG" type="Panel" parent="." unique_id=74522248]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -196,7 +199,7 @@ text = "Exit"
 alignment = 0
 icon_alignment = 1
 
-[node name="Panel2" type="Panel" parent="." unique_id=1929589682]
+[node name="Logo" type="Panel" parent="." unique_id=1929589682]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 152.0

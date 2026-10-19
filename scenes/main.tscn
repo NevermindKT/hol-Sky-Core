@@ -96,7 +96,7 @@ sounds = Array[AudioStream]([ExtResource("38_chjal"), ExtResource("46_j2jfr")])
 volume_db = -5.0
 metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_o7ddy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_bu4jf"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
 [node name="Main" type="Node" unique_id=398161666]
@@ -326,7 +326,7 @@ max_active_strokes = 10
 fade_duration = 5.0
 
 [node name="Overlay" parent="." unique_id=631129038 instance=ExtResource("51_bu4jf")]
-texture = SubResource("ViewportTexture_o7ddy")
+texture = SubResource("ViewportTexture_bu4jf")
 
 [node name="LoadingRect" type="ColorRect" parent="." unique_id=1587886310]
 visible = false
