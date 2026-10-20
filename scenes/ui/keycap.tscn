@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://e1val0s64n3h"]
+
+[ext_resource type="Script" uid="uid://72buc5axd4mf" path="res://scripts/ui/keycap.gd" id="1_30ym1"]
+[ext_resource type="StyleBox" uid="uid://c40v0f0v3651d" path="res://textures/styles/keycap.tres" id="1_bofli"]
+[ext_resource type="Texture2D" uid="uid://ce3vkjs2jdbt4" path="res://textures/menu/pause/icons/MouseLeft.svg" id="2_t1nsw"]
+[ext_resource type="Texture2D" uid="uid://jqwakgfluhcc" path="res://textures/menu/pause/icons/MouseWheel.svg" id="3_j480u"]
+
+[node name="KeyCap" type="PanelContainer" unique_id=372214636 node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -37.5
+offset_right = 37.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_bofli")
+script = ExtResource("1_30ym1")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="." unique_id=1583864242]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.6473853, 0.55119044, 0.2953764, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MouseLeft" type="TextureRect" parent="." unique_id=236133063]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_t1nsw")
+expand_mode = 1
+
+[node name="MouseRight" type="TextureRect" parent="." unique_id=1459980239]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_t1nsw")
+expand_mode = 1
+flip_h = true
+
+[node name="MouseMid" type="TextureRect" parent="." unique_id=460690518]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_j480u")
+expand_mode = 1

@@ -7,6 +7,7 @@ extends CanvasLayer
 @export_category("Buttons")
 @export var audio_category_btn: Button
 @export var video_category_btn: Button
+@export var save_btn: Button
 @export var back_btn: Button
 
 
@@ -23,6 +24,7 @@ signal closed
 func _ready() -> void:
 	audio_category_btn.pressed.connect(_show_panel.bind(audio_panel))
 	video_category_btn.pressed.connect(_show_panel.bind(video_panel))
+	save_btn.pressed.connect(_on_save_pressed)
 	back_btn.pressed.connect(_on_close_pressed)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
@@ -50,6 +52,9 @@ func _show_panel(panel: Control) -> void:
 		p.visible = p == panel
 
 
-func _on_close_pressed() -> void:
+func _on_save_pressed() -> void:
 	Settings.save_settings()
+
+
+func _on_close_pressed() -> void:
 	closed.emit()

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmmy07rt8wv7p"]
 
-[ext_resource type="Script" uid="uid://bfh3g3lpegmqe" path="res://scenes/menu/main/main_menu.gd" id="1_pd6cf"]
-[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="2_a4lia"]
+[ext_resource type="Script" uid="uid://bfh3g3lpegmqe" path="res://scripts/menu/main_menu.gd" id="1_pd6cf"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://resources/fonts/Cormorant/Cormorant-Bold.ttf" id="2_a4lia"]
 [ext_resource type="StyleBox" uid="uid://cy8o0xnhr6tiy" path="res://textures/styles/main_button_bg.tres" id="3_cju5y"]
 [ext_resource type="StyleBox" uid="uid://bbee178wcfook" path="res://textures/styles/main_button_pressed_bg.tres" id="4_1py4p"]
 [ext_resource type="Texture2D" uid="uid://pgqeg5hm2tre" path="res://textures/menu/main/v1.svg" id="5_qgubf"]

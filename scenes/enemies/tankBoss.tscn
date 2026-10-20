@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dpm50177e6xfa"]
 
-[ext_resource type="Script" uid="uid://dxc0euvwalbiy" path="res://scenes/enemies/tank_boss.gd" id="1_yslxt"]
+[ext_resource type="Script" uid="uid://dxc0euvwalbiy" path="res://scripts/enemy/tank_boss.gd" id="1_yslxt"]
 [ext_resource type="Script" uid="uid://g4df0lxn27jv" path="res://scripts/enemy/Hurt_Box.gd" id="2_y88xg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_elpsl"]

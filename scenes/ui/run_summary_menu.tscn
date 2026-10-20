@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://p7ufkd6leg0l"]
 
 [ext_resource type="Script" uid="uid://ctvaygbubrum2" path="res://scripts/ui/run_summary_menu.gd" id="1_i5676"]
-[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://scenes/menu/fonts/Cormorant/Cormorant-SemiBold.ttf" id="2_2udyh"]
+[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://resources/fonts/Cormorant/Cormorant-SemiBold.ttf" id="2_2udyh"]
 [ext_resource type="Texture2D" uid="uid://clu3b6be0h77e" path="res://textures/menu/pause/NORMAL — steel.png" id="2_vkd5t"]
 [ext_resource type="Texture2D" uid="uid://b0bn626o5d32u" path="res://textures/menu/pause/SELECTED — amber.png" id="3_2udyh"]
 

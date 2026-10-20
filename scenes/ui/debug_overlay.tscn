@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://tia2c2esp2w"]
 
 [ext_resource type="Script" uid="uid://bhlkn1iowp4fl" path="res://scripts/debug/debug.gd" id="1_tasbd"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tasbd"]
-bg_color = Color(0, 0, 0, 0.39215687)
+[ext_resource type="StyleBox" uid="uid://c5f63hbmjmoxu" path="res://textures/styles/black_bg.tres" id="2_xx5dy"]
 
 [node name="Debug_Overlay" type="CanvasLayer" unique_id=57384500 node_paths=PackedStringArray("label")]
+visible = false
 script = ExtResource("1_tasbd")
 label = NodePath("Control/DebugLabel")
 metadata/_custom_type_script = "uid://bhlkn1iowp4fl"
@@ -26,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tasbd")
+theme_override_styles/panel = ExtResource("2_xx5dy")
 
 [node name="DebugLabel" type="RichTextLabel" parent="Control" unique_id=605595714]
 layout_mode = 1

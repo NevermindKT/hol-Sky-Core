@@ -18,7 +18,7 @@ visible = false
 [node name="Debug_Overlay" parent="." unique_id=57384500 instance=ExtResource("3_wm3ai")]
 layer = 2
 
-[node name="DawnFade" parent="." instance=ExtResource("6_dawn")]
+[node name="DawnFade" parent="." unique_id=2034914948 instance=ExtResource("6_dawn")]
 
 [node name="Death_screen" parent="." unique_id=2138021163 instance=ExtResource("5_0dwhk")]
 visible = false

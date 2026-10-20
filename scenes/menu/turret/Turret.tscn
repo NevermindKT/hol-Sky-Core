@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://boiqi5lnl8ftn"]
 
 [ext_resource type="Script" uid="uid://dest2ct5kot18" path="res://scripts/menu/turret/turret.gd" id="1_dgvtk"]
-[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="10_0rxae"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://resources/fonts/Cormorant/Cormorant-Bold.ttf" id="10_0rxae"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nidlh"]
 bg_color = Color(0.728125, 0.728125, 0.67611605, 1)

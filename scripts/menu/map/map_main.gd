@@ -29,11 +29,9 @@ extends Control
 @export var lis1_arrow: Control
 @export var lis1_quests_vbox: VBoxContainer
 
-# Ссылки на 5 фиксированных квестов
 @export var quest_nodes: Array[Button] = []
 @export var marker_nodes: Array[Button] = []
 
-# Ссылка на ваш узел Timer в квесте 3
 @export var quest3_timer_node: Timer
 
 var quests_hidden_pos: Vector2 = Vector2(1920.0, 226.0)

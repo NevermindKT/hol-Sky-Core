@@ -13,6 +13,7 @@
 [ext_resource type="Shader" uid="uid://d0akv5b1ury0b" path="res://resources/shaders/ps1_overlay.gdshader" id="12_6ql47"]
 [ext_resource type="PackedScene" uid="uid://tia2c2esp2w" path="res://scenes/ui/debug_overlay.tscn" id="13_cyflo"]
 [ext_resource type="PackedScene" uid="uid://cmmy07rt8wv7p" path="res://scenes/menu/main/Menu.tscn" id="13_tafnw"]
+[ext_resource type="PackedScene" uid="uid://0vt18iverqp2" path="res://scenes/general/settings.tscn" id="15_3qsrp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tafnw"]
 shader = ExtResource("12_6ql47")
@@ -31,10 +32,10 @@ shader_parameter/noise_scale = 12.0
 shader_parameter/noise_speed = 12.0000001788144
 shader_parameter/noise_chroma = 0.1999999955296
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tafnw"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cyflo"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
-[node name="ManuBg" type="Node3D" unique_id=901735089]
+[node name="MenuBg" type="Node3D" unique_id=901735089]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1332365595]
 anchors_preset = 15
@@ -103,13 +104,16 @@ energy = 0.1
 world_root = NodePath("../../World")
 world_environment = NodePath("../WorldEnvironment")
 
-[node name="MenuBGBootstrap" type="Node" parent="SubViewportContainer/SubViewport" unique_id=266738782 node_paths=PackedStringArray("world", "road_gen", "ground_gen", "veg_gen", "sky_controller")]
+[node name="MenuBGBootstrap" type="Node" parent="SubViewportContainer/SubViewport" unique_id=266738782 node_paths=PackedStringArray("world", "road_gen", "veg_gen", "ground_gen", "sky_controller", "overlay", "sub_viewport", "sub_viewport_container")]
 script = ExtResource("5_ed5m1")
 world = NodePath("../World")
 road_gen = NodePath("../RoadGen")
-ground_gen = NodePath("../GroundGen")
 veg_gen = NodePath("../VegGen")
+ground_gen = NodePath("../GroundGen")
 sky_controller = NodePath("../WeatherSystem/SkyController")
+overlay = NodePath("../../../Overlay")
+sub_viewport = NodePath("..")
+sub_viewport_container = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=108952356]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -1.1920929e-07, 11.338314, -6.612536)
@@ -117,11 +121,14 @@ fov = 90.0
 
 [node name="Overlay" parent="." unique_id=631129038 instance=ExtResource("8_30qy1")]
 material = SubResource("ShaderMaterial_tafnw")
-texture = SubResource("ViewportTexture_tafnw")
+texture = SubResource("ViewportTexture_cyflo")
 
-[node name="Menu" parent="." unique_id=851692338 instance=ExtResource("13_tafnw")]
+[node name="Menu" parent="." unique_id=851692338 node_paths=PackedStringArray("settings_menu") instance=ExtResource("13_tafnw")]
+settings_menu = NodePath("../SettingsMenu")
+
+[node name="SettingsMenu" parent="." unique_id=2128686807 instance=ExtResource("15_3qsrp")]
+visible = false
 
 [node name="Debug_Overlay" parent="." unique_id=57384500 instance=ExtResource("13_cyflo")]
 
 [editable path="SubViewportContainer/SubViewport/WeatherSystem"]
-[editable path="Menu"]

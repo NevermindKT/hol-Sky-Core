@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cjwtnh1rcqm1c"
-path="res://.godot/imported/Cormorant-BoldItalic.ttf-4c4683e71050f6caabe3685976d09891.fontdata"
+uid="uid://t6tnq2nlemob"
+path="res://.godot/imported/Cormorant-MediumItalic.ttf-80c76f3f179a1e9de7d08dd9a5e78089.fontdata"
 
 [deps]
 
-source_file="res://scenes/menu/fonts/Cormorant/Cormorant-BoldItalic.ttf"
-dest_files=["res://.godot/imported/Cormorant-BoldItalic.ttf-4c4683e71050f6caabe3685976d09891.fontdata"]
+source_file="res://resources/fonts/Cormorant/Cormorant-MediumItalic.ttf"
+dest_files=["res://.godot/imported/Cormorant-MediumItalic.ttf-80c76f3f179a1e9de7d08dd9a5e78089.fontdata"]
 
 [params]
 
