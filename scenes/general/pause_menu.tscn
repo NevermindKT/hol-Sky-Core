@@ -178,16 +178,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_vas54")
 theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
 text = "Рух:
   A, D — стрейф
   SPACE + кнопка стрейфу — ухил убік
   S — гальмування
-
+[hr]
 Бойові дії:
   ЛКМ — стрільба
   R — перезарядка
   СКМ (вгору/вниз) — зміна зброї
-
+[hr]
 Інше:
   F — режим ліхтаря турелі
   H — дальнє світло"

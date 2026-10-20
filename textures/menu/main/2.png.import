@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jvmox2i0iqy3"
-path="res://.godot/imported/04 Credits — plate + vector icon.png-42d67b778e7b2cedff0f60ebb7921fec.ctex"
+uid="uid://dr0gpw0x2fn6f"
+path="res://.godot/imported/2.png-e67207e650e726f86e6715b1995a741f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu/main/04 Credits — plate + vector icon.png"
-dest_files=["res://.godot/imported/04 Credits — plate + vector icon.png-42d67b778e7b2cedff0f60ebb7921fec.ctex"]
+source_file="res://textures/menu/main/2.png"
+dest_files=["res://.godot/imported/2.png-e67207e650e726f86e6715b1995a741f.ctex"]
 
 [params]
 

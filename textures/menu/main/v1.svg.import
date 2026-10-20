@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deq0fn3xlj3uq"
-path="res://.godot/imported/02 New Game — plate + vector icon.png-2fa00dc81b152da2904c32c63bbba2e6.ctex"
+uid="uid://pgqeg5hm2tre"
+path="res://.godot/imported/v1.svg-ddb511de9ece95ad3809fb7764311ca6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu/main/02 New Game — plate + vector icon.png"
-dest_files=["res://.godot/imported/02 New Game — plate + vector icon.png-2fa00dc81b152da2904c32c63bbba2e6.ctex"]
+source_file="res://textures/menu/main/v1.svg"
+dest_files=["res://.godot/imported/v1.svg-ddb511de9ece95ad3809fb7764311ca6.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

@@ -21,9 +21,7 @@ extends Node
 #@export var speed_trail_manager: Speed_trail_manager
 @export var lightning_controller: LightningController
 
-@onready var overlay: TextureRect = $"../../../../Overlay"
-
-@export var loading_rect: LoadingScreen
+@export var overlay: TextureRect
 
 @export var aim_controller: Aim_Controller
 @export var enemy_encounter: Enemy_Encounter
@@ -85,14 +83,12 @@ func _ready() -> void:
 
 	await Shader_Warmup.new().run(get_tree().root.get_children(), game_viewport.get_camera_3d())
 
-	loading_rect.on_start()
+	#loading_rect.on_start()
 	ui.hud.on_start()
 
 	GameFlow.in_run = true
 	Events.run_started.emit()
 	queue_free()
-
-	call_deferred("_debug_cloud_parameters")
 
 func set_world():
 	road_manager.world = world
@@ -133,28 +129,3 @@ func set_encounter():
 
 func set_aim_controller():
 	ui.hud.second_rectile.aim_controller = aim_controller
-
-
-func _debug_cloud_parameters() -> void:
-	var world_env := get_node(
-        "../../Environment/WeatherSystem/WorldEnvironment"
-	) as WorldEnvironment
-
-	if world_env == null or world_env.environment == null:
-		print("WorldEnvironment или Environment не найден")
-		return
-
-	var sky := world_env.environment.sky
-	if sky == null or not (sky.sky_material is ShaderMaterial):
-		print("SkyMaterial не является ShaderMaterial")
-		return
-
-	var mat := sky.sky_material as ShaderMaterial
-
-	for param in [
-		"cloud_horizon_fade",
-		"cloud_softness",
-		"cloud_coverage",
-        "cloud_scale"
-	]:
-		print(param, " = ", mat.get_shader_parameter(param))

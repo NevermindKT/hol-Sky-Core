@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do1b0c28vwtyi"
-path="res://.godot/imported/03 Settings — plate + vector icon.png-ef7e1d04e2b8bbd83a405518bb8dcfa8.ctex"
+uid="uid://dt8gc3b7jwujv"
+path="res://.godot/imported/v5.svg-f3018927e3ca9377da0c535c68954e0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu/main/03 Settings — plate + vector icon.png"
-dest_files=["res://.godot/imported/03 Settings — plate + vector icon.png-ef7e1d04e2b8bbd83a405518bb8dcfa8.ctex"]
+source_file="res://textures/menu/main/v5.svg"
+dest_files=["res://.godot/imported/v5.svg-f3018927e3ca9377da0c535c68954e0a.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

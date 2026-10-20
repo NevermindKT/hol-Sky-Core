@@ -47,7 +47,6 @@
 [ext_resource type="AudioStream" uid="uid://p4skorlelk65" path="res://audio/effects/eniviroment/wind/WINDInt_Loop Weather Wind Whipping Constricted Flow Turbulent 01_ESM_SNLS.wav" id="48_bjg73"]
 [ext_resource type="PackedScene" uid="uid://djwxwpscpaf07" path="res://scenes/ps1_overlay.tscn" id="51_bu4jf"]
 [ext_resource type="Script" uid="uid://c368fw1usnanj" path="res://scripts/run_stats.gd" id="51_o7ddy"]
-[ext_resource type="Script" uid="uid://bq27whxpuul5t" path="res://scripts/screen_effects/loading_rect.gd" id="53_o7ddy"]
 [ext_resource type="AudioStream" uid="uid://pbfrmltjxdel" path="res://audio/music/afterroute/dusk_inside.ogg" id="60_dusk_a"]
 [ext_resource type="AudioStream" uid="uid://cgmjjxc5djvkl" path="res://audio/music/afterroute/dusk_stalker.ogg" id="61_dusk_b"]
 [ext_resource type="Resource" path="res://resources/audio/music/predator_set.tres" id="62_pred"]
@@ -98,7 +97,7 @@ sounds = Array[AudioStream]([ExtResource("38_chjal"), ExtResource("46_j2jfr")])
 volume_db = -5.0
 metadata/_custom_type_script = "uid://b4rf1i0ro8kj0"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0loja"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_o7ddy"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
 [node name="Main" type="Node" unique_id=398161666]
@@ -206,7 +205,7 @@ metadata/_custom_type_script = "uid://bcc07pjuuti4w"
 
 [node name="Services" type="Node" parent="SubViewportContainer/SubViewport" unique_id=917066585]
 
-[node name="Bootstrap" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1667155510 node_paths=PackedStringArray("game_viewport", "view_container", "ui", "world", "car", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "loading_rect", "aim_controller", "enemy_encounter", "encounter_director")]
+[node name="Bootstrap" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1667155510 node_paths=PackedStringArray("game_viewport", "view_container", "ui", "world", "car", "run_manager", "road_manager", "enemy_spawner", "sky_controller", "road_generator", "ground_generator", "weather_generator", "vegetation_scatter", "tire_trail_manager", "blood_trail_manager", "lightning_controller", "overlay", "aim_controller", "enemy_encounter", "encounter_director")]
 script = ExtResource("12_ty1g6")
 game_viewport = NodePath("../..")
 view_container = NodePath("../../..")
@@ -224,7 +223,7 @@ vegetation_scatter = NodePath("../VegetationScatter")
 tire_trail_manager = NodePath("../TireTrailManager")
 blood_trail_manager = NodePath("../BloodTrailManager")
 lightning_controller = NodePath("../../Environment/WeatherSystem/LightningController")
-loading_rect = NodePath("../../../../LoadingRect")
+overlay = NodePath("../../../../Overlay")
 aim_controller = NodePath("../AimController")
 enemy_encounter = NodePath("../../EnemyEncounter")
 encounter_director = NodePath("../EncounterDirector")
@@ -334,16 +333,6 @@ max_active_strokes = 10
 fade_duration = 5.0
 
 [node name="Overlay" parent="." unique_id=631129038 instance=ExtResource("51_bu4jf")]
-texture = SubResource("ViewportTexture_0loja")
-
-[node name="LoadingRect" type="ColorRect" parent="." unique_id=1587886310]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-script = ExtResource("53_o7ddy")
+texture = SubResource("ViewportTexture_o7ddy")
 
 [editable path="SubViewportContainer/SubViewport/Environment/WeatherSystem"]

@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bfh8ek3nst8so" path="res://scenes/weather/weather_system.tscn" id="7_28v7y"]
 [ext_resource type="PackedScene" uid="uid://djwxwpscpaf07" path="res://scenes/ps1_overlay.tscn" id="8_30qy1"]
 [ext_resource type="Resource" uid="uid://cyb31n5t64wgs" path="res://resources/landscape/landscape.tres" id="8_qsq72"]
-[ext_resource type="Script" uid="uid://chsxwtglurrhj" path="res://scripts/cam/cam.gd" id="10_rhu8c"]
 [ext_resource type="Shader" uid="uid://d0akv5b1ury0b" path="res://resources/shaders/ps1_overlay.gdshader" id="12_6ql47"]
+[ext_resource type="PackedScene" uid="uid://tia2c2esp2w" path="res://scenes/ui/debug_overlay.tscn" id="13_cyflo"]
 [ext_resource type="PackedScene" uid="uid://cmmy07rt8wv7p" path="res://scenes/menu/main/Menu.tscn" id="13_tafnw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tafnw"]
@@ -114,7 +114,6 @@ sky_controller = NodePath("../WeatherSystem/SkyController")
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=108952356]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -1.1920929e-07, 11.338314, -6.612536)
 fov = 90.0
-script = ExtResource("10_rhu8c")
 
 [node name="Overlay" parent="." unique_id=631129038 instance=ExtResource("8_30qy1")]
 material = SubResource("ShaderMaterial_tafnw")
@@ -122,4 +121,7 @@ texture = SubResource("ViewportTexture_tafnw")
 
 [node name="Menu" parent="." unique_id=851692338 instance=ExtResource("13_tafnw")]
 
+[node name="Debug_Overlay" parent="." unique_id=57384500 instance=ExtResource("13_cyflo")]
+
 [editable path="SubViewportContainer/SubViewport/WeatherSystem"]
+[editable path="Menu"]
