@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("1_set")
-set_name = "Hunt"
+set_combat_name = "Hunt"
 main = ExtResource("2_main")
 drums = ExtResource("3_drums")
 low_hp = ExtResource("4_hp")
