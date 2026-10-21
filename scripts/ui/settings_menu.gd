@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func _connect_button_sounds():
-	var buttons: Array[Button] = [audio_category_btn, video_category_btn, back_btn]
+	var buttons: Array[Button] = [audio_category_btn, video_category_btn, save_btn, back_btn]
 	for btn in buttons:
 		btn.mouse_entered.connect(_on_button_hover)
 		btn.pressed.connect(_on_button_click)

@@ -84,10 +84,10 @@ transition_speed = 2.0
 
 [node name="SkyController" parent="SubViewportContainer/SubViewport/WeatherSystem" index="4" unique_id=995668462 node_paths=PackedStringArray("world")]
 world = NodePath("../../World")
-dusk_duration = 50.0
+dusk_duration = 120.0
 dusk_sun_azimuth_deg = 160.0
 dusk_light_energy = 1.0
-moon_azimuth_deg = 200.0
+moon_azimuth_deg = 225.0
 moon_night_elevation_deg = 15.0
 dawn_duration = 20.0
 dawn_sky_horizon_color = Color(0.8509804, 0.4509804, 0.2509804, 1)
