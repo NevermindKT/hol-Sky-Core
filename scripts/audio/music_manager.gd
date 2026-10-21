@@ -146,6 +146,7 @@ func _ready() -> void:
 	Events.encounter_ended.connect(_on_encounter_ended)
 	Events.player_died.connect(stop_music)
 	Events.run_ended.connect(stop_music)
+	Events.dawn_started.connect(_on_dawn_started)
 	InputController.next_song.connect(next_variant)
 
 	_start_ambient()
@@ -248,6 +249,11 @@ func _on_encounter_ended() -> void:
 		return
 	_combat.fade(0.0, combat_fade_out)
 	_return_to_ambient()
+
+
+func _on_dawn_started() -> void:
+	if state == State.WARNING:
+		_return_to_ambient()
 
 
 func _return_to_ambient() -> void:

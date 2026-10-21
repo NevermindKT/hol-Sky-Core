@@ -40,7 +40,7 @@ var quests_is_open: bool = false
 var lis1_quests_open: bool = false
 
 # Словарь для отслеживания уже посещенных баз в квестах 102 и 104 (без повторов)
-var quest_visited_bases: Dictionary = {
+static var quest_visited_bases: Dictionary = {
 	102: [],
 	104: []
 }
@@ -116,6 +116,10 @@ func _ready() -> void:
 		for road_node in lis1_roads.get_children():
 			if road_node is BaseButton:
 				road_node.pressed.connect(func(): _on_road_pressed(road_node))
+
+	if GameFlow.arrived_base_id != -1:
+		_handle_base_for_quests_102_104(GameFlow.arrived_base_id)
+		GameFlow.arrived_base_id = -1
 
 	_load_current_active_base()
 	_check_and_update_quests_logic()
@@ -566,25 +570,7 @@ func _on_base_play_pressed() -> void:
 		StringName(str(road.get("Difficulty", GameFlow.DEFAULT_DIFFICULTY)))
 	)
 
-	for row in BaseInventoryManager.get_rows("Bases"):
-		row["ISActive"] = 1 if int(row.get("ID", -1)) == current_base_id else 0
-
-	BaseInventoryManager.save_data()
-
-	print("База с ID %d теперь активна" % current_base_id)
-
-	_handle_base_for_quests_102_104(current_base_id)
-
-	_update_markers_scale()
-	_update_roads_appearance()
-	_check_and_update_quests_logic()
-
-	if play_button:
-		play_button.visible = false
-
-	if hardness_label:
-		hardness_label.text = "Ви тут"
-
+	GameFlow.target_base_id = current_base_id
 	GameFlow.start_run(difficulty)
 
 

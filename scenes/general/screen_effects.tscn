@@ -35,7 +35,7 @@ shader_parameter/flicker_speed = 14.0
 shader_parameter/edge_darkening = 0.15
 
 [node name="ScreenEffects" type="CanvasLayer" unique_id=242438930 node_paths=PackedStringArray("effect_rects")]
-layer = -1
+layer = 1
 script = ExtResource("1_h5uiq")
 effect_rects = {
 &"night_vision": NodePath("NightVisionRect"),
