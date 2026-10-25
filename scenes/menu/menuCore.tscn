@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://boiqi5lnl8ftn" path="res://scenes/menu/turret/Turret.tscn" id="7_4yqvd"]
 [ext_resource type="PackedScene" uid="uid://cxtwcdkuyojpl" path="res://scenes/menu/header.tscn" id="9_gwl71"]
 
-[node name="MenuCore" type="Control" unique_id=864477046 node_paths=PackedStringArray("footer", "main_menu", "car", "map", "shop", "turret", "inventory")]
+[node name="MenuCore" type="Control" unique_id=864477046 node_paths=PackedStringArray("footer", "car", "map", "shop", "turret", "inventory")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pwjqe")
 footer = NodePath("Footer")
-main_menu = NodePath("")
 car = NodePath("Car")
 map = NodePath("Map")
 shop = NodePath("Shop")

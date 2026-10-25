@@ -8,21 +8,25 @@ class_name Keycap
 		min_key_width = value
 		_update_keycap()
 
+
 @export var key_height: float = 40.0:
 	set(value):
 		key_height = value
 		_update_keycap()
+
 
 @export var horizontal_padding: float = 8.0:
 	set(value):
 		horizontal_padding = value
 		_update_keycap()
 
+
 @export_category("Content")
 @export var key_text: String = "E":
 	set(value):
 		key_text = value
 		_update_keycap()
+
 
 @export var label: Label
 

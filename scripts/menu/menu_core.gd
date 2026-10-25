@@ -4,7 +4,6 @@ extends Control
 @export var footer: Footer
 
 @export_category("Menus")
-@export var main_menu: Control
 
 @export var car: Control
 @export var map: Control
@@ -51,5 +50,4 @@ func _hide_all():
 	map.hide()
 	shop.hide()
 	turret.hide()
-	main_menu.hide()
 	inventory.hide()

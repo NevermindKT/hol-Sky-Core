@@ -453,6 +453,7 @@ func _on_active_lis1_pressed() -> void:
 
 	is_animating = false
 
+
 func _on_close_map_pressed() -> void:
 	if is_animating or map_node == null: return
 	is_animating = true

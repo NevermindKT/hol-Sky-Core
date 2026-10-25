@@ -2,68 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://bnp4hu2iregv0" path="res://textures/menu/menu/notebook.png" id="1_bna4i"]
 [ext_resource type="Script" uid="uid://r6qbhb4ucdyh" path="res://scripts/menu/footer.gd" id="2_owifx"]
-[ext_resource type="FontFile" uid="uid://cjwtnh1rcqm1c" path="res://resources/fonts/Cormorant/Cormorant-BoldItalic.ttf" id="3_2875h"]
-[ext_resource type="Texture2D" uid="uid://dcp36gnc5evld" path="res://textures/menu/menu/turret.png" id="4_lrkb3"]
-[ext_resource type="Texture2D" uid="uid://cjafnvnsvyoos" path="res://textures/menu/menu/car.png" id="5_d84x1"]
-[ext_resource type="Texture2D" uid="uid://cins4rs8cwbtd" path="res://textures/menu/menu/map.png" id="6_xcgw8"]
-[ext_resource type="Texture2D" uid="uid://dgyrylfmlieei" path="res://textures/menu/menu/inventory.png" id="7_7j3jm"]
-[ext_resource type="Texture2D" uid="uid://dxrvo1jvox2n" path="res://textures/menu/menu/shop.png" id="8_4pwws"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://resources/fonts/Cormorant/Cormorant-Bold.ttf" id="3_t8vbp"]
+[ext_resource type="StyleBox" uid="uid://631akakdx04i" path="res://textures/styles/footer_button.tres" id="4_vli7v"]
+[ext_resource type="StyleBox" uid="uid://dpuweeisqk70" path="res://textures/styles/fotter_button_active.tres" id="5_ekgdn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xaeb3"]
 texture = ExtResource("1_bna4i")
 region_rect = Rect2(0, 416, 2633, 120)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tw2qx"]
-texture = ExtResource("4_lrkb3")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uiaj7"]
-texture = ExtResource("4_lrkb3")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wfq6"]
-texture = ExtResource("4_lrkb3")
-expand_margin_top = 5.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4k4a"]
-texture = ExtResource("5_d84x1")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p1c7b"]
-texture = ExtResource("5_d84x1")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_keie2"]
-texture = ExtResource("5_d84x1")
-expand_margin_top = 5.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ddpo1"]
-texture = ExtResource("6_xcgw8")
-expand_margin_top = 20.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj7eh"]
-texture = ExtResource("6_xcgw8")
-expand_margin_top = 20.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_brorb"]
-texture = ExtResource("6_xcgw8")
-expand_margin_top = 25.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7yafb"]
-texture = ExtResource("7_7j3jm")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q8sxb"]
-texture = ExtResource("7_7j3jm")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ri1et"]
-texture = ExtResource("7_7j3jm")
-expand_margin_top = 5.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_322xf"]
-texture = ExtResource("8_4pwws")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jicxv"]
-texture = ExtResource("8_4pwws")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkldt"]
-texture = ExtResource("8_4pwws")
-expand_margin_top = 5.0
 
 [node name="Footer" type="Panel" unique_id=1968318440 node_paths=PackedStringArray("MapButton", "CarButton", "ShopButton", "TurretButton", "InventoryButton")]
 anchors_preset = 7
@@ -79,11 +24,11 @@ grow_vertical = 0
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_xaeb3")
 script = ExtResource("2_owifx")
-MapButton = NodePath("MenuButtons/MapButton")
-CarButton = NodePath("MenuButtons/CarButton")
-ShopButton = NodePath("MenuButtons/ShopButton")
-TurretButton = NodePath("MenuButtons/TurretButton")
-InventoryButton = NodePath("MenuButtons/InventoryButton")
+MapButton = NodePath("MenuButtons/MapBtn")
+CarButton = NodePath("MenuButtons/CarBtn")
+ShopButton = NodePath("MenuButtons/ShopBtn")
+TurretButton = NodePath("MenuButtons/TurretBtn")
+InventoryButton = NodePath("MenuButtons/InventoryBtn")
 
 [node name="MenuButtons" type="HBoxContainer" parent="." unique_id=1793721120]
 propagate_maximum_size = false
@@ -102,99 +47,63 @@ grow_vertical = 0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="TurretButton" type="Button" parent="MenuButtons" unique_id=2087070738]
-custom_minimum_size = Vector2(138, 170)
-custom_maximum_size = Vector2(-1, 170)
+[node name="ShopBtn" type="Button" parent="MenuButtons" unique_id=979328861]
+custom_minimum_size = Vector2(135, 60)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
-theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
-theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
-theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_2875h")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxTexture_tw2qx")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_uiaj7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1wfq6")
-autowrap_trim_flags = 0
-icon_alignment = 1
+theme_override_colors/font_hover_color = Color(0.9169612, 0.9114184, 0.28678334, 1)
+theme_override_fonts/font = ExtResource("3_t8vbp")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("4_vli7v")
+theme_override_styles/pressed = ExtResource("5_ekgdn")
+theme_override_styles/hover = ExtResource("5_ekgdn")
+text = "SHOP
+"
 
-[node name="CarButton" type="Button" parent="MenuButtons" unique_id=1777039532]
-custom_minimum_size = Vector2(138, 170)
-custom_maximum_size = Vector2(-1, 170)
+[node name="InventoryBtn" type="Button" parent="MenuButtons" unique_id=1261872659]
+custom_minimum_size = Vector2(135, 60)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
-theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
-theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
-theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_2875h")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxTexture_h4k4a")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_p1c7b")
-theme_override_styles/hover = SubResource("StyleBoxTexture_keie2")
-autowrap_trim_flags = 0
-icon_alignment = 1
+theme_override_colors/font_hover_color = Color(0.9169612, 0.9114184, 0.28678334, 1)
+theme_override_fonts/font = ExtResource("3_t8vbp")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("4_vli7v")
+theme_override_styles/pressed = ExtResource("5_ekgdn")
+theme_override_styles/hover = ExtResource("5_ekgdn")
+text = "INVENTORY"
 
-[node name="MapButton" type="Button" parent="MenuButtons" unique_id=660115889]
-custom_minimum_size = Vector2(138, 150)
+[node name="MapBtn" type="Button" parent="MenuButtons" unique_id=22313515]
+custom_minimum_size = Vector2(135, 60)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
-theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
-theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
-theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_2875h")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxTexture_ddpo1")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_bj7eh")
-theme_override_styles/hover = SubResource("StyleBoxTexture_brorb")
-autowrap_trim_flags = 0
-icon_alignment = 1
+theme_override_colors/font_hover_color = Color(0.9169612, 0.9114184, 0.28678334, 1)
+theme_override_fonts/font = ExtResource("3_t8vbp")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("4_vli7v")
+theme_override_styles/pressed = ExtResource("5_ekgdn")
+theme_override_styles/hover = ExtResource("5_ekgdn")
+text = "MAP"
 
-[node name="InventoryButton" type="Button" parent="MenuButtons" unique_id=1387092179]
-custom_minimum_size = Vector2(138, 170)
+[node name="CarBtn" type="Button" parent="MenuButtons" unique_id=1897522634]
+custom_minimum_size = Vector2(135, 60)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
-theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
-theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
-theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_2875h")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxTexture_7yafb")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_q8sxb")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ri1et")
-autowrap_trim_flags = 0
-icon_alignment = 1
+theme_override_colors/font_hover_color = Color(0.9169612, 0.9114184, 0.28678334, 1)
+theme_override_fonts/font = ExtResource("3_t8vbp")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("4_vli7v")
+theme_override_styles/pressed = ExtResource("5_ekgdn")
+theme_override_styles/hover = ExtResource("5_ekgdn")
+text = "CAR"
 
-[node name="ShopButton" type="Button" parent="MenuButtons" unique_id=738329216]
-custom_minimum_size = Vector2(138, 170)
+[node name="TurretBtn" type="Button" parent="MenuButtons" unique_id=2100112501]
+custom_minimum_size = Vector2(135, 60)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
-mouse_default_cursor_shape = 2
-theme_override_colors/font_color = Color(0.32156864, 0.20784314, 0.15294118, 1)
-theme_override_colors/font_pressed_color = Color(0.28125, 0.18178353, 0.13376522, 1)
-theme_override_colors/font_hover_color = Color(0.43124998, 0.27873474, 0.20510666, 1)
-theme_override_colors/font_outline_color = Color(0.20625001, 0.14241073, 0.10803573, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_2875h")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxTexture_322xf")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_jicxv")
-theme_override_styles/hover = SubResource("StyleBoxTexture_pkldt")
-autowrap_trim_flags = 0
-icon_alignment = 1
+theme_override_colors/font_hover_color = Color(0.9169612, 0.9114184, 0.28678334, 1)
+theme_override_fonts/font = ExtResource("3_t8vbp")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("4_vli7v")
+theme_override_styles/pressed = ExtResource("5_ekgdn")
+theme_override_styles/hover = ExtResource("5_ekgdn")
+text = "TURRET"
