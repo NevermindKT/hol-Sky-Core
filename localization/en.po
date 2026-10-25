@@ -1,0 +1,1423 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "      А - Я"
+msgstr "      A - Z"
+
+msgid "      від дешевих до дорогих"
+msgstr "      price: low to high"
+
+msgid "      за новизною"
+msgstr "      newest first"
+
+msgid "      за рідкістю"
+msgstr "      by rarity"
+
+msgid " «ПРИСМАК»."
+msgstr " \"AFTERTASTE\"."
+
+msgid " І з міста поїхав ще швидше"
+msgstr " And left the city even faster"
+
+msgid " І не тільки у вашому"
+msgstr " And not just yours"
+
+msgid " І якби стежив -"
+msgstr " And if I were -"
+
+msgid " А лікарі роблять вигляд,"
+msgstr " And the doctors pretend"
+
+msgid " Але не завжди цілими кварталами й з однаковими симптомами"
+msgstr " But not always entire blocks with the same symptoms"
+
+msgid " Але після того я почав купувати воду в пляшках"
+msgstr " But after that, I started buying bottled water"
+
+msgid " Бачив тебе там кілька разів"
+msgstr " Seen you there a few times"
+
+msgid " Більше мені додати нічого"
+msgstr " That's all I can tell you"
+
+msgid " Біолог."
+msgstr " A biologist."
+
+msgid " В одному районі шестеро злягли."
+msgstr " Six people bedridden in one district."
+
+msgid " В іншому -"
+msgstr " In another -"
+
+msgid " Він знайшов щось дивне,"
+msgstr " He found something strange,"
+
+msgid " Він не вперше про це говорить"
+msgstr " It's not the first time he's talked about it"
+
+msgid " Далі вирішуй сам"
+msgstr " The rest is up to you"
+
+msgid " Зараз сам по собі"
+msgstr " Now he's on his own"
+
+msgid " Знайти вченого у старій ветеринарній клініці"
+msgstr " Find the scientist at the old veterinary clinic"
+
+msgid " Кажи"
+msgstr " Say it"
+
+msgid " Кажи коротко"
+msgstr " Keep it short"
+
+msgid " Кілька секунд мовчить"
+msgstr " Says nothing for a few seconds"
+
+msgid " Люди говорять."
+msgstr " People talk."
+
+msgid " Може,"
+msgstr " Could be"
+
+msgid " На папері -"
+msgstr " On the paper -"
+
+msgid " На столі залишилася адреса старої ветеринарної клініки на східній околиці"
+msgstr " The address of the old veterinary clinic on the eastern outskirts remains on the table"
+
+msgid " Надто підозріло"
+msgstr " Too suspicious"
+
+msgid " Не моя справа"
+msgstr " None of my business"
+
+msgid " Особливо коли п’яні"
+msgstr " Especially when they're drunk"
+
+msgid " Схоже, він хоче дещо залишити"
+msgstr " Seems he wants to leave something behind"
+
+msgid " Тоді слухай"
+msgstr " Then listen"
+
+msgid " Три рази,"
+msgstr " Three knocks,"
+
+msgid " У вас там теж люди сипляться?"
+msgstr " Are people dropping like flies where you live, too?"
+
+msgid " У вашому районі люди хворіють."
+msgstr " People in your district are getting sick."
+
+msgid " Через кілька секунд говорить уже ніби сам до себе"
+msgstr " A few seconds later, he speaks as if to himself"
+
+msgid " Чорт його знає,"
+msgstr " Hell knows"
+
+msgid " Я так і думав"
+msgstr " Thought as much"
+
+msgid " адреса старої ветеринарної клініки на східній околиці"
+msgstr " the address of the old veterinary clinic on the eastern outskirts"
+
+msgid " але не певен,"
+msgstr " but isn't sure"
+
+msgid " але потім знову дивиться на вас."
+msgstr " then looks back at you."
+
+msgid " але сказав,"
+msgstr " but said"
+
+msgid " але я б на твоєму місці не слухав"
+msgstr " but I wouldn't listen if I were you"
+
+msgid " бар"
+msgstr " bar"
+
+msgid " біля промислової зони"
+msgstr " near the industrial zone"
+
+msgid " варто лиш сказати, що я в неї поклав лід"
+msgstr " if I so much as mention putting ice in it"
+
+msgid " вежі"
+msgstr " tower"
+
+msgid " викинь"
+msgstr " throw it away"
+
+msgid " вода дивна»?"
+msgstr " the water's odd\"?"
+
+msgid " вода з твого району"
+msgstr " water from your district"
+
+msgid " відпрацьованими кроками"
+msgstr " strides over"
+
+msgid " даючи вам вирішити"
+msgstr " leaving you to decide"
+
+msgid " дев’ятеро."
+msgstr " nine."
+
+msgid " дізнаєшся,"
+msgstr " you'll find out"
+
+msgid " з району за північною станцією"
+msgstr " from the district beyond the northern station"
+
+msgid " замовляє випивку і не п’є її,"
+msgstr " orders a drink and won't touch it"
+
+msgid " зачекай,"
+msgstr " wait,"
+
+msgid " збіг."
+msgstr " a coincidence."
+
+msgid " звідки вона потрапляє в систему"
+msgstr " where it's entering the system"
+
+msgid " звідки ти"
+msgstr " where you're from"
+
+msgid " зможе зрозуміти,"
+msgstr " he can work out"
+
+msgid " його помітять"
+msgstr " he'll get noticed"
+
+msgid " кому про це говорити"
+msgstr " about who you tell"
+
+msgid " кому тут можна довіряти"
+msgstr " who can be trusted here"
+
+msgid " майже нічого"
+msgstr " next to nothing"
+
+msgid " мені здається,"
+msgstr " I think"
+
+msgid " мого імені?"
+msgstr " my name?"
+
+msgid " можливо,"
+msgstr " maybe"
+
+msgid " навряд чи сказав би"
+msgstr " I probably wouldn't tell you"
+
+msgid " найманцем"
+msgstr " a mercenary"
+
+msgid " не знаєш"
+msgstr " don't know"
+
+msgid " не неси це одразу в поліцію"
+msgstr " don't take it straight to the police"
+
+msgid " не пий сьогодні з крана"
+msgstr " don't drink from the tap tonight"
+
+msgid " ні."
+msgstr " it isn't."
+
+msgid " ніби впізнає,"
+msgstr " as if he recognizes you,"
+
+msgid " ніж хотів"
+msgstr " than I meant to"
+
+msgid " нічого"
+msgstr " nothing"
+
+msgid " потім ще два."
+msgstr " then two more."
+
+msgid " підходить до вашої машини"
+msgstr " to your car"
+
+msgid " спершу подумай,"
+msgstr " think first"
+
+msgid " справа у воді?"
+msgstr " it's the water?"
+
+msgid " та брехнею"
+msgstr " and lies"
+
+msgid " та направились до бару"
+msgstr " and head for the bar"
+
+msgid " так?"
+msgstr " right?"
+
+msgid " це вже не випадковість"
+msgstr " that's no coincidence"
+
+msgid " чи варто говорити"
+msgstr " whether to speak"
+
+msgid " чому ніхто нічого не робить?"
+msgstr " why isn't anyone doing anything?"
+
+msgid " що бачили?"
+msgstr " you were seen?"
+
+msgid " що в них усіх вода йде через одну систему очищення"
+msgstr " their water all goes through the same treatment system"
+
+msgid " що він тобі наговорив,"
+msgstr " what he told you,"
+
+msgid " що двох проб мало"
+msgstr " two samples weren't enough"
+
+msgid " що зразків недостатньо"
+msgstr " he doesn't have enough samples"
+
+msgid " що льоду не хоче"
+msgstr " he doesn't want ice"
+
+msgid " що між цим немає нічого спільного"
+msgstr " there's no connection"
+
+msgid " що наукова цікавість має межі"
+msgstr " scientific curiosity has its limits"
+
+msgid " що саме ти п’єш щодня"
+msgstr " what exactly you're drinking every day"
+
+msgid " що цього там бути не повинно"
+msgstr " it shouldn't be in there"
+
+msgid " щоб це зробив я?"
+msgstr " me to do it?"
+
+msgid " як правильно"
+msgstr " what the right word is"
+
+msgid " яка може це довести"
+msgstr " who can prove it"
+
+msgid " — гальмування"
+msgstr " — brake"
+
+msgid " — дальнє світло"
+msgstr " — high beams"
+
+msgid " — зміна зброї"
+msgstr " — switch weapon"
+
+msgid " — перезарядка"
+msgstr " — reload"
+
+msgid " — режим ліхтаря турелі"
+msgstr " — turret flashlight mode"
+
+msgid " — стрейф"
+msgstr " — strafe"
+
+msgid " — стрільба"
+msgstr " — fire"
+
+msgid "\"Зразки\""
+msgstr "\"Samples\""
+
+msgid "\"Наслідок\""
+msgstr "\"Consequence\""
+
+msgid "\"Очікування результатів\""
+msgstr "\"Waiting for Results\""
+
+msgid "\"Присмак\""
+msgstr "\"Aftertaste\""
+
+msgid "\"Розвідка\""
+msgstr "\"Reconnaissance\""
+
+msgid "(Выполнено)"
+msgstr "(Completed)"
+
+msgid "(Йти далі)"
+msgstr "(Move on)"
+
+msgid "(Таймер: %d сек.)"
+msgstr "(Timer: %d sec.)"
+
+msgid "+ кнопка стрейфу — ухил убік"
+msgstr "+ strafe key — dodge sideways"
+
+msgid ", жартівник"
+msgstr ", joker"
+
+msgid ", порохом"
+msgstr ", gunpowder"
+
+msgid ", тоді спочатку піду до"
+msgstr ", then I will head to the"
+
+msgid ", усі спочатку йдуть в"
+msgstr ", everyone starts at the"
+
+msgid ", чи вмієш ти розмовляти"
+msgstr " you could talk"
+
+msgid "AUDIO"
+msgstr "AUDIO"
+
+msgid "Accuracy"
+msgstr "Accuracy"
+
+msgid "Assault rifle"
+msgstr "Assault rifle"
+
+msgid "BACK"
+msgstr "BACK"
+
+msgid "Bullet poison"
+msgstr "Poisoned bullets"
+
+msgid "Bullet ricochet"
+msgstr "Bullet ricochet"
+
+msgid "Bullet saving"
+msgstr "Ammo conservation"
+
+msgid "CLOSE"
+msgstr "CLOSE"
+
+msgid "CONTINUE"
+msgstr "CONTINUE"
+
+msgid "CRASHED"
+msgstr "CRASHED"
+
+msgid "Common"
+msgstr "Common"
+
+msgid "Continue"
+msgstr "Continue"
+
+msgid "Critical damage chance"
+msgstr "Critical hit chance"
+
+msgid "DAMAGE TAKEN:"
+msgstr "DAMAGE TAKEN:"
+
+msgid "Damage"
+msgstr "Damage"
+
+msgid "Enemy slowdown"
+msgstr "Enemy slowdown"
+
+msgid "Enemy stunning"
+msgstr "Enemy stun"
+
+msgid "Epic"
+msgstr "Epic"
+
+msgid "Exit"
+msgstr "Exit"
+
+msgid "Expanded magazine"
+msgstr "Expanded magazine"
+
+msgid "FOV"
+msgstr "FOV"
+
+msgid "Fire Power"
+msgstr "Fire Power"
+
+msgid "Flashbang"
+msgstr "Flashbang"
+
+msgid "Fog\n"
+msgstr "Fog"
+
+msgid "Full Screen"
+msgstr "Full Screen"
+
+msgid "Fusion night vision"
+msgstr "Fusion night vision"
+
+msgid "Gamma"
+msgstr "Gamma"
+
+msgid "LANGUAGE"
+msgstr "LANGUAGE"
+
+msgid "LOG"
+msgstr "LOG"
+
+msgid "Legendary"
+msgstr "Legendary"
+
+msgid "Less recoil"
+msgstr "Reduced recoil"
+
+msgid "Less spread"
+msgstr "Reduced spread"
+
+msgid "Less turning delay"
+msgstr "Faster turning"
+
+msgid "MENU"
+msgstr "MENU"
+
+msgid "Master"
+msgstr "Master"
+
+msgid "Multiple damage"
+msgstr "Increased damage"
+
+msgid "Music"
+msgstr "Music"
+
+msgid "New Game"
+msgstr "New Game"
+
+msgid "Nitro"
+msgstr "Nitro"
+
+msgid "OPTIONS"
+msgstr "OPTIONS"
+
+msgid "Overlay "
+msgstr "Retro overlay"
+
+msgid "PAUSE"
+msgstr "PAUSE"
+
+msgid "Petro"
+msgstr "Petro"
+
+msgid "Pistol"
+msgstr "Pistol"
+
+msgid "RESTART"
+msgstr "RESTART"
+
+msgid "RETRY"
+msgstr "RETRY"
+
+msgid "RTB (MENU)"
+msgstr "RTB (MENU)"
+
+msgid "Rare"
+msgstr "Rare"
+
+msgid "Rate of fire"
+msgstr "Rate of fire"
+
+msgid "SAVE"
+msgstr "SAVE"
+
+msgid "SETTINGS"
+msgstr "SETTINGS"
+
+msgid "SFX"
+msgstr "SFX"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Shotgun"
+msgstr "Shotgun"
+
+msgid "Sold Out"
+msgstr "Sold Out"
+
+msgid "Spare tire"
+msgstr "Spare tyre"
+
+msgid "Stepan"
+msgstr "Stepan"
+
+msgid "TIME:"
+msgstr "TIME:"
+
+msgid "TOTAL KILLS:"
+msgstr "TOTAL KILLS:"
+
+msgid "Time slowdown"
+msgstr "Time slowdown"
+
+msgid "Titles"
+msgstr "Credits"
+
+msgid "Tyre"
+msgstr "Tyres"
+
+msgid "UI Scale"
+msgstr "UI Scale"
+
+msgid "Uncommon"
+msgstr "Uncommon"
+
+msgid "VIDEO"
+msgstr "VIDEO"
+
+msgid "VSync         "
+msgstr "VSync"
+
+msgid "Wolf"
+msgstr "Wolf"
+
+msgid "YOU SURVIVED...\nfor now."
+msgstr "YOU SURVIVED...\nfor now."
+
+msgid "[Мовчати]"
+msgstr "[Stay silent]"
+
+msgid "[Не реагувати]"
+msgstr "[Don't react]"
+
+msgid "[Продовжити ігнорувати]"
+msgstr "[Keep ignoring him]"
+
+msgid "[Піти]"
+msgstr "[Leave]"
+
+msgid "«Добрий вечір,"
+msgstr "\"Good evening,"
+
+msgid "Є один чоловік"
+msgstr "There's this man"
+
+msgid "І він уже перевіряв воду?"
+msgstr "Has he tested the water already?"
+
+msgid "І останнім часом усі говорять про одне й те саме"
+msgstr "And lately, they're all talking about the same thing"
+
+msgid "І попросив принести ще воду"
+msgstr "And asked me to bring more water"
+
+msgid "І стало краще?"
+msgstr "And did you get better?"
+
+msgid "І ти хочеш,"
+msgstr "And you want"
+
+msgid "І ти хочеш, щоб це зробив я?"
+msgstr "And you want me to do it?"
+
+msgid "І ще одне"
+msgstr "One more thing"
+
+msgid "І?"
+msgstr "And?"
+
+msgid "Ім'я"
+msgstr "Name"
+
+msgid "Інше:\n[hr]"
+msgstr "Other:\n[hr]"
+
+msgid "Історія діалогу з’явиться тут."
+msgstr "Dialogue history will appear here."
+
+msgid "А дехто навпаки…"
+msgstr "Others are the opposite…"
+
+msgid "А потім один знайомий сказав,"
+msgstr "Then someone I know said"
+
+msgid "А тепер "
+msgstr "And now "
+
+msgid "А тепер?"
+msgstr "And now?"
+
+msgid "А що між ними спільного?"
+msgstr "And what do they have in common?"
+
+msgid "А що робити?"
+msgstr "And do what?"
+
+msgid "А якщо ні?"
+msgstr "And if he isn't?"
+
+msgid "Адресу я залишив."
+msgstr "I left the address."
+
+msgid "Але звільнився він швидко."
+msgstr "But he quit in a hurry."
+
+msgid "Але спочатку зайди в"
+msgstr "But first, drop by the"
+
+msgid "Але є людина,"
+msgstr "But there's someone"
+
+msgid "База #"
+msgstr "Base #"
+
+msgid "База № %s"
+msgstr "Base # %s"
+
+msgid "Бар \"Янтарна крапля\""
+msgstr "The Amber Drop Bar"
+
+msgid "Бар напівпорожній"
+msgstr "The bar is half empty"
+
+msgid "Бармен"
+msgstr "Bartender"
+
+msgid "Бармен киває на склянку незнайомця"
+msgstr "The bartender nods at the stranger's glass"
+
+msgid "Без аналізів це просто балачки п’яниць"
+msgstr "Without tests, it's just drunken talk"
+
+msgid "Блювання. "
+msgstr "Vomiting. "
+
+msgid "Бо вони живляться з різних гілок"
+msgstr "Because they're supplied by different branches"
+
+msgid "Бо мене вже бачили з ним"
+msgstr "Because I've already been seen with him"
+
+msgid "Бо не люблю перевіряти теорії на собі"
+msgstr "Because I don't like testing theories on myself"
+
+msgid "Бо після нашої останньої зустрічі двоє чоловіків чекали біля мого будинку"
+msgstr "Because after our last meeting, two men were waiting outside my house"
+
+msgid "Бо ще місяць тому він був нормальним"
+msgstr "Because a month ago he was normal"
+
+msgid "Бо я не знаю,"
+msgstr "Because I don't know"
+
+msgid "Бо якщо він почне бігати по місту з пробірками,"
+msgstr "Because if he starts running around town with test tubes,"
+
+msgid "Бойові дії:\n[hr]"
+msgstr "Combat:\n[hr]"
+
+msgid "Будиночок біля озера"
+msgstr "Lakeside House"
+
+msgid "Бусти"
+msgstr "Boosts"
+
+msgid "Вартовий"
+msgstr "The guard"
+
+msgid "Ветеринарна?"
+msgstr "Veterinary?"
+
+msgid "Ви відходите від барної стійки"
+msgstr "You step away from the bar counter"
+
+msgid "Ви відходите від столика"
+msgstr "You step away from the table"
+
+msgid "Ви йдете далі до барної стійки"
+msgstr "You continue toward the bar counter"
+
+msgid "Ви припаркували машину"
+msgstr "You park the car"
+
+msgid "Ви проходите до бармена повз незнайомця"
+msgstr "You walk past the stranger toward the bartender"
+
+msgid "Ви під'їхали до блокпосту перед базою"
+msgstr "You pull up to the checkpoint outside the base"
+
+msgid "Ви тут"
+msgstr "You are here"
+
+msgid "Виконано"
+msgstr "Completed"
+
+msgid "Використати"
+msgstr "Use"
+
+msgid "Все"
+msgstr "All"
+
+msgid "Відвідайте всі бази і зберіть чотири зразки води."
+msgstr "Visit every base and collect four water samples."
+
+msgid "Відвідайте всі бази і поспілкуйтесь з місцевими жителями."
+msgstr "Visit every base and talk to the locals."
+
+msgid "Віктор"
+msgstr "Viktor"
+
+msgid "Він відвертається."
+msgstr "He turns away."
+
+msgid "Він відхиляється назад"
+msgstr "He leans back"
+
+msgid "Він дістає з кишені складений папір і кладе на стіл"
+msgstr "He takes a folded piece of paper from his pocket and puts it on the table"
+
+msgid "Він замовкає,"
+msgstr "He falls silent,"
+
+msgid "Він казав про воду"
+msgstr "He was talking about the water"
+
+msgid "Він кладе папір на стіл"
+msgstr "He puts the paper on the table"
+
+msgid "Він коротко дивиться вбік"
+msgstr "He briefly looks away"
+
+msgid "Він кілька разів поглядає на вас,"
+msgstr "He glances at you several times,"
+
+msgid "Він мене навіть не знає"
+msgstr "He doesn't even know me"
+
+msgid "Він нахиляється ближче"
+msgstr "He leans closer"
+
+msgid "Він обводить пальцем край склянки"
+msgstr "He traces the rim of his glass with a finger"
+
+msgid "Він робить ковток."
+msgstr "He takes a sip."
+
+msgid "Він хоче"
+msgstr "He does"
+
+msgid "Він іде"
+msgstr "He leaves"
+
+msgid "Гаразд"
+msgstr "All right"
+
+msgid "Гаразд."
+msgstr "All right."
+
+msgid "Гаразд. Де його знайти?"
+msgstr "All right. Where can I find him?"
+
+msgid "Давай адресу"
+msgstr "Give me the address"
+
+msgid "Далі"
+msgstr "Next"
+
+msgid "Двері"
+msgstr "Doors"
+
+msgid "Двигун"
+msgstr "Engine"
+
+msgid "Де адміністратор?"
+msgstr "Where's the administrator?"
+
+msgid "Де його знайти?"
+msgstr "Where can I find him?"
+
+msgid "Дехто просто слабшає з кожним днем. "
+msgstr "Some just get weaker every day. "
+
+msgid "Добре"
+msgstr "All right"
+
+msgid "Добре, тоді спочатку піду до вежі"
+msgstr "All right, I'll head to the tower first, then"
+
+msgid "Дочекайтесь результатів аналізу."
+msgstr "Wait for the test results."
+
+msgid "Друга -"
+msgstr "Second -"
+
+msgid "Дуже смішно"
+msgstr "Very funny"
+
+msgid "З боку старої насосної."
+msgstr "Near the old pumping station."
+
+msgid "З кварталів біля старої насосної. "
+msgstr "The blocks by the old pumping station. "
+
+msgid "За сусіднім столом сидить чоловік років двацяти-тридцяти"
+msgstr "A man in his twenties sits at the next table"
+
+msgid "Заблоковано"
+msgstr "Locked"
+
+msgid "Завод №9"
+msgstr "Factory #9"
+
+msgid "Запчастини"
+msgstr "Parts"
+
+msgid "Зачекай. "
+msgstr "Wait. "
+
+msgid "Звідки «звідти»?"
+msgstr "From where, exactly?"
+
+msgid "Звісно."
+msgstr "Sure."
+
+msgid "Знову вода."
+msgstr "Water again."
+
+msgid "Зручно"
+msgstr "Convenient"
+
+msgid "Йди вже"
+msgstr "Get going"
+
+msgid "Йому погрожували?"
+msgstr "Was he threatened?"
+
+msgid "Каже,"
+msgstr "Says"
+
+msgid "Категорії"
+msgstr "Categories"
+
+msgid "Квест поки недоступний"
+msgstr "Quest unavailable"
+
+msgid "Квести"
+msgstr "Quests"
+
+msgid "Колишній працівник водоканалу"
+msgstr "A former waterworks employee"
+
+msgid "Колишній?"
+msgstr "Former?"
+
+msgid "Куплено"
+msgstr "Purchased"
+
+msgid "Лабораторія є лабораторія"
+msgstr "A lab is a lab"
+
+msgid "Лабораторія №67"
+msgstr "Laboratory #67"
+
+msgid "Легко"
+msgstr "Easy"
+
+msgid "Люди постійно хворіють"
+msgstr "People get sick all the time"
+
+msgid "Лід ми робимо з водопровідної води"
+msgstr "We make ice with tap water"
+
+msgid "Ліс"
+msgstr "Forest"
+
+msgid "Ліс 1"
+msgstr "Forest 1"
+
+msgid "Маргарита"
+msgstr "Margarita"
+
+msgid "Машину залишай у ремонтному секторі"
+msgstr "Leave the car in the repair sector"
+
+msgid "Мені це не цікаво"
+msgstr "I'm not interested"
+
+msgid "Мені цього вистачило"
+msgstr "That was enough for me"
+
+msgid "Може й так"
+msgstr "Maybe so"
+
+msgid "Може,"
+msgstr "Could be"
+
+msgid "Можливо. "
+msgstr "Maybe. "
+
+msgid "Можливо. Тобі що?"
+msgstr "Maybe. What do you want?"
+
+msgid "Монстри: Вовк - полювальник"
+msgstr "Monsters: Hunter Wolf"
+
+msgid "НОВИЙ КВЕСТ:"
+msgstr "NEW QUEST:"
+
+msgid "Навіщо?"
+msgstr "Why?"
+
+msgid "Нагороду отримаєш після обробки зйомки з відеореєстратора"
+msgstr "You'll get paid once we've reviewed the dashcam footage"
+
+msgid "Називай мене"
+msgstr "Call me"
+
+msgid "Називай мене найманцем?"
+msgstr "Call me a mercenary?"
+
+msgid "Намагався"
+msgstr "He tried"
+
+msgid "Наче й не хворів ніколи"
+msgstr "Like they've never been sick at all"
+
+msgid "Не знаю"
+msgstr "I don't know"
+
+msgid "Не знаю,"
+msgstr "I don't know"
+
+msgid "Не наполягаю. Але дещо залишу"
+msgstr "I won't insist. But I'll leave you something"
+
+msgid "Не прикидайся, "
+msgstr "Don't play dumb, "
+
+msgid "Не сказав"
+msgstr "He didn't say"
+
+msgid "Не хочеш -"
+msgstr "Don't want it -"
+
+msgid "Неактивна наводка:"
+msgstr "Inactive lead:"
+
+msgid "Невідомий жіночий голос"
+msgstr "Unknown female voice"
+
+msgid "Невідомий чоловічий голос"
+msgstr "Unknown male voice"
+
+msgid "Недостатньо коштів!"
+msgstr "Not enough money!"
+
+msgid "Недоступно"
+msgstr "Unavailable"
+
+msgid "Незнайомець"
+msgstr "Stranger"
+
+msgid "Незнайомець встає"
+msgstr "The stranger stands up"
+
+msgid "Незнайомець відвертається,"
+msgstr "The stranger turns away,"
+
+msgid "Незнайомець знижує голос"
+msgstr "The stranger lowers his voice"
+
+msgid "Незнайомець чекає на ваше рішення"
+msgstr "The stranger waits for your decision"
+
+msgid "Незнайомець чекає на вашу відповідь"
+msgstr "The stranger waits for your reply"
+
+msgid "Нова зміна через:"
+msgstr "Restock in:"
+
+msgid "Нормально"
+msgstr "Normal"
+
+msgid "Ні"
+msgstr "No"
+
+msgid "Ні."
+msgstr "No."
+
+msgid "Ні. Надто підозріло"
+msgstr "No. Too suspicious"
+
+msgid "Обычные шины"
+msgstr "Standard tyres"
+
+msgid "Опис: База, в якій алкоголь\nвідіграє важливу роль і підіймає\nбойовий дух."
+msgstr "Description: A base where alcohol\nplays an important role\nand boosts morale."
+
+msgid "Опис: В минулому найбільший \nзавод з виготовлення зброї."
+msgstr "Description: Once the largest\nweapons factory."
+
+msgid "Опис: Від людей для людей. \nМісце, що відновлювало життєві \nсили."
+msgstr "Description: By people, for people.\nA place that once restored\nvitality."
+
+msgid "Опис: За словами дивного \nчоловіка тут живе вчений."
+msgstr "Description: According to a strange\nman, a scientist lives here."
+
+msgid "Опис: Закинута лабораторія \nза словами місцевих жителів. \nАбо ні?"
+msgstr "Description: An abandoned lab,\naccording to the locals.\nOr is it?"
+
+msgid "Оригінально.."
+msgstr "Original.."
+
+msgid "Ось це гарне питання"
+msgstr "Now that's a good question"
+
+msgid "От і думай"
+msgstr "Make of that what you will"
+
+msgid "Охоронець"
+msgstr "Guard"
+
+msgid "Патрони"
+msgstr "Ammo"
+
+msgid "Перед ним майже недоторкана склянка"
+msgstr "An almost untouched glass sits in front of him"
+
+msgid "Передня рама"
+msgstr "Front frame"
+
+msgid "Передумав?"
+msgstr "Changed your mind?"
+
+msgid "Перейти \nдо квестів"
+msgstr "Go to quests"
+
+msgid "Перейти \nдо мапи"
+msgstr "Go to\nthe map"
+
+msgid "Перша -"
+msgstr "First -"
+
+msgid "Поверніться до вченого."
+msgstr "Return to the scientist."
+
+msgid "Повітря смерділо трупами"
+msgstr "The air reeks of corpses"
+
+msgid "Помилився"
+msgstr "Wrong person"
+
+msgid "Постукай три рази. "
+msgstr "Knock three times. "
+
+msgid "Потім ще два"
+msgstr "Then twice more"
+
+msgid "Пошкодження"
+msgstr "Damage"
+
+msgid "Прийти до поліції й сказати: "
+msgstr "Walk into a police station and say: "
+
+msgid "Приїдьте до будиночку біля озера і познайомтесь з вченим."
+msgstr "Visit the lakeside house and meet the scientist."
+
+msgid "Продати"
+msgstr "Sell"
+
+msgid "Продати %d за: %d"
+msgstr "Sell %d for: %d"
+
+msgid "Продати за:"
+msgstr "Sell for:"
+
+msgid "Продовжуйте виконувати квести:"
+msgstr "Keep completing quests:"
+
+msgid "Просто дивно."
+msgstr "It's just strange."
+
+msgid "Просто якщо живеш там -"
+msgstr "Just, if you live there -"
+
+msgid "Проходь"
+msgstr "Go on through"
+
+msgid "Підвіска"
+msgstr "Suspension"
+
+msgid "Пізній вечір"
+msgstr "Late evening"
+
+msgid "Раніше працював у міській лабораторії."
+msgstr "Used to work at the city lab."
+
+msgid "Розумно"
+msgstr "Smart"
+
+msgid "Рух:[hr]"
+msgstr "Movement:[hr]"
+
+msgid "Різна робота. "
+msgstr "Different jobs. "
+
+msgid "Різний вік. "
+msgstr "Different ages. "
+
+msgid "Різні райони"
+msgstr "Different districts"
+
+msgid "Саме так"
+msgstr "Exactly"
+
+msgid "Санаторій \"Веселка\""
+msgstr "Rainbow Sanatorium"
+
+msgid "Серйозно"
+msgstr "Seriously"
+
+msgid "Серйозно?"
+msgstr "Seriously?"
+
+msgid "Сила вистрілу"
+msgstr "Fire power"
+
+msgid "Сипляться?"
+msgstr "Dropping like flies?"
+
+msgid "Сказав тільки,"
+msgstr "Only said"
+
+msgid "Складно"
+msgstr "Hard"
+
+msgid "Складність: Легко"
+msgstr "Difficulty: Easy"
+
+msgid "Складність: Нормально"
+msgstr "Difficulty: Normal"
+
+msgid "Складність: Складно"
+msgstr "Difficulty: Hard"
+
+msgid "Сортування"
+msgstr "Sort"
+
+msgid "Спочатку я думав -"
+msgstr "At first I thought -"
+
+msgid "Стара ветеринарна клініка на східній околиці"
+msgstr "The old veterinary clinic on the eastern outskirts"
+
+msgid "Стара ветеринарна клініка на східній околиці."
+msgstr "The old veterinary clinic on the eastern outskirts."
+
+msgid "Судоми. "
+msgstr "Seizures. "
+
+msgid "Температура. "
+msgstr "Fever. "
+
+msgid "Тепер приходить,"
+msgstr "Now he comes in,"
+
+msgid "Тепер хочеш поговорити?"
+msgstr "Want to talk now?"
+
+msgid "Ти"
+msgstr "You"
+
+msgid "Ти думаєш,"
+msgstr "You think"
+
+msgid "Ти думаєш, справа у воді?"
+msgstr "You think it's the water?"
+
+msgid "Ти ж "
+msgstr "You're from "
+
+msgid "Ти не знаєш мого імені?"
+msgstr "You don't know my name?"
+
+msgid "Ти підслуховував?"
+msgstr "Were you eavesdropping?"
+
+msgid "Ти стежиш за мною?"
+msgstr "Are you following me?"
+
+msgid "Ти явно щось хочеш сказати."
+msgstr "You clearly have something to say."
+
+msgid "Ти явно щось хочеш сказати. Кажи"
+msgstr "You clearly have something to say. Say it"
+
+msgid "Тобі що?"
+msgstr "What do you want?"
+
+msgid "Тоді звідки знаєш,"
+msgstr "Then how do you know"
+
+msgid "Тоді звідки знаєш?"
+msgstr "Then how do you know?"
+
+msgid "Тоді навіщо перестав?"
+msgstr "Then why stop?"
+
+msgid "Тоді,"
+msgstr "Then"
+
+msgid "Тому адресу я все одно залишу"
+msgstr "So I'll leave the address anyway"
+
+msgid "Тому я й не бігаю вулицями з плакатом «нас труять»"
+msgstr "That's why I'm not running around with a sign saying \"They're poisoning us\""
+
+msgid "Тому я спочатку й запитав,"
+msgstr "That's why I asked you first"
+
+msgid "Точність"
+msgstr "Accuracy"
+
+msgid "Третя -"
+msgstr "Third -"
+
+msgid "Три проби"
+msgstr "Three samples"
+
+msgid "Три тижні тому ще працював"
+msgstr "He was still working there three weeks ago"
+
+msgid "У вас немає доступу \nдо цієї локації!"
+msgstr "You do not have access\nto this location"
+
+msgid "У вас є:"
+msgstr "You have:"
+
+msgid "У вас є: %d"
+msgstr "You have: %d"
+
+msgid "У вежі"
+msgstr "In the tower"
+
+msgid "У напівпорожньому барі важко нічого не чути."
+msgstr "Hard not to overhear in a half-empty bar."
+
+msgid "Улучшенные шины"
+msgstr "Improved tyres"
+
+msgid "Хотів спитати."
+msgstr "Wanted to ask."
+
+msgid "Хто бачив?"
+msgstr "Who saw you?"
+
+msgid "Хто тобі сказав про систему очищення?"
+msgstr "Who told you about the treatment system?"
+
+msgid "Хто?"
+msgstr "By whom?"
+
+msgid "Хімік."
+msgstr "A chemist."
+
+msgid "Це нічого не доводить"
+msgstr "That doesn't prove anything"
+
+msgid "Це традиція"
+msgstr "It's tradition"
+
+msgid "Цікава пропозиція:"
+msgstr "Special offer:"
+
+msgid "Час вирушати у дорогу:"
+msgstr "Time to hit the road:"
+
+msgid "Чому він сам не збере зразки?"
+msgstr "Why doesn't he collect the samples himself?"
+
+msgid "Чому саме ці місця?"
+msgstr "Why those places?"
+
+msgid "Чому ти сам цього не зробиш?"
+msgstr "Why don't you do it yourself?"
+
+msgid "Чому?"
+msgstr "Why?"
+
+msgid "Чудово"
+msgstr "Wonderful"
+
+msgid "Шини"
+msgstr "Tyres"
+
+msgid "Що йому потрібно?"
+msgstr "What does he need?"
+
+msgid "Що саме він знайшов?"
+msgstr "What exactly did he find?"
+
+msgid "Що ти знаєш про воду?"
+msgstr "What do you know about the water?"
+
+msgid "Що ти знаєш?"
+msgstr "What do you know?"
+
+msgid "Що я з цього матиму?"
+msgstr "What's in it for me?"
+
+msgid "Що?"
+msgstr "What?"
+
+msgid "Я вже сказав більше,"
+msgstr "I've already said more"
+
+msgid "Я вирішив,"
+msgstr "I decided"
+
+msgid "Я й не хворів"
+msgstr "I wasn't sick to begin with"
+
+msgid "Я не жартую."
+msgstr "I'm not joking."
+
+msgid "Я не знав"
+msgstr "I wasn't sure"
+
+msgid "Я носив йому воду з двох районів."
+msgstr "I brought him water from two districts."
+
+msgid "Я нічого не думаю"
+msgstr "I'm not thinking anything"
+
+msgid "Я просто перестав її пити"
+msgstr "I just stopped drinking it"
+
+msgid "Я тут майже щовечора."
+msgstr "I'm here almost every night."
+
+msgid "Як хочеш"
+msgstr "Suit yourself"
+
+msgid "Який чоловік?"
+msgstr "What man?"
+
+msgid "Якщо він знайде однакову речовину у всіх трьох,"
+msgstr "If he finds the same substance in all three,"
+
+msgid "Якщо він помиляється -"
+msgstr "If he's wrong -"
+
+msgid "Якщо він справді щось знайде -"
+msgstr "If he really finds something -"
+
+msgid "Якщо він щось знайде -"
+msgstr "If he finds something -"
+
+msgid "Якщо ти це знаєш,"
+msgstr "If you know this,"
+
+msgid "Якщо ти це знаєш, чому ніхто нічого не робить?"
+msgstr "If you know this, why isn't anyone doing anything?"
+
+msgid "Якщо у всіх буде одне й те саме -"
+msgstr "If they all contain the same thing -"
+
+msgid "акцент у вас там у половини району однаковий"
+msgstr "half your district has the same accent"
+
+msgid "звідти,"
+msgstr "there,"
+
+msgid "не дуже хоче говорити"
+msgstr "he's not so keen to talk"

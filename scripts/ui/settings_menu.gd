@@ -21,7 +21,15 @@ signal closed
 @export var click_sound: AudioStream = preload("res://audio/ui/UI_Button_Click_1.wav")
 
 
+@onready var language_option: OptionButton = $CategoriesCon/LanguageOption
+
+
 func _ready() -> void:
+	language_option.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	for title in ["Українська", "English", "Русский"]:
+		language_option.add_item(title)
+	language_option.select(Settings.LANGUAGES.find(Settings.language))
+	language_option.item_selected.connect(_on_language_selected)
 	audio_category_btn.pressed.connect(_show_panel.bind(audio_panel))
 	video_category_btn.pressed.connect(_show_panel.bind(video_panel))
 	save_btn.pressed.connect(_on_save_pressed)
@@ -58,3 +66,8 @@ func _on_save_pressed() -> void:
 
 func _on_close_pressed() -> void:
 	closed.emit()
+
+
+func _on_language_selected(index: int) -> void:
+	Settings.set_language(Settings.LANGUAGES[index])
+	Settings.save_settings()

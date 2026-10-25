@@ -89,6 +89,20 @@ icon = ExtResource("5_aaxas")
 alignment = 0
 expand_icon = true
 
+[node name="LanguageLabel" type="Label" parent="CategoriesCon"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1aqt5")
+theme_override_font_sizes/font_size = 30
+text = "LANGUAGE"
+
+[node name="LanguageOption" type="OptionButton" parent="CategoriesCon"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1aqt5")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("4_rjegb")
+theme_override_styles/hover = ExtResource("5_hnbec")
+
 [node name="SaveBtn" type="Button" parent="CategoriesCon" unique_id=1918644405]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2

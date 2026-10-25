@@ -34,7 +34,7 @@ func _fill(summary: Dictionary) -> void:
 
 	for entry in summary.get("kills", []):
 		var row := Label.new()
-		row.text = "%s × %d" % [entry["name"], entry["count"]]
+		row.text = "%s × %d" % [tr(str(entry["name"])), entry["count"]]
 		row.add_theme_font_size_override("font_size", 25)
 		kill_list.add_child(row)
 

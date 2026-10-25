@@ -3,7 +3,12 @@ extends RefCounted
 class_name DialogueSpeaker
 
 var id: String
-var name: String
+var _source_name: String = ""
+var name: String:
+    get:
+        return tr(_source_name)
+    set(value):
+        _source_name = value
 var color: String
 
 

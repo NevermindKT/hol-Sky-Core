@@ -28,6 +28,7 @@ const RARITIES = ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
 
 
 func _ready() -> void:
+	Settings.language_changed.connect(_refresh_language)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if obj_info_panel:
@@ -157,7 +158,7 @@ func _on_inventory_item_clicked(
 		info_description_label.text = str(db_item.get("Descriprion", ""))
 
 	if info_quantity_label:
-		info_quantity_label.text = "У вас є: " + str(max_item_count)
+		info_quantity_label.text = tr("У вас є: %d") % max_item_count
 
 	if info_icon and item_node:
 		if item_node is BaseButton:
@@ -236,7 +237,7 @@ func update_sell_button_text() -> void:
 		count_to_sell * current_item_unit_price * 0.67
 	))
 
-	btn_sell.text = "Продати " + str(count_to_sell) + " за: " + str(total_price)
+	btn_sell.text = tr("Продати %d за: %d") % [count_to_sell, total_price]
 
 
 # --------------------------------------------------
@@ -286,3 +287,9 @@ func _on_sell_button_pressed() -> void:
 	current_selected_id = ""
 
 	refresh_inventory()
+
+
+func _refresh_language() -> void:
+	if obj_info_panel.visible:
+		info_quantity_label.text = tr("У вас є: %d") % max_item_count
+		update_sell_button_text()
