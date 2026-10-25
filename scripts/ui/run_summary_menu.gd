@@ -34,7 +34,6 @@ func _ready() -> void:
 	menu_button.pressed.connect(_on_menu_pressed)
 
 
-
 func _fill(summary: Dictionary) -> void:
 	time_label.text = Run_stats.format_time(0.0)
 	damage_label.text = "0"

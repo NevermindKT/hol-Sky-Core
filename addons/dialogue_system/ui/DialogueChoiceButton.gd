@@ -82,6 +82,8 @@ func _notification(what: int) -> void:
 
     if what == NOTIFICATION_RESIZED:
         pivot_offset = size * 0.5
+    elif what == NOTIFICATION_TRANSLATION_CHANGED and choice != null:
+        text = choice.text
 
 
 func _configure_shake(style: DialogueStyle) -> void:

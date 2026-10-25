@@ -39,6 +39,7 @@ extends Control
 ]
 
 func _ready() -> void:
+	Settings.language_changed.connect(render_shop)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if not BaseInventoryManager.shop_refreshed.is_connected(_on_game_manager_shop_refreshed):
@@ -156,7 +157,7 @@ func _create_card_from_data(data: Dictionary, templates: Dictionary, target_cont
 	else:
 		if desc_node:
 			shop_item.mouse_entered.connect(func():
-				var is_sold = (name_node and name_node.text == "Sold Out") or (shop_item is BaseButton and shop_item.disabled)
+				var is_sold = (name_node and name_node.text == tr("Sold Out")) or (shop_item is BaseButton and shop_item.disabled)
 				if not is_sold:
 					desc_node.modulate.a = 1.0
 			)
@@ -242,6 +243,6 @@ func _apply_sold_out_state(shop_item: Control, name_node: Node, desc_node: Node)
 			shop_item.self_modulate = Color(0.8, 0.8, 0.8, 1.0)
 			
 	if name_node is Label or name_node is Button:
-		name_node.text = "Sold Out"
+		name_node.text = tr("Sold Out")
 	if desc_node is Label:
 		desc_node.modulate.a = 0.0

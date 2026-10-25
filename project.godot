@@ -164,6 +164,11 @@ photo_mode={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://localization/uk.po", "res://localization/en.po", "res://localization/ru.po")
+locale/fallback="uk"
+
 [layer_names]
 
 3d_render/layer_2="Road Blood Target"

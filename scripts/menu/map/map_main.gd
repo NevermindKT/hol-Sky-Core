@@ -61,6 +61,7 @@ var current_base_id: int = -1
 var is_animating: bool = false
 
 func _ready() -> void:
+	Settings.language_changed.connect(_refresh_language)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if map_node:
@@ -130,7 +131,18 @@ func _process(_delta: float) -> void:
 		var prog_lbl = quest_nodes[2].get_node_or_null("Progress") as Label
 		if prog_lbl:
 			var rem_time = int(ceil(quest3_timer_node.time_left))
-			prog_lbl.text = "(Таймер: %d сек.)" % rem_time
+			prog_lbl.text = tr("(Таймер: %d сек.)") % rem_time
+
+
+func _refresh_language() -> void:
+	_update_ui_quests()
+	var row := BaseInventoryManager.find_row("Bases", "ID", current_base_id)
+	if row.is_empty():
+		return
+	if base_num_label:
+		base_num_label.text = tr("База № %s") % str(row.get("BaseNum", ""))
+	if base_name_label:
+		base_name_label.text = "—%s—" % tr(str(row.get("BaseName", "")))
 
 
 
@@ -326,7 +338,7 @@ func _update_ui_quests() -> void:
 				if q_id == 103:
 					if quest3_timer_node and not quest3_timer_node.is_stopped():
 						var rem_time := int(ceil(quest3_timer_node.time_left))
-						prog_lbl.text = "(Таймер: %d сек.)" % rem_time
+						prog_lbl.text = tr("(Таймер: %d сек.)") % rem_time
 					else:
 						prog_lbl.text = "(Выполнено)"
 				else:
@@ -498,10 +510,10 @@ func _on_marker_pressed(marker_button: Button) -> void:
 
 	if not row.is_empty():
 		if base_num_label:
-			base_num_label.text = "База № %s" % str(row.get("BaseNum", ""))
+			base_num_label.text = tr("База № %s") % str(row.get("BaseNum", ""))
 
 		if base_name_label:
-			base_name_label.text = "—%s—" % str(row.get("BaseName", ""))
+			base_name_label.text = "—%s—" % tr(str(row.get("BaseName", "")))
 
 		if monsters_label:
 			monsters_label.text = str(row.get("Monsters", ""))
