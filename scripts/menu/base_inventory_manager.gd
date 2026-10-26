@@ -56,6 +56,16 @@ func load_data() -> void:
 		save_data()
 
 
+func reset_save() -> void:
+	if FileAccess.file_exists(SAVE_PATH):
+		DirAccess.remove_absolute(SAVE_PATH)
+
+	purchased_items.clear()
+	current_shop_data.clear()
+	load_data()
+	money_changed.emit(get_player_money())
+
+
 func _add_missing_tables() -> bool:
 	var source = JSON.parse_string(FileAccess.get_file_as_string(SOURCE_PATH))
 

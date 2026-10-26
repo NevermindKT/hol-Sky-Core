@@ -6,6 +6,7 @@ signal restart_requested
 const MENU_SCENE := "res://scenes/menu/menuCore.tscn"
 const GAME_SCENE := "res://scenes/main.tscn"
 const LOADING_SCREEN := preload("res://scenes/ui/loading_screen.tscn")
+const MAP_SCRIPT := preload("res://scripts/menu/map/map_main.gd")
 const DEFAULT_DIFFICULTY := &"normal"
 const DIFFICULTIES := {
 	&"easy": preload("res://resources/difficulty/easy.tres"),
@@ -26,6 +27,7 @@ func _ready() -> void:
 	_loading_screen = LOADING_SCREEN.instantiate()
 	add_child(_loading_screen)
 	Events.run_ended.connect.call_deferred(_on_run_ended)
+	InputController.debug_reset_save.connect.call_deferred(reset_local_save)
 
 
 func _on_run_ended() -> void:
@@ -37,6 +39,19 @@ func _on_run_ended() -> void:
 
 	BaseInventoryManager.save_data()
 	arrived_base_id = target_base_id
+
+
+func reset_local_save() -> void:
+	BaseInventoryManager.reset_save()
+	UpgradeManager.load_saved_levels()
+	target_base_id = -1
+	arrived_base_id = -1
+	MAP_SCRIPT.quest_visited_bases = {102: [], 104: []}
+	GameLog.print("Local save reset")
+
+	var scene := get_tree().current_scene
+	if scene and not scene.scene_file_path.is_empty():
+		change_scene(scene.scene_file_path)
 
 
 func get_difficulty(id: StringName) -> RunDifficulty:
