@@ -15,6 +15,8 @@ const DIFFICULTIES := {
 
 var difficulty: RunDifficulty = DIFFICULTIES[DEFAULT_DIFFICULTY]
 var in_run := false
+var target_base_id := -1
+var arrived_base_id := -1
 
 var _loading_screen: Loading_Overlay
 var _changing := false
@@ -23,6 +25,18 @@ var _changing := false
 func _ready() -> void:
 	_loading_screen = LOADING_SCREEN.instantiate()
 	add_child(_loading_screen)
+	Events.run_ended.connect.call_deferred(_on_run_ended)
+
+
+func _on_run_ended() -> void:
+	if target_base_id == -1:
+		return
+
+	for row in BaseInventoryManager.get_rows("Bases"):
+		row["ISActive"] = 1 if int(row.get("ID", -1)) == target_base_id else 0
+
+	BaseInventoryManager.save_data()
+	arrived_base_id = target_base_id
 
 
 func get_difficulty(id: StringName) -> RunDifficulty:

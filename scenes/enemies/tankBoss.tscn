@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://dpm50177e6xfa"]
 
+[ext_resource type="Script" uid="uid://dxc0euvwalbiy" path="res://scripts/enemy/tank_boss.gd" id="1_yslxt"]
+[ext_resource type="Script" uid="uid://g4df0lxn27jv" path="res://scripts/enemy/Hurt_Box.gd" id="2_y88xg"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_elpsl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_q6m77"]
@@ -14,7 +17,9 @@ height = 4.366081
 radius = 0.68896484
 height = 3.2425842
 
-[node name="Tank" type="Node3D" unique_id=1697044551]
+[node name="Tank" type="Node3D" unique_id=1697044551 node_paths=PackedStringArray("turret")]
+script = ExtResource("1_yslxt")
+turret = NodePath("Turret")
 
 [node name="Turret" type="Node3D" parent="." unique_id=587030306]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.7, 2.3)
@@ -30,7 +35,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4700321, 0.4606228, -2.2005
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 3, -0.08939865, 0.031234264, -0.74000823)
 mesh = SubResource("BoxMesh_q6m77")
 
+[node name="GunPoint" type="Marker3D" parent="Turret/Gun" unique_id=552312707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3)
+
 [node name="Area3D" type="Area3D" parent="Turret" unique_id=1304624776]
+script = ExtResource("2_y88xg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Turret/Area3D" unique_id=1701344479]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.00333786)

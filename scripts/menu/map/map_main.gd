@@ -29,11 +29,9 @@ extends Control
 @export var lis1_arrow: Control
 @export var lis1_quests_vbox: VBoxContainer
 
-# Ссылки на 5 фиксированных квестов
 @export var quest_nodes: Array[Button] = []
 @export var marker_nodes: Array[Button] = []
 
-# Ссылка на ваш узел Timer в квесте 3
 @export var quest3_timer_node: Timer
 
 var quests_hidden_pos: Vector2 = Vector2(1920.0, 226.0)
@@ -42,7 +40,7 @@ var quests_is_open: bool = false
 var lis1_quests_open: bool = false
 
 # Словарь для отслеживания уже посещенных баз в квестах 102 и 104 (без повторов)
-var quest_visited_bases: Dictionary = {
+static var quest_visited_bases: Dictionary = {
 	102: [],
 	104: []
 }
@@ -63,6 +61,7 @@ var current_base_id: int = -1
 var is_animating: bool = false
 
 func _ready() -> void:
+	Settings.language_changed.connect(_refresh_language)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if map_node:
@@ -119,6 +118,10 @@ func _ready() -> void:
 			if road_node is BaseButton:
 				road_node.pressed.connect(func(): _on_road_pressed(road_node))
 
+	if GameFlow.arrived_base_id != -1:
+		_handle_base_for_quests_102_104(GameFlow.arrived_base_id)
+		GameFlow.arrived_base_id = -1
+
 	_load_current_active_base()
 	_check_and_update_quests_logic()
 
@@ -128,7 +131,18 @@ func _process(_delta: float) -> void:
 		var prog_lbl = quest_nodes[2].get_node_or_null("Progress") as Label
 		if prog_lbl:
 			var rem_time = int(ceil(quest3_timer_node.time_left))
-			prog_lbl.text = "(Таймер: %d сек.)" % rem_time
+			prog_lbl.text = tr("(Таймер: %d сек.)") % rem_time
+
+
+func _refresh_language() -> void:
+	_update_ui_quests()
+	var row := BaseInventoryManager.find_row("Bases", "ID", current_base_id)
+	if row.is_empty():
+		return
+	if base_num_label:
+		base_num_label.text = tr("База № %s") % str(row.get("BaseNum", ""))
+	if base_name_label:
+		base_name_label.text = "—%s—" % tr(str(row.get("BaseName", "")))
 
 
 
@@ -324,7 +338,7 @@ func _update_ui_quests() -> void:
 				if q_id == 103:
 					if quest3_timer_node and not quest3_timer_node.is_stopped():
 						var rem_time := int(ceil(quest3_timer_node.time_left))
-						prog_lbl.text = "(Таймер: %d сек.)" % rem_time
+						prog_lbl.text = tr("(Таймер: %d сек.)") % rem_time
 					else:
 						prog_lbl.text = "(Выполнено)"
 				else:
@@ -451,6 +465,7 @@ func _on_active_lis1_pressed() -> void:
 
 	is_animating = false
 
+
 func _on_close_map_pressed() -> void:
 	if is_animating or map_node == null: return
 	is_animating = true
@@ -495,10 +510,10 @@ func _on_marker_pressed(marker_button: Button) -> void:
 
 	if not row.is_empty():
 		if base_num_label:
-			base_num_label.text = "База № %s" % str(row.get("BaseNum", ""))
+			base_num_label.text = tr("База № %s") % str(row.get("BaseNum", ""))
 
 		if base_name_label:
-			base_name_label.text = "—%s—" % str(row.get("BaseName", ""))
+			base_name_label.text = "—%s—" % tr(str(row.get("BaseName", "")))
 
 		if monsters_label:
 			monsters_label.text = str(row.get("Monsters", ""))
@@ -568,25 +583,7 @@ func _on_base_play_pressed() -> void:
 		StringName(str(road.get("Difficulty", GameFlow.DEFAULT_DIFFICULTY)))
 	)
 
-	for row in BaseInventoryManager.get_rows("Bases"):
-		row["ISActive"] = 1 if int(row.get("ID", -1)) == current_base_id else 0
-
-	BaseInventoryManager.save_data()
-
-	print("База с ID %d теперь активна" % current_base_id)
-
-	_handle_base_for_quests_102_104(current_base_id)
-
-	_update_markers_scale()
-	_update_roads_appearance()
-	_check_and_update_quests_logic()
-
-	if play_button:
-		play_button.visible = false
-
-	if hardness_label:
-		hardness_label.text = "Ви тут"
-
+	GameFlow.target_base_id = current_base_id
 	GameFlow.start_run(difficulty)
 
 

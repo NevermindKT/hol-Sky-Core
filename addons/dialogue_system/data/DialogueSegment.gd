@@ -2,7 +2,12 @@ extends RefCounted
 
 class_name DialogueSegment
 
-var text: String = ""
+var _source_text: String = ""
+var text: String:
+    get:
+        return tr(_source_text)
+    set(value):
+        _source_text = value
 
 ## Символів за секунду.
 var speed: float = 30.0

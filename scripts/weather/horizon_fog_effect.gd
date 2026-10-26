@@ -9,6 +9,7 @@ const CONTEXT := &"horizon_fog"
 @export var fog_end := 220.0
 @export var far_cutoff := 750.0
 @export var blur_amount := 5.0
+@export var reference_height := 1080.0
 @export var haze_tint := Color(1.0, 1.0, 1.0, 1.0)
 @export_range(0.0, 1.0) var tint_strength := 0.0
 @export_range(0.0, 1.0) var opacity := 1.0
@@ -120,6 +121,10 @@ func _render_view(scene_buffers: RenderSceneBuffersRD, scene_data: RenderSceneDa
 	_dispatch_composite(color_image, depth_image, mip_texture, projection_floats, size)
 
 
+func _scaled_blur_amount(size: Vector2i) -> float:
+	return maxf(blur_amount - log(reference_height / float(size.y)) / log(2.0), 0.0)
+
+
 func _inverse_projection_floats(scene_data: RenderSceneDataRD) -> PackedFloat32Array:
 	var inv_projection := scene_data.get_cam_projection().inverse()
 	var floats := PackedFloat32Array()
@@ -188,7 +193,7 @@ func _dispatch_composite(color_image: RID, depth_image: RID, mip_texture: RID, p
 	var push_constant := projection_floats.duplicate()
 	push_constant.append_array(PackedFloat32Array([haze_tint.r, haze_tint.g, haze_tint.b, haze_tint.a]))
 	push_constant.append_array(PackedFloat32Array([float(size.x), float(size.y), fog_start, fog_end]))
-	push_constant.append_array(PackedFloat32Array([blur_amount, tint_strength, opacity, float(MIP_COUNT)]))
+	push_constant.append_array(PackedFloat32Array([_scaled_blur_amount(size), tint_strength, opacity, float(MIP_COUNT)]))
 	push_constant.append_array(PackedFloat32Array([1.0 if debug_view_depth else 0.0, 0.0, 0.0, 0.0]))
 
 	var x_groups: int = ceili(size.x / 8.0)

@@ -1,5 +1,10 @@
 extends Node
 
+signal language_changed
+
+const LANGUAGES: PackedStringArray = ["uk", "en", "ru"]
+var language: String = "uk"
+
 const SAVE_PATH := "user://settings.cfg"
 
 var _view_container: SubViewportContainer
@@ -179,8 +184,10 @@ func set_fps_limit_index(index: int) -> void:
 
 #--------------------------------- OVERLAY
 
-func register_overlay(overlay: TextureRect):
+
+func register_overlay(overlay: TextureRect) -> void:
 	_overlay = overlay
+	_apply_overlay()
 
 
 func set_overlay(value: bool):
@@ -234,6 +241,7 @@ func _apply_volumetric_fog() -> void:
 
 func save_settings() -> void:
 	var config := ConfigFile.new()
+	config.set_value("general", "language", language)
 	config.set_value("video", "fov", camera_fov)
 	config.set_value("video", "ui_scale", ui_scale)
 	config.set_value("video", "vsync", vsync_enabled)
@@ -255,6 +263,7 @@ func load_settings() -> void:
 	if config.load(SAVE_PATH) != OK:
 		return
 
+	language = str(config.get_value("general", "language", language))
 	camera_fov = config.get_value("video", "fov", camera_fov)
 	ui_scale = config.get_value("video", "ui_scale", ui_scale)
 	sfx_volume = config.get_value("audio", "sfx_volume", sfx_volume)
@@ -271,6 +280,7 @@ func load_settings() -> void:
 
 
 func _apply_all() -> void:
+	set_language(language)
 	_apply_ps1_gamma()
 	set_vsync(vsync_enabled)
 	set_sfx_volume(sfx_volume)
@@ -280,3 +290,11 @@ func _apply_all() -> void:
 	set_master_volume(master_volume)
 	set_fps_limit_index(fps_limit_index)
 	set_volumetric_fog_enabled(volumetric_fog_enabled)
+
+
+func set_language(locale: String) -> void:
+	# Ignore region variants; unsupported or damaged saved values use Ukrainian.
+	var code := locale.replace("-", "_").get_slice("_", 0).to_lower()
+	language = code if code in LANGUAGES else "uk"
+	TranslationServer.set_locale(language)
+	language_changed.emit()

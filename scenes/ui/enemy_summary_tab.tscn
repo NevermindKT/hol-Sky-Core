@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bqsx7gjfph6ti"]
+
+[ext_resource type="Script" uid="uid://cmids6g31ulgg" path="res://scenes/ui/enemy_summary_tab.gd" id="1_pq75q"]
+[ext_resource type="Texture2D" uid="uid://3dsx0b0jp5ok" path="res://textures/menu/pause/Movement divider.png" id="1_ukpls"]
+
+[node name="VBoxContainer" type="VBoxContainer" unique_id=1135689075 node_paths=PackedStringArray("enemy_name_lbl", "enemy_count_lbl")]
+script = ExtResource("1_pq75q")
+enemy_name_lbl = NodePath("HBoxContainer/EnemyName")
+enemy_count_lbl = NodePath("HBoxContainer/EnemyCount")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=748247123]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="EnemyName" type="RichTextLabel" parent="HBoxContainer" unique_id=568420240]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "enemy name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="-" type="RichTextLabel" parent="HBoxContainer" unique_id=959763689]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = " -"
+vertical_alignment = 1
+
+[node name="EnemyCount" type="RichTextLabel" parent="HBoxContainer" unique_id=141893633]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 22
+vertical_alignment = 1
+
+[node name="Divider" type="TextureRect" parent="." unique_id=1028232856]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+texture = ExtResource("1_ukpls")
+expand_mode = 1

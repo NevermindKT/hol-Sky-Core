@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cmm2o33hwupgc"]
 
-[ext_resource type="PackedScene" uid="uid://cmmy07rt8wv7p" path="res://scenes/menu/main/Menu.tscn" id="1_idd3s"]
 [ext_resource type="Script" uid="uid://dry8eqbql0pk2" path="res://scripts/menu/menu_core.gd" id="1_pwjqe"]
 [ext_resource type="PackedScene" uid="uid://4ojvx270ebjd" path="res://scenes/menu/car/Car.tscn" id="2_1bewf"]
 [ext_resource type="PackedScene" uid="uid://bix78nnee7b6" path="res://scenes/menu/inventory/Inventory.tscn" id="3_pwjqe"]
@@ -10,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://boiqi5lnl8ftn" path="res://scenes/menu/turret/Turret.tscn" id="7_4yqvd"]
 [ext_resource type="PackedScene" uid="uid://cxtwcdkuyojpl" path="res://scenes/menu/header.tscn" id="9_gwl71"]
 
-[node name="MenuCore" type="Control" unique_id=864477046 node_paths=PackedStringArray("footer", "main_menu", "car", "map", "shop", "turret", "inventory")]
+[node name="MenuCore" type="Control" unique_id=864477046 node_paths=PackedStringArray("footer", "car", "map", "shop", "turret", "inventory")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,16 +18,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pwjqe")
 footer = NodePath("Footer")
-main_menu = NodePath("Menu")
 car = NodePath("Car")
 map = NodePath("Map")
 shop = NodePath("Shop")
 turret = NodePath("Turret")
 inventory = NodePath("Inventory")
-
-[node name="Menu" parent="." unique_id=851692338 instance=ExtResource("1_idd3s")]
-visible = false
-layout_mode = 1
 
 [node name="Car" parent="." unique_id=460311930 instance=ExtResource("2_1bewf")]
 visible = false

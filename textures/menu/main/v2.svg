@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .cls-1 {
+        fill-rule: evenodd;
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="100" y1="135" x2="100" y2="45" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8f4f1" stop-opacity="0.996"/>
+      <stop offset="1" stop-color="#e7d9ce"/>
+    </linearGradient>
+  </defs>
+  <path id="_10_Icon_VECTOR" data-name="10 Icon — VECTOR" class="cls-1" d="M100,45l45,45-45,45L55,90Zm0,15,30,30-30,30L70,90Zm0,5,8,17,17,8-17,8-8,17L92,98,75,90l17-8Z" transform="translate(-50 -40)"/>
+</svg>

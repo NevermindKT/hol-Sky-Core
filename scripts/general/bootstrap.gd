@@ -21,9 +21,7 @@ extends Node
 #@export var speed_trail_manager: Speed_trail_manager
 @export var lightning_controller: LightningController
 
-@onready var overlay: TextureRect = $"../../../../Overlay"
-
-@export var loading_rect: LoadingScreen
+@export var overlay: TextureRect
 
 @export var aim_controller: Aim_Controller
 @export var enemy_encounter: Enemy_Encounter
@@ -35,12 +33,11 @@ const OBSTACLE_SPAWN_CHANCE = 0.05
 
 func _ready() -> void:
 	Settings.register_viewport(game_viewport, view_container)
+	Settings.register_overlay(overlay)
+	Settings.register_ps1_overlay_material(overlay.material as ShaderMaterial)
 	Settings.register_hud(ui.hud)
 
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-
-	Settings.register_overlay(overlay)
-	Settings.register_ps1_overlay_material(overlay.material as ShaderMaterial)
 
 	set_world()
 
@@ -85,13 +82,12 @@ func _ready() -> void:
 
 	await Shader_Warmup.new().run(get_tree().root.get_children(), game_viewport.get_camera_3d())
 
-	loading_rect.on_start()
+	#loading_rect.on_start()
 	ui.hud.on_start()
 
 	GameFlow.in_run = true
 	Events.run_started.emit()
 	queue_free()
-
 
 func set_world():
 	road_manager.world = world

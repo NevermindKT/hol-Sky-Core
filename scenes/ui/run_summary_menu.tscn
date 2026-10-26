@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://p7ufkd6leg0l"]
 
 [ext_resource type="Script" uid="uid://ctvaygbubrum2" path="res://scripts/ui/run_summary_menu.gd" id="1_i5676"]
+[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://resources/fonts/Cormorant/Cormorant-SemiBold.ttf" id="2_2udyh"]
 [ext_resource type="Texture2D" uid="uid://clu3b6be0h77e" path="res://textures/menu/pause/NORMAL — steel.png" id="2_vkd5t"]
 [ext_resource type="Texture2D" uid="uid://b0bn626o5d32u" path="res://textures/menu/pause/SELECTED — amber.png" id="3_2udyh"]
+[ext_resource type="PackedScene" uid="uid://bqsx7gjfph6ti" path="res://scenes/ui/enemy_summary_tab.tscn" id="5_ldbp3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5676"]
 texture = ExtResource("2_vkd5t")
@@ -32,6 +34,7 @@ grow_vertical = 2
 script = ExtResource("1_i5676")
 menu_scene_path = "uid://cmm2o33hwupgc"
 restart_scene_path = "uid://dxa8wggvns7te"
+enemy_tab_scene = ExtResource("5_ldbp3")
 time_label = NodePath("Control/Left/Time/TimeLable")
 damage_label = NodePath("Control/Left/Damage/DamageLable")
 kills_total_label = NodePath("Control/Left/Kills/KillsLable")
@@ -58,8 +61,10 @@ offset_top = 82.0
 offset_right = 255.5
 offset_bottom = 223.0
 grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 50
-text = "YOU SURVIVED...
+theme_override_fonts/normal_font = ExtResource("2_2udyh")
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "[wave amp=10]YOU SURVIVED...
 for now."
 horizontal_alignment = 1
 
@@ -97,12 +102,14 @@ alignment = 1
 [node name="Label" type="Label" parent="Control/Left/Time" unique_id=1098181393]
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
 theme_override_font_sizes/font_size = 35
 text = "TIME:"
 horizontal_alignment = 1
 
 [node name="TimeLable" type="Label" parent="Control/Left/Time" unique_id=1670916752]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
 theme_override_font_sizes/font_size = 35
 text = "TIME"
 horizontal_alignment = 1
@@ -115,12 +122,14 @@ alignment = 1
 [node name="Label" type="Label" parent="Control/Left/Damage" unique_id=547105015]
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
 theme_override_font_sizes/font_size = 35
 text = "DAMAGE TAKEN:"
 horizontal_alignment = 1
 
 [node name="DamageLable" type="Label" parent="Control/Left/Damage" unique_id=748536847]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
 theme_override_font_sizes/font_size = 35
 text = "DAMAGE"
 horizontal_alignment = 1
@@ -133,12 +142,14 @@ alignment = 1
 [node name="Label" type="Label" parent="Control/Left/Kills" unique_id=1139405017]
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
 theme_override_font_sizes/font_size = 35
 text = "TOTAL KILLS:"
 horizontal_alignment = 1
 
 [node name="KillsLable" type="Label" parent="Control/Left/Kills" unique_id=152307125]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
 theme_override_font_sizes/font_size = 35
 text = "KILLS"
 horizontal_alignment = 1
@@ -152,7 +163,8 @@ alignment = 1
 [node name="MenuBtn" type="Button" parent="Control/Left/Buttons" unique_id=2052425360 groups=["ui_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxTexture_i5676")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ldbp3")
 theme_override_styles/hover = SubResource("StyleBoxTexture_f0p57")
@@ -161,7 +173,8 @@ text = "RTB (MENU)"
 [node name="RestartBtn" type="Button" parent="Control/Left/Buttons" unique_id=509655138 groups=["ui_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxTexture_vkd5t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_2udyh")
 theme_override_styles/hover = SubResource("StyleBoxTexture_srdkp")
@@ -169,17 +182,17 @@ text = "RESTART"
 
 [node name="Right" type="Control" parent="." unique_id=1780626468]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 6
 anchor_left = 1.0
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -883.0
-offset_top = -796.0
-offset_right = -56.0
-offset_bottom = -54.0
+anchor_bottom = 0.5
+offset_left = -867.0
+offset_top = -243.0
+offset_right = -40.0
+offset_bottom = 499.0
 grow_horizontal = 0
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="BG" type="ColorRect" parent="Right" unique_id=186926801]
 layout_mode = 1
@@ -191,9 +204,12 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.60784316)
 
 [node name="KillList" type="VBoxContainer" parent="Right" unique_id=668848451]
+custom_minimum_size = Vector2(750, 670)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2

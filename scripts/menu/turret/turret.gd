@@ -4,6 +4,7 @@ extends Control
 #@onready var money_label: Label = $Header/Header/HeaderButtons/Money/MoneyEquals
 
 func _ready() -> void:
+	Settings.language_changed.connect(refresh_turrets)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	refresh_turrets()
@@ -53,7 +54,7 @@ func _update_tree_recursive(parent_node: Node, turret_dict: Dictionary) -> void:
 func _configure_object_node(node: Node, data: Dictionary, turret_dict: Dictionary) -> void:
 	var item_id := int(data.get("ID", 0))
 	var purchased := int(data.get("Purchased", 0)) == 1
-	var name_text := str(data.get("Name", ""))
+	var name_text := tr(str(data.get("Name", "")))
 	var emount_val := str(data.get("Emount", ""))
 
 	var is_unlocked := false
@@ -100,7 +101,7 @@ func _configure_object_node(node: Node, data: Dictionary, turret_dict: Dictionar
 		button.pressed.connect(_on_turret_button_pressed.bind(button))
 
 	if purchased:
-		button.text = name_text + "\nКуплено"
+		button.text = name_text + "\n" + tr("Куплено")
 		button.disabled = false
 	elif is_unlocked:
 		button.text = name_text + "\n" + emount_val

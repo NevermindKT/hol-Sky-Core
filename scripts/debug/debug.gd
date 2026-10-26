@@ -1,10 +1,10 @@
 extends CanvasLayer
 class_name Debug_Overlay
 
-@onready var label: RichTextLabel = $DebugLabel
+@export var label: RichTextLabel
 
-@export var toggle_action: String = "toggle_debug" # добавь в Input Map, либо замени на прямую проверку клавиши
 @export var update_interval: float = 0.25
+@export var toggle_action: String = "toggle_debug"
 
 var _time_since_update := 0.0
 

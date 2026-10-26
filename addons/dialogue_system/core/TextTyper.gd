@@ -22,6 +22,7 @@ var _last_sound_usec := -SOUND_INTERVAL_USEC
 
 
 func _ready() -> void:
+	auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	_letter_pattern.compile("^\\p{L}$")
 	_typing_audio = AudioStreamPlayer.new()
 	_typing_audio.stream = typing_sound
@@ -78,6 +79,15 @@ var _state := State.BEFORE
 var _timer := 0.0
 var _type_accumulator := 0.0
 var _speed_override := 0.0
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and !_segments.is_empty():
+		if _typing:
+			_character_index = mini(_character_index, _segments[_segment_index].text.length())
+			_render()
+		else:
+			_render_full()
 
 
 func play(segments: Array[DialogueSegment], speaker_id := "") -> void:

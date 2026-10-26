@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Obstacles_set" format=3 uid="uid://c4c3g4xb37qda"]
+
+[ext_resource type="Script" uid="uid://bocwaebt17tfi" path="res://scripts/data/road/obstacle_data.gd" id="1_fxvrk"]
+[ext_resource type="PackedScene" uid="uid://5l3jx6le81bf" path="res://scenes/obstacles/obstacle.tscn" id="2_8aqfb"]
+[ext_resource type="Script" uid="uid://nvhh14a8jfmw" path="res://scripts/data/road/road_obstacles_set.gd" id="3_x6567"]
+
+[sub_resource type="Resource" id="Resource_cyvft"]
+script = ExtResource("1_fxvrk")
+obstacle_scene = ExtResource("2_8aqfb")
+weight = 10.0
+metadata/_custom_type_script = "uid://bocwaebt17tfi"
+
+[resource]
+script = ExtResource("3_x6567")
+obstacles = Array[ExtResource("1_fxvrk")]([SubResource("Resource_cyvft")])
+metadata/_custom_type_script = "uid://nvhh14a8jfmw"

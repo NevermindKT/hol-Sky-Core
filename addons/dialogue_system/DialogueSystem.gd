@@ -50,6 +50,23 @@ var _session := 0
 var _pause_reasons: Dictionary = {}
 var _tree_was_paused := false
 var _waiting_for_advance := false
+var _current_line: DialogueLine
+
+
+func _notification(what: int) -> void:
+	if what != NOTIFICATION_TRANSLATION_CHANGED or !is_node_ready():
+		return
+	if _current_line != null:
+		_show_speaker(_current_line)
+	if dialogue_log:
+		for entry in dialogue_log.entries:
+			var line: DialogueLine = dialogue_repository.try_get(entry.line_id)
+			if line == null:
+				continue
+			entry.text = line.full_text()
+			var speaker: DialogueSpeaker = speaker_repository.try_get(line.speaker)
+			entry.speaker = speaker.name if speaker else line.speaker
+		dialogue_log._render_entries()
 
 
 func _ready() -> void:
@@ -255,6 +272,7 @@ func _play_line(line_id: String, session: int) -> DialogueResult:
 		return DialogueResult.end()
 
 	_apply_presentation(line.presentation)
+	_current_line = line
 	line_started.emit(line_id)
 
 	if !line.event.is_empty():
@@ -324,6 +342,7 @@ func _stop_line() -> void:
 
 
 func _clear_presentation() -> void:
+	_current_line = null
 
 	_stop_line()
 	typer.clear_text()
