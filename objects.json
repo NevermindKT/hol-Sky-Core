@@ -6,26 +6,507 @@
   ],
   "Objects": [
     {
-      "ID": "1001",
-      "Name": "Шини",
-      "Quantity": 10,
-      "Percent": 50.0,
-      "Descriprion": "Обычные шины",
+      "ID": "11",
+      "Name": "Заряд адреналіну",
+      "Type": "Boost",
+      "Quantity": 0,
+      "Percent": 60,
+      "Descriprion": "Час уповільнюється на 6с.",
       "Emount": 100,
       "IconPath": "",
       "Rarity": "Common"
+    },
+    {
+      "ID": "12",
+      "Name": "Азот в двигуні",
+      "Type": "Boost",
+      "Quantity": 0,
+      "Percent": 50,
+      "Descriprion": "Турбо режим на 3с.",
+      "Emount": 300,
+      "IconPath": "",
+      "Rarity": "Uncommon"
+    },
+    {
+      "ID": "13",
+      "Name": "Тепловізор",
+      "Type": "Boost",
+      "Quantity": 0,
+      "Percent": 40,
+      "Descriprion": "Вороги підсвічуються на 4с.",
+      "Emount": 600,
+      "IconPath": "",
+      "Rarity": "Rare"
+    },
+    {
+      "ID": "14",
+      "Name": "Світло-шумова граната",
+      "Type": "Boost",
+      "Quantity": 0,
+      "Percent": 20,
+      "Descriprion": "Вороги не нападають і розбігаються на 4с.",
+      "Emount": 800,
+      "IconPath": "",
+      "Rarity": "Epic"
+    },
+    {
+      "ID": "15",
+      "Name": "Запасна шина",
+      "Type": "Boost",
+      "Quantity": 0,
+      "Percent": 10,
+      "Descriprion": "+1 шина",
+      "Emount": 1200,
+      "IconPath": "",
+      "Rarity": "Legendary"
+    },
+    {
+      "ID": "21",
+      "Name": "Патрони для пістолета пулемета",
+      "Type": "Bullet",
+      "Quantity": 0,
+      "Percent": 60,
+      "Descriprion": "Урон: 15",
+      "Emount": 100,
+      "IconPath": "",
+      "Rarity": "Common"
+    },
+    {
+      "ID": "22",
+      "Name": "Патрон для гвинтівки",
+      "Type": "Bullet",
+      "Quantity": 0,
+      "Percent": 50,
+      "Descriprion": "Урон: 35",
+      "Emount": 300,
+      "IconPath": "",
+      "Rarity": "Uncommon"
+    },
+    {
+      "ID": "23",
+      "Name": "Для гвинтівки: пробивні",
+      "Type": "Bullet",
+      "Quantity": 0,
+      "Percent": 40,
+      "Descriprion": "Урон: 50",
+      "Emount": 600,
+      "IconPath": "",
+      "Rarity": "Rare"
+    },
+    {
+      "ID": "24",
+      "Name": "Патрон для дробовика",
+      "Type": "Bullet",
+      "Quantity": 0,
+      "Percent": 20,
+      "Descriprion": "Урон: 80",
+      "Emount": 800,
+      "IconPath": "",
+      "Rarity": "Epic"
+    },
+    {
+      "ID": "25",
+      "Name": "Патрон для дробовика: з вогняним зарядом",
+      "Type": "Bullet",
+      "Quantity": 0,
+      "Percent": 10,
+      "Descriprion": "Урон: 100",
+      "Emount": 1200,
+      "IconPath": "",
+      "Rarity": "Legendary"
+    },
+    {
+      "ID": "31",
+      "Name": "Ремонтний набір для шин",
+      "Type": "Car",
+      "Quantity": 0,
+      "Percent": 60,
+      "Descriprion": "Можна використати для прокачки машини",
+      "Emount": 100,
+      "IconPath": "",
+      "Rarity": "Common"
+    },
+    {
+      "ID": "32",
+      "Name": "Ремонтний набір для дверей",
+      "Type": "Car",
+      "Quantity": 0,
+      "Percent": 50,
+      "Descriprion": "Можна використати для прокачки машини",
+      "Emount": 300,
+      "IconPath": "",
+      "Rarity": "Uncommon"
+    },
+    {
+      "ID": "33",
+      "Name": "Ремонтний набір для підвіски",
+      "Type": "Car",
+      "Quantity": 0,
+      "Percent": 40,
+      "Descriprion": "Можна використати для прокачки машини",
+      "Emount": 600,
+      "IconPath": "",
+      "Rarity": "Rare"
+    },
+    {
+      "ID": "34",
+      "Name": "Ремонтний набір для рами",
+      "Type": "Car",
+      "Quantity": 0,
+      "Percent": 20,
+      "Descriprion": "Можна використати для прокачки машини",
+      "Emount": 800,
+      "IconPath": "",
+      "Rarity": "Epic"
+    },
+    {
+      "ID": "35",
+      "Name": "Машинне масло",
+      "Type": "Car",
+      "Quantity": 0,
+      "Percent": 10,
+      "Descriprion": "Можна використати для прокачки машини",
+      "Emount": 1200,
+      "IconPath": "",
+      "Rarity": "Legendary"
     }
   ],
   "Car": [
     {
-      "ID": 1,
+      "ID": 41,
       "Type": "Шини",
-      "TypeObj": "Шини",
+      "TypeObj": "Гайковий ключ",
       "Level": 1,
-      "Name": "Улучшенные шины",
-      "NumObj": 3,
+      "Name": "Рівень 1",
+      "NumObj": 5,
+      "Money": 100,
+      "Purchased": 0
+    },
+    {
+      "ID": 51,
+      "Type": "Двері",
+      "TypeObj": "Гайковий ключ",
+      "Level": 1,
+      "Name": "Рівень 1",
+      "NumObj": 10,
+      "Money": 100,
+      "Purchased": 0
+    },
+    {
+      "ID": 61,
+      "Type": "Двигун",
+      "TypeObj": "Гайковий ключ",
+      "Level": 1,
+      "Name": "Рівень 1",
+      "NumObj": 8,
+      "Money": 100,
+      "Purchased": 0
+    },
+    {
+      "ID": 42,
+      "Type": "Шини",
+      "TypeObj": "Гайковий ключ",
+      "Level": 2,
+      "Name": "Рівень 2",
+      "NumObj": 10,
+      "Money": 300,
+      "Purchased": 0
+    },
+    {
+      "ID": 52,
+      "Type": "Двері",
+      "TypeObj": "Гайковий ключ",
+      "Level": 2,
+      "Name": "Рівень 2",
+      "NumObj": 6,
+      "Money": 300,
+      "Purchased": 0
+    },
+    {
+      "ID": 62,
+      "Type": "Двигун",
+      "TypeObj": "Гайковий ключ",
+      "Level": 2,
+      "Name": "Рівень 2",
+      "NumObj": 15,
+      "Money": 300,
+      "Purchased": 0
+    },
+    {
+      "ID": 43,
+      "Type": "Шини",
+      "TypeObj": "Машинне масло",
+      "Level": 3,
+      "Name": "Рівень 3",
+      "NumObj": 6,
       "Money": 500,
       "Purchased": 0
+    },
+    {
+      "ID": 53,
+      "Type": "Двері",
+      "TypeObj": "Машинне масло",
+      "Level": 3,
+      "Name": "Рівень 3",
+      "NumObj": 10,
+      "Money": 500,
+      "Purchased": 0
+    },
+    {
+      "ID": 63,
+      "Type": "Двигун",
+      "TypeObj": "Машинне масло",
+      "Level": 3,
+      "Name": "Рівень 3",
+      "NumObj": 10,
+      "Money": 500,
+      "Purchased": 0
+    },
+    {
+      "ID": 44,
+      "Type": "Шини",
+      "TypeObj": "Болти",
+      "Level": 4,
+      "Name": "Рівень 4",
+      "NumObj": 15,
+      "Money": 800,
+      "Purchased": 0
+    },
+    {
+      "ID": 54,
+      "Type": "Двері",
+      "TypeObj": "Болти",
+      "Level": 4,
+      "Name": "Рівень 4",
+      "NumObj": 17,
+      "Money": 800,
+      "Purchased": 0
+    },
+    {
+      "ID": 64,
+      "Type": "Двигун",
+      "TypeObj": "Болти",
+      "Level": 4,
+      "Name": "Рівень 4",
+      "NumObj": 18,
+      "Money": 800,
+      "Purchased": 0
+    },
+    {
+      "ID": 45,
+      "Type": "Шини",
+      "TypeObj": "Сварка",
+      "Level": 5,
+      "Name": "Рівень 5",
+      "NumObj": 3,
+      "Money": 1000,
+      "Purchased": 0
+    },
+    {
+      "ID": 55,
+      "Type": "Двері",
+      "TypeObj": "Сварка",
+      "Level": 5,
+      "Name": "Рівень 5",
+      "NumObj": 4,
+      "Money": 1000,
+      "Purchased": 0
+    },
+    {
+      "ID": 65,
+      "Type": "Двигун",
+      "TypeObj": "Сварка",
+      "Level": 5,
+      "Name": "Рівень 5",
+      "NumObj": 5,
+      "Money": 1000,
+      "Purchased": 0
+    },
+    {
+      "ID": 71,
+      "Type": "Підвіска",
+      "TypeObj": "Гайковий ключ",
+      "Level": 1,
+      "Name": "Рівень 1",
+      "NumObj": 8,
+      "Money": 100,
+      "Purchased": 0
+    },
+    {
+      "ID": 72,
+      "Type": "Підвіска",
+      "TypeObj": "Гайковий ключ",
+      "Level": 2,
+      "Name": "Рівень 2",
+      "NumObj": 15,
+      "Money": 300,
+      "Purchased": 0
+    },
+    {
+      "ID": 73,
+      "Type": "Підвіска",
+      "TypeObj": "Машинне масло",
+      "Level": 3,
+      "Name": "Рівень 3",
+      "NumObj": 10,
+      "Money": 500,
+      "Purchased": 0
+    },
+    {
+      "ID": 74,
+      "Type": "Підвіска",
+      "TypeObj": "Болти",
+      "Level": 4,
+      "Name": "Рівень 4",
+      "NumObj": 18,
+      "Money": 800,
+      "Purchased": 0
+    },
+    {
+      "ID": 75,
+      "Type": "Підвіска",
+      "TypeObj": "Сварка",
+      "Level": 5,
+      "Name": "Рівень 5",
+      "NumObj": 5,
+      "Money": 1000,
+      "Purchased": 0
+    },
+    {
+      "ID": 81,
+      "Type": "Передня рама",
+      "TypeObj": "Гайковий ключ",
+      "Level": 1,
+      "Name": "Рівень 1",
+      "NumObj": 8,
+      "Money": 100,
+      "Purchased": 0
+    },
+    {
+      "ID": 82,
+      "Type": "Передня рама",
+      "TypeObj": "Гайковий ключ",
+      "Level": 2,
+      "Name": "Рівень 2",
+      "NumObj": 15,
+      "Money": 300,
+      "Purchased": 0
+    },
+    {
+      "ID": 83,
+      "Type": "Передня рама",
+      "TypeObj": "Машинне масло",
+      "Level": 3,
+      "Name": "Рівень 3",
+      "NumObj": 10,
+      "Money": 500,
+      "Purchased": 0
+    },
+    {
+      "ID": 84,
+      "Type": "Передня рама",
+      "TypeObj": "Болти",
+      "Level": 4,
+      "Name": "Рівень 4",
+      "NumObj": 18,
+      "Money": 800,
+      "Purchased": 0
+    },
+    {
+      "ID": 85,
+      "Type": "Передня рама",
+      "TypeObj": "Сварка",
+      "Level": 5,
+      "Name": "Рівень 5",
+      "NumObj": 5,
+      "Money": 1000,
+      "Purchased": 0
+    }
+  ],
+  "Turret": [
+    {
+      "ID": 201,
+      "UpgradeId": "MD01",
+      "Name": "Множник пошкодження",
+      "Type": "Пошкодження",
+      "Level": 0
+    },
+    {
+      "ID": 210,
+      "UpgradeId": "ES01",
+      "Name": "Уповільнення",
+      "Type": "Пошкодження",
+      "Level": 0
+    },
+    {
+      "ID": 211,
+      "UpgradeId": "ES02",
+      "Name": "Оглушення",
+      "Type": "Пошкодження",
+      "Level": 0
+    },
+    {
+      "ID": 221,
+      "UpgradeId": "BR01",
+      "Name": "Рікошет",
+      "Type": "Пошкодження",
+      "Level": 0
+    },
+    {
+      "ID": 301,
+      "UpgradeId": "RF01",
+      "Name": "Швидкість стрільби",
+      "Type": "Сила вистрілу",
+      "Level": 0
+    },
+    {
+      "ID": 310,
+      "UpgradeId": "BS01",
+      "Name": "Шанс зберегти набій",
+      "Type": "Сила вистрілу",
+      "Level": 0
+    },
+    {
+      "ID": 311,
+      "UpgradeId": "EM01",
+      "Name": "Збільшений магазин",
+      "Type": "Сила вистрілу",
+      "Level": 0
+    },
+    {
+      "ID": 321,
+      "UpgradeId": "BP01",
+      "Name": "Отрута",
+      "Type": "Сила вистрілу",
+      "Level": 0
+    },
+    {
+      "ID": 401,
+      "UpgradeId": "LR01",
+      "Name": "Менша віддача",
+      "Type": "Точність",
+      "Level": 0
+    },
+    {
+      "ID": 410,
+      "UpgradeId": "LD01",
+      "Name": "Менша затримка повороту",
+      "Type": "Точність",
+      "Level": 0
+    },
+    {
+      "ID": 411,
+      "UpgradeId": "LS01",
+      "Name": "Менший розкид",
+      "Type": "Точність",
+      "Level": 0
+    },
+    {
+      "ID": 421,
+      "UpgradeId": "CC01",
+      "Name": "Крит шанс",
+      "Type": "Точність",
+      "Level": 0
     }
   ],
   "Bases": [

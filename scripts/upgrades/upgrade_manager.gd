@@ -1,6 +1,7 @@
 extends Node
 
 const DATABASE_PATH := "res://resources/upgrades/upgrade_database.tres"
+const SAVE_TABLE := "Turret"
 const UNLOCK_LEVEL := 1
 
 #const DEBUG_UPGRADE_IDS := ["MD01", "ES01", "ES02", "BR01"]
@@ -16,6 +17,7 @@ var _active_levels: Array[UpgradeLevel] = []
 func _ready() -> void:
 	database = load(DATABASE_PATH)
 	InputController.debug_toggle_upgrade.connect(_on_debug_toggle_upgrade)
+	load_saved_levels.call_deferred()
 
 func _process(_delta: float) -> void:
 	Engine.time_scale = get_modified(&"time_slowdown_strength", 1.0)
@@ -87,6 +89,34 @@ func set_level(upgrade_data: UpgradeData, level: int) -> void:
 		levels[upgrade_data.id] = level
 	_rebuild_active_levels()
 	Events.upgrade_level_changed.emit(upgrade_data, level)
+
+func buy_level(upgrade_data: UpgradeData) -> bool:
+	if !can_upgrade(upgrade_data, BaseInventoryManager.get_player_money()):
+		return false
+
+	var cost := get_next_cost(upgrade_data)
+	var level := get_level(upgrade_data.id) + 1
+
+	if !BaseInventoryManager.spend_money(cost):
+		return false
+
+	if !BaseInventoryManager.update_row(SAVE_TABLE, "UpgradeId", upgrade_data.id, {"Level": level}):
+		BaseInventoryManager.add_money(cost)
+		return false
+
+	set_level(upgrade_data, level)
+	return true
+
+func load_saved_levels() -> void:
+	levels.clear()
+	for row in BaseInventoryManager.get_rows(SAVE_TABLE):
+		var upgrade_data := get_upgrade(str(row.get("UpgradeId", "")))
+		if upgrade_data == null:
+			continue
+		var level := clampi(int(row.get("Level", 0)), 0, upgrade_data.max_level)
+		if level > 0:
+			levels[upgrade_data.id] = level
+	_rebuild_active_levels()
 
 func reset() -> void:
 	levels.clear()
