@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqsx7gjfph6ti"]
 
-[ext_resource type="Script" uid="uid://cmids6g31ulgg" path="res://scenes/ui/enemy_summary_tab.gd" id="1_pq75q"]
+[ext_resource type="Script" uid="uid://cmids6g31ulgg" path="res://scripts/ui/enemy_summary_tab.gd" id="1_pq75q"]
 [ext_resource type="Texture2D" uid="uid://3dsx0b0jp5ok" path="res://textures/menu/pause/Movement divider.png" id="1_ukpls"]
 
 [node name="VBoxContainer" type="VBoxContainer" unique_id=1135689075 node_paths=PackedStringArray("enemy_name_lbl", "enemy_count_lbl")]
