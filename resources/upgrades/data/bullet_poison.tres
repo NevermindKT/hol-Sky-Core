@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_1"]
 script = ExtResource("level")
-cost = 0
+cost = 1800
 description = "poison_damage +2, poison_duration +3"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L1_1"), SubResource("Effect_L1_2")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
@@ -45,7 +45,7 @@ metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_2"]
 script = ExtResource("level")
-cost = 0
+cost = 3600
 description = "poison_damage +3, poison_duration +4"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L2_1"), SubResource("Effect_L2_2")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
@@ -66,7 +66,7 @@ metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_3"]
 script = ExtResource("level")
-cost = 0
+cost = 5400
 description = "poison_damage +4, poison_duration +5"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L3_1"), SubResource("Effect_L3_2")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"

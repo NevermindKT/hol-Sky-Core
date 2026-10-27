@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_1"]
 script = ExtResource("level")
-cost = 10
+cost = 1200
 description = "enemy_stunning x2"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L1_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
@@ -28,7 +28,7 @@ metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_2"]
 script = ExtResource("level")
-cost = 20
+cost = 2400
 description = "enemy_stunning x2.5"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L2_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
@@ -41,7 +41,7 @@ metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_3"]
 script = ExtResource("level")
-cost = 30
+cost = 3600
 description = "enemy_stunning x3"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L3_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"

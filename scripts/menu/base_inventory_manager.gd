@@ -56,6 +56,16 @@ func load_data() -> void:
 		save_data()
 
 
+func reset_save() -> void:
+	if FileAccess.file_exists(SAVE_PATH):
+		DirAccess.remove_absolute(SAVE_PATH)
+
+	purchased_items.clear()
+	current_shop_data.clear()
+	load_data()
+	money_changed.emit(get_player_money())
+
+
 func _add_missing_tables() -> bool:
 	var source = JSON.parse_string(FileAccess.get_file_as_string(SOURCE_PATH))
 
@@ -68,6 +78,39 @@ func _add_missing_tables() -> bool:
 		if not data.has(table_name):
 			data[table_name] = source[table_name]
 			added = true
+		elif _add_missing_rows(data[table_name], source[table_name]):
+			added = true
+
+	return added
+
+
+func _add_missing_rows(rows: Variant, source_rows: Variant) -> bool:
+	if not rows is Array or not source_rows is Array:
+		return false
+
+	var by_id := {}
+
+	for row in rows:
+		if row is Dictionary and row.has("ID"):
+			by_id[_key(row["ID"])] = row
+
+	var added := false
+
+	for source_row in source_rows:
+		if not source_row is Dictionary or not source_row.has("ID"):
+			continue
+
+		var row = by_id.get(_key(source_row["ID"]))
+
+		if row == null:
+			rows.append(source_row)
+			added = true
+			continue
+
+		for field in source_row:
+			if not row.has(field):
+				row[field] = source_row[field]
+				added = true
 
 	return added
 

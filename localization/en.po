@@ -354,6 +354,9 @@ msgstr "(Timer: %d sec.)"
 msgid "+ кнопка стрейфу — ухил убік"
 msgstr "+ strafe key — dodge sideways"
 
+msgid "+1 шина"
+msgstr "+1 tyre"
+
 msgid ", жартівник"
 msgstr ", joker"
 
@@ -648,6 +651,9 @@ msgstr "And if he isn't?"
 msgid "Адресу я залишив."
 msgstr "I left the address."
 
+msgid "Азот в двигуні"
+msgstr "Nitrous in the engine"
+
 msgid "Але звільнився він швидко."
 msgstr "But he quit in a hurry."
 
@@ -744,6 +750,12 @@ msgstr "Completed"
 msgid "Використати"
 msgstr "Use"
 
+msgid "Вороги не нападають і розбігаються на 4с."
+msgstr "Enemies stop attacking and scatter for 4 s."
+
+msgid "Вороги підсвічуються на 4с."
+msgstr "Enemies are highlighted for 4 s."
+
 msgid "Все"
 msgstr "All"
 
@@ -828,6 +840,9 @@ msgstr "Where can I find him?"
 msgid "Дехто просто слабшає з кожним днем. "
 msgstr "Some just get weaker every day. "
 
+msgid "Для гвинтівки: пробивні"
+msgstr "Rifle: armor-piercing"
+
 msgid "Добре"
 msgstr "All right"
 
@@ -858,11 +873,20 @@ msgstr "Locked"
 msgid "Завод №9"
 msgstr "Factory #9"
 
+msgid "Запасна шина"
+msgstr "Spare tyre"
+
 msgid "Запчастини"
 msgstr "Parts"
 
+msgid "Заряд адреналіну"
+msgstr "Adrenaline shot"
+
 msgid "Зачекай. "
 msgstr "Wait. "
+
+msgid "Збільшений магазин"
+msgstr "Expanded magazine"
 
 msgid "Звідки «звідти»?"
 msgstr "From where, exactly?"
@@ -900,6 +924,9 @@ msgstr "A former waterworks employee"
 msgid "Колишній?"
 msgstr "Former?"
 
+msgid "Крит шанс"
+msgstr "Critical chance"
+
 msgid "Куплено"
 msgstr "Purchased"
 
@@ -924,17 +951,35 @@ msgstr "Forest"
 msgid "Ліс 1"
 msgstr "Forest 1"
 
+msgid "Максимум"
+msgstr "Maxed"
+
 msgid "Маргарита"
 msgstr "Margarita"
 
+msgid "Машинне масло"
+msgstr "Motor oil"
+
 msgid "Машину залишай у ремонтному секторі"
 msgstr "Leave the car in the repair sector"
+
+msgid "Менша віддача"
+msgstr "Less recoil"
+
+msgid "Менша затримка повороту"
+msgstr "Faster turning"
+
+msgid "Менший розкид"
+msgstr "Less spread"
 
 msgid "Мені це не цікаво"
 msgstr "I'm not interested"
 
 msgid "Мені цього вистачило"
 msgstr "That was enough for me"
+
+msgid "Множник пошкодження"
+msgstr "Damage multiplier"
 
 msgid "Може й так"
 msgstr "Maybe so"
@@ -947,6 +992,9 @@ msgstr "Maybe. "
 
 msgid "Можливо. Тобі що?"
 msgstr "Maybe. What do you want?"
+
+msgid "Можна використати для прокачки машини"
+msgstr "Used to upgrade the car"
 
 msgid "Монстри: Вовк - полювальник"
 msgstr "Monsters: Hunter Wolf"
@@ -1041,6 +1089,9 @@ msgstr "No. Too suspicious"
 msgid "Обычные шины"
 msgstr "Standard tyres"
 
+msgid "Оглушення"
+msgstr "Stun"
+
 msgid "Опис: База, в якій алкоголь\nвідіграє важливу роль і підіймає\nбойовий дух."
 msgstr "Description: A base where alcohol\nplays an important role\nand boosts morale."
 
@@ -1065,11 +1116,26 @@ msgstr "Now that's a good question"
 msgid "От і думай"
 msgstr "Make of that what you will"
 
+msgid "Отрута"
+msgstr "Poison"
+
 msgid "Охоронець"
 msgstr "Guard"
 
+msgid "Патрон для гвинтівки"
+msgstr "Rifle ammo"
+
+msgid "Патрон для дробовика"
+msgstr "Shotgun shell"
+
+msgid "Патрон для дробовика: з вогняним зарядом"
+msgstr "Shotgun shell: incendiary"
+
 msgid "Патрони"
 msgstr "Ammo"
+
+msgid "Патрони для пістолета пулемета"
+msgstr "SMG ammo"
 
 msgid "Перед ним майже недоторкана склянка"
 msgstr "An almost untouched glass sits in front of him"
@@ -1143,11 +1209,41 @@ msgstr "Late evening"
 msgid "Раніше працював у міській лабораторії."
 msgstr "Used to work at the city lab."
 
+msgid "Ремонтний набір для дверей"
+msgstr "Door repair kit"
+
+msgid "Ремонтний набір для підвіски"
+msgstr "Suspension repair kit"
+
+msgid "Ремонтний набір для рами"
+msgstr "Frame repair kit"
+
+msgid "Ремонтний набір для шин"
+msgstr "Tyre repair kit"
+
 msgid "Розумно"
 msgstr "Smart"
 
 msgid "Рух:[hr]"
 msgstr "Movement:[hr]"
+
+msgid "Рівень %d/%d"
+msgstr "Level %d/%d"
+
+msgid "Рівень 1"
+msgstr "Level 1"
+
+msgid "Рівень 2"
+msgstr "Level 2"
+
+msgid "Рівень 3"
+msgstr "Level 3"
+
+msgid "Рівень 4"
+msgstr "Level 4"
+
+msgid "Рівень 5"
+msgstr "Level 5"
 
 msgid "Різна робота. "
 msgstr "Different jobs. "
@@ -1158,11 +1254,17 @@ msgstr "Different ages. "
 msgid "Різні райони"
 msgstr "Different districts"
 
+msgid "Рікошет"
+msgstr "Ricochet"
+
 msgid "Саме так"
 msgstr "Exactly"
 
 msgid "Санаторій \"Веселка\""
 msgstr "Rainbow Sanatorium"
+
+msgid "Світло-шумова граната"
+msgstr "Flashbang"
 
 msgid "Серйозно"
 msgstr "Seriously"
@@ -1214,6 +1316,9 @@ msgstr "Now he comes in,"
 
 msgid "Тепер хочеш поговорити?"
 msgstr "Want to talk now?"
+
+msgid "Тепловізор"
+msgstr "Thermal vision"
 
 msgid "Ти"
 msgstr "You"
@@ -1278,6 +1383,9 @@ msgstr "Three samples"
 msgid "Три тижні тому ще працював"
 msgstr "He was still working there three weeks ago"
 
+msgid "Турбо режим на 3с."
+msgstr "Turbo mode for 3 s."
+
 msgid "У вас немає доступу \nдо цієї локації!"
 msgstr "You do not have access\nto this location"
 
@@ -1295,6 +1403,24 @@ msgstr "Hard not to overhear in a half-empty bar."
 
 msgid "Улучшенные шины"
 msgstr "Improved tyres"
+
+msgid "Уповільнення"
+msgstr "Slowdown"
+
+msgid "Урон: 100"
+msgstr "Damage: 100"
+
+msgid "Урон: 15"
+msgstr "Damage: 15"
+
+msgid "Урон: 35"
+msgstr "Damage: 35"
+
+msgid "Урон: 50"
+msgstr "Damage: 50"
+
+msgid "Урон: 80"
+msgstr "Damage: 80"
 
 msgid "Хотів спитати."
 msgstr "Wanted to ask."
@@ -1323,6 +1449,9 @@ msgstr "Special offer:"
 msgid "Час вирушати у дорогу:"
 msgstr "Time to hit the road:"
 
+msgid "Час уповільнюється на 6с."
+msgstr "Time slows down for 6 s."
+
 msgid "Чому він сам не збере зразки?"
 msgstr "Why doesn't he collect the samples himself?"
 
@@ -1337,6 +1466,12 @@ msgstr "Why?"
 
 msgid "Чудово"
 msgstr "Wonderful"
+
+msgid "Шанс зберегти набій"
+msgstr "Chance to save ammo"
+
+msgid "Швидкість стрільби"
+msgstr "Rate of fire"
 
 msgid "Шини"
 msgstr "Tyres"

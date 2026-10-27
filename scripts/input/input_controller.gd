@@ -22,6 +22,7 @@ signal photo_mode_toggle
 
 signal test_boost
 signal debug_toggle_upgrade(slot: int)
+signal debug_reset_save
 
 signal photo_mouse_motion(relative: Vector2)
 
@@ -73,6 +74,9 @@ func _process(_delta):
 		if Input.is_action_just_pressed("debug_upgrade_%d" % (slot + 1)):
 			GameLog.print("Start: ", slot)
 			debug_toggle_upgrade.emit(slot)
+
+	if OS.is_debug_build() and Input.is_action_just_pressed("debug_reset_save"):
+		debug_reset_save.emit()
 
 
 func set_photo_mouse_mode(enabled: bool) -> void:
