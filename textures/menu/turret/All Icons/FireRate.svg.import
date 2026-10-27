@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s1f5p6ty2qkp"
-path="res://.godot/imported/background21.png-fe1212d4ad62c9b6189c3278ed84935d.ctex"
+uid="uid://b7nexxympreo8"
+path="res://.godot/imported/FireRate.svg-6d2d58794d46f4c7c128740af0dbc147.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu/map/BackDetails/background21.png"
-dest_files=["res://.godot/imported/background21.png-fe1212d4ad62c9b6189c3278ed84935d.ctex"]
+source_file="res://textures/menu/turret/All Icons/FireRate.svg"
+dest_files=["res://.godot/imported/FireRate.svg-6d2d58794d46f4c7c128740af0dbc147.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

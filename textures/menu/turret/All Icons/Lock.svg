@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="CLEAN_ICONS_consistent_20pt_rounded_strokes" data-name="CLEAN ICONS — consistent 20pt rounded strokes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #d8c8a9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+  <g id="Lock">
+    <g>
+      <rect class="cls-1" x="161" y="222" width="200" height="173" rx="20" ry="20"/>
+      <path class="cls-1" d="M196,222v-48c0-35.9,29.1-65,65-65s65,29.1,65,65v48M261,299v34"/>
+    </g>
+  </g>
+</svg>

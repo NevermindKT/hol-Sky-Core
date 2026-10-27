@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmdtxd5qfwat4"
-path="res://.godot/imported/pack.png-a609efe57a95e08174ed08d35bf87489.ctex"
+uid="uid://dg0g7r4krqo1l"
+path="res://.godot/imported/Stability.svg-20fd33f5d9f26f57f90df270f52ed4ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu/map/BackDetails/pack.png"
-dest_files=["res://.godot/imported/pack.png-a609efe57a95e08174ed08d35bf87489.ctex"]
+source_file="res://textures/menu/turret/All Icons/Stability.svg"
+dest_files=["res://.godot/imported/Stability.svg-20fd33f5d9f26f57f90df270f52ed4ab.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

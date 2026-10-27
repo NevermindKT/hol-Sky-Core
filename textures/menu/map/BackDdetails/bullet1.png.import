@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpxdbj6jtx7jh"
-path="res://.godot/imported/bullet2.png-78b47e048db870c22d2f3be2f3659d36.ctex"
+uid="uid://djl0w4oidohpl"
+path="res://.godot/imported/bullet1.png-e68cc6591db80dece6110e23493bada9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu/map/BackDetails/bullet2.png"
-dest_files=["res://.godot/imported/bullet2.png-78b47e048db870c22d2f3be2f3659d36.ctex"]
+source_file="res://textures/menu/map/BackDdetails/bullet1.png"
+dest_files=["res://.godot/imported/bullet1.png-e68cc6591db80dece6110e23493bada9.ctex"]
 
 [params]
 

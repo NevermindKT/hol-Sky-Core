@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="CLEAN_ICONS_consistent_20pt_rounded_strokes" data-name="CLEAN ICONS — consistent 20pt rounded strokes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #d8c8a9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 20px;
+      }
+    </style>
+  </defs>
+  <g id="Traverse">
+    <path class="cls-1" d="M138,236c9.98-69.43,74.36-117.61,143.78-107.63,29.37,4.22,56.34,18.6,76.22,40.63M358,114v62h-62M384,274c-9.98,69.43-74.36,117.61-143.78,107.63-29.37-4.22-56.34-18.6-76.22-40.63M164,396v-62h62"/>
+  </g>
+</svg>

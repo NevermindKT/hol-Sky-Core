@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bygnqryyvw0jc"
-path="res://.godot/imported/coin1.png-88182d8bf4bb6e7c85805982293aa2a6.ctex"
+uid="uid://l6vj1x2eag66"
+path="res://.godot/imported/Exposure 3.png-a31471f700dd8ac776873132f1ce1dbc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu/map/BackDetails/coin1.png"
-dest_files=["res://.godot/imported/coin1.png-88182d8bf4bb6e7c85805982293aa2a6.ctex"]
+source_file="res://textures/menu/shop/Exposure 3.png"
+dest_files=["res://.godot/imported/Exposure 3.png-a31471f700dd8ac776873132f1ce1dbc.ctex"]
 
 [params]
 

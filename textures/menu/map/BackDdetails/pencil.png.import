@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwadf3xaqwa6u"
-path="res://.godot/imported/buttey3.png-1518e9a64130779d08f123dafa43c0c8.ctex"
+uid="uid://j6omidc10whs"
+path="res://.godot/imported/pencil.png-d9a6a0d8608246dd6f61ac8b9e712ccc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu/map/BackDetails/buttey3.png"
-dest_files=["res://.godot/imported/buttey3.png-1518e9a64130779d08f123dafa43c0c8.ctex"]
+source_file="res://textures/menu/map/BackDdetails/pencil.png"
+dest_files=["res://.godot/imported/pencil.png-d9a6a0d8608246dd6f61ac8b9e712ccc.ctex"]
 
 [params]
 

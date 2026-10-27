@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0rxpvob2ajqv"
-path="res://.godot/imported/coin3.png-112d6bd0fa71979da5bf2fb94ea0f048.ctex"
+uid="uid://max55bmjcrdg"
+path="res://.godot/imported/Poison.svg-e4a9d6518ff603fdf05ecb677fedca8d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/menu/map/BackDetails/coin3.png"
-dest_files=["res://.godot/imported/coin3.png-112d6bd0fa71979da5bf2fb94ea0f048.ctex"]
+source_file="res://textures/menu/turret/All Icons/Poison.svg"
+dest_files=["res://.godot/imported/Poison.svg-e4a9d6518ff603fdf05ecb677fedca8d.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

@@ -1,38 +1,108 @@
 [gd_scene format=3 uid="uid://boiqi5lnl8ftn"]
 
 [ext_resource type="Script" uid="uid://dest2ct5kot18" path="res://scripts/menu/turret/turret.gd" id="1_dgvtk"]
-[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://resources/fonts/Cormorant/Cormorant-Bold.ttf" id="10_0rxae"]
+[ext_resource type="Texture2D" uid="uid://43faxic4853u" path="res://textures/menu/turret/Background.png" id="2_jgqrn"]
+[ext_resource type="Texture2D" uid="uid://cl2548iureo4w" path="res://textures/menu/turret/bottom.png" id="3_8nm27"]
+[ext_resource type="Texture2D" uid="uid://c7u774wartjvg" path="res://textures/menu/turret/top.png" id="4_pvldh"]
+[ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="5_kk2uh"]
+[ext_resource type="Texture2D" uid="uid://cr6hatanxnbjo" path="res://textures/menu/turret/Branch footer metal.png" id="6_23sql"]
+[ext_resource type="Texture2D" uid="uid://wdlvdp7k023v" path="res://textures/menu/turret/INACTIVE — grey.png" id="6_534ky"]
+[ext_resource type="Texture2D" uid="uid://c6bxe1ka5mjmk" path="res://textures/menu/turret/All Icons/Ricochet.svg" id="7_q4dmx"]
+[ext_resource type="Texture2D" uid="uid://7hvdsv2chibl" path="res://textures/menu/turret/All Icons/Slow.svg" id="8_lxcpk"]
+[ext_resource type="Texture2D" uid="uid://c8mlvytxebjal" path="res://textures/menu/turret/All Icons/Stun.svg" id="9_ksepw"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="10_0rxae"]
+[ext_resource type="Texture2D" uid="uid://bhbd2clrtr6y" path="res://textures/menu/turret/All Icons/Lock.svg" id="10_b2h4a"]
+[ext_resource type="Texture2D" uid="uid://d4cahwvkqck8r" path="res://textures/menu/turret/All Icons/Damage.svg" id="10_la8n3"]
+[ext_resource type="Texture2D" uid="uid://max55bmjcrdg" path="res://textures/menu/turret/All Icons/Poison.svg" id="11_kk2uh"]
+[ext_resource type="Texture2D" uid="uid://qvbdshvyjfyl" path="res://textures/menu/turret/All Icons/AmmoSave.svg" id="12_23sql"]
+[ext_resource type="Texture2D" uid="uid://m6hqr1e8htkd" path="res://textures/menu/turret/All Icons/Magazine.svg" id="13_b2h4a"]
+[ext_resource type="Texture2D" uid="uid://b7nexxympreo8" path="res://textures/menu/turret/All Icons/FireRate.svg" id="14_xpy4d"]
+[ext_resource type="Texture2D" uid="uid://cicudyi0d0yei" path="res://textures/menu/turret/All Icons/Critical.svg" id="15_m1u0p"]
+[ext_resource type="Texture2D" uid="uid://c6qybpipj0gk0" path="res://textures/menu/turret/All Icons/Traverse.svg" id="16_d8au4"]
+[ext_resource type="Texture2D" uid="uid://bx8urhqr75tsd" path="res://textures/menu/turret/All Icons/Precision.svg" id="17_taa5f"]
+[ext_resource type="Texture2D" uid="uid://dg0g7r4krqo1l" path="res://textures/menu/turret/All Icons/Stability.svg" id="18_8prtc"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nidlh"]
-bg_color = Color(0.728125, 0.728125, 0.67611605, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qpvvs"]
+texture = ExtResource("2_jgqrn")
+region_rect = Rect2(0, -156.20996, 3840, 2316.21)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnypt"]
-bg_color = Color(0.9875, 0.9875, 0.9875, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vnypt"]
+texture = ExtResource("3_8nm27")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_in8ve"]
-bg_color = Color(0.9875, 0.9875, 0.9875, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p20mb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cs7u"]
-bg_color = Color(0.9875, 0.9875, 0.9875, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x38ol"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgvtk"]
-bg_color = Color(0.61982733, 0.8263398, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7fck3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gy3ke"]
+texture = ExtResource("6_23sql")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kk2uh"]
+load_path = "res://.godot/imported/Branch footer metal.png-69ad3550a1dff65d1163b235ef760e4c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xpy4d"]
+texture = SubResource("CompressedTexture2D_kk2uh")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m1u0p"]
+load_path = "res://.godot/imported/Branch footer metal.png-69ad3550a1dff65d1163b235ef760e4c.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a4n3i"]
+texture = SubResource("CompressedTexture2D_m1u0p")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kk2uh"]
+texture = ExtResource("4_pvldh")
+region_rect = Rect2(0, 75.89868, 1931, 1208.1013)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_23sql"]
+texture = ExtResource("6_534ky")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+modulate_color = Color(0.9297146, 0.9297147, 0.9297146, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jgqrn"]
+load_path = "res://.godot/imported/INACTIVE — grey.png-7b28e2f9b8c498185958006b0390c1d1.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b2h4a"]
+texture = SubResource("CompressedTexture2D_jgqrn")
+modulate_color = Color(0.8055934, 0.8055934, 0.8055934, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xpy4d"]
+load_path = "res://.godot/imported/INACTIVE — grey.png-7b28e2f9b8c498185958006b0390c1d1.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m1u0p"]
+texture = SubResource("CompressedTexture2D_xpy4d")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6qerr"]
+texture = ExtResource("6_534ky")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+modulate_color = Color(1.6990223, 1.6990223, 1.6990223, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vnypt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gy3ke"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sqhb3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_grfbt"]
+content_margin_bottom = 70.0
 
 [node name="Turret" type="Control" unique_id=987103532]
 layout_mode = 3
@@ -48,270 +118,631 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 3.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nidlh")
+theme_override_styles/panel = SubResource("StyleBoxTexture_qpvvs")
+
+[node name="Info" type="Panel" parent="Background" unique_id=802228922]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 780.0
+offset_right = 1808.0
+offset_bottom = 897.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_vnypt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/Info" unique_id=225337851]
+layout_mode = 0
+offset_left = 17.0
+offset_right = 756.0
+offset_bottom = 115.88836
+theme_override_constants/separation = 32
+
+[node name="Icon" type="Button" parent="Background/Info/HBoxContainer" unique_id=970332591]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/icon_max_width = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_p20mb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_x38ol")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7fck3")
+icon_alignment = 1
+
+[node name="Name" type="Label" parent="Background/Info/HBoxContainer" unique_id=1912461927]
+custom_minimum_size = Vector2(340, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("10_0rxae")
+theme_override_font_sizes/font_size = 25
+
+[node name="Emount" type="Label" parent="Background/Info/HBoxContainer/Name" unique_id=890505616]
+custom_minimum_size = Vector2(340, 30)
+layout_mode = 0
+offset_top = 36.0
+offset_right = 340.0
+offset_bottom = 85.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("10_0rxae")
+theme_override_font_sizes/font_size = 40
+vertical_alignment = 2
+
+[node name="Purchase" type="Button" parent="Background/Info/HBoxContainer" unique_id=1882566702]
+custom_minimum_size = Vector2(220, 60)
+custom_maximum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_kk2uh")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_gy3ke")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xpy4d")
+theme_override_styles/hover = SubResource("StyleBoxTexture_a4n3i")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gy3ke")
+theme_override_styles/focus = SubResource("StyleBoxTexture_gy3ke")
+text = "Придбати"
+
+[node name="TreeBack" type="Panel" parent="Background" unique_id=610854363]
+layout_mode = 0
+offset_left = 978.0
+offset_top = 183.0
+offset_right = 1878.0
+offset_bottom = 736.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_kk2uh")
 
 [node name="Trees" type="HBoxContainer" parent="." unique_id=794786013]
+propagate_maximum_size = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -530.0
-offset_top = -95.0
-offset_right = 530.0
-offset_bottom = 95.0
+offset_left = 55.0
+offset_top = -332.0
+offset_right = 905.0
+offset_bottom = 209.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 42
+alignment = 1
 
 [node name="Damage" type="VBoxContainer" parent="Trees" unique_id=1691154967]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(250, -1)
 layout_mode = 2
-theme_override_constants/separation = 20
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+alignment = 1
 
 [node name="221" type="Button" parent="Trees/Damage" unique_id=1011440859]
-custom_minimum_size = Vector2(520, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "221"
+icon = ExtResource("7_q4dmx")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/Damage/221" unique_id=238257820]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="000" type="HBoxContainer" parent="Trees/Damage" unique_id=1421255008]
 layout_mode = 2
 theme_override_constants/separation = 20
+alignment = 1
 
 [node name="210" type="Button" parent="Trees/Damage/000" unique_id=1310589116]
-custom_minimum_size = Vector2(250, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "210"
+icon = ExtResource("8_lxcpk")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/Damage/000/210" unique_id=888574320]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="211" type="Button" parent="Trees/Damage/000" unique_id=1859275781]
-custom_minimum_size = Vector2(250, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "211"
+icon = ExtResource("9_ksepw")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/Damage/000/211" unique_id=865260092]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="201" type="Button" parent="Trees/Damage" unique_id=830082141]
-custom_minimum_size = Vector2(520, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "201"
+icon = ExtResource("10_la8n3")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/Damage/201" unique_id=726834887]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="Type" type="Button" parent="Trees/Damage" unique_id=1775313876]
-custom_minimum_size = Vector2(520, 130)
+custom_minimum_size = Vector2(520, 60)
+custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_dgvtk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dgvtk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_dgvtk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_grfbt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_grfbt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_grfbt")
 text = "Пошкодження"
 
 [node name="FirePower" type="VBoxContainer" parent="Trees" unique_id=596256840]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, -1)
 layout_mode = 2
-theme_override_constants/separation = 20
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+alignment = 1
 
 [node name="321" type="Button" parent="Trees/FirePower" unique_id=634850232]
-custom_minimum_size = Vector2(520, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "321"
+icon = ExtResource("11_kk2uh")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/FirePower/321" unique_id=1923901583]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="000" type="HBoxContainer" parent="Trees/FirePower" unique_id=812677300]
 layout_mode = 2
 theme_override_constants/separation = 20
+alignment = 1
 
 [node name="310" type="Button" parent="Trees/FirePower/000" unique_id=5420612]
-custom_minimum_size = Vector2(250, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "310"
+icon = ExtResource("12_23sql")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/FirePower/000/310" unique_id=115091809]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="311" type="Button" parent="Trees/FirePower/000" unique_id=505516568]
-custom_minimum_size = Vector2(250, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "311"
+icon = ExtResource("13_b2h4a")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/FirePower/000/311" unique_id=898465948]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="301" type="Button" parent="Trees/FirePower" unique_id=349992491]
-custom_minimum_size = Vector2(520, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "301"
+icon = ExtResource("14_xpy4d")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/FirePower/301" unique_id=1761729991]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="Type" type="Button" parent="Trees/FirePower" unique_id=1731888632]
-custom_minimum_size = Vector2(520, 130)
+custom_minimum_size = Vector2(520, 60)
+custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_dgvtk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dgvtk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_dgvtk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_grfbt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_grfbt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_grfbt")
 text = "Сила вистрілу"
 
 [node name="Accuracy" type="VBoxContainer" parent="Trees" unique_id=1225362617]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, -1)
 layout_mode = 2
-theme_override_constants/separation = 20
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+alignment = 1
 
 [node name="421" type="Button" parent="Trees/Accuracy" unique_id=1410456258]
-custom_minimum_size = Vector2(520, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "421"
+icon = ExtResource("15_m1u0p")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/Accuracy/421" unique_id=822045792]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="000" type="HBoxContainer" parent="Trees/Accuracy" unique_id=1926984909]
 layout_mode = 2
 theme_override_constants/separation = 20
+alignment = 1
 
 [node name="410" type="Button" parent="Trees/Accuracy/000" unique_id=1441033603]
-custom_minimum_size = Vector2(250, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "410"
+icon = ExtResource("16_d8au4")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/Accuracy/000/410" unique_id=1234558251]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="411" type="Button" parent="Trees/Accuracy/000" unique_id=1635896819]
-custom_minimum_size = Vector2(250, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "411"
+icon = ExtResource("17_taa5f")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/Accuracy/000/411" unique_id=1683829745]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="401" type="Button" parent="Trees/Accuracy" unique_id=314478964]
-custom_minimum_size = Vector2(520, 130)
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_in8ve")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4cs7u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_23sql")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b2h4a")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m1u0p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_6qerr")
 text = "401"
+icon = ExtResource("18_8prtc")
+icon_alignment = 1
+
+[node name="Lock" type="Button" parent="Trees/Accuracy/401" unique_id=1718852837]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vnypt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gy3ke")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
+icon = ExtResource("10_b2h4a")
+icon_alignment = 1
 
 [node name="Accuracy" type="Button" parent="Trees/Accuracy" unique_id=1577995487]
-custom_minimum_size = Vector2(520, 130)
+custom_minimum_size = Vector2(520, 60)
+custom_maximum_size = Vector2(-1, 60)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_0rxae")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_dgvtk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dgvtk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_dgvtk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_grfbt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_grfbt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_grfbt")
 text = "Точність"
