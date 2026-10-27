@@ -1,7 +1,7 @@
 extends Control
 
 @onready var level_grid: VBoxContainer = $LevelGrid
-@onready var level_obj_panel: Panel = $LevelObj
+#@onready var level_obj_panel: Panel = $LevelObj
 @onready var template_level: HBoxContainer = $LevelObj/Level
 
 # Новые элементы управления для выбора типов
