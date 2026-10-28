@@ -34,6 +34,7 @@ class_name Detached_Wheel
 
 @export_category("Lifetime")
 @export var despawn_distance := 200.0
+@export var despawn_behind := 30.0
 @export var max_lifetime := 30.0
 @export var fall_limit := 30.0
 
@@ -230,6 +231,8 @@ func _should_despawn(local_position: Vector3) -> bool:
 	if local_position.y < _fallback_height - fall_limit:
 		return true
 	if car and body.global_position.distance_to(car.global_position) > despawn_distance:
+		return true
+	if car and (car.global_transform.affine_inverse() * body.global_position).z > despawn_behind:
 		return true
 	return false
 

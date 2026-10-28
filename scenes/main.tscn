@@ -160,7 +160,7 @@ shadow_enabled = true
 shadow_blur = 3.0
 directional_shadow_mode = 1
 directional_shadow_blend_splits = true
-directional_shadow_max_distance = 90.0
+directional_shadow_max_distance = 120.0
 
 [node name="LightningController" parent="SubViewportContainer/SubViewport/Environment/WeatherSystem" index="2" unique_id=317716121 node_paths=PackedStringArray("world")]
 world = NodePath("../../World")

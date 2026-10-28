@@ -31,8 +31,7 @@ const GROUND_SHADER_PATH := "res://resources/shaders/ground/ground_blend.gdshade
 @export var road_surface_gap := 0.035
 @export var height_blend_radius := 40.0
 @export var base_blend_distance := 60.0
-@export var chunk_behind_distance := 60.0
-@export var behind_keep_radius := 400.0
+@export var chunk_behind_distance := 30.0
 @export var spine_keep_behind := 1400.0
 @export var initial_build_radius := 420.0
 @export_range(0, 32, 1) var worker_tasks := 0
@@ -552,9 +551,18 @@ func _car_distance(key: Vector2i, car_local: Vector3) -> float:
 
 
 func _is_behind(key: Vector2i, xform: Transform3D, height: float) -> bool:
+	var origin := Vector3.ZERO
+	var forward := Vector3.FORWARD
+	var camera := get_viewport().get_camera_3d()
+	if camera:
+		origin = camera.global_position
+		var flat := -camera.global_basis.z
+		flat.y = 0.0
+		if flat.length_squared() > 0.0001:
+			forward = flat.normalized()
 	var rect := _chunk_rect(key)
 	for corner in [rect.position, Vector2(rect.end.x, rect.position.y), Vector2(rect.position.x, rect.end.y), rect.end]:
-		if (xform * Vector3(corner.x, height, corner.y)).z <= chunk_behind_distance:
+		if (xform * Vector3(corner.x, height, corner.y) - origin).dot(forward) >= -chunk_behind_distance:
 			return false
 	return true
 
@@ -568,7 +576,7 @@ func _refresh_needed(car_local: Vector3) -> void:
 
 	for key in _chunks.keys():
 		var distance := _car_distance(key, car_local)
-		if distance > unload_radius or (distance > behind_keep_radius + chunk_size and _is_behind(key, xform, car_local.y)):
+		if distance > unload_radius or _is_behind(key, xform, car_local.y):
 			_unload_chunk(key)
 
 	var half := chunk_size * 0.5
@@ -587,7 +595,7 @@ func _refresh_needed(car_local: Vector3) -> void:
 				continue
 			if _car_distance(key, car_local) > view_radius:
 				continue
-			if _car_distance(key, car_local) > behind_keep_radius and _is_behind(key, xform, car_local.y):
+			if _is_behind(key, xform, car_local.y):
 				continue
 			if check_road:
 				var road_distance := _spine.nearest_coarse_distance(cx * chunk_size + half, cz * chunk_size + half) - half_diag
@@ -604,7 +612,7 @@ func _refresh_needed(car_local: Vector3) -> void:
 	var release_radius := detail_radius + detail_release_margin
 	for key in _chunks:
 		var chunk: Chunk = _chunks[key]
-		if chunk.detailed and not _active_keys.has(key) and _car_distance(key, car_local) > release_radius:
+		if chunk.detailed and not _active_keys.has(key) and not _detail_wanted(key, car_local, xform, release_radius):
 			_release_detail(key)
 
 	var detail_added := false
@@ -612,7 +620,7 @@ func _refresh_needed(car_local: Vector3) -> void:
 		var chunk: Chunk = _chunks[key]
 		if chunk.detailed or chunk.grid == null or _detail_pending.has(key) or _active_keys.has(key):
 			continue
-		if _car_distance(key, car_local) > detail_radius:
+		if not _detail_wanted(key, car_local, xform, detail_radius):
 			continue
 		_detail_queue.append(key)
 		_detail_pending[key] = true
@@ -620,6 +628,10 @@ func _refresh_needed(car_local: Vector3) -> void:
 
 	if detail_added:
 		_detail_queue = _sorted_by_distance(_detail_queue, car_local, false)
+
+
+func _detail_wanted(key: Vector2i, car_local: Vector3, xform: Transform3D, radius: float) -> bool:
+	return _car_distance(key, car_local) <= radius and not _is_behind(key, xform, car_local.y)
 
 
 func _sorted_by_distance(keys: Array[Vector2i], car_local: Vector3, loaded_first: bool) -> Array[Vector2i]:
@@ -652,7 +664,7 @@ func _still_needed(key: Vector2i) -> bool:
 	var car_local := _car_local()
 	if _car_distance(key, car_local) > view_radius:
 		return false
-	return _car_distance(key, car_local) <= behind_keep_radius or not _is_behind(key, world.world.global_transform, car_local.y)
+	return not _is_behind(key, world.world.global_transform, car_local.y)
 
 
 func _build_initial() -> void:
@@ -743,7 +755,7 @@ func _create_job(key: Vector2i, detail_only: bool) -> ChunkJob:
 	if not detail_only:
 		job.spine = _spine
 		job.candidates = _candidates_for(key)
-		job.with_detail = _car_distance(key, _car_local()) <= detail_radius
+		job.with_detail = _detail_wanted(key, _car_local(), world.world.global_transform, detail_radius)
 	return job
 
 
