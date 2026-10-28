@@ -8,6 +8,7 @@ const SOURCE_PATH := "res://objects.json"
 const SAVE_PATH := "user://objects.json"
 
 var data: Dictionary = {}
+var had_saved_data := false
 
 var purchased_items: Dictionary = {}
 
@@ -27,6 +28,7 @@ func _ready() -> void:
 # --------------------------------------------------
 
 func load_data() -> void:
+	had_saved_data = FileAccess.file_exists(SAVE_PATH)
 	var file: FileAccess
 
 	if FileAccess.file_exists(SAVE_PATH):
@@ -57,12 +59,18 @@ func load_data() -> void:
 
 
 func reset_save() -> void:
-	if FileAccess.file_exists(SAVE_PATH):
-		DirAccess.remove_absolute(SAVE_PATH)
-
+	var source: Variant = JSON.parse_string(FileAccess.get_file_as_string(SOURCE_PATH))
+	if not source is Dictionary:
+		push_error("Cannot reset progress: invalid source data.")
+		return
+	data = source
+	had_saved_data = false
 	purchased_items.clear()
 	current_shop_data.clear()
-	load_data()
+	active_clerk_index = 0
+	shop_time_left = 10.0
+	shop_timer_active = true
+	save_data()
 	money_changed.emit(get_player_money())
 
 
@@ -116,14 +124,22 @@ func _add_missing_rows(rows: Variant, source_rows: Variant) -> bool:
 
 
 func save_data() -> void:
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-
+	# Commit a complete snapshot; interrupted writes leave the previous save intact.
+	var temporary_path := SAVE_PATH + ".tmp"
+	var file := FileAccess.open(temporary_path, FileAccess.WRITE)
 	if file == null:
-		push_error("Не удалось сохранить objects.json")
+		push_error("Cannot open player save: %s" % FileAccess.get_open_error())
 		return
-
 	file.store_string(JSON.stringify(data, "\t"))
+	file.flush()
+	var write_error := file.get_error()
 	file.close()
+	if write_error != OK:
+		push_error("Cannot write player save: %s" % write_error)
+		return
+	var commit_error := DirAccess.rename_absolute(temporary_path, SAVE_PATH)
+	if commit_error != OK:
+		push_error("Cannot commit player save: %s" % commit_error)
 
 
 # --------------------------------------------------

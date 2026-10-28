@@ -35,6 +35,7 @@ ScreenEffects="*uid://dxdcrfeffhhhk"
 GrenadeSpawner="*uid://dsvmq0gu3juhd"
 DebugStats="uid://b0uj75mlijwsw"
 BaseInventoryManager="*uid://cm51amwgn7tby"
+GameState="*res://scripts/global/game_state.gd"
 
 [display]
 

@@ -2,6 +2,10 @@ extends RichTextLabel
 
 class_name TextTyper
 
+const FONT_FIT := preload("res://addons/dialogue_system/ui/DialogueFontFit.gd")
+@export_range(8, 96) var maximum_font_size := 40
+@export_range(6, 40) var minimum_font_size := 12
+
 signal typing_started
 signal typing_finished
 
@@ -22,6 +26,7 @@ var _last_sound_usec := -SOUND_INTERVAL_USEC
 
 
 func _ready() -> void:
+	resized.connect(_fit_full_line)
 	auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	_letter_pattern.compile("^\\p{L}$")
 	_typing_audio = AudioStreamPlayer.new()
@@ -83,6 +88,7 @@ var _speed_override := 0.0
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSLATION_CHANGED and !_segments.is_empty():
+		_fit_full_line()
 		if _typing:
 			_character_index = mini(_character_index, _segments[_segment_index].text.length())
 			_render()
@@ -96,6 +102,7 @@ func play(segments: Array[DialogueSegment], speaker_id := "") -> void:
 	set_speaker(speaker_id)
 
 	_segments = segments.duplicate()
+	_fit_full_line()
 
 	if _segments.is_empty():
 
@@ -286,6 +293,15 @@ func _render_full() -> void:
 		result += segment.to_bbcode()
 
 	text = result
+
+
+func _fit_full_line() -> void:
+	if _segments.is_empty():
+		return
+	var content := ""
+	for segment in _segments:
+		content += segment.to_bbcode()
+	FONT_FIT.fit(self, content, maximum_font_size, minimum_font_size)
 
 
 func _finish() -> void:

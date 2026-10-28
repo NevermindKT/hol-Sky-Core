@@ -40,10 +40,9 @@ var quests_is_open: bool = false
 var lis1_quests_open: bool = false
 
 # Словарь для отслеживания уже посещенных баз в квестах 102 и 104 (без повторов)
-static var quest_visited_bases: Dictionary = {
-	102: [],
-	104: []
-}
+var quest_visited_bases: Dictionary:
+	get:
+		return GameState.progress["quest_visited_bases"]
 
 # Траектории панели баз
 var hidden_pos: Vector2 = Vector2(-601.0, 171.0)
@@ -118,9 +117,12 @@ func _ready() -> void:
 			if road_node is BaseButton:
 				road_node.pressed.connect(func(): _on_road_pressed(road_node))
 
-	if GameFlow.arrived_base_id != -1:
-		_handle_base_for_quests_102_104(GameFlow.arrived_base_id)
+	var pending_arrival := int(GameState.progress.get("pending_arrival", -1))
+	if pending_arrival != -1:
+		_handle_base_for_quests_102_104(pending_arrival)
 		GameFlow.arrived_base_id = -1
+		GameState.progress["pending_arrival"] = -1
+		GameState.save_progress()
 
 	_load_current_active_base()
 	_check_and_update_quests_logic()
@@ -264,10 +266,11 @@ func _handle_base_for_quests_102_104(base_id: int) -> void:
 		if quest.is_empty() or int(quest.get("Unlocked", 0)) != 1:
 			continue
 
-		if base_id not in quest_visited_bases[q_id]:
-			quest_visited_bases[q_id].append(base_id)
+		var quest_key := str(q_id)
+		if base_id not in quest_visited_bases[quest_key]:
+			quest_visited_bases[quest_key].append(base_id)
 
-			var new_have: int = quest_visited_bases[q_id].size()
+			var new_have: int = quest_visited_bases[quest_key].size()
 			var need: int = int(quest.get("Need", 4))
 
 			if new_have >= need:
