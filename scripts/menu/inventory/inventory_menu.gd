@@ -1,20 +1,25 @@
 
 extends Control
 
-@onready var inventory_grid: GridContainer = $InventoryGrid
-@onready var obj_info_panel: Panel = $ObjInfo
+@export_category("Grid")
+@export var inventory_grid: GridContainer
+@export var obj_info_panel: Panel
 
-@onready var info_icon: Button = $ObjInfo/Info/Icon
-@onready var info_name_label: Label = $ObjInfo/Info/Name
-@onready var info_rarity_label: Label = $ObjInfo/Info/Rarity
-@onready var info_description_label: Label = $ObjInfo/Info/Description
-@onready var info_quantity_label: Label = $ObjInfo/Info/Quantity
-@onready var btn_use: Button = $ObjInfo/Info/Use
+@export_category("Info")
+@export var info_icon: Button
+@export var info_name_label: Label
+@export var info_rarity_label: Label
+@export var info_description_label: Label
+@export var info_quantity_label: Label
 
-@onready var sell_minus_btn: Button = $ObjInfo/Info/Selling/Minus
-@onready var sell_input_quantity: LineEdit = $ObjInfo/Info/Selling/Quantity
-@onready var sell_plus_btn: Button = $ObjInfo/Info/Selling/Plus
-@onready var btn_sell: Button = $ObjInfo/Info/Sell
+@export_category("Sell")
+@export var sell_minus_btn: Button
+@export var sell_input_quantity: LineEdit
+@export var sell_plus_btn: Button
+@export var btn_sell: Button
+
+@export_category("Inventory")
+@export var item_view_scene: PackedScene
 
 var current_selected_id: String = ""
 var current_item_unit_price: int = 0
@@ -31,12 +36,15 @@ func _ready() -> void:
 	Settings.language_changed.connect(_refresh_language)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+	if not BaseInventoryManager.inventory_changed.is_connected(_on_inventory_changed):
+		BaseInventoryManager.inventory_changed.connect(_on_inventory_changed)
+
 	if obj_info_panel:
 		obj_info_panel.position = hidden_position
 		obj_info_panel.visible = false
 
-	if btn_use:
-		btn_use.disabled = true
+	#if btn_use:
+		#btn_use.disabled = true
 
 	if btn_sell and not btn_sell.pressed.is_connected(_on_sell_button_pressed):
 		btn_sell.pressed.connect(_on_sell_button_pressed)
@@ -59,83 +67,64 @@ func _ready() -> void:
 
 func refresh_inventory() -> void:
 	if not inventory_grid:
+		push_warning("Inventory: inventory_grid не назначен.")
 		return
 
-	for cat in CATEGORIES:
-		for rar in RARITIES:
-			var item_node = get_node_or_null("%s/%s" % [cat, rar])
+	if not item_view_scene:
+		push_warning("Inventory: item_view_scene не назначена.")
+		return
 
-			# Предмет мог быть перемещён в InventoryGrid.
-			if not item_node:
-				item_node = inventory_grid.get_node_or_null(rar)
+	# Удаляем элементы предыдущего обновления.
+	for child in inventory_grid.get_children():
+		inventory_grid.remove_child(child)
+		child.queue_free()
 
-			if not item_node:
-				continue
+	# Получаем актуальные данные предметов.
+	var objects: Array = BaseInventoryManager.get_rows("Objects")
 
-			var id_node = item_node.get_node_or_null("ID")
+	for item_data in objects:
+		if not item_data is Dictionary:
+			continue
 
-			if not id_node is Label:
-				continue
+		# Не показываем предметы, которых нет в инвентаре.
+		var quantity := int(item_data.get("Quantity", 0))
+		if quantity <= 0:
+			continue
 
-			var obj_id = id_node.text.strip_edges()
+		var item_instance = item_view_scene.instantiate() as item_view
 
-			if obj_id.is_empty():
-				continue
+		if not item_instance:
+			push_warning("Inventory: item_view_scene не содержит item_view.")
+			continue
 
-			var db_item: Dictionary = BaseInventoryManager.find_object_by_id(obj_id)
+		inventory_grid.add_child(item_instance)
+		item_instance.setup(item_data)
+		item_instance.price_label.hide()
 
-			if db_item.is_empty():
-				item_node.visible = false
-				continue
+		if not item_instance.button:
+			push_warning("Inventory: в item_view не назначена кнопка.")
+			continue
 
-			var quantity := int(db_item.get("Quantity", 0))
-
-			if quantity > 0:
-				if item_node.get_parent() != inventory_grid:
-					if item_node.get_parent():
-						item_node.get_parent().remove_child(item_node)
-
-					inventory_grid.add_child(item_node)
-
-				item_node.visible = true
-
-				var target_button = item_node if item_node is BaseButton else item_node.get_node_or_null("Button")
-
-				if not target_button and not item_node is BaseButton:
-					target_button = item_node.find_child("*Button*", true, false)
-
-				if target_button is BaseButton:
-					var callback := _on_inventory_item_clicked.bind(obj_id, item_node)
-
-					if not target_button.pressed.is_connected(callback):
-						target_button.pressed.connect(callback)
-
-				elif not item_node.has_meta("click_connected"):
-					item_node.set_meta("click_connected", true)
-
-					var gui_detector := Button.new()
-					gui_detector.flat = true
-					gui_detector.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-					gui_detector.pressed.connect(
-						_on_inventory_item_clicked.bind(obj_id, item_node)
-					)
-
-					item_node.add_child(gui_detector)
-			else:
-				item_node.visible = false
+		item_instance.button.pressed.connect(
+			_on_inventory_item_clicked.bind(item_instance)
+		)
 
 
 # --------------------------------------------------
 # ВЫБОР ПРЕДМЕТА
 # --------------------------------------------------
 
-func _on_inventory_item_clicked(
-	obj_id: String,
-	item_node: Control
-) -> void:
-	current_selected_id = obj_id
+func _on_inventory_changed() -> void:
+	refresh_inventory()
 
-	var db_item: Dictionary = BaseInventoryManager.find_object_by_id(
+
+func _on_inventory_item_clicked(item_node: item_view) -> void:
+	if item_node.item_id.is_empty():
+		return
+
+	current_selected_id = item_node.item_id
+
+	var db_item := BaseInventoryManager.find_object_by_id(
 		current_selected_id
 	)
 
@@ -145,29 +134,14 @@ func _on_inventory_item_clicked(
 	current_item_unit_price = int(db_item.get("Emount", 0))
 	max_item_count = int(db_item.get("Quantity", 0))
 
-	if max_item_count <= 0:
-		return
+	info_name_label.text = str(db_item.get("Name", ""))
+	info_rarity_label.text = str(db_item.get("Rarity", ""))
+	info_description_label.text = str(db_item.get("Descriprion", ""))
 
-	if info_name_label:
-		info_name_label.text = str(db_item.get("Name", ""))
+	info_quantity_label.text = tr("У вас є: %d") % max_item_count
 
-	if info_rarity_label:
-		info_rarity_label.text = str(db_item.get("Rarity", "Common"))
-
-	if info_description_label:
-		info_description_label.text = str(db_item.get("Descriprion", ""))
-
-	if info_quantity_label:
-		info_quantity_label.text = tr("У вас є: %d") % max_item_count
-
-	if info_icon and item_node:
-		if item_node is BaseButton:
-			info_icon.icon = item_node.icon
-		else:
-			var inner_btn = item_node.get_node_or_null("Button")
-
-			if inner_btn is BaseButton:
-				info_icon.icon = inner_btn.icon
+	if item_node.button:
+		info_icon.icon = item_node.button.icon
 
 	if sell_input_quantity:
 		sell_input_quantity.text = "1"
@@ -182,8 +156,8 @@ func _on_inventory_item_clicked(
 			obj_info_panel,
 			"position",
 			shown_position,
-			0.35
-		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+			0.25
+		).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 
 # --------------------------------------------------

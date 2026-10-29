@@ -1,13 +1,20 @@
 extends Control
 
+@export var exit_btn: Button
 @export var money_label: Label
 
+@export_file("*.tscn") var menu_scene_path: String
 
 func _ready() -> void:
 	update_money_display(BaseInventoryManager.get_player_money())
 
 	if not BaseInventoryManager.money_changed.is_connected(_on_money_changed):
 		BaseInventoryManager.money_changed.connect(_on_money_changed)
+
+	exit_btn.pressed.connect(_on_exit_pressed)
+
+func _on_exit_pressed():
+	GameFlow.change_scene(menu_scene_path)
 
 
 func _on_money_changed(new_amount: int) -> void:

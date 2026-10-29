@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cvwyvh0q0jctp"]
+
+[ext_resource type="Texture2D" uid="uid://e0t83rhwetcu" path="res://textures/menu/shop/White paper price tag.png" id="1_j67rw"]
+
+[resource]
+texture = ExtResource("1_j67rw")
+region_rect = Rect2(30.300018, 28.5, 246.4, 99.2)

@@ -1,7 +1,7 @@
 {
   "Money": [
     {
-      "MONEY": 10000
+      "MONEY": 1500
     }
   ],
   "Objects": [
@@ -13,7 +13,7 @@
       "Percent": 60,
       "Descriprion": "Час уповільнюється на 6с.",
       "Emount": 100,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/06-adrenaline.png",
       "Rarity": "Common"
     },
     {
@@ -24,7 +24,7 @@
       "Percent": 50,
       "Descriprion": "Турбо режим на 3с.",
       "Emount": 300,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/07-nitrous.png",
       "Rarity": "Uncommon"
     },
     {
@@ -35,7 +35,7 @@
       "Percent": 40,
       "Descriprion": "Вороги підсвічуються на 4с.",
       "Emount": 600,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/08-night-vision.png",
       "Rarity": "Rare"
     },
     {
@@ -46,7 +46,7 @@
       "Percent": 20,
       "Descriprion": "Вороги не нападають і розбігаються на 4с.",
       "Emount": 800,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/09-flashbang.png",
       "Rarity": "Epic"
     },
     {
@@ -57,7 +57,7 @@
       "Percent": 10,
       "Descriprion": "+1 шина",
       "Emount": 1200,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/10-spare-tire.png",
       "Rarity": "Legendary"
     },
     {
@@ -68,7 +68,7 @@
       "Percent": 60,
       "Descriprion": "Урон: 15",
       "Emount": 100,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/11-smg-ammo.png",
       "Rarity": "Common"
     },
     {
@@ -79,7 +79,7 @@
       "Percent": 50,
       "Descriprion": "Урон: 35",
       "Emount": 300,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/12-rifle-ammo.png",
       "Rarity": "Uncommon"
     },
     {
@@ -90,7 +90,7 @@
       "Percent": 40,
       "Descriprion": "Урон: 50",
       "Emount": 600,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/13-piercing-ammo.png",
       "Rarity": "Rare"
     },
     {
@@ -101,7 +101,7 @@
       "Percent": 20,
       "Descriprion": "Урон: 80",
       "Emount": 800,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/14-shotgun-ammo.png",
       "Rarity": "Epic"
     },
     {
@@ -112,7 +112,7 @@
       "Percent": 10,
       "Descriprion": "Урон: 100",
       "Emount": 1200,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/15-fire-ammo.png",
       "Rarity": "Legendary"
     },
     {
@@ -123,7 +123,7 @@
       "Percent": 60,
       "Descriprion": "Можна використати для прокачки машини",
       "Emount": 100,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/01-tire-repair.png",
       "Rarity": "Common"
     },
     {
@@ -134,7 +134,7 @@
       "Percent": 50,
       "Descriprion": "Можна використати для прокачки машини",
       "Emount": 300,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/02-door-repair.png",
       "Rarity": "Uncommon"
     },
     {
@@ -145,7 +145,7 @@
       "Percent": 40,
       "Descriprion": "Можна використати для прокачки машини",
       "Emount": 600,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/03-suspension-repair.png",
       "Rarity": "Rare"
     },
     {
@@ -156,7 +156,7 @@
       "Percent": 20,
       "Descriprion": "Можна використати для прокачки машини",
       "Emount": 800,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/04-frame-repair.png",
       "Rarity": "Epic"
     },
     {
@@ -167,7 +167,7 @@
       "Percent": 10,
       "Descriprion": "Можна використати для прокачки машини",
       "Emount": 1200,
-      "IconPath": "",
+      "IconPath": "res://textures/menu/shop/Items/05-engine-repair.png",
       "Rarity": "Legendary"
     }
   ],

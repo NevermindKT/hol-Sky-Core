@@ -1,28 +1,15 @@
 [gd_scene format=3 uid="uid://bix78nnee7b6"]
 
-[ext_resource type="Script" uid="uid://b6x5l3kriw6qo" path="res://scripts/menu/inventory/Inventory.gd" id="1_3t7i5"]
+[ext_resource type="Script" uid="uid://b6x5l3kriw6qo" path="res://scripts/menu/inventory/inventory_menu.gd" id="1_3t7i5"]
+[ext_resource type="PackedScene" uid="uid://b4klji6k6hggr" path="res://scenes/menu/item.tscn" id="2_hrd7n"]
 [ext_resource type="Texture2D" uid="uid://buqwarq4g3ls5" path="res://textures/menu/inventory/CityStreetAsphaltGenericClean001_COL_2K copy.png" id="2_n5s87"]
 [ext_resource type="Texture2D" uid="uid://dyt8y73rgtqtd" path="res://textures/menu/inventory/Empty yellow pickup bed.png" id="3_hrd7n"]
+[ext_resource type="StyleBox" uid="uid://clveeofynwykr" path="res://textures/styles/sell_btn_bg.tres" id="7_n5s87"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="17_y1tmo"]
 [ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="18_rog58"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="19_ckekd"]
 [ext_resource type="Script" uid="uid://bqiunaw81sh7s" path="res://scripts/menu/map/map_main.gd" id="21_2d1xj"]
-[ext_resource type="Texture2D" uid="uid://dqkiqxjhul0va" path="res://textures/menu/shop/Items/06-adrenaline.png" id="22_5nbk1"]
 [ext_resource type="Texture2D" uid="uid://cswdpv7p2cm20" path="res://textures/menu/map/Arrow.png" id="23_b8hp3"]
-[ext_resource type="Texture2D" uid="uid://dqffell63op1i" path="res://textures/menu/shop/Items/07-nitrous.png" id="26_wohe3"]
-[ext_resource type="Texture2D" uid="uid://67r6mnqguytw" path="res://textures/menu/shop/Items/08-night-vision.png" id="27_qcma1"]
-[ext_resource type="Texture2D" uid="uid://cau7q5yb67w7k" path="res://textures/menu/shop/Items/09-flashbang.png" id="28_wr6s3"]
-[ext_resource type="Texture2D" uid="uid://ibxqmqpr6i1j" path="res://textures/menu/shop/Items/10-spare-tire.png" id="29_xffty"]
-[ext_resource type="Texture2D" uid="uid://d1sc8rm85kx1" path="res://textures/menu/shop/Items/11-smg-ammo.png" id="30_muamv"]
-[ext_resource type="Texture2D" uid="uid://bq7fyxh7365va" path="res://textures/menu/shop/Items/12-rifle-ammo.png" id="31_7i64j"]
-[ext_resource type="Texture2D" uid="uid://boae8hoao3ctj" path="res://textures/menu/shop/Items/13-piercing-ammo.png" id="32_s0xtw"]
-[ext_resource type="Texture2D" uid="uid://d3m7n2xg3rfhr" path="res://textures/menu/shop/Items/14-shotgun-ammo.png" id="33_0pwlr"]
-[ext_resource type="Texture2D" uid="uid://bpcr5r3wqrobb" path="res://textures/menu/shop/Items/15-fire-ammo.png" id="34_dry18"]
-[ext_resource type="Texture2D" uid="uid://bga3krss480fh" path="res://textures/menu/shop/Items/01-tire-repair.png" id="35_hokr0"]
-[ext_resource type="Texture2D" uid="uid://c0bg3vrdw0dhv" path="res://textures/menu/shop/Items/02-door-repair.png" id="36_42voi"]
-[ext_resource type="Texture2D" uid="uid://d75co4cb1wbp" path="res://textures/menu/shop/Items/03-suspension-repair.png" id="37_v0jps"]
-[ext_resource type="Texture2D" uid="uid://df2sju8cy72n3" path="res://textures/menu/shop/Items/04-frame-repair.png" id="38_n50wv"]
-[ext_resource type="Texture2D" uid="uid://j8asukdyxxd5" path="res://textures/menu/shop/Items/05-engine-repair.png" id="39_05fso"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kk2uh"]
 texture = ExtResource("2_n5s87")
@@ -94,26 +81,26 @@ expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnypt"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5s87"]
+bg_color = Color(0.16078432, 0.16862746, 0.16078432, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
 border_color = Color(0.1254902, 0.12941177, 0.1254902, 1)
+border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nbk1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnypt"]
 bg_color = Color(0.16078432, 0.16862746, 0.16078432, 1)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0.1254902, 0.12941177, 0.1254902, 1)
-border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -214,17 +201,7 @@ modulate_color = Color(0, 0, 0, 1)
 texture = ExtResource("23_b8hp3")
 modulate_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5nbk1"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1ef8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpejg"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbkdv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wohe3"]
-
-[node name="Inventory" type="Control" unique_id=333159010]
+[node name="Inventory" type="Control" unique_id=333159010 node_paths=PackedStringArray("inventory_grid", "obj_info_panel", "info_icon", "info_name_label", "info_rarity_label", "info_description_label", "info_quantity_label", "sell_minus_btn", "sell_input_quantity", "sell_plus_btn", "btn_sell")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -232,6 +209,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3t7i5")
+inventory_grid = NodePath("InventoryGrid")
+obj_info_panel = NodePath("ObjInfo")
+info_icon = NodePath("ObjInfo/Info/Icon")
+info_name_label = NodePath("ObjInfo/Info/Name")
+info_rarity_label = NodePath("ObjInfo/Info/Rarity")
+info_description_label = NodePath("ObjInfo/Info/Description")
+info_quantity_label = NodePath("ObjInfo/Info/Quantity")
+sell_minus_btn = NodePath("ObjInfo/Info/VBoxContainer/Selling/Minus")
+sell_input_quantity = NodePath("ObjInfo/Info/VBoxContainer/Selling/Quantity")
+sell_plus_btn = NodePath("ObjInfo/Info/VBoxContainer/Selling/Plus")
+btn_sell = NodePath("ObjInfo/Info/VBoxContainer/Sell")
+item_view_scene = ExtResource("2_hrd7n")
 
 [node name="Background" type="Panel" parent="." unique_id=2040053873]
 layout_mode = 1
@@ -256,8 +245,6 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_no68b")
 
 [node name="InventoryGrid" type="GridContainer" parent="." unique_id=805763816]
-custom_minimum_size = Vector2(700, 500)
-custom_maximum_size = Vector2(1000, 1000000)
 propagate_maximum_size = false
 layout_mode = 1
 anchors_preset = 8
@@ -266,15 +253,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -350.0
-offset_top = -275.0
+offset_top = -250.0
 offset_right = 350.0
-offset_bottom = 225.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
 layout_direction = 2
 theme_override_constants/h_separation = 30
-theme_override_constants/v_separation = 60
+theme_override_constants/v_separation = 40
 columns = 6
 
 [node name="ObjInfo" type="Panel" parent="." unique_id=1304994074]
@@ -295,16 +282,17 @@ pivot_offset = Vector2(80, 449)
 theme_override_styles/panel = SubResource("StyleBoxTexture_ccums")
 
 [node name="Info" type="VBoxContainer" parent="ObjInfo" unique_id=1409285714]
+custom_maximum_size = Vector2(400, -1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -302.5
-offset_right = 150.0
-offset_bottom = 302.5
+offset_left = -200.0
+offset_top = -287.0
+offset_right = 200.0
+offset_bottom = 287.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -323,8 +311,10 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_ckekd")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_p5sbb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2d1xj")
 icon_alignment = 1
+expand_icon = true
 
 [node name="Name" type="Label" parent="ObjInfo/Info" unique_id=1131859536]
+custom_maximum_size = Vector2(350, -1)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -362,20 +352,21 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_sb0qg")
 text = "У вас є:"
 vertical_alignment = 1
 
-[node name="Selling" type="HBoxContainer" parent="ObjInfo/Info" unique_id=1059309667]
+[node name="VBoxContainer" type="VBoxContainer" parent="ObjInfo/Info" unique_id=139540408]
+custom_minimum_size = Vector2(350, 0)
+custom_maximum_size = Vector2(350, -1)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+
+[node name="Selling" type="HBoxContainer" parent="ObjInfo/Info/VBoxContainer" unique_id=1059309667]
+layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Minus" type="Button" parent="ObjInfo/Info/Selling" unique_id=1782639051]
+[node name="Minus" type="Button" parent="ObjInfo/Info/VBoxContainer/Selling" unique_id=1782639051]
 z_index = 5
 z_as_relative = false
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -389,27 +380,22 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_yb7il")
 text = "-"
 icon_alignment = 1
 
-[node name="Quantity" type="LineEdit" parent="ObjInfo/Info/Selling" unique_id=464041922]
+[node name="Quantity" type="LineEdit" parent="ObjInfo/Info/VBoxContainer/Selling" unique_id=464041922]
 custom_minimum_size = Vector2(50, 50)
-custom_maximum_size = Vector2(50, 50)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_vnypt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n5s87")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_vnypt")
 theme_override_styles/focus = SubResource("StyleBoxFlat_vnypt")
 text = "1"
 alignment = 1
 
-[node name="Plus" type="Button" parent="ObjInfo/Info/Selling" unique_id=467432470]
+[node name="Plus" type="Button" parent="ObjInfo/Info/VBoxContainer/Selling" unique_id=467432470]
 z_index = 5
 z_as_relative = false
-custom_minimum_size = Vector2(30, 30)
-custom_maximum_size = Vector2(30, 30)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
@@ -422,17 +408,12 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_yb7il")
 text = "+"
 icon_alignment = 1
 
-[node name="Container2" type="Container" parent="ObjInfo/Info" unique_id=1590666303]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
-[node name="Sell" type="Button" parent="ObjInfo/Info" unique_id=1784138422]
+[node name="Sell" type="Button" parent="ObjInfo/Info/VBoxContainer" unique_id=1784138422]
 z_index = 5
 z_as_relative = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 10
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -446,7 +427,7 @@ theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0
 theme_override_constants/icon_max_width = 30
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_5nbk1")
+theme_override_styles/normal = ExtResource("7_n5s87")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_e1ef8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bpejg")
 text = "Продати за:"
@@ -809,524 +790,5 @@ theme_override_constants/line_spacing = -10
 theme_override_fonts/font = ExtResource("17_y1tmo")
 theme_override_font_sizes/font_size = 40
 text = "Категорії"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Boost" type="HBoxContainer" parent="." unique_id=1369175827]
-custom_minimum_size = Vector2(460, 100)
-layout_mode = 0
-offset_left = -38.0
-offset_top = -571.0
-offset_right = 422.0
-offset_bottom = -471.0
-theme_override_constants/separation = 20
-
-[node name="Common" type="Button" parent="Boost" unique_id=1436899151]
-show_behind_parent = true
-z_index = 2
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("22_5nbk1")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Common" unique_id=466767709]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "11"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Uncommon" type="Button" parent="Boost" unique_id=398144719]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 100
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("26_wohe3")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Uncommon" unique_id=1676498852]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "12"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Rare" type="Button" parent="Boost" unique_id=271601454]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 140
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("27_qcma1")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Rare" unique_id=1062961272]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "13"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Epic" type="Button" parent="Boost" unique_id=1949717356]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("28_wr6s3")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Epic" unique_id=1810625516]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "14"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Legendary" type="Button" parent="Boost" unique_id=519051710]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("29_xffty")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Boost/Legendary" unique_id=1073921798]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "15"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Bullet" type="HBoxContainer" parent="." unique_id=618790391]
-custom_minimum_size = Vector2(460, 100)
-layout_mode = 0
-offset_left = -38.0
-offset_top = -405.0
-offset_right = 422.0
-offset_bottom = -305.0
-theme_override_constants/separation = 20
-
-[node name="Common" type="Button" parent="Bullet" unique_id=1524849242]
-show_behind_parent = true
-z_index = 2
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("30_muamv")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Common" unique_id=1867638719]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "21"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Uncommon" type="Button" parent="Bullet" unique_id=1096558670]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("31_7i64j")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Uncommon" unique_id=56124806]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "22"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Rare" type="Button" parent="Bullet" unique_id=1087460172]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("32_s0xtw")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Rare" unique_id=872495633]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "23"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Epic" type="Button" parent="Bullet" unique_id=771242510]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("33_0pwlr")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Epic" unique_id=1720931747]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "24"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Legendary" type="Button" parent="Bullet" unique_id=1781457915]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("34_dry18")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Bullet/Legendary" unique_id=772448962]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "25"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Car" type="HBoxContainer" parent="." unique_id=1099693923]
-custom_minimum_size = Vector2(460, 100)
-layout_mode = 0
-offset_left = -38.0
-offset_top = -229.0
-offset_right = 422.0
-offset_bottom = -129.0
-theme_override_constants/separation = 20
-
-[node name="Common" type="Button" parent="Car" unique_id=853938840]
-show_behind_parent = true
-z_index = 2
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("35_hokr0")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Common" unique_id=822626422]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "31"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Uncommon" type="Button" parent="Car" unique_id=980079034]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("36_42voi")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Uncommon" unique_id=635451717]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "32"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Rare" type="Button" parent="Car" unique_id=94775558]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("37_v0jps")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Rare" unique_id=1544344287]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "33"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Epic" type="Button" parent="Car" unique_id=1460748994]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("38_n50wv")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Epic" unique_id=777261570]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "34"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Legendary" type="Button" parent="Car" unique_id=389542081]
-show_behind_parent = true
-z_index = 1
-custom_minimum_size = Vector2(100, 100)
-custom_maximum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/icon_max_width = 120
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5nbk1")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_bpejg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kbkdv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_wohe3")
-icon = ExtResource("39_05fso")
-icon_alignment = 1
-vertical_icon_alignment = 2
-
-[node name="ID" type="Label" parent="Car/Legendary" unique_id=1046280307]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-text = "35"
 horizontal_alignment = 1
 vertical_alignment = 1

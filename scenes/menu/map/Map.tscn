@@ -4,16 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://nk1huyks1st5" path="res://textures/menu/map/MapBackground.png" id="2_g8try"]
 [ext_resource type="Texture2D" uid="uid://dlqa1vpe7064m" path="res://textures/menu/map/LockIcon.svg" id="3_7bhuf"]
 [ext_resource type="Texture2D" uid="uid://x3lusvqcaset" path="res://textures/menu/map/map.png" id="3_glkao"]
-[ext_resource type="Texture2D" uid="uid://cl57sdkctjh3d" path="res://textures/menu/map/BackDetails/cup.png" id="4_ehh6u"]
+[ext_resource type="Texture2D" uid="uid://cl57sdkctjh3d" path="res://textures/menu/map/BackDdetails/cup.png" id="4_ehh6u"]
 [ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="5_e2kap"]
-[ext_resource type="Texture2D" uid="uid://cmdtxd5qfwat4" path="res://textures/menu/map/BackDetails/pack.png" id="5_xaeb3"]
+[ext_resource type="Texture2D" uid="uid://cmdtxd5qfwat4" path="res://textures/menu/map/BackDdetails/pack.png" id="5_xaeb3"]
 [ext_resource type="Texture2D" uid="uid://nu0uab18voyy" path="res://textures/menu/map/forest.png" id="5_xqkdt"]
-[ext_resource type="Texture2D" uid="uid://s1f5p6ty2qkp" path="res://textures/menu/map/BackDetails/background21.png" id="6_spjye"]
-[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://resources/fonts/Cormorant/Cormorant-Bold.ttf" id="7_e2kap"]
+[ext_resource type="Texture2D" uid="uid://s1f5p6ty2qkp" path="res://textures/menu/map/BackDdetails/background21.png" id="6_spjye"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="7_e2kap"]
 [ext_resource type="Texture2D" uid="uid://bq861owybkbfe" path="res://textures/menu/map/road.png" id="7_xqkdt"]
 [ext_resource type="Texture2D" uid="uid://h2cobtjl2jgf" path="res://textures/menu/map/MapMarker.svg" id="8_ehh6u"]
 [ext_resource type="Texture2D" uid="uid://ofnfw0nyprde" path="res://textures/menu/map/WoodImage.svg" id="9_xaeb3"]
-[ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://resources/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="10_gyiq0"]
+[ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="10_gyiq0"]
 [ext_resource type="Texture2D" uid="uid://gygyl0ptapc3" path="res://textures/menu/map/PlayButton.svg" id="21_spjye"]
 [ext_resource type="Texture2D" uid="uid://mikjm2b2if8w" path="res://textures/menu/LockPaper.png" id="26_mbyvp"]
 [ext_resource type="Script" uid="uid://cm51amwgn7tby" path="res://scripts/menu/base_inventory_manager.gd" id="28_g8try"]
@@ -186,7 +186,7 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lxo0m"]
 texture = ExtResource("33_ddpo1")
 
-[node name="Map" type="Control" unique_id=861827653 node_paths=PackedStringArray("map_node", "lis1_node", "lis1_roads", "lis1_markers", "active_lis1", "BasePanel", "base_num_label", "base_name_label", "hardness_label", "monsters_label", "description_label", "play_button", "close_button", "quests_panel", "quests_open_close_btn", "lis1_quest_category", "lis1_arrow", "lis1_quests_vbox", "quest_nodes", "marker_nodes", "quest3_timer_node")]
+[node name="Map" type="Control" unique_id=861827653 node_paths=PackedStringArray("map_node", "lis1_node", "lis1_roads", "lis1_markers", "active_lis1", "BasePanel", "base_num_label", "base_name_label", "hardness_label", "monsters_label", "description_label", "play_button", "close_button", "name_label", "quests_panel", "quests_open_close_btn", "lis1_quest_category", "lis1_arrow", "lis1_quests_vbox", "quest_nodes", "marker_nodes", "quest3_timer_node")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -207,6 +207,7 @@ monsters_label = NodePath("Base/Monsters")
 description_label = NodePath("Base/Description")
 play_button = NodePath("Base/Play")
 close_button = NodePath("Close")
+name_label = NodePath("Base/BaseName")
 quests_panel = NodePath("Quests")
 quests_open_close_btn = NodePath("Quests/OpenClose")
 lis1_quest_category = NodePath("Quests/Locations/Lis1")

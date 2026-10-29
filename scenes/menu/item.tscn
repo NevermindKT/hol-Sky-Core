@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://b4klji6k6hggr"]
+
+[ext_resource type="Script" uid="uid://c4h6s8j1v3lr2" path="res://scenes/menu/item_view.gd" id="1_ctpf5"]
+[ext_resource type="StyleBox" uid="uid://d0bgi6tdxrqoi" path="res://textures/styles/nothing_bg.tres" id="1_t7f3e"]
+[ext_resource type="StyleBox" uid="uid://cvwyvh0q0jctp" path="res://textures/styles/price_tag.tres" id="4_dimv7"]
+[ext_resource type="StyleBox" uid="uid://b34mirq2ytq7o" path="res://textures/styles/item_count_bg.tres" id="4_mepix"]
+[ext_resource type="FontFile" uid="uid://bfaplsp4vuoh1" path="res://assets/fonts/Cormorant-BoldItalic.ttf" id="4_uh5o0"]
+
+[node name="Control" type="Control" unique_id=1865877147 node_paths=PackedStringArray("button", "count_label", "price_label")]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1820.0
+offset_bottom = -980.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ctpf5")
+button = NodePath("Button")
+count_label = NodePath("Button/Count")
+price_label = NodePath("Button/Price")
+
+[node name="Button" type="Button" parent="." unique_id=1160440549]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/icon_max_width = 100
+theme_override_styles/normal = ExtResource("1_t7f3e")
+theme_override_styles/pressed = ExtResource("1_t7f3e")
+theme_override_styles/hover = ExtResource("1_t7f3e")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Price" type="RichTextLabel" parent="Button" unique_id=9144631]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_uh5o0")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/normal = ExtResource("4_dimv7")
+horizontal_alignment = 1
+
+[node name="Count" type="RichTextLabel" parent="Button" unique_id=793132822]
+visible = false
+custom_maximum_size = Vector2(-1, 23)
+clip_contents = false
+layout_mode = 0
+offset_left = 73.0
+offset_top = 69.0
+offset_right = 97.0
+offset_bottom = 92.0
+theme_override_styles/normal = ExtResource("4_mepix")
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

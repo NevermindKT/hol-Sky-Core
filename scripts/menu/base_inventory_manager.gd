@@ -17,6 +17,7 @@ var shop_timer_active: bool = true
 var current_shop_data: Dictionary = {}
 var active_clerk_index: int = 0
 
+signal inventory_changed
 
 func _ready() -> void:
 	load_data()
@@ -94,25 +95,33 @@ func _add_missing_rows(rows: Variant, source_rows: Variant) -> bool:
 		if row is Dictionary and row.has("ID"):
 			by_id[_key(row["ID"])] = row
 
-	var added := false
+	var changed := false
 
 	for source_row in source_rows:
 		if not source_row is Dictionary or not source_row.has("ID"):
 			continue
 
-		var row = by_id.get(_key(source_row["ID"]))
+		var row: Dictionary = by_id.get(_key(source_row["ID"]), {})
 
-		if row == null:
-			rows.append(source_row)
-			added = true
+		if row.is_empty():
+			rows.append(source_row.duplicate(true))
+			changed = true
 			continue
 
 		for field in source_row:
 			if not row.has(field):
 				row[field] = source_row[field]
-				added = true
+				changed = true
+				continue
 
-	return added
+			if field == "IconPath" and str(row[field]).strip_edges().is_empty():
+				var source_icon := str(source_row[field]).strip_edges()
+
+				if not source_icon.is_empty():
+					row[field] = source_icon
+					changed = true
+
+	return changed
 
 
 func save_data() -> void:
@@ -410,6 +419,41 @@ func generate_sweet_data_from_templates(
 		]
 	}
 
+
+func generate_category_data(category: String, count: int = 7) -> Array:
+	var result: Array = []
+	var candidates: Array = []
+
+	for item in get_rows("Objects"):
+		if not item is Dictionary:
+			continue
+
+		if str(item.get("Type", "")).to_lower() != category.to_lower():
+			continue
+
+		candidates.append(item)
+
+	candidates.shuffle()
+
+	var amount := mini(count, candidates.size())
+
+	for i in range(amount):
+		var item: Dictionary = candidates[i]
+
+		result.append({
+			"id": str(item.get("ID", "")),
+			"name": str(item.get("Name", "")),
+			"desc": str(item.get("Descriprion", "")),
+			"price": int(item.get("Emount", 0)),
+			"icon": str(item.get("IconPath", "")),
+			"rarity": str(item.get("Rarity", "Common")),
+			"unique_key": "%s_%s" % [
+				category.to_lower(),
+				str(item.get("ID", ""))
+			]
+		})
+
+	return result
 
 func _roll_item_by_percent(pool: Array) -> Dictionary:
 	var total_weight := 0.0

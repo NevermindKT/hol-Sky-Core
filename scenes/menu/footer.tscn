@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bnp4hu2iregv0" path="res://textures/menu/menu/notebook.png" id="1_bna4i"]
 [ext_resource type="Script" uid="uid://r6qbhb4ucdyh" path="res://scripts/menu/footer.gd" id="2_owifx"]
-[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://resources/fonts/Cormorant/Cormorant-Bold.ttf" id="3_t8vbp"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="3_t8vbp"]
 [ext_resource type="StyleBox" uid="uid://631akakdx04i" path="res://textures/styles/footer_button.tres" id="4_vli7v"]
 [ext_resource type="StyleBox" uid="uid://dpuweeisqk70" path="res://textures/styles/fotter_button_active.tres" id="5_ekgdn"]
 
@@ -16,9 +16,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -394.0702
-offset_top = -45.0
-offset_right = 394.0702
+offset_left = -400.5351
+offset_top = -57.0
+offset_right = 400.5351
 grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
