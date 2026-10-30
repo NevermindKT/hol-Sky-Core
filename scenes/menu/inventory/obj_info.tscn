@@ -1,0 +1,218 @@
+[gd_scene format=3 uid="uid://bkg1dmwtdimur"]
+
+[ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="1_tbi7g"]
+[ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="2_31ddj"]
+[ext_resource type="Script" uid="uid://06gj6fx2swwh" path="res://scenes/menu/inventory/obj_info.gd" id="2_aa77h"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="3_aa77h"]
+[ext_resource type="StyleBox" uid="uid://clveeofynwykr" path="res://textures/styles/sell_btn_bg.tres" id="4_vqfdu"]
+[ext_resource type="StyleBox" uid="uid://blxdy4gm1r3ri" path="res://textures/styles/obj_info_btn_bg.tres" id="5_aa77h"]
+[ext_resource type="StyleBox" uid="uid://dj35ixj0x8fov" path="res://textures/styles/obj_info_btn_bg_active.tres" id="6_vqfdu"]
+[ext_resource type="StyleBox" uid="uid://cwjougnoukgdf" path="res://textures/styles/obj_info_btn_bg_disabled.tres" id="7_usxdg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ccums"]
+texture = ExtResource("1_tbi7g")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sb0qg"]
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dm5l1"]
+bg_color = Color(0.12451338, 0.131078, 0.12451347, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.10298411, 0.106427245, 0.10298409, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ObjInfo" type="Panel" unique_id=1888403002 node_paths=PackedStringArray("icon_rect", "name_label", "rarity_label", "description_label", "owned_label", "minus_button", "amount_input", "plus_button", "action_button")]
+z_index = 5
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -501.0
+offset_top = -401.0
+offset_bottom = 401.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(80, 449)
+theme_override_styles/panel = SubResource("StyleBoxTexture_ccums")
+script = ExtResource("2_aa77h")
+icon_rect = NodePath("Info/VBoxContainer2/Icon")
+name_label = NodePath("Info/VBoxContainer2/VBoxContainer/Name")
+rarity_label = NodePath("Info/VBoxContainer2/VBoxContainer/Rarity")
+description_label = NodePath("Info/VBoxContainer2/VBoxContainer/Description")
+owned_label = NodePath("Info/VBoxContainer2/VBoxContainer/Quantity")
+minus_button = NodePath("Info/VBoxContainer/Buttons/Minus")
+amount_input = NodePath("Info/VBoxContainer/Buttons/Quantity")
+plus_button = NodePath("Info/VBoxContainer/Buttons/Plus")
+action_button = NodePath("Info/VBoxContainer/Action")
+
+[node name="Info" type="VBoxContainer" parent="." unique_id=1383088941]
+custom_maximum_size = Vector2(400, -1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -285.0
+offset_right = 200.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Info" unique_id=1219919532]
+custom_minimum_size = Vector2(0, 450)
+custom_maximum_size = Vector2(-1, 450)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Info/VBoxContainer2" unique_id=1130075554]
+z_index = 5
+custom_minimum_size = Vector2(200, 240)
+custom_maximum_size = Vector2(220, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info/VBoxContainer2" unique_id=1380886455]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Name" type="Label" parent="Info/VBoxContainer2/VBoxContainer" unique_id=1314209198]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_31ddj")
+theme_override_font_sizes/font_size = 30
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Rarity" type="Label" parent="Info/VBoxContainer2/VBoxContainer" unique_id=1582307689]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_31ddj")
+theme_override_font_sizes/font_size = 25
+text = "Rar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Info/VBoxContainer2/VBoxContainer" unique_id=1761434729]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_aa77h")
+theme_override_font_sizes/font_size = 20
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Quantity" type="Label" parent="Info/VBoxContainer2/VBoxContainer" unique_id=942840518]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 7
+theme_override_fonts/font = ExtResource("3_aa77h")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sb0qg")
+text = "У вас є:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info" unique_id=778528961]
+custom_minimum_size = Vector2(350, 0)
+custom_maximum_size = Vector2(350, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="Buttons" type="HBoxContainer" parent="Info/VBoxContainer" unique_id=1762824851]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Minus" type="Button" parent="Info/VBoxContainer/Buttons" unique_id=1549266703]
+z_index = 5
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_31ddj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_aa77h")
+theme_override_styles/pressed = ExtResource("5_aa77h")
+theme_override_styles/hover = ExtResource("6_vqfdu")
+theme_override_styles/disabled = ExtResource("7_usxdg")
+text = "-"
+icon_alignment = 1
+
+[node name="Quantity" type="LineEdit" parent="Info/VBoxContainer/Buttons" unique_id=1013018886]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_31ddj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_aa77h")
+theme_override_styles/read_only = ExtResource("5_aa77h")
+theme_override_styles/focus = ExtResource("5_aa77h")
+text = "1"
+alignment = 1
+
+[node name="Plus" type="Button" parent="Info/VBoxContainer/Buttons" unique_id=242519114]
+z_index = 5
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_31ddj")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("5_aa77h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dm5l1")
+theme_override_styles/hover = ExtResource("6_vqfdu")
+theme_override_styles/disabled = ExtResource("7_usxdg")
+text = "+"
+icon_alignment = 1
+
+[node name="Action" type="Button" parent="Info/VBoxContainer" unique_id=747785357]
+z_index = 5
+z_as_relative = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
+theme_override_constants/icon_max_width = 30
+theme_override_fonts/font = ExtResource("2_31ddj")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("4_vqfdu")
+theme_override_styles/pressed = ExtResource("4_vqfdu")
+theme_override_styles/hover = ExtResource("6_vqfdu")
+text = "Продати за:"
+icon_alignment = 1

@@ -1,62 +1,37 @@
-
 extends Control
 
 @export_category("Grid")
 @export var inventory_grid: GridContainer
-@export var obj_info_panel: Panel
 
-@export_category("Info")
-@export var info_icon: Button
-@export var info_name_label: Label
-@export var info_rarity_label: Label
-@export var info_description_label: Label
-@export var info_quantity_label: Label
-
-@export_category("Sell")
-@export var sell_minus_btn: Button
-@export var sell_input_quantity: LineEdit
-@export var sell_plus_btn: Button
-@export var btn_sell: Button
+@export_category("Object Info")
+@export var object_info: ObjInfo
 
 @export_category("Inventory")
 @export var item_view_scene: PackedScene
 
+const SELL_PRICE_MULTIPLIER := 0.67
+
 var current_selected_id: String = ""
-var current_item_unit_price: int = 0
-var max_item_count: int = 1
-
-var hidden_position: Vector2 = Vector2(1920.0, 139.0)
-var shown_position: Vector2 = Vector2(1454.0, 139.0)
-
-const CATEGORIES = ["Boost", "Bullet", "Car"]
-const RARITIES = ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
 
 
 func _ready() -> void:
-	Settings.language_changed.connect(_refresh_language)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	if not BaseInventoryManager.inventory_changed.is_connected(_on_inventory_changed):
-		BaseInventoryManager.inventory_changed.connect(_on_inventory_changed)
+	if not Settings.language_changed.is_connected(_refresh_language):
+		Settings.language_changed.connect(_refresh_language)
 
-	if obj_info_panel:
-		obj_info_panel.position = hidden_position
-		obj_info_panel.visible = false
+	if not BaseInventoryManager.inventory_changed.is_connected(
+		_on_inventory_changed
+	):
+		BaseInventoryManager.inventory_changed.connect(
+			_on_inventory_changed
+		)
 
-	#if btn_use:
-		#btn_use.disabled = true
+	if object_info:
+		object_info.hide()
 
-	if btn_sell and not btn_sell.pressed.is_connected(_on_sell_button_pressed):
-		btn_sell.pressed.connect(_on_sell_button_pressed)
-
-	if sell_input_quantity and not sell_input_quantity.text_changed.is_connected(_on_sell_quantity_changed):
-		sell_input_quantity.text_changed.connect(_on_sell_quantity_changed)
-
-	if sell_minus_btn and not sell_minus_btn.pressed.is_connected(_on_minus_pressed):
-		sell_minus_btn.pressed.connect(_on_minus_pressed)
-
-	if sell_plus_btn and not sell_plus_btn.pressed.is_connected(_on_plus_pressed):
-		sell_plus_btn.pressed.connect(_on_plus_pressed)
+		if not object_info.sell_requested.is_connected(_on_sell_requested):
+			object_info.sell_requested.connect(_on_sell_requested)
 
 	refresh_inventory()
 
@@ -88,140 +63,65 @@ func refresh_inventory() -> void:
 		if quantity <= 0:
 			continue
 
-		var item_instance = item_view_scene.instantiate() as item_view
+		var item_instance := item_view_scene.instantiate() as item_view
 
 		if not item_instance:
-			push_warning("Inventory: item_view_scene не содержит item_view.")
+			push_warning(
+				"Inventory: item_view_scene не содержит item_view."
+			)
 			continue
 
-		inventory_grid.add_child(item_instance)
 		item_instance.setup(item_data)
-		item_instance.price_label.hide()
+		inventory_grid.add_child(item_instance)
 
-		if not item_instance.button:
-			push_warning("Inventory: в item_view не назначена кнопка.")
-			continue
+		if item_instance.price_label:
+			item_instance.price_label.hide()
 
-		item_instance.button.pressed.connect(
-			_on_inventory_item_clicked.bind(item_instance)
-		)
+		if item_instance.button:
+			item_instance.button.pressed.connect(
+				_on_inventory_item_clicked.bind(item_instance.item_id)
+			)
 
 
 # --------------------------------------------------
 # ВЫБОР ПРЕДМЕТА
 # --------------------------------------------------
 
-func _on_inventory_changed() -> void:
-	refresh_inventory()
-
-
-func _on_inventory_item_clicked(item_node: item_view) -> void:
-	if item_node.item_id.is_empty():
+func _on_inventory_item_clicked(item_id: String) -> void:
+	if item_id.is_empty() or not object_info:
 		return
 
-	current_selected_id = item_node.item_id
-
-	var db_item := BaseInventoryManager.find_object_by_id(
-		current_selected_id
-	)
+	var db_item: Dictionary = BaseInventoryManager.find_object_by_id(item_id)
 
 	if db_item.is_empty():
 		return
 
-	current_item_unit_price = int(db_item.get("Emount", 0))
-	max_item_count = int(db_item.get("Quantity", 0))
+	current_selected_id = item_id
 
-	info_name_label.text = str(db_item.get("Name", ""))
-	info_rarity_label.text = str(db_item.get("Rarity", ""))
-	info_description_label.text = str(db_item.get("Descriprion", ""))
+	var info_data := {
+		"id": str(db_item.get("ID", "")),
+		"name": str(db_item.get("Name", "")),
+		"desc": str(db_item.get("Descriprion", "")),
+		"rarity": str(db_item.get("Rarity", "")),
+		"icon": str(db_item.get("IconPath", "")),
+		"price": int(db_item.get("Emount", 0)),
+		"Quantity": int(db_item.get("Quantity", 0))
+	}
 
-	info_quantity_label.text = tr("У вас є: %d") % max_item_count
-
-	if item_node.button:
-		info_icon.icon = item_node.button.icon
-
-	if sell_input_quantity:
-		sell_input_quantity.text = "1"
-
-	update_sell_button_text()
-
-	if obj_info_panel:
-		obj_info_panel.visible = true
-
-		var tween := create_tween()
-		tween.tween_property(
-			obj_info_panel,
-			"position",
-			shown_position,
-			0.25
-		).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	object_info.setup(info_data, ObjInfo.Mode.INVENTORY)
 
 
 # --------------------------------------------------
-# КОЛИЧЕСТВО ДЛЯ ПРОДАЖИ
+# ПРОДАЖА
 # --------------------------------------------------
 
-func _on_sell_quantity_changed(new_text: String) -> void:
-	if max_item_count <= 0:
+func _on_sell_requested(data: Dictionary, amount: int) -> void:
+	var item_id := str(data.get("id", data.get("ID", "")))
+
+	if item_id.is_empty():
 		return
 
-	var val := new_text.to_int()
-
-	if val > max_item_count:
-		sell_input_quantity.text = str(max_item_count)
-		sell_input_quantity.caret_column = sell_input_quantity.text.length()
-
-	update_sell_button_text()
-
-
-func _on_minus_pressed() -> void:
-	var current_val := sell_input_quantity.text.to_int()
-
-	if current_val > 1:
-		sell_input_quantity.text = str(current_val - 1)
-		update_sell_button_text()
-
-
-func _on_plus_pressed() -> void:
-	var current_val := sell_input_quantity.text.to_int()
-
-	if current_val < max_item_count:
-		sell_input_quantity.text = str(current_val + 1)
-		update_sell_button_text()
-
-
-func update_sell_button_text() -> void:
-	if not btn_sell:
-		return
-
-	if max_item_count <= 0:
-		btn_sell.text = "Продати"
-		return
-
-	var count_to_sell := clampi(
-		sell_input_quantity.text.to_int(),
-		1,
-		max_item_count
-	)
-
-	var total_price := int(round(
-		count_to_sell * current_item_unit_price * 0.67
-	))
-
-	btn_sell.text = tr("Продати %d за: %d") % [count_to_sell, total_price]
-
-
-# --------------------------------------------------
-# ПРОДАЖА ПРЕДМЕТА
-# --------------------------------------------------
-
-func _on_sell_button_pressed() -> void:
-	if current_selected_id.is_empty():
-		return
-
-	var db_item: Dictionary = BaseInventoryManager.find_object_by_id(
-		current_selected_id
-	)
+	var db_item: Dictionary = BaseInventoryManager.find_object_by_id(item_id)
 
 	if db_item.is_empty():
 		return
@@ -231,36 +131,44 @@ func _on_sell_button_pressed() -> void:
 	if current_quantity <= 0:
 		return
 
-	var count_to_sell := clampi(
-		sell_input_quantity.text.to_int(),
-		1,
-		current_quantity
-	)
+	var count_to_sell := clampi(amount, 1, current_quantity)
+	var unit_price := int(db_item.get("Emount", 0))
 
 	var total_price := int(round(
-		count_to_sell * int(db_item.get("Emount", 0)) * 0.67
+		count_to_sell * unit_price * SELL_PRICE_MULTIPLIER
 	))
 
-	# Обновляем количество предметов в общем JSON.
 	db_item["Quantity"] = current_quantity - count_to_sell
 
-	# Сохраняем изменения предметов.
 	BaseInventoryManager.save_data()
-
-	# Начисляем деньги через общий менеджер.
 	BaseInventoryManager.add_money(total_price)
 
-	print("Продано успешно на сумму: ", total_price)
-
-	if obj_info_panel:
-		obj_info_panel.visible = false
+	print(
+		"Продано: ", count_to_sell,
+		" шт. Получено: ", total_price
+	)
 
 	current_selected_id = ""
+
+	if object_info:
+		object_info.hide()
 
 	refresh_inventory()
 
 
+# --------------------------------------------------
+# СИГНАЛЫ МЕНЕДЖЕРА
+# --------------------------------------------------
+
+func _on_inventory_changed() -> void:
+	refresh_inventory()
+
+
 func _refresh_language() -> void:
-	if obj_info_panel.visible:
-		info_quantity_label.text = tr("У вас є: %d") % max_item_count
-		update_sell_button_text()
+	if object_info and object_info.visible:
+		var db_item: Dictionary = BaseInventoryManager.find_object_by_id(
+			current_selected_id
+		)
+
+		if not db_item.is_empty():
+			_on_inventory_item_clicked(current_selected_id)

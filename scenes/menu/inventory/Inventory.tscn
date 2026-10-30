@@ -4,10 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b4klji6k6hggr" path="res://scenes/menu/item.tscn" id="2_hrd7n"]
 [ext_resource type="Texture2D" uid="uid://buqwarq4g3ls5" path="res://textures/menu/inventory/CityStreetAsphaltGenericClean001_COL_2K copy.png" id="2_n5s87"]
 [ext_resource type="Texture2D" uid="uid://dyt8y73rgtqtd" path="res://textures/menu/inventory/Empty yellow pickup bed.png" id="3_hrd7n"]
-[ext_resource type="StyleBox" uid="uid://clveeofynwykr" path="res://textures/styles/sell_btn_bg.tres" id="7_n5s87"]
+[ext_resource type="PackedScene" uid="uid://bkg1dmwtdimur" path="res://scenes/menu/inventory/obj_info.tscn" id="5_183gk"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="17_y1tmo"]
 [ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="18_rog58"]
-[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="19_ckekd"]
 [ext_resource type="Script" uid="uid://bqiunaw81sh7s" path="res://scripts/menu/map/map_main.gd" id="21_2d1xj"]
 [ext_resource type="Texture2D" uid="uid://cswdpv7p2cm20" path="res://textures/menu/map/Arrow.png" id="23_b8hp3"]
 
@@ -16,129 +15,6 @@ texture = ExtResource("2_n5s87")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_no68b"]
 texture = ExtResource("3_hrd7n")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ccums"]
-texture = ExtResource("18_rog58")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgdau"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rog58"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ckekd"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p5sbb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2d1xj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sb0qg"]
-content_margin_top = 20.0
-content_margin_bottom = 20.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccuo5"]
-bg_color = Color(0.16078432, 0.16862746, 0.16078432, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.1254902, 0.12941177, 0.1254902, 1)
-border_blend = true
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dm5l1"]
-bg_color = Color(0.12451338, 0.131078, 0.12451347, 1)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
-border_color = Color(0.10298411, 0.106427245, 0.10298409, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yb7il"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.1948809, 0.20389709, 0.19488055, 1)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
-border_color = Color(0.15761775, 0.16221261, 0.15761757, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5s87"]
-bg_color = Color(0.16078432, 0.16862746, 0.16078432, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.1254902, 0.12941177, 0.1254902, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnypt"]
-bg_color = Color(0.16078432, 0.16862746, 0.16078432, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.1254902, 0.12941177, 0.1254902, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1ef8"]
-bg_color = Color(0.12451338, 0.131078, 0.12451347, 1)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
-border_color = Color(0.10298411, 0.106427245, 0.10298409, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpejg"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.1948809, 0.20389709, 0.19488055, 1)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
-border_color = Color(0.15761775, 0.16221261, 0.15761757, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gtyaf"]
 texture = ExtResource("23_b8hp3")
@@ -201,7 +77,7 @@ modulate_color = Color(0, 0, 0, 1)
 texture = ExtResource("23_b8hp3")
 modulate_color = Color(0, 0, 0, 1)
 
-[node name="Inventory" type="Control" unique_id=333159010 node_paths=PackedStringArray("inventory_grid", "obj_info_panel", "info_icon", "info_name_label", "info_rarity_label", "info_description_label", "info_quantity_label", "sell_minus_btn", "sell_input_quantity", "sell_plus_btn", "btn_sell")]
+[node name="Inventory" type="Control" unique_id=333159010 node_paths=PackedStringArray("inventory_grid", "object_info")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -210,16 +86,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3t7i5")
 inventory_grid = NodePath("InventoryGrid")
-obj_info_panel = NodePath("ObjInfo")
-info_icon = NodePath("ObjInfo/Info/Icon")
-info_name_label = NodePath("ObjInfo/Info/Name")
-info_rarity_label = NodePath("ObjInfo/Info/Rarity")
-info_description_label = NodePath("ObjInfo/Info/Description")
-info_quantity_label = NodePath("ObjInfo/Info/Quantity")
-sell_minus_btn = NodePath("ObjInfo/Info/VBoxContainer/Selling/Minus")
-sell_input_quantity = NodePath("ObjInfo/Info/VBoxContainer/Selling/Quantity")
-sell_plus_btn = NodePath("ObjInfo/Info/VBoxContainer/Selling/Plus")
-btn_sell = NodePath("ObjInfo/Info/VBoxContainer/Sell")
+object_info = NodePath("ObjInfo")
 item_view_scene = ExtResource("2_hrd7n")
 
 [node name="Background" type="Panel" parent="." unique_id=2040053873]
@@ -264,174 +131,8 @@ theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 40
 columns = 6
 
-[node name="ObjInfo" type="Panel" parent="." unique_id=1304994074]
-z_index = 5
+[node name="ObjInfo" parent="." unique_id=1888403002 instance=ExtResource("5_183gk")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.154
-anchor_top = 0.5
-anchor_right = 1.154
-anchor_bottom = 0.5
-offset_left = -761.6802
-offset_top = -401.0
-offset_right = -260.68018
-offset_bottom = 401.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(80, 449)
-theme_override_styles/panel = SubResource("StyleBoxTexture_ccums")
-
-[node name="Info" type="VBoxContainer" parent="ObjInfo" unique_id=1409285714]
-custom_maximum_size = Vector2(400, -1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -287.0
-offset_right = 200.0
-offset_bottom = 287.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="Icon" type="Button" parent="ObjInfo/Info" unique_id=1589539158]
-z_index = 5
-custom_minimum_size = Vector2(200, 250)
-custom_maximum_size = Vector2(200, 250)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/icon_max_width = 200
-theme_override_styles/normal = SubResource("StyleBoxEmpty_wgdau")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_rog58")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_ckekd")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_p5sbb")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2d1xj")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Name" type="Label" parent="ObjInfo/Info" unique_id=1131859536]
-custom_maximum_size = Vector2(350, -1)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 30
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Rarity" type="Label" parent="ObjInfo/Info" unique_id=388172179]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Description" type="Label" parent="ObjInfo/Info" unique_id=1202362420]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("19_ckekd")
-theme_override_font_sizes/font_size = 20
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Quantity" type="Label" parent="ObjInfo/Info" unique_id=763693782]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = 7
-theme_override_fonts/font = ExtResource("19_ckekd")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxEmpty_sb0qg")
-text = "У вас є:"
-vertical_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ObjInfo/Info" unique_id=139540408]
-custom_minimum_size = Vector2(350, 0)
-custom_maximum_size = Vector2(350, -1)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Selling" type="HBoxContainer" parent="ObjInfo/Info/VBoxContainer" unique_id=1059309667]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Minus" type="Button" parent="ObjInfo/Info/VBoxContainer/Selling" unique_id=1782639051]
-z_index = 5
-z_as_relative = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_ccuo5")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dm5l1")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yb7il")
-text = "-"
-icon_alignment = 1
-
-[node name="Quantity" type="LineEdit" parent="ObjInfo/Info/VBoxContainer/Selling" unique_id=464041922]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_n5s87")
-theme_override_styles/read_only = SubResource("StyleBoxFlat_vnypt")
-theme_override_styles/focus = SubResource("StyleBoxFlat_vnypt")
-text = "1"
-alignment = 1
-
-[node name="Plus" type="Button" parent="ObjInfo/Info/VBoxContainer/Selling" unique_id=467432470]
-z_index = 5
-z_as_relative = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_ccuo5")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dm5l1")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yb7il")
-text = "+"
-icon_alignment = 1
-
-[node name="Sell" type="Button" parent="ObjInfo/Info/VBoxContainer" unique_id=1784138422]
-z_index = 5
-z_as_relative = false
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 10
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
-theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("17_y1tmo")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = ExtResource("7_n5s87")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_e1ef8")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bpejg")
-text = "Продати за:"
-icon_alignment = 1
 
 [node name="Filter" type="Control" parent="." unique_id=952559130]
 layout_mode = 1

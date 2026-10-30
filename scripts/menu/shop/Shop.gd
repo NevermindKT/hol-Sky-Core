@@ -2,6 +2,7 @@ extends Control
 
 @export_category("UI")
 @export var category_label: Label
+@export var object_info: ObjInfo
 
 @export_category("Category Buttons")
 @export var weapons_button: Button
@@ -12,14 +13,11 @@ extends Control
 @export var item_view_scene: PackedScene
 @export var items_container: GridContainer
 
-
-# Клерки находятся внутри Background/Clerks.
 @onready var clerks: Array = [
 	get_node_or_null("Background/Clerks/Clerk1"),
 	get_node_or_null("Background/Clerks/Clerk2"),
 	get_node_or_null("Background/Clerks/Clerk3")
 ]
-
 
 enum ShopCategory {
 	WEAPONS,
@@ -27,9 +25,7 @@ enum ShopCategory {
 	REPAIR
 }
 
-
 var current_category: ShopCategory = ShopCategory.WEAPONS
-
 
 const CATEGORY_NAMES := {
 	ShopCategory.WEAPONS: "Оружие",
@@ -37,13 +33,11 @@ const CATEGORY_NAMES := {
 	ShopCategory.REPAIR: "Ремонт"
 }
 
-
 const CATEGORY_KEYS := {
 	ShopCategory.WEAPONS: "Weapons",
 	ShopCategory.CONSUMABLES: "Consumables",
 	ShopCategory.REPAIR: "Repair"
 }
-
 
 const CATEGORY_CLERKS := {
 	ShopCategory.WEAPONS: 0,
@@ -54,6 +48,12 @@ const CATEGORY_CLERKS := {
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	if object_info:
+		object_info.hide()
+
+		if not object_info.purchase_requested.is_connected(_buy_item):
+			object_info.purchase_requested.connect(_buy_item)
 
 	if not Settings.language_changed.is_connected(render_shop):
 		Settings.language_changed.connect(render_shop)
@@ -85,7 +85,7 @@ func _ready() -> void:
 
 
 # --------------------------------------------------
-# Инициализация ассортимента
+# Ассортимент
 # --------------------------------------------------
 
 func _ensure_shop_data() -> void:
@@ -119,11 +119,7 @@ func _generate_category_data(category_key: String) -> Array:
 			"desc": str(item.get("Descriprion", "")),
 			"price": int(item.get("Emount", 0)),
 			"icon": str(item.get("IconPath", "")),
-			"rarity": str(item.get("Rarity", "Common")),
-			"unique_key": "%s_%s" % [
-				category_key.to_lower(),
-				str(item.get("ID", ""))
-			]
+			"rarity": str(item.get("Rarity", "Common"))
 		})
 
 	return result
@@ -151,10 +147,12 @@ func select_category(category: ShopCategory) -> void:
 	BaseInventoryManager.active_clerk_index = \
 		int(CATEGORY_CLERKS[category])
 
+	if object_info:
+		object_info.hide()
+
 	_clear_container(items_container)
 
 	var category_key := _get_category_key(category)
-
 	var items: Array = BaseInventoryManager.current_shop_data.get(
 		category_key,
 		[]
@@ -186,9 +184,7 @@ func _render_category_items(items_data: Array) -> void:
 # --------------------------------------------------
 
 func _update_clerks() -> void:
-	var clerk_index: int = int(
-		CATEGORY_CLERKS[current_category]
-	)
+	var clerk_index: int = int(CATEGORY_CLERKS[current_category])
 
 	for i in range(clerks.size()):
 		var clerk = clerks[i]
@@ -199,7 +195,7 @@ func _update_clerks() -> void:
 
 
 # --------------------------------------------------
-# Карточки товаров
+# Карточки
 # --------------------------------------------------
 
 func _create_card_from_data(data: Dictionary) -> void:
@@ -223,37 +219,55 @@ func _create_card_from_data(data: Dictionary) -> void:
 	shop_item.setup(item_data)
 
 	if shop_item.count_label:
-		shop_item.count_label.visible = false
+		shop_item.count_label.hide()
 
 	if shop_item.price_label:
-		shop_item.price_label.visible = true
+		shop_item.price_label.show()
 		shop_item.price_label.text = str(data.get("price", 0))
 
 	items_container.add_child(shop_item)
-	shop_item.visible = true
 
-	var unique_key := str(data.get("unique_key", ""))
-
-	if BaseInventoryManager.is_purchased(unique_key):
-		_apply_sold_out_state(shop_item)
-	elif shop_item.button:
+	if shop_item.button:
 		shop_item.button.pressed.connect(
-			_buy_item.bind(data, shop_item)
+			_on_item_selected.bind(data)
 		)
+
+
+func _on_item_selected(data: Dictionary) -> void:
+	if not object_info:
+		push_warning("Shop: не назначена сцена ObjInfo.")
+		return
+
+	var info_data := {
+		"id": str(data.get("id", "")),
+		"name": str(data.get("name", "")),
+		"desc": str(data.get("desc", "")),
+		"price": int(data.get("price", 0)),
+		"icon": str(data.get("icon", "")),
+		"rarity": str(data.get("rarity", "Common")),
+		"Quantity": 0
+	}
+
+	object_info.setup(info_data, ObjInfo.Mode.SHOP)
 
 
 # --------------------------------------------------
 # Покупка
 # --------------------------------------------------
 
-func _buy_item(data: Dictionary, shop_item: item_view) -> void:
+func _buy_item(data: Dictionary, amount: int) -> void:
 	var item_id := str(data.get("id", ""))
-	var unique_key := str(data.get("unique_key", ""))
 	var price := int(data.get("price", 0))
 
-	var inventory_item := BaseInventoryManager.find_object_by_id(
-		item_id
-	)
+	if amount <= 0:
+		return
+
+	if price < 0:
+		push_warning("Shop: у предмета указана отрицательная цена.")
+		return
+
+	var inventory_item: Dictionary = \
+		BaseInventoryManager.find_object_by_id(item_id)
 
 	if inventory_item.is_empty():
 		push_warning(
@@ -261,31 +275,22 @@ func _buy_item(data: Dictionary, shop_item: item_view) -> void:
 		)
 		return
 
-	if BaseInventoryManager.is_purchased(unique_key):
-		return
+	var total_price: int = price * amount
 
-	if not BaseInventoryManager.spend_money(price):
-		print("Недостаточно средств!")
+	if not BaseInventoryManager.spend_money(total_price):
+		print("Недостаточно средств! Нужно: ", total_price)
 		return
 
 	inventory_item["Quantity"] = \
-		int(inventory_item.get("Quantity", 0)) + 1
+		int(inventory_item.get("Quantity", 0)) + amount
 
 	BaseInventoryManager.save_data()
-	BaseInventoryManager.mark_as_purchased(unique_key)
 	BaseInventoryManager.inventory_changed.emit()
 
-	_apply_sold_out_state(shop_item)
-
-
-func _apply_sold_out_state(shop_item: item_view) -> void:
-	if shop_item.button:
-		shop_item.button.disabled = true
-		shop_item.button.modulate = Color(
-			0.6, 0.6, 0.6, 1.0
-		)
-
-	shop_item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	print(
+		"Куплено: ", amount,
+		" шт. Общая стоимость: ", total_price
+	)
 
 
 # --------------------------------------------------

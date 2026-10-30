@@ -15,9 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://bh42l8gnauhus" path="res://textures/menu/shop/clerks/Clerk1.png" id="16_rovg2"]
 [ext_resource type="Texture2D" uid="uid://ddfy2nn74kgol" path="res://textures/menu/shop/clerks/Clerk2.png" id="17_27fgn"]
 [ext_resource type="StyleBox" uid="uid://cwusk8rcnl6fy" path="res://textures/styles/button_bg_high.tres" id="17_hsgj1"]
-[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://resources/fonts/Cormorant/Cormorant-SemiBold.ttf" id="17_rk3x7"]
+[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://scenes/menu/fonts/Cormorant/Cormorant-SemiBold.ttf" id="17_rk3x7"]
 [ext_resource type="StyleBox" uid="uid://bmh4rby8swwwt" path="res://textures/styles/button_active_bg_high.tres" id="18_3gv51"]
 [ext_resource type="Texture2D" uid="uid://dtx3rsqrdcdto" path="res://textures/menu/shop/clerks/Clerk3.png" id="18_el58o"]
+[ext_resource type="PackedScene" uid="uid://bkg1dmwtdimur" path="res://scenes/menu/inventory/obj_info.tscn" id="21_hsgj1"]
 [ext_resource type="Texture2D" uid="uid://mikjm2b2if8w" path="res://textures/menu/LockPaper.png" id="23_j6og7"]
 [ext_resource type="Texture2D" uid="uid://buj10ol5wowvn" path="res://textures/menu/shop/Bubble.svg" id="32_rcacp"]
 
@@ -111,7 +112,7 @@ region_rect = Rect2(39, 55.727272, 1055.592, 465.27274)
 texture = ExtResource("32_rcacp")
 region_rect = Rect2(7.4517517, 110.4533, 498.9656, 292.8202)
 
-[node name="Shop" type="Control" unique_id=1248518968 node_paths=PackedStringArray("category_label", "weapons_button", "consumables_button", "repair_button", "items_container")]
+[node name="Shop" type="Control" unique_id=1248518968 node_paths=PackedStringArray("category_label", "object_info", "weapons_button", "consumables_button", "repair_button", "items_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,6 +121,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3sxmm")
 category_label = NodePath("UI/Category/CategoryLabel")
+object_info = NodePath("UI/ObjInfo")
 weapons_button = NodePath("UI/ObjDescription/Buttons/weapon_btn")
 consumables_button = NodePath("UI/ObjDescription/Buttons/consumables_btn")
 repair_button = NodePath("UI/ObjDescription/Buttons/repair_btn")
@@ -395,9 +397,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
+offset_left = -234.76001
 offset_top = -110.0
-offset_right = 200.0
+offset_right = 243.23999
 offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -536,3 +538,6 @@ scale = Vector2(0.8, 0.8)
 size_flags_vertical = 10
 offset_transform_scale = Vector2(0.6, 0.6)
 theme_override_constants/separation = 20
+
+[node name="ObjInfo" parent="UI" unique_id=1888403002 instance=ExtResource("21_hsgj1")]
+layout_mode = 1
