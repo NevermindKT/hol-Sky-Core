@@ -1,0 +1,9 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cwusk8rcnl6fy"]
+
+[ext_resource type="Texture2D" uid="uid://clu3b6be0h77e" path="res://textures/menu/pause/NORMAL — steel.png" id="1_g4vaj"]
+
+[resource]
+texture = ExtResource("1_g4vaj")
+expand_margin_left = 15.0
+expand_margin_top = 5.0
+expand_margin_bottom = 10.0

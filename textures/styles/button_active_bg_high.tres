@@ -1,0 +1,9 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://bmh4rby8swwwt"]
+
+[ext_resource type="Texture2D" uid="uid://b0bn626o5d32u" path="res://textures/menu/pause/SELECTED — amber.png" id="1_jcbs7"]
+
+[resource]
+texture = ExtResource("1_jcbs7")
+expand_margin_left = 15.0
+expand_margin_top = 5.0
+expand_margin_bottom = 10.0

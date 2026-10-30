@@ -74,19 +74,16 @@ func refresh_inventory() -> void:
 		push_warning("Inventory: item_view_scene не назначена.")
 		return
 
-	# Удаляем элементы предыдущего обновления.
 	for child in inventory_grid.get_children():
 		inventory_grid.remove_child(child)
 		child.queue_free()
 
-	# Получаем актуальные данные предметов.
 	var objects: Array = BaseInventoryManager.get_rows("Objects")
 
 	for item_data in objects:
 		if not item_data is Dictionary:
 			continue
 
-		# Не показываем предметы, которых нет в инвентаре.
 		var quantity := int(item_data.get("Quantity", 0))
 		if quantity <= 0:
 			continue
