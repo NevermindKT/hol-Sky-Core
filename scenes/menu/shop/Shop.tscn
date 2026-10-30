@@ -31,12 +31,6 @@ texture = ExtResource("3_2ejps")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_alg4n"]
 texture = ExtResource("7_rcacp")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3grpt"]
-texture = ExtResource("8_a063c")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksf5k"]
-texture = ExtResource("7_cprdw")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gy3ke"]
 texture = ExtResource("16_rovg2")
 region_rect = Rect2(82.98425, 53.266098, 2019.7194, 2908.0278)
@@ -48,6 +42,12 @@ region_rect = Rect2(-1.1477051, 0, 2141.8713, 2955.8604)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3h7pb"]
 texture = ExtResource("18_el58o")
 region_rect = Rect2(9.664551, 77.087395, 2126.2053, 2879.435)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3grpt"]
+texture = ExtResource("8_a063c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksf5k"]
+texture = ExtResource("7_cprdw")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8m6vm"]
 texture = ExtResource("23_j6og7")
@@ -112,7 +112,7 @@ region_rect = Rect2(39, 55.727272, 1055.592, 465.27274)
 texture = ExtResource("32_rcacp")
 region_rect = Rect2(7.4517517, 110.4533, 498.9656, 292.8202)
 
-[node name="Shop" type="Control" unique_id=1248518968 node_paths=PackedStringArray("category_label", "object_info", "weapons_button", "consumables_button", "repair_button", "items_container")]
+[node name="Shop" type="Control" unique_id=1248518968 node_paths=PackedStringArray("category_label", "object_info", "weapons_button", "consumables_button", "repair_button", "items_container", "clerks")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -127,6 +127,8 @@ consumables_button = NodePath("UI/ObjDescription/Buttons/consumables_btn")
 repair_button = NodePath("UI/ObjDescription/Buttons/repair_btn")
 item_view_scene = ExtResource("2_pkd21")
 items_container = NodePath("UI/Items")
+clerks = [NodePath("Background/Back/Clerks/Clerk1"), NodePath("Background/Back/Clerks/Clerk2"), NodePath("Background/Back/Clerks/Clerk3")]
+clerk_slide_distance = 200.0
 metadata/_edit_vertical_guides_ = [960.0]
 metadata/_edit_horizontal_guides_ = [540.0]
 
@@ -162,6 +164,52 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_alg4n")
 
+[node name="Clerks" type="Control" parent="Background/Back" unique_id=833140741]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 179.0
+offset_top = -154.0
+offset_right = 379.0
+offset_bottom = 96.0
+grow_vertical = 2
+
+[node name="Clerk1" type="Panel" parent="Background/Back/Clerks" unique_id=340214465]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_right = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(74, 217)
+theme_override_styles/panel = SubResource("StyleBoxTexture_gy3ke")
+
+[node name="Clerk2" type="Panel" parent="Background/Back/Clerks" unique_id=281351364]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(74, 217)
+theme_override_styles/panel = SubResource("StyleBoxTexture_sro6t")
+
+[node name="Clerk3" type="Panel" parent="Background/Back/Clerks" unique_id=494641661]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(74, 217)
+theme_override_styles/panel = SubResource("StyleBoxTexture_3h7pb")
+
 [node name="Table" type="Panel" parent="Background/Back" unique_id=119156226]
 layout_mode = 1
 anchors_preset = 8
@@ -191,51 +239,6 @@ offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ksf5k")
-
-[node name="Clerks" type="Control" parent="Background" unique_id=833140741]
-custom_minimum_size = Vector2(200, 250)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 256.0
-offset_top = -229.0
-offset_right = 456.0
-offset_bottom = 21.0
-grow_vertical = 2
-
-[node name="Clerk1" type="Panel" parent="Background/Clerks" unique_id=340214465]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(74, 217)
-theme_override_styles/panel = SubResource("StyleBoxTexture_gy3ke")
-
-[node name="Clerk2" type="Panel" parent="Background/Clerks" unique_id=281351364]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(74, 217)
-theme_override_styles/panel = SubResource("StyleBoxTexture_sro6t")
-
-[node name="Clerk3" type="Panel" parent="Background/Clerks" unique_id=494641661]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(74, 217)
-theme_override_styles/panel = SubResource("StyleBoxTexture_3h7pb")
 
 [node name="UI" type="Control" parent="." unique_id=122972319]
 layout_mode = 1

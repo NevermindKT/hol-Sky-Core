@@ -28,7 +28,7 @@ func _ready() -> void:
 		)
 
 	if object_info:
-		object_info.hide()
+		object_info.close_panel()
 
 		if not object_info.sell_requested.is_connected(_on_sell_requested):
 			object_info.sell_requested.connect(_on_sell_requested)
@@ -151,7 +151,7 @@ func _on_sell_requested(data: Dictionary, amount: int) -> void:
 	current_selected_id = ""
 
 	if object_info:
-		object_info.hide()
+		object_info.close_panel()
 
 	refresh_inventory()
 

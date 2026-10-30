@@ -1,3 +1,4 @@
+
 extends Control
 
 @export_category("UI")
@@ -13,11 +14,14 @@ extends Control
 @export var item_view_scene: PackedScene
 @export var items_container: GridContainer
 
-@onready var clerks: Array = [
-	get_node_or_null("Background/Clerks/Clerk1"),
-	get_node_or_null("Background/Clerks/Clerk2"),
-	get_node_or_null("Background/Clerks/Clerk3")
-]
+@export_category("Clerks")
+@export var clerks: Array[Control] = []
+@export var clerk_slide_distance: float = 300.0
+@export var clerk_animation_duration: float = 0.35
+
+var _clerk_tween: Tween
+var _active_clerk_index: int = -1
+var _clerk_home_positions: Array[Vector2] = []
 
 enum ShopCategory {
 	WEAPONS,
@@ -50,7 +54,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if object_info:
-		object_info.hide()
+		object_info.close_panel()
 
 		if not object_info.purchase_requested.is_connected(_buy_item):
 			object_info.purchase_requested.connect(_buy_item)
@@ -80,6 +84,7 @@ func _ready() -> void:
 			select_category.bind(ShopCategory.REPAIR)
 		)
 
+	_initialize_clerks()
 	_ensure_shop_data()
 	render_shop()
 
@@ -147,9 +152,6 @@ func select_category(category: ShopCategory) -> void:
 	BaseInventoryManager.active_clerk_index = \
 		int(CATEGORY_CLERKS[category])
 
-	if object_info:
-		object_info.hide()
-
 	_clear_container(items_container)
 
 	var category_key := _get_category_key(category)
@@ -184,15 +186,119 @@ func _render_category_items(items_data: Array) -> void:
 # --------------------------------------------------
 
 func _update_clerks() -> void:
-	var clerk_index: int = int(CATEGORY_CLERKS[current_category])
+	var new_index: int = int(CATEGORY_CLERKS[current_category])
 
+	if new_index < 0 or new_index >= clerks.size():
+		return
+
+	if not is_instance_valid(clerks[new_index]):
+		return
+
+	# Первый запуск: показываем клерка без анимации.
+	if _active_clerk_index == -1:
+		_active_clerk_index = new_index
+		clerks[new_index].position = _clerk_home_positions[new_index]
+		clerks[new_index].show()
+		return
+
+	# Ничего не делаем, если выбран тот же клерк.
+	if _active_clerk_index == new_index:
+		return
+
+	# Прерываем предыдущую анимацию, если она ещё идёт.
+	if _clerk_tween and _clerk_tween.is_running():
+		_clerk_tween.kill()
+
+	# Возвращаем всех клерков в исходные позиции.
 	for i in range(clerks.size()):
-		var clerk = clerks[i]
+		var clerk := clerks[i]
 
-		if clerk is CanvasItem:
-			clerk.visible = i == clerk_index
-			clerk.modulate.a = 1.0 if i == clerk_index else 0.0
+		if not is_instance_valid(clerk):
+			continue
 
+		clerk.position = _clerk_home_positions[i]
+		clerk.visible = i == _active_clerk_index
+		clerk.modulate.a = 1.0
+
+	var old_index := _active_clerk_index
+
+	var old_clerk := clerks[old_index]
+	var new_clerk := clerks[new_index]
+
+	if not is_instance_valid(old_clerk):
+		_active_clerk_index = new_index
+		new_clerk.position = _clerk_home_positions[new_index]
+		new_clerk.show()
+		return
+
+	var direction := 1.0 if new_index > old_index else -1.0
+
+	var old_position := _clerk_home_positions[old_index]
+	var new_position := _clerk_home_positions[new_index]
+
+	# Новый клерк появляется с противоположной стороны.
+	new_clerk.position = new_position + Vector2(
+		direction * clerk_slide_distance,
+		0.0
+	)
+	new_clerk.modulate.a = 0.0
+	new_clerk.show()
+
+	# Запускаем анимацию.
+	_clerk_tween = create_tween()
+	_clerk_tween.set_parallel(true)
+	_clerk_tween.set_trans(Tween.TRANS_CUBIC)
+	_clerk_tween.set_ease(Tween.EASE_IN_OUT)
+
+	# Старый уезжает.
+	_clerk_tween.tween_property(
+		old_clerk,
+		"position",
+		old_position - Vector2(direction * clerk_slide_distance, 0.0),
+		clerk_animation_duration
+	)
+
+	# Новый заезжает.
+	_clerk_tween.tween_property(
+		new_clerk,
+		"position",
+		new_position,
+		clerk_animation_duration
+	)
+	
+	_clerk_tween.tween_property(
+		old_clerk,
+		"modulate:a",
+		0.0,
+		clerk_animation_duration
+	)
+
+	_clerk_tween.tween_property(
+		new_clerk,
+		"modulate:a",
+		1.0,
+		clerk_animation_duration
+	)
+
+	# После анимации скрываем старого клерка.
+	_clerk_tween.chain().tween_callback(
+		func():
+			old_clerk.hide()
+			old_clerk.position = old_position
+			old_clerk.modulate.a = 1.0
+	)
+
+	_active_clerk_index = new_index
+
+
+func _initialize_clerks() -> void:
+	for clerk in clerks:
+		if not is_instance_valid(clerk):
+			_clerk_home_positions.append(Vector2.ZERO)
+			continue
+
+		_clerk_home_positions.append(clerk.position)
+		clerk.hide()
 
 # --------------------------------------------------
 # Карточки

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b4klji6k6hggr"]
 
-[ext_resource type="Script" uid="uid://c4h6s8j1v3lr2" path="res://scenes/menu/item_view.gd" id="1_ctpf5"]
+[ext_resource type="Script" uid="uid://c4h6s8j1v3lr2" path="res://scripts/menu/item_view.gd" id="1_ctpf5"]
 [ext_resource type="StyleBox" uid="uid://d0bgi6tdxrqoi" path="res://textures/styles/nothing_bg.tres" id="1_t7f3e"]
 [ext_resource type="StyleBox" uid="uid://cvwyvh0q0jctp" path="res://textures/styles/price_tag.tres" id="4_dimv7"]
 [ext_resource type="StyleBox" uid="uid://b34mirq2ytq7o" path="res://textures/styles/item_count_bg.tres" id="4_mepix"]
@@ -50,6 +50,7 @@ offset_top = -19.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_uh5o0")
 theme_override_font_sizes/normal_font_size = 25
@@ -65,6 +66,7 @@ offset_left = 73.0
 offset_top = 69.0
 offset_right = 97.0
 offset_bottom = 92.0
+mouse_filter = 2
 theme_override_styles/normal = ExtResource("4_mepix")
 fit_content = true
 scroll_active = false

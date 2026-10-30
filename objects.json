@@ -1,693 +1,693 @@
 {
   "Money": [
-    {
-      "MONEY": 1500
-    }
+	{
+	  "MONEY": 1500
+	}
   ],
   "Objects": [
-    {
-      "ID": "11",
-      "Name": "Заряд адреналіну",
-      "Type": "Boost",
-      "ShopCategory": "Consumables",
-      "Quantity": 0,
-      "Percent": 60,
-      "Descriprion": "Час уповільнюється на 6с.",
-      "Emount": 100,
-      "IconPath": "res://textures/menu/shop/Items/06-adrenaline.png",
-      "Rarity": "Common"
-    },
-    {
-      "ID": "12",
-      "Name": "Азот в двигуні",
-      "Type": "Boost",
-      "ShopCategory": "Consumables",
-      "Quantity": 0,
-      "Percent": 50,
-      "Descriprion": "Турбо режим на 3с.",
-      "Emount": 300,
-      "IconPath": "res://textures/menu/shop/Items/07-nitrous.png",
-      "Rarity": "Uncommon"
-    },
-    {
-      "ID": "13",
-      "Name": "Тепловізор",
-      "Type": "Boost",
-      "ShopCategory": "Consumables",
-      "Quantity": 0,
-      "Percent": 40,
-      "Descriprion": "Вороги підсвічуються на 4с.",
-      "Emount": 600,
-      "IconPath": "res://textures/menu/shop/Items/08-night-vision.png",
-      "Rarity": "Rare"
-    },
-    {
-      "ID": "14",
-      "Name": "Світло-шумова граната",
-      "Type": "Boost",
-      "ShopCategory": "Consumables",
-      "Quantity": 0,
-      "Percent": 20,
-      "Descriprion": "Вороги не нападають і розбігаються на 4с.",
-      "Emount": 800,
-      "IconPath": "res://textures/menu/shop/Items/09-flashbang.png",
-      "Rarity": "Epic"
-    },
-    {
-      "ID": "15",
-      "Name": "Запасна шина",
-      "Type": "Boost",
-      "ShopCategory": "Repair",
-      "Quantity": 0,
-      "Percent": 10,
-      "Descriprion": "+1 шина",
-      "Emount": 1200,
-      "IconPath": "res://textures/menu/shop/Items/10-spare-tire.png",
-      "Rarity": "Legendary"
-    },
-    {
-      "ID": "21",
-      "Name": "Патрони для пістолета пулемета",
-      "Type": "Bullet",
-      "ShopCategory": "Weapons",
-      "Quantity": 0,
-      "Percent": 60,
-      "Descriprion": "Урон: 15",
-      "Emount": 100,
-      "IconPath": "res://textures/menu/shop/Items/11-smg-ammo.png",
-      "Rarity": "Common"
-    },
-    {
-      "ID": "22",
-      "Name": "Патрон для гвинтівки",
-      "Type": "Bullet",
-      "ShopCategory": "Weapons",
-      "Quantity": 0,
-      "Percent": 50,
-      "Descriprion": "Урон: 35",
-      "Emount": 300,
-      "IconPath": "res://textures/menu/shop/Items/12-rifle-ammo.png",
-      "Rarity": "Uncommon"
-    },
-    {
-      "ID": "23",
-      "Name": "Для гвинтівки: пробивні",
-      "Type": "Bullet",
-      "ShopCategory": "Weapons",
-      "Quantity": 0,
-      "Percent": 40,
-      "Descriprion": "Урон: 50",
-      "Emount": 600,
-      "IconPath": "res://textures/menu/shop/Items/13-piercing-ammo.png",
-      "Rarity": "Rare"
-    },
-    {
-      "ID": "24",
-      "Name": "Патрон для дробовика",
-      "Type": "Bullet",
-      "ShopCategory": "Weapons",
-      "Quantity": 0,
-      "Percent": 20,
-      "Descriprion": "Урон: 80",
-      "Emount": 800,
-      "IconPath": "res://textures/menu/shop/Items/14-shotgun-ammo.png",
-      "Rarity": "Epic"
-    },
-    {
-      "ID": "25",
-      "Name": "Патрон для дробовика: з вогняним зарядом",
-      "Type": "Bullet",
-      "ShopCategory": "Weapons",
-      "Quantity": 0,
-      "Percent": 10,
-      "Descriprion": "Урон: 100",
-      "Emount": 1200,
-      "IconPath": "res://textures/menu/shop/Items/15-fire-ammo.png",
-      "Rarity": "Legendary"
-    },
-    {
-      "ID": "31",
-      "Name": "Ремонтний набір для шин",
-      "Type": "Car",
-      "ShopCategory": "Repair",
-      "Quantity": 0,
-      "Percent": 60,
-      "Descriprion": "Можна використати для прокачки машини",
-      "Emount": 100,
-      "IconPath": "res://textures/menu/shop/Items/01-tire-repair.png",
-      "Rarity": "Common"
-    },
-    {
-      "ID": "32",
-      "Name": "Ремонтний набір для дверей",
-      "Type": "Car",
-      "ShopCategory": "Repair",
-      "Quantity": 0,
-      "Percent": 50,
-      "Descriprion": "Можна використати для прокачки машини",
-      "Emount": 300,
-      "IconPath": "res://textures/menu/shop/Items/02-door-repair.png",
-      "Rarity": "Uncommon"
-    },
-    {
-      "ID": "33",
-      "Name": "Ремонтний набір для підвіски",
-      "Type": "Car",
-      "ShopCategory": "Repair",
-      "Quantity": 0,
-      "Percent": 40,
-      "Descriprion": "Можна використати для прокачки машини",
-      "Emount": 600,
-      "IconPath": "res://textures/menu/shop/Items/03-suspension-repair.png",
-      "Rarity": "Rare"
-    },
-    {
-      "ID": "34",
-      "Name": "Ремонтний набір для рами",
-      "Type": "Car",
-      "ShopCategory": "Repair",
-      "Quantity": 0,
-      "Percent": 20,
-      "Descriprion": "Можна використати для прокачки машини",
-      "Emount": 800,
-      "IconPath": "res://textures/menu/shop/Items/04-frame-repair.png",
-      "Rarity": "Epic"
-    },
-    {
-      "ID": "35",
-      "Name": "Машинне масло",
-      "Type": "Car",
-      "ShopCategory": "Repair",
-      "Quantity": 0,
-      "Percent": 10,
-      "Descriprion": "Можна використати для прокачки машини",
-      "Emount": 1200,
-      "IconPath": "res://textures/menu/shop/Items/05-engine-repair.png",
-      "Rarity": "Legendary"
-    }
+	{
+	  "ID": "11",
+	  "Name": "Заряд адреналіну",
+	  "Type": "Boost",
+	  "ShopCategory": "Consumables",
+	  "Quantity": 0,
+	  "Percent": 60,
+	  "Descriprion": "Час уповільнюється на 6с.",
+	  "Emount": 100,
+	  "IconPath": "res://textures/menu/shop/Items/06-adrenaline.png",
+	  "Rarity": "Common"
+	},
+	{
+	  "ID": "12",
+	  "Name": "Азот в двигуні",
+	  "Type": "Boost",
+	  "ShopCategory": "Consumables",
+	  "Quantity": 0,
+	  "Percent": 50,
+	  "Descriprion": "Турбо режим на 3с.",
+	  "Emount": 300,
+	  "IconPath": "res://textures/menu/shop/Items/07-nitrous.png",
+	  "Rarity": "Uncommon"
+	},
+	{
+	  "ID": "13",
+	  "Name": "Тепловізор",
+	  "Type": "Boost",
+	  "ShopCategory": "Consumables",
+	  "Quantity": 0,
+	  "Percent": 40,
+	  "Descriprion": "Вороги підсвічуються на 4с.",
+	  "Emount": 600,
+	  "IconPath": "res://textures/menu/shop/Items/08-night-vision.png",
+	  "Rarity": "Rare"
+	},
+	{
+	  "ID": "14",
+	  "Name": "Світло-шумова граната",
+	  "Type": "Boost",
+	  "ShopCategory": "Consumables",
+	  "Quantity": 0,
+	  "Percent": 20,
+	  "Descriprion": "Вороги не нападають і розбігаються на 4с.",
+	  "Emount": 800,
+	  "IconPath": "res://textures/menu/shop/Items/09-flashbang.png",
+	  "Rarity": "Epic"
+	},
+	{
+	  "ID": "15",
+	  "Name": "Запасна шина",
+	  "Type": "Boost",
+	  "ShopCategory": "Repair",
+	  "Quantity": 0,
+	  "Percent": 10,
+	  "Descriprion": "+1 шина",
+	  "Emount": 1200,
+	  "IconPath": "res://textures/menu/shop/Items/10-spare-tire.png",
+	  "Rarity": "Legendary"
+	},
+	{
+	  "ID": "21",
+	  "Name": "Патрони для пістолета пулемета",
+	  "Type": "Bullet",
+	  "ShopCategory": "Weapons",
+	  "Quantity": 0,
+	  "Percent": 60,
+	  "Descriprion": "Урон: 15",
+	  "Emount": 100,
+	  "IconPath": "res://textures/menu/shop/Items/11-smg-ammo.png",
+	  "Rarity": "Common"
+	},
+	{
+	  "ID": "22",
+	  "Name": "Патрон для гвинтівки",
+	  "Type": "Bullet",
+	  "ShopCategory": "Weapons",
+	  "Quantity": 0,
+	  "Percent": 50,
+	  "Descriprion": "Урон: 35",
+	  "Emount": 300,
+	  "IconPath": "res://textures/menu/shop/Items/12-rifle-ammo.png",
+	  "Rarity": "Uncommon"
+	},
+	{
+	  "ID": "23",
+	  "Name": "Для гвинтівки: пробивні",
+	  "Type": "Bullet",
+	  "ShopCategory": "Weapons",
+	  "Quantity": 0,
+	  "Percent": 40,
+	  "Descriprion": "Урон: 50",
+	  "Emount": 600,
+	  "IconPath": "res://textures/menu/shop/Items/13-piercing-ammo.png",
+	  "Rarity": "Rare"
+	},
+	{
+	  "ID": "24",
+	  "Name": "Патрон для дробовика",
+	  "Type": "Bullet",
+	  "ShopCategory": "Weapons",
+	  "Quantity": 0,
+	  "Percent": 20,
+	  "Descriprion": "Урон: 80",
+	  "Emount": 800,
+	  "IconPath": "res://textures/menu/shop/Items/14-shotgun-ammo.png",
+	  "Rarity": "Epic"
+	},
+	{
+	  "ID": "25",
+	  "Name": "Патрон для дробовика: з вогняним зарядом",
+	  "Type": "Bullet",
+	  "ShopCategory": "Weapons",
+	  "Quantity": 0,
+	  "Percent": 10,
+	  "Descriprion": "Урон: 100",
+	  "Emount": 1200,
+	  "IconPath": "res://textures/menu/shop/Items/15-fire-ammo.png",
+	  "Rarity": "Legendary"
+	},
+	{
+	  "ID": "31",
+	  "Name": "Ремонтний набір для шин",
+	  "Type": "Car",
+	  "ShopCategory": "Repair",
+	  "Quantity": 0,
+	  "Percent": 60,
+	  "Descriprion": "Можна використати для прокачки машини",
+	  "Emount": 100,
+	  "IconPath": "res://textures/menu/shop/Items/01-tire-repair.png",
+	  "Rarity": "Common"
+	},
+	{
+	  "ID": "32",
+	  "Name": "Ремонтний набір для дверей",
+	  "Type": "Car",
+	  "ShopCategory": "Repair",
+	  "Quantity": 0,
+	  "Percent": 50,
+	  "Descriprion": "Можна використати для прокачки машини",
+	  "Emount": 300,
+	  "IconPath": "res://textures/menu/shop/Items/02-door-repair.png",
+	  "Rarity": "Uncommon"
+	},
+	{
+	  "ID": "33",
+	  "Name": "Ремонтний набір для підвіски",
+	  "Type": "Car",
+	  "ShopCategory": "Repair",
+	  "Quantity": 0,
+	  "Percent": 40,
+	  "Descriprion": "Можна використати для прокачки машини",
+	  "Emount": 600,
+	  "IconPath": "res://textures/menu/shop/Items/03-suspension-repair.png",
+	  "Rarity": "Rare"
+	},
+	{
+	  "ID": "34",
+	  "Name": "Ремонтний набір для рами",
+	  "Type": "Car",
+	  "ShopCategory": "Repair",
+	  "Quantity": 0,
+	  "Percent": 20,
+	  "Descriprion": "Можна використати для прокачки машини",
+	  "Emount": 800,
+	  "IconPath": "res://textures/menu/shop/Items/04-frame-repair.png",
+	  "Rarity": "Epic"
+	},
+	{
+	  "ID": "35",
+	  "Name": "Машинне масло",
+	  "Type": "Car",
+	  "ShopCategory": "Repair",
+	  "Quantity": 0,
+	  "Percent": 10,
+	  "Descriprion": "Можна використати для прокачки машини",
+	  "Emount": 1200,
+	  "IconPath": "res://textures/menu/shop/Items/05-engine-repair.png",
+	  "Rarity": "Legendary"
+	}
   ],
   "Car": [
-    {
-      "ID": 41,
-      "Type": "Шини",
-      "TypeObj": "Гайковий ключ",
-      "Level": 1,
-      "Name": "Рівень 1",
-      "NumObj": 5,
-      "Money": 100,
-      "Purchased": 0
-    },
-    {
-      "ID": 51,
-      "Type": "Двері",
-      "TypeObj": "Гайковий ключ",
-      "Level": 1,
-      "Name": "Рівень 1",
-      "NumObj": 10,
-      "Money": 100,
-      "Purchased": 0
-    },
-    {
-      "ID": 61,
-      "Type": "Двигун",
-      "TypeObj": "Гайковий ключ",
-      "Level": 1,
-      "Name": "Рівень 1",
-      "NumObj": 8,
-      "Money": 100,
-      "Purchased": 0
-    },
-    {
-      "ID": 42,
-      "Type": "Шини",
-      "TypeObj": "Гайковий ключ",
-      "Level": 2,
-      "Name": "Рівень 2",
-      "NumObj": 10,
-      "Money": 300,
-      "Purchased": 0
-    },
-    {
-      "ID": 52,
-      "Type": "Двері",
-      "TypeObj": "Гайковий ключ",
-      "Level": 2,
-      "Name": "Рівень 2",
-      "NumObj": 6,
-      "Money": 300,
-      "Purchased": 0
-    },
-    {
-      "ID": 62,
-      "Type": "Двигун",
-      "TypeObj": "Гайковий ключ",
-      "Level": 2,
-      "Name": "Рівень 2",
-      "NumObj": 15,
-      "Money": 300,
-      "Purchased": 0
-    },
-    {
-      "ID": 43,
-      "Type": "Шини",
-      "TypeObj": "Машинне масло",
-      "Level": 3,
-      "Name": "Рівень 3",
-      "NumObj": 6,
-      "Money": 500,
-      "Purchased": 0
-    },
-    {
-      "ID": 53,
-      "Type": "Двері",
-      "TypeObj": "Машинне масло",
-      "Level": 3,
-      "Name": "Рівень 3",
-      "NumObj": 10,
-      "Money": 500,
-      "Purchased": 0
-    },
-    {
-      "ID": 63,
-      "Type": "Двигун",
-      "TypeObj": "Машинне масло",
-      "Level": 3,
-      "Name": "Рівень 3",
-      "NumObj": 10,
-      "Money": 500,
-      "Purchased": 0
-    },
-    {
-      "ID": 44,
-      "Type": "Шини",
-      "TypeObj": "Болти",
-      "Level": 4,
-      "Name": "Рівень 4",
-      "NumObj": 15,
-      "Money": 800,
-      "Purchased": 0
-    },
-    {
-      "ID": 54,
-      "Type": "Двері",
-      "TypeObj": "Болти",
-      "Level": 4,
-      "Name": "Рівень 4",
-      "NumObj": 17,
-      "Money": 800,
-      "Purchased": 0
-    },
-    {
-      "ID": 64,
-      "Type": "Двигун",
-      "TypeObj": "Болти",
-      "Level": 4,
-      "Name": "Рівень 4",
-      "NumObj": 18,
-      "Money": 800,
-      "Purchased": 0
-    },
-    {
-      "ID": 45,
-      "Type": "Шини",
-      "TypeObj": "Сварка",
-      "Level": 5,
-      "Name": "Рівень 5",
-      "NumObj": 3,
-      "Money": 1000,
-      "Purchased": 0
-    },
-    {
-      "ID": 55,
-      "Type": "Двері",
-      "TypeObj": "Сварка",
-      "Level": 5,
-      "Name": "Рівень 5",
-      "NumObj": 4,
-      "Money": 1000,
-      "Purchased": 0
-    },
-    {
-      "ID": 65,
-      "Type": "Двигун",
-      "TypeObj": "Сварка",
-      "Level": 5,
-      "Name": "Рівень 5",
-      "NumObj": 5,
-      "Money": 1000,
-      "Purchased": 0
-    },
-    {
-      "ID": 71,
-      "Type": "Підвіска",
-      "TypeObj": "Гайковий ключ",
-      "Level": 1,
-      "Name": "Рівень 1",
-      "NumObj": 8,
-      "Money": 100,
-      "Purchased": 0
-    },
-    {
-      "ID": 72,
-      "Type": "Підвіска",
-      "TypeObj": "Гайковий ключ",
-      "Level": 2,
-      "Name": "Рівень 2",
-      "NumObj": 15,
-      "Money": 300,
-      "Purchased": 0
-    },
-    {
-      "ID": 73,
-      "Type": "Підвіска",
-      "TypeObj": "Машинне масло",
-      "Level": 3,
-      "Name": "Рівень 3",
-      "NumObj": 10,
-      "Money": 500,
-      "Purchased": 0
-    },
-    {
-      "ID": 74,
-      "Type": "Підвіска",
-      "TypeObj": "Болти",
-      "Level": 4,
-      "Name": "Рівень 4",
-      "NumObj": 18,
-      "Money": 800,
-      "Purchased": 0
-    },
-    {
-      "ID": 75,
-      "Type": "Підвіска",
-      "TypeObj": "Сварка",
-      "Level": 5,
-      "Name": "Рівень 5",
-      "NumObj": 5,
-      "Money": 1000,
-      "Purchased": 0
-    },
-    {
-      "ID": 81,
-      "Type": "Передня рама",
-      "TypeObj": "Гайковий ключ",
-      "Level": 1,
-      "Name": "Рівень 1",
-      "NumObj": 8,
-      "Money": 100,
-      "Purchased": 0
-    },
-    {
-      "ID": 82,
-      "Type": "Передня рама",
-      "TypeObj": "Гайковий ключ",
-      "Level": 2,
-      "Name": "Рівень 2",
-      "NumObj": 15,
-      "Money": 300,
-      "Purchased": 0
-    },
-    {
-      "ID": 83,
-      "Type": "Передня рама",
-      "TypeObj": "Машинне масло",
-      "Level": 3,
-      "Name": "Рівень 3",
-      "NumObj": 10,
-      "Money": 500,
-      "Purchased": 0
-    },
-    {
-      "ID": 84,
-      "Type": "Передня рама",
-      "TypeObj": "Болти",
-      "Level": 4,
-      "Name": "Рівень 4",
-      "NumObj": 18,
-      "Money": 800,
-      "Purchased": 0
-    },
-    {
-      "ID": 85,
-      "Type": "Передня рама",
-      "TypeObj": "Сварка",
-      "Level": 5,
-      "Name": "Рівень 5",
-      "NumObj": 5,
-      "Money": 1000,
-      "Purchased": 0
-    }
+	{
+	  "ID": 41,
+	  "Type": "Шини",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 1,
+	  "Name": "Рівень 1",
+	  "NumObj": 5,
+	  "Money": 100,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 51,
+	  "Type": "Двері",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 1,
+	  "Name": "Рівень 1",
+	  "NumObj": 10,
+	  "Money": 100,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 61,
+	  "Type": "Двигун",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 1,
+	  "Name": "Рівень 1",
+	  "NumObj": 8,
+	  "Money": 100,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 42,
+	  "Type": "Шини",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 2,
+	  "Name": "Рівень 2",
+	  "NumObj": 10,
+	  "Money": 300,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 52,
+	  "Type": "Двері",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 2,
+	  "Name": "Рівень 2",
+	  "NumObj": 6,
+	  "Money": 300,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 62,
+	  "Type": "Двигун",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 2,
+	  "Name": "Рівень 2",
+	  "NumObj": 15,
+	  "Money": 300,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 43,
+	  "Type": "Шини",
+	  "TypeObj": "Машинне масло",
+	  "Level": 3,
+	  "Name": "Рівень 3",
+	  "NumObj": 6,
+	  "Money": 500,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 53,
+	  "Type": "Двері",
+	  "TypeObj": "Машинне масло",
+	  "Level": 3,
+	  "Name": "Рівень 3",
+	  "NumObj": 10,
+	  "Money": 500,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 63,
+	  "Type": "Двигун",
+	  "TypeObj": "Машинне масло",
+	  "Level": 3,
+	  "Name": "Рівень 3",
+	  "NumObj": 10,
+	  "Money": 500,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 44,
+	  "Type": "Шини",
+	  "TypeObj": "Болти",
+	  "Level": 4,
+	  "Name": "Рівень 4",
+	  "NumObj": 15,
+	  "Money": 800,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 54,
+	  "Type": "Двері",
+	  "TypeObj": "Болти",
+	  "Level": 4,
+	  "Name": "Рівень 4",
+	  "NumObj": 17,
+	  "Money": 800,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 64,
+	  "Type": "Двигун",
+	  "TypeObj": "Болти",
+	  "Level": 4,
+	  "Name": "Рівень 4",
+	  "NumObj": 18,
+	  "Money": 800,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 45,
+	  "Type": "Шини",
+	  "TypeObj": "Сварка",
+	  "Level": 5,
+	  "Name": "Рівень 5",
+	  "NumObj": 3,
+	  "Money": 1000,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 55,
+	  "Type": "Двері",
+	  "TypeObj": "Сварка",
+	  "Level": 5,
+	  "Name": "Рівень 5",
+	  "NumObj": 4,
+	  "Money": 1000,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 65,
+	  "Type": "Двигун",
+	  "TypeObj": "Сварка",
+	  "Level": 5,
+	  "Name": "Рівень 5",
+	  "NumObj": 5,
+	  "Money": 1000,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 71,
+	  "Type": "Підвіска",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 1,
+	  "Name": "Рівень 1",
+	  "NumObj": 8,
+	  "Money": 100,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 72,
+	  "Type": "Підвіска",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 2,
+	  "Name": "Рівень 2",
+	  "NumObj": 15,
+	  "Money": 300,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 73,
+	  "Type": "Підвіска",
+	  "TypeObj": "Машинне масло",
+	  "Level": 3,
+	  "Name": "Рівень 3",
+	  "NumObj": 10,
+	  "Money": 500,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 74,
+	  "Type": "Підвіска",
+	  "TypeObj": "Болти",
+	  "Level": 4,
+	  "Name": "Рівень 4",
+	  "NumObj": 18,
+	  "Money": 800,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 75,
+	  "Type": "Підвіска",
+	  "TypeObj": "Сварка",
+	  "Level": 5,
+	  "Name": "Рівень 5",
+	  "NumObj": 5,
+	  "Money": 1000,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 81,
+	  "Type": "Передня рама",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 1,
+	  "Name": "Рівень 1",
+	  "NumObj": 8,
+	  "Money": 100,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 82,
+	  "Type": "Передня рама",
+	  "TypeObj": "Гайковий ключ",
+	  "Level": 2,
+	  "Name": "Рівень 2",
+	  "NumObj": 15,
+	  "Money": 300,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 83,
+	  "Type": "Передня рама",
+	  "TypeObj": "Машинне масло",
+	  "Level": 3,
+	  "Name": "Рівень 3",
+	  "NumObj": 10,
+	  "Money": 500,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 84,
+	  "Type": "Передня рама",
+	  "TypeObj": "Болти",
+	  "Level": 4,
+	  "Name": "Рівень 4",
+	  "NumObj": 18,
+	  "Money": 800,
+	  "Purchased": 0
+	},
+	{
+	  "ID": 85,
+	  "Type": "Передня рама",
+	  "TypeObj": "Сварка",
+	  "Level": 5,
+	  "Name": "Рівень 5",
+	  "NumObj": 5,
+	  "Money": 1000,
+	  "Purchased": 0
+	}
   ],
   "Turret": [
-    {
-      "ID": 201,
-      "UpgradeId": "MD01",
-      "Name": "Множник пошкодження",
-      "Type": "Пошкодження",
-      "Level": 0
-    },
-    {
-      "ID": 210,
-      "UpgradeId": "ES01",
-      "Name": "Уповільнення",
-      "Type": "Пошкодження",
-      "Level": 0
-    },
-    {
-      "ID": 211,
-      "UpgradeId": "ES02",
-      "Name": "Оглушення",
-      "Type": "Пошкодження",
-      "Level": 0
-    },
-    {
-      "ID": 221,
-      "UpgradeId": "BR01",
-      "Name": "Рікошет",
-      "Type": "Пошкодження",
-      "Level": 0
-    },
-    {
-      "ID": 301,
-      "UpgradeId": "RF01",
-      "Name": "Швидкість стрільби",
-      "Type": "Сила вистрілу",
-      "Level": 0
-    },
-    {
-      "ID": 310,
-      "UpgradeId": "BS01",
-      "Name": "Шанс зберегти набій",
-      "Type": "Сила вистрілу",
-      "Level": 0
-    },
-    {
-      "ID": 311,
-      "UpgradeId": "EM01",
-      "Name": "Збільшений магазин",
-      "Type": "Сила вистрілу",
-      "Level": 0
-    },
-    {
-      "ID": 321,
-      "UpgradeId": "BP01",
-      "Name": "Отрута",
-      "Type": "Сила вистрілу",
-      "Level": 0
-    },
-    {
-      "ID": 401,
-      "UpgradeId": "LR01",
-      "Name": "Менша віддача",
-      "Type": "Точність",
-      "Level": 0
-    },
-    {
-      "ID": 410,
-      "UpgradeId": "LD01",
-      "Name": "Менша затримка повороту",
-      "Type": "Точність",
-      "Level": 0
-    },
-    {
-      "ID": 411,
-      "UpgradeId": "LS01",
-      "Name": "Менший розкид",
-      "Type": "Точність",
-      "Level": 0
-    },
-    {
-      "ID": 421,
-      "UpgradeId": "CC01",
-      "Name": "Крит шанс",
-      "Type": "Точність",
-      "Level": 0
-    }
+	{
+	  "ID": 201,
+	  "UpgradeId": "MD01",
+	  "Name": "Множник пошкодження",
+	  "Type": "Пошкодження",
+	  "Level": 0
+	},
+	{
+	  "ID": 210,
+	  "UpgradeId": "ES01",
+	  "Name": "Уповільнення",
+	  "Type": "Пошкодження",
+	  "Level": 0
+	},
+	{
+	  "ID": 211,
+	  "UpgradeId": "ES02",
+	  "Name": "Оглушення",
+	  "Type": "Пошкодження",
+	  "Level": 0
+	},
+	{
+	  "ID": 221,
+	  "UpgradeId": "BR01",
+	  "Name": "Рікошет",
+	  "Type": "Пошкодження",
+	  "Level": 0
+	},
+	{
+	  "ID": 301,
+	  "UpgradeId": "RF01",
+	  "Name": "Швидкість стрільби",
+	  "Type": "Сила вистрілу",
+	  "Level": 0
+	},
+	{
+	  "ID": 310,
+	  "UpgradeId": "BS01",
+	  "Name": "Шанс зберегти набій",
+	  "Type": "Сила вистрілу",
+	  "Level": 0
+	},
+	{
+	  "ID": 311,
+	  "UpgradeId": "EM01",
+	  "Name": "Збільшений магазин",
+	  "Type": "Сила вистрілу",
+	  "Level": 0
+	},
+	{
+	  "ID": 321,
+	  "UpgradeId": "BP01",
+	  "Name": "Отрута",
+	  "Type": "Сила вистрілу",
+	  "Level": 0
+	},
+	{
+	  "ID": 401,
+	  "UpgradeId": "LR01",
+	  "Name": "Менша віддача",
+	  "Type": "Точність",
+	  "Level": 0
+	},
+	{
+	  "ID": 410,
+	  "UpgradeId": "LD01",
+	  "Name": "Менша затримка повороту",
+	  "Type": "Точність",
+	  "Level": 0
+	},
+	{
+	  "ID": 411,
+	  "UpgradeId": "LS01",
+	  "Name": "Менший розкид",
+	  "Type": "Точність",
+	  "Level": 0
+	},
+	{
+	  "ID": 421,
+	  "UpgradeId": "CC01",
+	  "Name": "Крит шанс",
+	  "Type": "Точність",
+	  "Level": 0
+	}
   ],
   "Bases": [
-    {
-      "BaseNum": 1,
-      "ID": 1001,
-      "BaseName": "Бар \"Янтарна крапля\"",
-      "Monsters": "Монстри: Вовк - полювальник",
-      "Description": "Опис: База, в якій алкоголь\nвідіграє важливу роль і підіймає\nбойовий дух.",
-      "ISActive": 0,
-      "Base1": 0,
-      "Base2": 12,
-      "Base3": 13,
-      "Base4": 14,
-      "Base5": 15
-    },
-    {
-      "BaseNum": 2,
-      "ID": 1002,
-      "BaseName": "Лабораторія №67",
-      "Monsters": "Монстри: Вовк - полювальник",
-      "Description": "Опис: Закинута лабораторія \nза словами місцевих жителів. \nАбо ні?",
-      "ISActive": 1,
-      "Base1": 12,
-      "Base2": 0,
-      "Base3": 23,
-      "Base4": 24,
-      "Base5": 25
-    },
-    {
-      "BaseNum": 3,
-      "ID": 1003,
-      "BaseName": "Санаторій \"Веселка\"",
-      "Monsters": "Монстри: Вовк - полювальник",
-      "Description": "Опис: Від людей для людей. \nМісце, що відновлювало життєві \nсили.",
-      "ISActive": 0,
-      "Base1": 13,
-      "Base2": 23,
-      "Base3": 0,
-      "Base4": 34,
-      "Base5": 35
-    },
-    {
-      "BaseNum": 4,
-      "ID": 1004,
-      "BaseName": "Будиночок біля озера",
-      "Monsters": "Монстри: Вовк - полювальник",
-      "Description": "Опис: За словами дивного \nчоловіка тут живе вчений.",
-      "ISActive": 0,
-      "Base1": 14,
-      "Base2": 24,
-      "Base3": 34,
-      "Base4": 0,
-      "Base5": 45
-    },
-    {
-      "BaseNum": 5,
-      "ID": 1005,
-      "BaseName": "Завод №9",
-      "Monsters": "Монстри: Вовк - полювальник",
-      "Description": "Опис: В минулому найбільший \nзавод з виготовлення зброї.",
-      "ISActive": 0,
-      "Base1": 15,
-      "Base2": 25,
-      "Base3": 35,
-      "Base4": 45,
-      "Base5": 0
-    }
+	{
+	  "BaseNum": 1,
+	  "ID": 1001,
+	  "BaseName": "Бар \"Янтарна крапля\"",
+	  "Monsters": "Монстри: Вовк - полювальник",
+	  "Description": "Опис: База, в якій алкоголь\nвідіграє важливу роль і підіймає\nбойовий дух.",
+	  "ISActive": 0,
+	  "Base1": 0,
+	  "Base2": 12,
+	  "Base3": 13,
+	  "Base4": 14,
+	  "Base5": 15
+	},
+	{
+	  "BaseNum": 2,
+	  "ID": 1002,
+	  "BaseName": "Лабораторія №67",
+	  "Monsters": "Монстри: Вовк - полювальник",
+	  "Description": "Опис: Закинута лабораторія \nза словами місцевих жителів. \nАбо ні?",
+	  "ISActive": 1,
+	  "Base1": 12,
+	  "Base2": 0,
+	  "Base3": 23,
+	  "Base4": 24,
+	  "Base5": 25
+	},
+	{
+	  "BaseNum": 3,
+	  "ID": 1003,
+	  "BaseName": "Санаторій \"Веселка\"",
+	  "Monsters": "Монстри: Вовк - полювальник",
+	  "Description": "Опис: Від людей для людей. \nМісце, що відновлювало життєві \nсили.",
+	  "ISActive": 0,
+	  "Base1": 13,
+	  "Base2": 23,
+	  "Base3": 0,
+	  "Base4": 34,
+	  "Base5": 35
+	},
+	{
+	  "BaseNum": 4,
+	  "ID": 1004,
+	  "BaseName": "Будиночок біля озера",
+	  "Monsters": "Монстри: Вовк - полювальник",
+	  "Description": "Опис: За словами дивного \nчоловіка тут живе вчений.",
+	  "ISActive": 0,
+	  "Base1": 14,
+	  "Base2": 24,
+	  "Base3": 34,
+	  "Base4": 0,
+	  "Base5": 45
+	},
+	{
+	  "BaseNum": 5,
+	  "ID": 1005,
+	  "BaseName": "Завод №9",
+	  "Monsters": "Монстри: Вовк - полювальник",
+	  "Description": "Опис: В минулому найбільший \nзавод з виготовлення зброї.",
+	  "ISActive": 0,
+	  "Base1": 15,
+	  "Base2": 25,
+	  "Base3": 35,
+	  "Base4": 45,
+	  "Base5": 0
+	}
   ],
   "Roads": [
-    {
-      "Number": 12,
-      "Hardness": "Складність: Нормально",
-      "Difficulty": "normal"
-    },
-    {
-      "Number": 13,
-      "Hardness": "Складність: Складно",
-      "Difficulty": "hard"
-    },
-    {
-      "Number": 14,
-      "Hardness": "Складність: Складно",
-      "Difficulty": "hard"
-    },
-    {
-      "Number": 15,
-      "Hardness": "Складність: Легко",
-      "Difficulty": "easy"
-    },
-    {
-      "Number": 23,
-      "Hardness": "Складність: Нормально",
-      "Difficulty": "normal"
-    },
-    {
-      "Number": 24,
-      "Hardness": "Складність: Легко",
-      "Difficulty": "easy"
-    },
-    {
-      "Number": 25,
-      "Hardness": "Складність: Нормально",
-      "Difficulty": "normal"
-    },
-    {
-      "Number": 34,
-      "Hardness": "Складність: Легко",
-      "Difficulty": "easy"
-    },
-    {
-      "Number": 35,
-      "Hardness": "Складність: Складно",
-      "Difficulty": "hard"
-    },
-    {
-      "Number": 45,
-      "Hardness": "Складність: Складно",
-      "Difficulty": "hard"
-    }
+	{
+	  "Number": 12,
+	  "Hardness": "Складність: Нормально",
+	  "Difficulty": "normal"
+	},
+	{
+	  "Number": 13,
+	  "Hardness": "Складність: Складно",
+	  "Difficulty": "hard"
+	},
+	{
+	  "Number": 14,
+	  "Hardness": "Складність: Складно",
+	  "Difficulty": "hard"
+	},
+	{
+	  "Number": 15,
+	  "Hardness": "Складність: Легко",
+	  "Difficulty": "easy"
+	},
+	{
+	  "Number": 23,
+	  "Hardness": "Складність: Нормально",
+	  "Difficulty": "normal"
+	},
+	{
+	  "Number": 24,
+	  "Hardness": "Складність: Легко",
+	  "Difficulty": "easy"
+	},
+	{
+	  "Number": 25,
+	  "Hardness": "Складність: Нормально",
+	  "Difficulty": "normal"
+	},
+	{
+	  "Number": 34,
+	  "Hardness": "Складність: Легко",
+	  "Difficulty": "easy"
+	},
+	{
+	  "Number": 35,
+	  "Hardness": "Складність: Складно",
+	  "Difficulty": "hard"
+	},
+	{
+	  "Number": 45,
+	  "Hardness": "Складність: Складно",
+	  "Difficulty": "hard"
+	}
   ],
   "Quests": [
-    {
-      "Name": "\"Присмак\"",
-      "ID": 101,
-      "Location": "Лic 1",
-      "Unlocked": 2,
-      "Description": "Приїдьте до будиночку біля озера і познайомтесь з вченим.",
-      "Have": 1,
-      "Need": 1
-    },
-    {
-      "Name": "\"Зразки\"",
-      "ID": 102,
-      "Location": "Лic 1",
-      "Unlocked": 2,
-      "Description": "Відвідайте всі бази і зберіть чотири зразки води.",
-      "Have": 4,
-      "Need": 4
-    },
-    {
-      "Name": "\"Очікування результатів\"",
-      "ID": 103,
-      "Location": "Лic 1",
-      "Unlocked": 2,
-      "Description": "Дочекайтесь результатів аналізу.",
-      "Have": 25,
-      "Need": 25
-    },
-    {
-      "Name": "\"Розвідка\"",
-      "ID": 104,
-      "Location": "Лic 1",
-      "Unlocked": 1,
-      "Description": "Відвідайте всі бази і поспілкуйтесь з місцевими жителями.",
-      "Have": 1,
-      "Need": 4
-    },
-    {
-      "Name": "\"Наслідок\"",
-      "ID": 105,
-      "Location": "Лic 1",
-      "Unlocked": 0,
-      "Description": "Поверніться до вченого.",
-      "Have": 0,
-      "Need": 1
-    }
+	{
+	  "Name": "\"Присмак\"",
+	  "ID": 101,
+	  "Location": "Лic 1",
+	  "Unlocked": 2,
+	  "Description": "Приїдьте до будиночку біля озера і познайомтесь з вченим.",
+	  "Have": 1,
+	  "Need": 1
+	},
+	{
+	  "Name": "\"Зразки\"",
+	  "ID": 102,
+	  "Location": "Лic 1",
+	  "Unlocked": 2,
+	  "Description": "Відвідайте всі бази і зберіть чотири зразки води.",
+	  "Have": 4,
+	  "Need": 4
+	},
+	{
+	  "Name": "\"Очікування результатів\"",
+	  "ID": 103,
+	  "Location": "Лic 1",
+	  "Unlocked": 2,
+	  "Description": "Дочекайтесь результатів аналізу.",
+	  "Have": 25,
+	  "Need": 25
+	},
+	{
+	  "Name": "\"Розвідка\"",
+	  "ID": 104,
+	  "Location": "Лic 1",
+	  "Unlocked": 1,
+	  "Description": "Відвідайте всі бази і поспілкуйтесь з місцевими жителями.",
+	  "Have": 1,
+	  "Need": 4
+	},
+	{
+	  "Name": "\"Наслідок\"",
+	  "ID": 105,
+	  "Location": "Лic 1",
+	  "Unlocked": 0,
+	  "Description": "Поверніться до вченого.",
+	  "Have": 0,
+	  "Need": 1
+	}
   ]
 }
