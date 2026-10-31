@@ -36,6 +36,7 @@ GrenadeSpawner="*uid://dsvmq0gu3juhd"
 DebugStats="uid://b0uj75mlijwsw"
 BaseInventoryManager="*uid://cm51amwgn7tby"
 GameState="*res://scripts/global/game_state.gd"
+MenuMusic="*res://scenes/audio/menu_music.tscn"
 
 [display]
 

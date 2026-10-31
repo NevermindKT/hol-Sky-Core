@@ -61,6 +61,11 @@ enum State { AMBIENT, WARNING, COMBAT, OFF }
 @export var damage_recover_speed: float = 2.0
 @export var damage_volume_dip_db: float = -6.0
 
+@export_category("Pause Muffle")
+@export var pause_cutoff_hz: float = 500.0
+@export var pause_volume_db: float = -4.0
+@export var pause_fade: float = 0.4
+
 var state := State.AMBIENT
 var volume_scale: float = 1.0
 
@@ -81,6 +86,7 @@ var _damage_hold_timer: float = 0.0
 var _low_hp := 0.0
 var _low_hp_target := 0.0
 var _warning_time := 0.0
+var _pause := 0.0
 
 
 class Channel:
@@ -116,6 +122,7 @@ class Channel:
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_setup_lowpass()
 
 	_ambient = Channel.new(self, music_bus, ambient_volume_db)
@@ -171,7 +178,11 @@ func _process(delta: float) -> void:
 
 	var speed_cutoff: float = muffled_cutoff_hz * pow(clean_cutoff_hz / muffled_cutoff_hz, _clean)
 	var hit_cutoff: float = minf(damage_cutoff_hz, speed_cutoff)
-	_lowpass.cutoff_hz = hit_cutoff * pow(speed_cutoff / hit_cutoff, 1.0 - _damage)
+	var cutoff: float = hit_cutoff * pow(speed_cutoff / hit_cutoff, 1.0 - _damage)
+	var paused := PauseManager.is_paused and not PauseManager.is_photo_mode and not PauseManager.is_game_over
+	_pause = move_toward(_pause, 1.0 if paused else 0.0, delta / maxf(pause_fade, 0.01))
+	var pause_cutoff: float = minf(pause_cutoff_hz, cutoff)
+	_lowpass.cutoff_hz = cutoff * pow(pause_cutoff / cutoff, _pause)
 
 	if state == State.WARNING:
 		_warning_time += delta
@@ -185,6 +196,7 @@ func _process(delta: float) -> void:
 
 	var master_db := music_volume_db \
 		+ damage_volume_dip_db * _damage \
+		+ pause_volume_db * _pause \
 		+ linear_to_db(maxf(volume_scale, 0.0001))
 	_ambient.update(delta, master_db)
 	_warning.update(delta, master_db)

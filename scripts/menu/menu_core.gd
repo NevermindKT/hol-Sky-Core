@@ -18,6 +18,7 @@ func _ready() -> void:
 		GameFlow.enter_base.call_deferred()
 		return
 	GameState.enter_base()
+	MenuMusic.set_base_tab(&"map")
 	footer.MapButton.pressed.connect(_map_button_pressed)
 	footer.CarButton.pressed.connect(_car_button_pressed)
 	footer.ShopButton.pressed.connect(_shop_button_pressed)
@@ -32,22 +33,27 @@ func _show_menu(selected_menu: Control) -> void:
 
 func _map_button_pressed() -> void:
 	_show_menu(map)
+	MenuMusic.set_base_tab(&"map")
 
 
 func _turret_button_pressed() -> void:
 	_show_menu(turret)
+	MenuMusic.set_base_tab(&"turret")
 
 
 func _car_button_pressed() -> void:
 	_show_menu(car)
+	MenuMusic.set_base_tab(&"car")
 
 
 func _inventory_button_pressed() -> void:
 	_show_menu(inventory)
+	MenuMusic.set_base_tab(&"inventory")
 
 
 func _shop_button_pressed() -> void:
 	_show_menu(shop)
+	MenuMusic.set_base_tab(&"shop")
 
 
 func _hide_all():
