@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://p7ufkd6leg0l"]
 
 [ext_resource type="Script" uid="uid://ctvaygbubrum2" path="res://scripts/ui/run_summary_menu.gd" id="1_i5676"]
-[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://resources/fonts/Cormorant/Cormorant-SemiBold.ttf" id="2_2udyh"]
+[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://scenes/menu/fonts/Cormorant/Cormorant-SemiBold.ttf" id="2_2udyh"]
 [ext_resource type="Texture2D" uid="uid://clu3b6be0h77e" path="res://textures/menu/pause/NORMAL — steel.png" id="2_vkd5t"]
 [ext_resource type="Texture2D" uid="uid://b0bn626o5d32u" path="res://textures/menu/pause/SELECTED — amber.png" id="3_2udyh"]
 [ext_resource type="PackedScene" uid="uid://bqsx7gjfph6ti" path="res://scenes/ui/enemy_summary_tab.tscn" id="5_ldbp3"]
@@ -32,7 +32,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i5676")
-menu_scene_path = "uid://cmm2o33hwupgc"
+menu_scene_path = "uid://bkofqf6ofc4o3"
 restart_scene_path = "uid://dxa8wggvns7te"
 enemy_tab_scene = ExtResource("5_ldbp3")
 time_label = NodePath("Control/Left/Time/TimeLable")

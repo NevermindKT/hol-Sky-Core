@@ -1,10 +1,14 @@
 extends Control
 
+signal exit_requested
+
+@export_category("Header")
+@export var header: Header
+
 @export_category("Footer")
 @export var footer: Footer
 
 @export_category("Menus")
-
 @export var car: Control
 @export var map: Control
 @export var shop: Control
@@ -18,6 +22,12 @@ func _ready() -> void:
 	footer.ShopButton.pressed.connect(_shop_button_pressed)
 	footer.TurretButton.pressed.connect(_turret_button_pressed)
 	footer.InventoryButton.pressed.connect(_inventory_button_pressed)
+
+	header.exit_btn.pressed.connect(_on_exit_pressed)
+
+
+func _on_exit_pressed():
+	exit_requested.emit()
 
 
 func _show_menu(selected_menu: Control) -> void:

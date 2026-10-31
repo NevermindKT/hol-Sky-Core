@@ -31,6 +31,7 @@ corner_radius_bottom_left = 10
 
 [node name="ObjInfo" type="Panel" unique_id=1888403002 node_paths=PackedStringArray("icon_rect", "name_label", "rarity_label", "description_label", "owned_label", "minus_button", "amount_input", "plus_button", "action_button")]
 z_index = 5
+anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -78,8 +79,8 @@ size_flags_vertical = 2
 
 [node name="Icon" type="TextureRect" parent="Info/VBoxContainer2" unique_id=1130075554]
 z_index = 5
-custom_minimum_size = Vector2(200, 220)
-custom_maximum_size = Vector2(220, 220)
+custom_minimum_size = Vector2(200, 200)
+custom_maximum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0

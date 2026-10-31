@@ -3,7 +3,7 @@ class_name RestartManager
 
 signal restart_requested
 
-const MENU_SCENE := "res://scenes/menu/menuCore.tscn"
+const MENU_SCENE := "res://scenes/menu_bg.tscn"
 const GAME_SCENE := "res://scenes/main.tscn"
 const LOADING_SCREEN := preload("res://scenes/ui/loading_screen.tscn")
 const MAP_SCRIPT := preload("res://scripts/menu/map/map_main.gd")

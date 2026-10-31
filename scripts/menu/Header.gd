@@ -1,4 +1,5 @@
 extends Control
+class_name Header
 
 @export var exit_btn: Button
 @export var money_label: Label
@@ -10,11 +11,6 @@ func _ready() -> void:
 
 	if not BaseInventoryManager.money_changed.is_connected(_on_money_changed):
 		BaseInventoryManager.money_changed.connect(_on_money_changed)
-
-	exit_btn.pressed.connect(_on_exit_pressed)
-
-func _on_exit_pressed():
-	GameFlow.change_scene(menu_scene_path)
 
 
 func _on_money_changed(new_amount: int) -> void:
