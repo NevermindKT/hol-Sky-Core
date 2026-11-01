@@ -23,13 +23,17 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	continue_btn.pressed.connect(_on_continue_pressed)
+	new_game_btn.pressed.connect(GameFlow.new_game)
+	continue_btn.disabled = not GameState.has_progress()
+	GameState.set_state(GameState.State.MAIN_MENU)
 	settings_btn.pressed.connect(_on_options_pressed)
 	exit_btn.pressed.connect(_on_exit_pressed)
 
 	menu_core.exit_requested.connect(_on_menu_core_exit)
 
-	settings_menu.closed.connect(_on_settings_closed)
-	settings_menu.visible = false
+	if settings_menu:
+		settings_menu.closed.connect(_on_settings_closed)
+		settings_menu.visible = false
 
 	_connect_button_sounds()
 
@@ -66,6 +70,8 @@ func _on_exit_pressed():
 
 
 func _on_options_pressed():
+	if not settings_menu:
+		return
 	visible = false
 	settings_menu.visible = true
 

@@ -8,6 +8,40 @@ var choice: DialogueChoice
 var _shake_phase := 0.0
 var _shake_degrees := 0.0
 var _shake_speed := 0.0
+var _maximum_font_size := 40
+var _fit_queued := false
+
+
+func _ready() -> void:
+    clip_text = true
+    _maximum_font_size = get_theme_font_size("font_size")
+    _queue_font_fit()
+
+
+func _queue_font_fit() -> void:
+    if _fit_queued or not is_node_ready():
+        return
+    _fit_queued = true
+    _fit_font.call_deferred()
+
+
+func _fit_font() -> void:
+    _fit_queued = false
+    if size.x <= 1.0 or size.y <= 1.0:
+        return
+    var box := get_theme_stylebox("normal")
+    var available := size - box.get_minimum_size() - Vector2(8, 8)
+    var paragraph := TextParagraph.new()
+    paragraph.width = maxf(available.x, 1.0)
+    paragraph.break_flags = TextServer.BREAK_MANDATORY | TextServer.BREAK_WORD_BOUND | TextServer.BREAK_ADAPTIVE
+    var font := get_theme_font("font")
+    for candidate in range(_maximum_font_size, 7, -1):
+        paragraph.clear()
+        paragraph.add_string(text, font, candidate)
+        var measured := paragraph.get_size()
+        if measured.x <= available.x and measured.y <= available.y or candidate == 8:
+            add_theme_font_size_override("font_size", candidate)
+            break
 
 
 func setup(
@@ -82,8 +116,10 @@ func _notification(what: int) -> void:
 
     if what == NOTIFICATION_RESIZED:
         pivot_offset = size * 0.5
+        _queue_font_fit()
     elif what == NOTIFICATION_TRANSLATION_CHANGED and choice != null:
         text = choice.text
+        _queue_font_fit()
 
 
 func _configure_shake(style: DialogueStyle) -> void:

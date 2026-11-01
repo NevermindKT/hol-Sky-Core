@@ -17,6 +17,11 @@ signal exit_requested
 
 
 func _ready() -> void:
+	if GameState.needs_intro():
+		hide()
+		GameFlow.enter_base.call_deferred()
+		return
+	GameState.enter_base()
 	footer.MapButton.pressed.connect(_map_button_pressed)
 	footer.CarButton.pressed.connect(_car_button_pressed)
 	footer.ShopButton.pressed.connect(_shop_button_pressed)

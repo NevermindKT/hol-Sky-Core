@@ -2,6 +2,8 @@ extends CanvasLayer
 
 class_name DialogueSystem
 
+const FONT_FIT := preload("res://addons/dialogue_system/ui/DialogueFontFit.gd")
+
 signal dialogue_started(entry_id: String)
 signal dialogue_finished(entry_id: String, result: DialogueResult)
 signal dialogue_cancelled(entry_id: String)
@@ -70,6 +72,8 @@ func _notification(what: int) -> void:
 
 
 func _ready() -> void:
+	if name_label:
+		name_label.resized.connect(_fit_speaker_name)
 
 	timeline.configure(dialogue_style)
 	choice_manager.configure(dialogue_style)
@@ -383,6 +387,7 @@ func _show_speaker(line: DialogueLine) -> void:
 
 	if speaker == null:
 		name_label.text = line.speaker
+		_fit_speaker_name()
 		return
 
 	name_label.bbcode_enabled = true
@@ -390,6 +395,12 @@ func _show_speaker(line: DialogueLine) -> void:
 	name_label.append_text(
 		"[outline_color=%s][color=%s]%s[/color][/outline_color]" % [speaker.color, speaker.color, speaker.name]
 	)
+	_fit_speaker_name()
+
+
+func _fit_speaker_name() -> void:
+	if name_label:
+		FONT_FIT.fit(name_label, name_label.text, 40)
 
 
 func _add_line_to_log(line: DialogueLine) -> void:
