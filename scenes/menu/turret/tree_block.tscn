@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://ci78d6sf40mew"]
+
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="1_ingec"]
+[ext_resource type="StyleBox" uid="uid://bmp3efyvunkcf" path="res://textures/styles/tree_block_bg.tres" id="2_s5qwi"]
+[ext_resource type="StyleBox" uid="uid://b6p1i2bbci45x" path="res://textures/styles/tree_block_bg_disabled.tres" id="3_a40yk"]
+[ext_resource type="Script" uid="uid://dec1pfkjila23" path="res://scripts/menu/tree_block.gd" id="3_koaty"]
+[ext_resource type="Texture2D" uid="uid://bhbd2clrtr6y" path="res://textures/menu/turret/All Icons/Lock.svg" id="4_nrdw3"]
+
+[node name="tree_block" type="Button" unique_id=1755079030 node_paths=PackedStringArray("lock")]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_constants/icon_max_width = 100
+theme_override_fonts/font = ExtResource("1_ingec")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = ExtResource("2_s5qwi")
+theme_override_styles/pressed = ExtResource("2_s5qwi")
+theme_override_styles/hover = ExtResource("2_s5qwi")
+theme_override_styles/disabled = ExtResource("3_a40yk")
+icon_alignment = 1
+script = ExtResource("3_koaty")
+lock = NodePath("Lock")
+
+[node name="Lock" type="TextureRect" parent="." unique_id=451060642]
+custom_minimum_size = Vector2(50, 50)
+custom_maximum_size = Vector2(35, 35)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 66.0
+offset_right = 101.0
+offset_bottom = 101.0
+texture = ExtResource("4_nrdw3")

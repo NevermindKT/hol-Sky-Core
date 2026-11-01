@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://b6p1i2bbci45x"]
+
+[ext_resource type="Texture2D" uid="uid://wdlvdp7k023v" path="res://textures/menu/turret/INACTIVE — grey.png" id="1_1suin"]
+
+[resource]
+texture = ExtResource("1_1suin")
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+modulate_color = Color(0.92941177, 0.92941177, 0.92941177, 0.6666667)

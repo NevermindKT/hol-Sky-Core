@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bdwnvoqrpyinl"]
+
+[ext_resource type="Script" uid="uid://cv7u5a5t4klbe" path="res://scripts/menu/upgrade_tree.gd" id="1_avsvi"]
+[ext_resource type="PackedScene" uid="uid://ci78d6sf40mew" path="res://scenes/menu/turret/tree_block.tscn" id="2_vplca"]
+
+[node name="Tree" type="VBoxContainer" unique_id=1457611330 node_paths=PackedStringArray("blocks")]
+custom_minimum_size = Vector2(300, 600)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -321.5
+offset_right = 175.0
+offset_bottom = 321.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_avsvi")
+blocks = NodePath("Content/Blocks")
+
+[node name="Content" type="Control" parent="." unique_id=1035763687]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Blocks" type="VBoxContainer" parent="Content" unique_id=2086142110]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Branch" type="HBoxContainer" parent="Content/Blocks" unique_id=1718627759]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="tree_block" parent="Content/Blocks/Branch" unique_id=1755079030 instance=ExtResource("2_vplca")]
+layout_mode = 2
+object_id = 4
+
+[node name="Branch2" type="HBoxContainer" parent="Content/Blocks" unique_id=1562664473]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="tree_block" parent="Content/Blocks/Branch2" unique_id=825440331 instance=ExtResource("2_vplca")]
+layout_mode = 2
+object_id = 2
+
+[node name="tree_block2" parent="Content/Blocks/Branch2" unique_id=127456258 instance=ExtResource("2_vplca")]
+layout_mode = 2
+object_id = 3
+
+[node name="Branch3" type="HBoxContainer" parent="Content/Blocks" unique_id=1992988541]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="tree_block" parent="Content/Blocks/Branch3" unique_id=998000307 instance=ExtResource("2_vplca")]
+layout_mode = 2
+object_id = 1
+
+[node name="Type" type="RichTextLabel" parent="." unique_id=617637437]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "Type"
+horizontal_alignment = 1
+vertical_alignment = 1
