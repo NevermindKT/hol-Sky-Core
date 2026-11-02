@@ -17,12 +17,6 @@ signal exit_requested
 
 
 func _ready() -> void:
-	if GameState.needs_intro():
-		hide()
-		GameFlow.enter_base.call_deferred()
-		return
-	GameState.enter_base()
-	MenuMusic.set_base_tab(&"map")
 	footer.MapButton.pressed.connect(_map_button_pressed)
 	footer.CarButton.pressed.connect(_car_button_pressed)
 	footer.ShopButton.pressed.connect(_shop_button_pressed)
@@ -30,6 +24,12 @@ func _ready() -> void:
 	footer.InventoryButton.pressed.connect(_inventory_button_pressed)
 
 	header.exit_btn.pressed.connect(_on_exit_pressed)
+
+
+func open() -> void:
+	_map_button_pressed()
+	GameState.enter_base()
+	show()
 
 
 func _on_exit_pressed():
@@ -44,7 +44,6 @@ func _show_menu(selected_menu: Control) -> void:
 func _map_button_pressed() -> void:
 	_show_menu(map)
 	MenuMusic.set_base_tab(&"map")
-
 
 
 func _turret_button_pressed() -> void:

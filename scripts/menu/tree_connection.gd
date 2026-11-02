@@ -50,6 +50,11 @@ var line: Line2D
 
 func _ready() -> void:
 	_create_line()
+
+	for block in [from_block, to_block]:
+		if is_instance_valid(block) and not block.item_rect_changed.is_connected(_update_line):
+			block.item_rect_changed.connect(_update_line)
+
 	_update_line()
 
 
@@ -66,12 +71,8 @@ func _create_line() -> void:
 	line.width = line_width
 	line.default_color = inactive_color
 	line.antialiased = true
-	line.z_index = -1
 
 	add_child(line)
-
-	if Engine.is_editor_hint():
-		line.owner = get_tree().edited_scene_root
 
 
 func _update_line() -> void:

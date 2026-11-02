@@ -1,52 +1,53 @@
 extends VBoxContainer
 class_name UpgradeTree
 
-signal upgrade_requested(upgrade_id: String)
+signal upgrade_selected(upgrade_id: String)
 
 @export var blocks: Control
+@export var connections: Control
+@export var title: RichTextLabel
 
 
 func _ready() -> void:
-	_connect_blocks()
+	for block in get_blocks():
+		if not block.selected.is_connected(_on_block_selected):
+			block.selected.connect(_on_block_selected)
 
 
-func _connect_blocks() -> void:
-	if not blocks:
-		return
+func get_blocks() -> Array[TreeBlock]:
+	var result: Array[TreeBlock] = []
 
-	_connect_recursive(blocks)
+	if blocks:
+		for child in blocks.find_children("*", "TreeBlock", true, false):
+			result.append(child)
 
-
-func _connect_recursive(parent_node: Node) -> void:
-	for child in parent_node.get_children():
-		if child is TreeBlock:
-			if not child.upgrade_requested.is_connected(_on_block_upgrade_requested):
-				child.upgrade_requested.connect(_on_block_upgrade_requested)
-
-		_connect_recursive(child)
+	return result
 
 
 func refresh(turret_dict: Dictionary) -> void:
-	if not blocks:
-		return
+	var branch_name := ""
 
-	_refresh_recursive(blocks, turret_dict)
+	for block in get_blocks():
+		if turret_dict.has(block.object_id):
+			block.configure(turret_dict[block.object_id])
+		else:
+			block.disabled = true
+			if block.lock:
+				block.lock.visible = true
+
+		var upgrade_data := UpgradeManager.get_upgrade(block.upgrade_id)
+
+		if branch_name.is_empty() and upgrade_data and upgrade_data.branch:
+			branch_name = upgrade_data.branch.display_name
+
+	if title and not branch_name.is_empty():
+		title.text = tr(branch_name)
+
+	if connections:
+		for connection in connections.get_children():
+			if connection is TreeConnection and connection.from_block:
+				connection.set_active(connection.from_block.level > 0)
 
 
-func _refresh_recursive(parent_node: Node, turret_dict: Dictionary) -> void:
-	for child in parent_node.get_children():
-		if child is TreeBlock:
-			var object_id: int = child.object_id
-
-			if turret_dict.has(object_id):
-				child.configure(turret_dict[object_id])
-			else:
-				child.disabled = true
-				if child.lock:
-					child.lock.visible = true
-
-		_refresh_recursive(child, turret_dict)
-
-
-func _on_block_upgrade_requested(upgrade_id: String) -> void:
-	upgrade_requested.emit(upgrade_id)
+func _on_block_selected(upgrade_id: String) -> void:
+	upgrade_selected.emit(upgrade_id)

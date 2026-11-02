@@ -2,13 +2,24 @@
 extends Button
 class_name TreeBlock
 
-signal upgrade_requested(upgrade_id: String)
+signal selected(upgrade_id: String)
+
+const NOT_OWNED_ICON_COLOR := Color(1, 1, 1, 0.45)
+const ICON_COLORS: Array[StringName] = [
+	&"icon_normal_color",
+	&"icon_hover_color",
+	&"icon_pressed_color",
+	&"icon_hover_pressed_color",
+	&"icon_focus_color",
+]
 
 @export_category("Settings")
 @export var object_id: int = 0
 @export var lock: TextureRect
 
-var _upgrade_id: String = ""
+var upgrade_id: String = ""
+var title: String = ""
+var level := 0
 
 
 func _ready() -> void:
@@ -19,54 +30,53 @@ func configure(data: Dictionary) -> void:
 	var upgrade_data := UpgradeManager.get_upgrade(
 		str(data.get("UpgradeId", ""))
 	)
+	title = str(data.get("Name", ""))
 
 	if upgrade_data == null:
-		_upgrade_id = ""
+		upgrade_id = ""
+		level = 0
 		disabled = true
 		if lock:
 			lock.visible = true
 		return
 
-	_upgrade_id = upgrade_data.id
+	upgrade_id = upgrade_data.id
 
 	refresh_state(upgrade_data)
 
 
 func refresh_state(upgrade_data: UpgradeData = null) -> void:
 	if upgrade_data == null:
-		upgrade_data = UpgradeManager.get_upgrade(_upgrade_id)
+		upgrade_data = UpgradeManager.get_upgrade(upgrade_id)
 
 	if upgrade_data == null:
 		return
 
 	var unlocked := UpgradeManager.is_unlocked(upgrade_data)
-	var maxed := UpgradeManager.is_maxed(upgrade_data)
+	level = UpgradeManager.get_level(upgrade_id)
 
 	disabled = not unlocked
 
 	if lock:
 		lock.visible = not unlocked
 
-	tooltip_text = "%s\n%s/%s" % [
-		tr("Рівень"),
-		UpgradeManager.get_level(_upgrade_id),
-		upgrade_data.max_level
+	for color_name in ICON_COLORS:
+		if level > 0:
+			remove_theme_color_override(color_name)
+		else:
+			add_theme_color_override(color_name, NOT_OWNED_ICON_COLOR)
+
+	tooltip_text = "%s\n%s" % [
+		tr(title),
+		tr("Рівень %d/%d") % [level, upgrade_data.max_level]
 	]
 
-	if maxed:
+	if UpgradeManager.is_maxed(upgrade_data):
 		tooltip_text += "\n" + tr("Максимум")
 
 
 func _on_pressed() -> void:
-	if _upgrade_id.is_empty():
+	if upgrade_id.is_empty():
 		return
 
-	var upgrade_data := UpgradeManager.get_upgrade(_upgrade_id)
-
-	if upgrade_data == null:
-		return
-
-	if UpgradeManager.is_maxed(upgrade_data):
-		return
-
-	upgrade_requested.emit(_upgrade_id)
+	selected.emit(upgrade_id)

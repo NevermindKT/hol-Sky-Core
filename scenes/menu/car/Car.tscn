@@ -136,7 +136,7 @@ texture = ExtResource("18_gnhqe")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vnypt"]
 texture = ExtResource("17_0eapn")
 
-[node name="Car" type="Control" unique_id=460311930]
+[node name="Car" type="Control" unique_id=460311930 node_paths=PackedStringArray("type_object_label", "btn_previous", "btn_next", "part_image", "part_icons")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,6 +144,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d27xw")
+type_object_label = NodePath("Types/Selling/Object")
+btn_previous = NodePath("Types/Selling/Previous")
+btn_next = NodePath("Types/Selling/Next")
+part_image = NodePath("Types/Image")
+part_icons = NodePath("TypesImage")
 
 [node name="Background" type="Panel" parent="." unique_id=453470279]
 layout_mode = 1
