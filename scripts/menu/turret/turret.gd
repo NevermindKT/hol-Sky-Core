@@ -16,6 +16,7 @@ var _block_group := ButtonGroup.new()
 func _ready() -> void:
 	Settings.language_changed.connect(refresh_turrets)
 	Events.upgrade_level_changed.connect(_on_upgrade_level_changed)
+	UpgradeManager.levels_loaded.connect(refresh_turrets)
 	BaseInventoryManager.money_changed.connect(_on_money_changed)
 	purchase_btn.pressed.connect(_on_purchase_pressed)
 

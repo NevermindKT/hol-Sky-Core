@@ -1,5 +1,7 @@
 extends Node
 
+signal levels_loaded
+
 const DATABASE_PATH := "res://resources/upgrades/upgrade_database.tres"
 const SAVE_TABLE := "Turret"
 const UNLOCK_LEVEL := 1
@@ -117,6 +119,7 @@ func load_saved_levels() -> void:
 		if level > 0:
 			levels[upgrade_data.id] = level
 	_rebuild_active_levels()
+	levels_loaded.emit()
 
 func reset() -> void:
 	levels.clear()
