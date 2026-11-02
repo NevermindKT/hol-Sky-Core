@@ -110,7 +110,7 @@ func reload() -> bool:
 	if weapon.is_reloading:
 		return false
 
-	var magazine_capacity := UpgradeManager.get_modified(&"expanded_magazine", weapon.data.magazine_capacity)
+	var magazine_capacity := get_magazine_capacity(weapon)
 
 	if weapon.ammo >= magazine_capacity:
 		return false
@@ -151,18 +151,17 @@ func reload() -> bool:
 	return loaded > 0
 
 
+func get_magazine_capacity(weapon: WeaponState) -> int:
+	return roundi(UpgradeManager.get_modified(&"expanded_magazine", weapon.data.magazine_capacity))
+
+
 func reload_stop():
 	Events.reload_finished.emit()
 
 
 func fill_all_magazines():
 	for weapon in player_weapons:
-		var magazine_capacity: int = roundi(
-			UpgradeManager.get_modified(
-				&"expanded_magazine",
-				weapon.data.magazine_capacity
-			)
-		)
+		var magazine_capacity := get_magazine_capacity(weapon)
 		var need: int = floori(magazine_capacity - weapon.ammo)
 
 		if need <= 0:
