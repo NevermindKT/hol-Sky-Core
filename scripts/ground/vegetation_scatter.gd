@@ -3,16 +3,20 @@ class_name Vegetation_scatter
 
 const FOLIAGE_CUTOUT_SHADER := preload("res://resources/shaders/vegetation/foliage_cutout.gdshader")
 const FOLIAGE_OPAQUE_SHADER := preload("res://resources/shaders/vegetation/foliage_opaque.gdshader")
-const LOD_SUFFIX_PATTERN := "_LOD([0-9]+)$"
+const LOD_SUFFIX_PATTERN := "(?i)_LOD_?([0-9]+)$"
 
 
 class MeshVariant:
 	var mesh: Mesh
 	var offset := Transform3D.IDENTITY
 	var lods: Array[Mesh] = []
+	var lod_offsets: Array[Transform3D] = []  # offset для lods[i], параллельный массив
 
 	func mesh_for(tier: int) -> Mesh:
 		return mesh if tier == 0 else lods[tier - 1]
+
+	func offset_for(tier: int) -> Transform3D:
+		return offset if tier == 0 else lod_offsets[tier - 1]
 
 
 class GridCells:
@@ -163,7 +167,11 @@ func compute_category(key: Vector2i, world_seed: int, category_index: int, categ
 		order[i] = order[j]
 		order[j] = swap
 	var variant_count := mini(category.variants_per_chunk, pool.size())
-	var tiers := 1 + (pool[0] as MeshVariant).lods.size()
+
+	var lod_count: int = (pool[0] as MeshVariant).lods.size()
+	for pooled in pool:
+		lod_count = mini(lod_count, (pooled as MeshVariant).lods.size())
+	var tiers := 1 + lod_count
 
 	for v in variant_count:
 		var mesh_variant: MeshVariant = pool[order[v]]
@@ -171,7 +179,7 @@ func compute_category(key: Vector2i, world_seed: int, category_index: int, categ
 			var batch := Batch.new()
 			batch.category = category
 			batch.mesh = mesh_variant.mesh_for(tier)
-			batch.offset = mesh_variant.offset
+			batch.offset = mesh_variant.offset_for(tier)
 			batch.per_chunk = tier == 0 and (tiers > 1 or category.visibility_range > 0.0)
 			batches.append(batch)
 
@@ -308,37 +316,80 @@ func _collect_variants(root: Node, model_name: String, category: VegetationCateg
 	var parts: Array = []
 	_collect_mesh_instances(root, Transform3D.IDENTITY, parts)
 
-	var best_lod := {}
-	for part in parts:
-		var lod := _lod_of(part[0].name)
-		var base: String = _lod_base(part[0].name)
-		best_lod[base] = mini(best_lod.get(base, lod), lod)
-
+	# Группируем по имени дерева (без _lodN), внутри — по номеру LOD.
 	var groups := {}
-	var group_order: Array[Vector2i] = []
+	var group_order: Array[String] = []
+
 	for part in parts:
-		var mesh_instance: MeshInstance3D = part[0]
-		if _lod_of(mesh_instance.name) > best_lod[_lod_base(mesh_instance.name)]:
-			continue
-		var origin: Vector3 = part[1].origin
-		var key := Vector2i(roundi(origin.x * 100.0), roundi(origin.z * 100.0))
+		var lod: int = part[2]
+		var key: String = part[4]
+
 		if not groups.has(key):
-			groups[key] = []
+			groups[key] = {}
 			group_order.append(key)
-		groups[key].append(part)
+		if not groups[key].has(lod):
+			groups[key][lod] = []
+		groups[key][lod].append(part)
 
 	for key in group_order:
-		var group: Array = groups[key]
+		var lod_groups: Dictionary = groups[key]
+
+		if not lod_groups.has(0):
+			push_warning("Vegetation_scatter: модель '%s', группа '%s' не содержит LOD0 (есть LOD: %s)" % [model_name, key, lod_groups.keys()])
+			continue
+
+		var base_group: Array = lod_groups[0]
+
 		var label := model_name
-		for part in group:
+		for part in base_group:
 			label += "/" + String(part[0].name)
+
 		if not _matches(label, category.include_patterns) or _matches_any(label, category.exclude_patterns):
 			continue
-		var first_origin: Vector3 = group[0][1].origin
-		var variant := _build_variant(group, Vector3(first_origin.x, 0.0, first_origin.z), category)
-		if variant:
+
+		# Pivot LOD0: X/Z узла, высота сохраняется как раньше.
+		var base_origin: Vector3 = base_group[0][3]
+		var pivot := Vector3(base_origin.x, 0.0, base_origin.z)
+
+		var variant := _build_variant(base_group, pivot, category)
+		if variant == null:
+			continue
+
+		var needed := category.lod_road_distances.size()
+		var manual_lods: Array[Mesh] = []
+		var manual_offsets: Array[Transform3D] = []
+
+		for lod_index in range(1, needed + 1):
+			if not lod_groups.has(lod_index):
+				break
+
+			var lod_group: Array = lod_groups[lod_index]
+			# Собственный pivot LOD: компенсирует то, что LOD лежит в другом месте сцены.
+			# По Y берём смещение относительно LOD0 (если ряды LOD разнесены по высоте).
+			var lod_origin: Vector3 = lod_group[0][3]
+			var lod_pivot := Vector3(lod_origin.x, lod_origin.y - base_origin.y, lod_origin.z)
+
+			var lod_variant := _build_variant(lod_group, lod_pivot, category)
+			if lod_variant == null:
+				break
+
+			manual_lods.append(lod_variant.mesh)
+			manual_offsets.append(lod_variant.offset)
+
+		if manual_lods.size() == needed:
+			variant.lods = manual_lods
+			variant.lod_offsets = manual_offsets
+			for lod_mesh in variant.lods:
+				_far_meshes[lod_mesh] = true
+		else:
+			if not manual_lods.is_empty():
+				push_warning("Vegetation_scatter: '%s' — ручных LOD %d из %d, использую автоматические" % [label, manual_lods.size(), needed])
 			variant.lods = _build_lods(variant.mesh, category)
-			variants.append(variant)
+			variant.lod_offsets.clear()
+			for i in variant.lods.size():
+				variant.lod_offsets.append(variant.offset)
+
+		variants.append(variant)
 
 
 func _lod_of(node_name: String) -> int:
@@ -350,14 +401,33 @@ func _lod_base(node_name: String) -> String:
 	return _lod_regex.sub(node_name, "")
 
 
-func _collect_mesh_instances(node: Node, xform: Transform3D, out: Array) -> void:
+func _collect_mesh_instances(node: Node, xform: Transform3D, out: Array, inherited_lod: int = 0, inherited_origin = null, inherited_key: String = "") -> void:
 	for child in node.get_children():
 		if not child is Node3D:
 			continue
+
 		var child_xform: Transform3D = xform * child.transform
+		var child_lod := inherited_lod
+		var child_origin = inherited_origin
+		var child_key := inherited_key
+
+		# Узел с LOD-суффиксом задаёт номер LOD, опорную позицию и имя группы.
+		var lod_match := _lod_regex.search(child.name)
+		if lod_match:
+			child_lod = lod_match.get_string(1).to_int()
+			child_origin = child_xform.origin
+			child_key = _lod_base(String(child.name)).to_lower()
+
 		if child is MeshInstance3D and child.mesh:
-			out.append([child, child_xform])
-		_collect_mesh_instances(child, child_xform, out)
+			var origin: Vector3 = child_origin if child_origin != null else child_xform.origin
+			var key := child_key
+			if key.is_empty():
+				# Запасной вариант: нет LOD-узла вообще, группируем по позиции.
+				key = "pos:%d:%d" % [roundi(origin.x * 100.0), roundi(origin.z * 100.0)]
+			# part = [меш, трансформ, номер LOD, опорная позиция, ключ группы]
+			out.append([child, child_xform, child_lod, origin, key])
+
+		_collect_mesh_instances(child, child_xform, out, child_lod, child_origin, child_key)
 
 
 func _build_variant(group: Array, pivot: Vector3, category: VegetationCategoryData) -> MeshVariant:
@@ -394,9 +464,17 @@ func _build_variant(group: Array, pivot: Vector3, category: VegetationCategoryDa
 		return null
 
 	var merged := ImporterMesh.new()
+
 	for surface in surfaces:
-		merged.add_surface(surface[0], surface[1], [], {}, _prepare_material(surface[2], category, height), surface[3])
-	merged.generate_lods(25.0, 60.0, [])
+		merged.add_surface(
+			surface[0],
+			surface[1],
+			[],
+			{},
+			_prepare_material(surface[2], category, height),
+			surface[3]
+		)
+
 	variant.mesh = merged.get_mesh()
 	return variant
 
