@@ -1,0 +1,51 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/audio/menu_music.gd" id="1_kshdn"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/menu_theme.ogg" id="2_5v621"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/menu_theme_far.ogg" id="3_y3gvm"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/base_camp.ogg" id="4_havjj"]
+[ext_resource type="AudioStream" path="res://audio/ambience/menu/bg_map.ogg" id="5_lxrq7"]
+[ext_resource type="AudioStream" path="res://audio/ambience/menu/bg_car.ogg" id="6_jlaqn"]
+[ext_resource type="AudioStream" path="res://audio/ambience/menu/bg_shop.ogg" id="7_lgmdp"]
+[ext_resource type="AudioStream" path="res://audio/ambience/menu/bg_turret.ogg" id="8_x0to4"]
+[ext_resource type="AudioStream" path="res://audio/ambience/menu/bg_inventory.ogg" id="9_w8116"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/dlg_guard.ogg" id="10_ee0p0"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/dlg_stranger.ogg" id="11_iclvd"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/dlg_barman.ogg" id="12_3t1ix"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/dlg_scientist.ogg" id="13_i30ox"]
+[ext_resource type="AudioStream" path="res://audio/ambience/menu/bg_guard.ogg" id="14_ixkw3"]
+[ext_resource type="AudioStream" path="res://audio/ambience/menu/bg_stranger.ogg" id="15_eoqr8"]
+[ext_resource type="AudioStream" path="res://audio/ambience/menu/bg_barman.ogg" id="16_8b8rg"]
+[ext_resource type="AudioStream" path="res://audio/ambience/menu/bg_scientist.ogg" id="17_u0ye6"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/dlg_stranger_nervous.ogg" id="18_xs865"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/sting_death.ogg" id="19_n1uvm"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/sting_death_nopiano.ogg" id="20_c1sha"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/sting_victory.ogg" id="21_da8bt"]
+[ext_resource type="AudioStream" path="res://audio/music/afterroute/menu/sting_victory_base.ogg" id="22_jbg7f"]
+
+[node name="MenuMusic" type="Node" unique_id=1652097156]
+script = ExtResource("1_kshdn")
+menu_tracks = Array[AudioStream]([ExtResource("2_5v621"), ExtResource("3_y3gvm")])
+base_music = ExtResource("4_havjj")
+base_backgrounds = Dictionary[StringName, AudioStream]({
+&"car": ExtResource("6_jlaqn"),
+&"inventory": ExtResource("9_w8116"),
+&"map": ExtResource("5_lxrq7"),
+&"shop": ExtResource("7_lgmdp"),
+&"turret": ExtResource("8_x0to4")
+})
+dialogue_music = Dictionary[StringName, AudioStream]({
+&"barman": ExtResource("12_3t1ix"),
+&"guard": ExtResource("10_ee0p0"),
+&"scientist": ExtResource("13_i30ox"),
+&"stranger": ExtResource("11_iclvd")
+})
+dialogue_backgrounds = Dictionary[StringName, AudioStream]({
+&"barman": ExtResource("16_8b8rg"),
+&"guard": ExtResource("14_ixkw3"),
+&"scientist": ExtResource("17_u0ye6"),
+&"stranger": ExtResource("15_eoqr8")
+})
+nervous_layer = ExtResource("18_xs865")
+death_stings = Array[AudioStream]([ExtResource("19_n1uvm"), ExtResource("20_c1sha")])
+victory_stings = Array[AudioStream]([ExtResource("21_da8bt"), ExtResource("22_jbg7f")])
