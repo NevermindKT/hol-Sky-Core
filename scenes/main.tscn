@@ -141,6 +141,8 @@ transform = Transform3D(1, 0, 0, 0, 0.86818093, 0.49624774, 0, -0.49624774, 0.86
 fov = 90.0
 script = ExtResource("2_c6pm6")
 car = NodePath("../Car")
+photo_move_speed = 14.0
+photo_boost_multiplier = 8.0
 
 [node name="AudioListener3D" type="AudioListener3D" parent="SubViewportContainer/SubViewport/PlayerCam" unique_id=587824042]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
@@ -281,7 +283,6 @@ max_segments_per_weather = 5
 script = ExtResource("30_152kg")
 landscape = ExtResource("32_kmb1v")
 texture_tile_scale = 0.35
-view_radius = 800.0
 detail_radius = 300.0
 chunk_size = 128.0
 vegetation_cluster_chunks = 6

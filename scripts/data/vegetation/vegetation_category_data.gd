@@ -14,7 +14,7 @@ enum Placement { SCATTER, GRID }
 @export var forest_response: Curve
 @export var min_road_distance := 10.0
 @export var road_fade_distance := 10.0
-@export var max_road_distance := 0.0
+@export var max_road_distance := 240.0
 
 @export var variants_per_chunk: int = 3
 @export var scale_range := Vector2(0.85, 1.25)
