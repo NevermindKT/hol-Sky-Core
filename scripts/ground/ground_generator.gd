@@ -22,7 +22,7 @@ const GROUND_SHADER_PATH := "res://resources/shaders/ground/ground_blend.gdshade
 
 @export_group("Terrain")
 @export var road_half_width := 8.0
-@export var ground_half_width := 300.0
+@export var ground_half_width := 400.0
 @export var view_radius := 600.0
 @export var detail_radius := 700.0
 @export var chunk_size := 64.0
