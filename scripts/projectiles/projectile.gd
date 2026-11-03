@@ -12,6 +12,7 @@ var is_crit := false
 
 const GRAVITY := Vector3.DOWN * 9.81
 const CRIT_DAMAGE_MULTIPLIER := 2.0
+const RICOCHET_DAMAGE_MULTIPLIER := 0.5
 const ROAD_IMPACT_EFFECT_SIZE := 0.15
 const RICOCHET_IMPACT_EFFECT_SIZE := 0.5
 
@@ -155,6 +156,7 @@ func _try_ricochet(enemy: Encounter_Enemy) -> bool:
 		effect.play(true, RICOCHET_IMPACT_EFFECT_SIZE)
 
 	bounces_left -= 1
+	damage *= RICOCHET_DAMAGE_MULTIPLIER
 	start_position = global_position
 	distance_traveled = 0.0
 	velocity = (target.global_position - global_position).normalized() * projectile_speed

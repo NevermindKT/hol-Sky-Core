@@ -10,39 +10,39 @@
 [sub_resource type="Resource" id="Effect_L1_1"]
 script = ExtResource("eff_stat")
 stat_id = &"less_turning_delay"
-multiplier = 0.5
+multiplier = 0.85
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_1"]
 script = ExtResource("level")
 cost = 800
-description = "less_turning_delay x0.5"
+description = "less_turning_delay x0.85"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L1_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
 
 [sub_resource type="Resource" id="Effect_L2_1"]
 script = ExtResource("eff_stat")
 stat_id = &"less_turning_delay"
-multiplier = 0.4
+multiplier = 0.75
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_2"]
 script = ExtResource("level")
 cost = 1600
-description = "less_turning_delay x0.4"
+description = "less_turning_delay x0.75"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L2_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
 
 [sub_resource type="Resource" id="Effect_L3_1"]
 script = ExtResource("eff_stat")
 stat_id = &"less_turning_delay"
-multiplier = 0.33
+multiplier = 0.65
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_3"]
 script = ExtResource("level")
 cost = 2400
-description = "less_turning_delay x0.33"
+description = "less_turning_delay x0.65"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L3_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
 

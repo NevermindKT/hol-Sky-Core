@@ -1161,6 +1161,9 @@ msgstr "Return to the scientist."
 msgid "Повітря смерділо трупами"
 msgstr "The air reeks of corpses"
 
+msgid "Покращення"
+msgstr "Upgrades"
+
 msgid "Помилився"
 msgstr "Wrong person"
 
@@ -1172,6 +1175,9 @@ msgstr "Then twice more"
 
 msgid "Пошкодження"
 msgstr "Damage"
+
+msgid "Придбати"
+msgstr "Buy"
 
 msgid "Прийти до поліції й сказати: "
 msgstr "Walk into a police station and say: "

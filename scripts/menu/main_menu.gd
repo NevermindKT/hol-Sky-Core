@@ -25,7 +25,6 @@ func _ready() -> void:
 	continue_btn.pressed.connect(_on_continue_pressed)
 	new_game_btn.pressed.connect(GameFlow.new_game)
 	continue_btn.disabled = not GameState.has_progress()
-	GameState.set_state(GameState.State.MAIN_MENU)
 	settings_btn.pressed.connect(_on_options_pressed)
 	exit_btn.pressed.connect(_on_exit_pressed)
 
@@ -36,6 +35,11 @@ func _ready() -> void:
 		settings_menu.visible = false
 
 	_connect_button_sounds()
+
+	if GameState.state == GameState.State.BASE:
+		_open_base.call_deferred()
+	else:
+		GameState.set_state(GameState.State.MAIN_MENU)
 
 
 func _connect_button_sounds():
@@ -54,8 +58,15 @@ func _on_button_click():
 
 
 func _on_continue_pressed():
+	if GameState.needs_intro():
+		GameFlow.enter_base()
+		return
+	_open_base()
+
+
+func _open_base():
 	visible = false
-	menu_core.visible = true
+	menu_core.open()
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
 
 
@@ -63,6 +74,7 @@ func _on_menu_core_exit():
 	menu_core.visible = false
 	visible = true
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	GameState.set_state(GameState.State.MAIN_MENU)
 
 
 func _on_exit_pressed():

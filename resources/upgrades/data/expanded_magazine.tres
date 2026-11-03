@@ -10,39 +10,39 @@
 [sub_resource type="Resource" id="Effect_L1_1"]
 script = ExtResource("eff_stat")
 stat_id = &"expanded_magazine"
-multiplier = 1.5
+multiplier = 1.25
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_1"]
 script = ExtResource("level")
 cost = 1200
-description = "expanded_magazine x1.5"
+description = "expanded_magazine x1.25"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L1_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
 
 [sub_resource type="Resource" id="Effect_L2_1"]
 script = ExtResource("eff_stat")
 stat_id = &"expanded_magazine"
-multiplier = 2.0
+multiplier = 1.5
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_2"]
 script = ExtResource("level")
 cost = 2400
-description = "expanded_magazine x2"
+description = "expanded_magazine x1.5"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L2_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
 
 [sub_resource type="Resource" id="Effect_L3_1"]
 script = ExtResource("eff_stat")
 stat_id = &"expanded_magazine"
-multiplier = 2.5
+multiplier = 1.75
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_3"]
 script = ExtResource("level")
 cost = 3600
-description = "expanded_magazine x2.5"
+description = "expanded_magazine x1.75"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L3_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
 

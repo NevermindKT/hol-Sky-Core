@@ -4,6 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://bmp3efyvunkcf" path="res://textures/styles/tree_block_bg.tres" id="2_s5qwi"]
 [ext_resource type="StyleBox" uid="uid://b6p1i2bbci45x" path="res://textures/styles/tree_block_bg_disabled.tres" id="3_a40yk"]
 [ext_resource type="Script" uid="uid://dec1pfkjila23" path="res://scripts/menu/tree_block.gd" id="3_koaty"]
+[ext_resource type="StyleBox" path="res://textures/styles/tree_block_bg_selected.tres" id="5_sel"]
 [ext_resource type="Texture2D" uid="uid://bhbd2clrtr6y" path="res://textures/menu/turret/All Icons/Lock.svg" id="4_nrdw3"]
 
 [node name="tree_block" type="Button" unique_id=1755079030 node_paths=PackedStringArray("lock")]
@@ -20,9 +21,11 @@ theme_override_constants/icon_max_width = 100
 theme_override_fonts/font = ExtResource("1_ingec")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("2_s5qwi")
-theme_override_styles/pressed = ExtResource("2_s5qwi")
+theme_override_styles/pressed = ExtResource("5_sel")
 theme_override_styles/hover = ExtResource("2_s5qwi")
+theme_override_styles/hover_pressed = ExtResource("5_sel")
 theme_override_styles/disabled = ExtResource("3_a40yk")
+toggle_mode = true
 icon_alignment = 1
 script = ExtResource("3_koaty")
 lock = NodePath("Lock")

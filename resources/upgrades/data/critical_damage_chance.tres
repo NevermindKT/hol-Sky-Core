@@ -12,13 +12,13 @@
 script = ExtResource("eff_stat")
 stat_id = &"critical_damage_chance"
 operation = 1
-multiplier = 0.5
+multiplier = 0.1
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_1"]
 script = ExtResource("level")
 cost = 1800
-description = "critical_damage_chance +0.5"
+description = "critical_damage_chance +0.1"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L1_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
 
@@ -26,13 +26,13 @@ metadata/_custom_type_script = "uid://d18mggsnx5se3"
 script = ExtResource("eff_stat")
 stat_id = &"critical_damage_chance"
 operation = 1
-multiplier = 0.65
+multiplier = 0.15
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_2"]
 script = ExtResource("level")
 cost = 3600
-description = "critical_damage_chance +0.65"
+description = "critical_damage_chance +0.15"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L2_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
 
@@ -40,13 +40,13 @@ metadata/_custom_type_script = "uid://d18mggsnx5se3"
 script = ExtResource("eff_stat")
 stat_id = &"critical_damage_chance"
 operation = 1
-multiplier = 0.8
+multiplier = 0.2
 metadata/_custom_type_script = "uid://bu0ke47ej7sud"
 
 [sub_resource type="Resource" id="Level_3"]
 script = ExtResource("level")
 cost = 5400
-description = "critical_damage_chance +0.8"
+description = "critical_damage_chance +0.2"
 effects = Array[ExtResource("eff_base")]([SubResource("Effect_L3_1")])
 metadata/_custom_type_script = "uid://d18mggsnx5se3"
 

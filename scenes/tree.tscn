@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://bdwnvoqrpyinl"]
 
 [ext_resource type="Script" uid="uid://cv7u5a5t4klbe" path="res://scripts/menu/upgrade_tree.gd" id="1_avsvi"]
+[ext_resource type="Script" uid="uid://bd1qdgetny6ju" path="res://scripts/menu/tree_connection.gd" id="3_link"]
 [ext_resource type="PackedScene" uid="uid://ci78d6sf40mew" path="res://scenes/menu/turret/tree_block.tscn" id="2_vplca"]
 
-[node name="Tree" type="VBoxContainer" unique_id=1457611330 node_paths=PackedStringArray("blocks")]
+[node name="Tree" type="VBoxContainer" unique_id=1457611330 node_paths=PackedStringArray("blocks", "connections", "title")]
 custom_minimum_size = Vector2(300, 600)
 anchors_preset = 8
 anchor_left = 0.5
@@ -18,10 +19,61 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_avsvi")
 blocks = NodePath("Content/Blocks")
+connections = NodePath("Content/Links")
+title = NodePath("Type")
 
 [node name="Content" type="Control" parent="." unique_id=1035763687]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Links" type="Control" parent="Content" unique_id=1203948571]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RootLeft" type="Control" parent="Content/Links" unique_id=1203948572 node_paths=PackedStringArray("from_block", "to_block")]
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("3_link")
+from_block = NodePath("../../Blocks/Branch3/tree_block")
+to_block = NodePath("../../Blocks/Branch2/tree_block")
+inactive_color = Color(0.55, 0.55, 0.55, 0.35)
+active_color = Color(1, 0.72, 0.38, 0.9)
+curved = false
+
+[node name="RootRight" type="Control" parent="Content/Links" unique_id=1203948573 node_paths=PackedStringArray("from_block", "to_block")]
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("3_link")
+from_block = NodePath("../../Blocks/Branch3/tree_block")
+to_block = NodePath("../../Blocks/Branch2/tree_block2")
+inactive_color = Color(0.55, 0.55, 0.55, 0.35)
+active_color = Color(1, 0.72, 0.38, 0.9)
+curved = false
+
+[node name="LeftTop" type="Control" parent="Content/Links" unique_id=1203948574 node_paths=PackedStringArray("from_block", "to_block")]
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("3_link")
+from_block = NodePath("../../Blocks/Branch2/tree_block")
+to_block = NodePath("../../Blocks/Branch/tree_block")
+inactive_color = Color(0.55, 0.55, 0.55, 0.35)
+active_color = Color(1, 0.72, 0.38, 0.9)
+curved = false
+
+[node name="RightTop" type="Control" parent="Content/Links" unique_id=1203948575 node_paths=PackedStringArray("from_block", "to_block")]
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("3_link")
+from_block = NodePath("../../Blocks/Branch2/tree_block2")
+to_block = NodePath("../../Blocks/Branch/tree_block")
+inactive_color = Color(0.55, 0.55, 0.55, 0.35)
+active_color = Color(1, 0.72, 0.38, 0.9)
+curved = false
 
 [node name="Blocks" type="VBoxContainer" parent="Content" unique_id=2086142110]
 layout_mode = 1
