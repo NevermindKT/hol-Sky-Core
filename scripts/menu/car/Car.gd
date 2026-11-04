@@ -70,6 +70,7 @@ func refresh_car_upgrades() -> void:
 		return
 
 	for child in level_grid.get_children():
+		level_grid.remove_child(child)
 		child.queue_free()
 
 	var target_type: String = TYPES[current_type_index]
@@ -91,9 +92,7 @@ func refresh_car_upgrades() -> void:
 
 		lbl_level.text = str(int(car_item.get("Level", 0)))
 
-		var object_item: Dictionary = BaseInventoryManager.find_object_by_name(
-			str(car_item.get("TypeObj", ""))
-		)
+		var object_item: Dictionary = BaseInventoryManager.get_car_upgrade_material(car_item)
 		var current_quantity := int(object_item.get("Quantity", 0))
 		var num_obj := int(car_item.get("NumObj", 0))
 		var money_cost := int(car_item.get("Money", 0))

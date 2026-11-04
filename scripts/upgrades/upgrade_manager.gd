@@ -2,7 +2,7 @@ extends Node
 
 signal levels_loaded
 
-const DATABASE_PATH := "res://resources/upgrades/upgrade_database.tres"
+const DATABASE_PATH := "res://jsons/upgrades.json"
 const SAVE_TABLE := "Turret"
 const UNLOCK_LEVEL := 1
 
@@ -17,7 +17,7 @@ var levels: Dictionary = {}
 var _active_levels: Array[UpgradeLevel] = []
 
 func _ready() -> void:
-	database = load(DATABASE_PATH)
+	database = UpgradeDatabase.from_json(DATABASE_PATH)
 	InputController.debug_toggle_upgrade.connect(_on_debug_toggle_upgrade)
 	load_saved_levels.call_deferred()
 

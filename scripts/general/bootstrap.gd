@@ -49,6 +49,7 @@ func _ready() -> void:
 	set_road_generator()
 	set_aim_controller()
 
+	CarUpgradeApplicator.apply(car)
 	car.player_status_controller.initialize()
 	car.initialize(START_SPEED)
 
