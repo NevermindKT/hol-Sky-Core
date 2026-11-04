@@ -243,7 +243,7 @@ func purchase_car_upgrade(car_item: Dictionary) -> bool:
 	var upgrade: Dictionary = {}
 
 	for item in data.get("Car", []):
-		if str(item.get("ID", "")) == str(car_id):
+		if _key(item.get("ID", "")) == _key(car_id):
 			upgrade = item
 			break
 
@@ -257,15 +257,13 @@ func purchase_car_upgrade(car_item: Dictionary) -> bool:
 	var upgrades := get_car_upgrades(str(upgrade.get("Type", "")))
 
 	for item in upgrades:
-		if str(item.get("ID", "")) == str(car_id):
+		if _key(item.get("ID", "")) == _key(car_id):
 			break
 
 		if int(item.get("Purchased", 0)) != 1:
 			return false
 
-	var object_item := find_object_by_name(
-		str(upgrade.get("TypeObj", ""))
-	)
+	var object_item := get_car_upgrade_material(upgrade)
 
 	if object_item.is_empty():
 		return false
@@ -294,6 +292,7 @@ func purchase_car_upgrade(car_item: Dictionary) -> bool:
 
 	save_data()
 	money_changed.emit(get_player_money())
+	inventory_changed.emit()
 
 	return true
 
@@ -551,3 +550,9 @@ func update_rows(
 			row[key] = changes[key]
 
 	save_data()
+
+
+func get_car_upgrade_material(upgrade: Dictionary) -> Dictionary:
+	if upgrade.has("MaterialId"):
+		return find_object_by_id(str(upgrade["MaterialId"]))
+	return find_object_by_name(str(upgrade.get("TypeObj", "")))
