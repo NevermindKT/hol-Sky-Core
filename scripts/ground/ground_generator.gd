@@ -105,6 +105,8 @@ class Chunk:
 	var surface: Surface
 	var grid: Vegetation_scatter.GridCells
 	var detailed := false
+	var mesh: ArrayMesh
+	var rid := RID()  
 
 
 class Cluster:
@@ -112,6 +114,8 @@ class Cluster:
 	var node: Node3D
 	var members: Dictionary = {}
 	var slots: Dictionary = {}
+	var rs_slots: Dictionary = {}
+	var origin := Vector3.ZERO
 
 
 class ChunkJob:
@@ -169,6 +173,28 @@ var _needed_origin := Vector3(INF, INF, INF)
 var _pending_pieces: Array[PackedVector3Array] = []
 var _pending_piece_frames: PackedInt64Array = []
 
+# ----------------------------------------------- EXPERIMANTAL RS IMPLEMENTATION
+@export_category("RENDERING SERVER")
+@export var use_rendering_server := false
+
+class RSShell:
+	var multimesh := RID()
+	var instance := RID()
+
+	func release() -> void:
+		if instance.is_valid():
+			RenderingServer.free_rid(instance)
+		if multimesh.is_valid():
+			RenderingServer.free_rid(multimesh)
+		instance = RID()
+		multimesh = RID()
+
+var _rs_shells: Dictionary = {}
+var _shell_buffer := PackedFloat32Array()
+var _last_ground_xform := Transform3D()
+
+# ------------------------------------------------------------------------------
+
 
 func initialize() -> void:
 	_world_seed = randi()
@@ -191,6 +217,12 @@ func initialize() -> void:
 		if child is Road_segment:
 			_bind_road_material(child)
 
+# ------------------------------------------------------------------------------
+
+	if use_rendering_server and not RenderingServer.frame_pre_draw.is_connected(_sync_rs_transforms):
+		RenderingServer.frame_pre_draw.connect(_sync_rs_transforms)
+
+# ------------------------------------------------------------------------------
 
 func _process(_delta: float) -> void:
 	if not _pending_pieces.is_empty() and Engine.get_process_frames() >= _pending_piece_frames[0]:
@@ -221,6 +253,27 @@ func _exit_tree() -> void:
 		WorkerThreadPool.wait_for_task_completion(job.task_id)
 	_active.clear()
 	_active_keys.clear()
+
+	for cluster_key in _clusters:
+		_release_cluster_slots(_clusters[cluster_key])
+
+	if RenderingServer.frame_pre_draw.is_connected(_sync_rs_transforms):
+		RenderingServer.frame_pre_draw.disconnect(_sync_rs_transforms)
+
+	for key in _rs_shells:
+		_rs_shells[key].release()
+	_rs_shells.clear()
+
+	for key in _chunks:
+		var chunk: Chunk = _chunks[key]
+		if chunk.rid.is_valid():
+			RenderingServer.free_rid(chunk.rid)
+			chunk.rid = RID()
+	_chunks.clear()
+
+	for cluster_key in _clusters:
+		_release_cluster_slots(_clusters[cluster_key])
+	_clusters.clear()
 
 
 func _on_segment_spawned(segment: Road_segment) -> void:
@@ -488,8 +541,6 @@ func _evaluate(spine: Road_spine, candidates: PackedInt32Array, x: float, z: flo
 		out[2] = 0.0
 		out[3] = 0.0
 		return
-	
-	#Events.grab_query_debug(spine)
 
 	var d := q.hit_distance
 	var base := lerpf(q.hit_y, q.smooth_y, smoothstep(road_half_width, road_half_width + base_blend_distance, d))
@@ -869,17 +920,30 @@ func _apply_job(job: ChunkJob) -> void:
 		chunk = Chunk.new()
 		chunk.key = job.key
 		chunk.rect = _chunk_rect(job.key)
-		chunk.node = MeshInstance3D.new()
-		chunk.node.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
-		chunk.node.position = Vector3(job.key.x * chunk_size, 0.0, job.key.y * chunk_size)
-		chunk.node.material_override = _material
-		world.ground_container.add_child(chunk.node)
+		if use_rendering_server:
+			var scenario := world.ground_container.get_world_3d().scenario
+			chunk.rid = RenderingServer.instance_create2(mesh.get_rid(), scenario)
+			RenderingServer.instance_geometry_set_material_override(chunk.rid, _material.get_rid())
+			RenderingServer.instance_set_transform(chunk.rid, _chunk_xform(job.key))
+		else:
+			chunk.node = MeshInstance3D.new()
+			chunk.node.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+			chunk.node.position = Vector3(job.key.x * chunk_size, 0.0, job.key.y * chunk_size)
+			chunk.node.material_override = _material
+			world.ground_container.add_child(chunk.node)
 		_chunks[job.key] = chunk
 
-	chunk.node.mesh = mesh
-	var shell: MultiMeshInstance3D = _shells.get(job.key)
-	if shell:
-		shell.multimesh.mesh = mesh
+	if use_rendering_server:
+		RenderingServer.instance_set_base(chunk.rid, mesh.get_rid())
+		var rs_shell: RSShell = _rs_shells.get(job.key)
+		if rs_shell:
+			RenderingServer.multimesh_set_mesh(rs_shell.multimesh, mesh.get_rid())
+		chunk.mesh = mesh
+	else:
+		chunk.node.mesh = mesh
+		var shell: MultiMeshInstance3D = _shells.get(job.key)
+		if shell:
+			shell.multimesh.mesh = mesh
 	chunk.surface = job.surface
 	chunk.grid = job.grid
 	chunk.reach = job.reach
@@ -897,9 +961,15 @@ func _apply_job(job: ChunkJob) -> void:
 
 func _unload_chunk(key: Vector2i) -> void:
 	var chunk: Chunk = _chunks[key]
-	chunk.node.queue_free()
+	if use_rendering_server:
+		_release_rs_shell(key)
+		RenderingServer.free_rid(chunk.rid)
+		chunk.rid = RID()
+	else:
+		chunk.node.queue_free()
 	_chunks.erase(key)
 	_shells.erase(key)
+
 	for job in _active:
 		if job.key == key:
 			job.stale = true
@@ -935,11 +1005,13 @@ func _cluster_for(key: Vector2i) -> Cluster:
 	if cluster == null:
 		cluster = Cluster.new()
 		cluster.key = cluster_key
-		cluster.node = Node3D.new()
-		cluster.node.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 		var span := vegetation_cluster_chunks * chunk_size
-		cluster.node.position = Vector3(cluster_key.x * span, 0.0, cluster_key.y * span)
-		world.ground_container.add_child(cluster.node)
+		cluster.origin = Vector3(cluster_key.x * span, 0.0, cluster_key.y * span)
+		if not use_rendering_server:
+			cluster.node = Node3D.new()
+			cluster.node.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+			cluster.node.position = cluster.origin
+			world.ground_container.add_child(cluster.node)
 		_clusters[cluster_key] = cluster
 	return cluster
 
@@ -952,7 +1024,9 @@ func _rebuild_cluster(cluster_key: Vector2i) -> void:
 		return
 
 	if cluster.members.is_empty():
-		cluster.node.queue_free()
+		_release_cluster_slots(cluster)
+		if cluster.node:
+			cluster.node.queue_free()
 		_clusters.erase(cluster_key)
 		return
 
@@ -974,6 +1048,11 @@ func _rebuild_cluster(cluster_key: Vector2i) -> void:
 		if not merged.has(slot_key):
 			cluster.slots[slot_key].queue_free()
 			cluster.slots.erase(slot_key)
+
+	if use_rendering_server:
+		_apply_merged_rs(cluster, merged)
+		_rebuild_cluster_max_usec = maxi(_rebuild_cluster_max_usec, Time.get_ticks_usec() - _t0)
+		return
 
 	for slot_key in merged:
 		var entry: Array = merged[slot_key]
@@ -1016,6 +1095,9 @@ func _rect_rect_distance(a: Rect2, b: Rect2) -> float:
 
 
 func _update_shells(car_local: Vector3) -> void:
+	if use_rendering_server:
+		_update_shells_rs(car_local)
+		return
 	if landscape == null or landscape.grass_shell_material == null or landscape.grass_shell_count <= 0:
 		return
 	if car_local.distance_to(_shell_origin) < SHELL_REFRESH_DISTANCE and _shells.size() > 0:
@@ -1075,3 +1157,124 @@ func _bind_road_material(segment: Road_segment) -> void:
 	if landscape:
 		material.set_shader_parameter("edge_texture", landscape.shoulder_texture)
 		material.set_shader_parameter("edge_specular", landscape.specular)
+
+
+func _apply_merged_rs(cluster: Cluster, merged: Dictionary) -> void:
+	var scenario := world.ground_container.get_world_3d().scenario
+	var xform := _ground_xform() * Transform3D(Basis.IDENTITY, cluster.origin)
+
+	for slot_key in cluster.rs_slots.keys():
+		if not merged.has(slot_key):
+			cluster.rs_slots[slot_key].release()
+			cluster.rs_slots.erase(slot_key)
+
+	for slot_key in merged:
+		var entry: Array = merged[slot_key]
+		var slot: Vegetation_scatter.RSSlot = cluster.rs_slots.get(slot_key)
+		if slot == null:
+			slot = vegetation.create_slot(entry[0], entry[1], scenario)
+			cluster.rs_slots[slot_key] = slot
+			RenderingServer.instance_set_transform(slot.instance, xform)
+		vegetation.update_slot(slot, entry[2], entry[3])
+
+# ----------------------------------------------- EXPERIMANTAL RS IMPLEMENTATION
+
+func _sync_rs_transforms() -> void:
+	if not is_inside_tree() or world == null or not is_instance_valid(world.ground_container) or not world.ground_container.is_inside_tree():
+		return
+
+	var ground := _ground_xform()
+	if ground == _last_ground_xform:
+		return
+	_last_ground_xform = ground
+
+	for cluster_key in _clusters:
+		var cluster: Cluster = _clusters[cluster_key]
+		var xform := ground * Transform3D(Basis.IDENTITY, cluster.origin)
+		for slot_key in cluster.rs_slots:
+			RenderingServer.instance_set_transform(cluster.rs_slots[slot_key].instance, xform)
+
+	for key in _chunks:
+		var chunk: Chunk = _chunks[key]
+		if chunk.rid.is_valid():
+			RenderingServer.instance_set_transform(chunk.rid, ground * Transform3D(Basis.IDENTITY, Vector3(key.x * chunk_size, 0.0, key.y * chunk_size)))
+
+	for key in _rs_shells:
+		RenderingServer.instance_set_transform(_rs_shells[key].instance, _chunk_xform(key))
+
+
+func _release_cluster_slots(cluster: Cluster) -> void:
+	for slot_key in cluster.rs_slots:
+		cluster.rs_slots[slot_key].release()
+	cluster.rs_slots.clear()
+
+
+func _ground_xform() -> Transform3D:
+	return world.ground_container.global_transform
+
+
+func _chunk_xform(key: Vector2i) -> Transform3D:
+	return _ground_xform() * Transform3D(Basis.IDENTITY, Vector3(key.x * chunk_size, 0.0, key.y * chunk_size))
+
+
+func _update_shells_rs(car_local: Vector3) -> void:
+	if landscape == null or landscape.grass_shell_material == null or landscape.grass_shell_count <= 0:
+		return
+	if car_local.distance_to(_shell_origin) < SHELL_REFRESH_DISTANCE and _rs_shells.size() > 0:
+		return
+	_shell_origin = car_local
+
+	var radius := landscape.grass_shell_radius + SHELL_REFRESH_DISTANCE
+	var wanted := {}
+	var min_x := floori((car_local.x - radius) / chunk_size)
+	var max_x := floori((car_local.x + radius) / chunk_size)
+	var min_z := floori((car_local.z - radius) / chunk_size)
+	var max_z := floori((car_local.z + radius) / chunk_size)
+	for kz in range(min_z, max_z + 1):
+		for kx in range(min_x, max_x + 1):
+			var key := Vector2i(kx, kz)
+			var chunk: Chunk = _chunks.get(key)
+			if chunk and chunk.mesh and _car_distance(key, car_local) <= radius:
+				wanted[key] = chunk
+
+	for key in _rs_shells.keys():
+		if not wanted.has(key):
+			_release_rs_shell(key)
+
+	for key in wanted:
+		if not _rs_shells.has(key):
+			_rs_shells[key] = _create_shell_rs(wanted[key])
+
+
+func _create_shell_rs(chunk: Chunk) -> RSShell:
+	var count := landscape.grass_shell_count
+	if _shell_buffer.size() != count * 12:
+		_shell_buffer = PackedFloat32Array()
+		_shell_buffer.resize(count * 12)
+		for i in count:
+			_shell_buffer[i * 12] = 1.0
+			_shell_buffer[i * 12 + 5] = 1.0
+			_shell_buffer[i * 12 + 10] = 1.0
+
+	var shell := RSShell.new()
+	shell.multimesh = RenderingServer.multimesh_create()
+	RenderingServer.multimesh_set_mesh(shell.multimesh, chunk.mesh.get_rid())
+	RenderingServer.multimesh_allocate_data(shell.multimesh, count, RenderingServer.MULTIMESH_TRANSFORM_3D)
+	RenderingServer.multimesh_set_buffer(shell.multimesh, _shell_buffer)
+
+	var scenario := world.ground_container.get_world_3d().scenario
+	shell.instance = RenderingServer.instance_create2(shell.multimesh, scenario)
+	RenderingServer.instance_geometry_set_material_override(shell.instance, landscape.grass_shell_material.get_rid())
+	RenderingServer.instance_geometry_set_cast_shadows_setting(shell.instance, RenderingServer.SHADOW_CASTING_SETTING_OFF)
+	RenderingServer.instance_set_extra_visibility_margin(shell.instance, 1.0)
+	RenderingServer.instance_set_transform(shell.instance, _chunk_xform(chunk.key))
+	return shell
+
+
+func _release_rs_shell(key: Vector2i) -> void:
+	var shell: RSShell = _rs_shells.get(key)
+	if shell:
+		shell.release()
+		_rs_shells.erase(key)
+
+# ------------------------------------------------------------------------------

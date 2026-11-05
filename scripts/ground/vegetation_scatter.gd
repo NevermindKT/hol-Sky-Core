@@ -10,7 +10,7 @@ class MeshVariant:
 	var mesh: Mesh
 	var offset := Transform3D.IDENTITY
 	var lods: Array[Mesh] = []
-	var lod_offsets: Array[Transform3D] = []  # offset для lods[i], параллельный массив
+	var lod_offsets: Array[Transform3D] = []
 
 	func mesh_for(tier: int) -> Mesh:
 		return mesh if tier == 0 else lods[tier - 1]
@@ -48,6 +48,21 @@ var _texture_cache: Dictionary = {}
 var _far_meshes: Dictionary = {}
 var _lod_regex := RegEx.create_from_string(LOD_SUFFIX_PATTERN)
 
+# ----------------------------------------------- EXPERIMANTAL RS IMPLEMENTATION
+
+class RSSlot:
+	var multimesh := RID()
+	var instance := RID()
+
+	func release() -> void:
+		if instance.is_valid():
+			RenderingServer.free_rid(instance)
+		if multimesh.is_valid():
+			RenderingServer.free_rid(multimesh)
+		instance = RID()
+		multimesh = RID()
+
+# ------------------------------------------------------------------------------
 
 func initialize() -> void:
 	_mesh_pool_cache.clear()
@@ -191,6 +206,9 @@ func compute_category(key: Vector2i, world_seed: int, category_index: int, categ
 					continue
 				var variant := mini(int(grid.variant[c] * variant_count), variant_count - 1)
 				var tier := _tier_for(category, grid.road[c], tiers)
+				tier = _crowd_tier(category, grid, rx, rz, grid.road[c], tier, tiers)
+				if tier < 0:
+					continue
 				_append_instance(batches[variant * tiers + tier], grid.angle[c], grid.scale[c], grid.x[c] + offset.x, grid.y[c], grid.z[c] + offset.y)
 
 	for i in attempts:
@@ -753,3 +771,54 @@ func _matches_any(label: String, patterns: PackedStringArray) -> bool:
 		if label.contains(pattern):
 			return true
 	return false
+
+
+# Возвращает тир с учётом окружения или -1, если экземпляр нужно пропустить.
+func _crowd_tier(category: VegetationCategoryData, grid: GridCells, rx: int, rz: int, road_distance: float, tier: int, tiers: int) -> int:
+	if category.crowd_lod_threshold <= 0.0 and category.crowd_cull_threshold <= 0.0:
+		return tier
+	if road_distance < category.crowd_min_road_distance:
+		return tier
+
+	var r := category.crowd_radius
+	var occupied := 0
+	var examined := 0
+	for z in range(maxi(rz - r, 0), mini(rz + r + 1, grid.size)):
+		for x in range(maxi(rx - r, 0), mini(rx + r + 1, grid.size)):
+			if x == rx and z == rz:
+				continue
+			examined += 1
+			if grid.category[z * grid.size + x] >= 0:
+				occupied += 1
+	if examined == 0:
+		return tier
+
+	var fill := float(occupied) / float(examined)
+	if category.crowd_cull_threshold > 0.0 and fill >= category.crowd_cull_threshold:
+		return -1
+	if category.crowd_lod_threshold > 0.0 and fill >= category.crowd_lod_threshold:
+		return mini(tier + category.crowd_lod_bump, tiers - 1)
+	return tier
+
+# ------------------------------------------------------------------------------
+
+func create_slot(category: VegetationCategoryData, mesh: Mesh, scenario: RID) -> RSSlot:
+	var slot := RSSlot.new()
+	slot.multimesh = RenderingServer.multimesh_create()
+	RenderingServer.multimesh_set_mesh(slot.multimesh, mesh.get_rid())
+	slot.instance = RenderingServer.instance_create2(slot.multimesh, scenario)
+
+	RenderingServer.instance_geometry_set_lod_bias(slot.instance, category.lod_bias)
+	if not category.cast_shadows or _far_meshes.has(mesh):
+		RenderingServer.instance_geometry_set_cast_shadows_setting(slot.instance, RenderingServer.SHADOW_CASTING_SETTING_OFF)
+	if category.visibility_range > 0.0:
+		var fade := RenderingServer.VISIBILITY_RANGE_FADE_SELF if category.visibility_fade else RenderingServer.VISIBILITY_RANGE_FADE_DISABLED
+		RenderingServer.instance_geometry_set_visibility_range(slot.instance, 0.0, category.visibility_range, 0.0, category.visibility_range * 0.15, fade)
+	return slot
+
+
+func update_slot(slot: RSSlot, buffer: PackedFloat32Array, count: int) -> void:
+	RenderingServer.multimesh_allocate_data(slot.multimesh, count, RenderingServer.MULTIMESH_TRANSFORM_3D, false, true)
+	RenderingServer.multimesh_set_buffer(slot.multimesh, buffer)
+
+# ------------------------------------------------------------------------------

@@ -524,7 +524,7 @@ func _spawn_bullet_hit_effect(hit_position: Vector3, direction: Vector3) -> void
 
 func _spawn_dodge_hit_effect(hit_position: Vector3, direction: Vector3, car: Car_Movement) -> void:
 	var effect := enemy_data.dodge_hit_effect_scene.instantiate() as BloodCarHit
-	get_parent().world.enemies.add_child(effect)
+	encounter.world.enemies.add_child(effect)
 	effect.play(hit_position, direction, car.speed, car)
 
 func _play_damage_sound() -> void:

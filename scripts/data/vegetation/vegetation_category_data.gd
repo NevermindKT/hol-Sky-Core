@@ -35,6 +35,19 @@ enum Placement { SCATTER, GRID }
 @export_range(0.0, 1.0, 0.01) var normal_up_blend := 0.0
 
 
+@export_group("Crowd LOD")
+## Радиус окрестности в ячейках сетки (1 = 3x3). Больше 1 неточно на краях чанка.
+@export_range(1, 3, 1) var crowd_radius := 1
+## Доля занятых соседних ячеек, с которой дерево считается «окружённым». 0 = выключено.
+@export_range(0.0, 1.0, 0.01) var crowd_lod_threshold := 0.6
+## На сколько тиров LOD сдвигать окружённое дерево.
+@export_range(0, 4, 1) var crowd_lod_bump := 1
+## Доля, с которой окружённое дерево не рисуется совсем. 0 = выключено.
+@export_range(0.0, 1.0, 0.01) var crowd_cull_threshold := 0.9
+## Ближе этого расстояния до дороги правило не действует (опушка остаётся детальной).
+@export var crowd_min_road_distance := 40.0
+
+
 func weight_for(forest: float, road_distance: float) -> float:
 	var weight := 1.0
 	if forest_response:

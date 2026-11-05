@@ -64,6 +64,7 @@ script = ExtResource("1_c1gna")
 [node name="GroundGen" type="Node" parent="SubViewportContainer/SubViewport" unique_id=1296382706]
 script = ExtResource("2_0wcor")
 landscape = ExtResource("8_qsq72")
+use_rendering_server = true
 
 [node name="WeatherSystem" parent="SubViewportContainer/SubViewport" unique_id=1765140778 instance=ExtResource("7_28v7y")]
 
