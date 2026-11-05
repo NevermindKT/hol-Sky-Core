@@ -191,301 +191,301 @@
 	  "ID": 41,
 	  "Type": "Шини",
 	  "MaterialId": "31",
-      "TypeObj": "Ремонтний набір для шин",
+	  "TypeObj": "Ремонтний набір для шин",
 	  "Level": 1,
 	  "Name": "Рівень 1",
 	  "NumObj": 5,
 	  "Money": 100,
 	  "Purchased": 0,
-      "Effects": {"grip_wet": 1.05, "grip_flooded": 1.08}
+	  "Effects": {"grip_wet": 1.05, "grip_flooded": 1.08}
 	},
 	{
 	  "ID": 51,
 	  "Type": "Двері",
 	  "MaterialId": "32",
-      "TypeObj": "Ремонтний набір для дверей",
+	  "TypeObj": "Ремонтний набір для дверей",
 	  "Level": 1,
 	  "Name": "Рівень 1",
 	  "NumObj": 10,
 	  "Money": 100,
 	  "Purchased": 0,
-      "Effects": {"max_health": 1.1}
+	  "Effects": {"max_health": 1.1}
 	},
 	{
 	  "ID": 61,
 	  "Type": "Двигун",
 	  "MaterialId": "35",
-      "TypeObj": "Машинне масло",
+	  "TypeObj": "Машинне масло",
 	  "Level": 1,
 	  "Name": "Рівень 1",
 	  "NumObj": 8,
 	  "Money": 100,
 	  "Purchased": 0,
-      "Effects": {"acceleration": 1.08, "max_speed": 1.04}
+	  "Effects": {"acceleration": 1.08, "max_speed": 1.04}
 	},
 	{
 	  "ID": 42,
 	  "Type": "Шини",
 	  "MaterialId": "31",
-      "TypeObj": "Ремонтний набір для шин",
+	  "TypeObj": "Ремонтний набір для шин",
 	  "Level": 2,
 	  "Name": "Рівень 2",
 	  "NumObj": 10,
 	  "Money": 300,
 	  "Purchased": 0,
-      "Effects": {"grip_wet": 1.1, "grip_flooded": 1.16}
+	  "Effects": {"grip_wet": 1.1, "grip_flooded": 1.16}
 	},
 	{
 	  "ID": 52,
 	  "Type": "Двері",
 	  "MaterialId": "32",
-      "TypeObj": "Ремонтний набір для дверей",
+	  "TypeObj": "Ремонтний набір для дверей",
 	  "Level": 2,
 	  "Name": "Рівень 2",
 	  "NumObj": 6,
 	  "Money": 300,
 	  "Purchased": 0,
-      "Effects": {"max_health": 1.2}
+	  "Effects": {"max_health": 1.2}
 	},
 	{
 	  "ID": 62,
 	  "Type": "Двигун",
 	  "MaterialId": "35",
-      "TypeObj": "Машинне масло",
+	  "TypeObj": "Машинне масло",
 	  "Level": 2,
 	  "Name": "Рівень 2",
 	  "NumObj": 15,
 	  "Money": 300,
 	  "Purchased": 0,
-      "Effects": {"acceleration": 1.16, "max_speed": 1.08}
+	  "Effects": {"acceleration": 1.16, "max_speed": 1.08}
 	},
 	{
 	  "ID": 43,
 	  "Type": "Шини",
 	  "MaterialId": "31",
-      "TypeObj": "Ремонтний набір для шин",
+	  "TypeObj": "Ремонтний набір для шин",
 	  "Level": 3,
 	  "Name": "Рівень 3",
 	  "NumObj": 6,
 	  "Money": 500,
 	  "Purchased": 0,
-      "Effects": {"grip_wet": 1.15, "grip_flooded": 1.24}
+	  "Effects": {"grip_wet": 1.15, "grip_flooded": 1.24}
 	},
 	{
 	  "ID": 53,
 	  "Type": "Двері",
 	  "MaterialId": "32",
-      "TypeObj": "Ремонтний набір для дверей",
+	  "TypeObj": "Ремонтний набір для дверей",
 	  "Level": 3,
 	  "Name": "Рівень 3",
 	  "NumObj": 10,
 	  "Money": 500,
 	  "Purchased": 0,
-      "Effects": {"max_health": 1.3}
+	  "Effects": {"max_health": 1.3}
 	},
 	{
 	  "ID": 63,
 	  "Type": "Двигун",
 	  "MaterialId": "35",
-      "TypeObj": "Машинне масло",
+	  "TypeObj": "Машинне масло",
 	  "Level": 3,
 	  "Name": "Рівень 3",
 	  "NumObj": 10,
 	  "Money": 500,
 	  "Purchased": 0,
-      "Effects": {"acceleration": 1.24, "max_speed": 1.12}
+	  "Effects": {"acceleration": 1.24, "max_speed": 1.12}
 	},
 	{
 	  "ID": 44,
 	  "Type": "Шини",
 	  "MaterialId": "31",
-      "TypeObj": "Ремонтний набір для шин",
+	  "TypeObj": "Ремонтний набір для шин",
 	  "Level": 4,
 	  "Name": "Рівень 4",
 	  "NumObj": 15,
 	  "Money": 800,
 	  "Purchased": 0,
-      "Effects": {"grip_wet": 1.2, "grip_flooded": 1.32}
+	  "Effects": {"grip_wet": 1.2, "grip_flooded": 1.32}
 	},
 	{
 	  "ID": 54,
 	  "Type": "Двері",
 	  "MaterialId": "32",
-      "TypeObj": "Ремонтний набір для дверей",
+	  "TypeObj": "Ремонтний набір для дверей",
 	  "Level": 4,
 	  "Name": "Рівень 4",
 	  "NumObj": 17,
 	  "Money": 800,
 	  "Purchased": 0,
-      "Effects": {"max_health": 1.4}
+	  "Effects": {"max_health": 1.4}
 	},
 	{
 	  "ID": 64,
 	  "Type": "Двигун",
 	  "MaterialId": "35",
-      "TypeObj": "Машинне масло",
+	  "TypeObj": "Машинне масло",
 	  "Level": 4,
 	  "Name": "Рівень 4",
 	  "NumObj": 18,
 	  "Money": 800,
 	  "Purchased": 0,
-      "Effects": {"acceleration": 1.32, "max_speed": 1.16}
+	  "Effects": {"acceleration": 1.32, "max_speed": 1.16}
 	},
 	{
 	  "ID": 45,
 	  "Type": "Шини",
 	  "MaterialId": "31",
-      "TypeObj": "Ремонтний набір для шин",
+	  "TypeObj": "Ремонтний набір для шин",
 	  "Level": 5,
 	  "Name": "Рівень 5",
 	  "NumObj": 3,
 	  "Money": 1000,
 	  "Purchased": 0,
-      "Effects": {"grip_wet": 1.25, "grip_flooded": 1.4}
+	  "Effects": {"grip_wet": 1.25, "grip_flooded": 1.4}
 	},
 	{
 	  "ID": 55,
 	  "Type": "Двері",
 	  "MaterialId": "32",
-      "TypeObj": "Ремонтний набір для дверей",
+	  "TypeObj": "Ремонтний набір для дверей",
 	  "Level": 5,
 	  "Name": "Рівень 5",
 	  "NumObj": 4,
 	  "Money": 1000,
 	  "Purchased": 0,
-      "Effects": {"max_health": 1.5}
+	  "Effects": {"max_health": 1.5}
 	},
 	{
 	  "ID": 65,
 	  "Type": "Двигун",
 	  "MaterialId": "35",
-      "TypeObj": "Машинне масло",
+	  "TypeObj": "Машинне масло",
 	  "Level": 5,
 	  "Name": "Рівень 5",
 	  "NumObj": 5,
 	  "Money": 1000,
 	  "Purchased": 0,
-      "Effects": {"acceleration": 1.4, "max_speed": 1.2}
+	  "Effects": {"acceleration": 1.4, "max_speed": 1.2}
 	},
 	{
 	  "ID": 71,
 	  "Type": "Підвіска",
 	  "MaterialId": "33",
-      "TypeObj": "Ремонтний набір для підвіски",
+	  "TypeObj": "Ремонтний набір для підвіски",
 	  "Level": 1,
 	  "Name": "Рівень 1",
 	  "NumObj": 8,
 	  "Money": 100,
 	  "Purchased": 0,
-      "Effects": {"strafe_speed": 1.06, "stamina_regeneration_rate": 1.08}
+	  "Effects": {"strafe_speed": 1.06, "stamina_regeneration_rate": 1.08}
 	},
 	{
 	  "ID": 72,
 	  "Type": "Підвіска",
 	  "MaterialId": "33",
-      "TypeObj": "Ремонтний набір для підвіски",
+	  "TypeObj": "Ремонтний набір для підвіски",
 	  "Level": 2,
 	  "Name": "Рівень 2",
 	  "NumObj": 15,
 	  "Money": 300,
 	  "Purchased": 0,
-      "Effects": {"strafe_speed": 1.12, "stamina_regeneration_rate": 1.16}
+	  "Effects": {"strafe_speed": 1.12, "stamina_regeneration_rate": 1.16}
 	},
 	{
 	  "ID": 73,
 	  "Type": "Підвіска",
 	  "MaterialId": "33",
-      "TypeObj": "Ремонтний набір для підвіски",
+	  "TypeObj": "Ремонтний набір для підвіски",
 	  "Level": 3,
 	  "Name": "Рівень 3",
 	  "NumObj": 10,
 	  "Money": 500,
 	  "Purchased": 0,
-      "Effects": {"strafe_speed": 1.18, "stamina_regeneration_rate": 1.24}
+	  "Effects": {"strafe_speed": 1.18, "stamina_regeneration_rate": 1.24}
 	},
 	{
 	  "ID": 74,
 	  "Type": "Підвіска",
 	  "MaterialId": "33",
-      "TypeObj": "Ремонтний набір для підвіски",
+	  "TypeObj": "Ремонтний набір для підвіски",
 	  "Level": 4,
 	  "Name": "Рівень 4",
 	  "NumObj": 18,
 	  "Money": 800,
 	  "Purchased": 0,
-      "Effects": {"strafe_speed": 1.24, "stamina_regeneration_rate": 1.32}
+	  "Effects": {"strafe_speed": 1.24, "stamina_regeneration_rate": 1.32}
 	},
 	{
 	  "ID": 75,
 	  "Type": "Підвіска",
 	  "MaterialId": "33",
-      "TypeObj": "Ремонтний набір для підвіски",
+	  "TypeObj": "Ремонтний набір для підвіски",
 	  "Level": 5,
 	  "Name": "Рівень 5",
 	  "NumObj": 5,
 	  "Money": 1000,
 	  "Purchased": 0,
-      "Effects": {"strafe_speed": 1.3, "stamina_regeneration_rate": 1.4}
+	  "Effects": {"strafe_speed": 1.3, "stamina_regeneration_rate": 1.4}
 	},
 	{
 	  "ID": 81,
 	  "Type": "Передня рама",
 	  "MaterialId": "34",
-      "TypeObj": "Ремонтний набір для рами",
+	  "TypeObj": "Ремонтний набір для рами",
 	  "Level": 1,
 	  "Name": "Рівень 1",
 	  "NumObj": 8,
 	  "Money": 100,
 	  "Purchased": 0,
-      "Effects": {"base_damage": 1.12, "dodge_damage": 1.12}
+	  "Effects": {"base_damage": 1.12, "dodge_damage": 1.12}
 	},
 	{
 	  "ID": 82,
 	  "Type": "Передня рама",
 	  "MaterialId": "34",
-      "TypeObj": "Ремонтний набір для рами",
+	  "TypeObj": "Ремонтний набір для рами",
 	  "Level": 2,
 	  "Name": "Рівень 2",
 	  "NumObj": 15,
 	  "Money": 300,
 	  "Purchased": 0,
-      "Effects": {"base_damage": 1.24, "dodge_damage": 1.24}
+	  "Effects": {"base_damage": 1.24, "dodge_damage": 1.24}
 	},
 	{
 	  "ID": 83,
 	  "Type": "Передня рама",
 	  "MaterialId": "34",
-      "TypeObj": "Ремонтний набір для рами",
+	  "TypeObj": "Ремонтний набір для рами",
 	  "Level": 3,
 	  "Name": "Рівень 3",
 	  "NumObj": 10,
 	  "Money": 500,
 	  "Purchased": 0,
-      "Effects": {"base_damage": 1.36, "dodge_damage": 1.36}
+	  "Effects": {"base_damage": 1.36, "dodge_damage": 1.36}
 	},
 	{
 	  "ID": 84,
 	  "Type": "Передня рама",
 	  "MaterialId": "34",
-      "TypeObj": "Ремонтний набір для рами",
+	  "TypeObj": "Ремонтний набір для рами",
 	  "Level": 4,
 	  "Name": "Рівень 4",
 	  "NumObj": 18,
 	  "Money": 800,
 	  "Purchased": 0,
-      "Effects": {"base_damage": 1.48, "dodge_damage": 1.48}
+	  "Effects": {"base_damage": 1.48, "dodge_damage": 1.48}
 	},
 	{
 	  "ID": 85,
 	  "Type": "Передня рама",
 	  "MaterialId": "34",
-      "TypeObj": "Ремонтний набір для рами",
+	  "TypeObj": "Ремонтний набір для рами",
 	  "Level": 5,
 	  "Name": "Рівень 5",
 	  "NumObj": 5,
 	  "Money": 1000,
 	  "Purchased": 0,
-      "Effects": {"base_damage": 1.6, "dodge_damage": 1.6}
+	  "Effects": {"base_damage": 1.6, "dodge_damage": 1.6}
 	}
   ],
   "Turret": [

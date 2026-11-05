@@ -99,64 +99,58 @@ theme_override_constants/separation = 42
 layout_mode = 2
 
 [node name="tree_block" parent="Trees/Damage/Content/Blocks/Branch" parent_id_path=PackedInt32Array(1457611330, 1718627759) index="0" unique_id=1755079030]
-object_id = 221
 icon = ExtResource("4_iepgh")
+object_id = 221
 
 [node name="tree_block" parent="Trees/Damage/Content/Blocks/Branch2" parent_id_path=PackedInt32Array(1457611330, 1562664473) index="0" unique_id=825440331]
-object_id = 210
 icon = ExtResource("4_g80ym")
+object_id = 210
 
 [node name="tree_block2" parent="Trees/Damage/Content/Blocks/Branch2" parent_id_path=PackedInt32Array(1457611330, 1562664473) index="1" unique_id=127456258]
-object_id = 211
 icon = ExtResource("5_h2kqr")
+object_id = 211
 
 [node name="tree_block" parent="Trees/Damage/Content/Blocks/Branch3" parent_id_path=PackedInt32Array(1457611330, 1992988541) index="0" unique_id=998000307]
-object_id = 201
 icon = ExtResource("4_4rwvg")
-
-[node name="Type" parent="Trees/Damage" index="1" unique_id=617637437]
+object_id = 201
 
 [node name="Effects" parent="Trees" unique_id=1832720374 instance=ExtResource("3_msgcp")]
 layout_mode = 2
 
 [node name="tree_block" parent="Trees/Effects/Content/Blocks/Branch" parent_id_path=PackedInt32Array(1832720374, 1718627759) index="0" unique_id=1755079030]
-object_id = 321
 icon = ExtResource("8_ge20r")
+object_id = 321
 
 [node name="tree_block" parent="Trees/Effects/Content/Blocks/Branch2" parent_id_path=PackedInt32Array(1832720374, 1562664473) index="0" unique_id=825440331]
-object_id = 310
 icon = ExtResource("9_xiu26")
+object_id = 310
 
 [node name="tree_block2" parent="Trees/Effects/Content/Blocks/Branch2" parent_id_path=PackedInt32Array(1832720374, 1562664473) index="1" unique_id=127456258]
-object_id = 311
 icon = ExtResource("10_c0kge")
+object_id = 311
 
 [node name="tree_block" parent="Trees/Effects/Content/Blocks/Branch3" parent_id_path=PackedInt32Array(1832720374, 1992988541) index="0" unique_id=998000307]
-object_id = 301
 icon = ExtResource("11_vp6ll")
-
-[node name="Type" parent="Trees/Effects" index="1" unique_id=617637437]
+object_id = 301
 
 [node name="Acuracity" parent="Trees" unique_id=27742084 instance=ExtResource("3_msgcp")]
 layout_mode = 2
 
 [node name="tree_block" parent="Trees/Acuracity/Content/Blocks/Branch" parent_id_path=PackedInt32Array(27742084, 1718627759) index="0" unique_id=1755079030]
-object_id = 421
 icon = ExtResource("12_jgqrn")
+object_id = 421
 
 [node name="tree_block" parent="Trees/Acuracity/Content/Blocks/Branch2" parent_id_path=PackedInt32Array(27742084, 1562664473) index="0" unique_id=825440331]
-object_id = 410
 icon = ExtResource("12_vp6ll")
+object_id = 410
 
 [node name="tree_block2" parent="Trees/Acuracity/Content/Blocks/Branch2" parent_id_path=PackedInt32Array(27742084, 1562664473) index="1" unique_id=127456258]
-object_id = 411
 icon = ExtResource("14_8nm27")
+object_id = 411
 
 [node name="tree_block" parent="Trees/Acuracity/Content/Blocks/Branch3" parent_id_path=PackedInt32Array(27742084, 1992988541) index="0" unique_id=998000307]
-object_id = 401
 icon = ExtResource("12_c0kge")
-
-[node name="Type" parent="Trees/Acuracity" index="1" unique_id=617637437]
+object_id = 401
 
 [node name="Info" type="Panel" parent="." unique_id=802228922]
 layout_mode = 1
@@ -166,7 +160,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -960.0
-offset_top = -200.0
+offset_top = -214.0
+offset_bottom = -100.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxTexture_vnypt")

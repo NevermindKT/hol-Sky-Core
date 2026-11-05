@@ -1,22 +1,22 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://l6o32brsx2uq"]
 
-[ext_resource type="Script" path="res://scripts/ui/loading_screen.gd" id="1_load"]
-[ext_resource type="Script" path="res://scripts/ui/loading_spinner.gd" id="2_spin"]
-[ext_resource type="Texture2D" uid="uid://cis71tbb2pkc8" path="res://textures/menu/BG/MainMenuBackground.png" id="3_bg"]
+[ext_resource type="Script" uid="uid://bk6toev5l8eiq" path="res://scripts/ui/loading_screen.gd" id="1_load"]
+[ext_resource type="Texture2D" uid="uid://1jsqsosr86o7" path="res://textures/menu/BG/loading/Screenshot 2026-10-16 215101.png" id="2_s2kth"]
+[ext_resource type="Script" uid="uid://c81x3f7dhycga" path="res://scripts/ui/loading_spinner.gd" id="2_spin"]
 [ext_resource type="Texture2D" uid="uid://cv0yb11oymm55" path="res://textures/menu/main/00 LOGO — vector outlines + editable type.png" id="4_logo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bg"]
-texture = ExtResource("3_bg")
+texture = ExtResource("2_s2kth")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_logo"]
 texture = ExtResource("4_logo")
 
-[node name="LoadingScreen" type="CanvasLayer" node_paths=PackedStringArray("root")]
+[node name="LoadingScreen" type="CanvasLayer" unique_id=1346188416 node_paths=PackedStringArray("root")]
 layer = 100
 script = ExtResource("1_load")
 root = NodePath("Root")
 
-[node name="Root" type="Control" parent="."]
+[node name="Root" type="Control" parent="." unique_id=1904207732]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -25,7 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Black" type="ColorRect" parent="Root"]
+[node name="Black" type="ColorRect" parent="Root" unique_id=1577339622]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,18 +34,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Background" type="Panel" parent="Root"]
+[node name="Background" type="Panel" parent="Root" unique_id=509398819]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -2051.0
-offset_bottom = 1300.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bg")
 
-[node name="Logo" type="Panel" parent="Root"]
+[node name="Logo" type="Panel" parent="Root" unique_id=1292911186]
 layout_mode = 0
 offset_left = 43.0
 offset_top = 152.0
@@ -54,7 +53,7 @@ offset_bottom = 455.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_logo")
 
-[node name="Spinner" type="Control" parent="Root"]
+[node name="Spinner" type="Control" parent="Root" unique_id=511233921]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

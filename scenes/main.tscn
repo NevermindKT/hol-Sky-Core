@@ -120,19 +120,30 @@ render_target_update_mode = 4
 
 [node name="Car" parent="SubViewportContainer/SubViewport" unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("1_pibwh")]
 max_speed = 75.0
+hard_brake_threshold = 25.0
+inertia_force_multiplier = 0.6
 max_offset = 10.0
 strafe_speed = 14.5
+min_strafe_speed = 2.0
 road_turn_force = 0.8
 dodge_force = 10.0
 dodge_distance = 5.0
+dodge_min_speed = 40.0
+dodge_window = 0.35
+dodge_hit_radius = 1.2
 dodge_damage = 79.0
 dodge_knockback_force = 110.0
+dodge_hit_spray_lateral = 0.5
 enemy_detection_mask = 2
+max_stamina = 100.0
+dodge_stamina_drain = 30.0
 stamina_regeneration_rate = 75.0
 stamina_regeneration_delay = 0.75
 overheat_delay = 1.25
 overheat_recovery_ratio = 0.85
 damping = 11.0
+grip_transition_speed = 2.0
+base_damage = 15
 player_cam = NodePath("../PlayerCam")
 engine_max_volume_db = -4.0
 

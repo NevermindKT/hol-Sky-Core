@@ -17,58 +17,58 @@ signal exit_requested
 
 
 func _ready() -> void:
-    footer.MapButton.pressed.connect(_map_button_pressed)
-    footer.CarButton.pressed.connect(_car_button_pressed)
-    footer.ShopButton.pressed.connect(_shop_button_pressed)
-    footer.TurretButton.pressed.connect(_turret_button_pressed)
-    footer.InventoryButton.pressed.connect(_inventory_button_pressed)
+	footer.MapButton.pressed.connect(_map_button_pressed)
+	footer.CarButton.pressed.connect(_car_button_pressed)
+	footer.ShopButton.pressed.connect(_shop_button_pressed)
+	footer.TurretButton.pressed.connect(_turret_button_pressed)
+	footer.InventoryButton.pressed.connect(_inventory_button_pressed)
 
-    header.exit_btn.pressed.connect(_on_exit_pressed)
+	header.exit_btn.pressed.connect(_on_exit_pressed)
 
 
 func open() -> void:
-    _map_button_pressed()
-    GameState.enter_base()
-    show()
+	_map_button_pressed()
+	GameState.enter_base()
+	show()
 
 
 func _on_exit_pressed():
-    exit_requested.emit()
+	exit_requested.emit()
 
 
 func _show_menu(selected_menu: Control) -> void:
-    _hide_all()
-    selected_menu.show()
+	_hide_all()
+	selected_menu.show()
 
 
 func _map_button_pressed() -> void:
-    _show_menu(map)
-    MenuMusic.set_base_tab(&"map")
+	_show_menu(map)
+	MenuMusic.set_base_tab(&"map")
 
 
 func _turret_button_pressed() -> void:
-    _show_menu(turret)
-    MenuMusic.set_base_tab(&"turret")
+	_show_menu(turret)
+	MenuMusic.set_base_tab(&"turret")
 
 
 func _car_button_pressed() -> void:
-    _show_menu(car)
-    MenuMusic.set_base_tab(&"car")
+	_show_menu(car)
+	MenuMusic.set_base_tab(&"car")
 
 
 func _inventory_button_pressed() -> void:
-    _show_menu(inventory)
-    MenuMusic.set_base_tab(&"inventory")
+	_show_menu(inventory)
+	MenuMusic.set_base_tab(&"inventory")
 
 
 func _shop_button_pressed() -> void:
-    _show_menu(shop)
-    MenuMusic.set_base_tab(&"shop")
+	_show_menu(shop)
+	MenuMusic.set_base_tab(&"shop")
 
 
 func _hide_all():
-    car.hide()
-    map.hide()
-    shop.hide()
-    turret.hide()
-    inventory.hide()
+	car.hide()
+	map.hide()
+	shop.hide()
+	turret.hide()
+	inventory.hide()

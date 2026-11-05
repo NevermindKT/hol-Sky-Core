@@ -16,6 +16,19 @@ signal health_changed(current: float, maximum: float)
 @export var corpse_scene: PackedScene
 @export var bullet_death_push := 4.0
 
+@export_category("Model")
+@export var wolf_model: Node3D
+@export var animation_player: AnimationPlayer
+
+const ANIM_RUN := "ArmatureAction"
+
+@export_category("Ragdoll")
+@export var ragdoll: PhysicalBoneSimulator3D
+@export var ragdoll_root: PhysicalBone3D
+
+@export var ragdoll_impulse := 4.0
+@export var ragdoll_lifetime := 8.0
+
 
 var health: float
 var is_active := false
@@ -57,22 +70,25 @@ var _death_push := Vector3.ZERO
 var knockback_hit_targets: Array[Encounter_Enemy] = []
 
 @onready var damage_hit_box: HurtBox = $DamageHitBox
-@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+#@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @onready var star_stun_effect: Star_Stun_Effect = $StunEffectPoint/StarStunEffect
 
 @export var damage_sound_cooldown: float = 0.08
 var _last_damage_sound_time: float = -999.0
 
+
 func _ready() -> void:
 	damage_hit_box.body_entered.connect(_on_attack_area_body_entered)
 	damage_hit_box.hit.connect(_on_hit)
 
-	Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
-	_on_thermal_vision_changed(Events.thermal_vision_active)
+	#Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
+	#_on_thermal_vision_changed(Events.thermal_vision_active)
+
+	_play_run_animation()
 
 
-func _on_thermal_vision_changed(active: bool) -> void:
-	mesh_instance.material_override = thermal_material if active else null
+#func _on_thermal_vision_changed(active: bool) -> void:
+	#mesh_instance.material_override = thermal_material if active else null
 
 
 func initialize(target_player: Node3D, target_encounter: Enemy_Encounter, data: EncounterEnemyData) -> void:
@@ -464,22 +480,27 @@ func take_collision_damage(damage: float) -> void:
 func die() -> void:
 	if _is_dead:
 		return
-	
+
 	_is_dead = true
 	is_active = false
 
 	_set_warning(false)
 	_set_stunned(false)
+	star_stun_effect.stop()
+	poison_effect.emitting = false
 
 	encounter.end_attak(self)
 	encounter.remove_enemy(self)
 
 	Events.enemy_killed.emit(enemy_data)
 
-	_spawn_corpse()
+	SoundManager.play_sfx(
+		enemy_data.death_sound,
+		enemy_data.death_sound_volume,
+		1.0
+	)
 
-	SoundManager.play_sfx(enemy_data.death_sound, enemy_data.death_sound_volume, 1.0)
-	queue_free()
+	_start_ragdoll.call_deferred()
 
 
 func _spawn_corpse() -> void:
@@ -492,7 +513,7 @@ func _spawn_corpse() -> void:
 		return
 
 	encounter.world.enemies.add_child(corpse)
-	corpse.launch(encounter.world, player as Car_Movement, mesh_instance.global_transform, mesh_instance.mesh, thermal_material, _death_push)
+	#corpse.launch(encounter.world, player as Car_Movement, mesh_instance.global_transform, mesh_instance.mesh, thermal_material, _death_push)
 
 # ============================ EFFECTS =========================================
 
@@ -512,3 +533,57 @@ func _play_damage_sound() -> void:
 		return
 	_last_damage_sound_time = now
 	SoundManager.play_sfx(enemy_data.take_damage_sound, enemy_data.take_damage_sound_volume, 1.0)
+
+
+## Warmup only: plays every one-shot effect once so shaders/particles get compiled.
+func warmup_effects() -> void:
+	star_stun_effect.play()
+	if poison_effect:
+		poison_effect.emitting = true
+	
+	# Give the renderer a few frames to actually draw them.
+	await get_tree().create_timer(0.2).timeout
+	
+	star_stun_effect.stop()
+	if poison_effect:
+		poison_effect.emitting = false
+
+
+# ============================ ANIMATION =======================================
+
+func _play_run_animation() -> void:
+	if animation_player == null:
+		push_warning("Enemy: AnimationPlayer not assigned!")
+		return
+
+	if animation_player.has_animation(ANIM_RUN):
+		animation_player.play(ANIM_RUN)
+	else:
+		push_warning("Enemy: Animation 'run' not found!")
+
+
+func _start_ragdoll() -> void:
+	set_physics_process(false)
+
+	if animation_player:
+		animation_player.stop()
+
+	damage_hit_box.monitoring = false
+	damage_hit_box.monitorable = false
+
+	if ragdoll == null:
+		queue_free()
+		return
+
+	get_tree().create_timer(ragdoll_lifetime).timeout.connect(queue_free)
+
+	var corpse_parent = encounter.world.enemies if encounter.world else null
+	if corpse_parent and get_parent() != corpse_parent:
+		reparent(corpse_parent, true)
+
+	ragdoll.physical_bones_start_simulation()
+
+	await get_tree().physics_frame
+
+	if ragdoll_root and _death_push.length() > 0.0:
+		ragdoll_root.apply_central_impulse(_death_push * ragdoll_impulse)

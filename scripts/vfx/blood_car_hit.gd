@@ -1,7 +1,6 @@
 extends Node3D
 class_name BloodCarHit
 
-
 @export var splash: GPUParticles3D
 @export_range(10.0, 180.0) var spread: float = 60.0
 @export var lifetime: float = 5.0

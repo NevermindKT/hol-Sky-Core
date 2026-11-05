@@ -15,6 +15,8 @@ var max_speed_multiplier := 1.0
 var steering_bias := 0.0
 var acceleration_multiplier := 1.0
 
+@export_category("DEBUG")
+@export var no_road := false
 
 @export_category("Movement")
 @export var drag := 15.0
@@ -294,8 +296,10 @@ func _recover_from_overheat() -> void:
 # ============================ VISUAL ==========================================
 
 func process_visuals(delta: float) -> void:
+	if no_road:
+		return
+
 	visual_effects.process_visual_tilt(delta, lateral_velocity, road_manager.smoothed_turn_velocity)
-	
 	if wheels:
 		wheels.process_wheels(delta, -speed, -steering_input)
 

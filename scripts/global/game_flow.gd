@@ -5,6 +5,7 @@ signal restart_requested
 
 const MENU_SCENE := "res://scenes/menu_bg.tscn"
 const GAME_SCENE := "res://scenes/main.tscn"
+const SHADER_WARMUP = preload("uid://b1f5gspawrysf")
 const LOADING_SCREEN := preload("res://scenes/ui/loading_screen.tscn")
 const DIALOGUE_SCENE := "res://scenes/DialogueMain.tscn"
 const DEFAULT_DIFFICULTY := &"normal"
@@ -22,13 +23,19 @@ var arrived_base_id := -1
 var _loading_screen: Loading_Overlay
 var _changing := false
 
+var _warmup_done := false
+
 
 func _ready() -> void:
 	_loading_screen = LOADING_SCREEN.instantiate()
 	add_child(_loading_screen)
+
 	Events.run_ended.connect.call_deferred(_on_run_ended)
 	InputController.debug_reset_save.connect.call_deferred(reset_local_save)
 
+	await _loading_screen.show_screen()
+	await _warmup_shaders()
+	await _loading_screen.hide_screen()
 
 func _on_run_ended() -> void:
 	if target_base_id == -1:
@@ -135,3 +142,15 @@ func change_scene(path: String) -> void:
 
 	_changing = false
 	await _loading_screen.hide_screen()
+
+
+func _warmup_shaders() -> void:
+	var warmup := SHADER_WARMUP.instantiate()
+	get_tree().root.add_child(warmup)
+
+	await warmup.completed
+
+	print("DEBUG: warmup is done!(YA DONE)")
+
+	warmup.queue_free()
+	_warmup_done = true
