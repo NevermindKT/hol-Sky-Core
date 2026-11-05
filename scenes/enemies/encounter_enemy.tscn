@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://g4df0lxn27jv" path="res://scripts/enemy/Hurt_Box.gd" id="2_klukj"]
 [ext_resource type="PackedScene" uid="uid://dokwn375ku70y" path="res://scenes/vfx/components/star_stun_effect.tscn" id="3_star_stun"]
 [ext_resource type="PackedScene" uid="uid://bheecmpf72wb3" path="res://scenes/vfx/effects/poison_smoke.tscn" id="4_tq627"]
-[ext_resource type="PackedScene" uid="uid://dan1ij60jmbyd" path="res://scenes/enemies/enemy_corpse.tscn" id="5_corpse"]
 [ext_resource type="PackedScene" uid="uid://bt3p7yiqhcdbx" path="res://scenes/enemies/wolf_2.tscn" id="6_tki7v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23cp2"]
@@ -19,12 +18,11 @@ radius = 0.50341797
 script = ExtResource("1_y00ui")
 thermal_material = SubResource("StandardMaterial3D_23cp2")
 poison_effect = NodePath("PoisonSmoke/Smoke")
-corpse_scene = ExtResource("5_corpse")
 wolf_model = NodePath("wolf2")
 animation_player = NodePath("wolf2/AnimationPlayer")
 ragdoll = NodePath("wolf2/Armature/Skeleton3D/PhysicalBoneSimulator3D")
 ragdoll_root = NodePath("wolf2/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Spine_001")
-ragdoll_lifetime = 2.0
+ragdoll_lifetime = 30.0
 
 [node name="DamageHitBox" type="Area3D" parent="." unique_id=319406488]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.06081575, 0)
