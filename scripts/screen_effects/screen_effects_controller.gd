@@ -8,6 +8,16 @@ const INTENSITY_PARAM := &"intensity"
 
 var _tweens: Dictionary[StringName, Tween] = {}
 
+
+func attach_to(viewport: Viewport) -> void:
+	custom_viewport = viewport
+	viewport.tree_exiting.connect(_on_viewport_exiting.bind(viewport), CONNECT_ONE_SHOT)
+
+
+func _on_viewport_exiting(viewport: Viewport) -> void:
+	if custom_viewport == viewport:
+		custom_viewport = get_tree().root
+
 func show_effect(effect_id: StringName) -> void:
 	var rect: ColorRect = effect_rects.get(effect_id)
 

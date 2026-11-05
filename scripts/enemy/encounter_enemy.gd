@@ -70,7 +70,8 @@ var _death_push := Vector3.ZERO
 var knockback_hit_targets: Array[Encounter_Enemy] = []
 
 @onready var damage_hit_box: HurtBox = $DamageHitBox
-#@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+var _model_meshes: Array[MeshInstance3D] = []
+
 @onready var star_stun_effect: Star_Stun_Effect = $StunEffectPoint/StarStunEffect
 
 @export var damage_sound_cooldown: float = 0.08
@@ -81,14 +82,18 @@ func _ready() -> void:
 	damage_hit_box.body_entered.connect(_on_attack_area_body_entered)
 	damage_hit_box.hit.connect(_on_hit)
 
-	#Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
-	#_on_thermal_vision_changed(Events.thermal_vision_active)
+	if wolf_model:
+		for mesh in wolf_model.find_children("*", "MeshInstance3D", true, false):
+			_model_meshes.append(mesh)
+	Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
+	_on_thermal_vision_changed(Events.thermal_vision_active)
 
 	_play_run_animation()
 
 
-#func _on_thermal_vision_changed(active: bool) -> void:
-	#mesh_instance.material_override = thermal_material if active else null
+func _on_thermal_vision_changed(active: bool) -> void:
+	for mesh in _model_meshes:
+		mesh.material_override = thermal_material if active else null
 
 
 func initialize(target_player: Node3D, target_encounter: Enemy_Encounter, data: EncounterEnemyData) -> void:

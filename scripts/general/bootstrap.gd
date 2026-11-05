@@ -36,6 +36,7 @@ func _ready() -> void:
 	Settings.register_overlay(overlay)
 	Settings.register_ps1_overlay_material(overlay.material as ShaderMaterial)
 	Settings.register_hud(ui.hud)
+	ScreenEffects.attach_to(game_viewport)
 
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
