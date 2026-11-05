@@ -145,12 +145,16 @@ func change_scene(path: String) -> void:
 
 
 func _warmup_shaders() -> void:
+	if DisplayServer.get_name() == "headless":
+		_warmup_done = true
+		return
+
 	var warmup := SHADER_WARMUP.instantiate()
 	get_tree().root.add_child(warmup)
 
 	await warmup.completed
 
-	print("DEBUG: warmup is done!(YA DONE)")
+	GameLog.print("[warmup] done")
 
 	warmup.queue_free()
 	_warmup_done = true
