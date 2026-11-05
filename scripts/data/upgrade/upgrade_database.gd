@@ -11,12 +11,20 @@ static func from_json(path: String) -> UpgradeDatabase:
 		push_error("Invalid upgrade catalog: " + path)
 		return database
 	var by_id: Dictionary = {}
+	var branches: Dictionary = {}
 	for row in rows:
 		var upgrade := UpgradeData.new()
 		upgrade.id = str(row["id"])
 		upgrade.display_name = str(row.get("name", ""))
 		upgrade.description = str(row.get("description", ""))
 		upgrade.tier = int(row.get("tier", 0))
+		var branch_name := str(row.get("branch", ""))
+		if not branch_name.is_empty():
+			if not branches.has(branch_name):
+				var branch := UpgradeBranch.new()
+				branch.display_name = branch_name
+				branches[branch_name] = branch
+			upgrade.branch = branches[branch_name]
 		for entry in row["levels"]:
 			var level := UpgradeLevel.new()
 			level.cost = int(entry["cost"])
