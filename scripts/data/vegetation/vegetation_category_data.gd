@@ -20,7 +20,7 @@ enum Placement { SCATTER, GRID }
 @export var scale_range := Vector2(0.85, 1.25)
 @export var ground_sink := 0.0
 
-@export var visibility_range := 345.0
+@export var visibility_range := 400.0
 @export var visibility_fade := true
 @export var shrink_distance := Vector2.ZERO
 @export var cast_shadows := true
