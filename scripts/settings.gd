@@ -36,6 +36,11 @@ const RESOLUTIONS: Array[Vector2i] = [
 ]
 
 signal fov_changed(value: float)
+signal ground_distance_changed(scale: float)
+
+const GROUND_DISTANCE_SCALES: Array[float] = [1.0, 1.35, 1.7]
+const GROUND_DISTANCE_NAMES: PackedStringArray = ["Ground: standard", "Ground: far", "Ground: max"]
+var ground_distance_index: int = 0
 
 var _master_bus_idx: int
 var _music_bus_idx: int
@@ -176,6 +181,16 @@ func set_camera_fov(value: float) -> void:
 	camera_fov = value
 	fov_changed.emit(value)
 
+#--------------------------------- GROUND DISTANCE
+
+func get_ground_distance_scale() -> float:
+	return GROUND_DISTANCE_SCALES[clampi(ground_distance_index, 0, GROUND_DISTANCE_SCALES.size() - 1)]
+
+
+func set_ground_distance_index(index: int) -> void:
+	ground_distance_index = clampi(index, 0, GROUND_DISTANCE_SCALES.size() - 1)
+	ground_distance_changed.emit(get_ground_distance_scale())
+
 #--------------------------------- FPS
 
 func set_fps_limit_index(index: int) -> void:
@@ -252,6 +267,7 @@ func save_settings() -> void:
 	config.set_value("audio", "music_volume", music_volume)
 	config.set_value("audio", "master_volume", master_volume)
 	config.set_value("video", "fps_limit_index", fps_limit_index)
+	config.set_value("video", "ground_distance_index", ground_distance_index)
 	config.set_value("video", "overlay_enabled", overlay_enabled)
 	config.set_value("video", "resolution_index", resolution_index)
 	config.set_value("video", "volumetric_fog_enabled", volumetric_fog_enabled)
@@ -274,6 +290,7 @@ func load_settings() -> void:
 	is_fullscreen = config.get_value("video", "fullscreen", is_fullscreen)
 	master_volume = config.get_value("audio", "master_volume", master_volume)
 	fps_limit_index = config.get_value("video", "fps_limit_index", fps_limit_index)
+	ground_distance_index = clampi(int(config.get_value("video", "ground_distance_index", ground_distance_index)), 0, GROUND_DISTANCE_SCALES.size() - 1)
 	overlay_enabled = config.get_value("video", "overlay_enabled", overlay_enabled)
 	resolution_index = config.get_value("video", "resolution_index", resolution_index)
 	volumetric_fog_enabled = config.get_value("video", "volumetric_fog_enabled", volumetric_fog_enabled)

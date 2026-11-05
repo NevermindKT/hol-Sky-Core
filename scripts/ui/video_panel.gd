@@ -3,6 +3,7 @@ extends Control
 @export_category("Options")
 @export var resolution_option: OptionButton
 @export var fps_limit_option: OptionButton
+@export var ground_distance_option: OptionButton
 
 @export_category("CheckButtons")
 @export var fullscreen_checkbox: CheckButton
@@ -39,6 +40,11 @@ func _ready() -> void:
 	fps_limit_option.selected = Settings.fps_limit_index
 	fps_limit_option.item_selected.connect(Settings.set_fps_limit_index)
 
+	_populate_ground_distance_options()
+	ground_distance_option.selected = Settings.ground_distance_index
+	ground_distance_option.item_selected.connect(Settings.set_ground_distance_index)
+	Settings.language_changed.connect(_populate_ground_distance_options)
+
 	fov_slider.value_changed.connect(show_current_fov)
 	fov_slider.value = Settings.camera_fov
 
@@ -67,6 +73,14 @@ func _populate_fps_limit_options() -> void:
 	fps_limit_option.clear()
 	for limit in Settings.FPS_LIMITS:
 		fps_limit_option.add_item("%d FPS" % limit)
+
+
+func _populate_ground_distance_options() -> void:
+	var selected := Settings.ground_distance_index
+	ground_distance_option.clear()
+	for option_name in Settings.GROUND_DISTANCE_NAMES:
+		ground_distance_option.add_item(tr(option_name))
+	ground_distance_option.selected = selected
 
 
 func show_current_fov(value: float):

@@ -453,6 +453,15 @@ msgstr "Комбіноване нічне бачення"
 msgid "Gamma"
 msgstr "Гама"
 
+msgid "Ground: far"
+msgstr "Земля: далеко"
+
+msgid "Ground: max"
+msgstr "Земля: максимум"
+
+msgid "Ground: standard"
+msgstr "Земля: стандарт"
+
 msgid "LANGUAGE"
 msgstr "МОВА"
 

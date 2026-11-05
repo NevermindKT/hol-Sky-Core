@@ -453,6 +453,15 @@ msgstr "Fusion night vision"
 msgid "Gamma"
 msgstr "Gamma"
 
+msgid "Ground: far"
+msgstr "Ground: far"
+
+msgid "Ground: max"
+msgstr "Ground: max"
+
+msgid "Ground: standard"
+msgstr "Ground: standard"
+
 msgid "LANGUAGE"
 msgstr "LANGUAGE"
 
