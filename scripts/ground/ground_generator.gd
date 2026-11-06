@@ -169,6 +169,8 @@ var _edge_noise: FastNoiseLite
 
 var _started := false
 var _needed_dirty := true
+var _base_view_radius := 0.0
+var _base_ground_half_width := 0.0
 var _needed_origin := Vector3(INF, INF, INF)
 var _pending_pieces: Array[PackedVector3Array] = []
 var _pending_piece_frames: PackedInt64Array = []
@@ -197,6 +199,11 @@ var _last_ground_xform := Transform3D()
 
 
 func initialize() -> void:
+	_base_view_radius = view_radius
+	_base_ground_half_width = ground_half_width
+	_apply_ground_distance(Settings.get_ground_distance_scale())
+	Settings.ground_distance_changed.connect(_apply_ground_distance)
+
 	_world_seed = randi()
 	_max_tasks = worker_tasks if worker_tasks > 0 else clampi(int(OS.get_processor_count() / 3.0), 2, 4)
 	_build_index_buffer()
@@ -223,6 +230,13 @@ func initialize() -> void:
 		RenderingServer.frame_pre_draw.connect(_sync_rs_transforms)
 
 # ------------------------------------------------------------------------------
+
+func _apply_ground_distance(distance_scale: float) -> void:
+	view_radius = _base_view_radius * distance_scale
+	ground_half_width = _base_ground_half_width * distance_scale
+	_far_keys.clear()
+	_needed_dirty = true
+
 
 func _process(_delta: float) -> void:
 	if not _pending_pieces.is_empty() and Engine.get_process_frames() >= _pending_piece_frames[0]:

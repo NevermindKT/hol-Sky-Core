@@ -15,7 +15,8 @@
 	  "Descriprion": "Час уповільнюється на 6с.",
 	  "Emount": 100,
 	  "IconPath": "res://textures/menu/shop/Items/06-adrenaline.png",
-	  "Rarity": "Common"
+	  "Rarity": "Common",
+	  "BoostId": "TS01"
 	},
 	{
 	  "ID": "12",
@@ -27,7 +28,8 @@
 	  "Descriprion": "Турбо режим на 3с.",
 	  "Emount": 300,
 	  "IconPath": "res://textures/menu/shop/Items/07-nitrous.png",
-	  "Rarity": "Uncommon"
+	  "Rarity": "Uncommon",
+	  "BoostId": "NO01"
 	},
 	{
 	  "ID": "13",
@@ -39,7 +41,8 @@
 	  "Descriprion": "Вороги підсвічуються на 4с.",
 	  "Emount": 600,
 	  "IconPath": "res://textures/menu/shop/Items/08-night-vision.png",
-	  "Rarity": "Rare"
+	  "Rarity": "Rare",
+	  "BoostId": "FV01"
 	},
 	{
 	  "ID": "14",
@@ -51,7 +54,8 @@
 	  "Descriprion": "Вороги не нападають і розбігаються на 4с.",
 	  "Emount": 800,
 	  "IconPath": "res://textures/menu/shop/Items/09-flashbang.png",
-	  "Rarity": "Epic"
+	  "Rarity": "Epic",
+	  "BoostId": "FB01"
 	},
 	{
 	  "ID": "15",
@@ -63,7 +67,8 @@
 	  "Descriprion": "+1 шина",
 	  "Emount": 1200,
 	  "IconPath": "res://textures/menu/shop/Items/10-spare-tire.png",
-	  "Rarity": "Legendary"
+	  "Rarity": "Legendary",
+	  "BoostId": "ST01"
 	},
 	{
 	  "ID": "21",
@@ -738,6 +743,23 @@
 	  "Description": "Поверніться до вченого.",
 	  "Have": 0,
 	  "Need": 1
+	}
+  ],
+  "Loadout": [
+	{
+	  "ID": 1,
+	  "ObjectId": "",
+	  "Count": 0
+	},
+	{
+	  "ID": 2,
+	  "ObjectId": "",
+	  "Count": 0
+	},
+	{
+	  "ID": 3,
+	  "ObjectId": "",
+	  "Count": 0
 	}
   ]
 }

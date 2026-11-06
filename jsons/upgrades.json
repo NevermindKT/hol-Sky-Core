@@ -3,6 +3,7 @@
     "id": "BR01",
     "name": "Bullet ricochet",
     "description": "Bullet ricochet",
+    "branch": "Damage",
     "tier": 0,
     "prerequisites": [
       "ES02",
@@ -48,6 +49,7 @@
     "id": "LR01",
     "name": "Less recoil",
     "description": "Less recoil",
+    "branch": "Accuracy",
     "tier": 0,
     "prerequisites": [],
     "levels": [
@@ -90,6 +92,7 @@
     "id": "BP01",
     "name": "Bullet poison",
     "description": "Bullet poison",
+    "branch": "Fire Power",
     "tier": 0,
     "prerequisites": [
       "EM01",
@@ -150,6 +153,7 @@
     "id": "BS01",
     "name": "Bullet saving",
     "description": "Bullet saving",
+    "branch": "Fire Power",
     "tier": 0,
     "prerequisites": [
       "RF01"
@@ -194,6 +198,7 @@
     "id": "CC01",
     "name": "Critical damage chance",
     "description": "Critical damage chance",
+    "branch": "Accuracy",
     "tier": 0,
     "prerequisites": [
       "LS01",
@@ -239,6 +244,7 @@
     "id": "ES01",
     "name": "Enemy slowdown",
     "description": "Enemy slowdown",
+    "branch": "Damage",
     "tier": 0,
     "prerequisites": [
       "MD01"
@@ -283,6 +289,7 @@
     "id": "ES02",
     "name": "Enemy stunning",
     "description": "Enemy stunning",
+    "branch": "Damage",
     "tier": 10,
     "prerequisites": [
       "MD01"
@@ -327,6 +334,7 @@
     "id": "EM01",
     "name": "Expanded magazine",
     "description": "Expanded magazine",
+    "branch": "Fire Power",
     "tier": 0,
     "prerequisites": [
       "RF01"
@@ -371,6 +379,7 @@
     "id": "LS01",
     "name": "Less spread",
     "description": "Less spread",
+    "branch": "Accuracy",
     "tier": 0,
     "prerequisites": [
       "LR01"
@@ -415,6 +424,7 @@
     "id": "LD01",
     "name": "Less turning delay",
     "description": "Less turning delay",
+    "branch": "Accuracy",
     "tier": 0,
     "prerequisites": [
       "LR01"
@@ -459,6 +469,7 @@
     "id": "MD01",
     "name": "Multiple damage",
     "description": "Multiple damage",
+    "branch": "Damage",
     "tier": 0,
     "prerequisites": [],
     "levels": [
@@ -501,6 +512,7 @@
     "id": "RF01",
     "name": "Rate of fire",
     "description": "Rate of fire",
+    "branch": "Fire Power",
     "tier": 0,
     "prerequisites": [],
     "levels": [

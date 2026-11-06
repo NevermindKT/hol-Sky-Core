@@ -9,6 +9,11 @@ extends Control
 @export_category("Inventory")
 @export var item_view_scene: PackedScene
 
+@export_category("Loadout")
+@export var loadout_slots: Array[LoadoutSlot] = []
+@export var loadout_hint: Label
+@export var loadout_total: Label
+
 const SELL_PRICE_MULTIPLIER := 0.67
 
 var current_selected_id: String = ""
@@ -32,6 +37,12 @@ func _ready() -> void:
 
 		if not object_info.sell_requested.is_connected(_on_sell_requested):
 			object_info.sell_requested.connect(_on_sell_requested)
+
+	for loadout_slot in loadout_slots:
+		loadout_slot.slot_clicked.connect(_on_loadout_slot_clicked)
+
+	BoostManager.slots_changed.connect(_refresh_loadout_total)
+	BoostManager.sanitize_loadout()
 
 	refresh_inventory()
 
@@ -81,6 +92,9 @@ func refresh_inventory() -> void:
 			item_instance.button.pressed.connect(
 				_on_inventory_item_clicked.bind(item_instance.item_id)
 			)
+			item_instance.button.set_drag_forwarding(
+				_get_item_drag_data.bind(item_instance), Callable(), Callable()
+			)
 
 
 # --------------------------------------------------
@@ -109,6 +123,41 @@ func _on_inventory_item_clicked(item_id: String) -> void:
 	}
 
 	object_info.setup(info_data, ObjInfo.Mode.INVENTORY)
+
+
+# --------------------------------------------------
+# БАГАЖНИК (АКТИВКИ НА 1/2/3)
+# --------------------------------------------------
+
+func _get_item_drag_data(_at_position: Vector2, item_instance: item_view) -> Variant:
+	if not BoostManager.is_slot_boost(BoostManager.boost_for_object(item_instance.item_id)):
+		return null
+
+	var preview := TextureRect.new()
+	preview.texture = item_instance.button.icon
+	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	preview.size = Vector2(80, 80)
+	preview.position = -preview.size * 0.5
+	preview.modulate.a = 0.85
+	var holder := Control.new()
+	holder.add_child(preview)
+	item_instance.button.set_drag_preview(holder)
+
+	return {"object_id": item_instance.item_id}
+
+
+func _on_loadout_slot_clicked(slot: int) -> void:
+	if current_selected_id.is_empty():
+		return
+
+	if not BoostManager.add_to_slot(slot, current_selected_id):
+		loadout_slots[slot].flash_denied()
+
+
+func _refresh_loadout_total() -> void:
+	if loadout_total:
+		loadout_total.text = "%d / %d" % [BoostManager.total_loaded(), BoostManager.MAX_PER_RUN]
 
 
 # --------------------------------------------------
@@ -154,6 +203,7 @@ func _on_sell_requested(data: Dictionary, amount: int) -> void:
 		object_info.close_panel()
 
 	refresh_inventory()
+	BoostManager.sanitize_loadout()
 
 
 # --------------------------------------------------
@@ -162,6 +212,7 @@ func _on_sell_requested(data: Dictionary, amount: int) -> void:
 
 func _on_inventory_changed() -> void:
 	refresh_inventory()
+	BoostManager.sanitize_loadout()
 
 
 func _refresh_language() -> void:

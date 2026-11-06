@@ -306,6 +306,9 @@ msgstr " як правильно"
 msgid " яка може це довести"
 msgstr " яка може це довести"
 
+msgid " — активки"
+msgstr " — активки"
+
 msgid " — гальмування"
 msgstr " — гальмування"
 
@@ -317,6 +320,9 @@ msgstr " — зміна зброї"
 
 msgid " — перезарядка"
 msgstr " — перезаряджання"
+
+msgid " — поставити запаску"
+msgstr " — поставити запаску"
 
 msgid " — режим ліхтаря турелі"
 msgstr " — режим ліхтаря турелі"
@@ -383,6 +389,9 @@ msgstr "Штурмова гвинтівка"
 
 msgid "BACK"
 msgstr "НАЗАД"
+
+msgid "Boosts for the run: drag into slots 1–3, up to 5 in total (RMB removes one)"
+msgstr "Активки на забіг: перетягни в слоти 1–3, разом до 5 (ПКМ прибирає одну)"
 
 msgid "Bullet poison"
 msgstr "Отруєні кулі"
@@ -456,6 +465,9 @@ msgstr "Кут огляду"
 msgid "Fire Power"
 msgstr "Вогнева міць"
 
+msgid "Fit the spare tire"
+msgstr "Поставити запаску"
+
 msgid "Flashbang"
 msgstr "Світлошумова граната"
 
@@ -470,6 +482,15 @@ msgstr "Комбіноване нічне бачення"
 
 msgid "Gamma"
 msgstr "Гама"
+
+msgid "Ground: far"
+msgstr "Земля: далеко"
+
+msgid "Ground: max"
+msgstr "Земля: максимум"
+
+msgid "Ground: standard"
+msgstr "Земля: стандарт"
 
 msgid "INVENTORY"
 msgstr "ІНВЕНТАР"

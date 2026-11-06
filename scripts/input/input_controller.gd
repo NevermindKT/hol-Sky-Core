@@ -21,6 +21,8 @@ signal pause_toggle
 signal photo_mode_toggle
 
 signal test_boost
+signal boost_slot(slot: int)
+signal spare_tire
 signal debug_toggle_upgrade(slot: int)
 signal debug_reset_save
 
@@ -66,6 +68,13 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("test_boost"):
 		test_boost.emit()
+
+	for slot in 3:
+		if Input.is_action_just_pressed("boost_slot_%d" % (slot + 1)):
+			boost_slot.emit(slot)
+
+	if Input.is_action_just_pressed("spare_tire"):
+		spare_tire.emit()
 
 	if Input.is_action_just_pressed("NextSong"):
 		next_song.emit()

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b1f5gspawrysf"]
 
 [ext_resource type="PackedScene" uid="uid://ycruqbm88110" path="res://scenes/vfx/effects/blood_car_hit.tscn" id="1_hhx22"]
-[ext_resource type="Script" uid="uid://ca5ra46ibmx4d" path="res://scenes/shader_warmup.gd" id="1_qa0le"]
+[ext_resource type="Script" uid="uid://dvwxribkyugna" path="res://scripts/general/shader_warmup.gd" id="1_qa0le"]
 [ext_resource type="PackedScene" uid="uid://dcwmb3qbx7ae0" path="res://scenes/vfx/effects/blood_trail_stroke.tscn" id="2_7wuou"]
 [ext_resource type="PackedScene" uid="uid://c0ugimnnmaxti" path="res://scenes/player/PlayerCar.tscn" id="3_qemjy"]
 [ext_resource type="PackedScene" uid="uid://5yyn8hbn5ba5" path="res://scenes/road_segments/road_straight.tscn" id="4_pxjla"]

@@ -58,6 +58,7 @@ func repair() -> void:
 	_stop_hub_sparks()
 
 	Events.player_heal.emit(car.player_status_controller.max_health * heal_ratio)
+	Events.wheel_repaired.emit()
 
 
 func _on_player_health_changed(value: float) -> void:
@@ -81,6 +82,7 @@ func _lose_wheel() -> void:
 
 	_play_break_effect(pivot)
 	_spawn_detached_wheel(pivot)
+	Events.wheel_lost.emit()
 
 
 func _play_break_effect(pivot: Node3D) -> void:

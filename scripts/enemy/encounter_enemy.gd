@@ -13,7 +13,6 @@ signal health_changed(current: float, maximum: float)
 @export var enemy_data: EncounterEnemyData
 @export var thermal_material: StandardMaterial3D
 @export var poison_effect: GPUParticles3D
-@export var corpse_scene: PackedScene
 @export var bullet_death_push := 4.0
 
 @export_category("Model")
@@ -26,7 +25,7 @@ const ANIM_RUN := "ArmatureAction"
 @export var ragdoll: PhysicalBoneSimulator3D
 @export var ragdoll_root: PhysicalBone3D
 
-@export var ragdoll_impulse := 4.0
+@export var ragdoll_impulse := 1.0
 @export var ragdoll_lifetime := 8.0
 
 
@@ -70,7 +69,8 @@ var _death_push := Vector3.ZERO
 var knockback_hit_targets: Array[Encounter_Enemy] = []
 
 @onready var damage_hit_box: HurtBox = $DamageHitBox
-#@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+var _model_meshes: Array[MeshInstance3D] = []
+
 @onready var star_stun_effect: Star_Stun_Effect = $StunEffectPoint/StarStunEffect
 
 @export var damage_sound_cooldown: float = 0.08
@@ -81,14 +81,18 @@ func _ready() -> void:
 	damage_hit_box.body_entered.connect(_on_attack_area_body_entered)
 	damage_hit_box.hit.connect(_on_hit)
 
-	#Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
-	#_on_thermal_vision_changed(Events.thermal_vision_active)
+	if wolf_model:
+		for mesh in wolf_model.find_children("*", "MeshInstance3D", true, false):
+			_model_meshes.append(mesh)
+	Events.thermal_vision_changed.connect(_on_thermal_vision_changed)
+	_on_thermal_vision_changed(Events.thermal_vision_active)
 
 	_play_run_animation()
 
 
-#func _on_thermal_vision_changed(active: bool) -> void:
-	#mesh_instance.material_override = thermal_material if active else null
+func _on_thermal_vision_changed(active: bool) -> void:
+	for mesh in _model_meshes:
+		mesh.material_override = thermal_material if active else null
 
 
 func initialize(target_player: Node3D, target_encounter: Enemy_Encounter, data: EncounterEnemyData) -> void:
@@ -502,19 +506,6 @@ func die() -> void:
 
 	_start_ragdoll.call_deferred()
 
-
-func _spawn_corpse() -> void:
-	if corpse_scene == null or encounter.world == null:
-		return
-
-	var corpse := corpse_scene.instantiate() as Enemy_Corpse
-	if corpse == null:
-		push_error("Encounter_Enemy: corpse_scene does not have Enemy_Corpse script!")
-		return
-
-	encounter.world.enemies.add_child(corpse)
-	#corpse.launch(encounter.world, player as Car_Movement, mesh_instance.global_transform, mesh_instance.mesh, thermal_material, _death_push)
-
 # ============================ EFFECTS =========================================
 
 func _spawn_bullet_hit_effect(hit_position: Vector3, direction: Vector3) -> void:
@@ -571,19 +562,15 @@ func _start_ragdoll() -> void:
 	damage_hit_box.monitoring = false
 	damage_hit_box.monitorable = false
 
-	if ragdoll == null:
+	var world := encounter.world if encounter else null
+	if ragdoll == null or world == null:
 		queue_free()
 		return
 
-	get_tree().create_timer(ragdoll_lifetime).timeout.connect(queue_free)
+	if get_parent() != world.enemies:
+		reparent(world.enemies, true)
 
-	var corpse_parent = encounter.world.enemies if encounter.world else null
-	if corpse_parent and get_parent() != corpse_parent:
-		reparent(corpse_parent, true)
-
-	ragdoll.physical_bones_start_simulation()
-
-	await get_tree().physics_frame
-
-	if ragdoll_root and _death_push.length() > 0.0:
-		ragdoll_root.apply_central_impulse(_death_push * ragdoll_impulse)
+	var driver := Enemy_Ragdoll.new()
+	driver.max_lifetime = ragdoll_lifetime
+	world.enemies.add_child(driver)
+	driver.launch(self, ragdoll, ragdoll_root, world, player as Car_Movement, _death_push * ragdoll_impulse)

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://buqwarq4g3ls5" path="res://textures/menu/inventory/CityStreetAsphaltGenericClean001_COL_2K copy.png" id="2_n5s87"]
 [ext_resource type="Texture2D" uid="uid://dyt8y73rgtqtd" path="res://textures/menu/inventory/Empty yellow pickup bed.png" id="3_hrd7n"]
 [ext_resource type="PackedScene" uid="uid://bkg1dmwtdimur" path="res://scenes/menu/inventory/obj_info.tscn" id="5_183gk"]
+[ext_resource type="PackedScene" path="res://scenes/menu/inventory/loadout_slot.tscn" id="30_loadout"]
 [ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="17_y1tmo"]
 [ext_resource type="Texture2D" uid="uid://ciyn8iiufimu" path="res://textures/menu/BG/BasePaperBackground.png" id="18_rog58"]
 [ext_resource type="Script" uid="uid://bqiunaw81sh7s" path="res://scripts/menu/map/map_main.gd" id="21_2d1xj"]
@@ -77,7 +78,7 @@ modulate_color = Color(0, 0, 0, 1)
 texture = ExtResource("23_b8hp3")
 modulate_color = Color(0, 0, 0, 1)
 
-[node name="Inventory" type="Control" unique_id=333159010 node_paths=PackedStringArray("inventory_grid", "object_info")]
+[node name="Inventory" type="Control" unique_id=333159010 node_paths=PackedStringArray("inventory_grid", "object_info", "loadout_slots", "loadout_hint", "loadout_total")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,6 +89,9 @@ script = ExtResource("1_3t7i5")
 inventory_grid = NodePath("InventoryGrid")
 object_info = NodePath("ObjInfo")
 item_view_scene = ExtResource("2_hrd7n")
+loadout_slots = [NodePath("LoadoutSlots/LoadoutSlot1"), NodePath("LoadoutSlots/LoadoutSlot2"), NodePath("LoadoutSlots/LoadoutSlot3")]
+loadout_hint = NodePath("LoadoutSlots/Hint")
+loadout_total = NodePath("LoadoutSlots/Total")
 
 [node name="Background" type="Panel" parent="." unique_id=2040053873]
 layout_mode = 1
@@ -130,6 +134,66 @@ layout_direction = 2
 theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 40
 columns = 6
+
+[node name="LoadoutSlots" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Hint" type="Label" parent="LoadoutSlots"]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 790.0
+offset_right = 1360.0
+offset_bottom = 830.0
+theme_override_colors/font_color = Color(1, 0.9, 0.7, 0.85)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("17_y1tmo")
+theme_override_font_sizes/font_size = 24
+text = "Boosts for the run: drag into slots 1–3, up to 5 in total (RMB removes one)"
+horizontal_alignment = 1
+
+[node name="Total" type="Label" parent="LoadoutSlots"]
+layout_mode = 0
+offset_left = 1370.0
+offset_top = 790.0
+offset_right = 1470.0
+offset_bottom = 830.0
+theme_override_colors/font_color = Color(1, 0.9, 0.7, 0.85)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("17_y1tmo")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 0
+
+[node name="LoadoutSlot1" parent="LoadoutSlots" instance=ExtResource("30_loadout")]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 860.0
+offset_right = 595.0
+offset_bottom = 964.0
+slot = 0
+
+[node name="LoadoutSlot2" parent="LoadoutSlots" instance=ExtResource("30_loadout")]
+layout_mode = 0
+offset_left = 903.0
+offset_top = 860.0
+offset_right = 1007.0
+offset_bottom = 964.0
+slot = 1
+
+[node name="LoadoutSlot3" parent="LoadoutSlots" instance=ExtResource("30_loadout")]
+layout_mode = 0
+offset_left = 1316.0
+offset_top = 860.0
+offset_right = 1420.0
+offset_bottom = 964.0
+slot = 2
 
 [node name="ObjInfo" parent="." unique_id=1888403002 instance=ExtResource("5_183gk")]
 layout_mode = 1

@@ -6,6 +6,8 @@ signal player_heal(heal: float)
 signal player_take_damage(damage: float, source_position: Vector3)
 signal player_health_changed(value: float)
 signal player_stamina_changed(value: float)
+signal wheel_lost
+signal wheel_repaired
 
 #-------------- PLAYER MOVEMENT
 signal player_hard_brake(force: float)
