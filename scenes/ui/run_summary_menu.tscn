@@ -112,7 +112,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 176.0
 offset_top = -231.0
-offset_right = 686.0
+offset_right = 736.0
 offset_bottom = 437.0
 grow_vertical = 2
 theme_override_constants/separation = 40
@@ -196,11 +196,19 @@ theme_override_font_sizes/font_size = 35
 text = "TOTAL INCOME:"
 horizontal_alignment = 1
 
+[node name="+" type="Label" parent="Left/VBoxContainer2/Income" unique_id=1758390511]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2759302, 0.5688139, 0.08080984, 1)
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 40
+text = "+"
+horizontal_alignment = 1
+
 [node name="IncomeLabel" type="Label" parent="Left/VBoxContainer2/Income" unique_id=1105543005]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.2759302, 0.5688139, 0.08080984, 1)
 theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
 text = "INCOME"
 horizontal_alignment = 1
 
@@ -217,11 +225,19 @@ theme_override_font_sizes/font_size = 35
 text = "TOTAL PENALTY:"
 horizontal_alignment = 1
 
+[node name="-" type="Label" parent="Left/VBoxContainer2/Penalty" unique_id=214108040]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7058824, 0.019607844, 0, 1)
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 40
+text = "-"
+horizontal_alignment = 1
+
 [node name="PenaltyLabel" type="Label" parent="Left/VBoxContainer2/Penalty" unique_id=1036954929]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7058824, 0.019607844, 0, 1)
 theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
 text = "PENALTY"
 horizontal_alignment = 1
 
@@ -240,9 +256,9 @@ horizontal_alignment = 1
 
 [node name="NetLabel" type="Label" parent="Left/VBoxContainer2/Net" unique_id=361578024]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.23529412, 0.69803923, 1)
+theme_override_colors/font_color = Color(0, 0.6075168, 0.93629795, 1)
 theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
 text = "NET"
 horizontal_alignment = 1
 
@@ -250,14 +266,14 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 85)
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_constants/separation = 20
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="MenuBtn" type="Button" parent="Left/Buttons" unique_id=2052425360 groups=["ui_buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxTexture_i5676")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ldbp3")
 theme_override_styles/hover = SubResource("StyleBoxTexture_f0p57")
@@ -267,7 +283,7 @@ text = "RTB (MENU)"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxTexture_vkd5t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_2udyh")
 theme_override_styles/hover = SubResource("StyleBoxTexture_srdkp")
