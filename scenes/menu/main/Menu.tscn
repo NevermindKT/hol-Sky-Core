@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://cmmy07rt8wv7p"]
 
 [ext_resource type="Script" uid="uid://bfh3g3lpegmqe" path="res://scripts/menu/main_menu.gd" id="1_pd6cf"]
-[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://resources/fonts/Cormorant/Cormorant-Bold.ttf" id="2_a4lia"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="2_a4lia"]
 [ext_resource type="StyleBox" uid="uid://cy8o0xnhr6tiy" path="res://textures/styles/main_button_bg.tres" id="3_cju5y"]
 [ext_resource type="StyleBox" uid="uid://bbee178wcfook" path="res://textures/styles/main_button_pressed_bg.tres" id="4_1py4p"]
+[ext_resource type="StyleBox" uid="uid://frvc20jtvwgx" path="res://textures/styles/main_button_bg_disabled.tres" id="5_ey7qv"]
 [ext_resource type="Texture2D" uid="uid://pgqeg5hm2tre" path="res://textures/menu/main/v1.svg" id="5_qgubf"]
 [ext_resource type="Texture2D" uid="uid://ndpjt8htkh23" path="res://textures/menu/main/v2.svg" id="6_0egk1"]
 [ext_resource type="Texture2D" uid="uid://cbftv2q6no62u" path="res://textures/menu/main/v3.svg" id="7_klrtg"]
@@ -27,7 +28,6 @@ new_game_btn = NodePath("VBoxContainer/NewGameBtn")
 settings_btn = NodePath("VBoxContainer/SettingsBtn")
 titles_btn = NodePath("VBoxContainer/TitlesBtn")
 exit_btn = NodePath("VBoxContainer/ExitBtn")
-menu_scene_path = "uid://cmm2o33hwupgc"
 metadata/_edit_vertical_guides_ = [885.0]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1388701148]
@@ -54,6 +54,7 @@ theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = ExtResource("3_cju5y")
 theme_override_styles/pressed = ExtResource("4_1py4p")
 theme_override_styles/hover = ExtResource("4_1py4p")
+theme_override_styles/disabled = ExtResource("5_ey7qv")
 text = "Continue"
 icon = ExtResource("5_qgubf")
 alignment = 0

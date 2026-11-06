@@ -1,46 +1,46 @@
 [gd_scene format=3 uid="uid://4ojvx270ebjd"]
 
-[ext_resource type="Script" uid="uid://cdb0x708leod6" path="res://scripts/menu/car/Car.gd" id="1_d27xw"]
-[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="1_o5wyr"]
-[ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="2_k0gdn"]
-[ext_resource type="Texture2D" uid="uid://dyeo2y3qetslc" path="res://textures/menu/car/backbround.png" id="2_w4evf"]
-[ext_resource type="Texture2D" uid="uid://c50uf2akbxse0" path="res://textures/menu/car/Active/Row plate.png" id="4_gnhqe"]
-[ext_resource type="Texture2D" uid="uid://dqpbccox31hqr" path="res://textures/menu/menu/MoneyIcon.svg" id="6_qk428"]
-[ext_resource type="Texture2D" uid="uid://34xj0d8asyo6" path="res://textures/menu/car/not active/Row plate.png" id="8_gnhqe"]
-[ext_resource type="Texture2D" uid="uid://dfnjhp03utwx1" path="res://textures/menu/car/not active/Level badge - blank.png" id="10_hxwba"]
-[ext_resource type="Texture2D" uid="uid://cwt8cq12o2v1x" path="res://textures/menu/car/Active/Active - amber.png" id="10_tueux"]
-[ext_resource type="Texture2D" uid="uid://csx7d46s2kgb" path="res://textures/menu/car/not active/Inactive - grey.png" id="11_hxwba"]
-[ext_resource type="Texture2D" uid="uid://bmp0q037wmoc7" path="res://textures/menu/car/Category title - blank.png" id="15_2recr"]
-[ext_resource type="Texture2D" uid="uid://btjvgal0esj0w" path="res://textures/menu/car/Header - blank.png" id="17_0eapn"]
-[ext_resource type="Texture2D" uid="uid://by5vv3ry3b20f" path="res://textures/menu/car/Prev category.png" id="17_2recr"]
-[ext_resource type="Texture2D" uid="uid://ctkdyoqi2p25d" path="res://textures/menu/car/Next category.png" id="18_gnhqe"]
-[ext_resource type="FontFile" uid="uid://cwccufg4psr6q" path="res://scenes/menu/fonts/SpecialElite-Regular.ttf" id="18_y83ua"]
-[ext_resource type="Texture2D" uid="uid://bga3krss480fh" path="res://textures/menu/shop/Items/01-tire-repair.png" id="19_80qy8"]
-[ext_resource type="Texture2D" uid="uid://c0bg3vrdw0dhv" path="res://textures/menu/shop/Items/02-door-repair.png" id="20_kvfho"]
-[ext_resource type="Texture2D" uid="uid://d75co4cb1wbp" path="res://textures/menu/shop/Items/03-suspension-repair.png" id="21_oytsy"]
-[ext_resource type="Texture2D" uid="uid://df2sju8cy72n3" path="res://textures/menu/shop/Items/04-frame-repair.png" id="22_3chuq"]
-[ext_resource type="Texture2D" uid="uid://j8asukdyxxd5" path="res://textures/menu/shop/Items/05-engine-repair.png" id="23_p3jf1"]
-[ext_resource type="Texture2D" uid="uid://cwdur36n3oa2c" path="res://textures/menu/car/parts/Tire - SMART OBJECT.png" id="33_g7ec2"]
-[ext_resource type="Texture2D" uid="uid://chilhqawmnwpi" path="res://textures/menu/car/parts/Suspension - SMART OBJECT copy.png" id="34_onclx"]
-[ext_resource type="Texture2D" uid="uid://cup1twqm1csu7" path="res://textures/menu/car/parts/Door - SMART OBJECT.png" id="35_0kkxw"]
-[ext_resource type="Texture2D" uid="uid://ctikboukmxqe3" path="res://textures/menu/car/parts/Engine - SMART OBJECT.png" id="36_tb1e8"]
-[ext_resource type="Texture2D" uid="uid://djmj0mfwbjv8q" path="res://textures/menu/car/parts/Bullbar - SMART OBJECT.png" id="37_m1er7"]
+[ext_resource type="Script" uid="uid://cdb0x708leod6" path="res://scripts/menu/car/car_menu.gd" id="1_iuu2x"]
+[ext_resource type="Texture2D" uid="uid://dyeo2y3qetslc" path="res://textures/menu/car/backbround.png" id="2_fn22q"]
+[ext_resource type="Texture2D" uid="uid://c50uf2akbxse0" path="res://textures/menu/car/Active/Row plate.png" id="3_asw8y"]
+[ext_resource type="Texture2D" uid="uid://34xj0d8asyo6" path="res://textures/menu/car/not active/Row plate.png" id="4_tocbo"]
+[ext_resource type="FontFile" uid="uid://cwccufg4psr6q" path="res://scenes/menu/fonts/SpecialElite-Regular.ttf" id="5_0olwr"]
+[ext_resource type="Texture2D" uid="uid://dfnjhp03utwx1" path="res://textures/menu/car/not active/Level badge - blank.png" id="6_t457c"]
+[ext_resource type="FontFile" uid="uid://ctlht6v4ljebv" path="res://scenes/menu/fonts/Cormorant_SC/CormorantSC-Bold.ttf" id="7_fvfjl"]
+[ext_resource type="Texture2D" uid="uid://dqpbccox31hqr" path="res://textures/menu/menu/MoneyIcon.svg" id="8_u3680"]
+[ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="9_obc2m"]
+[ext_resource type="Texture2D" uid="uid://cwt8cq12o2v1x" path="res://textures/menu/car/Active/Active - amber.png" id="10_v3q18"]
+[ext_resource type="Texture2D" uid="uid://csx7d46s2kgb" path="res://textures/menu/car/not active/Inactive - grey.png" id="11_qcm0s"]
+[ext_resource type="Texture2D" uid="uid://bmp0q037wmoc7" path="res://textures/menu/car/Category title - blank.png" id="12_y2vrq"]
+[ext_resource type="Texture2D" uid="uid://by5vv3ry3b20f" path="res://textures/menu/car/Prev category.png" id="13_0wwc8"]
+[ext_resource type="Texture2D" uid="uid://ctkdyoqi2p25d" path="res://textures/menu/car/Next category.png" id="14_53opc"]
+[ext_resource type="Texture2D" uid="uid://bga3krss480fh" path="res://textures/menu/shop/Items/01-tire-repair.png" id="15_4elib"]
+[ext_resource type="Texture2D" uid="uid://c0bg3vrdw0dhv" path="res://textures/menu/shop/Items/02-door-repair.png" id="16_g8ddx"]
+[ext_resource type="Texture2D" uid="uid://d75co4cb1wbp" path="res://textures/menu/shop/Items/03-suspension-repair.png" id="17_r23po"]
+[ext_resource type="Texture2D" uid="uid://df2sju8cy72n3" path="res://textures/menu/shop/Items/04-frame-repair.png" id="18_xpl8k"]
+[ext_resource type="Texture2D" uid="uid://j8asukdyxxd5" path="res://textures/menu/shop/Items/05-engine-repair.png" id="19_kyym3"]
+[ext_resource type="Texture2D" uid="uid://btjvgal0esj0w" path="res://textures/menu/car/Header - blank.png" id="20_vkpv1"]
+[ext_resource type="Texture2D" uid="uid://cwdur36n3oa2c" path="res://textures/menu/car/parts/Tire - SMART OBJECT.png" id="21_33dvy"]
+[ext_resource type="Texture2D" uid="uid://chilhqawmnwpi" path="res://textures/menu/car/parts/Suspension - SMART OBJECT copy.png" id="22_0h8c5"]
+[ext_resource type="Texture2D" uid="uid://cup1twqm1csu7" path="res://textures/menu/car/parts/Door - SMART OBJECT.png" id="23_bb21n"]
+[ext_resource type="Texture2D" uid="uid://ctikboukmxqe3" path="res://textures/menu/car/parts/Engine - SMART OBJECT.png" id="24_vebho"]
+[ext_resource type="Texture2D" uid="uid://djmj0mfwbjv8q" path="res://textures/menu/car/parts/Bullbar - SMART OBJECT.png" id="25_7wmjb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rcacp"]
-texture = ExtResource("2_w4evf")
+texture = ExtResource("2_fn22q")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gy3ke"]
-texture = ExtResource("4_gnhqe")
+texture = ExtResource("3_asw8y")
 region_rect = Rect2(24.854553, 19.830357, 1247.5156, 165.75653)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tueux"]
-texture = ExtResource("8_gnhqe")
+texture = ExtResource("4_tocbo")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pqjyi"]
-texture = ExtResource("8_gnhqe")
+texture = ExtResource("4_tocbo")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_onclx"]
-texture = ExtResource("10_hxwba")
+texture = ExtResource("6_t457c")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_onclx"]
 
@@ -53,7 +53,7 @@ texture = ExtResource("10_hxwba")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfsiy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0kkxw"]
-texture = ExtResource("10_tueux")
+texture = ExtResource("10_v3q18")
 expand_margin_left = 1.0
 expand_margin_top = 1.0
 expand_margin_right = 1.0
@@ -61,12 +61,12 @@ expand_margin_bottom = 1.0
 region_rect = Rect2(27.95478, 27.772552, 411.6367, 114.181915)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdi66"]
-texture = ExtResource("10_tueux")
+texture = ExtResource("10_v3q18")
 region_rect = Rect2(27.2275, 27.772552, 414.54578, 114.181915)
 modulate_color = Color(0.8810723, 0.8810722, 0.8810722, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m1er7"]
-texture = ExtResource("10_tueux")
+texture = ExtResource("10_v3q18")
 expand_margin_left = 2.0
 expand_margin_top = 2.0
 expand_margin_right = 2.0
@@ -75,16 +75,16 @@ region_rect = Rect2(27.95478, 28.499832, 412.36392, 113.454636)
 modulate_color = Color(1.353256, 1.353256, 1.353256, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kxu1e"]
-texture = ExtResource("11_hxwba")
+texture = ExtResource("11_qcm0s")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dig4y"]
-texture = ExtResource("11_hxwba")
+texture = ExtResource("11_qcm0s")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3o31r"]
-texture = ExtResource("15_2recr")
+texture = ExtResource("12_y2vrq")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bfsiy"]
-texture = ExtResource("17_2recr")
+texture = ExtResource("13_0wwc8")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cx5wq"]
 bg_color = Color(0.74375, 0.70265883, 0.6410221, 1)
@@ -113,7 +113,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tb1e8"]
-texture = ExtResource("18_gnhqe")
+texture = ExtResource("14_53opc")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vnypt"]
 
@@ -134,7 +134,7 @@ texture = ExtResource("18_gnhqe")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hxwba"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vnypt"]
-texture = ExtResource("17_0eapn")
+texture = ExtResource("20_vkpv1")
 
 [node name="Car" type="Control" unique_id=460311930 node_paths=PackedStringArray("type_object_label", "btn_previous", "btn_next", "part_image", "part_icons")]
 layout_mode = 3
@@ -143,7 +143,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_d27xw")
+script = ExtResource("1_iuu2x")
 type_object_label = NodePath("Types/Selling/Object")
 btn_previous = NodePath("Types/Selling/Previous")
 btn_next = NodePath("Types/Selling/Next")
@@ -205,7 +205,7 @@ custom_minimum_size = Vector2(30, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_y83ua")
+theme_override_fonts/font = ExtResource("5_0olwr")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxTexture_onclx")
 horizontal_alignment = 1
@@ -217,7 +217,7 @@ custom_maximum_size = Vector2(180, -1)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 25
 
 [node name="Det" type="Button" parent="LevelObj/Level" unique_id=1023429856]
@@ -239,7 +239,7 @@ theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxEmpty_onclx")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_0kkxw")
@@ -266,14 +266,14 @@ theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxEmpty_onclx")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_0kkxw")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_tb1e8")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_m1er7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bfsiy")
-icon = ExtResource("6_qk428")
+icon = ExtResource("8_u3680")
 alignment = 0
 
 [node name="Sell" type="Button" parent="LevelObj/Level" unique_id=693446665]
@@ -285,7 +285,7 @@ size_flags_horizontal = 10
 size_flags_vertical = 4
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("1_o5wyr")
+theme_override_fonts/font = ExtResource("9_obc2m")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxTexture_0kkxw")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_fdi66")
@@ -345,7 +345,7 @@ theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
 theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxTexture_bfsiy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cx5wq")
@@ -357,7 +357,7 @@ custom_minimum_size = Vector2(250, 0)
 custom_maximum_size = Vector2(450, -1)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("1_o5wyr")
+theme_override_fonts/font = ExtResource("9_obc2m")
 theme_override_font_sizes/font_size = 40
 text = "Шини"
 horizontal_alignment = 1
@@ -382,7 +382,7 @@ theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/icon_hover_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.23137255, 0.15294118, 0.105882354, 1)
 theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxTexture_tb1e8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cx5wq")
@@ -435,13 +435,13 @@ theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.874509
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 theme_override_constants/icon_max_width = 100
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0eapn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_2recr")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_gnhqe")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_hxwba")
 text = "Common"
-icon = ExtResource("19_80qy8")
+icon = ExtResource("15_4elib")
 icon_alignment = 1
 vertical_icon_alignment = 2
 
@@ -469,14 +469,14 @@ theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.874509
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 theme_override_constants/icon_max_width = 100
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0eapn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_2recr")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_gnhqe")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_hxwba")
 text = "Uncommon"
-icon = ExtResource("20_kvfho")
+icon = ExtResource("16_g8ddx")
 icon_alignment = 1
 vertical_icon_alignment = 2
 
@@ -504,14 +504,14 @@ theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.874509
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 theme_override_constants/icon_max_width = 100
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0eapn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_2recr")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_gnhqe")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_hxwba")
 text = "Rare"
-icon = ExtResource("21_oytsy")
+icon = ExtResource("17_r23po")
 icon_alignment = 1
 vertical_icon_alignment = 2
 
@@ -539,14 +539,14 @@ theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.874509
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 theme_override_constants/icon_max_width = 100
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0eapn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_2recr")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_gnhqe")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_hxwba")
 text = "Epic"
-icon = ExtResource("22_3chuq")
+icon = ExtResource("18_xpl8k")
 icon_alignment = 1
 vertical_icon_alignment = 2
 
@@ -574,14 +574,14 @@ theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.874509
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 theme_override_constants/icon_max_width = 100
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0eapn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_2recr")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_gnhqe")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_hxwba")
 text = "Legendary"
-icon = ExtResource("23_p3jf1")
+icon = ExtResource("19_kyym3")
 icon_alignment = 1
 vertical_icon_alignment = 2
 
@@ -600,7 +600,7 @@ offset_left = 248.0
 offset_top = 234.0
 offset_right = 786.0
 offset_bottom = 298.0
-theme_override_fonts/font = ExtResource("2_k0gdn")
+theme_override_fonts/font = ExtResource("7_fvfjl")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxTexture_vnypt")
 text = "Покращення"
@@ -631,7 +631,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_kxu1e")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s835k")
 text = "Шини"
-icon = ExtResource("33_g7ec2")
+icon = ExtResource("21_33dvy")
 icon_alignment = 1
 vertical_icon_alignment = 2
 
@@ -651,7 +651,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_kxu1e")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s835k")
 text = "Підвіска"
-icon = ExtResource("34_onclx")
+icon = ExtResource("22_0h8c5")
 icon_alignment = 1
 vertical_icon_alignment = 2
 
@@ -671,7 +671,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_kxu1e")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s835k")
 text = "Двері"
-icon = ExtResource("35_0kkxw")
+icon = ExtResource("23_bb21n")
 icon_alignment = 1
 vertical_icon_alignment = 2
 
@@ -691,7 +691,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_kxu1e")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s835k")
 text = "Двигун"
-icon = ExtResource("36_tb1e8")
+icon = ExtResource("24_vebho")
 icon_alignment = 1
 vertical_icon_alignment = 2
 
@@ -711,6 +711,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_sqhb3")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_kxu1e")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s835k")
 text = "Передня рама"
-icon = ExtResource("37_m1er7")
+icon = ExtResource("25_7wmjb")
 icon_alignment = 1
 vertical_icon_alignment = 2

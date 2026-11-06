@@ -41,6 +41,7 @@ var unit_price: int = 0
 
 
 func _ready() -> void:
+	Settings.language_changed.connect(_refresh_language)
 	await get_tree().process_frame
 	minus_button.pressed.connect(_change_amount.bind(-1))
 	plus_button.pressed.connect(_change_amount.bind(1))
@@ -96,6 +97,17 @@ func setup(data: Dictionary, new_mode: Mode) -> void:
 func _change_amount(delta: int) -> void:
 	_read_amount()
 	amount = clampi(amount + delta, 1, maxi(1, max_amount))
+	_update_controls()
+
+
+func _refresh_language() -> void:
+	if item_data.is_empty():
+		return
+	name_label.text = tr(str(item_data.get("name", item_data.get("Name", ""))))
+	rarity_label.text = tr(str(item_data.get("rarity", item_data.get("Rarity", ""))))
+	description_label.text = tr(str(item_data.get("desc", item_data.get("Descriprion", ""))))
+	var owned := int(item_data.get("Quantity", item_data.get("quantity", 0)))
+	owned_label.text = tr("У вас є: %d") % owned
 	_update_controls()
 
 

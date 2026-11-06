@@ -30,6 +30,10 @@ for folder in ['scenes/menu', 'scenes/general', 'scenes/ui', 'addons/dialogue_sy
             value = raw.replace('\\n', '\n').replace('\\"', '"')
             if value not in placeholders and any(c.isalpha() for c in value):
                 required.add(value)
+for folder in ['scripts', 'addons/dialogue_system']:
+    for path in (ROOT / folder).rglob('*.gd'):
+        for raw in re.findall(r'\btr\("((?:[^"\\]|\\.)*)"\)', path.read_text(encoding='utf-8')):
+            required.add(json.loads('"' + raw + '"'))
 missing = sorted(required - catalog.keys())
 assert not missing, 'Missing translations:\n' + '\n'.join(repr(s) for s in missing)
 for source, row in catalog.items():

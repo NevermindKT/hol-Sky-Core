@@ -20,13 +20,14 @@ enum Placement { SCATTER, GRID }
 @export var scale_range := Vector2(0.85, 1.25)
 @export var ground_sink := 0.0
 
-@export var visibility_range := 0.0
+@export var visibility_range := 400.0
 @export var visibility_fade := true
 @export var shrink_distance := Vector2.ZERO
 @export var cast_shadows := true
 @export var lod_bias := 1.0
 @export var lod_road_distances: PackedFloat32Array = PackedFloat32Array()
 @export var lod_keep_ratios: PackedFloat32Array = PackedFloat32Array()
+@export var lod_visibility_ranges: PackedFloat32Array = PackedFloat32Array()
 
 @export_range(0.0, 1.0, 0.01) var alpha_cutoff := 0.4
 @export_range(0.0, 1.0, 0.01) var specular := 0.1
@@ -34,12 +35,16 @@ enum Placement { SCATTER, GRID }
 @export var wind_speed := 1.0
 @export_range(0.0, 1.0, 0.01) var normal_up_blend := 0.0
 
+@export_group("Camera LOD")
+@export var lod_by_camera := true
+@export var lod_camera_distances: PackedFloat32Array = PackedFloat32Array()
+@export var lod_camera_margin := 12.0
 
 @export_group("Crowd LOD")
 ## Радиус окрестности в ячейках сетки (1 = 3x3). Больше 1 неточно на краях чанка.
 @export_range(1, 3, 1) var crowd_radius := 1
 ## Доля занятых соседних ячеек, с которой дерево считается «окружённым». 0 = выключено.
-@export_range(0.0, 1.0, 0.01) var crowd_lod_threshold := 0.6
+@export_range(0.0, 1.0, 0.01) var crowd_lod_threshold := 0.55
 ## На сколько тиров LOD сдвигать окружённое дерево.
 @export_range(0, 4, 1) var crowd_lod_bump := 1
 ## Доля, с которой окружённое дерево не рисуется совсем. 0 = выключено.

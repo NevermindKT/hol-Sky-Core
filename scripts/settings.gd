@@ -310,8 +310,9 @@ func _apply_all() -> void:
 
 
 func set_language(locale: String) -> void:
-	# Ignore region variants; unsupported or damaged saved values use Ukrainian.
 	var code := locale.replace("-", "_").get_slice("_", 0).to_lower()
 	language = code if code in LANGUAGES else "uk"
+
 	TranslationServer.set_locale(language)
 	language_changed.emit()
+	save_settings()

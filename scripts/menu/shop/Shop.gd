@@ -19,6 +19,8 @@ extends Control
 @export var clerk_slide_distance: float = 300.0
 @export var clerk_animation_duration: float = 0.35
 
+var language_option: OptionButton
+
 var _clerk_tween: Tween
 var _active_clerk_index: int = -1
 var _clerk_home_positions: Array[Vector2] = []
@@ -32,8 +34,9 @@ enum ShopCategory {
 var current_category: ShopCategory = ShopCategory.WEAPONS
 
 const CATEGORY_NAMES := {
-	ShopCategory.WEAPONS: "Оружие",
-	ShopCategory.CONSUMABLES: "Расходники",
+
+	ShopCategory.WEAPONS: "Зброя",
+	ShopCategory.CONSUMABLES: "Витратні матеріали",
 	ShopCategory.REPAIR: "Ремонт"
 }
 
@@ -83,6 +86,7 @@ func _ready() -> void:
 		repair_button.pressed.connect(
 			select_category.bind(ShopCategory.REPAIR)
 		)
+
 
 	_initialize_clerks()
 	_ensure_shop_data()
@@ -194,22 +198,18 @@ func _update_clerks() -> void:
 	if not is_instance_valid(clerks[new_index]):
 		return
 
-	# Первый запуск: показываем клерка без анимации.
 	if _active_clerk_index == -1:
 		_active_clerk_index = new_index
 		clerks[new_index].position = _clerk_home_positions[new_index]
 		clerks[new_index].show()
 		return
 
-	# Ничего не делаем, если выбран тот же клерк.
 	if _active_clerk_index == new_index:
 		return
 
-	# Прерываем предыдущую анимацию, если она ещё идёт.
 	if _clerk_tween and _clerk_tween.is_running():
 		_clerk_tween.kill()
 
-	# Возвращаем всех клерков в исходные позиции.
 	for i in range(clerks.size()):
 		var clerk := clerks[i]
 
@@ -236,7 +236,6 @@ func _update_clerks() -> void:
 	var old_position := _clerk_home_positions[old_index]
 	var new_position := _clerk_home_positions[new_index]
 
-	# Новый клерк появляется с противоположной стороны.
 	new_clerk.position = new_position + Vector2(
 		direction * clerk_slide_distance,
 		0.0
@@ -244,13 +243,11 @@ func _update_clerks() -> void:
 	new_clerk.modulate.a = 0.0
 	new_clerk.show()
 
-	# Запускаем анимацию.
 	_clerk_tween = create_tween()
 	_clerk_tween.set_parallel(true)
 	_clerk_tween.set_trans(Tween.TRANS_CUBIC)
 	_clerk_tween.set_ease(Tween.EASE_IN_OUT)
 
-	# Старый уезжает.
 	_clerk_tween.tween_property(
 		old_clerk,
 		"position",
@@ -258,7 +255,6 @@ func _update_clerks() -> void:
 		clerk_animation_duration
 	)
 
-	# Новый заезжает.
 	_clerk_tween.tween_property(
 		new_clerk,
 		"position",
@@ -280,7 +276,6 @@ func _update_clerks() -> void:
 		clerk_animation_duration
 	)
 
-	# После анимации скрываем старого клерка.
 	_clerk_tween.chain().tween_callback(
 		func():
 			old_clerk.hide()

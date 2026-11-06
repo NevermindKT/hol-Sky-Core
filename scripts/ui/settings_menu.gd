@@ -15,13 +15,14 @@ extends CanvasLayer
 @export var audio_panel: Control
 @export var video_panel: Control
 
+@export_category("Language")
+@export var language_option: OptionButton
+
 signal closed
 
+@export_category("Sound")
 @export var hover_sound: AudioStream = preload("res://audio/ui/UI_Button_Hover.wav")
 @export var click_sound: AudioStream = preload("res://audio/ui/UI_Button_Click_1.wav")
-
-
-@onready var language_option: OptionButton = $CategoriesCon/LanguageOption
 
 
 func _ready() -> void:

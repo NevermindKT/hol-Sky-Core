@@ -188,6 +188,8 @@ func compute_category(key: Vector2i, world_seed: int, category_index: int, categ
 		lod_count = mini(lod_count, (pooled as MeshVariant).lods.size())
 	var tiers := 1 + lod_count
 
+	var by_camera := category.lod_by_camera and tiers > 1
+
 	for v in variant_count:
 		var mesh_variant: MeshVariant = pool[order[v]]
 		for tier in tiers:
@@ -195,7 +197,7 @@ func compute_category(key: Vector2i, world_seed: int, category_index: int, categ
 			batch.category = category
 			batch.mesh = mesh_variant.mesh_for(tier)
 			batch.offset = mesh_variant.offset_for(tier)
-			batch.per_chunk = tier == 0 and (tiers > 1 or category.visibility_range > 0.0)
+			batch.per_chunk = by_camera or (tier == 0 and tiers > 1) or _visibility_for(category, batch.mesh) > 0.0
 			batches.append(batch)
 
 	if is_grid and grid != null:
@@ -205,11 +207,11 @@ func compute_category(key: Vector2i, world_seed: int, category_index: int, categ
 				if grid.category[c] != category_index:
 					continue
 				var variant := mini(int(grid.variant[c] * variant_count), variant_count - 1)
-				var tier := _tier_for(category, grid.road[c], tiers)
+				var tier := 0 if by_camera else _tier_for(category, grid.road[c], tiers)
 				tier = _crowd_tier(category, grid, rx, rz, grid.road[c], tier, tiers)
 				if tier < 0:
 					continue
-				_append_instance(batches[variant * tiers + tier], grid.angle[c], grid.scale[c], grid.x[c] + offset.x, grid.y[c], grid.z[c] + offset.y)
+				_place(batches, variant, tiers, tier, by_camera, grid.angle[c], grid.scale[c], grid.x[c] + offset.x, grid.y[c], grid.z[c] + offset.y)
 
 	for i in attempts:
 		var lx := rng.randf() * size
@@ -225,7 +227,8 @@ func compute_category(key: Vector2i, world_seed: int, category_index: int, categ
 		if grid != null and _blocked(grid, lx, lz, category.footprint_radius * scale):
 			continue
 
-		_append_instance(batches[variant * tiers + _tier_for(category, ground.y, tiers)], angle, scale, lx + offset.x, ground.x - category.ground_sink * scale, lz + offset.y)
+		var tier := 0 if by_camera else _tier_for(category, ground.y, tiers)
+		_place(batches, variant, tiers, tier, by_camera, angle, scale, lx + offset.x, ground.x - category.ground_sink * scale, lz + offset.y)
 
 	return batches
 
@@ -248,13 +251,19 @@ func create_node(category: VegetationCategoryData, mesh: Mesh) -> MultiMeshInsta
 	mm_instance.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 	mm_instance.multimesh = mm
 	mm_instance.lod_bias = category.lod_bias
+
 	if not category.cast_shadows or _far_meshes.has(mesh):
 		mm_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	if category.visibility_range > 0.0:
-		mm_instance.visibility_range_end = category.visibility_range
-		mm_instance.visibility_range_end_margin = category.visibility_range * 0.15
+
+	var vis := _vis_for(category, mesh)
+	if vis.x > 0.0 or vis.z > 0.0:
+		mm_instance.visibility_range_begin = vis.x
+		mm_instance.visibility_range_begin_margin = vis.y
+		mm_instance.visibility_range_end = vis.z
+		mm_instance.visibility_range_end_margin = vis.w
 		if category.visibility_fade:
 			mm_instance.visibility_range_fade_mode = GeometryInstance3D.VISIBILITY_RANGE_FADE_SELF
+
 	return mm_instance
 
 
@@ -334,7 +343,6 @@ func _collect_variants(root: Node, model_name: String, category: VegetationCateg
 	var parts: Array = []
 	_collect_mesh_instances(root, Transform3D.IDENTITY, parts)
 
-	# Группируем по имени дерева (без _lodN), внутри — по номеру LOD.
 	var groups := {}
 	var group_order: Array[String] = []
 
@@ -365,7 +373,6 @@ func _collect_variants(root: Node, model_name: String, category: VegetationCateg
 		if not _matches(label, category.include_patterns) or _matches_any(label, category.exclude_patterns):
 			continue
 
-		# Pivot LOD0: X/Z узла, высота сохраняется как раньше.
 		var base_origin: Vector3 = base_group[0][3]
 		var pivot := Vector3(base_origin.x, 0.0, base_origin.z)
 
@@ -373,7 +380,7 @@ func _collect_variants(root: Node, model_name: String, category: VegetationCateg
 		if variant == null:
 			continue
 
-		var needed := category.lod_road_distances.size()
+		var needed := _lod_levels(category)
 		var manual_lods: Array[Mesh] = []
 		var manual_offsets: Array[Transform3D] = []
 
@@ -382,8 +389,6 @@ func _collect_variants(root: Node, model_name: String, category: VegetationCateg
 				break
 
 			var lod_group: Array = lod_groups[lod_index]
-			# Собственный pivot LOD: компенсирует то, что LOD лежит в другом месте сцены.
-			# По Y берём смещение относительно LOD0 (если ряды LOD разнесены по высоте).
 			var lod_origin: Vector3 = lod_group[0][3]
 			var lod_pivot := Vector3(lod_origin.x, lod_origin.y - base_origin.y, lod_origin.z)
 
@@ -397,11 +402,12 @@ func _collect_variants(root: Node, model_name: String, category: VegetationCateg
 		if manual_lods.size() == needed:
 			variant.lods = manual_lods
 			variant.lod_offsets = manual_offsets
-			for lod_mesh in variant.lods:
-				_far_meshes[lod_mesh] = true
+			for i in variant.lods.size():
+				_far_meshes[variant.lods[i]] = i + 1
 		else:
 			if not manual_lods.is_empty():
 				push_warning("Vegetation_scatter: '%s' — ручных LOD %d из %d, использую автоматические" % [label, manual_lods.size(), needed])
+
 			variant.lods = _build_lods(variant.mesh, category)
 			variant.lod_offsets.clear()
 			for i in variant.lods.size():
@@ -417,6 +423,10 @@ func _lod_of(node_name: String) -> int:
 
 func _lod_base(node_name: String) -> String:
 	return _lod_regex.sub(node_name, "")
+
+
+func _lod_levels(category: VegetationCategoryData) -> int:
+	return category.lod_camera_distances.size() if category.lod_by_camera else category.lod_road_distances.size()
 
 
 func _collect_mesh_instances(node: Node, xform: Transform3D, out: Array, inherited_lod: int = 0, inherited_origin = null, inherited_key: String = "") -> void:
@@ -499,10 +509,10 @@ func _build_variant(group: Array, pivot: Vector3, category: VegetationCategoryDa
 
 func _build_lods(mesh: Mesh, category: VegetationCategoryData) -> Array[Mesh]:
 	var lods: Array[Mesh] = []
-	var count := mini(category.lod_road_distances.size(), category.lod_keep_ratios.size())
+	var count := mini(_lod_levels(category), category.lod_keep_ratios.size())
 	for i in count:
 		var reduced := _reduce_mesh(mesh, clampf(category.lod_keep_ratios[i], 0.01, 1.0), i)
-		_far_meshes[reduced] = true
+		_far_meshes[reduced] = i + 1
 		lods.append(reduced)
 	return lods
 
@@ -773,7 +783,6 @@ func _matches_any(label: String, patterns: PackedStringArray) -> bool:
 	return false
 
 
-# Возвращает тир с учётом окружения или -1, если экземпляр нужно пропустить.
 func _crowd_tier(category: VegetationCategoryData, grid: GridCells, rx: int, rz: int, road_distance: float, tier: int, tiers: int) -> int:
 	if category.crowd_lod_threshold <= 0.0 and category.crowd_cull_threshold <= 0.0:
 		return tier
@@ -800,20 +809,54 @@ func _crowd_tier(category: VegetationCategoryData, grid: GridCells, rx: int, rz:
 		return mini(tier + category.crowd_lod_bump, tiers - 1)
 	return tier
 
+
+func _visibility_for(category: VegetationCategoryData, mesh: Mesh) -> float:
+	var tier: int = _far_meshes.get(mesh, 0)
+	if tier > 0 and tier <= category.lod_visibility_ranges.size():
+		return category.lod_visibility_ranges[tier - 1]
+	return category.visibility_range
+
+
+func _vis_for(category: VegetationCategoryData, mesh: Mesh) -> Vector4:
+	if not category.lod_by_camera:
+		var far := _visibility_for(category, mesh)
+		return Vector4(0.0, 0.0, far, far * 0.15)
+
+	var tier: int = _far_meshes.get(mesh, 0)
+	var dist := category.lod_camera_distances
+	var begin := dist[tier - 1] if tier > 0 and tier - 1 < dist.size() else 0.0
+	var end := dist[tier] if tier < dist.size() else category.visibility_range
+	var m := category.lod_camera_margin
+	return Vector4(begin, m if begin > 0.0 else 0.0, end, m if end > 0.0 else 0.0)
+
+
+# В режиме камеры экземпляр пишется во все тиры, иначе только в выбранный.
+func _place(batches: Array[Batch], variant: int, tiers: int, tier: int, by_camera: bool, angle: float, scale: float, x: float, y: float, z: float) -> void:
+	if by_camera:
+		for t in tiers:
+			_append_instance(batches[variant * tiers + t], angle, scale, x, y, z)
+	else:
+		_append_instance(batches[variant * tiers + tier], angle, scale, x, y, z)
+
 # ------------------------------------------------------------------------------
 
 func create_slot(category: VegetationCategoryData, mesh: Mesh, scenario: RID) -> RSSlot:
 	var slot := RSSlot.new()
 	slot.multimesh = RenderingServer.multimesh_create()
+
 	RenderingServer.multimesh_set_mesh(slot.multimesh, mesh.get_rid())
 	slot.instance = RenderingServer.instance_create2(slot.multimesh, scenario)
 
 	RenderingServer.instance_geometry_set_lod_bias(slot.instance, category.lod_bias)
+
 	if not category.cast_shadows or _far_meshes.has(mesh):
 		RenderingServer.instance_geometry_set_cast_shadows_setting(slot.instance, RenderingServer.SHADOW_CASTING_SETTING_OFF)
-	if category.visibility_range > 0.0:
+
+	var vis := _vis_for(category, mesh)
+	if vis.x > 0.0 or vis.z > 0.0:
 		var fade := RenderingServer.VISIBILITY_RANGE_FADE_SELF if category.visibility_fade else RenderingServer.VISIBILITY_RANGE_FADE_DISABLED
-		RenderingServer.instance_geometry_set_visibility_range(slot.instance, 0.0, category.visibility_range, 0.0, category.visibility_range * 0.15, fade)
+		RenderingServer.instance_geometry_set_visibility_range(slot.instance, vis.x, vis.z, vis.y, vis.w, fade)
+
 	return slot
 
 

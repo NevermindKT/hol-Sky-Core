@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dylp2aly6r51q" path="res://scripts/ui/settings_menu.gd" id="1_kqaaj"]
 [ext_resource type="Texture2D" uid="uid://3dsx0b0jp5ok" path="res://textures/menu/pause/Movement divider.png" id="2_dcjrv"]
 [ext_resource type="Script" uid="uid://csywd3ipt3pi" path="res://scripts/ui/audio_panel.gd" id="2_h2lw8"]
-[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://resources/fonts/Cormorant/Cormorant-SemiBold.ttf" id="3_1aqt5"]
+[ext_resource type="FontFile" uid="uid://dbp1mlyeo6j1x" path="res://scenes/menu/fonts/Cormorant/Cormorant-SemiBold.ttf" id="3_1aqt5"]
 [ext_resource type="Script" uid="uid://b3cu5pgjwrvd0" path="res://scripts/ui/video_panel.gd" id="3_jf66x"]
 [ext_resource type="Texture2D" uid="uid://m6ltlhh17dj1" path="res://textures/menu/pause/icons/Video.svg" id="4_aaxas"]
 [ext_resource type="StyleBox" uid="uid://2cduuwql0kli" path="res://textures/styles/button_bg.tres" id="4_rjegb"]
@@ -24,7 +24,7 @@
 
 [sub_resource type="ImageTexture" id="ImageTexture_rjegb"]
 
-[node name="SettingsMenu" type="CanvasLayer" unique_id=2128686807 node_paths=PackedStringArray("categories_con", "setting_content_con", "audio_category_btn", "video_category_btn", "save_btn", "back_btn", "audio_panel", "video_panel")]
+[node name="SettingsMenu" type="CanvasLayer" unique_id=2128686807 node_paths=PackedStringArray("categories_con", "setting_content_con", "audio_category_btn", "video_category_btn", "save_btn", "back_btn", "audio_panel", "video_panel", "language_option")]
 script = ExtResource("1_kqaaj")
 categories_con = NodePath("CategoriesCon")
 setting_content_con = NodePath("SettingContent")
@@ -34,6 +34,7 @@ save_btn = NodePath("CategoriesCon/SaveBtn")
 back_btn = NodePath("CategoriesCon/BackBtn")
 audio_panel = NodePath("SettingContent/AudioPanel")
 video_panel = NodePath("SettingContent/VideoPanel")
+language_option = NodePath("CategoriesCon/LanguageOption")
 
 [node name="CategoriesCon" type="VBoxContainer" parent="." unique_id=724702335]
 anchors_preset = 4
@@ -89,13 +90,19 @@ icon = ExtResource("5_aaxas")
 alignment = 0
 expand_icon = true
 
-[node name="LanguageLabel" type="Label" parent="CategoriesCon"]
+[node name="LanguageLabel" type="Label" parent="CategoriesCon" unique_id=1350082728]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1aqt5")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "LANGUAGE"
 
-[node name="LanguageOption" type="OptionButton" parent="CategoriesCon"]
+[node name="Divider2" type="TextureRect" parent="CategoriesCon" unique_id=47449490]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+texture = ExtResource("2_dcjrv")
+expand_mode = 1
+
+[node name="LanguageOption" type="OptionButton" parent="CategoriesCon" unique_id=1685753980]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1aqt5")

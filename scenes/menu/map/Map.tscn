@@ -303,7 +303,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(156, 160)
 
-[node name="LockMisto1" type="Button" parent="Map/Misto1" unique_id=1945434561]
+[node name="LockMisto" type="Button" parent="Map/Misto1" unique_id=1945434561]
 layout_mode = 0
 offset_left = 90.0
 offset_top = 103.0
@@ -334,12 +334,13 @@ offset_bottom = -2.9519653
 pivot_offset = Vector2(187, 232)
 metadata/_edit_use_anchors_ = true
 
-[node name="LockStep1" type="Button" parent="Map/Step1" unique_id=1840924556]
+[node name="LockStep" type="Button" parent="Map/Step1" unique_id=481570875]
 layout_mode = 0
-offset_left = 148.0
-offset_top = 193.0
-offset_right = 226.0
-offset_bottom = 271.0
+offset_left = 161.0
+offset_top = 183.0
+offset_right = 239.0
+offset_bottom = 261.0
+pivot_offset = Vector2(37, 32)
 size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
@@ -508,6 +509,7 @@ offset_left = 51.0
 offset_top = 55.0
 offset_right = 656.0
 offset_bottom = 570.0
+mouse_filter = 2
 
 [node name="Lis11" type="Button" parent="Map/Lis1/Markers" unique_id=1770227724]
 layout_mode = 1

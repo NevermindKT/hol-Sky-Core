@@ -268,3 +268,33 @@ Ground: max,Земля: максимум,Ground: max,Земля: максиму�
 Fit the spare tire,Поставити запаску,Fit the spare tire,Поставить запаску
  — активки, — активки, — boosts, — активки
  — поставити запаску, — поставити запаску, — fit the spare tire, — поставить запаску
+CAR,АВТО,CAR,АВТО
+CATEGORY,КАТЕГОРІЯ,CATEGORY,КАТЕГОРИЯ
+Consumables,Витратні матеріали,Consumables,Расходники
+Description,Опис,Description,Описание
+E,E,E,E
+EXIT TO MENU,ВИЙТИ В МЕНЮ,EXIT TO MENU,ВЫЙТИ В МЕНЮ
+INVENTORY,ІНВЕНТАР,INVENTORY,ИНВЕНТАРЬ
+MAP,МАПА,MAP,КАРТА
+Name,Назва,Name,Название
+Rar,Рідкість,Rarity,Редкость
+Repair,Ремонт,Repair,Ремонт
+"SHOP
+","МАГАЗИН
+","SHOP
+","МАГАЗИН
+"
+TURRET,ТУРЕЛЬ,TURRET,ТУРЕЛЬ
+Weapons,Зброя,Weapons,Оружие
+"[wave amp=10]YOU SURVIVED...
+for now.","[wave amp=10]ВИ ВИЖИЛИ...
+поки що.","[wave amp=10]YOU SURVIVED...
+for now.","[wave amp=10]ВЫ ВЫЖИЛИ...
+пока что."
+enemy name,Назва ворога,Enemy name,Название врага
+Купити,Купити,Buy,Купить
+Купити за: %d,Купити за: %d,Buy for: %d,Купить за: %d
+Продати за: %d,Продати за: %d,Sell for: %d,Продать за: %d
+Зброя,Зброя,Weapons,Оружие
+Витратні матеріали,Витратні матеріали,Consumables,Расходники
+Ремонт,Ремонт,Repair,Ремонт
