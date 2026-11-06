@@ -393,6 +393,12 @@ msgstr "Рикошет куль"
 msgid "Bullet saving"
 msgstr "Економія набоїв"
 
+msgid "CAR"
+msgstr "АВТО"
+
+msgid "CATEGORY"
+msgstr "КАТЕГОРІЯ"
+
 msgid "CLOSE"
 msgstr "ЗАКРИТИ"
 
@@ -405,6 +411,9 @@ msgstr "АВАРІЯ"
 msgid "Common"
 msgstr "Звичайний"
 
+msgid "Consumables"
+msgstr "Витратні матеріали"
+
 msgid "Continue"
 msgstr "Продовжити"
 
@@ -416,6 +425,15 @@ msgstr "ОТРИМАНО ШКОДИ:"
 
 msgid "Damage"
 msgstr "Шкода"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "E"
+msgstr "E"
+
+msgid "EXIT TO MENU"
+msgstr "ВИЙТИ В МЕНЮ"
 
 msgid "Enemy slowdown"
 msgstr "Уповільнення ворогів"
@@ -453,6 +471,9 @@ msgstr "Комбіноване нічне бачення"
 msgid "Gamma"
 msgstr "Гама"
 
+msgid "INVENTORY"
+msgstr "ІНВЕНТАР"
+
 msgid "LANGUAGE"
 msgstr "МОВА"
 
@@ -471,6 +492,9 @@ msgstr "Менше розсіювання"
 msgid "Less turning delay"
 msgstr "Швидший поворот"
 
+msgid "MAP"
+msgstr "МАПА"
+
 msgid "MENU"
 msgstr "МЕНЮ"
 
@@ -482,6 +506,9 @@ msgstr "Збільшена шкода"
 
 msgid "Music"
 msgstr "Музика"
+
+msgid "Name"
+msgstr "Назва"
 
 msgid "New Game"
 msgstr "Нова гра"
@@ -513,11 +540,17 @@ msgstr "СПРОБУВАТИ ЗНОВУ"
 msgid "RTB (MENU)"
 msgstr "НА БАЗУ (МЕНЮ)"
 
+msgid "Rar"
+msgstr "Рідкість"
+
 msgid "Rare"
 msgstr "Рідкісний"
 
 msgid "Rate of fire"
 msgstr "Скорострільність"
+
+msgid "Repair"
+msgstr "Ремонт"
 
 msgid "SAVE"
 msgstr "ЗБЕРЕГТИ"
@@ -527,6 +560,9 @@ msgstr "НАЛАШТУВАННЯ"
 
 msgid "SFX"
 msgstr "Звукові ефекти"
+
+msgid "SHOP\n"
+msgstr "МАГАЗИН\n"
 
 msgid "Settings"
 msgstr "Налаштування"
@@ -549,6 +585,9 @@ msgstr "ЧАС:"
 msgid "TOTAL KILLS:"
 msgstr "УСЬОГО ВБИВСТВ:"
 
+msgid "TURRET"
+msgstr "ТУРЕЛЬ"
+
 msgid "Time slowdown"
 msgstr "Уповільнення часу"
 
@@ -570,11 +609,17 @@ msgstr "ВІДЕО"
 msgid "VSync         "
 msgstr "Вертикальна синхронізація"
 
+msgid "Weapons"
+msgstr "Зброя"
+
 msgid "Wolf"
 msgstr "Вовк"
 
 msgid "YOU SURVIVED...\nfor now."
 msgstr "ВИ ВИЖИЛИ...\nпоки що."
+
+msgid "[wave amp=10]YOU SURVIVED...\nfor now."
+msgstr "[wave amp=10]ВИ ВИЖИЛИ...\nпоки що."
 
 msgid "[Мовчати]"
 msgstr "[Мовчати]"
@@ -587,6 +632,9 @@ msgstr "[Продовжити ігнорувати]"
 
 msgid "[Піти]"
 msgstr "[Піти]"
+
+msgid "enemy name"
+msgstr "Назва ворога"
 
 msgid "«Добрий вечір,"
 msgstr "«Добрий вечір,"
@@ -750,6 +798,9 @@ msgstr "Виконано"
 msgid "Використати"
 msgstr "Використати"
 
+msgid "Витратні матеріали"
+msgstr "Витратні матеріали"
+
 msgid "Вороги не нападають і розбігаються на 4с."
 msgstr "Вороги не нападають і розбігаються на 4 с."
 
@@ -885,6 +936,9 @@ msgstr "Заряд адреналіну"
 msgid "Зачекай. "
 msgstr "Зачекай. "
 
+msgid "Зброя"
+msgstr "Зброя"
+
 msgid "Збільшений магазин"
 msgstr "Збільшений магазин"
 
@@ -926,6 +980,12 @@ msgstr "Колишній?"
 
 msgid "Крит шанс"
 msgstr "Шанс крита"
+
+msgid "Купити"
+msgstr "Купити"
+
+msgid "Купити за: %d"
+msgstr "Купити за: %d"
 
 msgid "Куплено"
 msgstr "Куплено"
@@ -1194,6 +1254,9 @@ msgstr "Продати %d за: %d"
 msgid "Продати за:"
 msgstr "Продати за:"
 
+msgid "Продати за: %d"
+msgstr "Продати за: %d"
+
 msgid "Продовжуйте виконувати квести:"
 msgstr "Продовжуйте виконувати квести:"
 
@@ -1214,6 +1277,9 @@ msgstr "Пізній вечір"
 
 msgid "Раніше працював у міській лабораторії."
 msgstr "Раніше працював у міській лабораторії."
+
+msgid "Ремонт"
+msgstr "Ремонт"
 
 msgid "Ремонтний набір для дверей"
 msgstr "Ремонтний набір для дверей"
