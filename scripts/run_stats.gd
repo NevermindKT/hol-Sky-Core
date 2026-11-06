@@ -8,6 +8,8 @@ var damage_taken := 0.0
 var kills_total := 0
 var kills_by_enemy: Dictionary = {}
 
+@export var damage_cost_per_point := 10.0
+
 var _running := true
 var _finished := false
 
@@ -43,6 +45,7 @@ func finish() -> void:
 	_running = false
 
 	last_summary = get_summary()
+	BaseInventoryManager.apply_run_payout(last_summary["income"], last_summary["penalty"])
 	summary_ready.emit(last_summary)
 
 	if summary_scene_path.is_empty():
@@ -54,15 +57,28 @@ func finish() -> void:
 
 func get_summary() -> Dictionary:
 	var kills: Array[Dictionary] = []
+	var income := 0
+
 	for data in kills_by_enemy:
-		kills.append({"name": data.display_name, "count": kills_by_enemy[data]})
+		var count: int = kills_by_enemy[data]
+		income += count * data.kill_reward
+		kills.append({
+			"name": data.display_name,
+			"count": count,
+			"reward": data.kill_reward,
+		})
 	kills.sort_custom(func(a, b): return a["count"] > b["count"])
+
+	var penalty := roundi(damage_taken * damage_cost_per_point)
 
 	return {
 		"time": run_time,
 		"damage_taken": damage_taken,
 		"kills_total": kills_total,
 		"kills": kills,
+		"income": income,
+		"penalty": penalty,
+		"net": income - penalty,
 	}
 
 
