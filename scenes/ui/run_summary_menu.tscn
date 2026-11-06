@@ -24,7 +24,7 @@ texture = ExtResource("2_vkd5t")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_srdkp"]
 texture = ExtResource("3_2udyh")
 
-[node name="RunSummary" type="Control" unique_id=479002571 node_paths=PackedStringArray("time_label", "damage_label", "kills_total_label", "kill_list", "restart_button", "menu_button")]
+[node name="RunSummary" type="Control" unique_id=479002571 node_paths=PackedStringArray("time_label", "damage_label", "kills_total_label", "kill_list", "restart_button", "menu_button", "income_label", "penalty_label", "net_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,12 +35,15 @@ script = ExtResource("1_i5676")
 menu_scene_path = "uid://bkofqf6ofc4o3"
 restart_scene_path = "uid://dxa8wggvns7te"
 enemy_tab_scene = ExtResource("5_ldbp3")
-time_label = NodePath("Control/Left/Time/TimeLable")
-damage_label = NodePath("Control/Left/Damage/DamageLable")
-kills_total_label = NodePath("Control/Left/Kills/KillsLable")
+time_label = NodePath("Left/VBoxContainer/Time/TimeLable")
+damage_label = NodePath("Left/VBoxContainer/Damage/DamageLable")
+kills_total_label = NodePath("Left/VBoxContainer/Kills/KillsLable")
 kill_list = NodePath("Right/KillList")
-restart_button = NodePath("Control/Left/Buttons/RestartBtn")
-menu_button = NodePath("Control/Left/Buttons/MenuBtn")
+restart_button = NodePath("Left/Buttons/RestartBtn")
+menu_button = NodePath("Left/Buttons/MenuBtn")
+income_label = NodePath("Left/VBoxContainer2/Income/IncomeLabel")
+penalty_label = NodePath("Left/VBoxContainer2/Penalty/PenaltyLabel")
+net_label = NodePath("Left/VBoxContainer2/Net/NetLabel")
 
 [node name="BG" type="ColorRect" parent="." unique_id=241889325]
 layout_mode = 1
@@ -67,118 +70,6 @@ bbcode_enabled = true
 text = "[wave amp=10]YOU SURVIVED...
 for now."
 horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="." unique_id=1650961924]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 280.0
-offset_top = -155.0
-offset_right = 800.0
-offset_bottom = 155.0
-grow_vertical = 2
-
-[node name="Left" type="VBoxContainer" parent="Control" unique_id=1709321393]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -255.0
-offset_top = -155.0
-offset_right = 255.0
-offset_bottom = 155.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 15
-
-[node name="Time" type="HBoxContainer" parent="Control/Left" unique_id=497444156]
-custom_minimum_size = Vector2(500, 60)
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Left/Time" unique_id=1098181393]
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
-text = "TIME:"
-horizontal_alignment = 1
-
-[node name="TimeLable" type="Label" parent="Control/Left/Time" unique_id=1670916752]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
-text = "TIME"
-horizontal_alignment = 1
-
-[node name="Damage" type="HBoxContainer" parent="Control/Left" unique_id=64138113]
-custom_minimum_size = Vector2(500, 60)
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Left/Damage" unique_id=547105015]
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
-text = "DAMAGE TAKEN:"
-horizontal_alignment = 1
-
-[node name="DamageLable" type="Label" parent="Control/Left/Damage" unique_id=748536847]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
-text = "DAMAGE"
-horizontal_alignment = 1
-
-[node name="Kills" type="HBoxContainer" parent="Control/Left" unique_id=1813081548]
-custom_minimum_size = Vector2(500, 60)
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Left/Kills" unique_id=1139405017]
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
-text = "TOTAL KILLS:"
-horizontal_alignment = 1
-
-[node name="KillsLable" type="Label" parent="Control/Left/Kills" unique_id=152307125]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
-text = "KILLS"
-horizontal_alignment = 1
-
-[node name="Buttons" type="HBoxContainer" parent="Control/Left" unique_id=1855843616]
-custom_minimum_size = Vector2(0, 85)
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="MenuBtn" type="Button" parent="Control/Left/Buttons" unique_id=2052425360 groups=["ui_buttons"]]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxTexture_i5676")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ldbp3")
-theme_override_styles/hover = SubResource("StyleBoxTexture_f0p57")
-text = "RTB (MENU)"
-
-[node name="RestartBtn" type="Button" parent="Control/Left/Buttons" unique_id=509655138 groups=["ui_buttons"]]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("2_2udyh")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxTexture_vkd5t")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2udyh")
-theme_override_styles/hover = SubResource("StyleBoxTexture_srdkp")
-text = "RESTART"
 
 [node name="Right" type="Control" parent="." unique_id=1780626468]
 layout_mode = 1
@@ -213,3 +104,171 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Left" type="VBoxContainer" parent="." unique_id=1709321393]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 176.0
+offset_top = -231.0
+offset_right = 686.0
+offset_bottom = 437.0
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Left" unique_id=1707642158]
+layout_mode = 2
+
+[node name="Time" type="HBoxContainer" parent="Left/VBoxContainer" unique_id=497444156]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Left/VBoxContainer/Time" unique_id=1098181393]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "TIME:"
+horizontal_alignment = 1
+
+[node name="TimeLable" type="Label" parent="Left/VBoxContainer/Time" unique_id=1670916752]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "TIME"
+horizontal_alignment = 1
+
+[node name="Damage" type="HBoxContainer" parent="Left/VBoxContainer" unique_id=64138113]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Left/VBoxContainer/Damage" unique_id=547105015]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "DAMAGE TAKEN:"
+horizontal_alignment = 1
+
+[node name="DamageLable" type="Label" parent="Left/VBoxContainer/Damage" unique_id=748536847]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "DAMAGE"
+horizontal_alignment = 1
+
+[node name="Kills" type="HBoxContainer" parent="Left/VBoxContainer" unique_id=1813081548]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Left/VBoxContainer/Kills" unique_id=1139405017]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "TOTAL KILLS:"
+horizontal_alignment = 1
+
+[node name="KillsLable" type="Label" parent="Left/VBoxContainer/Kills" unique_id=152307125]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "KILLS"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Left" unique_id=1844901154]
+layout_mode = 2
+
+[node name="Income" type="HBoxContainer" parent="Left/VBoxContainer2" unique_id=2007893751]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Left/VBoxContainer2/Income" unique_id=1435352637]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "TOTAL INCOME:"
+horizontal_alignment = 1
+
+[node name="IncomeLabel" type="Label" parent="Left/VBoxContainer2/Income" unique_id=1105543005]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2759302, 0.5688139, 0.08080984, 1)
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "INCOME"
+horizontal_alignment = 1
+
+[node name="Penalty" type="HBoxContainer" parent="Left/VBoxContainer2" unique_id=261782415]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Left/VBoxContainer2/Penalty" unique_id=175529875]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "TOTAL PENALTY:"
+horizontal_alignment = 1
+
+[node name="PenaltyLabel" type="Label" parent="Left/VBoxContainer2/Penalty" unique_id=1036954929]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7058824, 0.019607844, 0, 1)
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "PENALTY"
+horizontal_alignment = 1
+
+[node name="Net" type="HBoxContainer" parent="Left/VBoxContainer2" unique_id=145345196]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Left/VBoxContainer2/Net" unique_id=494688084]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "TOTAL NET:"
+horizontal_alignment = 1
+
+[node name="NetLabel" type="Label" parent="Left/VBoxContainer2/Net" unique_id=361578024]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.23529412, 0.69803923, 1)
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+text = "NET"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Left" unique_id=1855843616]
+custom_minimum_size = Vector2(0, 85)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MenuBtn" type="Button" parent="Left/Buttons" unique_id=2052425360 groups=["ui_buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxTexture_i5676")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ldbp3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_f0p57")
+text = "RTB (MENU)"
+
+[node name="RestartBtn" type="Button" parent="Left/Buttons" unique_id=509655138 groups=["ui_buttons"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_2udyh")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxTexture_vkd5t")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2udyh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_srdkp")
+text = "RESTART"

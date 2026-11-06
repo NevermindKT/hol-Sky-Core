@@ -21,9 +21,6 @@ class_name Run_summary_screen
 @export var row_delay: float = 0.12
 @export var row_offset: float = 20.0
 
-@export_category("Payout")
-@export var damage_cost_per_point: float = 10.0  # цена одной единицы урона
-
 @export_category("Payout Labels")
 @export var income_label: Label
 @export var penalty_label: Label
@@ -35,7 +32,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	_fill(Run_stats.last_summary)
-	_process_payout(Run_stats.last_summary)
+	_show_payout(Run_stats.last_summary)
 
 	restart_button.pressed.connect(_on_restart_pressed)
 
@@ -157,26 +154,11 @@ func _on_restart_pressed() -> void:
 func _on_menu_pressed() -> void:
 	GameFlow.change_scene(menu_scene_path)
 
-func _process_payout(summary: Dictionary) -> void:
-	var payout := _calc_payout(summary)
-	var income: int = payout["income"]
-	var penalty: int = payout["penalty"]
 
-	if not summary.get("paid", false):
-		BaseInventoryManager.apply_run_payout(income, penalty)
-		summary["paid"] = true
-
+func _show_payout(summary: Dictionary) -> void:
 	if income_label:
-		_animate_number(income_label, float(income))
+		_animate_number(income_label, float(summary.get("income", 0)))
 	if penalty_label:
-		_animate_number(penalty_label, float(penalty))
+		_animate_number(penalty_label, float(summary.get("penalty", 0)))
 	if net_label:
-		_animate_number(net_label, float(income - penalty))
-
-func _calc_payout(summary: Dictionary) -> Dictionary:
-	var income := 0
-	for entry in summary.get("kills", []):
-		income += int(entry.get("count", 0)) * int(entry.get("reward", 0))
-
-	var penalty := roundi(float(summary.get("damage_taken", 0.0)) * damage_cost_per_point)
-	return {"income": income, "penalty": penalty}
+		_animate_number(net_label, float(summary.get("net", 0)))

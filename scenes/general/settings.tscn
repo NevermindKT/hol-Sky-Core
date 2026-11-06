@@ -165,7 +165,6 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("10_0sjge")
 
 [node name="AudioPanel" type="Control" parent="SettingContent" unique_id=869658838 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -212,7 +211,7 @@ theme_override_font_sizes/font_size = 40
 text = "Music"
 
 [node name="SFXCon" type="VBoxContainer" parent="SettingContent/AudioPanel/Content" unique_id=2143228275]
-custom_minimum_size = Vector2(550, 0)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/separation = 50
@@ -252,6 +251,7 @@ step = 0.05
 value = 1.0
 
 [node name="VideoPanel" type="Control" parent="SettingContent" unique_id=233055471 node_paths=PackedStringArray("resolution_option", "fps_limit_option", "ground_distance_option", "fullscreen_checkbox", "vsync_checkbox", "overlay_checkbox", "fog_btn", "fov_slider", "current_fov_label", "ui_slider", "current_ui_scale_label", "gamma_slider", "current_gamma_label")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -335,7 +335,7 @@ texture = ExtResource("2_dcjrv")
 expand_mode = 1
 
 [node name="ButtonsCon" type="VBoxContainer" parent="SettingContent/VideoPanel/Content" unique_id=929648112]
-custom_maximum_size = Vector2(250, -1)
+custom_maximum_size = Vector2(500, -1)
 layout_mode = 2
 
 [node name="FullScreenBtn" type="CheckButton" parent="SettingContent/VideoPanel/Content/ButtonsCon" unique_id=1007677759]
