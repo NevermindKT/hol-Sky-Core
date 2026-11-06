@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://jqwakgfluhcc" path="res://textures/menu/pause/icons/MouseWheel.svg" id="3_j480u"]
 
 [node name="KeyCap" type="PanelContainer" unique_id=372214636 node_paths=PackedStringArray("label")]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(50, 50)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -20,12 +20,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_bofli")
 script = ExtResource("1_30ym1")
+min_key_width = 50.0
+key_height = 50.0
 label = NodePath("Label")
 
 [node name="Label" type="Label" parent="." unique_id=1583864242]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.6473853, 0.55119044, 0.2953764, 1)
+theme_override_colors/font_color = Color(0.982814, 0.8525619, 0.5064557, 1)
 theme_override_font_sizes/font_size = 22
 text = "E"
 horizontal_alignment = 1

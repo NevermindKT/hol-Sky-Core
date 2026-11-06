@@ -109,15 +109,17 @@ alignment = 0
 expand_icon = true
 
 [node name="Tutor" type="Control" parent="." unique_id=489495140]
+custom_minimum_size = Vector2(0, 900)
 layout_mode = 3
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -938.0
-offset_top = -466.25
-offset_bottom = 466.25
+offset_left = -629.0
+offset_top = -539.0
+offset_right = -1.0
+offset_bottom = 541.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -132,28 +134,30 @@ theme_override_styles/panel = ExtResource("11_0wtgd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tutor" unique_id=1987909166]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 26.5
-offset_top = 21.0
-offset_right = -14.5
-offset_bottom = -16.5
-grow_horizontal = 2
+anchor_bottom = 0.5
+offset_left = -587.0
+offset_top = -490.0
+offset_bottom = 490.0
+grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 20
 
 [node name="Category1" type="RichTextLabel" parent="Tutor/VBoxContainer" unique_id=1291804402]
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "Рух:[hr]"
+text = "Рух:"
 scroll_active = false
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Tutor/VBoxContainer" unique_id=1203778050]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 
 [node name="tut1" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer" unique_id=1675720825]
 custom_minimum_size = Vector2(0, 50)
@@ -183,7 +187,7 @@ theme_override_font_sizes/normal_font_size = 30
 text = " — стрейф"
 
 [node name="tut2" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer" unique_id=2223869]
-custom_minimum_size = Vector2(350, 50)
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 theme_override_constants/separation = 15
 
@@ -192,21 +196,20 @@ layout_mode = 2
 theme_override_constants/separation = 25
 
 [node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer/tut2/CapsCon" unique_id=1822915076 instance=ExtResource("11_sjti8")]
-custom_minimum_size = Vector2(82, 40)
+custom_minimum_size = Vector2(82, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 key_text = "SPACE"
 
 [node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer/tut2" unique_id=1511800367]
-custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = "+ кнопка стрейфу — ухил убік"
 
 [node name="tut3" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer" unique_id=2067580382]
-custom_minimum_size = Vector2(350, 50)
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 15
@@ -222,29 +225,27 @@ size_flags_vertical = 4
 key_text = "S"
 
 [node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer/tut3" unique_id=568258360]
-custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — гальмування"
 
 [node name="Category2" type="RichTextLabel" parent="Tutor/VBoxContainer" unique_id=102337517]
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "Бойові дії:
-[hr]"
+text = "Бойові дії:"
 scroll_active = false
+vertical_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Tutor/VBoxContainer" unique_id=877613859]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 
 [node name="tut1" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2" unique_id=912779112]
-custom_minimum_size = Vector2(350, 50)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
 [node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2/tut1" unique_id=1599761493]
@@ -266,16 +267,14 @@ visible = true
 custom_minimum_size = Vector2(40, 40)
 
 [node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer2/tut1" unique_id=1079042658]
-custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — стрільба"
 
 [node name="tut2" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2" unique_id=1599571930]
-custom_minimum_size = Vector2(350, 50)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
 [node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2/tut2" unique_id=38891262]
@@ -289,16 +288,14 @@ size_flags_vertical = 4
 key_text = "R"
 
 [node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer2/tut2" unique_id=339886386]
-custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — перезарядка"
 
 [node name="tut3" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2" unique_id=1750059812]
-custom_minimum_size = Vector2(350, 50)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
 [node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2/tut3" unique_id=1823680603]
@@ -326,29 +323,27 @@ visible = true
 custom_minimum_size = Vector2(40, 40)
 
 [node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer2/tut3" unique_id=2034432456]
-custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — зміна зброї"
 
 [node name="Category3" type="RichTextLabel" parent="Tutor/VBoxContainer" unique_id=1902799869]
-custom_minimum_size = Vector2(0, 90)
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "Інше:
-[hr]"
+text = "Інше:"
 scroll_active = false
+vertical_alignment = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Tutor/VBoxContainer" unique_id=1762046897]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 
 [node name="tut1" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3" unique_id=1847068813]
-custom_minimum_size = Vector2(350, 50)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
 [node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3/tut1" unique_id=1522748159]
@@ -362,16 +357,14 @@ size_flags_vertical = 4
 key_text = "F"
 
 [node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer3/tut1" unique_id=1570347381]
-custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — режим ліхтаря турелі"
 
 [node name="tut2" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3" unique_id=1321728803]
-custom_minimum_size = Vector2(350, 50)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
 [node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3/tut2" unique_id=2076039118]
@@ -385,67 +378,62 @@ size_flags_vertical = 4
 key_text = "H"
 
 [node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer3/tut2" unique_id=1783410254]
-custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — дальнє світло"
 
-[node name="tut3" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(350, 50)
+[node name="tut3" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3" unique_id=1436928994]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
-[node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3/tut3"]
+[node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3/tut3" unique_id=1597615280]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer3/tut3/CapsCon" instance=ExtResource("11_sjti8")]
+[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer3/tut3/CapsCon" unique_id=1892789108 instance=ExtResource("11_sjti8")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 key_text = "1"
 
-[node name="KeyCap2" parent="Tutor/VBoxContainer/VBoxContainer3/tut3/CapsCon" instance=ExtResource("11_sjti8")]
+[node name="KeyCap2" parent="Tutor/VBoxContainer/VBoxContainer3/tut3/CapsCon" unique_id=2074334426 instance=ExtResource("11_sjti8")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 key_text = "2"
 
-[node name="KeyCap3" parent="Tutor/VBoxContainer/VBoxContainer3/tut3/CapsCon" instance=ExtResource("11_sjti8")]
+[node name="KeyCap3" parent="Tutor/VBoxContainer/VBoxContainer3/tut3/CapsCon" unique_id=537907934 instance=ExtResource("11_sjti8")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 key_text = "3"
 
-[node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer3/tut3"]
-custom_minimum_size = Vector2(800, 0)
+[node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer3/tut3" unique_id=1367199311]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — активки"
 
-[node name="tut4" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(350, 50)
+[node name="tut4" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3" unique_id=1143663046]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/separation = 15
 
-[node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3/tut4"]
+[node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3/tut4" unique_id=1776102619]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer3/tut4/CapsCon" instance=ExtResource("11_sjti8")]
+[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer3/tut4/CapsCon" unique_id=812498678 instance=ExtResource("11_sjti8")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 key_text = "T"
 
-[node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer3/tut4"]
-custom_minimum_size = Vector2(800, 0)
+[node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer3/tut4" unique_id=1050731090]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — поставити запаску"
 
