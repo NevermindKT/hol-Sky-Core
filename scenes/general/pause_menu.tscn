@@ -391,6 +391,64 @@ size_flags_horizontal = 8
 theme_override_font_sizes/normal_font_size = 30
 text = " — дальнє світло"
 
+[node name="tut3" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 15
+
+[node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3/tut3"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer3/tut3/CapsCon" instance=ExtResource("11_sjti8")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+key_text = "1"
+
+[node name="KeyCap2" parent="Tutor/VBoxContainer/VBoxContainer3/tut3/CapsCon" instance=ExtResource("11_sjti8")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+key_text = "2"
+
+[node name="KeyCap3" parent="Tutor/VBoxContainer/VBoxContainer3/tut3/CapsCon" instance=ExtResource("11_sjti8")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+key_text = "3"
+
+[node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer3/tut3"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/normal_font_size = 30
+text = " — активки"
+
+[node name="tut4" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 15
+
+[node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3/tut4"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer3/tut4/CapsCon" instance=ExtResource("11_sjti8")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+key_text = "T"
+
+[node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer3/tut4"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/normal_font_size = 30
+text = " — поставити запаску"
+
 [node name="SettingsMenu" parent="." unique_id=2128686807 instance=ExtResource("2_8hsir")]
 visible = false
 

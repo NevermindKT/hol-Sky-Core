@@ -11,6 +11,6 @@ script = ExtResource("2_2gnll")
 id = "TS01"
 display_name = "Time slowdown"
 description = "Time slowdown"
-duration = 6.0
+duration = 8.0
 effects = Array[ExtResource("1_854vp")]([ExtResource("2_cnewx"), ExtResource("3_cnewx"), ExtResource("4_sel6g")])
 metadata/_custom_type_script = "uid://bt04e05usq4qe"

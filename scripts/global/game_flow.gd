@@ -109,6 +109,7 @@ func change_scene(path: String) -> void:
 	get_tree().paused = true
 	BoostManager.clear_active()
 	Engine.time_scale = 1.0
+	AudioServer.playback_speed_scale = 1.0
 	restart_requested.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 

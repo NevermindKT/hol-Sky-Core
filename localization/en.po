@@ -306,6 +306,9 @@ msgstr " what the right word is"
 msgid " яка може це довести"
 msgstr " who can prove it"
 
+msgid " — активки"
+msgstr " — boosts"
+
 msgid " — гальмування"
 msgstr " — brake"
 
@@ -317,6 +320,9 @@ msgstr " — switch weapon"
 
 msgid " — перезарядка"
 msgstr " — reload"
+
+msgid " — поставити запаску"
+msgstr " — fit the spare tire"
 
 msgid " — режим ліхтаря турелі"
 msgstr " — turret flashlight mode"
@@ -384,6 +390,9 @@ msgstr "Assault rifle"
 msgid "BACK"
 msgstr "BACK"
 
+msgid "Boosts for the run: drag into slots 1–3, up to 5 in total (RMB removes one)"
+msgstr "Boosts for the run: drag into slots 1–3, up to 5 in total (RMB removes one)"
+
 msgid "Bullet poison"
 msgstr "Poisoned bullets"
 
@@ -437,6 +446,9 @@ msgstr "FOV"
 
 msgid "Fire Power"
 msgstr "Fire Power"
+
+msgid "Fit the spare tire"
+msgstr "Fit the spare tire"
 
 msgid "Flashbang"
 msgstr "Flashbang"

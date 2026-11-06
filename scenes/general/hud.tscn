@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://d0gf238wyu787" path="res://scripts/ui/hud/crit_hit_marker.gd" id="7_crit"]
 [ext_resource type="Texture2D" uid="uid://dfop2ragb2xn8" path="res://textures/hud/turretMarker.png" id="8_4l38w"]
 [ext_resource type="Texture2D" uid="uid://be5orsb3ylep2" path="res://textures/hud/ammoIcons/Asset 1.svg" id="9_2r3oe"]
+[ext_resource type="PackedScene" path="res://scenes/ui/boost_hud.tscn" id="20_boosthud"]
 
 [sub_resource type="GDScript" id="GDScript_oj1j8"]
 script/source = "extends Control
@@ -392,6 +393,8 @@ text = "Ammo/Ammo"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BoostHud" parent="." instance=ExtResource("20_boosthud")]
 
 [node name="TurretRotationMarkerContainer" type="Control" parent="." unique_id=1168660309]
 visible = false

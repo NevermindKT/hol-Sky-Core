@@ -11,6 +11,6 @@ script = ExtResource("2_iem5s")
 id = "FV01"
 display_name = "Fusion night vision"
 description = "Fusion night vision"
-duration = 4.0
+duration = 15.0
 effects = Array[ExtResource("1_03qdb")]([ExtResource("2_xj7jm"), ExtResource("3_k4342"), ExtResource("4_crit")])
 metadata/_custom_type_script = "uid://bt04e05usq4qe"

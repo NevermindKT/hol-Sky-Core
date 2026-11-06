@@ -12,11 +12,31 @@ var _tweens: Dictionary[StringName, Tween] = {}
 func attach_to(viewport: Viewport) -> void:
 	custom_viewport = viewport
 	viewport.tree_exiting.connect(_on_viewport_exiting.bind(viewport), CONNECT_ONE_SHOT)
+	if not viewport.size_changed.is_connected(_fit_rects):
+		viewport.size_changed.connect(_fit_rects)
+	_fit_rects()
 
 
 func _on_viewport_exiting(viewport: Viewport) -> void:
+	if viewport.size_changed.is_connected(_fit_rects):
+		viewport.size_changed.disconnect(_fit_rects)
 	if custom_viewport == viewport:
 		custom_viewport = get_tree().root
+		_fit_rects()
+
+
+func _fit_rects() -> void:
+	var viewport := custom_viewport if custom_viewport else get_viewport()
+	var full := viewport == get_viewport()
+	for rect: ColorRect in effect_rects.values():
+		if not rect:
+			continue
+		if full:
+			rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		else:
+			rect.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+			rect.position = Vector2.ZERO
+			rect.size = viewport.get_visible_rect().size
 
 func show_effect(effect_id: StringName) -> void:
 	var rect: ColorRect = effect_rects.get(effect_id)
