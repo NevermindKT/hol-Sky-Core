@@ -34,9 +34,10 @@ enum ShopCategory {
 var current_category: ShopCategory = ShopCategory.WEAPONS
 
 const CATEGORY_NAMES := {
-	ShopCategory.WEAPONS: "Weapons",
-	ShopCategory.CONSUMABLES: "Consumables",
-	ShopCategory.REPAIR: "Repair"
+
+	ShopCategory.WEAPONS: "Зброя",
+	ShopCategory.CONSUMABLES: "Витратні матеріали",
+	ShopCategory.REPAIR: "Ремонт"
 }
 
 const CATEGORY_KEYS := {
@@ -86,7 +87,7 @@ func _ready() -> void:
 			select_category.bind(ShopCategory.REPAIR)
 		)
 
-	_initialize_language_option()
+
 	_initialize_clerks()
 	_ensure_shop_data()
 	render_shop()
@@ -399,35 +400,3 @@ func _buy_item(data: Dictionary, amount: int) -> void:
 
 func _on_game_manager_shop_refreshed() -> void:
 	render_shop()
-
-
-func _initialize_language_option() -> void:
-	if not language_option:
-		return
-
-	language_option.clear()
-
-	language_option.add_item("Українська")
-	language_option.add_item("English")
-	language_option.add_item("Русский")
-
-	language_option.item_selected.connect(_on_language_selected)
-
-	_update_language_option()
-
-
-func _update_language_option() -> void:
-	if not language_option:
-		return
-
-	var index := Settings.LANGUAGES.find(Settings.language)
-
-	if index >= 0:
-		language_option.select(index)
-
-
-func _on_language_selected(index: int) -> void:
-	if index < 0 or index >= Settings.LANGUAGES.size():
-		return
-
-	Settings.set_language(Settings.LANGUAGES[index])
