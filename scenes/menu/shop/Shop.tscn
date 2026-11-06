@@ -368,6 +368,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_auto_translate_mode = 1
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("2_el58o")
@@ -411,6 +412,7 @@ alignment = 1
 
 [node name="weapon_btn" type="Button" parent="UI/ObjDescription/Buttons" unique_id=141374144]
 layout_mode = 2
+tooltip_auto_translate_mode = 1
 theme_override_fonts/font = ExtResource("17_rk3x7")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = ExtResource("17_hsgj1")
@@ -421,6 +423,7 @@ alignment = 0
 
 [node name="repair_btn" type="Button" parent="UI/ObjDescription/Buttons" unique_id=789558534]
 layout_mode = 2
+tooltip_auto_translate_mode = 1
 theme_override_fonts/font = ExtResource("17_rk3x7")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = ExtResource("17_hsgj1")
@@ -431,6 +434,7 @@ alignment = 0
 
 [node name="consumables_btn" type="Button" parent="UI/ObjDescription/Buttons" unique_id=849711193]
 layout_mode = 2
+tooltip_auto_translate_mode = 1
 theme_override_fonts/font = ExtResource("17_rk3x7")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = ExtResource("17_hsgj1")

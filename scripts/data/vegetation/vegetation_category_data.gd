@@ -27,16 +27,7 @@ enum Placement { SCATTER, GRID }
 @export var lod_bias := 1.0
 @export var lod_road_distances: PackedFloat32Array = PackedFloat32Array()
 @export var lod_keep_ratios: PackedFloat32Array = PackedFloat32Array()
-## Дальность видимости для LOD1, LOD2... Если не задано, берётся visibility_range.
 @export var lod_visibility_ranges: PackedFloat32Array = PackedFloat32Array()
-
-@export_group("Camera LOD")
-## true: тиры переключаются по расстоянию до камеры, а не до дороги.
-@export var lod_by_camera := true
-## Расстояние от камеры, с которого начинается тир i+1 (LOD1, LOD2...). Длина = число LOD.
-@export var lod_camera_distances: PackedFloat32Array = PackedFloat32Array()
-## Ширина зоны плавного перехода между тирами, м.
-@export var lod_camera_margin := 12.0
 
 @export_range(0.0, 1.0, 0.01) var alpha_cutoff := 0.4
 @export_range(0.0, 1.0, 0.01) var specular := 0.1
@@ -44,6 +35,10 @@ enum Placement { SCATTER, GRID }
 @export var wind_speed := 1.0
 @export_range(0.0, 1.0, 0.01) var normal_up_blend := 0.0
 
+@export_group("Camera LOD")
+@export var lod_by_camera := true
+@export var lod_camera_distances: PackedFloat32Array = PackedFloat32Array()
+@export var lod_camera_margin := 12.0
 
 @export_group("Crowd LOD")
 ## Радиус окрестности в ячейках сетки (1 = 3x3). Больше 1 неточно на краях чанка.

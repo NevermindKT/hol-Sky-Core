@@ -30,9 +30,9 @@ visibility_fade = false
 lod_road_distances = null
 lod_keep_ratios = null
 lod_visibility_ranges = null
-lod_camera_distances = PackedFloat32Array(180)
 wind_strength = 0.1
 normal_up_blend = 0.6
+lod_camera_distances = PackedFloat32Array(180)
 
 [sub_resource type="Curve" id="Curve_deciduous"]
 _data = [Vector2(0, 0.06), 0.0, 0.0, 0, 0, Vector2(0.35, 0.9), 0.0, 0.0, 0, 0, Vector2(0.7, 0.6), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
@@ -57,9 +57,9 @@ visibility_fade = false
 lod_road_distances = null
 lod_keep_ratios = null
 lod_visibility_ranges = null
-lod_camera_distances = PackedFloat32Array(180)
 wind_strength = 0.15
 normal_up_blend = 0.6
+lod_camera_distances = PackedFloat32Array(180)
 
 [sub_resource type="Resource" id="Veg_autumn"]
 script = ExtResource("2_cat")
@@ -80,9 +80,9 @@ visibility_fade = false
 lod_road_distances = PackedFloat32Array(180)
 lod_keep_ratios = null
 lod_visibility_ranges = null
-lod_camera_distances = PackedFloat32Array(180)
 wind_strength = 0.15
 normal_up_blend = 0.6
+lod_camera_distances = PackedFloat32Array(180)
 
 [sub_resource type="Curve" id="Curve_bush"]
 _data = [Vector2(0, 0.35), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
@@ -106,9 +106,9 @@ cast_shadows = false
 lod_road_distances = null
 lod_keep_ratios = null
 lod_visibility_ranges = null
-lod_camera_distances = PackedFloat32Array(100)
 wind_strength = 0.2
 normal_up_blend = 0.6
+lod_camera_distances = PackedFloat32Array(100)
 
 [sub_resource type="Resource" id="Veg_stones"]
 script = ExtResource("2_cat")
@@ -153,9 +153,9 @@ cast_shadows = false
 lod_road_distances = null
 lod_keep_ratios = null
 lod_visibility_ranges = null
-lod_camera_distances = PackedFloat32Array(100)
 wind_strength = 0.12
 wind_speed = 2.0
+lod_camera_distances = PackedFloat32Array(100)
 
 [resource]
 script = ExtResource("1_land")

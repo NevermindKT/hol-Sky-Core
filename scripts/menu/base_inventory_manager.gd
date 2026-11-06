@@ -229,6 +229,13 @@ func add_money(amount: int) -> void:
 	set_player_money(get_player_money() + amount)
 
 
+func apply_run_payout(income: int, penalty: int) -> int:
+	var before := get_player_money()
+	var after := maxi(before + income - penalty, 0)
+	set_player_money(after)
+	return after - before
+
+
 # --------------------------------------------------
 # ПОКУПКИ УЛУЧШЕНИЙ
 # --------------------------------------------------
