@@ -159,6 +159,27 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 30
 
+[node name="tut4" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer" unique_id=640198746]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer/tut4" unique_id=1498943472]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer/tut4/CapsCon" unique_id=372214636 instance=ExtResource("11_sjti8")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+key_text = "W"
+
+[node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer/tut4" unique_id=1337243532]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 30
+text = " — газ"
+
 [node name="tut1" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer" unique_id=1675720825]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -168,7 +189,7 @@ theme_override_constants/separation = 15
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer/tut1/CapsCon" unique_id=372214636 instance=ExtResource("11_sjti8")]
+[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer/tut1/CapsCon" unique_id=1082494426 instance=ExtResource("11_sjti8")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -272,27 +293,6 @@ size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — стрільба"
 
-[node name="tut2" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2" unique_id=1599571930]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2/tut2" unique_id=38891262]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer2/tut2/CapsCon" unique_id=871287400 instance=ExtResource("11_sjti8")]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-key_text = "R"
-
-[node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer2/tut2" unique_id=339886386]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 30
-text = " — перезарядка"
-
 [node name="tut3" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2" unique_id=1750059812]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -327,6 +327,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 30
 text = " — зміна зброї"
+
+[node name="tut2" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2" unique_id=1599571930]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CapsCon" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer2/tut2" unique_id=38891262]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="KeyCap" parent="Tutor/VBoxContainer/VBoxContainer2/tut2/CapsCon" unique_id=871287400 instance=ExtResource("11_sjti8")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+key_text = "R"
+
+[node name="Label" type="RichTextLabel" parent="Tutor/VBoxContainer/VBoxContainer2/tut2" unique_id=339886386]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 30
+text = " — перезарядка"
 
 [node name="Category3" type="RichTextLabel" parent="Tutor/VBoxContainer" unique_id=1902799869]
 custom_minimum_size = Vector2(0, 65)
@@ -417,6 +438,7 @@ theme_override_font_sizes/normal_font_size = 30
 text = " — активки"
 
 [node name="tut4" type="HBoxContainer" parent="Tutor/VBoxContainer/VBoxContainer3" unique_id=1143663046]
+visible = false
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_constants/separation = 15

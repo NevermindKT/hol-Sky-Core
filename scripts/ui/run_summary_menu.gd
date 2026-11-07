@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 class_name Run_summary_screen
 
 @export_category("Scenes")
@@ -26,18 +26,31 @@ class_name Run_summary_screen
 @export var penalty_label: Label
 @export var net_label: Label
 
+@export_category("Exports")
+@export var run_stats: Run_stats
+@export var playerInventory: PlayerInventory
+
+var _ammo_committed := false
 
 func _ready() -> void:
-	get_tree().paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-	_fill(Run_stats.last_summary)
-	_show_payout(Run_stats.last_summary)
-
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	hide()
 	restart_button.pressed.connect(_on_restart_pressed)
-
 	menu_button.visible = not menu_scene_path.is_empty()
 	menu_button.pressed.connect(_on_menu_pressed)
+	if run_stats:
+		run_stats.summary_ready.connect(show_summary)
+	else:
+		push_warning("RunSummary: run_stats не назначен!")
+
+
+func show_summary(summary: Dictionary) -> void:
+	show()
+	get_tree().paused = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_fill(summary)
+	_show_payout(summary)
+	_commit_ammo()
 
 
 func _fill(summary: Dictionary) -> void:
@@ -148,10 +161,12 @@ func _animate_row(
 
 
 func _on_restart_pressed() -> void:
+	get_tree().paused = false
 	GameFlow.change_scene(restart_scene_path)
 
 
 func _on_menu_pressed() -> void:
+	get_tree().paused = false
 	GameFlow.change_scene(menu_scene_path)
 
 
@@ -162,3 +177,10 @@ func _show_payout(summary: Dictionary) -> void:
 		_animate_number(penalty_label, float(summary.get("penalty", 0)))
 	if net_label:
 		_animate_number(net_label, float(summary.get("net", 0)))
+
+
+func _commit_ammo() -> void:
+	if _ammo_committed or playerInventory == null:
+		return
+	_ammo_committed = true
+	playerInventory.commit_to_base_inventory()

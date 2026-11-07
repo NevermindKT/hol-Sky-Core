@@ -103,7 +103,7 @@ var _current_grip := 1.0
 
 @export var wheels: Car_Wheels
 
-@export var inventory: Inventory
+@export var inventory: PlayerInventory
 @export var weapon_controller: Weapon_controller
 @export var player_status_controller: Player_Status_Controller
 

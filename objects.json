@@ -1,7 +1,7 @@
 {
   "Money": [
 	{
-	  "MONEY": 1500
+	  "MONEY": 2500
 	}
   ],
   "Objects": [
@@ -13,7 +13,7 @@
 	  "Quantity": 0,
 	  "Percent": 60,
 	  "Descriprion": "Час уповільнюється на 6с.",
-	  "Emount": 100,
+	  "Emount": 150,
 	  "IconPath": "res://textures/menu/shop/Items/06-adrenaline.png",
 	  "Rarity": "Common",
 	  "BoostId": "TS01"
@@ -26,7 +26,7 @@
 	  "Quantity": 0,
 	  "Percent": 50,
 	  "Descriprion": "Турбо режим на 3с.",
-	  "Emount": 300,
+	  "Emount": 350,
 	  "IconPath": "res://textures/menu/shop/Items/07-nitrous.png",
 	  "Rarity": "Uncommon",
 	  "BoostId": "NO01"
@@ -39,7 +39,7 @@
 	  "Quantity": 0,
 	  "Percent": 40,
 	  "Descriprion": "Вороги підсвічуються на 4с.",
-	  "Emount": 600,
+	  "Emount": 100,
 	  "IconPath": "res://textures/menu/shop/Items/08-night-vision.png",
 	  "Rarity": "Rare",
 	  "BoostId": "FV01"
@@ -52,7 +52,7 @@
 	  "Quantity": 0,
 	  "Percent": 20,
 	  "Descriprion": "Вороги не нападають і розбігаються на 4с.",
-	  "Emount": 800,
+	  "Emount": 500,
 	  "IconPath": "res://textures/menu/shop/Items/09-flashbang.png",
 	  "Rarity": "Epic",
 	  "BoostId": "FB01"
@@ -65,7 +65,7 @@
 	  "Quantity": 0,
 	  "Percent": 10,
 	  "Descriprion": "+1 шина",
-	  "Emount": 1200,
+	  "Emount": 1000,
 	  "IconPath": "res://textures/menu/shop/Items/10-spare-tire.png",
 	  "Rarity": "Legendary",
 	  "BoostId": "ST01"
@@ -78,7 +78,7 @@
 	  "Quantity": 0,
 	  "Percent": 60,
 	  "Descriprion": "Урон: 15",
-	  "Emount": 100,
+	  "Emount": 5,
 	  "IconPath": "res://textures/menu/shop/Items/11-smg-ammo.png",
 	  "Rarity": "Common"
 	},
@@ -90,7 +90,7 @@
 	  "Quantity": 0,
 	  "Percent": 50,
 	  "Descriprion": "Урон: 35",
-	  "Emount": 300,
+	  "Emount": 20,
 	  "IconPath": "res://textures/menu/shop/Items/12-rifle-ammo.png",
 	  "Rarity": "Uncommon"
 	},
@@ -102,7 +102,7 @@
 	  "Quantity": 0,
 	  "Percent": 40,
 	  "Descriprion": "Урон: 50",
-	  "Emount": 600,
+	  "Emount": 50,
 	  "IconPath": "res://textures/menu/shop/Items/13-piercing-ammo.png",
 	  "Rarity": "Rare"
 	},
@@ -114,7 +114,7 @@
 	  "Quantity": 0,
 	  "Percent": 20,
 	  "Descriprion": "Урон: 80",
-	  "Emount": 800,
+	  "Emount": 15,
 	  "IconPath": "res://textures/menu/shop/Items/14-shotgun-ammo.png",
 	  "Rarity": "Epic"
 	},
@@ -126,7 +126,7 @@
 	  "Quantity": 0,
 	  "Percent": 10,
 	  "Descriprion": "Урон: 100",
-	  "Emount": 1200,
+	  "Emount": 40,
 	  "IconPath": "res://textures/menu/shop/Items/15-fire-ammo.png",
 	  "Rarity": "Legendary"
 	},
@@ -586,7 +586,7 @@
 	  "BaseName": "Бар \"Янтарна крапля\"",
 	  "Monsters": "Монстри: Вовк - полювальник",
 	  "Description": "Опис: База, в якій алкоголь\nвідіграє важливу роль і підіймає\nбойовий дух.",
-	  "ISActive": 0,
+	  "ISActive": 1,
 	  "Base1": 0,
 	  "Base2": 12,
 	  "Base3": 13,
@@ -599,7 +599,7 @@
 	  "BaseName": "Лабораторія №67",
 	  "Monsters": "Монстри: Вовк - полювальник",
 	  "Description": "Опис: Закинута лабораторія \nза словами місцевих жителів. \nАбо ні?",
-	  "ISActive": 1,
+	  "ISActive": 0,
 	  "Base1": 12,
 	  "Base2": 0,
 	  "Base3": 23,

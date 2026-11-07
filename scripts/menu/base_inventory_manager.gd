@@ -20,6 +20,15 @@ var active_clerk_index: int = 0
 
 signal inventory_changed
 
+
+# Поля, которые всегда берутся из res://objects.json (баланс игры).
+# Прогресс игрока (Quantity, Purchased, MONEY...) сюда НЕ добавлять.
+const SYNCED_FIELDS := {
+	"Objects": ["Name", "Type", "ShopCategory", "Percent", "Descriprion", "Emount", "Rarity", "BoostId"],
+	"Car": ["Type", "MaterialId", "TypeObj", "Level", "Name", "NumObj", "Money", "Effects"],
+}
+
+
 func _ready() -> void:
 	load_data()
 
@@ -55,8 +64,11 @@ func load_data() -> void:
 	# Создаём сохранение при первом запуске.
 	if not FileAccess.file_exists(SAVE_PATH):
 		save_data()
-	elif _add_missing_tables():
-		save_data()
+	else:
+		var changed := _add_missing_tables()
+		changed = _sync_static_fields() or changed
+		if changed:
+			save_data()
 
 
 func reset_save() -> void:
@@ -563,3 +575,36 @@ func get_car_upgrade_material(upgrade: Dictionary) -> Dictionary:
 	if upgrade.has("MaterialId"):
 		return find_object_by_id(str(upgrade["MaterialId"]))
 	return find_object_by_name(str(upgrade.get("TypeObj", "")))
+
+
+func _sync_static_fields() -> bool:
+	var source = JSON.parse_string(FileAccess.get_file_as_string(SOURCE_PATH))
+	if not source is Dictionary:
+		return false
+
+	var changed := false
+
+	for table_name in SYNCED_FIELDS:
+		var rows: Variant = data.get(table_name)
+		var source_rows: Variant = source.get(table_name)
+		if not rows is Array or not source_rows is Array:
+			continue
+
+		var by_id := {}
+		for row in rows:
+			if row is Dictionary and row.has("ID"):
+				by_id[_key(row["ID"])] = row
+
+		for source_row in source_rows:
+			if not source_row is Dictionary or not source_row.has("ID"):
+				continue
+			var row: Dictionary = by_id.get(_key(source_row["ID"]), {})
+			if row.is_empty():
+				continue
+
+			for field in SYNCED_FIELDS[table_name]:
+				if source_row.has(field) and row.get(field) != source_row[field]:
+					row[field] = source_row[field]
+					changed = true
+
+	return changed

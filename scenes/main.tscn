@@ -112,6 +112,10 @@ stretch = true
 
 [node name="UI" parent="SubViewportContainer" unique_id=934683406 instance=ExtResource("1_0wfyh")]
 
+[node name="RunSummary" parent="SubViewportContainer/UI" index="5" unique_id=479002571 node_paths=PackedStringArray("run_stats", "playerInventory")]
+run_stats = NodePath("../../SubViewport/Services/RunStats")
+playerInventory = NodePath("../../SubViewport/Car/Inventory")
+
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1338925618]
 handle_input_locally = false
 audio_listener_enable_3d = true
@@ -120,30 +124,19 @@ render_target_update_mode = 4
 
 [node name="Car" parent="SubViewportContainer/SubViewport" unique_id=353319218 node_paths=PackedStringArray("player_cam") instance=ExtResource("1_pibwh")]
 max_speed = 75.0
-hard_brake_threshold = 25.0
-inertia_force_multiplier = 0.6
 max_offset = 10.0
 strafe_speed = 14.5
-min_strafe_speed = 2.0
 road_turn_force = 0.8
 dodge_force = 10.0
 dodge_distance = 5.0
-dodge_min_speed = 40.0
-dodge_window = 0.35
-dodge_hit_radius = 1.2
 dodge_damage = 79.0
 dodge_knockback_force = 110.0
-dodge_hit_spray_lateral = 0.5
 enemy_detection_mask = 2
-max_stamina = 100.0
-dodge_stamina_drain = 30.0
 stamina_regeneration_rate = 75.0
 stamina_regeneration_delay = 0.75
 overheat_delay = 1.25
 overheat_recovery_ratio = 0.85
 damping = 11.0
-grip_transition_speed = 2.0
-base_damage = 15
 player_cam = NodePath("../PlayerCam")
 engine_max_volume_db = -4.0
 
@@ -243,8 +236,6 @@ encounter_director = NodePath("../EncounterDirector")
 
 [node name="RunStats" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=1836640605]
 script = ExtResource("51_o7ddy")
-summary_scene_path = "uid://p7ufkd6leg0l"
-summary_delay = 1.0
 
 [node name="RunManager" type="Node" parent="SubViewportContainer/SubViewport/Services" unique_id=126509168 node_paths=PackedStringArray("encounter")]
 script = ExtResource("13_j2jfr")
@@ -347,4 +338,6 @@ fade_duration = 5.0
 [node name="Overlay" parent="." unique_id=631129038 instance=ExtResource("51_bu4jf")]
 texture = SubResource("ViewportTexture_o7ddy")
 
+[editable path="SubViewportContainer/UI"]
+[editable path="SubViewportContainer/SubViewport/Car"]
 [editable path="SubViewportContainer/SubViewport/Environment/WeatherSystem"]

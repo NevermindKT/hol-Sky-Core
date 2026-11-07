@@ -304,6 +304,7 @@ grow_vertical = 2
 pivot_offset = Vector2(156, 160)
 
 [node name="LockMisto" type="Button" parent="Map/Misto1" unique_id=1945434561]
+z_index = 1
 layout_mode = 0
 offset_left = 90.0
 offset_top = 103.0
@@ -335,6 +336,7 @@ pivot_offset = Vector2(187, 232)
 metadata/_edit_use_anchors_ = true
 
 [node name="LockStep" type="Button" parent="Map/Step1" unique_id=481570875]
+z_index = 1
 layout_mode = 0
 offset_left = 161.0
 offset_top = 183.0

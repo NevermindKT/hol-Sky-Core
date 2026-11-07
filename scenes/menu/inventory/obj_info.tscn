@@ -173,6 +173,7 @@ theme_override_styles/read_only = ExtResource("5_aa77h")
 theme_override_styles/focus = ExtResource("5_aa77h")
 text = "1"
 alignment = 1
+context_menu_enabled = false
 
 [node name="Plus" type="Button" parent="Info/VBoxContainer/Buttons" unique_id=242519114]
 z_index = 5

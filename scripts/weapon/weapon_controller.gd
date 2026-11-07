@@ -11,7 +11,7 @@ var current_weapon: WeaponState
 @export var fire_volume: float
 @export var reload_volume: float
 
-@export var inventory: Inventory
+@export var inventory: PlayerInventory
 
 var cooldown := 0.0
 var current_spread: float = 0.0

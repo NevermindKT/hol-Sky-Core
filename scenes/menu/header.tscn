@@ -3,11 +3,10 @@
 [ext_resource type="Script" uid="uid://c8qkffepaeak4" path="res://scripts/menu/Header.gd" id="1_tj4am"]
 [ext_resource type="Texture2D" uid="uid://cd82c33cjst20" path="res://textures/menu/menu/header.png" id="4_lsn1v"]
 [ext_resource type="FontFile" uid="uid://dlqitfu1h30du" path="res://scenes/menu/fonts/Cormorant/Cormorant-Bold.ttf" id="4_tj4am"]
-[ext_resource type="StyleBox" uid="uid://2cduuwql0kli" path="res://textures/styles/button_bg.tres" id="4_xosul"]
 [ext_resource type="Texture2D" uid="uid://l38ls0cui2lu" path="res://textures/menu/pause/icons/Exit.svg" id="5_imjd4"]
-[ext_resource type="Texture2D" uid="uid://clu3b6be0h77e" path="res://textures/menu/pause/NORMAL — steel.png" id="5_mckkr"]
+[ext_resource type="StyleBox" uid="uid://ym8317mmxy6b" path="res://header_button_bg.tres" id="5_mckkr"]
 [ext_resource type="Texture2D" uid="uid://dqpbccox31hqr" path="res://textures/menu/menu/MoneyIcon.svg" id="5_n4tod"]
-[ext_resource type="Texture2D" uid="uid://b0bn626o5d32u" path="res://textures/menu/pause/SELECTED — amber.png" id="7_mckkr"]
+[ext_resource type="StyleBox" uid="uid://cfrme8lac4luu" path="res://header_button_bg_active.tres" id="7_2so0b"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_grfbt"]
 texture = ExtResource("4_lsn1v")
@@ -15,20 +14,6 @@ texture = ExtResource("4_lsn1v")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s835k"]
 texture = ExtResource("5_n4tod")
 modulate_color = Color(1, 1, 1, 0.7294118)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mckkr"]
-texture = ExtResource("5_mckkr")
-expand_margin_left = 15.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2so0b"]
-texture = ExtResource("7_mckkr")
-expand_margin_left = 15.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
 
 [node name="Header" type="Control" unique_id=1044605363 node_paths=PackedStringArray("exit_btn", "money_label")]
 custom_minimum_size = Vector2(1920, 110)
@@ -97,8 +82,8 @@ grow_vertical = 2
 theme_override_constants/icon_max_width = 50
 theme_override_fonts/font = ExtResource("4_tj4am")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxTexture_mckkr")
-theme_override_styles/pressed = ExtResource("4_xosul")
-theme_override_styles/hover = SubResource("StyleBoxTexture_2so0b")
+theme_override_styles/normal = ExtResource("5_mckkr")
+theme_override_styles/pressed = ExtResource("5_mckkr")
+theme_override_styles/hover = ExtResource("7_2so0b")
 text = "EXIT TO MENU"
 icon = ExtResource("5_imjd4")

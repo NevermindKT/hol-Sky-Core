@@ -14,8 +14,6 @@ var _running := true
 var _finished := false
 
 static var last_summary: Dictionary = {}
-
-@export_file("*.tscn") var summary_scene_path: String
 @export var summary_delay := 1.5
 
 func _ready() -> void:
@@ -46,13 +44,9 @@ func finish() -> void:
 
 	last_summary = get_summary()
 	BaseInventoryManager.apply_run_payout(last_summary["income"], last_summary["penalty"])
-	summary_ready.emit(last_summary)
-
-	if summary_scene_path.is_empty():
-		return
 
 	await get_tree().create_timer(summary_delay).timeout
-	GameFlow.change_scene(summary_scene_path)
+	summary_ready.emit(last_summary)
 
 
 func get_summary() -> Dictionary:

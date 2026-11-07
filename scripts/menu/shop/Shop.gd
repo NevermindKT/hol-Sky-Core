@@ -16,7 +16,7 @@ extends Control
 
 @export_category("Clerks")
 @export var clerks: Array[Control] = []
-@export var clerk_slide_distance: float = 300.0
+@export var clerk_slide_distance: float = 180.0
 @export var clerk_animation_duration: float = 0.35
 
 var language_option: OptionButton
